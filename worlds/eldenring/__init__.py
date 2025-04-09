@@ -96,7 +96,10 @@ class EldenRing(World):
         create_connection("Limgrave", "Summonwater Village")
         create_connection("Limgrave", "Murkwater Catacombs")
         create_connection("Limgrave", "Highroad Cave")
-        create_connection("Limgrave", "Deathtouched Catacombs",)
+        create_connection("Limgrave", "Deathtouched Catacombs")
+        create_connection("Limgrave", "Warmaster's Shack")
+
+        create_connection("Limgrave", "Roundtable Hold")
         
 
 
@@ -105,25 +108,17 @@ class EldenRing(World):
         # create_connection("Dragon-Burnt Ruins", "caelid crystal tunnels")
         create_connection("Coastal Cave", "Church of Dragon Communion")
 
+        #create_connection("Limgrave", "Stormveil Castle")
+        #create_connection("Limgrave", "Siofra River")
+
 
         create_connection("Limgrave", "Liurnia of The Lakes")
-        # Liurnia
-
+        # Liurnia of The Lakes
+        #create_connection("Liurnia of The Lakes", "Chapel of Anticipation [Return]") # add real LL location for ca return
         
         create_connection("Limgrave", "Caelid")
         # Caelid
         create_connection("Caelid", "Smoldering Church")
-
-
-        
-        #create_connection("Limgrave", "Siofra River")
-        #create_connection("Limgrave", "Stormveil Castle")
-        #create_connection("Limgrave", "Liurnia of The Lakes")
-        # Liurnia of The Lakes
-        #create_connection("Liurnia of The Lakes", "Chapel of Anticipation [Return]") # add real LL location for ca return
-
-
-        #create_connection("Caelid", "Roundtable Hold") #only after getting to caelid area
 
 
         # Connect DLC Regions
@@ -336,7 +331,7 @@ class EldenRing(World):
 
     def set_rules(self) -> None: #WIP #MARK: Rules
 
-        #self._add_shop_rules()
+        self._add_shop_rules()
         #self._add_npc_rules()
         #self._add_remembrance_rules()
 
@@ -357,6 +352,11 @@ class EldenRing(World):
         self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: state.has("Stonesword Key", self.player))
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
                                 lambda state: state.has("\"Homing Instinct\" Painting", self.player))
+        
+        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player))
+        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player))
+        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 3))
+        
         
 
         
@@ -396,33 +396,35 @@ class EldenRing(World):
             runes_required >= runeCount
         )
     
-    def _add_shop_rules(self) -> None: # this would be bell bearing stuff ig #MARK: Shop Rules
+    def _add_shop_rules(self) -> None: # MARK: Shop Rules
         """Adds rules for items unlocked in shops."""
 
-        # Ashes
-        ashes = {
-            "Mortician's Ashes": ["Alluring Skull", "Ember", "Grave Key"],
-            "Dreamchaser's Ashes": ["Life Ring", "Hidden Blessing"],
-            "Paladin's Ashes": ["Lloyd's Shield Ring"],
-            "Grave Warden's Ashes": ["Ember"],
-            "Prisoner Chief's Ashes": [
-                "Karla's Pointed Hat", "Karla's Coat", "Karla's Gloves", "Karla's Trousers"
-            ],
-            "Xanthous Ashes": ["Xanthous Overcoat", "Xanthous Gloves", "Xanthous Trousers"],
-            "Dragon Chaser's Ashes": ["Ember"],
-            "Easterner's Ashes": [
-                "Washing Pole", "Eastern Helm", "Eastern Armor", "Eastern Gauntlets",
-                "Eastern Leggings", "Wood Grain Ring",
-            ],
-            "Captain's Ashes": [
-                "Millwood Knight Helm", "Millwood Knight Armor", "Millwood Knight Gauntlets",
-                "Millwood Knight Leggings", "Refined Gem",
-            ]
+        # Scrolls
+        scrolls = {
+            "Academy Scroll": ["Great Glintstone Shard", "Swift Glintstone Shard"],
+            "Conspectus Scroll": ["Glintstone Cometshard", "Star Shower"],
+            "Royal House Scroll": ["Glintblade Phalanx", "Carian Slicer"]
         }
-        for (ash, items) in ashes.items():
-            self._add_location_rule([f"FS: {item} - {ash}" for item in items], ash)
 
-        # Shop unlocks
+        # Prayerbooks
+        books = {
+            "Two Fingers' Prayerbook": ["Lord's Heal", "Lord's Aid"],
+            "Assassin's Prayerbook": ["Assassin's Approach", "Darkness"],
+            "Golden Order Principia": ["Radagon's Rings of Light", "Law of Regression"],
+            "Dragon Cult Prayerbook": ["Lightning Spear", "Honed Bolt", "Electrify Armament"],
+            "Ancient Dragon Prayerbook": ["Ancient Dragons' Lightning Spear", "Ancient Dragons' Lightning Strike"],
+            "Fire Monks' Prayerbook": ["O, Flame!", "Surge, O Flame!"],
+            "Giant's Prayerbook": ["Giantsflame Take Thee", "Flame, Fall Upon Them"],
+            "Godskin Prayerbook": ["Black Flame", "Black Flame Blade"]
+        }
+
+        for (scroll, items) in scrolls.items():
+            self._add_location_rule([f"LG/(WR): {item} - {scroll}" for item in items], scroll)
+        for (book, items) in books.items():
+            self._add_location_rule([f"RH: {item} - {book}" for item in items], book)
+
+
+        """# Shop unlocks
         shop_unlocks = {
             "Cornyx": [
                 (
@@ -476,7 +478,7 @@ class EldenRing(World):
         for (shop, unlocks) in shop_unlocks.items():
             for (key, key_name, items) in unlocks:
                 self._add_location_rule(
-                    [f"FS: {item} - {shop} for {key_name}" for item in items], key)
+                    [f"FS: {item} - {shop} for {key_name}" for item in items], key)"""
                 
     def _add_npc_rules(self) -> None: # npc quest stuff #MARK: Quest Rules
         """Adds rules for items accessible via NPC quests.

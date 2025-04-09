@@ -536,7 +536,7 @@ _vanilla_items = [
     ERItemData("Bolt", 52000000, ERItemCategory.WEAPON),
     ERItemData("Lightning Bolt", 52010000, ERItemCategory.WEAPON),
     ERItemData("Perfumer's Bolt", 52020000, ERItemCategory.WEAPON),
-    ERItemData("Black-Key Bolt", 52030000, ERItemCategory.WEAPON),
+    *ERItemData("Black-Key Bolt", 52030000, ERItemCategory.WEAPON).counts([20]),
     ERItemData("Burred Bolt", 52040000, ERItemCategory.WEAPON),
     ERItemData("Meteor Bolt", 52050000, ERItemCategory.WEAPON),
     ERItemData("Explosive Bolt", 52060000, ERItemCategory.WEAPON),
@@ -1240,8 +1240,8 @@ _vanilla_items = [
     ERItemData("Shabriri's Woe", 6050, ERItemCategory.ACCESSORY),
     ERItemData("Daedicar's Woe", 6060, ERItemCategory.ACCESSORY),
     ERItemData("Sacrificial Twig", 6070, ERItemCategory.ACCESSORY),
-    ERItemData("Furled Finger's Trick-Mirror", 6080, ERItemCategory.ACCESSORY),
-    ERItemData("Host's Trick-Mirror", 6090, ERItemCategory.ACCESSORY),
+    ERItemData("Furled Finger's Trick-Mirror", 6080, ERItemCategory.ACCESSORY, skip=True),
+    ERItemData("Host's Trick-Mirror", 6090, ERItemCategory.ACCESSORY, skip=True),
 
     # MARK: Goods
     ERItemData("Tarnished's Furled Finger", 100, ERItemCategory.GOODS, skip=True),
@@ -1257,7 +1257,7 @@ _vanilla_items = [
     ERItemData("Recusant Finger", 112, ERItemCategory.GOODS, skip=True),
     #ERItemData("Spectral Steed Whistle", 130, ERItemCategory.GOODS),
     *ERItemData("Furlcalling Finger Remedy", 150, ERItemCategory.GOODS, skip=True).counts([3]),
-    ERItemData("Rune Arc", 190, ERItemCategory.GOODS, filler=True),
+    *ERItemData("Rune Arc", 190, ERItemCategory.GOODS, filler=True).counts([5]),
     #ERItemData("Godrick's Great Rune (Restored)", 191, ERItemCategory.GOODS),
     #ERItemData("Radahn's Great Rune (Restored)", 192, ERItemCategory.GOODS),
     #ERItemData("Morgott's Great Rune (Restored)", 193, ERItemCategory.GOODS),
@@ -1586,7 +1586,7 @@ _vanilla_items = [
     ERItemData("Golden Lightning Fortification", 7903, ERItemCategory.GOODS),
 
     #Key and quest stuff
-    ERItemData("Stonesword Key", 8000, ERItemCategory.GOODS, ItemClassification.useful),
+    *ERItemData("Stonesword Key", 8000, ERItemCategory.GOODS, ItemClassification.useful).counts([3]),
     ERItemData("Rusty Key", 8010, ERItemCategory.GOODS),
     ERItemData("Dectus Medallion (Left)", 8105, ERItemCategory.GOODS, ItemClassification.progression),
     ERItemData("Dectus Medallion (Right)", 8106, ERItemCategory.GOODS, ItemClassification.progression),

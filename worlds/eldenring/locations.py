@@ -9,7 +9,7 @@ from .items import ERItemCategory, item_table
 region_order = [
     "Chapel of Anticipation",
 
-    #Limgrave
+    # Limgrave
     "Stranded Graveyard",
     "Fringefolk Hero's Grave",
     "Limgrave",
@@ -33,6 +33,10 @@ region_order = [
     "Murkwater Catacombs",
     "Highroad Cave",
     "Deathtouched Catacombs",
+    "Warmaster's Shack",
+
+    # The hold
+    "Roundtable Hold",
 
 
 
@@ -49,7 +53,7 @@ region_order = [
 ]
 """
 
-    "Roundtable Hold",
+    
     "Siofra River",
     "Stormveil Castle",
 
@@ -570,13 +574,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     "Stormhill Shack":[
         ERLocationData("LG/(SS): Stonesword Key - near grace", "Stonesword Key"),
+        ERLocationData("LG/(SS): Sitting Sideways - talk to Roderika", "Sitting Sideways", npc=True),
+        ERLocationData("LG/(SS): Spirit Jellyfish Ashes - talk to Roderika 4 times", "Spirit Jellyfish Ashes", npc=True),
     ],
     "Waypoint Ruins":[
         ERLocationData("LG/(WR): Golden Rune [1] - within ruins", "Golden Rune [1]"),
         ERLocationData("LG/(WR): Immunizing Cured Meat - within ruins", "Immunizing Cured Meat"),
         ERLocationData("LG/(WR): Glowstone x2 - within ruins", "Glowstone x2"),
         ERLocationData("LG/(WR): Trina's Lily x4 - on ruin wall", "Trina's Lily x4"),
-        #Sellen shop
+        # Sellen shop
         ERLocationData("LG/(WR): Nod In Thought - Sellen", "Nod In Thought"),
         ERLocationData("LG/(WR): Glintstone Pebble - Sellen Shop", "Glintstone Pebble", shop=True),
         ERLocationData("LG/(WR): Glintstone Stars - Sellen Shop", "Glintstone Stars", shop=True),
@@ -584,6 +590,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(WR): Crystal Barrage - Sellen Shop", "Crystal Barrage", shop=True),
         ERLocationData("LG/(WR): Scholar's Armament - Sellen Shop", "Scholar's Armament", shop=True),
         ERLocationData("LG/(WR): Scholar's Shield - Sellen Shop", "Scholar's Shield", shop=True),
+
+        # Sorcerer Scrolls
+        ERLocationData("LG/(WR): Great Glintstone Shard - Academy Scroll", "Great Glintstone Shard", shop=True, conditional=True, missable=True),
+        ERLocationData("LG/(WR): Swift Glintstone Shard - Academy Scroll", "Swift Glintstone Shard", shop=True, conditional=True, missable=True),
+        ERLocationData("LG/(WR): Glintstone Cometshard - Conspectus Scroll", "Glintstone Cometshard", shop=True, conditional=True, missable=True),
+        ERLocationData("LG/(WR): Star Shower - Conspectus Scroll", "Star Shower", shop=True, conditional=True, missable=True),
+        ERLocationData("LG/(WR): Glintblade Phalanx - Royal House Scroll", "Glintblade Phalanx", shop=True, conditional=True, missable=True),
+        ERLocationData("LG/(WR): Carian Slicer - Royal House Scroll", "Carian Slicer", shop=True, conditional=True, missable=True),
     ],
     "Dragon-Burnt Ruins":[
         ERLocationData("LG/(DBR): Crab Eggs - wthin ruins", "Crab Eggs"),
@@ -671,7 +685,93 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(DC): Assassin's Crimson Dagger - boss drop", "Assassin's Crimson Dagger", boss=True),
         ERLocationData("LG/(DC): Deathroot - boss chest", "Deathroot", boss=True),
     ],
+    "Warmaster's Shack":[
+        ERLocationData("LG/(WS): Ash of War: Stamp (Upward Cut) - Bernahl shop", "Ash of War: Stamp (Upward Cut)", shop=True),
+        ERLocationData("LG/(WS): Ash of War: Kick - Bernahl shop", "Ash of War: Kick", shop=True),
+        ERLocationData("LG/(WS): Ash of War: Endure - Bernahl shop", "Ash of War: Endure", shop=True),
+        ERLocationData("LG/(WS): Ash of War: War Cry - Bernahl shop", "Ash of War: War Cry", shop=True),
+        ERLocationData("LG/(WS): Ash of War: Spinning Slash - Bernahl shop", "Ash of War: Spinning Slash", shop=True),
+        ERLocationData("LG/(WS): Ash of War: Impaling Thrust - Bernahl shop", "Ash of War: Impaling Thrust", shop=True),
+        ERLocationData("LG/(WS): Ash of War: Quickstep - Bernahl shop", "Ash of War: Quickstep", shop=True),
+        ERLocationData("LG/(WS): Ash of War: Storm Blade - Bernahl shop", "Ash of War: Storm Blade", shop=True),
+        ERLocationData("LG/(WS): Ash of War: Parry - Bernahl shop", "Ash of War: Parry", shop=True),
+        ERLocationData("LG/(WS): Ash of War: No Skill - Bernahl shop", "Ash of War: No Skill", shop=True),
+        # kill bernahl at WS or later in farum as invader
+        ERLocationData("LG/(WS): Beast Champion Helm - kill Bernahl", "Beast Champion Helm", npc=True),
+        ERLocationData("LG/(WS): Beast Champion Armor (Altered) - kill Bernahl", "Beast Champion Armor (Altered)", npc=True),
+        ERLocationData("LG/(WS): Beast Champion Gauntlets - kill Bernahl", "Beast Champion Gauntlets", npc=True),
+        ERLocationData("LG/(WS): Beast Champion Greaves - kill Bernahl", "Beast Champion Greaves", npc=True),
+        ERLocationData("LG/(WS): Devourer's Scepter - kill Bernahl", "Devourer's Scepter", npc=True),
 
+        ERLocationData("LG/(WS): Bone Peddler's Bell Bearing - night boss drop", "Bone Peddler's Bell Bearing", boss=True),
+    ],
+
+
+
+
+
+    # MARK: Roundtable Hold
+    "Roundtable Hold":[
+        ERLocationData("RH: What Do You Want? - talk to Ensha", "What Do You Want?", npc=True),
+        ERLocationData("RH: Taunter's Tongue - invader drop", "Taunter's Tongue", hostile_npc=True),
+        ERLocationData("RH: Cipher Pata - on bed in lower area", "Cipher Pata"),
+        # behind ss key
+        ERLocationData("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", "Crepus's Black-Key Crossbow"),
+        ERLocationData("RH: Black-Key Bolt x20 - behind imp statue in chest", "Black-Key Bolt x20"),
+        ERLocationData("RH: Assassin's Prayerbook - behind second imp statue in chest", "Assassin's Prayerbook"), # 2 key chest
+        # Corhyn
+        ERLocationData("RH: Prayer - talk to Corhyn", "Prayer", npc=True),
+        ERLocationData("RH: Urgent Heal - Corhyn shop", "Urgent Heal", shop=True),
+        ERLocationData("RH: Heal - Corhyn shop", "Heal", shop=True),
+        ERLocationData("RH: Cure Poison - Corhyn shop", "Cure Poison", shop=True),
+        ERLocationData("RH: Magic Fortification - Corhyn shop", "Magic Fortification", shop=True),
+        ERLocationData("RH: Flame Fortification - Corhyn shop", "Flame Fortification", shop=True),
+        ERLocationData("RH: Rejection - Corhyn shop", "Rejection", shop=True),
+        ERLocationData("RH: Catch Flame - Corhyn shop", "Catch Flame", shop=True),
+        ERLocationData("RH: Flame Sling - Corhyn shop", "", shop=True),
+
+        # Cleric books
+        ERLocationData("RH: Lord's Heal - Two Fingers' Prayerbook", "Lord's Heal", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Lord's Aid - Two Fingers' Prayerbook", "Lord's Aid", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Assassin's Approach - Assassin's Prayerbook", "Assassin's Approach", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Darkness - Assassin's Prayerbook", "Darkness", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Radagon's Rings of Light - Golden Order Principia", "Radagon's Rings of Light", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Law of Regression - Golden Order Principia", "Law of Regression", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Lightning Spear - Dragon Cult Prayerbook", "Lightning Spear", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Honed Bolt - Dragon Cult Prayerbook", "Honed Bolt", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Electrify Armament - Dragon Cult Prayerbook", "Electrify Armament", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Ancient Dragons' Lightning Spear - Ancient Dragon Prayerbook", "Ancient Dragons' Lightning Spear", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Ancient Dragons' Lightning Strike - Ancient Dragon Prayerbook", "Ancient Dragons' Lightning Strike", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: O, Flame! - Fire Monks' Prayerbook", "O, Flame!", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Surge, O Flame! - Fire Monks' Prayerbook", "Surge, O Flame!", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Giantsflame Take Thee - Giant's Prayerbook", "Giantsflame Take Thee", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Flame, Fall Upon Them - Giant's Prayerbook", "Flame, Fall Upon Them", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Black Flame - Godskin Prayerbook", "Black Flame", shop=True, conditional=True, missable=True),
+        ERLocationData("RH: Black Flame Blade - Godskin Prayerbook", "Black Flame Blade", shop=True, conditional=True, missable=True),
+
+        # Twin maiden husks
+        ERLocationData("RH: Rune Arc x5 - Twin maiden shop", "Rune Arc x5", shop=True),
+        ERLocationData("RH: White Cipher Ring - Twin maiden shop", "White Cipher Ring", shop=True),
+        ERLocationData("RH: Blue Cipher Ring - Twin maiden shop", "Blue Cipher Ring", shop=True),
+        ERLocationData("RH: Memory Stone - Twin maiden shop", "Memory Stone", shop=True),
+        ERLocationData("RH: Stonesword Key x3 - Twin maiden shop", "Stonesword Key x3", shop=True),
+        ERLocationData("RH: Dagger - Twin maiden shop", "Dagger", shop=True),
+        ERLocationData("RH: Longsword - Twin maiden shop", "Longsword", shop=True),
+        ERLocationData("RH: Rapier - Twin maiden shop", "Rapier", shop=True),
+        ERLocationData("RH: Scimitar - Twin maiden shop", "Scimitar", shop=True),
+        ERLocationData("RH: Battle Axe - Twin maiden shop", "Battle Axe", shop=True),
+        ERLocationData("RH: Mace - Twin maiden shop", "Mace", shop=True),
+        ERLocationData("RH: Short Spear - Twin maiden shop", "Short Spear", shop=True),
+        ERLocationData("RH: Longbow - Twin maiden shop", "Longbow", shop=True),
+        ERLocationData("RH: Finger Seal - Twin maiden shop", "Finger Seal", shop=True),
+        ERLocationData("RH: Heater Shield - Twin maiden shop", "Heater Shield", shop=True),
+        ERLocationData("RH: Knight Helm - Twin maiden shop", "Knight Helm", shop=True),
+        ERLocationData("RH: Knight Armor - Twin maiden shop", "Knight Armor", shop=True),
+        ERLocationData("RH: Knight Gauntlets - Twin maiden shop", "Knight Gauntlets", shop=True),
+        ERLocationData("RH: Knight Greaves - Twin maiden shop", "Knight Greaves", shop=True),
+        ERLocationData("RH: Furled Finger's Trick-Mirror - Twin maiden shop", "Furled Finger's Trick-Mirror", shop=True),
+        ERLocationData("RH: Host's Trick-Mirror - Twin maiden shop", "Host's Trick-Mirror", shop=True),
+    ],
 
 
     # ERLocationData(":  - ", ""),
