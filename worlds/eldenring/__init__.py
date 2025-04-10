@@ -121,6 +121,12 @@ class EldenRing(World):
         create_connection("Caelid", "Smoldering Church")
 
 
+        #create_connection("Consecrated Snowfield", "Miquella's Haligtree")
+        # Haligtree
+        create_connection("Miquella's Haligtree", "Elphael, Brace of the Haligtree")
+
+
+
         # Connect DLC Regions
         #if self.options.enable_dlc:
             #create_connection("Mohgwyn Palace", "Gravesite Plain")
@@ -347,15 +353,27 @@ class EldenRing(World):
 
         #do this for if an item or place is needed
         #self._add_entrance_rule("Mountain Top of the Giants", "Rold Medallion")
-
-        self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: state.has("Stonesword Key", self.player, 2))
-        self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: state.has("Stonesword Key", self.player))
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
                                 lambda state: state.has("\"Homing Instinct\" Painting", self.player))
         
-        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player))
-        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player))
-        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 3))
+
+        # MARK: SSK RULES
+        # in order from early game to late game each rule needs to include the last count for an area
+        # limgrave
+        self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: state.has("Stonesword Key", self.player, 3)) # 2
+        self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: state.has("Stonesword Key", self.player, 3)) # 1
+        
+        # roundtable
+        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 8)) # 1
+        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 8)) # 1
+        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 8)) # 3
+        
+        
+        
+        # haligtree
+        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", lambda state: state.has("Stonesword Key", self.player, 11)) # 1
+        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", lambda state: state.has("Stonesword Key", self.player, 11)) # 2
+        
         
         
 

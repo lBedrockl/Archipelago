@@ -22,3 +22,6 @@ scadutree options, start with, not random, only within dlc, anywhere
 
 dlc start / dlc only
 only randomize key items in the pool, everything else randomized local  DO THIS!!!
+
+Regional key ring (one key item per region unlocks all key doors in that region)
+Regional keys (like the first one but per region)
