@@ -46,6 +46,7 @@ region_order = [
 
     # Liurnia
     "Liurnia of The Lakes",
+    "Chapel of Anticipation [Return]",
 
     # Caelid
     "Caelid",
@@ -68,7 +69,6 @@ region_order = [
 
     #Liurnia
     "Raya Lucaria Academy",
-    "Chapel of Anticipation [Return]",
     "Caria Manor",
     "Ainsel River",
     "Lake of Rot",
@@ -322,7 +322,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/SG: Tarnished's Furled Finger - beside grace", "Tarnished's Furled Finger"),
         ERLocationData("LG/SG: Finger Severer - beside grace", "Finger Severer"),
     ],
-    "Fringefolk Hero's Grave":[
+    "Fringefolk Hero's Grave":[ # 2
         ERLocationData("LG/FHG: Poisonbone Dart x5 - top of first ramp", "Poisonbone Dart x5"),
         ERLocationData("LG/FHG: Golden Rune [5] - middle of second ramp pit", "Golden Rune [5]"),
         ERLocationData("LG/FHG: Lightning Grease x2 - drop into second ramp pit, left of fire spitter", "Lightning Grease x2"),
@@ -504,7 +504,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/FHE: Bloodhound's Fang - Forlorn Hound Evergaol", "Bloodhound's Fang", boss=True),
 
         ERLocationData("LG/ME: Spiked Cracked Tear - Minor Erdtree", "Spiked Cracked Tear", prominent=True),
-        ERLocationData("LG/ME: Greenspill Crtstal Tear - Minor Erdtree", "Greenspill Crtstal Tear", prominent=True),
+        ERLocationData("LG/ME: Greenspill Crtstal Tear - Minor Erdtree", "Greenspill Crystal Tear", prominent=True),
     ],# MARK: LG Locations
     "Church of Elleh":[
         ERLocationData("LG/(CE): Smithing Stone [1] - on anvil", "Smithing Stone [1]"),
@@ -615,34 +615,34 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(DBR): Twinblade - underground chest hidden within ruin", "Twinblade", hidden=True),
     ],
     "Murkwater Cave":[
-        ERLocationData("LG/(MCave): Mushroom x5 - chest at back", "Mushroom x5"),
-        ERLocationData("LG/(MCave): Cloth Garb - Patches chest", "Cloth Garb"),
-        ERLocationData("LG/(MCave): Cloth Trousers - Patches chest", "Cloth Trousers"),
+        ERLocationData("LG/(MCV): Mushroom x5 - chest at back", "Mushroom x5"),
+        ERLocationData("LG/(MCV): Cloth Garb - Patches chest", "Cloth Garb"),
+        ERLocationData("LG/(MCV): Cloth Trousers - Patches chest", "Cloth Trousers"),
         # patches
-        ERLocationData("LG/(MCave): Golden Rune [1] x2 - spare or kill Patches", "Golden Rune [1] x2"),
-        ERLocationData("LG/(MCave): Grovel For Mercy - spare Patches", "Grovel For Mercy", missable=True),
+        ERLocationData("LG/(MCV): Golden Rune [1] x2 - spare or kill Patches", "Golden Rune [1] x2"),
+        ERLocationData("LG/(MCV): Grovel For Mercy - spare Patches", "Grovel For Mercy", missable=True),
 
-        ERLocationData("LG/(MCave): Spear +7 - kill Patches", "Spear", missable=True, npc=True),
-        ERLocationData("LG/(MCave): Leather Armor - kill Patches", "Leather Armor", missable=True, npc=True),
-        ERLocationData("LG/(MCave): Leather Gloves - kill Patches", "Leather Gloves", missable=True, npc=True),
-        ERLocationData("LG/(MCave): Leather Boots - kill Patches", "Leather Boots", missable=True, npc=True),
+        ERLocationData("LG/(MCV): Spear +7 - kill Patches", "Spear", missable=True, npc=True),
+        ERLocationData("LG/(MCV): Leather Armor - kill Patches", "Leather Armor", missable=True, npc=True),
+        ERLocationData("LG/(MCV): Leather Gloves - kill Patches", "Leather Gloves", missable=True, npc=True),
+        ERLocationData("LG/(MCV): Leather Boots - kill Patches", "Leather Boots", missable=True, npc=True),
 
-        ERLocationData("LG/(MCave): Extreme Repentance - grovel emote Patches", "Extreme Repentance", missable=True),
-        ERLocationData("LG/(MCave): Calm Down! - trapped chest", "Calm Down!", missable=True),
+        ERLocationData("LG/(MCV): Extreme Repentance - grovel emote Patches", "Extreme Repentance", missable=True),
+        ERLocationData("LG/(MCV): Calm Down! - trapped chest", "Calm Down!", missable=True),
 
-        ERLocationData("LG/(MCave): Gold-Pickled Fowl Foot x3 - Patches Shop", "Gold-Pickled Fowl Foot x3"),
-        ERLocationData("LG/(MCave): Fan Daggers x20 - Patches Shop", "Fan Daggers x20"),
-        ERLocationData("LG/(MCave): Margit's Shackle - Patches Shop", "Margit's Shackle"),
-        ERLocationData("LG/(MCave): Grace Mimic x15 - Patches Shop", "Grace Mimic x15"),
-        ERLocationData("LG/(MCave): Furlcalling Finger Remedy x3 - Patches Shop", "Furlcalling Finger Remedy x3"),
-        ERLocationData("LG/(MCave): Festering Bloody Finger x5 - Patches Shop", "Festering Bloody Finger x5"),
-        ERLocationData("LG/(MCave): Stonesword Key - Patches Shop", "Stonesword Key"),
-        ERLocationData("LG/(MCave): Missionary's Cookbook [2] - Patches Shop", "Missionary's Cookbook [2]"),
-        ERLocationData("LG/(MCave): Parrying Dagger - Patches Shop", "Parrying Dagger"),
-        ERLocationData("LG/(MCave): Great Arrow x10 - Patches Shop", "Great Arrow x10"),
-        ERLocationData("LG/(MCave): Ballista Bolt x5 - Patches Shop", "Ballista Bolt x5"),
-        ERLocationData("LG/(MCave): Horse Crest Wooden Shield - Patches Shop", "Horse Crest Wooden Shield"),
-        ERLocationData("LG/(MCave): Sacrificial Twig - Patches Shop", "Sacrificial Twig"),
+        ERLocationData("LG/(MCV): Gold-Pickled Fowl Foot x3 - Patches Shop", "Gold-Pickled Fowl Foot x3"),
+        ERLocationData("LG/(MCV): Fan Daggers x20 - Patches Shop", "Fan Daggers x20"),
+        ERLocationData("LG/(MCV): Margit's Shackle - Patches Shop", "Margit's Shackle"),
+        ERLocationData("LG/(MCV): Grace Mimic x15 - Patches Shop", "Grace Mimic x15"),
+        ERLocationData("LG/(MCV): Furlcalling Finger Remedy x3 - Patches Shop", "Furlcalling Finger Remedy x3"),
+        ERLocationData("LG/(MCV): Festering Bloody Finger x5 - Patches Shop", "Festering Bloody Finger x5"),
+        ERLocationData("LG/(MCV): Stonesword Key - Patches Shop", "Stonesword Key"),
+        ERLocationData("LG/(MCV): Missionary's Cookbook [2] - Patches Shop", "Missionary's Cookbook [2]"),
+        ERLocationData("LG/(MCV): Parrying Dagger - Patches Shop", "Parrying Dagger"),
+        ERLocationData("LG/(MCV): Great Arrow x10 - Patches Shop", "Great Arrow x10"),
+        ERLocationData("LG/(MCV): Ballista Bolt x5 - Patches Shop", "Ballista Bolt x5"),
+        ERLocationData("LG/(MCV): Horse Crest Wooden Shield - Patches Shop", "Horse Crest Wooden Shield"),
+        ERLocationData("LG/(MCV): Sacrificial Twig - Patches Shop", "Sacrificial Twig"),
     ],
     "Mistwood Ruins":[
         ERLocationData("LG/(MR): Smithing Stone [2] - chest in ruins", "Smithing Stone [2]"),
@@ -669,7 +669,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "Summonwater Village":[
         ERLocationData("LG/(SWV): Mushroom x3 - within ruins", "Mushroom x3"),
         ERLocationData("LG/(SWV): Smithing Stone [1] - N side", "Smithing Stone [1]"),
-        ERLocationData("LG/(SWV): Green Turtle Talisman - behind imp statue", "Green Turtle Talisman"),
+        ERLocationData("LG/(SWV): Green Turtle Talisman - behind imp statue", "Green Turtle Talisman"), # 1
         ERLocationData("LG/(SWV): Deathroot - boss drop", "Deathroot", boss=True),
         ERLocationData("LG/(SWV): Skeletal Militiaman Ashes - boss drop", "Skeletal Militiaman Ashes", boss=True),
     ],
@@ -737,7 +737,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Flame Fortification - Corhyn shop", "Flame Fortification", shop=True),
         ERLocationData("RH: Rejection - Corhyn shop", "Rejection", shop=True),
         ERLocationData("RH: Catch Flame - Corhyn shop", "Catch Flame", shop=True),
-        ERLocationData("RH: Flame Sling - Corhyn shop", "", shop=True),
+        ERLocationData("RH: Flame Sling - Corhyn shop", "Flame Sling", shop=True),
 
         # Cleric books
         ERLocationData("RH: Lord's Heal - Two Fingers' Prayerbook", "Lord's Heal", shop=True, conditional=True, missable=True),
@@ -785,8 +785,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
 
     # ERLocationData(":  - ", ""),
     # MARK: Liurnia of The Lakes
-    "Liurnia of The Lakes":[
-    ],
+    "Liurnia of The Lakes":[],
 
     "Chapel of Anticipation [Return]":[
         ERLocationData("CA Return: The Stormhawk King - top of church", "The Stormhawk King"),
@@ -794,8 +793,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
 
     # MARK: Caelid
-    "Caelid":[
-    ],
+    "Caelid":[],
     "Smoldering Church":[
         ERLocationData("CL/(SC): Sacred Scorpion Charm - kill invader", "Sacred Scorpion Charm", hostile_npc=True),
         ERLocationData("CL/(SC): Missionary's Cookbook [3] - on corpse", "Missionary's Cookbook [3]"),
@@ -810,9 +808,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
 	    ERLocationData("MH/HC: Golden Rune [10] - to E after a single drop", "Golden Rune [10]"),
 	    ERLocationData("MH/HC: Prattling Pate \"My beloved\" - drop to E, drop onto main branch, go N then up large branch on left, jump up mushrooms", "Prattling Pate \"My beloved\""),
 	    ERLocationData("MH/HC: Fire Grease x3 - drop to E, drop onto main branch, go S take small left branch all the way up then go S", "Fire Grease x3"),
-    	ERLocationData("MH/HC: Stonesword Key -  drop to E, drop onto main branch, go S take small left branch then on a small right branch", "Stonesword Key"),
-	    ERLocationData("MH/HC: Aeonian Butterfly x2 - drop to E, drop onto main branch, go S take small left branch all the way up, go NW and down a small brach on the left", "Aeoneian Butterfly"),
-    	ERLocationData("MH/HC: Golden Rune [10] - drop to E, drop onto main branch, go S then left fork", "Golden Ruen [10]"),
+    	ERLocationData("MH/HC: Stonesword Key - drop to E, drop onto main branch, go S take small left branch then on a small right branch", "Stonesword Key"),
+	    ERLocationData("MH/HC: Aeonian Butterfly x2 - drop to E, drop onto main branch, go S take small left branch all the way up, go NW and down a small brach on the left", "Aeonian Butterfly x2"),
+    	ERLocationData("MH/HC: Golden Rune [10] - drop to E, drop onto main branch, go S then left fork", "Golden Rune [10]"),
 	    ERLocationData("MH/HC: Envoy Crown - drop to E, drop onto main branch, go S take left fork then S", "Envoy Crown"),
 	    ERLocationData("MH/HC: Dappled Cured Meat - drop to E, drop onto main branch, go S take right fork", "Dappled Cured Meat"),
 	    ERLocationData("MH/HC: Smithing Stone[8] - drop to E, drop onto main branch, go S take right fork then SE", "Smithing Stone [8]"),
@@ -840,7 +838,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("MH/HP: Smithing Stone [6] - to S first building top roof", "Smithing Stone [6]"),
     	ERLocationData("MH/HP: Golden Rune [10] - to NE first building lower roof", "Golden Rune [10]"),
     	ERLocationData("MH/HP: Golden Rune [12] - to NE first building lower floor", "Golden Rune [12]"),
-    	ERLocationData("MH/HP: Viridian Amber Medallion +2 - to NE first building lower floor in chest", "Veridian Amber Medallion +2"),
+    	ERLocationData("MH/HP: Viridian Amber Medallion +2 - to NE first building lower floor in chest", "Viridian Amber Medallion +2"),
     	ERLocationData("MH/HP: Smithing Stone [6] - to NE round building roof", "Smithing Stone [6]"),
     	ERLocationData("MH/HP: Sacramental Bud - to NE round building west wing", "Sacramental Bud"),
     	ERLocationData("MH/HP: Smithing Stone [7] - to NE on a bridge by the elevator", "Smithing Stone [7]"),
@@ -873,7 +871,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/PR: Pickled Turtle Neck - N down 3 stairs, S down 2 stairs, N down 2 stairs, jump down E over railing, down stairs drop in room, item 1", "Pickled Turtle Neck"),
     	ERLocationData("BH/PR: Somber Smithing Stone [9] - N down 3 stairs, S down 2 stairs, N down 2 stairs, jump down E over railing, down stairs drop in room, item 2", "Somber Smithing Stone [9]"),
     	ERLocationData("BH/PR: Lord's Rune - N down 3 stairs, S down 2 stairs, N down 2 stairs, jump down E over railing, down stairs drop in room, exit N then door on right", "Lord's Rune"),
-    	ERLocationData("BH/PR: Smithing Stone [8] - N end of the bottom area", " Smithing Stone [8]"),
+    	ERLocationData("BH/PR: Smithing Stone [8] - N end of the bottom area", "Smithing Stone [8]"),
     	ERLocationData("BH/PR: Ghost Glovewort [9] 1 - enemy drop at bottom", "Ghost Glovewort [9]", drop=True),
     	ERLocationData("BH/PR: Ghost Glovewort [9] 2 - enemy drop at bottom", "Ghost Glovewort [9]", drop=True),
     	ERLocationData("BH/PR: Ghost Glovewort [9] 3 - enemy drop at bottom", "Ghost Glovewort [9]", drop=True),
@@ -899,7 +897,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/IW: Hero's Rune [5] - to SE behinde a basin at the end of the hallway", "Hero's Rune [5]"),
     	ERLocationData("BH/IW: Rot Grease - left at the first rot lake", "Rot Grease"),
     	ERLocationData("BH/IW: Golden Seed - miniboss in second rot lake", "Golden Seed", boss=True),
-    	ERLocationData("BH/IW: Great Grave Glovewort - in second rot lake", "Great Grave Glovwort"),
+    	ERLocationData("BH/IW: Great Grave Glovewort - in second rot lake", "Great Grave Glovewort"),
     	#ERLocationData("BH/IW: Rotten Winged Sword Insignia - Millicent quest invasion, help", "Rotten Winged Sword Insignia", missable=True, npc=True),
     	#ERLocationData("BH/IW: Unalloyed Gold Needle - help Millicent talk then reload area", "Unalloyed Gold Needle", missable=True, npc=True),
     	#ERLocationData("BH/IW: Millicent's Prosthesis - Milicent quest invasion, kill", "Millicent's Prosthesis", missable=True, npc=True),
@@ -910,14 +908,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/DC: Ghost-Glovewort Picker's Bell Bearing [3] - against a tombstone N of the main building", "Ghost-Glovewort Picker's Bell Bearing [3]"),
     	ERLocationData("BH/DC: Numen's Rune - on a small leadge N of the main building ", "Numen's Rune"),
     	ERLocationData("BH/DC: Arteria Leaf x3 - in a small puddle S of the main building", "Arteria Leaf x3"),
-    	ERLocationData("BH/DC: Hero's Rune [5] - against a large tree S of the main building", "Hero's Rune"),
+    	ERLocationData("BH/DC: Hero's Rune [5] - against a large tree S of the main building", "Hero's Rune [5]"),
     	ERLocationData("BH/DC: Dragoncrest Greatshield Talisman - dropdown through a hole at the top of the roof, drop W to a leadge in the building, in a chest", "Dragoncrest Greatshield Talisman"), 
     	# Haligtree Roots
     	ERLocationData("BH/HR: Traveler's Clothes - S of HR by the giant rot flower", "Traveler's Clothes"),
     	ERLocationData("BH/HR: Traveler's Manchettes - S of HR by the giant rot flower", "Traveler's Manchettes"),
     	ERLocationData("BH/HR: Traveler's Boots - S of HR by the giant rot flower", "Traveler's Boots"),
     	ERLocationData("BH/HR: Malenia's Great Rune - BH boss fight", "Malenia's Great Rune", mainboss=True),
-    	ERLocationData("BH/HR: Remembrance of the Rot Goddess - BH boss fight", "Remebrance of the Rot Goddess", mainboss=True),
+    	ERLocationData("BH/HR: Remembrance of the Rot Goddess - BH boss fight", "Remembrance of the Rot Goddess", mainboss=True),
     	#ERLocationData("BH/HR: Miquella's Needle - use UGN on flower after BH boss fight & finish Milicent quest", "Miquella's Needle", missable=True, npc=True),
     	#ERLocationData("BH/HR: Somber Ancient Dragon Smithing Stone - use UGN on flower after BH boss fight & finish Milicent quest", "Somber Ancient Dragon Smithing Stone", missable=True, npc=True),
     ],
