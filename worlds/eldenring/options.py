@@ -50,7 +50,7 @@ class AutoEquipOption(Toggle):
 
 class ERExcludeLocations(ExcludeLocations):
     """Prevent these locations from having an important item."""
-    default = frozenset({"Hidden", "Missable"})
+    default = frozenset({"Hidden"})
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.
@@ -67,7 +67,7 @@ class ExcludedLocationBehaviorOption(Choice):
     option_randomize = 0
     option_randomize_unimportant = 1
     option_do_not_randomize = 2
-    default = 0
+    default = 1
 
 class MissableLocationBehaviorOption(Choice):
     """Which items can be placed in locations that can be permanently missed.

@@ -9,10 +9,6 @@ Or python launcher.py    so you can gen template options
 Now I just need to label every single item :worry:
 
 
-options for how many stonesword keys the player wants, smth like 100 but only 34 needed
-
-
-
 Ideas
 
 gracesanity, graces are checks

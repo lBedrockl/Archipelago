@@ -8,7 +8,7 @@ from BaseClasses import CollectionState, MultiWorld, Region, Location, LocationP
 from worlds.AutoWorld import World, WebWorld
 from worlds.generic.Rules import CollectionRule, ItemRule, add_rule, add_item_rule
 
-from .items import ERItem, ERItemData, filler_item_names, item_descriptions, item_table, item_name_groups
+from .items import ERItem, ERItemData, filler_item_names, filler_item_names_vanilla, item_descriptions, item_table, item_table_vanilla, item_name_groups
 from .locations import ERLocation, ERLocationData, location_tables, location_descriptions, location_dictionary, location_name_groups, region_order, region_order_dlc
 from .options import EROptions, option_groups
 
@@ -102,7 +102,7 @@ class EldenRing(World):
         create_connection("Limgrave", "Roundtable Hold")
         
 
-
+        create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
         
         
         # create_connection("Dragon-Burnt Ruins", "caelid crystal tunnels")
@@ -114,7 +114,7 @@ class EldenRing(World):
 
         create_connection("Limgrave", "Liurnia of The Lakes")
         # Liurnia of The Lakes
-        #create_connection("Liurnia of The Lakes", "Chapel of Anticipation [Return]") # add real LL location for ca return
+        create_connection("Liurnia of The Lakes", "Chapel of Anticipation [Return]") # add real LL location for ca return
         
         create_connection("Limgrave", "Caelid")
         # Caelid
@@ -201,7 +201,7 @@ class EldenRing(World):
                 if default_item_name in item_set:
                     num_required_extra_items += 1
                 else:
-                    item_set.add(default_item_name)
+                    if item.classification != ItemClassification.filler: item_set.add(default_item_name)
                     self.local_itempool.append(self.create_item(default_item_name))
 
         injectables = self._create_injectable_items(num_required_extra_items)
@@ -224,11 +224,16 @@ class EldenRing(World):
         that are in missable locations by default, this adds them to the
         player's starting inventory.
         """
-
-        all_injectable_items = [
-            item for item
-            in item_table.values()
-        ]
+        if self.options.enable_dlc: # the work around
+            all_injectable_items = [
+                item for item
+                in item_table.values()
+            ]
+        else:
+            all_injectable_items = [
+                item for item
+                in item_table_vanilla.values()
+            ]
         injectable_mandatory = [
             item for item in all_injectable_items
             if item.classification == ItemClassification.progression
@@ -333,7 +338,10 @@ class EldenRing(World):
                 return
 
     def get_filler_item_name(self) -> str:
-        return self.random.choice(filler_item_names)
+        if self.options.enable_dlc:
+            return self.random.choice(filler_item_names)
+        else:
+            return self.random.choice(filler_item_names_vanilla)
 
     def set_rules(self) -> None: #WIP #MARK: Rules
 
@@ -348,8 +356,8 @@ class EldenRing(World):
         ))"""
 
         # Region locking
-        #self._add_entrance_rule("Liurnia of The Lakes", lambda state: (self._has_enough_great_runes(state, 1)))
-        #self._add_entrance_rule("Caelid", lambda state: ( self._has_enough_great_runes(state, 2) )) # 2 is runes required
+        self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 1))
+        self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 2)) # 2 is runes required
 
         #do this for if an item or place is needed
         #self._add_entrance_rule("Mountain Top of the Giants", "Rold Medallion")
@@ -360,25 +368,25 @@ class EldenRing(World):
         # MARK: SSK RULES
         # in order from early game to late game each rule needs to include the last count for an area
         # limgrave
-        self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: state.has("Stonesword Key", self.player, 3)) # 2
-        self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: state.has("Stonesword Key", self.player, 3)) # 1
+        self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: self._has_enough_keys(state, 3)) # 2
+        self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: self._has_enough_keys(state, 3)) # 1
         
         # roundtable
-        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 8)) # 1
-        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 8)) # 1
-        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: state.has("Stonesword Key", self.player, 8)) # 3
+        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: self._has_enough_keys(state, 8)) # 1
+        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: self._has_enough_keys(state, 8)) # 1
+        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: self._has_enough_keys(state, 8)) # 3
         
         
         
         # haligtree
-        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", lambda state: state.has("Stonesword Key", self.player, 11)) # 1
-        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", lambda state: state.has("Stonesword Key", self.player, 11)) # 2
+        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", lambda state: self._has_enough_keys(state, 11)) # 1
+        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", lambda state: self._has_enough_keys(state, 11)) # 2
         
         
         
 
         
-        """
+        
         # DLC Access Rules Below
         if self.options.enable_dlc:
             self._add_entrance_rule("Gravesite Plain", lambda state: self._can_get(state, "MP: Mohg Remembrance"))
@@ -389,16 +397,15 @@ class EldenRing(World):
                     lambda state: state.has("Rold Medallion", self.player) 
                     and state.has("Haligtree Secret Medallion (Left)", self.player) 
                     and state.has("Haligtree Secret Medallion (Right)", self.player) 
-                    and self._can_get(state, "LRC: Morgott Remembrance"))
-                    and self._can_get(state, "MP: Mohg Remembrance")
+                    and self._can_get(state, "LRC: Morgott Remembrance") 
+                    and self._can_get(state, "MP: Mohg Remembrance"))
       
         
-
-        if self.options.ending_condition >= 1 and self.options.enable_dlc:
+        """if self.options.ending_condition >= 1 and self.options.enable_dlc:
             self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance")
         else:
-            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance")
-        """
+            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance")"""
+        
 
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""
@@ -410,9 +417,12 @@ class EldenRing(World):
         if state.has("Mohg's Great Rune", self.player): runeCount += 1
         if state.has("Malenia's Great Rune", self.player): runeCount += 1
         if state.has("Great Rune of the Unborn", self.player): runeCount += 1
-        return (
-            runes_required >= runeCount
-        )
+        return runes_required >= runeCount
+    
+    def _has_enough_keys(self, state: CollectionState, req_keys: int) -> bool:
+        """Returns whether the given state has enough keys runes."""
+        total_keys = state.count("Stonesword Key", self.player) + (state.count("Stonesword Key x3", self.player) * 3)
+        return total_keys >= req_keys
     
     def _add_shop_rules(self) -> None: # MARK: Shop Rules
         """Adds rules for items unlocked in shops."""
@@ -437,9 +447,9 @@ class EldenRing(World):
         }
 
         for (scroll, items) in scrolls.items():
-            self._add_location_rule([f"LG/(WR): {item} - {scroll}" for item in items], scroll)
+            self._add_location_rule([f"LG/(WR): {item} - {scroll}" for item in items], lambda state: state.has(scroll, self.player))
         for (book, items) in books.items():
-            self._add_location_rule([f"RH: {item} - {book}" for item in items], book)
+            self._add_location_rule([f"RH: {item} - {book}" for item in items], lambda state: state.has(book, self.player))
 
 
         """# Shop unlocks
