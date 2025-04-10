@@ -859,7 +859,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/PR: Marika's Soreseal - in imp gate at the S end of the bottom area", "Marika's Soreseal"),
     	ERLocationData("BH/PR: Golden Rune [12] - infront of the imp gate at the S end of the bottom area", "Golden Rune [12]"),
     	ERLocationData("BH/PR: Aeonian Butterfly x4 - just N of the imp gate at the S end of the bottom area", "Aeonian Butterfly x4"),
-    	ERLocationData("BH/PR: Beast Blood x3 - in a door on the left just N of the imp gate at the S end of the bottom area", "Beast Blood"),
+    	ERLocationData("BH/PR: Beast Blood x3 - in a door on the left just N of the imp gate at the S end of the bottom area", "Beast Blood x3"),
     	ERLocationData("BH/PR: Pickled Turtle Neck - - N down 3 stairs, S down 2 stairs, N down 2 stairs, jump down E over railing, down stairs drop in room (1/2)", "Pickled Turtle Neck"),
     	ERLocationData("BH/PR: Somber Smithing Stone [9] - N down 3 stairs, S down 2 stairs, N down 2 stairs, jump down E over railing, down stairs drop in room (2/2)", "Somber Smithing Stone [9]"),
     	ERLocationData("BH/PR: Lord's Rune - N down 3 stairs, S down 2 stairs, N down 2 stairs, jump down E over railing, down stairs drop in room, exit N then door on right", "Lord's Rune"),
