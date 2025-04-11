@@ -201,7 +201,7 @@ class EldenRing(World):
                 if default_item_name in item_set:
                     num_required_extra_items += 1
                 else:
-                    if item.classification != ItemClassification.filler: item_set.add(default_item_name)
+                    item_set.add(default_item_name)
                     self.local_itempool.append(self.create_item(default_item_name))
 
         injectables = self._create_injectable_items(num_required_extra_items)
@@ -347,7 +347,7 @@ class EldenRing(World):
 
         self._add_shop_rules()
         #self._add_npc_rules()
-        #self._add_remembrance_rules()
+        #self._add_remembrance_rules() # need to do the locations first
 
         #smth like this for if an item and place is needed
         """self._add_entrance_rule("Leyndell, Royal Capital", lambda state: (
@@ -356,8 +356,11 @@ class EldenRing(World):
         ))"""
 
         # Region locking
-        self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 1))
-        self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 2)) # 2 is runes required
+        if self.options.region_lock:
+            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 1))
+            self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 2)) # 2 is runes required
+        """else:
+            self._add_entrance_rule("Leyndell", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))"""
 
         #do this for if an item or place is needed
         #self._add_entrance_rule("Mountain Top of the Giants", "Rold Medallion")

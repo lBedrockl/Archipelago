@@ -13,9 +13,14 @@ class EndingCondition(Choice):
     option_consort = 1
     alias_true = 1
 
+class RegionLock(Toggle):
+    """Region Locking, each region will require '# of great runes or special item'"""
+    display_name = "Region Lock"
+
 class GreatRunesRequired(Range):
-    """How many great runes are required to enter leyndell"""
-    display_name = "Leyndell Great Rune Required"
+    """How many great runes are required to enter Leyndell
+    This option is ignored if Region Lock in On"""
+    display_name = "Leyndell Great Runes Required"
     range_start = 1
     range_end = 7
     default = 2
@@ -89,6 +94,7 @@ class MissableLocationBehaviorOption(Choice):
 @dataclass
 class EROptions(PerGameCommonOptions):
     ending_condition: EndingCondition
+    region_lock: RegionLock
     great_runes_required: GreatRunesRequired
     enable_dlc: EnableDLC
     late_dlc: LateDLCOption
