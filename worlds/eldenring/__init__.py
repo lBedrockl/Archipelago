@@ -110,9 +110,15 @@ class EldenRing(World):
 
         #create_connection("Limgrave", "Stormveil Castle")
         #create_connection("Limgrave", "Siofra River")
+        
+        
+        create_connection("Limgrave", "Bridge of Sacrifice")
+        # Weeping Peninsula
+        create_connection("Bridge of Sacrifice", "Weeping Peninsula")
 
 
         create_connection("Limgrave", "Liurnia of The Lakes")
+        #create_connection("Stormveil Castle", "Liurnia of The Lakes")
         # Liurnia of The Lakes
         create_connection("Liurnia of The Lakes", "Chapel of Anticipation [Return]") # add real LL location for ca return
         
@@ -357,8 +363,9 @@ class EldenRing(World):
 
         # Region locking
         if self.options.region_lock:
-            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 1))
-            self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 2)) # 2 is runes required
+            self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_great_runes(state, 1))
+            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
+            self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 3)) # 2 is runes required
         """else:
             self._add_entrance_rule("Leyndell", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))"""
 

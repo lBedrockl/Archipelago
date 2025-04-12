@@ -38,11 +38,9 @@ region_order = [
     # The hold
     "Roundtable Hold",
 
-
-
-
-
     # Weeping
+    "Bridge of Sacrifice",
+    "Weeping Peninsula",
 
     # Liurnia
     "Liurnia of The Lakes",
@@ -64,7 +62,7 @@ region_order = [
     "Stormveil Castle",
 
     #Weeping
-    "Weeping Peninsula",
+    
     "Castle Morne",
 
     #Liurnia
@@ -340,45 +338,47 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # misc stuff
         ERLocationData("LG/SG: Silver-Pickled Fowl Foot x2 - hidden drop down behind SG entrance", "Silver-Pickled Fowl Foot x2", hidden=True),
         ERLocationData("LG/TFS: Golden Halberd - first field boss", "Golden Halberd", boss=True),
-        ERLocationData("LG/CE: Golden Rune [1] - to E", "Golden Rune [1]"),
-        ERLocationData("LG/GC: Kukri x4 - to E", "Kukri x4"),
-        ERLocationData("LG/SC: Crossed Legs - on ruin above", "Crossed Legs"),
-        ERLocationData("LG/SC: Starlight Shards - cliff above to W", "Starlight Shards"),
-        ERLocationData("LG/SG: Golden Seed - golden tree to W", "Golden Seed", prominent=True),
-        ERLocationData("LG/SS: Smithing Stone [1] x3 - to SE", "Smithing Stone [1] x3"),
-        ERLocationData("LG/SS: Ash of War: Wild Strikes - scarab to NW", "Ash of War: Wild Strikes", scarab=True),
-        ERLocationData("LG/MCV: Reduvia - npc invader to E", "Reduvia", hostile_npc=True),
+        ERLocationData("LG/CE: Golden Rune [1] - E of CE", "Golden Rune [1]"),
+        ERLocationData("LG/GC: Kukri x4 - E of GC", "Kukri x4"),
+        ERLocationData("LG/SC: Crossed Legs - on ruin above SC", "Crossed Legs"),
+        ERLocationData("LG/SC: Starlight Shards - cliff above W of SC", "Starlight Shards"),
+        ERLocationData("LG/SS: Golden Seed - golden tree SE of SS", "Golden Seed", prominent=True),
+        ERLocationData("LG/SS: Smithing Stone [1] x3 - SE of SS", "Smithing Stone [1] x3"),
+        ERLocationData("LG/SS: Ash of War: Wild Strikes - scarab NW of SS", "Ash of War: Wild Strikes", scarab=True),
+        ERLocationData("LG/SS: Lump of Flesh - under bridge NW of SS", "Lump of Flesh"),
+        ERLocationData("LG/MCV: Reduvia - npc invader E of MCV", "Reduvia", hostile_npc=True),
         ERLocationData("LG/MR: Sacrificial Twig - W of MR", "Sacrificial Twig"),
         ERLocationData("LG/MR: Golden Rune [1] - N of MR", "Golden Rune [1]"),
-        ERLocationData("LG/TCM: Ash of War: Sacred Blade - scarab to N", "Ash of War: Sacred Blade", scarab=True),
-        ERLocationData("LG/TCM: Neutralizing Boluses - to NE", "Neutralizing Boluses"),
-        ERLocationData("LG/AS: Somber Smithing Stone [1] - scarab to W", "Somber Smithing Stone [1]", scarab=True),
-        ERLocationData("LG/MCO: Golden Rune [2] - to W", "Golden Rune [2]"),
-        ERLocationData("LG/MCO: Armorer's Cookbook [1] - to SW", "Armorer's Cookbook [1]"),
-        ERLocationData("LG/MCO: Poisonbloom x2 - to NE", "Poisonbloom x2"),
+        ERLocationData("LG/TCM: Ash of War: Sacred Blade - scarab N of TCM", "Ash of War: Sacred Blade", scarab=True),
+        ERLocationData("LG/TCM: Neutralizing Boluses - NE of TCM", "Neutralizing Boluses"),
+        ERLocationData("LG/AS: Somber Smithing Stone [1] - scarab W of AS", "Somber Smithing Stone [1]", scarab=True),
+        ERLocationData("LG/MCO: Golden Rune [2] - W of MCO", "Golden Rune [2]"),
+        ERLocationData("LG/MCO: Armorer's Cookbook [1] - SW of MCO", "Armorer's Cookbook [1]"),
+        ERLocationData("LG/MCO: Poisonbloom x2 - NE of MCO", "Poisonbloom x2"),
         ERLocationData("LG/HC: Turtle Neck Meat - N above HC", "Turtle Neck Meat"),
         ERLocationData("LG/DC: Golden Rune [3] - E of DC", "Golden Rune [3]"),
         ERLocationData("LG/DC: Lance Talisman - NE of DC", "Lance Talisman"),
+        ERLocationData("LG/DC: Soporific Grease x3 - above on the pillar of divine bridge N of DC", "Soporific Grease x3", hidden=True),
 
         # Near CC
-        ERLocationData("LG/CC: Gold-Pickled Fowl Foot - to SE along beach", "Gold-Pickled Fowl Foot"),
-        ERLocationData("LG/CC: Land Octopus Ovary - to NW along beach", "Land Octopus Ovary"),
-        ERLocationData("LG/CC: Strip of White Flesh - to NW along beach", "Strip of White Flesh"),
-        ERLocationData("LG/CC: Ash of War: Stamp (Sweep) - scarab to NW along beach", "Ash of War: Stamp (Sweep)"),
+        ERLocationData("LG/CC: Gold-Pickled Fowl Foot - SE of CC along beach", "Gold-Pickled Fowl Foot"),
+        ERLocationData("LG/CC: Land Octopus Ovary - NW of CC along beach", "Land Octopus Ovary"),
+        ERLocationData("LG/CC: Strip of White Flesh - NW of CC along beach", "Strip of White Flesh"),
+        ERLocationData("LG/CC: Ash of War: Stamp (Sweep) - scarab NW of CC along beach", "Ash of War: Stamp (Sweep)"),
         # shop
-        ERLocationData("LG/CC: Neutralizing Boluses x5 - Nomadic Merchant to SE", "Neutralizing Boluses x5", shop=True),
-        ERLocationData("LG/CC: Stanching Boluses x3 - Nomadic Merchant to SE", "Stanching Boluses x3", shop=True),
-        ERLocationData("LG/CC: Stimulating Boluses x2 - Nomadic Merchant to SE", "Stimulating Boluses x2", shop=True),
-        ERLocationData("LG/CC: Smithing Stone [1] x3 - Nomadic Merchant to SE", "Smithing Stone [1] x3", shop=True),
-        ERLocationData("LG/CC: Armorer's Cookbook [2] - Nomadic Merchant to SE", "Armorer's Cookbook [2]", shop=True),
-        ERLocationData("LG/CC: Broadsword - Nomadic Merchant to SE", "Broadsword", shop=True),
-        ERLocationData("LG/CC: Club - Nomadic Merchant to SE", "Club", shop=True),
-        ERLocationData("LG/CC: Shortbow - Nomadic Merchant to SE", "Shortbow", shop=True),
-        #ERLocationData("LG: Arrow - Nomadic Merchant to SE", "Arrow", shop=True),
-        #ERLocationData("LG: Bolt - Nomadic Merchant to SE", "Bolt", shop=True),
-        ERLocationData("LG/CC: Iron Roundshield - Nomadic Merchant to SE", "Iron Roundshield", shop=True),
-        ERLocationData("LG/CC: Note: Land Squirts - Nomadic Merchant to SE", "Note: Land Squirts", shop=True),
-        ERLocationData("LG/CC: Note: Stonedigger Trolls - Nomadic Merchant to SE", "Note: Stonedigger Trolls", shop=True),
+        ERLocationData("LG/CC: Neutralizing Boluses x5 - Nomadic Merchant SE of CC", "Neutralizing Boluses x5", shop=True),
+        ERLocationData("LG/CC: Stanching Boluses x3 - Nomadic Merchant SE of CC", "Stanching Boluses x3", shop=True),
+        ERLocationData("LG/CC: Stimulating Boluses x2 - Nomadic Merchant SE of CC", "Stimulating Boluses x2", shop=True),
+        ERLocationData("LG/CC: Smithing Stone [1] x3 - Nomadic Merchant SE of CC", "Smithing Stone [1] x3", shop=True),
+        ERLocationData("LG/CC: Armorer's Cookbook [2] - Nomadic Merchant SE of CC", "Armorer's Cookbook [2]", shop=True),
+        ERLocationData("LG/CC: Broadsword - Nomadic Merchant SE of CC", "Broadsword", shop=True),
+        ERLocationData("LG/CC: Club - Nomadic Merchant SE of CC", "Club", shop=True),
+        ERLocationData("LG/CC: Shortbow - Nomadic Merchant SE of CC", "Shortbow", shop=True),
+        #ERLocationData("LG: Arrow - Nomadic Merchant SE of CC", "Arrow", shop=True),
+        #ERLocationData("LG: Bolt - Nomadic Merchant SE of CC", "Bolt", shop=True),
+        ERLocationData("LG/CC: Iron Roundshield - Nomadic Merchant SE of CC", "Iron Roundshield", shop=True),
+        ERLocationData("LG/CC: Note: Land Squirts - Nomadic Merchant SE of CC", "Note: Land Squirts", shop=True),
+        ERLocationData("LG/CC: Note: Stonedigger Trolls - Nomadic Merchant SE of CC", "Note: Stonedigger Trolls", shop=True),
         # Near WR
         ERLocationData("LG/WR: Greataxe - Carriage W of WR", "Greataxe"),
         ERLocationData("LG/WR: Gold-Pickled Fowl Foot - NW of WR", "Gold-Pickled Fowl Foot"),
@@ -394,7 +394,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/ALN: Arteria Leaf - to SE", "Arteria Leaf"),
         ERLocationData("LG/ALN: Ash of War: Determination - scarab to SE", "Ash of War: Determination", scarab=True),
         ERLocationData("LG/ALN: Smithing Stone [1] - bridge to SE", "Smithing Stone [1]"),
-        ERLocationData("LG/ALN: Fire Grease - uder bridge to SE", "Fire Grease"),
+        ERLocationData("LG/ALN: Fire Grease - under bridge to SE", "Fire Grease"),
         ERLocationData("LG/ALN: Ash of War: Repeating Thrust - night boss drop to SE", "Ash of War: Repeating Thrust", boss=True),
         ERLocationData("LG/ALN: Somber Smithing Stone [1] - after bridge to SE", "Somber Smithing Stone [1]"),
         # Near ALS grace
@@ -466,7 +466,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/FHW: Golden Rune [2] 2 - graveyard to SW", "Golden Rune [2]"),
         ERLocationData("LG/FHW: Golden Rune [3] - graveyard to SW", "Golden Rune [3]"),
         ERLocationData("LG/FHW: Golden Rune [4] - graveyard to SW", "Golden Rune [4]"),
-        # Near SB
+        # Near SB grace
         ERLocationData("LG/SB: Smithing Stone [1] x2 - on bridge to E", "Smithing Stone [1] x2"),
         ERLocationData("LG/SB: Golden Rune [1] - past bridge to SE", "Golden Rune [1]"),
         ERLocationData("LG/SB: Smithing Stone [1] - to S", "Smithing Stone [1]"),
@@ -498,6 +498,42 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/SWV: Golden Rune [2] - graveyard SE of SMV", "Golden Rune [2]"),
         ERLocationData("LG/SWV: Golden Rune [5] - graveyard SE of SMV", "Golden Rune [5]"),
         ERLocationData("LG/SWV: Golden Rune [4] - ruins NE of SMV", "Golden Rune [4]"),
+        
+        # Near WS
+        ERLocationData("LG/WS: Fire Arrow x5 - W of WS", "Fire Arrow x5"),
+        ERLocationData("LG/WS: Golden Rune [1] 1 - graveyard SW of WS", "Golden Rune [1]"),
+        ERLocationData("LG/WS: Golden Rune [1] 2 - graveyard SW of WS", "Golden Rune [1]"),
+        ERLocationData("LG/WS: Golden Rune [1] 3 - graveyard SW of WS", "Golden Rune [1]"),
+        ERLocationData("LG/WS: Golden Rune [1] 4 - graveyard SW of WS", "Golden Rune [1]"),
+        ERLocationData("LG/WS: Golden Rune [2] 1 - graveyard SW of WS", "Golden Rune [2]"),
+        ERLocationData("LG/WS: Golden Rune [2] 2 - graveyard SW of WS", "Golden Rune [2]"),
+        ERLocationData("LG/WS: Golden Rune [3] - graveyard SW of WS", "Golden Rune [3]"),
+        ERLocationData("LG/WS: Golden Rune [5] - graveyard SW of WS", "Golden Rune [5]"),
+        ERLocationData("LG/WS: Beast Liver - SE of WS", "Beast Liver"),
+        ERLocationData("LG/WS: Blue-Feathered Branchsword - night boss drop SE of WS", "Blue-Feathered Branchsword", boss=True),
+        ERLocationData("LG/WS: Smithing Stone [1] x5 - breakable statue SE of WS", "Smithing Stone [1] x5"),
+        ERLocationData("LG/WS: Smithing Stone [2] - breakable statue SE of WS", "Smithing Stone [2]"),
+        ERLocationData("LG/WS: Exalted Flesh - enemy camp NE of WS", "Exalted Flesh"),
+        ERLocationData("LG/WS: Beast Crest Heater Shield - chest within enemy camp NE of WS", "Beast Crest Heater Shield"),
+        ERLocationData("LG/WS: Lance - on ruin in enemy camp NE of WS", "Lance"),
+        ERLocationData("LG/WS: Ash of War: Golden Vow - enemy drop NE of WS", "Ash of War: Golden Vow", drop=True),
+        ERLocationData("LG/WS: Somber Smithing Stone [1] - scarab on ruin NE of WS", "Somber Smithing Stone [1]", scarab=True),
+        ERLocationData("LG/WS: Strength-knot Crystal Tear - on cliff NW of WS", "Strength-knot Crystal Tear", prominent=True),
+        
+        # Near sv first boss arena
+        ERLocationData("LG/SV: Smithing Stone [1] - S of first SV boss arena W side", "Smithing Stone [1]"),
+        ERLocationData("LG/SV: Magic Grease x3 - S of first SV boss arena E side item 1", "Magic Grease x3"),
+        ERLocationData("LG/SV: Godrick Soldier Ashes - S of first SV boss arena E side item 2", "Godrick Soldier Ashes"),
+        ERLocationData("LG/SV: Bloodrose x3 - S of first SV boss arena E side item 3", "Bloodrose x3"),
+        
+        # broken bridge E of sv
+        ERLocationData("LG/SV: Nomadic Warrior's Cookbook [7] - E of SV on broken bridge", "Nomadic Warrior's Cookbook [7]"),
+        ERLocationData("LG/SV: Ash of War: Storm Wall - scarab E of SV after broken bridge", "Ash of War: Storm Wall", scarab=True),
+        
+        # Colo
+        ERLocationData("LG/LC: Hammer Talisman - invader drop", "Hammer Talisman", hostile_npc=True, missable=True),
+        ERLocationData("LG/LC: Small Red Effigy - by door", "Small Red Effigy"),
+        ERLocationData("LG/LC: Duelist's Furled Finger - by door", "Duelist's Furled Finger"),
         
         # LG Evergaols
         ERLocationData("LG/SE: Aspects of the Crucible: Tail - Stormhill Evergaol", "Aspects of the Crucible: Tail", boss=True),
@@ -715,10 +751,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(WS): Bone Peddler's Bell Bearing - night boss drop", "Bone Peddler's Bell Bearing", boss=True),
     ],
 
-
-
-
-
     # MARK: Roundtable Hold
     "Roundtable Hold":[
         ERLocationData("RH: What Do You Want? - talk to Ensha", "What Do You Want?", npc=True),
@@ -782,7 +814,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Host's Trick-Mirror - Twin maiden shop", "Host's Trick-Mirror", shop=True),
     ],
 
-
+    "Bridge of Sacrifice":[
+        ERLocationData("BS: Smithing Stone [1] x3 - corpse hanging off edge", "Smithing Stone [1] x3"),
+        ERLocationData("BS: Stonesword Key - behind wooden platform", "Stonesword Key"),
+    ],
+    # MARK: Weeping Peninsula
+    "Weeping Peninsula":[ # World Locations
+        
+    ],
+    
     # ERLocationData(":  - ", ""),
     # MARK: Liurnia of The Lakes
     "Liurnia of The Lakes":[],
@@ -792,6 +832,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CA Return: Stormhawk Deenh - chest top of church", "Stormhawk Deenh"),
     ],
 
+    # ERLocationData(":  - ", ""),
     # MARK: Caelid
     "Caelid":[],
     "Smoldering Church":[

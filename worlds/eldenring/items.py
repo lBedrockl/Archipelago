@@ -519,7 +519,7 @@ _vanilla_items = [
     ERItemData("Jar Cannon", 44010000, ERItemCategory.WEAPON),
     #ammo
     ERItemData("Arrow", 50000000, ERItemCategory.WEAPON),
-    ERItemData("Fire Arrow", 50010000, ERItemCategory.WEAPON),
+    *ERItemData("Fire Arrow", 50010000, ERItemCategory.WEAPON).counts([5]),
     ERItemData("Serpent Arrow", 50020000, ERItemCategory.WEAPON),
     *ERItemData("St. Trina's Arrow", 50040000, ERItemCategory.WEAPON).counts([10]),
     ERItemData("Shattershard Arrow (Fletched)", 50060000, ERItemCategory.WEAPON),
@@ -1303,10 +1303,10 @@ _vanilla_items = [
 
     *ERItemData("Fire Grease", 1400, ERItemCategory.GOODS).counts([2, 3, 5]),
     *ERItemData("Lightning Grease", 1410, ERItemCategory.GOODS).counts([2]),
-    ERItemData("Magic Grease", 1420, ERItemCategory.GOODS),
+    *ERItemData("Magic Grease", 1420, ERItemCategory.GOODS).counts([3]),
     *ERItemData("Holy Grease", 1430, ERItemCategory.GOODS).counts([3]),
     ERItemData("Blood Grease", 1440, ERItemCategory.GOODS),
-    ERItemData("Soporific Grease", 1450, ERItemCategory.GOODS),
+    *ERItemData("Soporific Grease", 1450, ERItemCategory.GOODS).counts([3]),
     ERItemData("Poison Grease", 1460, ERItemCategory.GOODS),
     ERItemData("Freezing Grease", 1470, ERItemCategory.GOODS),
     ERItemData("Dragonwound Grease", 1480, ERItemCategory.GOODS),
@@ -1902,7 +1902,7 @@ _vanilla_items = [
     ERItemData("Lost Ashes of War", 10070, ERItemCategory.GOODS),
     ERItemData("Great Rune of the Unborn", 10080, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
-    *ERItemData("Smithing Stone [1]", 10100, ERItemCategory.GOODS, filler=True).counts([2, 3]),
+    *ERItemData("Smithing Stone [1]", 10100, ERItemCategory.GOODS, filler=True).counts([2, 3, 5]),
     ERItemData("Smithing Stone [2]", 10101, ERItemCategory.GOODS, filler=True),
     ERItemData("Smithing Stone [3]", 10102, ERItemCategory.GOODS, filler=True),
     ERItemData("Smithing Stone [4]", 10103, ERItemCategory.GOODS, filler=True),
