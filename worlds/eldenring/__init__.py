@@ -115,7 +115,11 @@ class EldenRing(World):
         create_connection("Limgrave", "Bridge of Sacrifice")
         # Weeping Peninsula
         create_connection("Bridge of Sacrifice", "Weeping Peninsula")
+        create_connection("Weeping Peninsula", "Impaler's Catacombs")
 
+
+        create_connection("Weeping Peninsula", "Castle Morne")
+        
 
         create_connection("Limgrave", "Liurnia of The Lakes")
         #create_connection("Stormveil Castle", "Liurnia of The Lakes")

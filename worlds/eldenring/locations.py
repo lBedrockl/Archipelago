@@ -41,6 +41,10 @@ region_order = [
     # Weeping
     "Bridge of Sacrifice",
     "Weeping Peninsula",
+    "Impaler's Catacombs",
+    
+    
+    "Castle Morne",
 
     # Liurnia
     "Liurnia of The Lakes",
@@ -60,10 +64,6 @@ region_order = [
     
     "Siofra River",
     "Stormveil Castle",
-
-    #Weeping
-    
-    "Castle Morne",
 
     #Liurnia
     "Raya Lucaria Academy",
@@ -431,8 +431,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/MO: Gold-Tinged Excrement x5 - to SE", "Gold-Tinged Excrement x5"),
 
         # Kenneth Haight
-        ERLocationData("LG/MO: Erdsteel Dagger - kill FH enemy Kenneth Haight to NE", "Erdsteel Dagger", missable=True),
-        ERLocationData("LG/MO: Golden Seed - kill Kenneth Haight to NE", "Golden Seed", npc=True),
+        ERLocationData("LG/MO: Erdsteel Dagger - kill FH enemy Kenneth Haight to NE", "Erdsteel Dagger",npc=True ,missable=True),
+        ERLocationData("LG/MO: Golden Seed - kill Kenneth Haight to NE", "Golden Seed", npc=True, missable=True),
 
         # Near SRW
         ERLocationData("LG/SRW: Map: Limgrave, East - map pillar W of SRW", "Map: Limgrave, East", prominent=True),
@@ -538,6 +538,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # LG Evergaols
         ERLocationData("LG/SE: Aspects of the Crucible: Tail - Stormhill Evergaol", "Aspects of the Crucible: Tail", boss=True),
         ERLocationData("LG/FHE: Bloodhound's Fang - Forlorn Hound Evergaol", "Bloodhound's Fang", boss=True),
+        ERLocationData("LG/FHE: Somber Smithing Stone [1] - Blaidd reward Forlorn Hound Evergaol", "Somber Smithing Stone [1]", npc=True, missable=True),
+        
 
         ERLocationData("LG/ME: Spiked Cracked Tear - Minor Erdtree", "Spiked Cracked Tear", prominent=True),
         ERLocationData("LG/ME: Greenspill Crtstal Tear - Minor Erdtree", "Greenspill Crystal Tear", prominent=True),
@@ -546,7 +548,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(CE): Smithing Stone [1] - on anvil", "Smithing Stone [1]"),
         ERLocationData("LG/(CE): Golden Rune [2] - out front", "Golden Rune [2]"),
         # Kalé shop
-        ERLocationData("LG/(CE): Finger Snap - kill Kalé or Blaidd quest", "Finger Snap", npc=True), #idk how Blaidd quest works tbh, just hear howl, talk to kale get finger, finger at howl, blaidd appera
+        ERLocationData("LG/(CE): Finger Snap - kill Kalé or Blaidd quest", "Finger Snap", npc=True), #just hear howl, talk to kale get finger, finger at howl, blaidd appera
         #ERLocationData("LG/(CE): Throwing Dagger - Kalé Shop", "Throwing Dagger", shop=True),
         ERLocationData("LG/(CE): Telescope - Kalé Shop", "Telescope", shop=True),
         ERLocationData("LG/(CE): Furlcalling Finger Remedy - Kalé Shop", "Furlcalling Finger Remedy", shop=True),
@@ -753,8 +755,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
 
     # MARK: Roundtable Hold
     "Roundtable Hold":[
-        ERLocationData("RH: What Do You Want? - talk to Ensha", "What Do You Want?", npc=True),
-        ERLocationData("RH: Taunter's Tongue - invader drop", "Taunter's Tongue", hostile_npc=True),
+        ERLocationData("RH: Baldachin's Blessing - be held", "Baldachin's Blessing", npc=True),
+        ERLocationData("RH: What Do You Want? - talk to Ensha", "What Do You Want?", npc=True, missable=True),
+        ERLocationData("RH: Taunter's Tongue - invader drop", "Taunter's Tongue", hostile_npc=True), # idk if missable
         ERLocationData("RH: Cipher Pata - on bed in lower area", "Cipher Pata"),
         # behind ss key
         ERLocationData("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", "Crepus's Black-Key Crossbow"),
@@ -820,7 +823,72 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     # MARK: Weeping Peninsula
     "Weeping Peninsula":[ # World Locations
+        ERLocationData("WP/BS: Irina's Letter - talk to Irina to SE", "Irina's Letter", npc=True, missable=True),
+        ERLocationData("WP/OR: Starlight Shards - E of OR", "Starlight Shards"),
+        ERLocationData("WP/BCPG: Stonesword Key - head far N", "Stonesword Key"),
         
+        
+        # Near CMR grace
+        ERLocationData("WP/CMR: Map: Weeping Peninsula - to SW", "Map: Weeping Peninsula", prominent=True),
+        ERLocationData("WP/CMR: Nightrider Flail - night boss drop to SW", "Nightrider Flail", boss=True),
+        ERLocationData("WP/CMR: Ash of War: Barricade Shield - night boss drop to SW", "Ash of War: Barricade Shield", boss=True),
+        ERLocationData("WP/CMR: Great Turtle Shell - top of tower to SE", "Great Turtle Shell"),
+        ERLocationData("WP/CMR: Warming Stone x2 - top of tower to SE", "Warming Stone x2"),
+        # Shop
+        ERLocationData("WP/CMR: Smithing Stone [1] x3 - Nomadic Merchant to SE", "Smithing Stone [1] x3",shop=True),
+        ERLocationData("WP/CMR: Smithing Stone [2] - Nomadic Merchant to SE", "Smithing Stone [2]",shop=True),
+        ERLocationData("WP/CMR: Cracked Pot - Nomadic Merchant to SE", "Cracked Pot",shop=True),
+        ERLocationData("WP/CMR: Stonesword Key - Nomadic Merchant to SE", "Stonesword Key",shop=True),
+        ERLocationData("WP/CMR: Bastard Sword - Nomadic Merchant to SE", "Bastard Sword",shop=True),
+        ERLocationData("WP/CMR: Light Crossbow - Nomadic Merchant to SE", "Light Crossbow",shop=True),
+        ERLocationData("WP/CMR: Great Arrow x8 - Nomadic Merchant to SE", "Great Arrow x8",shop=True),
+        ERLocationData("WP/CMR: Ballista Bolt x8 - Nomadic Merchant to SE", "Ballista Bolt x8",shop=True),
+        ERLocationData("WP/CMR: Red Thorn Roundshield - Nomadic Merchant to SE", "Red Thorn Roundshield",shop=True),
+        ERLocationData("WP/CMR: Round Shield - Nomadic Merchant to SE", "Round Shield",shop=True),
+        ERLocationData("WP/CMR: Iron Helmet - Nomadic Merchant to SE", "Iron Helmet",shop=True),
+        ERLocationData("WP/CMR: Scale Armor - Nomadic Merchant to SE", "Scale Armor",shop=True),
+        ERLocationData("WP/CMR: Iron Gauntlets - Nomadic Merchant to SE", "Iron Gauntlets",shop=True),
+        ERLocationData("WP/CMR: Leather Trousers - Nomadic Merchant to SE", "Leather Trousers",shop=True),
+        ERLocationData("WP/CMR: Crimson Amber Medallion - Nomadic Merchant to SE", "Crimson Amber Medallion",shop=True),
+        ERLocationData("WP/CMR: Note: Demi-human Mobs - Nomadic Merchant to SE", "Note: Demi-human Mobs",shop=True),
+        
+        # Rises
+        ERLocationData("WP/(OR): Memory Stone - find the 3 spirits", "Memory Stone"),
+    ],
+    "Impaler's Catacombs":[
+        ERLocationData("WP/(IC): Prattling Pate \"Please help\" - start of sewer area", "Prattling Pate \"Please help\""),
+        ERLocationData("WP/(IC): Root Resin x3 - back SW of sewer area", "Root Resin x3"),
+        ERLocationData("WP/(IC): Demi-Human Ashes - boss drop", "Demi-Human Ashes", boss=True),
+    ],
+    
+    
+    
+    "Castle Morne":[
+        ERLocationData("WP/(CM): Smithing Stone [2] - left up stairs from enterance", "Smithing Stone [2]"),
+        ERLocationData("WP/(CM): Fire Grease x2 - on pile of corpses", "Fire Grease x2"),
+        ERLocationData("WP/(CM): Smithing Stone [1] x3 - S of corpse pile in corner", "Smithing Stone [1] x3"),
+        ERLocationData("WP/(CM): Claymore - chest NW of corpse pile in room", "Claymore"),
+        ERLocationData("WP/(CM): Furlcalling Finger Remedy - NW roof area, SE from ladder", "Furlcalling Finger Remedy"),
+        ERLocationData("WP/(CM): Steel-Wire Torch - NW roof area, end of NE corridor", "Steel-Wire Torch"),
+        ERLocationData("WP/(CM): Golden Rune [2] - SW roof area, corpse hanging from bridge", "Golden Rune [2]"),
+        ERLocationData("WP/(CM): Smithing Stone [2] x2 - SW roof area, down ladder to SW, far end to NW", "Smithing Stone [2] x2"),
+        ERLocationData("WP/(CM): Golden Rune [2] - middle of SE roof area", "Golden Rune [2]"),
+        # after BC
+        ERLocationData("WP/(CM): Stonesword Key - after BC, off SW side of first building", "Stonesword Key"),
+        ERLocationData("WP/(CM): Pickled Turtle Neck - after BC, drop through grate", "Pickled Turtle Neck"),
+        ERLocationData("WP/(CM): Twinblade Talisman - after BC, chest top of W tower", "Twinblade Talisman"),
+        ERLocationData("WP/(CM): Tarnished Golden Sunflower x3 - after BC, drop to hexagonal building, beside broken tree", "Tarnished Golden Sunflower x3"),
+        ERLocationData("WP/(CM): Smithing Stone [2] - after BC, on wooden beam", "Smithing Stone [2]"),
+        ERLocationData("WP/(CM): Whip - after BC, room after wooden beam drops", "Whip"),
+        # after BRG
+        ERLocationData("WP/(CM): Fire Arrow x15 - after BRG, N beach corner", "Fire Arrow x15"),
+        ERLocationData("WP/(CM): Throwing Dagger x8 - after BRG, across bridge", "Throwing Dagger x8"),
+        ERLocationData("WP/(CM): Somber Smithing Stone [1] - after BRG, behind SW tower on beach", "Somber Smithing Stone [1]"),
+        ERLocationData("WP/(CM): Grafted Blade Greatsword - boss drop", "Grafted Blade Greatsword", boss=True),
+        
+        # Edgar
+        ERLocationData("WP/(CM): Sacrificial Twig - talk to Edgar", "Sacrificial Twig", npc=True, missable=True),
+        # kill and invader form needed + quest stuff
     ],
     
     # ERLocationData(":  - ", ""),
