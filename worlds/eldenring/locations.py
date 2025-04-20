@@ -42,6 +42,9 @@ region_order = [
     "Bridge of Sacrifice",
     "Weeping Peninsula",
     "Impaler's Catacombs",
+    "Church of Pilgrimage",
+    "Tombsward Catacombs",
+    "Tombsward Cave",
     
     
     "Castle Morne",
@@ -306,6 +309,8 @@ class ERLocation(Location):
 # LG/(CE): Smithing Stone [1] - on anvil          # within location
 
 # for shops with inf of an item, leave to be nothing
+
+# Catacomb = CC, Cave = CV, Coast = CO
 
 # ERLocationData(":  - ", ""),
 #MARK: Locations
@@ -826,6 +831,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/BS: Irina's Letter - talk to Irina to SE", "Irina's Letter", npc=True, missable=True),
         ERLocationData("WP/OR: Starlight Shards - E of OR", "Starlight Shards"),
         ERLocationData("WP/BCPG: Stonesword Key - head far N", "Stonesword Key"),
+        ERLocationData("WP/CP: Bewitching Branch x3 - lower cliff NW of CP", "Bewitching Branch x3"),
+        ERLocationData("WP/CP: Sliver of Meat - lower cliff NW of CP", "Sliver of Meat"),
         
         
         # Near CMR grace
@@ -834,6 +841,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/CMR: Ash of War: Barricade Shield - night boss drop to SW", "Ash of War: Barricade Shield", boss=True),
         ERLocationData("WP/CMR: Great Turtle Shell - top of tower to SE", "Great Turtle Shell"),
         ERLocationData("WP/CMR: Warming Stone x2 - top of tower to SE", "Warming Stone x2"),
+        ERLocationData("WP/CMR: Smithing Stone [1] - otherside of wall to S, long go around", "Smithing Stone [1]"),
+        ERLocationData("WP/CMR: Sacrifical Axe - night boss to SW", "Sacrifical Axe", boss=True),
         # Shop
         ERLocationData("WP/CMR: Smithing Stone [1] x3 - Nomadic Merchant to SE", "Smithing Stone [1] x3",shop=True),
         ERLocationData("WP/CMR: Smithing Stone [2] - Nomadic Merchant to SE", "Smithing Stone [2]",shop=True),
@@ -852,17 +861,50 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/CMR: Crimson Amber Medallion - Nomadic Merchant to SE", "Crimson Amber Medallion",shop=True),
         ERLocationData("WP/CMR: Note: Demi-human Mobs - Nomadic Merchant to SE", "Note: Demi-human Mobs",shop=True),
         
+        #Near Castle Morne
+        ERLocationData("WP/CM: Golden Rune [1] - NW of CM", "Golden Rune [1]"),
+        ERLocationData("WP/CM: Somber Smithing Stone [2] - E of CM", "Somber Smithing Stone [2]"),
+        ERLocationData("WP/CM: Arteria Leaf - E of CM", "Arteria Leaf"),
+        ERLocationData("WP/CM: Golden Rune [4] - NE of CM in swamp", "Golden Rune [4]"),
+        ERLocationData("WP/CM: Golden Seed - golden tree N of CM", "Golden Seed", prominent=True),
+        ERLocationData("WP/CM: Poison Mist - scarab NE of CM, N of swamp", "Poison Mist", scarab=True),
+        
         # Rises
         ERLocationData("WP/(OR): Memory Stone - find the 3 spirits", "Memory Stone"),
+        # Evergaol
+        ERLocationData("WP/WE: Radagon's Scarseal - boss drop Weeping Evergaol", "Radagon's Scarseal", boss=True), # 1
     ],
     "Impaler's Catacombs":[
         ERLocationData("WP/(IC): Prattling Pate \"Please help\" - start of sewer area", "Prattling Pate \"Please help\""),
         ERLocationData("WP/(IC): Root Resin x3 - back SW of sewer area", "Root Resin x3"),
         ERLocationData("WP/(IC): Demi-Human Ashes - boss drop", "Demi-Human Ashes", boss=True),
     ],
+    "Church of Pilgrimage":[
+        ERLocationData("WP/(CP): Sacred Tear - infront of statue", "Sacred Tear", prominent=True),
+        ERLocationData("WP/(CP): Gilden Iron Shield - in graveyard", "Gilden Iron Shield"),
+        ERLocationData("WP/(CP): Blood Grease x2 - in graveyard", "Blood Grease x2"),
+    ],
+    "Tombsward Catacombs":[
+        ERLocationData("WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue", "Nomadic Warrior's Cookbook [9]"), # 1
+        ERLocationData("WP/(TCC): Human Bone Shard x5 - in path of fire spitter", "Human Bone Shard x5"),
+        ERLocationData("WP/(TCC): Prattling Pate \"Thank you\" - room past fire spitter", "Prattling Pate \"Thank you\""),
+        ERLocationData("WP/(TCC): Golden Rune [2] - above fire spitter", "Golden Rune [2]"),
+        ERLocationData("WP/(TCC): Lhutel the Headless - boss drop", "Lhutel the Headless", boss=True),
+    ],
+    "Tombsward Cave":[
+        ERLocationData("WP/(TCV): Golden Rune [2] - before big room", "Golden Rune [2]"),
+        ERLocationData("WP/(TCV): Immunizing White Cured Meat - item 1 right of big room", "Immunizing White Cured Meat"),
+        ERLocationData("WP/(TCV): Nomadic Warrior's Cookbook [8] - item 2 right of big room", "Nomadic Warrior's Cookbook [8]"),
+        ERLocationData("WP/(TCV): Arteria Leaf - right of big room, then return path", "Arteria Leaf"),
+        ERLocationData("WP/(TCV): Furlcalling Finger Remedy - big room", "Furlcalling Finger Remedy"),
+        ERLocationData("WP/(TCV): Poisonbone Dart x6 - room after big room", "Poisonbone Dart x6"),
+        ERLocationData("WP/(TCV): Viridian Amber Medallion - boss drop", "Viridian Amber Medallion", boss=True),
+    ],
     
     
     
+    # "":[],
+    # ERLocationData(":  - ", ""),
     "Castle Morne":[
         ERLocationData("WP/(CM): Smithing Stone [2] - left up stairs from enterance", "Smithing Stone [2]"),
         ERLocationData("WP/(CM): Fire Grease x2 - on pile of corpses", "Fire Grease x2"),

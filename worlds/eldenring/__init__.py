@@ -116,7 +116,9 @@ class EldenRing(World):
         # Weeping Peninsula
         create_connection("Bridge of Sacrifice", "Weeping Peninsula")
         create_connection("Weeping Peninsula", "Impaler's Catacombs")
-
+        create_connection("Weeping Peninsula", "Church of Pilgrimage")
+        create_connection("Weeping Peninsula", "Tombsward Catacombs")
+        create_connection("Weeping Peninsula", "Tombsward Cave")
 
         create_connection("Weeping Peninsula", "Castle Morne")
         
@@ -355,6 +357,7 @@ class EldenRing(World):
 
     def set_rules(self) -> None: #WIP #MARK: Rules
 
+        self._key_rules()
         self._add_shop_rules()
         #self._add_npc_rules()
         #self._add_remembrance_rules() # need to do the locations first
@@ -378,29 +381,6 @@ class EldenRing(World):
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
                                 lambda state: state.has("\"Homing Instinct\" Painting", self.player))
         
-
-        # MARK: SSK RULES
-        # in order from early game to late game each rule needs to include the last count for an area
-        # limgrave
-        self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: self._has_enough_keys(state, 3)) # 2
-        self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: self._has_enough_keys(state, 3)) # 1
-        
-        # roundtable
-        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: self._has_enough_keys(state, 8)) # 1
-        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: self._has_enough_keys(state, 8)) # 1
-        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: self._has_enough_keys(state, 8)) # 3
-        
-        
-        
-        # haligtree
-        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", lambda state: self._has_enough_keys(state, 11)) # 1
-        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", lambda state: self._has_enough_keys(state, 11)) # 2
-        
-        
-        
-
-        
-        
         # DLC Access Rules Below
         if self.options.enable_dlc:
             self._add_entrance_rule("Gravesite Plain", lambda state: self._can_get(state, "MP: Mohg Remembrance"))
@@ -419,6 +399,37 @@ class EldenRing(World):
             self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance")
         else:
             self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance")"""
+        
+    def _key_rules(self) -> None:
+        # MARK: SSK RULES
+        # in order from early game to late game each rule needs to include the last count for an area
+        currentKey = 0 #makes dynamic
+        # limgrave +3
+        currentKey += 3
+        self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: self._has_enough_keys(state, currentKey)) # 2
+        self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: self._has_enough_keys(state, currentKey)) # 1
+        
+        # roundtable +5
+        currentKey += 5
+        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 3
+        
+        # weeping +2
+        currentKey += 2
+        self._add_location_rule("WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("WP/WE: Radagon's Scarseal - boss drop Weeping Evergaol" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        
+        # stormveil +2
+        #currentKey += 2
+        
+        # caelid +3
+        #currentKey += 3
+        
+        # haligtree +3
+        currentKey += 3
+        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
 
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
