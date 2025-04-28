@@ -13,9 +13,17 @@ class EndingCondition(Choice):
     option_consort = 1
     alias_true = 1
 
-class RegionLock(Toggle):
-    """Region Locking, each region will require '# of great runes or special item'"""
-    display_name = "Region Lock"
+class WorldLogic(Choice):
+    """World Logic options
+    
+    **Region Lock:** Each region will require '# of great runes or special item'
+    **Open World:** No region locking"""
+    #**Glitches:** Glitches in logic"""
+    display_name = "World Logic"
+    option_region_lock = 0
+    option_open_world = 1
+    #option_glitches = 2
+    default = 0
 
 class GreatRunesRequired(Range):
     """How many great runes are required to enter Leyndell
@@ -64,9 +72,7 @@ class ExcludedLocationBehaviorOption(Choice):
     - **Randomize Unimportant:** Progression items can't be placed in excluded locations.
     - **Do Not Randomize:** Excluded locations always contain the same item as in vanilla EldenRing.
 
-    A "progression item" is anything that's required to unlock another location in some game. A
-    "useful item" is something each game defines individually, usually items that are quite
-    desirable but not strictly necessary.
+    A "progression item" is anything that's required to unlock another location in some game.
     """
     display_name = "Excluded Locations Behavior"
     option_randomize = 0
@@ -81,9 +87,7 @@ class MissableLocationBehaviorOption(Choice):
     - **Randomize Unimportant:** Progression items can't be placed in missable locations.
     - **Do Not Randomize:** Missable locations always contain the same item as in vanilla EldenRing.
 
-    A "progression item" is anything that's required to unlock another location in some game. A
-    "useful item" is something each game defines individually, usually items that are quite
-    desirable but not strictly necessary.
+    A "progression item" is anything that's required to unlock another location in some game.
     """
     display_name = "Missable Locations Behavior"
     option_randomize = 0
@@ -94,7 +98,7 @@ class MissableLocationBehaviorOption(Choice):
 @dataclass
 class EROptions(PerGameCommonOptions):
     ending_condition: EndingCondition
-    region_lock: RegionLock
+    world_logic: WorldLogic
     great_runes_required: GreatRunesRequired
     enable_dlc: EnableDLC
     late_dlc: LateDLCOption

@@ -45,7 +45,8 @@ region_order = [
     "Church of Pilgrimage",
     "Tombsward Catacombs",
     "Tombsward Cave",
-    
+    "Isolated Merchant's Shack",
+    "Morne Tunnel",
     
     "Castle Morne",
 
@@ -57,6 +58,11 @@ region_order = [
     "Caelid",
     "Smoldering Church",
 
+    # Leyndell
+    "Leyndell, Royal Capital",
+    "Divine Bridge",
+    
+    "Leyndell, Ashen Capital",
 
     # Haligtree
     "Miquella's Haligtree",
@@ -87,7 +93,6 @@ region_order = [
     "Volcano Manor",
     "Capital Outskirts",
     #Leyndell
-    "Leyndell, Royal Capital",
     "Subterranean Shunning-Grounds",
     #Mountain
     "Forbidden Lands",
@@ -312,6 +317,8 @@ class ERLocation(Location):
 
 # Catacomb = CC, Cave = CV, Coast = CO
 
+# Tombsward Ruins, Tower of Return = TwR, ToR
+
 # ERLocationData(":  - ", ""),
 #MARK: Locations
 location_tables: Dict[str, List[ERLocationData]] = {
@@ -444,21 +451,21 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/SRW: Nomadic Warrior's Cookbook [4] - W of SRW", "Nomadic Warrior's Cookbook [4]"),
         ERLocationData("LG/SRW: Strip of White Flesh x3 - of SRW", "Strip of White Flesh x3"),
         # Near ME Minor Erdtree
-        ERLocationData("LG/ME: Ash of War: Ground Slam - W of Minor Erdtree", "Ash of War: Ground Slam", scarab=True),
-        ERLocationData("LG/ME: Thin Beast Bones x3 - W of Minor Erdtree", "Thin Beast Bones x3"),
+        ERLocationData("LG/ME: Ash of War: Ground Slam - W of ME", "Ash of War: Ground Slam", scarab=True),
+        ERLocationData("LG/ME: Thin Beast Bones x3 - W of ME", "Thin Beast Bones x3"),
         # shop
-        ERLocationData("LG/ME: Festering Bloody Finger x5 - Nomadic Merchant S of Minor Erdtree", "Festering Bloody Finger x5", shop=True),
-        ERLocationData("LG/ME: Sliver of Meat x5 - Nomadic Merchant S of Minor Erdtree", "Sliver of Meat x5", shop=True),
-        ERLocationData("LG/ME: Beast Liver x5 - Nomadic Merchant S of Minor Erdtree", "Beast Liver x5", shop=True),
-        ERLocationData("LG/ME: Lump of Flesh x3 - Nomadic Merchant S of Minor Erdtree", "Lump of Flesh x3", shop=True),
-        ERLocationData("LG/ME: Trina's Lily x3 - Nomadic Merchant S of Minor Erdtree", "Trina's Lily x3", shop=True),
-        ERLocationData("LG/ME: Smithing Stone [1] x3 - Nomadic Merchant S of Minor Erdtree", "Smithing Stone [1] x3", shop=True),
-        ERLocationData("LG/ME: Nomadic Warrior's Cookbook [5] - Nomadic Merchant S of Minor Erdtree", "Nomadic Warrior's Cookbook [5]", shop=True),
+        ERLocationData("LG/ME: Festering Bloody Finger x5 - Nomadic Merchant S of ME", "Festering Bloody Finger x5", shop=True),
+        ERLocationData("LG/ME: Sliver of Meat x5 - Nomadic Merchant S of ME", "Sliver of Meat x5", shop=True),
+        ERLocationData("LG/ME: Beast Liver x5 - Nomadic Merchant S of ME", "Beast Liver x5", shop=True),
+        ERLocationData("LG/ME: Lump of Flesh x3 - Nomadic Merchant S of ME", "Lump of Flesh x3", shop=True),
+        ERLocationData("LG/ME: Trina's Lily x3 - Nomadic Merchant S of ME", "Trina's Lily x3", shop=True),
+        ERLocationData("LG/ME: Smithing Stone [1] x3 - Nomadic Merchant S of ME", "Smithing Stone [1] x3", shop=True),
+        ERLocationData("LG/ME: Nomadic Warrior's Cookbook [5] - Nomadic Merchant S of ME", "Nomadic Warrior's Cookbook [5]", shop=True),
         ERLocationData("LG/ME: Armorer's Cookbook [3] - Nomadic Merchant S of Minor Erdtree", "Armorer's Cookbook [3]", shop=True),
-        ERLocationData("LG/ME: Hand Axe - Nomadic Merchant S of Minor Erdtree", "Hand Axe", shop=True),
-        ERLocationData("LG/ME: St. Trina's Arrow x10 - Nomadic Merchant S of Minor Erdtree", "St. Trina's Arrow x10", shop=True),
-        ERLocationData("LG/ME: Riveted Wooden Shield - Nomadic Merchant S of Minor Erdtree", "Riveted Wooden Shield", shop=True),
-        ERLocationData("LG/ME: Blue-Gold Kite Shield - Nomadic Merchant S of Minor Erdtree", "Blue-Gold Kite Shield", shop=True),
+        ERLocationData("LG/ME: Hand Axe - Nomadic Merchant S of ME", "Hand Axe", shop=True),
+        ERLocationData("LG/ME: St. Trina's Arrow x10 - Nomadic Merchant S of ME", "St. Trina's Arrow x10", shop=True),
+        ERLocationData("LG/ME: Riveted Wooden Shield - Nomadic Merchant S of ME", "Riveted Wooden Shield", shop=True),
+        ERLocationData("LG/ME: Blue-Gold Kite Shield - Nomadic Merchant S of ME", "Blue-Gold Kite Shield", shop=True),
 
         # Near FHW
         ERLocationData("LG/FHW: Golden Seed - golden tree to E", "Golden Seed", prominent=True),
@@ -833,7 +840,20 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/BCPG: Stonesword Key - head far N", "Stonesword Key"),
         ERLocationData("WP/CP: Bewitching Branch x3 - lower cliff NW of CP", "Bewitching Branch x3"),
         ERLocationData("WP/CP: Sliver of Meat - lower cliff NW of CP", "Sliver of Meat"),
+        ERLocationData("WP/WR: Golden Rune [1] - W of WR on beach", "Golden Rune [1]"),
+        ERLocationData("WP/WR: Golden Rune [5] - W of WR on beach", "Golden Rune [5]"),
+        ERLocationData("WP/TwR: Divine Fortification - scarab SW of TwR, high on ruin", "Divine Fortification", scarab=True),
+        ERLocationData("WP/TwR: Golden Rune [2] - on beach NW of TwR", "Golden Rune [2]"),
         
+        # Near ToR
+        ERLocationData("WP/ToR: Golden Rune [1] 1 - graveyard W of ToR", "Golden Rune [1]"),
+        ERLocationData("WP/ToR: Golden Rune [1] 2 - graveyard W of ToR", "Golden Rune [1]"),
+        ERLocationData("WP/ToR: Golden Rune [1] 3 - graveyard W of ToR", "Golden Rune [1]"),
+        ERLocationData("WP/ToR: Golden Rune [1] 4 - graveyard W of ToR", "Golden Rune [1]"),
+        ERLocationData("WP/ToR: Golden Rune [2] - graveyard W of ToR", "Golden Rune [2]"),
+        ERLocationData("WP/ToR: Golden Rune [3] - graveyard W of ToR", "Golden Rune [3]"),
+        ERLocationData("WP/ToR: Great Dragonfly Head x3 - NE of ToR", "Great Dragonfly Head x3"),
+        ERLocationData("WP/ToR: Mushroom x4 - E of ToR", "Mushroom x4"),
         
         # Near CMR grace
         ERLocationData("WP/CMR: Map: Weeping Peninsula - to SW", "Map: Weeping Peninsula", prominent=True),
@@ -869,6 +889,21 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/CM: Golden Seed - golden tree N of CM", "Golden Seed", prominent=True),
         ERLocationData("WP/CM: Poison Mist - scarab NE of CM, N of swamp", "Poison Mist", scarab=True),
         
+        # Locations with low checks
+        ERLocationData("WP/(FCM): Sacred Tear - by statue", "Sacred Tear", prominent=True),
+        ERLocationData("WP/(WR): Ambush Shard - underground", "Ambush Shard"),
+        ERLocationData("WP/(WR): Great Dragonfly Head - within ruins", "Great Dragonfly Head"),
+        ERLocationData("WP/(TwR): Beast Liver - within ruins", "Beast Liver"),
+        ERLocationData("WP/(TwR): Winged Scythe - underground", "Winged Scythe"),
+        
+        # da tree
+        ERLocationData("WP/ME: Crimsonburst Crystal Tear - boss drop", "Crimsonburst Crystal Tear", boss=True),
+        ERLocationData("WP/ME: Opaline Bubbletear - boss drop", "Opaline Bubbletear", boss=True),
+        ERLocationData("WP/ME: Eclipse Crest Heaater Shield - W of ME, drop off 2 ledges", "Eclipse Crest Heaater Shield", hidden=True),
+        ERLocationData("WP/ME: Golden Rune [6] - enemy drop S of ME", "Golden Rune [6]", drop=True),
+        ERLocationData("WP/ME: Sliver of Meat - S of ME", "Sliver of Meat"),
+        ERLocationData("WP/ME: Lightning Strike - scarab E of ME, drop down gravestones", "Lightning Strike", scarab=True),
+        
         # Rises
         ERLocationData("WP/(OR): Memory Stone - find the 3 spirits", "Memory Stone"),
         # Evergaol
@@ -900,8 +935,29 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/(TCV): Poisonbone Dart x6 - room after big room", "Poisonbone Dart x6"),
         ERLocationData("WP/(TCV): Viridian Amber Medallion - boss drop", "Viridian Amber Medallion", boss=True),
     ],
-    
-    
+    "Isolated Merchant's Shack":[
+        ERLocationData("WP/(IMS): Lantern - Isolated Merchant shop", "Lantern", shop=True),
+        ERLocationData("WP/(IMS): Festering Bloody Finger x5 - Isolated Merchant shop", "Festering Bloody Finger x5", shop=True),
+        ERLocationData("WP/(IMS): Arteria Leaf x5 - Isolated Merchant shop", "Arteria Leaf x5", shop=True),
+        ERLocationData("WP/(IMS): Smithing Stone [2] x3 - Isolated Merchant shop", "Smithing Stone [2] x3", shop=True),
+        ERLocationData("WP/(IMS): Stonesword Key x3 - Isolated Merchant shop", "Stonesword Key x3", shop=True),
+        ERLocationData("WP/(IMS): Lost Ashes of War - Isolated Merchant shop", "Lost Ashes of War", shop=True),
+        ERLocationData("WP/(IMS): Zweihander - Isolated Merchant shop", "Zweihander", shop=True),
+        ERLocationData("WP/(IMS): Great Arrow x15 - Isolated Merchant shop", "Great Arrow x15", shop=True),
+        ERLocationData("WP/(IMS): Ballista Bolt x15 - Isolated Merchant shop", "Ballista Bolt x15", shop=True),
+        ERLocationData("WP/(IMS): Sacrificial Twig x3 - Isolated Merchant shop", "Sacrificial Twig x3", shop=True),
+        ERLocationData("WP/(IMS): Note: Wandering Mausoleum - Isolated Merchant shop", "Note: Wandering Mausoleum", shop=True),
+    ],
+    "Morne Tunnel":[
+        ERLocationData("WP/(MT): Arteria Leaf x2 - lower first room", "Arteria Leaf x2"),
+        ERLocationData("WP/(MT): Soft Cotton - lower first room to W", "Soft Cotton"),
+        ERLocationData("WP/(MT): Golden Rune [2] - second room, on wooden platform", "Golden Rune [2]"),
+        ERLocationData("WP/(MT): Stanching Boluses - lower second room under platform", "Stanching Boluses"),
+        ERLocationData("WP/(MT): Golden Rune [4] - third room in hut", "Golden Rune [4]"),
+        ERLocationData("WP/(MT): Exalted Flesh - third room chest", "Exalted Flesh"),
+        ERLocationData("WP/(MT): Large Glintstone Scrap x2 - third room W of hut", "Large Glintstone Scrap x2"),
+        ERLocationData("WP/(MT): Rusted Anchor - boss drop", "Rusted Anchor", boss=True),
+    ],
     
     # "":[],
     # ERLocationData(":  - ", ""),
@@ -951,6 +1007,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(SC): Nomadic Warrior's Cookbook [14] - on corpse", "Nomadic Warrior's Cookbook [14]"),
     ],
 
+    # ERLocationData(":  - ", ""),
+    # MARK: Leyndell
+    "Leyndell, Royal Capital":[],
+    "Leyndell, Ashen Capital":[],
+    "Divine Bridge":[ # can get to from weeping
+        ERLocationData("LRC/(DB): Blessed Dew Talisman - in chest", "Blessed Dew Talisman"), # not missable
+    ],
+
+    # ERLocationData(":  - ", ""),
     # MARK: Miquella's Haligtree
     "Miquella's Haligtree":[
 	    # Haligtree Canopy

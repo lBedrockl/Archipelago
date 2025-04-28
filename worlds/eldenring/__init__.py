@@ -119,8 +119,11 @@ class EldenRing(World):
         create_connection("Weeping Peninsula", "Church of Pilgrimage")
         create_connection("Weeping Peninsula", "Tombsward Catacombs")
         create_connection("Weeping Peninsula", "Tombsward Cave")
+        create_connection("Weeping Peninsula", "Isolated Merchant's Shack")
+        create_connection("Weeping Peninsula", "Morne Tunnel")
 
         create_connection("Weeping Peninsula", "Castle Morne")
+        create_connection("Weeping Peninsula", "Divine Bridge") # in leyndell
         
 
         create_connection("Limgrave", "Liurnia of The Lakes")
@@ -132,6 +135,13 @@ class EldenRing(World):
         # Caelid
         create_connection("Caelid", "Smoldering Church")
 
+        # Leyndell Royal
+        create_connection("Divine Bridge", "Leyndell, Royal Capital")
+        #create_connection("Leyndell, Royal Capital","")
+        
+        # Leyndell Ashen
+        create_connection("Divine Bridge", "Leyndell, Ashen Capital")
+        #create_connection("Leyndell, Ashen Capital","")
 
         #create_connection("Consecrated Snowfield", "Miquella's Haligtree")
         # Haligtree
@@ -362,43 +372,41 @@ class EldenRing(World):
         #self._add_npc_rules()
         #self._add_remembrance_rules() # need to do the locations first
 
-        #smth like this for if an item and place is needed
-        """self._add_entrance_rule("Leyndell, Royal Capital", lambda state: (
-            self._has_enough_great_runes(state, self.options.great_runes_required)
-            and self._can_get(state, "CO: Draconic Tree Sential")
-        ))"""
-
-        # Region locking
-        if self.options.region_lock:
+        # World Logic
+        if self.options.world_logic == "region_lock": 
             self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_great_runes(state, 1))
             self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
-            self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 3)) # 2 is runes required
-        """else:
-            self._add_entrance_rule("Leyndell", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))"""
+            self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 3))
+        elif self.options.world_logic == "open_world":
+            self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
+        #else: # glitch logic
+            #idk any just that leyndell can be done early i think
 
-        #do this for if an item or place is needed
-        #self._add_entrance_rule("Mountain Top of the Giants", "Rold Medallion")
+        # Other rules
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
                                 lambda state: state.has("\"Homing Instinct\" Painting", self.player))
         
+        # ashen capital only after getting farum boss Remembrance
+        
         # DLC Access Rules Below
         if self.options.enable_dlc:
-            self._add_entrance_rule("Gravesite Plain", lambda state: self._can_get(state, "MP: Mohg Remembrance"))
-
+        
             if self.options.late_dlc:
                 self._add_entrance_rule(
                     "Gravesite Plain", 
                     lambda state: state.has("Rold Medallion", self.player) 
                     and state.has("Haligtree Secret Medallion (Left)", self.player) 
                     and state.has("Haligtree Secret Medallion (Right)", self.player) 
-                    and self._can_get(state, "LRC: Morgott Remembrance") 
-                    and self._can_get(state, "MP: Mohg Remembrance"))
+                    and self._can_get(state, "LRC: Morgott Remembrance - boss drop") 
+                    and self._can_get(state, "MP: Mohg Remembrance - boss drop"))
+            else:
+                self._add_entrance_rule("Gravesite Plain", lambda state: self._can_get(state, "MP: Mohg Remembrance - boss drop"))
       
         
         """if self.options.ending_condition >= 1 and self.options.enable_dlc:
-            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance")
+            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance - boss drop")
         else:
-            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance")"""
+            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance - boss drop")"""
         
     def _key_rules(self) -> None:
         # MARK: SSK RULES
