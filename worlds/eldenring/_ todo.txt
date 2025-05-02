@@ -9,6 +9,12 @@ Or python launcher.py    so you can gen template options
 Now I just need to label every single item :worry:
 
 
+Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
+
+
+
+
+
 Ideas
 
 gracesanity, graces are checks

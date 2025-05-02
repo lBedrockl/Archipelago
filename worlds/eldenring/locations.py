@@ -47,6 +47,7 @@ region_order = [
     "Tombsward Cave",
     "Isolated Merchant's Shack",
     "Morne Tunnel",
+    "Earthbore Cave",
     
     "Castle Morne",
 
@@ -392,7 +393,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/CC: Note: Land Squirts - Nomadic Merchant SE of CC", "Note: Land Squirts", shop=True),
         ERLocationData("LG/CC: Note: Stonedigger Trolls - Nomadic Merchant SE of CC", "Note: Stonedigger Trolls", shop=True),
         # Near WR
-        ERLocationData("LG/WR: Greataxe - Carriage W of WR", "Greataxe"),
+        ERLocationData("LG/WR: Greataxe - carriage W of WR", "Greataxe"),
         ERLocationData("LG/WR: Gold-Pickled Fowl Foot - NW of WR", "Gold-Pickled Fowl Foot"),
         ERLocationData("LG/WR: Smoldering Butterfly x4 - SW of WR", "Smoldering Butterfly x4"),
         ERLocationData("LG/WR: Glintstone Staff - enemy drop S of WR under ruin", "Glintstone Staff", drop=True),
@@ -840,10 +841,45 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/BCPG: Stonesword Key - head far N", "Stonesword Key"),
         ERLocationData("WP/CP: Bewitching Branch x3 - lower cliff NW of CP", "Bewitching Branch x3"),
         ERLocationData("WP/CP: Sliver of Meat - lower cliff NW of CP", "Sliver of Meat"),
+        ERLocationData("WP/EC: Rainbow Stone - SE of EC", "Rainbow Stone"),
+        ERLocationData("WP/SLT: Rainbow Stone x5 - to SE", "Rainbow Stone x5"),
+        ERLocationData("WP/MT: Golden Rune [2] - N of MT under bridge", "Golden Rune [2]"),
+        
+        ERLocationData("WP/(FCM): Sacred Tear - by statue", "Sacred Tear", prominent=True),
+        
+        # Ailing Village
+        ERLocationData("WP/AV: Yellow Ember - on way to AV, W of AV", "Yellow Ember"),
+        ERLocationData("WP/AV: Golden Rune [2] - on way to AV, SW of AV", "Golden Rune [2]"),
+        ERLocationData("WP/(AV): Flame Crest Wooden Shield - in house", "Flame Crest Wooden Shield"),
+        ERLocationData("WP/(CBC): The Flame of Frenzy - on corpse", "The Flame of Frenzy"),
+        ERLocationData("WP/(CBC): Sacred Tear - by statue", "Sacred Tear", prominent=True),
+        
+        # Near DHFR
+        ERLocationData("WP/DHFR: String x5 - SE of DHFR", "String x5"),
+        ERLocationData("WP/DHFR: Gold-Tinged Excrement x2 - SE of DHFR", "Gold-Tinged Excrement x2"),
+        ERLocationData("WP/DHFR: Faith-knot Crystal Tear - N of DHFR", "Faith-knot Crystal Tear", prominent=True),
+        ERLocationData("WP/(DHFR): Shield of the Guilty - underground within S ruins", "Shield of the Guilty"),
+        ERLocationData("WP/(DHFR): Arteria Leaf x2 - within N ruins", "Arteria Leaf x2"),
+        ERLocationData("WP/(DHFR): Demi-Human Queen's Staff - enemy drop", "Demi-Human Queen's Staff", drop=True),
+        ERLocationData("WP/(DHFR): Crystal Burst - enemy drop", "Crystal Burst", drop=True),
+        
+        # Near WR
         ERLocationData("WP/WR: Golden Rune [1] - W of WR on beach", "Golden Rune [1]"),
         ERLocationData("WP/WR: Golden Rune [5] - W of WR on beach", "Golden Rune [5]"),
+        ERLocationData("WP/(WR): Ambush Shard - underground", "Ambush Shard"),
+        ERLocationData("WP/(WR): Great Dragonfly Head - within ruins", "Great Dragonfly Head"),
+        
+        # Near TwR
         ERLocationData("WP/TwR: Divine Fortification - scarab SW of TwR, high on ruin", "Divine Fortification", scarab=True),
         ERLocationData("WP/TwR: Golden Rune [2] - on beach NW of TwR", "Golden Rune [2]"),
+        ERLocationData("WP/(TwR): Beast Liver - within ruins", "Beast Liver"),
+        ERLocationData("WP/(TwR): Winged Scythe - underground", "Winged Scythe"),
+        
+        # Near FLT
+        ERLocationData("WP/FLT: Golden Rune [1] x3 1 - E of FLT", "Golden Rune [1] x3"),
+        ERLocationData("WP/FLT: Golden Rune [1] x3 2 - E of FLT", "Golden Rune [1] x3"),
+        ERLocationData("WP/(FLT): Hand Ballista - atop tower in chest", "Hand Ballista"),
+        ERLocationData("WP/(FLT): Ballista Bolt x5 - atop tower in chest", "Ballista Bolt x5"),
         
         # Near ToR
         ERLocationData("WP/ToR: Golden Rune [1] 1 - graveyard W of ToR", "Golden Rune [1]"),
@@ -863,6 +899,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/CMR: Warming Stone x2 - top of tower to SE", "Warming Stone x2"),
         ERLocationData("WP/CMR: Smithing Stone [1] - otherside of wall to S, long go around", "Smithing Stone [1]"),
         ERLocationData("WP/CMR: Sacrifical Axe - night boss to SW", "Sacrifical Axe", boss=True),
+        # North of CMR grace
+        ERLocationData("WP/CMR: Ash of War: Mighty Shot - scarab to N", "Ash of War: Mighty Shot", scarab=True),
+        ERLocationData("WP/CMR: Smithing Stone [2] - to N", "Smithing Stone [2]"),
+        ERLocationData("WP/CMR: Golden Rune [2] - to N", "Golden Rune [2]"),
+        ERLocationData("WP/CMR: Strip of White Flesh - to N", "Strip of White Flesh"),
+        ERLocationData("WP/CMR: Morning Star - in carriage to N", "Morning Star"),
         # Shop
         ERLocationData("WP/CMR: Smithing Stone [1] x3 - Nomadic Merchant to SE", "Smithing Stone [1] x3",shop=True),
         ERLocationData("WP/CMR: Smithing Stone [2] - Nomadic Merchant to SE", "Smithing Stone [2]",shop=True),
@@ -881,6 +923,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/CMR: Crimson Amber Medallion - Nomadic Merchant to SE", "Crimson Amber Medallion",shop=True),
         ERLocationData("WP/CMR: Note: Demi-human Mobs - Nomadic Merchant to SE", "Note: Demi-human Mobs",shop=True),
         
+        
         #Near Castle Morne
         ERLocationData("WP/CM: Golden Rune [1] - NW of CM", "Golden Rune [1]"),
         ERLocationData("WP/CM: Somber Smithing Stone [2] - E of CM", "Somber Smithing Stone [2]"),
@@ -888,13 +931,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/CM: Golden Rune [4] - NE of CM in swamp", "Golden Rune [4]"),
         ERLocationData("WP/CM: Golden Seed - golden tree N of CM", "Golden Seed", prominent=True),
         ERLocationData("WP/CM: Poison Mist - scarab NE of CM, N of swamp", "Poison Mist", scarab=True),
-        
-        # Locations with low checks
-        ERLocationData("WP/(FCM): Sacred Tear - by statue", "Sacred Tear", prominent=True),
-        ERLocationData("WP/(WR): Ambush Shard - underground", "Ambush Shard"),
-        ERLocationData("WP/(WR): Great Dragonfly Head - within ruins", "Great Dragonfly Head"),
-        ERLocationData("WP/(TwR): Beast Liver - within ruins", "Beast Liver"),
-        ERLocationData("WP/(TwR): Winged Scythe - underground", "Winged Scythe"),
         
         # da tree
         ERLocationData("WP/ME: Crimsonburst Crystal Tear - boss drop", "Crimsonburst Crystal Tear", boss=True),
@@ -958,9 +994,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/(MT): Large Glintstone Scrap x2 - third room W of hut", "Large Glintstone Scrap x2"),
         ERLocationData("WP/(MT): Rusted Anchor - boss drop", "Rusted Anchor", boss=True),
     ],
-    
-    # "":[],
-    # ERLocationData(":  - ", ""),
+    "Earthbore Cave":[
+        ERLocationData("WP/(EC): Pickled Turtle Neck x3 - entrance chest", "Pickled Turtle Neck x3"),
+        ERLocationData("WP/(EC): Golden Rune [1] - right path from entrance chest", "Golden Rune [1]"),
+        ERLocationData("WP/(EC): Glowstone x5 - past skylight", "Glowstone x5"),
+        ERLocationData("WP/(EC): Kukri x8 - past skylight", "Kukri x8"),
+        ERLocationData("WP/(EC): Smoldering Butterfly x5 - in boss room", "Smoldering Butterfly x5"),
+        ERLocationData("WP/(EC): Trina's Lily - in boss room", "Trina's Lily"),
+        ERLocationData("WP/(EC): Spelldrake Talisman - boss drop", "Spelldrake Talisman", boss=True),
+    ],
     "Castle Morne":[
         ERLocationData("WP/(CM): Smithing Stone [2] - left up stairs from enterance", "Smithing Stone [2]"),
         ERLocationData("WP/(CM): Fire Grease x2 - on pile of corpses", "Fire Grease x2"),
@@ -998,6 +1040,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CA Return: Stormhawk Deenh - chest top of church", "Stormhawk Deenh"),
     ],
 
+    # "":[],
     # ERLocationData(":  - ", ""),
     # MARK: Caelid
     "Caelid":[],
@@ -1007,6 +1050,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(SC): Nomadic Warrior's Cookbook [14] - on corpse", "Nomadic Warrior's Cookbook [14]"),
     ],
 
+    # "":[],
     # ERLocationData(":  - ", ""),
     # MARK: Leyndell
     "Leyndell, Royal Capital":[],
@@ -1015,6 +1059,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LRC/(DB): Blessed Dew Talisman - in chest", "Blessed Dew Talisman"), # not missable
     ],
 
+    # "":[],
     # ERLocationData(":  - ", ""),
     # MARK: Miquella's Haligtree
     "Miquella's Haligtree":[

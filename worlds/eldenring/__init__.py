@@ -121,6 +121,7 @@ class EldenRing(World):
         create_connection("Weeping Peninsula", "Tombsward Cave")
         create_connection("Weeping Peninsula", "Isolated Merchant's Shack")
         create_connection("Weeping Peninsula", "Morne Tunnel")
+        create_connection("Weeping Peninsula", "Earthbore Cave")
 
         create_connection("Weeping Peninsula", "Castle Morne")
         create_connection("Weeping Peninsula", "Divine Bridge") # in leyndell
@@ -393,11 +394,10 @@ class EldenRing(World):
         
             if self.options.late_dlc:
                 self._add_entrance_rule(
-                    "Gravesite Plain", 
-                    lambda state: state.has("Rold Medallion", self.player) 
-                    and state.has("Haligtree Secret Medallion (Left)", self.player) 
-                    and state.has("Haligtree Secret Medallion (Right)", self.player) 
-                    and self._can_get(state, "LRC: Morgott Remembrance - boss drop") 
+                    "Gravesite Plain",
+                    lambda state: state.has("Rold Medallion", self.player)
+                    and state.has("Haligtree Secret Medallion (Left)", self.player)
+                    and state.has("Haligtree Secret Medallion (Right)", self.player)
                     and self._can_get(state, "MP: Mohg Remembrance - boss drop"))
             else:
                 self._add_entrance_rule("Gravesite Plain", lambda state: self._can_get(state, "MP: Mohg Remembrance - boss drop"))
@@ -551,42 +551,6 @@ class EldenRing(World):
         assuming the player _doesn't_ so they aren't forced to start killing allies to advance the
         quest.
         """
-
-        ## Patches
-
-        # Patches will only set up shop in Firelink once he's tricked you in the bell tower. He'll
-        # only do _that_ once you've spoken to Siegward after killing the Fire Demon and lit the
-        # Rosaria's Bed Chamber bonfire. He _won't_ set up shop in the Cathedral if you light the
-        # Rosaria's Bed Chamber bonfire before getting tricked by him, so we assume these locations
-        # require the bell tower.
-        self._add_location_rule([
-            "CD: Shotel - Patches",
-            "CD: Ember - Patches",
-            "FS: Rusted Gold Coin - don't forgive Patches"
-        ], lambda state: (
-            self._can_go_to(state, "Firelink Shrine Bell Tower")
-            and self._can_go_to(state, "Cathedral of the Deep")
-        ))
-
-        # Patches sells this after you tell him to search for Greirat in Grand Archives
-        self._add_location_rule([
-            "FS: Hidden Blessing - Patches after searching GA"
-        ], lambda state: (
-            self._can_get(state, "CD: Shotel - Patches")
-            and self._can_get(state, "FS: Ember - shop for Greirat's Ashes")
-        ))
-
-        # Only make the player kill Patches once all his other items are available
-        self._add_location_rule([
-            "CD: Winged Spear - kill Patches",
-            # You don't _have_ to kill him for this, but he has to be in Firelink at the same time
-            # as Greirat to get it in the shop and that may not be feasible if the player progresses
-            # Greirat's quest much faster.
-            "CD: Horsehoof Ring - Patches",
-        ], lambda state: (
-            self._can_get(state, "FS: Hidden Blessing - Patches after searching GA")
-            and self._can_get(state, "FS: Rusted Gold Coin - don't forgive Patches")
-        ))
             
     def _add_remembrance_rules(self) -> None: # done? #MARK: Remembrance Rules
         """Adds rules for items obtainable for trading remembrances."""
