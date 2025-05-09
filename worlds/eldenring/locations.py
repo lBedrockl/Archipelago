@@ -58,6 +58,9 @@ region_order = [
     # Caelid
     "Caelid",
     "Smoldering Church",
+    "Bestial Sanctum",
+    "Dragonbarrow Cave",
+    "Fort Faroth",
 
     # Leyndell
     "Leyndell, Royal Capital",
@@ -462,7 +465,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/ME: Trina's Lily x3 - Nomadic Merchant S of ME", "Trina's Lily x3", shop=True),
         ERLocationData("LG/ME: Smithing Stone [1] x3 - Nomadic Merchant S of ME", "Smithing Stone [1] x3", shop=True),
         ERLocationData("LG/ME: Nomadic Warrior's Cookbook [5] - Nomadic Merchant S of ME", "Nomadic Warrior's Cookbook [5]", shop=True),
-        ERLocationData("LG/ME: Armorer's Cookbook [3] - Nomadic Merchant S of Minor Erdtree", "Armorer's Cookbook [3]", shop=True),
+        ERLocationData("LG/ME: Armorer's Cookbook [3] - Nomadic Merchant S of ME", "Armorer's Cookbook [3]", shop=True),
         ERLocationData("LG/ME: Hand Axe - Nomadic Merchant S of ME", "Hand Axe", shop=True),
         ERLocationData("LG/ME: St. Trina's Arrow x10 - Nomadic Merchant S of ME", "St. Trina's Arrow x10", shop=True),
         ERLocationData("LG/ME: Riveted Wooden Shield - Nomadic Merchant S of ME", "Riveted Wooden Shield", shop=True),
@@ -828,6 +831,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Knight Greaves - Twin maiden shop", "Knight Greaves", shop=True),
         ERLocationData("RH: Furled Finger's Trick-Mirror - Twin maiden shop", "Furled Finger's Trick-Mirror", shop=True),
         ERLocationData("RH: Host's Trick-Mirror - Twin maiden shop", "Host's Trick-Mirror", shop=True),
+        
+        # D
+        ERLocationData("RH: Litany of Proper Death - D shop", "Litany of Proper Death", shop=True, missable=True), 
+        ERLocationData("RH: Order's Blade - D shop", "Order's Blade", shop=True, missable=True), # i think D can me missed
     ],
 
     "Bridge of Sacrifice":[
@@ -1043,13 +1050,72 @@ location_tables: Dict[str, List[ERLocationData]] = {
     # "":[],
     # ERLocationData(":  - ", ""),
     # MARK: Caelid
-    "Caelid":[],
+    "Caelid":[
+        ERLocationData("CL/:  - ", ""),
+        
+        #near FF
+        ERLocationData("CL/FF: Golden Rune [9] - enemy drop SE of FF", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/FF: Dragon Heart x5 - enemy drop W of FF", "Dragon Heart x5", drop=True),
+        
+        # minor erdtree
+        ERLocationData("CL/ME: Opaline Hardtear - boss drop", "Opaline Hardtear", boss=True),
+        ERLocationData("CL/ME: Stonebarb Cracked Tear - boss drop", "Stonebarb Cracked Tear", boss=True),
+        ERLocationData("CL/ME: Rune Arc - down hidden cliff E of ME", "Rune Arc", hidden=True),
+        
+        # LR
+        ERLocationData("CL/LR: Golden Rune [1] - graveyard SW of LR", "Golden Rune [1]"),
+        ERLocationData("CL/LR: Golden Rune [3] - graveyard SW of LR", "Golden Rune [3]"),
+        ERLocationData("CL/LR: Golden Rune [6] - graveyard SW of LR", "Golden Rune [6]"),
+        ERLocationData("CL/LR: Golden Rune [8] - graveyard SW of LR", "Golden Rune [8]"),
+        ERLocationData("CL/LR: Ash of War: Bloodhound's Step - night boss drop N of LR", "Ash of War: Bloodhound's Step", boss=True),
+        ERLocationData("CL/LR: Bestial Constitution - scarab W of LR", "Bestial Constitution", scarab=True),
+        ERLocationData("CL/(LR): Memory Stone - chest top of tower", "Memory Stone"),
+        
+        # near FG grace
+        ERLocationData("CL/FG: Somber Smithing Stone [9] - scarab to W", "Somber Smithing Stone [9]", scarab=True),
+        ERLocationData("CL/FG: Starlight Shards - to NE", "Starlight Shards"),
+        ERLocationData("CL/FG: Dragon Heart - boss drop to S", "Dragon Heart", boss=True),
+        
+        # near BS
+        ERLocationData("CL/BS: Gargoyle's Blackblade - boss drop SE of BS", "Gargoyle's Blackblade", boss=True),
+        ERLocationData("CL/BS: Gargoyle's Black Halberd - boss drop SE of BS", "Gargoyle's Black Halberd", boss=True),
+        ERLocationData("CL/BS: Golden Seed - golden tree SE of BS", "Golden Seed", prominent=True),
+        ERLocationData("CL/BS: Soft Cotton x3 - down cliff NW of BS, second layer", "Soft Cotton x3"),
+        ERLocationData("CL/BS: Cinquedea - down cliff NW of BS, bottom layer", "Cinquedea"),
+        ERLocationData("CL/BS: Dragoncrest Shield Talisman - down cliff N of BS, bottom layer", "Dragoncrest Shield Talisman"),
+    ],
     "Smoldering Church":[
         ERLocationData("CL/(SC): Sacred Scorpion Charm - kill invader", "Sacred Scorpion Charm", hostile_npc=True),
         ERLocationData("CL/(SC): Missionary's Cookbook [3] - on corpse", "Missionary's Cookbook [3]"),
         ERLocationData("CL/(SC): Nomadic Warrior's Cookbook [14] - on corpse", "Nomadic Warrior's Cookbook [14]"),
     ],
-
+    "Bestial Sanctum":[
+        ERLocationData("CL/(BS): Clawmark Seal - Gurranq, deathroot reward 1", "Clawmark Seal", npc=True, missable=True),
+        ERLocationData("CL/(BS): Beast Eye - Gurranq, deathroot reward 1 or kill", "Beast Eye", npc=True),
+        ERLocationData("CL/(BS): Bestial Sling - Gurranq, deathroot reward 2", "Bestial Sling", npc=True, missable=True),
+        ERLocationData("CL/(BS): Bestial Vitality - Gurranq, deathroot reward 3", "Bestial Vitality", npc=True, missable=True),
+        ERLocationData("CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4", "Ash of War: Beast's Roar", npc=True, missable=True),
+        ERLocationData("CL/(BS): Ancient Dragon Smithing Stone - kill Gurranq", "Ancient Dragon Smithing Stone", npc=True),
+    ],
+    "Dragonbarrow Cave":[
+        ERLocationData("CL/(DC): Golden Rune [12] - first room", "Golden Rune [12]"),
+        ERLocationData("CL/(DC): Warming Stone - first room", "Warming Stone"),
+        ERLocationData("CL/(DC): Bull-Goat's Talisman - second room, before dropdown", "Bull-Goat's Talisman"),
+        ERLocationData("CL/(DC): Beast Blood x3 - bottom of dropdown", "Beast Blood x3"),
+        ERLocationData("CL/(DC): Golden Rune [8] - bottom of dropdown", "Golden Rune [8]"),
+        ERLocationData("CL/(DC): Flamedrake Talisman +2 - boss drop", "Flamedrake Talisman +2", boss=True),
+    ],
+    "Fort Faroth":[
+        ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 1", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 2", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 3", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/(FF): Dectus Medallion (Right) - chest top of ladder", "Dectus Medallion (Right)", progression=True),
+        ERLocationData("CL/(FF): Neutralizing Boluses x2 - top of fort", "Neutralizing Boluses x2"),
+        ERLocationData("CL/(FF): Golden Rune [12] - on fort rafters", "Golden Rune [12]"),
+        ERLocationData("CL/(FF): Radagon's Soreseal - after rafters jump in room", "Radagon's Soreseal"),
+    ],
+    
+    
     # "":[],
     # ERLocationData(":  - ", ""),
     # MARK: Leyndell

@@ -1271,7 +1271,7 @@ _vanilla_items = [
     ERItemData("Frozen Raisin", 812, ERItemCategory.GOODS),
     ERItemData("Boiled Crab", 820, ERItemCategory.GOODS),
     ERItemData("Boiled Prawn", 830, ERItemCategory.GOODS),
-    *ERItemData("Neutralizing Boluses", 900, ERItemCategory.GOODS).counts([5]),
+    *ERItemData("Neutralizing Boluses", 900, ERItemCategory.GOODS).counts([2, 5]),
     *ERItemData("Stanching Boluses", 910, ERItemCategory.GOODS).counts([3]),
     ERItemData("Thawfrost Boluses", 920, ERItemCategory.GOODS),
     *ERItemData("Stimulating Boluses", 930, ERItemCategory.GOODS).counts([2]),
@@ -1339,7 +1339,7 @@ _vanilla_items = [
     ERItemData("Blasphemous Claw", 2080, ERItemCategory.GOODS),
 
     ERItemData("Deathroot", 2090, ERItemCategory.GOODS),
-    ERItemData("Soft Cotton", 2100, ERItemCategory.GOODS),
+    *ERItemData("Soft Cotton", 2100, ERItemCategory.GOODS).counts([3]),
     ERItemData("Soap", 2120, ERItemCategory.GOODS),
     ERItemData("Celestial Dew", 2130, ERItemCategory.GOODS),
 
@@ -1899,6 +1899,7 @@ _vanilla_items = [
     ERItemData("Memory Stone", 10030, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Talisman Pouch", 10040, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dragon Heart", 10060, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Dragon Heart x5", 10060, ERItemCategory.GOODS, classification=ItemClassification.progression, count=5),
     ERItemData("Lost Ashes of War", 10070, ERItemCategory.GOODS),
     ERItemData("Great Rune of the Unborn", 10080, ERItemCategory.GOODS, classification=ItemClassification.progression),
 

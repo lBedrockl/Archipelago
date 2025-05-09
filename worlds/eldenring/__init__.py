@@ -135,6 +135,9 @@ class EldenRing(World):
         create_connection("Limgrave", "Caelid")
         # Caelid
         create_connection("Caelid", "Smoldering Church")
+        create_connection("Caelid", "Bestial Sanctum")
+        create_connection("Caelid", "Dragonbarrow Cave")
+        create_connection("Caelid", "Fort Faroth")
 
         # Leyndell Royal
         create_connection("Divine Bridge", "Leyndell, Royal Capital")
@@ -370,7 +373,7 @@ class EldenRing(World):
 
         self._key_rules()
         self._add_shop_rules()
-        #self._add_npc_rules()
+        self._add_npc_rules()
         #self._add_remembrance_rules() # need to do the locations first
 
         # World Logic
@@ -417,11 +420,11 @@ class EldenRing(World):
         self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: self._has_enough_keys(state, currentKey)) # 1
         
-        # roundtable +5
-        currentKey += 5
+        # roundtable +3
+        currentKey += 3
         self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 3
+        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # with above
+        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         # weeping +2
         currentKey += 2
@@ -541,7 +544,7 @@ class EldenRing(World):
                 self._add_location_rule(
                     [f"FS: {item} - {shop} for {key_name}" for item in items], key)"""
                 
-    def _add_npc_rules(self) -> None: # npc quest stuff #MARK: Quest Rules
+    def _add_npc_rules(self) -> None: #MARK: Quest Rules
         """Adds rules for items accessible via NPC quests.
 
         We list missable locations here even though they never contain progression items so that the
@@ -551,6 +554,30 @@ class EldenRing(World):
         assuming the player _doesn't_ so they aren't forced to start killing allies to advance the
         quest.
         """
+        # D
+        self._add_location_rule([
+            "RH: Litany of Proper Death - D shop",
+            "RH: Order's Blade - D shop",
+        ], lambda state: ( state.can_reach("Bestial Sanctum")))
+        
+        # Gurraq
+        self._add_location_rule([
+            "CL/(BS): Clawmark Seal - Gurranq, deathroot reward 1",
+            "CL/(BS): Beast Eye - Gurranq, deathroot reward 1 or kill",
+        ], lambda state: ( state.has("Deathroot", self.player)))
+        
+        self._add_location_rule([
+            "CL/(BS): Bestial Sling - Gurranq, deathroot reward 2",
+        ], lambda state: ( state.has("Deathroot", self.player, count=2)))
+        
+        self._add_location_rule([
+            "CL/(BS): Bestial Vitality - Gurranq, deathroot reward 3",
+        ], lambda state: ( state.has("Deathroot", self.player, count=3)))
+        
+        self._add_location_rule([
+            "CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4",
+        ], lambda state: ( state.has("Deathroot", self.player, count=4)))
+        
             
     def _add_remembrance_rules(self) -> None: # done? #MARK: Remembrance Rules
         """Adds rules for items obtainable for trading remembrances."""
