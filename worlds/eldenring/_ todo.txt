@@ -11,6 +11,7 @@ Now I just need to label every single item :worry:
 
 Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
+need to do dragon communion dragon defeat rules, shop is done
 
 
 

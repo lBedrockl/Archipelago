@@ -138,6 +138,8 @@ class EldenRing(World):
         create_connection("Caelid", "Bestial Sanctum")
         create_connection("Caelid", "Dragonbarrow Cave")
         create_connection("Caelid", "Fort Faroth")
+        create_connection("Caelid", "Sellia Hideaway")
+        create_connection("Caelid", "Cathedral of Dragon Communion")
 
         # Leyndell Royal
         create_connection("Divine Bridge", "Leyndell, Royal Capital")
@@ -442,6 +444,30 @@ class EldenRing(World):
         self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", lambda state: self._has_enough_keys(state, currentKey)) # 1
         self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
+    def _dragon_communion_rules(self) -> None:
+        """Rules for how dragon hearts are used"""
+        # MARK: dragon RULES
+        currentHeart = 0
+        # limgrave dragon communion
+        currentHeart += 3
+        self._add_location_rule("LG/(CDC): Dragonfire - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        self._add_location_rule("LG/(CDC): Dragonclaw - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        self._add_location_rule("LG/(CDC): Dragonmaw - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        
+        # caelid dragon communion
+        currentHeart += 3 # always here
+        currentHeart += 14 # killed dragons
+        self._add_location_rule("CL/(CDC): Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        self._add_location_rule("CL/(CDC): Rotten Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        self._add_location_rule("CL/(CDC): Dragonice - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        
+        self._add_location_rule("CL/(CDC): Agheel's Flame - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        self._add_location_rule("CL/(CDC): Magma Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        self._add_location_rule("CL/(CDC): Theodorix's Magma - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        self._add_location_rule("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        self._add_location_rule("CL/(CDC): Ekzykes's Decay - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        self._add_location_rule("CL/(CDC): Borealis's Mist - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        self._add_location_rule("CL/(CDC): Greyoll's Roar - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 3
 
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""
@@ -456,9 +482,14 @@ class EldenRing(World):
         return runes_required >= runeCount
     
     def _has_enough_keys(self, state: CollectionState, req_keys: int) -> bool:
-        """Returns whether the given state has enough keys runes."""
+        """Returns whether the given state has enough keys."""
         total_keys = state.count("Stonesword Key", self.player) + (state.count("Stonesword Key x3", self.player) * 3)
         return total_keys >= req_keys
+    
+    def _has_enough_hearts(self, state: CollectionState, req_hearts: int) -> bool:
+        """Returns whether the given state has enough keys."""
+        total_hearts = state.count("Dragon Heart", self.player) + (state.count("Dragon Heart x5", self.player) * 5)
+        return total_hearts >= req_hearts
     
     def _add_shop_rules(self) -> None: # MARK: Shop Rules
         """Adds rules for items unlocked in shops."""
@@ -485,64 +516,7 @@ class EldenRing(World):
         for (scroll, items) in scrolls.items():
             self._add_location_rule([f"LG/(WR): {item} - {scroll}" for item in items], lambda state: state.has(scroll, self.player))
         for (book, items) in books.items():
-            self._add_location_rule([f"RH: {item} - {book}" for item in items], lambda state: state.has(book, self.player))
-
-
-        """# Shop unlocks
-        shop_unlocks = {
-            "Cornyx": [
-                (
-                    "Great Swamp Pyromancy Tome", "Great Swamp Tome",
-                    ["Poison Mist", "Fire Orb", "Profuse Sweat", "Bursting Fireball"]
-                ),
-                (
-                    "Carthus Pyromancy Tome", "Carthus Tome",
-                    ["Acid Surge", "Carthus Flame Arc", "Carthus Beacon"]
-                ),
-                ("Izalith Pyromancy Tome", "Izalith Tome", ["Great Chaos Fire Orb", "Chaos Storm"]),
-            ],
-            "Irina": [
-                (
-                    "Braille Divine Tome of Carim", "Tome of Carim",
-                    ["Med Heal", "Tears of Denial", "Force"]
-                ),
-                (
-                    "Braille Divine Tome of Lothric", "Tome of Lothric",
-                    ["Bountiful Light", "Magic Barrier", "Blessed Weapon"]
-                ),
-            ],
-            "Orbeck": [
-                ("Sage's Scroll", "Sage's Scroll", ["Great Farron Dart", "Farron Hail"]),
-                (
-                    "Golden Scroll", "Golden Scroll",
-                    [
-                        "Cast Light", "Repair", "Hidden Weapon", "Hidden Body",
-                        "Twisted Wall of Light"
-                    ],
-                ),
-                ("Logan's Scroll", "Logan's Scroll", ["Homing Soulmass", "Soul Spear"]),
-                (
-                    "Crystal Scroll", "Crystal Scroll",
-                    ["Homing Crystal Soulmass", "Crystal Soul Spear", "Crystal Magic Weapon"]
-                ),
-            ],
-            "Karla": [
-                ("Quelana Pyromancy Tome", "Quelana Tome", ["Firestorm", "Rapport", "Fire Whip"]),
-                (
-                    "Grave Warden Pyromancy Tome", "Grave Warden Tome",
-                    ["Black Flame", "Black Fire Orb"]
-                ),
-                ("Deep Braille Divine Tome", "Deep Braille Tome", ["Gnaw", "Deep Protection"]),
-                (
-                    "Londor Braille Divine Tome", "Londor Tome",
-                    ["Vow of Silence", "Dark Blade", "Dead Again"]
-                ),
-            ],
-        }
-        for (shop, unlocks) in shop_unlocks.items():
-            for (key, key_name, items) in unlocks:
-                self._add_location_rule(
-                    [f"FS: {item} - {shop} for {key_name}" for item in items], key)"""
+            self._add_location_rule([f"RH: {item} - {book}" for item in items], lambda state: state.has(book, self.player))        
                 
     def _add_npc_rules(self) -> None: #MARK: Quest Rules
         """Adds rules for items accessible via NPC quests.

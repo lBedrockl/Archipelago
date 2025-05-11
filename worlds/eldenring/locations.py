@@ -61,6 +61,8 @@ region_order = [
     "Bestial Sanctum",
     "Dragonbarrow Cave",
     "Fort Faroth",
+    "Sellia Hideaway",
+    "Cathedral of Dragon Communion",
 
     # Leyndell
     "Leyndell, Royal Capital",
@@ -72,61 +74,12 @@ region_order = [
     "Miquella's Haligtree",
     "Elphael, Brace of the Haligtree",
 ]
-"""
-
-    
-    "Siofra River",
-    "Stormveil Castle",
-
-    #Liurnia
-    "Raya Lucaria Academy",
-    "Caria Manor",
-    "Ainsel River",
-    "Lake of Rot",
-
-    #Caelid
-    "Dragonbarrow",
-    "Redmane Castle",
-    "Nokron, Eternal City",
-    "Deeproot Depths",
-    #Altus
-    "Ruin-Strewn Precipice",
-    "Altus Plateau",
-    "The Shaded Castle",
-    "Mt.Gelmir",
-    "Volcano Manor",
-    "Capital Outskirts",
-    #Leyndell
-    "Subterranean Shunning-Grounds",
-    #Mountain
-    "Forbidden Lands",
-    "Mountaintops of The Giants", 
-    "Castle Sol",
-    #Farum Azula
-    "Crumbling Farum Azula",
-    "Leyndell, Ashen Capital",
-    #Snowfield
-    "Consecrated Snowfield", 
-    "Mohgwyn Palace",
-]"""
 
 #MARK: DLC Location Order
 region_order_dlc = [
     #DLC
     "Gravesite Plain",
 ]
-    
-"""    
-    "Scadu Altus",
-    "Rauh Base",
-    "Ancient Ruins of Rauh",
-    "Cerulean Coast",
-    "Charo's Hidden Grave",
-    "Jagged Peak",
-    "Abyssal Woods",
-    "Finger Ruins of Rhia",
-    "Scaduview",
-]"""
 
 @dataclass
 class ERLocationData:
@@ -598,6 +551,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(CDC): Exalted Flesh - to S up high", "Exalted Flesh"),
         ERLocationData("LG/(CDC): Smithing Stone [2] - to S", "Smithing Stone [2]"),
         ERLocationData("LG/(CDC): Somber Smithing Stone [1] - scarab to S", "Somber Smithing Stone [1]", scarab=True),
+        ERLocationData("LG/(CDC): Dragonfire - Dragon Communion", "Dragonfire", shop=True),
+        ERLocationData("LG/(CDC): Dragonclaw - Dragon Communion", "Dragonclaw", shop=True),
+        ERLocationData("LG/(CDC): Dragonmaw - Dragon Communion", "Dragonmaw", shop=True),
     ],
     "Groveside Cave":[
         ERLocationData("LG/(GC): Cracked Pot - first room", "Cracked Pot"),
@@ -1053,9 +1009,53 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "Caelid":[
         ERLocationData("CL/:  - ", ""),
         
-        #near FF
+        
+        # near SASB grace
+        ERLocationData("CL/SASB:  - ", ""),
+        ERLocationData("CL/SASB: Map: Caelid - to SW", "Map: Caelid"),
+        ERLocationData("CL/SASB: Ash of War: Poison Moth Flight - night boss drop to SW", "Ash of War: Poison Moth Flight", boss=True),
+        ERLocationData("CL/SASB: Death's Poker - night boss drop to SE", "Death's Poker", boss=True),
+        ERLocationData("CL/SASB: Cracked Pot - Nomadic Merchant to SW", "Cracked Pot", shop=True),
+        ERLocationData("CL/SASB: Stonesword Key - Nomadic Merchant to SW", "Stonesword Key", shop=True),
+        ERLocationData("CL/SASB: Nomadis Warrior's Cookbook [15] - Nomadic Merchant to SW", "Nomadis Warrior's Cookbook [15]", shop=True),
+        ERLocationData("CL/SASB: Champion Headband - Nomadic Merchant to SW", "Champion Headband", shop=True),
+        ERLocationData("CL/SASB: Greathelm - Nomadic Merchant to SW", "Greathelm", shop=True),
+        ERLocationData("CL/SASB: Champion Pauldron - Nomadic Merchant to SW", "Champion Pauldron", shop=True),
+        ERLocationData("CL/SASB: Champion Bracers - Nomadic Merchant to SW", "Champion Bracers", shop=True),
+        ERLocationData("CL/SASB: Champion Gaiters - Nomadic Merchant to SW", "Champion Gaiters", shop=True),
+        ERLocationData("CL/SASB: Note: Gravity's Advantage - Nomadic Merchant to SW", "Note: Gravity's Advantage", shop=True),
+        
+        # slt
+        ERLocationData("CL/SLT: Eternal Darkness - in cage", "Eternal Darkness"),
+        
+        # near SG
+        ERLocationData("CL/SG: Glass Shard x5 - S of SG", "Glass Shard x5"),
+        ERLocationData("CL/SG: Golden Rune [5] - S of SG", "Golden Rune [5]"),
+        ERLocationData("CL/SG: Golden Rune [2] - S of SG", "Golden Rune [2]"),
+        ERLocationData("CL/(SG): Black-Key Bolt x20 - upper part", "Black-Key Bolt x20"),
+        ERLocationData("CL/(SG): Golden Rune [4] - upper part", "Golden Rune [4]"),
+        
+        # church of the plague
+        ERLocationData("CL/CP: Golden Rune [9] - enemy drop SW of CP, near branch 1", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/CP: Golden Rune [9] - enemy drop SW of CP, near branch 2", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/CP: Golden Rune [9] - enemy drop SW of CP, near broken pillars 1", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/CP: Golden Rune [9] - enemy drop SW of CP, near broken pillars 2", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/CP: Golden Rune [9] - enemy drop SW of CP, near broken pillars 3", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/CP: Golden Rune [5] - far S of CP on pillar", "Golden Rune [5]"),
+        ERLocationData("CL/CP: Drawstring Poison Grease x3 - S of CP", "Drawstring Poison Grease x3"),
+        ERLocationData("CL/CP: Starlight Shards - E of CP", "Starlight Shards"),
+        ERLocationData("CL/(CP): Sacred Tear - by statue", "Sacred Tear"),
+        
+        # outside sh
+        ERLocationData("CL/SH: Beast Blood x2 - S of SH", "Beast Blood x2"),
+        
+        # near FF
         ERLocationData("CL/FF: Golden Rune [9] - enemy drop SE of FF", "Golden Rune [9]", drop=True),
         ERLocationData("CL/FF: Dragon Heart x5 - enemy drop W of FF", "Dragon Heart x5", drop=True),
+        ERLocationData("CL/FF: Smithing Stone [7] 1 - on skull SW of FF", "Smithing Stone [7]"),
+        ERLocationData("CL/FF: Smithing Stone [7] 2 - on skull SW of FF", "Smithing Stone [7]"),
+        ERLocationData("CL/FF: Stonesword Key - on skull SW of FF", "Stonesword Key"),
+        ERLocationData("CL/FF: Smithing Stone [8] - on skull SW of FF", "Smithing Stone [8]"),
         
         # minor erdtree
         ERLocationData("CL/ME: Opaline Hardtear - boss drop", "Opaline Hardtear", boss=True),
@@ -1114,7 +1114,37 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(FF): Golden Rune [12] - on fort rafters", "Golden Rune [12]"),
         ERLocationData("CL/(FF): Radagon's Soreseal - after rafters jump in room", "Radagon's Soreseal"),
     ],
-    
+    "Sellia Hideaway":[
+        ERLocationData("CL/(SH): Golden Rune [3] - infront of the illusory wall", "Golden Rune [3]"),
+        ERLocationData("CL/(SH): Golden Rune [5] - first big room, drop to left crystal", "Golden Rune [5]"),
+        ERLocationData("CL/(SH): Glowstone x4 - first big room, by camp", "Glowstone x4"),
+        ERLocationData("CL/(SH): Ghost Glovewort [4] - enemy drop lower first big room", "Ghost Glovewort [4]", drop=True),
+        ERLocationData("CL/(SH): Stimulating Boluses - lower first big room", "Stimulating Boluses"),
+        ERLocationData("CL/(SH): Golden Rune [5] - lower first big room", "Golden Rune [5]"),
+        ERLocationData("CL/(SH): Lost Ashes of War - lower first big room", "Lost Ashes of War"),
+        ERLocationData("CL/(SH): Somber Smithing Stone [4] - route from lower first big room back up", "Somber Smithing Stone [4]"),
+        ERLocationData("CL/(SH): Crystalian Ashes - second big room, right of enterance follow crystal drop down path", "Crystalian Ashes", hidden=True),
+        ERLocationData("CL/(SH): Preserving Boluses x3 - second big room, follow right side", "Preserving Boluses x3"),
+        ERLocationData("CL/(SH): Crystal Spear - chest second big room, follow right side, behind illusory wall near corpse", "Crystal Spear", hidden=True),
+        ERLocationData("CL/(SH): Crystal Dart x10 - lower second big room", "Crystal Dart x10"),
+        ERLocationData("CL/(SH): Crystal Torrent - boss drop", "Crystal Torrent", boss=True),
+    ],
+    "Cathedral of Dragon Communion":[
+        # dont require dragon kill
+        ERLocationData("CL/(CDC): Ancient Dragon Apostle's Cookbook [3] - by dragon", "Ancient Dragon Apostle's Cookbook [3]"),
+        ERLocationData("CL/(CDC): Glintstone Breath - Dragon Communion", "Glintstone Breath", shop=True),
+        ERLocationData("CL/(CDC): Rotten Breath - Dragon Communion", "Rotten Breath", shop=True),
+        ERLocationData("CL/(CDC): Dragonice - Dragon Communion", "Dragonice", shop=True),
+        
+        # need dragon kill
+        ERLocationData("CL/(CDC): Agheel's Flame - Dragon Communion", "Agheel's Flame", shop=True),
+        ERLocationData("CL/(CDC): Magma Breath - Dragon Communion", "Magma Breath", shop=True),
+        ERLocationData("CL/(CDC): Theodorix's Magma - Dragon Communion", "Theodorix's Magma", shop=True),
+        ERLocationData("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion", "Smarag's Glintstone Breath", shop=True),
+        ERLocationData("CL/(CDC): Ekzykes's Decay - Dragon Communion", "Ekzykes's Decay", shop=True),
+        ERLocationData("CL/(CDC): Borealis's Mist - Dragon Communion", "Borealis's Mist", shop=True),
+        ERLocationData("CL/(CDC): Greyoll's Roar - Dragon Communion", "Greyoll's Roar", shop=True),
+    ],
     
     # "":[],
     # ERLocationData(":  - ", ""),
