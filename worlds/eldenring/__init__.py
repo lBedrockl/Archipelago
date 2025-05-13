@@ -140,6 +140,8 @@ class EldenRing(World):
         create_connection("Caelid", "Fort Faroth")
         create_connection("Caelid", "Sellia Hideaway")
         create_connection("Caelid", "Cathedral of Dragon Communion")
+        create_connection("Caelid", "Caelid Catacombs")
+        create_connection("Caelid", "Redmane Castle")
 
         # Leyndell Royal
         create_connection("Divine Bridge", "Leyndell, Royal Capital")
@@ -374,6 +376,7 @@ class EldenRing(World):
     def set_rules(self) -> None: #WIP #MARK: Rules
 
         self._key_rules()
+        self._dragon_communion_rules()
         self._add_shop_rules()
         self._add_npc_rules()
         #self._add_remembrance_rules() # need to do the locations first
@@ -388,9 +391,14 @@ class EldenRing(World):
         #else: # glitch logic
             #idk any just that leyndell can be done early i think
 
-        # Other rules
+        # Paintings
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
                                 lambda state: state.has("\"Homing Instinct\" Painting", self.player))
+        
+        # festival // altus grace touch or ranni quest stuff
+        self._add_location_rule("CL/(RC): Smithing Stone [6] - in church during festival", 
+                                lambda state: state.can_reach("Altus Plateau"))
+        
         
         # ashen capital only after getting farum boss Remembrance
         
@@ -447,27 +455,28 @@ class EldenRing(World):
     def _dragon_communion_rules(self) -> None:
         """Rules for how dragon hearts are used"""
         # MARK: dragon RULES
-        currentHeart = 0
-        # limgrave dragon communion
-        currentHeart += 3
+        currentHeart = 3 # limgrave dragon communion
         self._add_location_rule("LG/(CDC): Dragonfire - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
         self._add_location_rule("LG/(CDC): Dragonclaw - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
         self._add_location_rule("LG/(CDC): Dragonmaw - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
         
         # caelid dragon communion
         currentHeart += 3 # always here
-        currentHeart += 14 # killed dragons
+        currentHeart += 7 # limgrave and caelid
         self._add_location_rule("CL/(CDC): Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
         self._add_location_rule("CL/(CDC): Rotten Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
         self._add_location_rule("CL/(CDC): Dragonice - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
         
         self._add_location_rule("CL/(CDC): Agheel's Flame - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        self._add_location_rule("CL/(CDC): Greyoll's Roar - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 3
+        self._add_location_rule("CL/(CDC): Ekzykes's Decay - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        
+        currentHeart += 7 # todo
         self._add_location_rule("CL/(CDC): Magma Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
         self._add_location_rule("CL/(CDC): Theodorix's Magma - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
         self._add_location_rule("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-        self._add_location_rule("CL/(CDC): Ekzykes's Decay - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
         self._add_location_rule("CL/(CDC): Borealis's Mist - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-        self._add_location_rule("CL/(CDC): Greyoll's Roar - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 3
+        
 
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""

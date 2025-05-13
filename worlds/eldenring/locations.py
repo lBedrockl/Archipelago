@@ -63,6 +63,11 @@ region_order = [
     "Fort Faroth",
     "Sellia Hideaway",
     "Cathedral of Dragon Communion",
+    "Caelid Catacombs",
+    "Redmane Castle",
+    
+    # Altus
+    "Altus Plateau",
 
     # Leyndell
     "Leyndell, Royal Capital",
@@ -487,7 +492,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/WS: Lance - on ruin in enemy camp NE of WS", "Lance"),
         ERLocationData("LG/WS: Ash of War: Golden Vow - enemy drop NE of WS", "Ash of War: Golden Vow", drop=True),
         ERLocationData("LG/WS: Somber Smithing Stone [1] - scarab on ruin NE of WS", "Somber Smithing Stone [1]", scarab=True),
-        ERLocationData("LG/WS: Strength-knot Crystal Tear - on cliff NW of WS", "Strength-knot Crystal Tear", prominent=True),
+        ERLocationData("LG/WS: Strength-knot Crystal Tear - on cliff NW of WS", "Strength-knot Crystal Tear"),
         
         # Near sv first boss arena
         ERLocationData("LG/SV: Smithing Stone [1] - S of first SV boss arena W side", "Smithing Stone [1]"),
@@ -510,9 +515,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/FHE: Somber Smithing Stone [1] - Blaidd reward Forlorn Hound Evergaol", "Somber Smithing Stone [1]", npc=True, missable=True),
         
 
-        ERLocationData("LG/ME: Spiked Cracked Tear - Minor Erdtree", "Spiked Cracked Tear", prominent=True),
-        ERLocationData("LG/ME: Greenspill Crtstal Tear - Minor Erdtree", "Greenspill Crystal Tear", prominent=True),
-    ],# MARK: LG Locations
+        ERLocationData("LG/ME: Spiked Cracked Tear - Minor Erdtree", "Spiked Cracked Tear"),
+        ERLocationData("LG/ME: Greenspill Crtstal Tear - Minor Erdtree", "Greenspill Crystal Tear"),
+    ],
     "Church of Elleh":[
         ERLocationData("LG/(CE): Smithing Stone [1] - on anvil", "Smithing Stone [1]"),
         ERLocationData("LG/(CE): Golden Rune [2] - out front", "Golden Rune [2]"),
@@ -669,7 +674,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     "Third Church of Marika":[
         ERLocationData("LG/(TCM): Flask of Wondrous Physick - in basin", "Flask of Wondrous Physick", prominent=True),
-        ERLocationData("LG/(TCM): Crimson Crystal Tear - in basin", "Crimson Crystal Tear", prominent=True),
+        ERLocationData("LG/(TCM): Crimson Crystal Tear - in basin", "Crimson Crystal Tear"),
         ERLocationData("LG/(TCM): Sacred Tear - by statue", "Sacred Tear", prominent=True),
     ],
     "LG Artist's Shack":[
@@ -820,7 +825,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # Near DHFR
         ERLocationData("WP/DHFR: String x5 - SE of DHFR", "String x5"),
         ERLocationData("WP/DHFR: Gold-Tinged Excrement x2 - SE of DHFR", "Gold-Tinged Excrement x2"),
-        ERLocationData("WP/DHFR: Faith-knot Crystal Tear - N of DHFR", "Faith-knot Crystal Tear", prominent=True),
+        ERLocationData("WP/DHFR: Faith-knot Crystal Tear - N of DHFR", "Faith-knot Crystal Tear"),
         ERLocationData("WP/(DHFR): Shield of the Guilty - underground within S ruins", "Shield of the Guilty"),
         ERLocationData("WP/(DHFR): Arteria Leaf x2 - within N ruins", "Arteria Leaf x2"),
         ERLocationData("WP/(DHFR): Demi-Human Queen's Staff - enemy drop", "Demi-Human Queen's Staff", drop=True),
@@ -1009,9 +1014,39 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "Caelid":[
         ERLocationData("CL/:  - ", ""),
         
+        # near CHS grace
+        ERLocationData("CL/CHS: Dragon Heart - boss drop to SE", "Dragon Heart", boss=True),
+        ERLocationData("CL/CHS: Golden Rune [3] - to E", "Golden Rune [3]"),
+        ERLocationData("CL/CHS: Golden Rune [4] - on top of mound to SE", "Golden Rune [4]"),
+        ERLocationData("CL/CHS: Starlight Shards - to W", "Starlight Shards"),
+        ERLocationData("CL/CHS: Golden Rune [1] 1 - graveyard to S", "Golden Rune [1]"),
+        ERLocationData("CL/CHS: Golden Rune [1] 2 - graveyard to S", "Golden Rune [1]"),
+        ERLocationData("CL/CHS: Golden Rune [2] - graveyard to S", "Golden Rune [2]"),
+        ERLocationData("CL/CHS: Golden Rune [5] - graveyard to S", "Golden Rune [5]"),
+        ERLocationData("CL/CHS: Larval Tear - enemy drop in graveyard to S", "Larval Tear", drop=True),
+        
+        # near CC
+        ERLocationData("CL/CC: Somber Smithing Stone [4] - scarab E of CC", "Somber Smithing Stone [4]", scarab=True),
+        
+        # near IG
+        ERLocationData("CL/IG: Mushroom x6 - in tent to N", "Mushroom x6"),
+        ERLocationData("CL/IG: Arrow's Sting Talisman - chest top of tower", "Arrow's Sting Talisman"),
+        ERLocationData("CL/IG: Smoldering Butterfly x3 - to NW", "Smoldering Butterfly x3"),
+        ERLocationData("CL/IG: Ash of War: Cragblade - scarab to W", "Ash of War: Cragblade", scarab=True),
         
         # near SASB grace
-        ERLocationData("CL/SASB:  - ", ""),
+        ERLocationData("CL/SASB: Somber Smithing Stone [4] - enemy drop to SE", "Somber Smithing Stone [4]", drop=True),
+        ERLocationData("CL/SASB: Beast Blood - enemy drop to SE", "Beast Blood", drop=True),
+        ERLocationData("CL/SASB: Old Fang x2 - enemy drop to SE", "Old Fang x2", drop=True),
+        ERLocationData("CL/SASB: Beast Blood x3 - to SE", "Beast Blood x3"),
+        ERLocationData("CL/SASB: Beast Blood x2 - to SE", "Beast Blood x2"),
+        ERLocationData("CL/SASB: Fan Daggers x6 - to S", "Fan Daggers x6"),
+        ERLocationData("CL/SASB: Golden Seed - golden tree to S", "Golden Seed", prominent=True),
+        ERLocationData("CL/SASB: Windy Crystal Tear - to S", "Windy Crystal Tear"),
+        ERLocationData("CL/SASB: Crab Eggs x4 - to W", "Crab Eggs x4"),
+        ERLocationData("CL/SASB: Rune Arc - chairs to NW", "Rune Arc"),
+        ERLocationData("CL/SASB: Sacramental Bud x2 - chairs to NW", "Sacramental Bud x2"),
+        ERLocationData("CL/SASB: Smithing Stone [4] x3 - chairs to NW", "Smithing Stone [4] x3"),
         ERLocationData("CL/SASB: Map: Caelid - to SW", "Map: Caelid"),
         ERLocationData("CL/SASB: Ash of War: Poison Moth Flight - night boss drop to SW", "Ash of War: Poison Moth Flight", boss=True),
         ERLocationData("CL/SASB: Death's Poker - night boss drop to SE", "Death's Poker", boss=True),
@@ -1044,7 +1079,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/CP: Golden Rune [5] - far S of CP on pillar", "Golden Rune [5]"),
         ERLocationData("CL/CP: Drawstring Poison Grease x3 - S of CP", "Drawstring Poison Grease x3"),
         ERLocationData("CL/CP: Starlight Shards - E of CP", "Starlight Shards"),
-        ERLocationData("CL/(CP): Sacred Tear - by statue", "Sacred Tear"),
+        ERLocationData("CL/(CP): Sacred Tear - by statue", "Sacred Tear", prominent=True),
         
         # outside sh
         ERLocationData("CL/SH: Beast Blood x2 - S of SH", "Beast Blood x2"),
@@ -1145,6 +1180,44 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(CDC): Borealis's Mist - Dragon Communion", "Borealis's Mist", shop=True),
         ERLocationData("CL/(CDC): Greyoll's Roar - Dragon Communion", "Greyoll's Roar", shop=True),
     ],
+    "Caelid Catacombs":[
+        ERLocationData("CL/(CC): Miranda Sprout Ashes - illusory wall under stairs", "Miranda Sprout Ashes", hidden=True),
+        ERLocationData("CL/(CC): Kindred of Rot Ashes - boss drop", "Kindred of Rot Ashes", boss=True),
+    ],
+    "Redmane Castle":[
+        ERLocationData("CL/(RC): Smithing Stone [3] - behind enterance tower", "Smithing Stone [3]"),
+        ERLocationData("CL/(RC): Smithing Stone [6] - on enterance tower", "Smithing Stone [6]"),
+        ERLocationData("CL/(RC): Ash of War: Flaming Strike - scarab, graveyard by back enterance", "Ash of War: Flaming Strike", scarab=True),
+        ERLocationData("CL/(RC): Golden Rune [9] - enemy drop, graveyard by back enterance", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/(RC): Smoldering Butterfly x8 - graveyard by back enterance", "Smoldering Butterfly x8"),
+        ERLocationData("CL/(RC): Smithing Stone [5] - by back enterance shortcut door", "Smithing Stone [5]"),
+        ERLocationData("CL/(RC): Armorer's Cookbook [5] - by back enterance shortcut door", "Armorer's Cookbook [5]"),
+        ERLocationData("CL/(RC): Armorer's Cookbook [4] - room W side of front courtyard", "Armorer's Cookbook [4]"),
+        ERLocationData("CL/(RC): Golden Rune [6] - wood structure S side of front courtyard", "Golden Rune [6]"),
+        ERLocationData("CL/(RC): Smithing Stone [4] - front courtyard", "Smithing Stone [4]"),
+        ERLocationData("CL/(RC): Somber Smithing Stone [4] - enemy 1 drop front courtyard", "Somber Smithing Stone [4]", drop=True),
+        ERLocationData("CL/(RC): Beast Blood - enemy 1 drop front courtyard", "Beast Blood", drop=True),
+        ERLocationData("CL/(RC): Old Fang x2 - enemy 1 drop front courtyard", "Old Fang x2", drop=True),
+        ERLocationData("CL/(RC): Somber Smithing Stone [4] - enemy 2 drop front courtyard", "Somber Smithing Stone [4]", drop=True),
+        ERLocationData("CL/(RC): Beast Blood - enemy 2 drop front courtyard", "Beast Blood", drop=True),
+        ERLocationData("CL/(RC): Old Fang x2 - enemy 2 drop front courtyard", "Old Fang x2", drop=True),
+        ERLocationData("CL/(RC): Red-Hot Whetblade - upper front courtyard in NW room", "Red-Hot Whetblade", prominent=True),
+        ERLocationData("CL/(RC): Smithing Stone [6] - upper front courtyard NW room, follow upper path till chest", "Smithing Stone [6]"),
+        ERLocationData("CL/(RC): Smithing Stone [4] - out from grace, to W, up wood stairs on platform", "Smithing Stone [4]"),
+        ERLocationData("CL/(RC): Flamberge - room S of COP, up ladder, behind enemy", "Flamberge"),
+        ERLocationData("CL/(RC): Smithing Stone [3] - room S of COP, up ladder, corpse on ledge", "Smithing Stone [3]"),
+        ERLocationData("CL/(RC): Smithing Stone [5] - room S of COP, up ladder x2", "Smithing Stone [5]"),
+        ERLocationData("CL/(RC): Ruins Greatsword - boss drop", "Ruins Greatsword", boss=True),
+        ERLocationData("CL/(RC): Somber Smithing Stone [5] - to N after boss arena", "Somber Smithing Stone [5]"),
+        
+        # requires festival
+        ERLocationData("CL/(RC): Smithing Stone [6] - in church during festival", "Smithing Stone [6]"),
+    ],
+    
+    # "":[],
+    # ERLocationData(":  - ", ""),
+    # MARK: Altus
+    "Altus Plateau":[],
     
     # "":[],
     # ERLocationData(":  - ", ""),
