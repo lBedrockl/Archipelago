@@ -56,9 +56,6 @@ class EldenRing(World):
         # Create Vanilla Regions
         regions: Dict[str, Region] = {"Menu": self.create_region("Menu", {})}
         regions.update({region_name: self.create_region(region_name, location_tables[region_name]) for region_name in region_order})
-        """    "Chapel of Anticipation",
-            "Stranded Graveyard",
-        ]})""" #dont need the list just using region order
 
         # Create DLC Regions
         if self.options.enable_dlc:
@@ -141,6 +138,11 @@ class EldenRing(World):
         create_connection("Caelid", "Sellia Hideaway")
         create_connection("Caelid", "Cathedral of Dragon Communion")
         create_connection("Caelid", "Caelid Catacombs")
+        create_connection("Caelid", "Caelid Waypoint Ruins")
+        create_connection("Caelid", "Gaol Cave")
+        create_connection("Caelid", "Fort Gael")
+        create_connection("Caelid", "Street of Sages Ruins")
+        
         create_connection("Caelid", "Redmane Castle")
 
         # Leyndell Royal
@@ -411,9 +413,13 @@ class EldenRing(World):
                     lambda state: state.has("Rold Medallion", self.player)
                     and state.has("Haligtree Secret Medallion (Left)", self.player)
                     and state.has("Haligtree Secret Medallion (Right)", self.player)
-                    and self._can_get(state, "MP: Mohg Remembrance - boss drop"))
+                    and self._can_get(state, "MP: Mohg Remembrance - boss drop")
+                    and self._can_get(state, "CL/dune place: Radahn Remembrance - boss drop"))
             else:
-                self._add_entrance_rule("Gravesite Plain", lambda state: self._can_get(state, "MP: Mohg Remembrance - boss drop"))
+                self._add_entrance_rule(
+                    "Gravesite Plain", 
+                    lambda state: self._can_get(state, "MP: Mohg Remembrance - boss drop")
+                    and self._can_get(state, "CL/dune place: Radahn Remembrance - boss drop"))
       
         
         """if self.options.ending_condition >= 1 and self.options.enable_dlc:
@@ -445,7 +451,9 @@ class EldenRing(World):
         #currentKey += 2
         
         # caelid +3
-        #currentKey += 3
+        currentKey += 3
+        self._add_entrance_rule("Gaol Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
+        
         
         # haligtree +3
         currentKey += 3
@@ -476,7 +484,6 @@ class EldenRing(World):
         self._add_location_rule("CL/(CDC): Theodorix's Magma - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
         self._add_location_rule("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
         self._add_location_rule("CL/(CDC): Borealis's Mist - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-        
 
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""
@@ -560,7 +567,6 @@ class EldenRing(World):
         self._add_location_rule([
             "CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4",
         ], lambda state: ( state.has("Deathroot", self.player, count=4)))
-        
             
     def _add_remembrance_rules(self) -> None: # done? #MARK: Remembrance Rules
         """Adds rules for items obtainable for trading remembrances."""

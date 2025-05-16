@@ -64,6 +64,11 @@ region_order = [
     "Sellia Hideaway",
     "Cathedral of Dragon Communion",
     "Caelid Catacombs",
+    "Caelid Waypoint Ruins",
+    "Gaol Cave",
+    "Fort Gael",
+    "Street of Sages Ruins",
+    
     "Redmane Castle",
     
     # Altus
@@ -191,6 +196,9 @@ class ERLocationData:
 
     scarab: bool = False
     """Whether this location is dropped by a scarab."""
+    
+    rise_puzzle: bool = False
+    """Whether this location is a rise puzzle."""
 
 
 
@@ -254,7 +262,7 @@ class ERLocation(Location):
 
 # * Avoid using vanilla enemy placements as landmarks, because these are
 #   randomized by the enemizer by default. Instead, use generic terms like
-#   "mob", "boss", and "miniboss".
+#   "enemy", "boss", and "npc".
 
 # * Location descriptions don't need to direct the player to the precise spot.
 #   You can assume the player is broadly familiar with Eldenring or willing
@@ -267,6 +275,9 @@ class ERLocation(Location):
 #   as part of their normal quest, "kill [name]" for items that require killing
 #   them even when they aren't hostile, and just "[name]" for items that are
 #   naturally available as part of their quest.
+
+# items that are always prominent, unless the check is missable or a boss drop
+# golden seed, sacred tear and memory stone if not in a rise
 
 # for descriptions 
 # [area acronym]/[grace or location acronym]: [original item] - [what gives item, if it does] [direction from grace] or [very brief description]
@@ -303,7 +314,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/FHG: Erdtree Greatbow - kill chariot", "Erdtree Greatbow", drop=True, missable=True), #requires shackle or bow
         ERLocationData("LG/FHG: Great Arrow x10 - kill chariot", "Great Arrow x10", drop=True, missable=True), #requires shackle or bow
         ERLocationData("LG/FHG: Dragonwound Grease - top of third ramp", "Dragonwound Grease"),
-        ERLocationData("LG/FHG: Dragon Communion Seal - nnemy drop top of third ramp", "Dragon Communion Seal", drop=True),
+        ERLocationData("LG/FHG: Dragon Communion Seal - enemy drop top of third ramp", "Dragon Communion Seal", drop=True),
         ERLocationData("LG/FHG: Grave Glovewort [1] - middle of lower third ramp", "Grave Glovewort [1]"),
         ERLocationData("LG/FHG: Golden Seed - boss drop", "Golden Seed", boss=True),
         ERLocationData("LG/FHG: Banished Knight Oleg - boss drop", "Banished Knight Oleg", boss=True),
@@ -348,8 +359,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/CC: Broadsword - Nomadic Merchant SE of CC", "Broadsword", shop=True),
         ERLocationData("LG/CC: Club - Nomadic Merchant SE of CC", "Club", shop=True),
         ERLocationData("LG/CC: Shortbow - Nomadic Merchant SE of CC", "Shortbow", shop=True),
-        #ERLocationData("LG: Arrow - Nomadic Merchant SE of CC", "Arrow", shop=True),
-        #ERLocationData("LG: Bolt - Nomadic Merchant SE of CC", "Bolt", shop=True),
         ERLocationData("LG/CC: Iron Roundshield - Nomadic Merchant SE of CC", "Iron Roundshield", shop=True),
         ERLocationData("LG/CC: Note: Land Squirts - Nomadic Merchant SE of CC", "Note: Land Squirts", shop=True),
         ERLocationData("LG/CC: Note: Stonedigger Trolls - Nomadic Merchant SE of CC", "Note: Stonedigger Trolls", shop=True),
@@ -383,15 +392,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/ALS: Golden Rune [1] - to E", "Golden Rune [1]"),
         ERLocationData("LG/ALS: Great Épée - to E in chest", "Great Épée"),
         # Near Forlorn Hound Evergaol
-        ERLocationData("LG/FHE: Large Club - S of Evergoal", "Large Club"),
-        ERLocationData("LG/FHE: Ruin Fragment x3 - SW of Evergoal", "Ruin Fragment x3"),
+        ERLocationData("LG/FHE: Large Club - S of Evergaol", "Large Club"),
+        ERLocationData("LG/FHE: Ruin Fragment x3 - SW of Evergaol", "Ruin Fragment x3"),
         # Near SR grace
         ERLocationData("LG/SR: Crab Eggs - to S", "Crab Eggs"),
         ERLocationData("LG/SR: Slumbering Egg - to E on ruin", "Slumbering Egg"),
         ERLocationData("LG/SR: Golden Rune [1] - to N", "Golden Rune [1]"),
         ERLocationData("LG/SR: Lump of Flesh x3 - lower beach to W", "Lump of Flesh x3"),
         ERLocationData("LG/SR: Ash of War: Gravitas - enemy drop lower beach to NW", "Ash of War: Gravitas", drop=True),
-        ERLocationData("LG/SR: Haligdrake Talisman - cave enterance lower beach to NW", "Haligdrake Talisman"),
+        ERLocationData("LG/SR: Haligdrake Talisman - cave entrance lower beach to NW", "Haligdrake Talisman"),
         ERLocationData("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", "Incantation Scarab"),
         # Near DBR
         ERLocationData("LG/DBR: Smithing Stone [1] - W of DBR", "Smithing Stone [1]"),
@@ -516,13 +525,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         
 
         ERLocationData("LG/ME: Spiked Cracked Tear - Minor Erdtree", "Spiked Cracked Tear"),
-        ERLocationData("LG/ME: Greenspill Crtstal Tear - Minor Erdtree", "Greenspill Crystal Tear"),
+        ERLocationData("LG/ME: Greenspill Crystal Tear - Minor Erdtree", "Greenspill Crystal Tear"),
     ],
     "Church of Elleh":[
         ERLocationData("LG/(CE): Smithing Stone [1] - on anvil", "Smithing Stone [1]"),
         ERLocationData("LG/(CE): Golden Rune [2] - out front", "Golden Rune [2]"),
         # Kalé shop
-        ERLocationData("LG/(CE): Finger Snap - kill Kalé or Blaidd quest", "Finger Snap", npc=True), #just hear howl, talk to kale get finger, finger at howl, blaidd appera
+        ERLocationData("LG/(CE): Finger Snap - kill Kalé or Blaidd quest", "Finger Snap", npc=True), #just hear howl, talk to kale get finger, finger at howl, blaidd appear
         #ERLocationData("LG/(CE): Throwing Dagger - Kalé Shop", "Throwing Dagger", shop=True),
         ERLocationData("LG/(CE): Telescope - Kalé Shop", "Telescope", shop=True),
         ERLocationData("LG/(CE): Furlcalling Finger Remedy - Kalé Shop", "Furlcalling Finger Remedy", shop=True),
@@ -624,7 +633,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(WR): Carian Slicer - Royal House Scroll", "Carian Slicer", shop=True, conditional=True, missable=True),
     ],
     "Dragon-Burnt Ruins":[
-        ERLocationData("LG/(DBR): Crab Eggs - wthin ruins", "Crab Eggs"),
+        ERLocationData("LG/(DBR): Crab Eggs - within ruins", "Crab Eggs"),
         ERLocationData("LG/(DBR): Stonesword Key - within ruined building", "Stonesword Key"),
         ERLocationData("LG/(DBR): Golden Rune [2] - within ruins", "Golden Rune [2]"),
         ERLocationData("LG/(DBR): Twinblade - underground chest hidden within ruin", "Twinblade", hidden=True),
@@ -665,7 +674,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(MR): Golden Rune [2] - within ruins", "Golden Rune [2]"),
     ],
     "Fort Haight":[
-        ERLocationData("LG/(FH): Bloodrose x3 - near enterance", "Bloodrose x3"),
+        ERLocationData("LG/(FH): Bloodrose x3 - near entrance", "Bloodrose x3"),
         ERLocationData("LG/(FH): Nomadic Warrior's Cookbook [6] - ground floor room", "Nomadic Warrior's Cookbook [6]"),
         ERLocationData("LG/(FH): Ash of War: Bloody Slash - enemy drop upper area", "Ash of War: Bloody Slash", drop=True),
         ERLocationData("LG/(FH): Bloodrose x5 - upper area", "Bloodrose x5"),
@@ -696,7 +705,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(HC): Golden Rune [1] - past second hole", "Golden Rune [1]"),
         ERLocationData("LG/(HC): Arteria Leaf x3 - on ledge before water area", "Arteria Leaf x3"),
         ERLocationData("LG/(HC): Fire Grease x2 - below ledge before water area", "Fire Grease x2"),
-        ERLocationData("LG/(HC): Smithing Stone [1] x3 - below water enterance ledge", "Smithing Stone [1] x3"),
+        ERLocationData("LG/(HC): Smithing Stone [1] x3 - below water entrance ledge", "Smithing Stone [1] x3"),
         ERLocationData("LG/(HC): Smithing Stone [2] - top of small waterfall area", "Smithing Stone [2]"),
         ERLocationData("LG/(HC): Golden Rune [4] - top of small waterfall area", "Golden Rune [4]"),
         ERLocationData("LG/(HC): Shamshir - center of water area", "Shamshir"),
@@ -774,7 +783,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Rune Arc x5 - Twin maiden shop", "Rune Arc x5", shop=True),
         ERLocationData("RH: White Cipher Ring - Twin maiden shop", "White Cipher Ring", shop=True),
         ERLocationData("RH: Blue Cipher Ring - Twin maiden shop", "Blue Cipher Ring", shop=True),
-        ERLocationData("RH: Memory Stone - Twin maiden shop", "Memory Stone", shop=True),
+        ERLocationData("RH: Memory Stone - Twin maiden shop", "Memory Stone", shop=True, prominent=True),
         ERLocationData("RH: Stonesword Key x3 - Twin maiden shop", "Stonesword Key x3", shop=True),
         ERLocationData("RH: Dagger - Twin maiden shop", "Dagger", shop=True),
         ERLocationData("RH: Longsword - Twin maiden shop", "Longsword", shop=True),
@@ -865,8 +874,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/CMR: Ash of War: Barricade Shield - night boss drop to SW", "Ash of War: Barricade Shield", boss=True),
         ERLocationData("WP/CMR: Great Turtle Shell - top of tower to SE", "Great Turtle Shell"),
         ERLocationData("WP/CMR: Warming Stone x2 - top of tower to SE", "Warming Stone x2"),
-        ERLocationData("WP/CMR: Smithing Stone [1] - otherside of wall to S, long go around", "Smithing Stone [1]"),
-        ERLocationData("WP/CMR: Sacrifical Axe - night boss to SW", "Sacrifical Axe", boss=True),
+        ERLocationData("WP/CMR: Smithing Stone [1] - other side of wall to S, long go around", "Smithing Stone [1]"),
+        ERLocationData("WP/CMR: Sacrificial Axe - night boss to SW", "Sacrificial Axe", boss=True),
         # North of CMR grace
         ERLocationData("WP/CMR: Ash of War: Mighty Shot - scarab to N", "Ash of War: Mighty Shot", scarab=True),
         ERLocationData("WP/CMR: Smithing Stone [2] - to N", "Smithing Stone [2]"),
@@ -903,13 +912,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # da tree
         ERLocationData("WP/ME: Crimsonburst Crystal Tear - boss drop", "Crimsonburst Crystal Tear", boss=True),
         ERLocationData("WP/ME: Opaline Bubbletear - boss drop", "Opaline Bubbletear", boss=True),
-        ERLocationData("WP/ME: Eclipse Crest Heaater Shield - W of ME, drop off 2 ledges", "Eclipse Crest Heaater Shield", hidden=True),
+        ERLocationData("WP/ME: Eclipse Crest Heater Shield - W of ME, drop off 2 ledges", "Eclipse Crest Heater Shield", hidden=True),
         ERLocationData("WP/ME: Golden Rune [6] - enemy drop S of ME", "Golden Rune [6]", drop=True),
         ERLocationData("WP/ME: Sliver of Meat - S of ME", "Sliver of Meat"),
         ERLocationData("WP/ME: Lightning Strike - scarab E of ME, drop down gravestones", "Lightning Strike", scarab=True),
         
         # Rises
-        ERLocationData("WP/(OR): Memory Stone - find the 3 spirits", "Memory Stone"),
+        ERLocationData("WP/(OR): Memory Stone - find the 3 spirits", "Memory Stone", rise_puzzle=True),
         # Evergaol
         ERLocationData("WP/WE: Radagon's Scarseal - boss drop Weeping Evergaol", "Radagon's Scarseal", boss=True), # 1
     ],
@@ -919,8 +928,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/(IC): Demi-Human Ashes - boss drop", "Demi-Human Ashes", boss=True),
     ],
     "Church of Pilgrimage":[
-        ERLocationData("WP/(CP): Sacred Tear - infront of statue", "Sacred Tear", prominent=True),
-        ERLocationData("WP/(CP): Gilden Iron Shield - in graveyard", "Gilden Iron Shield"),
+        ERLocationData("WP/(CP): Sacred Tear - in front of statue", "Sacred Tear", prominent=True),
+        ERLocationData("WP/(CP): Gilded Iron Shield - in graveyard", "Gilded Iron Shield"),
         ERLocationData("WP/(CP): Blood Grease x2 - in graveyard", "Blood Grease x2"),
     ],
     "Tombsward Catacombs":[
@@ -972,7 +981,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/(EC): Spelldrake Talisman - boss drop", "Spelldrake Talisman", boss=True),
     ],
     "Castle Morne":[
-        ERLocationData("WP/(CM): Smithing Stone [2] - left up stairs from enterance", "Smithing Stone [2]"),
+        ERLocationData("WP/(CM): Smithing Stone [2] - left up stairs from entrance", "Smithing Stone [2]"),
         ERLocationData("WP/(CM): Fire Grease x2 - on pile of corpses", "Fire Grease x2"),
         ERLocationData("WP/(CM): Smithing Stone [1] x3 - S of corpse pile in corner", "Smithing Stone [1] x3"),
         ERLocationData("WP/(CM): Claymore - chest NW of corpse pile in room", "Claymore"),
@@ -1014,6 +1023,27 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "Caelid":[
         ERLocationData("CL/:  - ", ""),
         
+        # Near ASS grace :)
+        ERLocationData("CL/ASS: Ash of War: Poisonous Mist - scarab to SE", "Ash of War: Poisonous Mist", scarab=True),
+        
+        # Near SSR
+        ERLocationData("CL/SSR: Sacramental Bud - NW of SSR up roots", "Sacramental Bud"),
+        
+        # near FGN grace
+        ERLocationData("CL/FGN: Fire Blossom x3 - enemy drop to E", "Fire Blossom x3", drop=True),
+        ERLocationData("CL/FGN: Smoldering Butterfly x5 - enemy drop to E", "Smoldering Butterfly x5", drop=True),
+        ERLocationData("CL/FGN: Ash of War: Flame of the Redmanes - scarab to NE", "Ash of War: Flame of the Redmanes", scarab=True),
+        ERLocationData("CL/FGN: Explosive Greatbolt x5 - to S in camp", "Explosive Greatbolt x5"),
+        
+        # near ACHN grace
+        ERLocationData("CL/ACHN: Ash of War: Lifesteal Fist - scarab to N", "Ash of War: Lifesteal Fist", scarab=True),
+        # shop, bro has 6 inf restock items lol
+        ERLocationData("CL/ACHN: Preserving Boluses x3 - Nomadic Merchant shop to E", "Preserving Boluses x3", shop=True),
+        ERLocationData("CL/ACHN: Aeonian Butterfly x5 - Nomadic Merchant shop to E", "Aeonian Butterfly x5", shop=True),
+        
+        # near CWR
+        ERLocationData("CL/CWR: Poisonbloom x4 - S of CWR", "Poisonbloom x4"),
+        
         # near CHS grace
         ERLocationData("CL/CHS: Dragon Heart - boss drop to SE", "Dragon Heart", boss=True),
         ERLocationData("CL/CHS: Golden Rune [3] - to E", "Golden Rune [3]"),
@@ -1028,7 +1058,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # near CC
         ERLocationData("CL/CC: Somber Smithing Stone [4] - scarab E of CC", "Somber Smithing Stone [4]", scarab=True),
         
-        # near IG
+        # near IG grace
         ERLocationData("CL/IG: Mushroom x6 - in tent to N", "Mushroom x6"),
         ERLocationData("CL/IG: Arrow's Sting Talisman - chest top of tower", "Arrow's Sting Talisman"),
         ERLocationData("CL/IG: Smoldering Butterfly x3 - to NW", "Smoldering Butterfly x3"),
@@ -1052,7 +1082,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/SASB: Death's Poker - night boss drop to SE", "Death's Poker", boss=True),
         ERLocationData("CL/SASB: Cracked Pot - Nomadic Merchant to SW", "Cracked Pot", shop=True),
         ERLocationData("CL/SASB: Stonesword Key - Nomadic Merchant to SW", "Stonesword Key", shop=True),
-        ERLocationData("CL/SASB: Nomadis Warrior's Cookbook [15] - Nomadic Merchant to SW", "Nomadis Warrior's Cookbook [15]", shop=True),
+        ERLocationData("CL/SASB: Nomadic Warrior's Cookbook [15] - Nomadic Merchant to SW", "Nomadic Warrior's Cookbook [15]", shop=True),
         ERLocationData("CL/SASB: Champion Headband - Nomadic Merchant to SW", "Champion Headband", shop=True),
         ERLocationData("CL/SASB: Greathelm - Nomadic Merchant to SW", "Greathelm", shop=True),
         ERLocationData("CL/SASB: Champion Pauldron - Nomadic Merchant to SW", "Champion Pauldron", shop=True),
@@ -1104,7 +1134,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/LR: Golden Rune [8] - graveyard SW of LR", "Golden Rune [8]"),
         ERLocationData("CL/LR: Ash of War: Bloodhound's Step - night boss drop N of LR", "Ash of War: Bloodhound's Step", boss=True),
         ERLocationData("CL/LR: Bestial Constitution - scarab W of LR", "Bestial Constitution", scarab=True),
-        ERLocationData("CL/(LR): Memory Stone - chest top of tower", "Memory Stone"),
+        ERLocationData("CL/(LR): Memory Stone - chest top of tower", "Memory Stone", rise_puzzle=True),
         
         # near FG grace
         ERLocationData("CL/FG: Somber Smithing Stone [9] - scarab to W", "Somber Smithing Stone [9]", scarab=True),
@@ -1150,7 +1180,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(FF): Radagon's Soreseal - after rafters jump in room", "Radagon's Soreseal"),
     ],
     "Sellia Hideaway":[
-        ERLocationData("CL/(SH): Golden Rune [3] - infront of the illusory wall", "Golden Rune [3]"),
+        ERLocationData("CL/(SH): Golden Rune [3] - in front of the illusory wall", "Golden Rune [3]"),
         ERLocationData("CL/(SH): Golden Rune [5] - first big room, drop to left crystal", "Golden Rune [5]"),
         ERLocationData("CL/(SH): Glowstone x4 - first big room, by camp", "Glowstone x4"),
         ERLocationData("CL/(SH): Ghost Glovewort [4] - enemy drop lower first big room", "Ghost Glovewort [4]", drop=True),
@@ -1158,7 +1188,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(SH): Golden Rune [5] - lower first big room", "Golden Rune [5]"),
         ERLocationData("CL/(SH): Lost Ashes of War - lower first big room", "Lost Ashes of War"),
         ERLocationData("CL/(SH): Somber Smithing Stone [4] - route from lower first big room back up", "Somber Smithing Stone [4]"),
-        ERLocationData("CL/(SH): Crystalian Ashes - second big room, right of enterance follow crystal drop down path", "Crystalian Ashes", hidden=True),
+        ERLocationData("CL/(SH): Crystalian Ashes - second big room, right of entrance follow crystal drop down path", "Crystalian Ashes", hidden=True),
         ERLocationData("CL/(SH): Preserving Boluses x3 - second big room, follow right side", "Preserving Boluses x3"),
         ERLocationData("CL/(SH): Crystal Spear - chest second big room, follow right side, behind illusory wall near corpse", "Crystal Spear", hidden=True),
         ERLocationData("CL/(SH): Crystal Dart x10 - lower second big room", "Crystal Dart x10"),
@@ -1184,14 +1214,69 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(CC): Miranda Sprout Ashes - illusory wall under stairs", "Miranda Sprout Ashes", hidden=True),
         ERLocationData("CL/(CC): Kindred of Rot Ashes - boss drop", "Kindred of Rot Ashes", boss=True),
     ],
+    "Caelid Waypoint Ruins":[
+        ERLocationData("CL/(CWR): Great Dragonfly Head x5 - middle of ruins", "Great Dragonfly Head x5"),
+        ERLocationData("CL/(CWR): Rot Grease x3 - near tree", "Rot Grease x3"),
+        ERLocationData("CL/(CWR): Meteoric Ore Blade - chest underground", "Meteoric Ore Blade"),
+    ],
+    "Gaol Cave":[ # 2
+        ERLocationData("CL/(GC): Rune Arc - chest by grace", "Rune Arc"),
+        ERLocationData("CL/(GC): Golden Rune [2] - first room", "Golden Rune [2]"),
+        ERLocationData("CL/(GC): Golden Rune [4] - alcove before cage lever room", "Golden Rune [4]"),
+        ERLocationData("CL/(GC): Turtle Neck Meat x2 - alcove before cage lever room", "Turtle Neck Meat x2"),
+        ERLocationData("CL/(GC): Golden Rune [5] - within lever room", "Golden Rune [5]"),
+        ERLocationData("CL/(GC): Somber Smithing Stone [5] - chest in lever room", "Somber Smithing Stone [5]"),
+        # after lever
+        ERLocationData("CL/(GC): Golden Rune [2] - cage across from broken floor, after lever", "Golden Rune [2]"),
+        ERLocationData("CL/(GC): Old Fang x5 - cage beside lever, after lever", "Old Fang x5"),
+        ERLocationData("CL/(GC): Pillory Shield - cage beside lever, after lever", "Pillory Shield"),
+        ERLocationData("CL/(GC): Golden Rune [2] - cage next to dropdown, after lever", "Golden Rune [2]"),
+        ERLocationData("CL/(GC): Wakizashi - cage with 3 items after dropdown, after lever", "Wakizashi"),
+        ERLocationData("CL/(GC): Golden Rune [4] - cage with 3 items after dropdown, after lever", "Golden Rune [4]"),
+        ERLocationData("CL/(GC): Stonesword Key - cage with 3 items after dropdown, after lever", "Stonesword Key"),
+        ERLocationData("CL/(GC): Rainbow Stone - room before boss drop, after lever", "Rainbow Stone"),
+        ERLocationData("CL/(GC): Golden Rune [4] - room before boss drop, after lever", "Golden Rune [4]"),
+        ERLocationData("CL/(GC): Putrid Corpse Ashes - boss drop", "Putrid Corpse Ashes", boss=True),
+        ERLocationData("CL/(GC): Regalia of Eochaid - after boss", "Regalia of Eochaid"),
+        ERLocationData("CL/(GC): Glowstone x3 - after boss", "Glowstone x3"),
+    ],
+    "Fort Gael":[
+        # outside
+        ERLocationData("CL/(FG): Smoldering Butterfly x6 - in burning pile of corpses outback", "Smoldering Butterfly x6"),
+        ERLocationData("CL/(FG): Fire Blossom x3 - enemy drop 1 outback", "Fire Blossom x3", drop=True),
+        ERLocationData("CL/(FG): Smoldering Butterfly x5 - enemy drop 1 outback", "Smoldering Butterfly x5", drop=True),
+        ERLocationData("CL/(FG): Fire Blossom x3 - enemy drop 2 outback", "Fire Blossom x3", drop=True),
+        ERLocationData("CL/(FG): Smoldering Butterfly x5 - enemy drop 2 outback", "Smoldering Butterfly x5", drop=True),
+        ERLocationData("CL/(FG): Flame, Grant Me Strength - against wall outback", "Flame, Grant Me Strength"),
+        # inside
+        ERLocationData("CL/(FG): Warming Stone x2 - walk the plank item", "Warming Stone x2"),
+        ERLocationData("CL/(FG): Starscourge Heirloom - chest upper platform", "Starscourge Heirloom"),
+        ERLocationData("CL/(FG): Mushroom x10 - wood platform behind a tower near gate lever", "Mushroom x10"),
+        ERLocationData("CL/(FG): Katar - chest in lower room", "Katar"),
+        ERLocationData("CL/(FG): Ash of War: Lion's Claw - enemy drop in courtyard", "Ash of War: Lion's Claw", drop=True),
+        ERLocationData("CL/(FG): Rune Arc - in courtyard", "Rune Arc"),
+    ],
+    "Street of Sages Ruins":[
+        ERLocationData("CL/(SSR): Golden Rune [4] - in SW Ruin", "Golden Rune [4]"),
+        ERLocationData("CL/(SSR): Meteorite Staff - on window SW Ruin", "Meteorite Staff"),
+        ERLocationData("CL/(SSR): Rock Sling - chest underground", "Rock Sling"),
+        # 5 items in 1 check
+        ERLocationData("CL/(SSR): Perfume Bottle - in raised ruin", "Perfume Bottle"),
+        ERLocationData("CL/(SSR): Traveler's Hat - in raised ruin", "Traveler's Hat"),
+        ERLocationData("CL/(SSR): Perfumer's - in raised ruin", "Perfumer's"),
+        ERLocationData("CL/(SSR): Traveler's Gloves - in raised ruin", "Traveler's Gloves"),
+        ERLocationData("CL/(SSR): Traveler's Slops - in raised ruin", "Traveler's Slops"),
+    ],
+    
+    "":[],
     "Redmane Castle":[
-        ERLocationData("CL/(RC): Smithing Stone [3] - behind enterance tower", "Smithing Stone [3]"),
-        ERLocationData("CL/(RC): Smithing Stone [6] - on enterance tower", "Smithing Stone [6]"),
-        ERLocationData("CL/(RC): Ash of War: Flaming Strike - scarab, graveyard by back enterance", "Ash of War: Flaming Strike", scarab=True),
-        ERLocationData("CL/(RC): Golden Rune [9] - enemy drop, graveyard by back enterance", "Golden Rune [9]", drop=True),
-        ERLocationData("CL/(RC): Smoldering Butterfly x8 - graveyard by back enterance", "Smoldering Butterfly x8"),
-        ERLocationData("CL/(RC): Smithing Stone [5] - by back enterance shortcut door", "Smithing Stone [5]"),
-        ERLocationData("CL/(RC): Armorer's Cookbook [5] - by back enterance shortcut door", "Armorer's Cookbook [5]"),
+        ERLocationData("CL/(RC): Smithing Stone [3] - behind entrance tower", "Smithing Stone [3]"),
+        ERLocationData("CL/(RC): Smithing Stone [6] - on entrance tower", "Smithing Stone [6]"),
+        ERLocationData("CL/(RC): Ash of War: Flaming Strike - scarab, graveyard by back entrance", "Ash of War: Flaming Strike", scarab=True),
+        ERLocationData("CL/(RC): Golden Rune [9] - enemy drop, graveyard by back entrance", "Golden Rune [9]", drop=True),
+        ERLocationData("CL/(RC): Smoldering Butterfly x8 - graveyard by back entrance", "Smoldering Butterfly x8"),
+        ERLocationData("CL/(RC): Smithing Stone [5] - by back entrance shortcut door", "Smithing Stone [5]"),
+        ERLocationData("CL/(RC): Armorer's Cookbook [5] - by back entrance shortcut door", "Armorer's Cookbook [5]"),
         ERLocationData("CL/(RC): Armorer's Cookbook [4] - room W side of front courtyard", "Armorer's Cookbook [4]"),
         ERLocationData("CL/(RC): Golden Rune [6] - wood structure S side of front courtyard", "Golden Rune [6]"),
         ERLocationData("CL/(RC): Smithing Stone [4] - front courtyard", "Smithing Stone [4]"),
@@ -1213,6 +1298,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # requires festival
         ERLocationData("CL/(RC): Smithing Stone [6] - in church during festival", "Smithing Stone [6]"),
     ],
+    "sand dune place":[],
+    "the cata after the dune":[],
     
     # "":[],
     # ERLocationData(":  - ", ""),
@@ -1260,7 +1347,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("MH/HT: Golden Rune [13] - to NW first building lower floor rear balcony", "Golden Rune [13]"),
     	ERLocationData("MH/HT: Fire Grease x5 - to NW on small wooden bridge", "Fire Grease x5"),
     	ERLocationData("MH/HT: Ancient Dragon Smithing Stone - to N in the courtyard", "Ancient Dragon Smithing Stone"),
-    	# Halingtree Town Plaza
+    	# Haligtree Town Plaza
     	#ERLocationData("MH/HT: Somber Smithing Stone [8] - to N on a balcony", "Somber Smithing Stone [8]"),
     	ERLocationData("MH/HP: Golden Rune [12] - beside the grace", "Golden Rune [12]"),
     	ERLocationData("MH/HP: Aeonian Butterfly x4 - to E down on a branch", "Aeonian Butterfly x4"),
@@ -1289,13 +1376,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/PR: Smithing Stone [7] - exit PR then drop to E, go N door on left", "Smithing Stone [7]"),
     	ERLocationData("BH/PR: Immunizing White Cured Meat - N down 3 stairs, S down 2 stairs, N down 2 stairs", "Immunizing White Cured Meat"),
     	ERLocationData("BH/PR: Smithing Stone [7] - in room under crimson scarab", "Smithing Stone [7]"),
-    	ERLocationData("BH/PR: Golden Rune [10] - blacony of room under crimson scarab", "Golden Rune [10]"),
-    	ERLocationData("BH/PR: Seedbed Curse - before room under crimson scarab jump over railing to small leadge then take stairs", "Seedbed Curse", hidden=True),
+    	ERLocationData("BH/PR: Golden Rune [10] - balcony of room under crimson scarab", "Golden Rune [10]"),
+    	ERLocationData("BH/PR: Seedbed Curse - before room under crimson scarab jump over railing to small ledge then take stairs", "Seedbed Curse", hidden=True),
     	ERLocationData("BH/PR: Rotten Staff - miniboss E of PR on outer wall", "Rotten Staff", boss=True),
     	ERLocationData("BH/PR: Numen's Rune - S section of outer wall middle of open area", "Numen's Rune"),
     	ERLocationData("BH/PR: Somber Ancient Dragon Smithing Stone - S section of outer wall all the way S", "Somber Ancient Dragon Smithing Stone"),
     	ERLocationData("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", "Marika's Soreseal"), # 2
-    	ERLocationData("BH/PR: Golden Rune [12] - infront of the imp statue at the S end of the bottom area", "Golden Rune [12]"),
+    	ERLocationData("BH/PR: Golden Rune [12] - in front of the imp statue at the S end of the bottom area", "Golden Rune [12]"),
     	ERLocationData("BH/PR: Aeonian Butterfly x4 - just N of the imp statue at the S end of the bottom area", "Aeonian Butterfly x4"),
     	ERLocationData("BH/PR: Beast Blood x3 - in a door on the left just N of the imp statue at the S end of the bottom area", "Beast Blood x3"),
     	ERLocationData("BH/PR: Pickled Turtle Neck - large dark room at the bottom, item 1", "Pickled Turtle Neck"),
@@ -1309,12 +1396,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/PR: Ghost Glovewort [9] 5 - enemy drop at bottom", "Ghost Glovewort [9]", drop=True),
     	ERLocationData("BH/PR: Cleanrot Knight Finlay - chest in a room E of crimson scarab", "Cleanrot Knight Finlay"),
     	ERLocationData("BH/PR: Somber Smithing Stone [9] - S section of outer wall in building", "Somber Smithing Stone [9]"),
-    	ERLocationData("BH/PR: Somber Ancient Dragon Smithing Stone - up butress N of crimson scarab in a chest", "Somber Ancient Dragon Smithing Stone"),
-    	ERLocationData("BH/PR: Seedbed Curse - up butress N of crimson scarab in a chair", "Seedbed Curse"),
+    	ERLocationData("BH/PR: Somber Ancient Dragon Smithing Stone - up buttress N of crimson scarab in a chest", "Somber Ancient Dragon Smithing Stone"),
+    	ERLocationData("BH/PR: Seedbed Curse - up buttress N of crimson scarab in a chair", "Seedbed Curse"),
     	ERLocationData("BH/PR: Old Fang x5 - up root N of room under crimson scarab", "Old Fang x5"),
     	ERLocationData("BH/PR: Warming Stone x2 - N section of outer wall inside room, item 1", "Warming Stone x2"),
         ERLocationData("BH/PR: Spiritflame Arrow x15 - N section of outer wall inside room, item 2", "Spiritflame Arrow x15"),
-        ERLocationData("BH/PR: Haligtree Soldier Ashes - N section of outer wall up stairs infront of large basin", "Haligtree Soldier Ashes"),
+        ERLocationData("BH/PR: Haligtree Soldier Ashes - N section of outer wall up stairs in front of large basin", "Haligtree Soldier Ashes"),
         ERLocationData("BH/PR: Smithing Stone [8] - N section of outer wall by a drop to main area", "Smithing Stone [8]"),
     	# Elphael Inner Wall
     	ERLocationData("BH/IW: Lord's Rune - miniboss E of IW", "Lord's Rune", boss=True),
@@ -1324,7 +1411,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/IW: Smithing Stone [6] - to N", "Smithing Stone [6]"),
     	ERLocationData("BH/IW: Haligtree Knight Helm - to NE up the ladder", "Haligtree Knight Helm"),
     	ERLocationData("BH/IW: Rotten Crystal Sword - to S then left in a chest", "Rotten Crystal Sword"),
-    	ERLocationData("BH/IW: Hero's Rune [5] - to SE behinde a basin at the end of the hallway", "Hero's Rune [5]"),
+    	ERLocationData("BH/IW: Hero's Rune [5] - to SE behind a basin at the end of the hallway", "Hero's Rune [5]"),
     	ERLocationData("BH/IW: Rot Grease - left at the first rot lake", "Rot Grease"),
     	ERLocationData("BH/IW: Golden Seed - miniboss in second rot lake", "Golden Seed", boss=True),
     	ERLocationData("BH/IW: Great Grave Glovewort - in second rot lake", "Great Grave Glovewort"),
@@ -1336,10 +1423,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("BH/DC: Nascent Butterfly - on the SE balcony of the main building", "Nascent Butterfly"),
     	ERLocationData("BH/DC: Aeonian Butterfly - on the NW balcony of the main building", "Aeonian Butterfly"),
     	ERLocationData("BH/DC: Ghost-Glovewort Picker's Bell Bearing [3] - against a tombstone N of the main building", "Ghost-Glovewort Picker's Bell Bearing [3]"),
-    	ERLocationData("BH/DC: Numen's Rune - on a small leadge N of the main building ", "Numen's Rune"),
+    	ERLocationData("BH/DC: Numen's Rune - on a small ledge N of the main building ", "Numen's Rune"),
     	ERLocationData("BH/DC: Arteria Leaf x3 - in a small puddle S of the main building", "Arteria Leaf x3"),
     	ERLocationData("BH/DC: Hero's Rune [5] - against a large tree S of the main building", "Hero's Rune [5]"),
-    	ERLocationData("BH/DC: Dragoncrest Greatshield Talisman - dropdown through a hole at the top of the roof, drop W to a leadge in the building, in a chest", "Dragoncrest Greatshield Talisman"), 
+    	ERLocationData("BH/DC: Dragoncrest Greatshield Talisman - dropdown through a hole at the top of the roof, drop W to a ledge in the building, in a chest", "Dragoncrest Greatshield Talisman"), 
     	# Haligtree Roots
     	ERLocationData("BH/HR: Traveler's Clothes - S of HR by the giant rot flower", "Traveler's Clothes"),
     	ERLocationData("BH/HR: Traveler's Manchettes - S of HR by the giant rot flower", "Traveler's Manchettes"),
@@ -1362,7 +1449,8 @@ for region in region_order_dlc:
     for location in location_tables[region]:
         location.dlc = True
 
-for region in [# conditional ig
+for region in [# conditional locations
+    #"Hinterlands" # locked behind o mother
 ]:
     for location in location_tables[region]:
         location.conditional = True
@@ -1377,15 +1465,8 @@ location_name_groups: Dict[str, Set[str]] = {
     "Hostile NPC Rewards": set(),
     "Friendly NPC Rewards": set(),
     "Scarab": set(),
-    "Upgrade": set(),
-    "Unique": set(),
-    "Healing": set(),
-    "Goods": set(),
+    "Rise Puzzle": set(),
     "Hidden": set(),
-    "Weapons": set(),
-    "Ash of war": set(),
-    "Armor": set(),
-    "Accessory": set(),
     "Missable": set(),
 }
 
@@ -1393,28 +1474,17 @@ location_descriptions = {
     "Prominent": "A small number of locations that are in very obvious locations. Mostly boss " + \
                  "drops. Ideal for setting as priority locations.",
     "Progression": "Locations that contain items in vanilla which unlock other locations.",
-    "Main Boss Rewards": "Any boss that drops a Great Rune or a Remembrace.",
-    "Boss Rewards": "Miniboss drops. Only includes enemies considered minibosses by the " + \
+    "Main Boss Rewards": "Any boss that drops a Great Rune or a Remembrance.",
+    "Boss Rewards": "Boss drops. Only includes enemies considered bosses by the " + \
                         "enemy randomizer.",
     "Hostile NPC Rewards": "Drops from NPCs that are hostile to you. This includes scripted " + \
                            "invaders and initially-friendly NPCs that must be fought as part of their quest.",
     "Friendly NPC Rewards": "Items given by friendly NPCs as part of their quests or from " + \
                             "non-violent interaction.",
-    "Upgrade": "Locations that contain upgrade items in vanilla, including titanite, gems, and " + \
-               "Shriving Stones.",
-    "Runes": "Locations that contain rune items in vanilla.",
-    "Unique": "Locations that contain items in vanilla that are unique per NG cycle, such as " + \
-              "scrolls, keys, ashes, and so on. Doesn't cover equipment, spells, or runes.",
-    "Healing": "Locations that contain Undead Bone Shards and Estus Shards in vanilla.",
-    "Goods": "Misc, Key, Spell, most stuff that goes into your inventory.",
+    "Scarab": "Scarab locations",
+    "Rise Puzzle": "Locations that require a rise puzzle to be solved",
     "Hidden": "Locations that are particularly difficult to find, such as behind illusory " + \
               "walls, down hidden drops, and so on. Does not include large locations.",
-    "Weapons": "Locations that contain weapons in vanilla.",
-    "Ash of war": "Locations that contain Ash of wars in vanilla.",
-    "Armor": "Locations that contain armor in vanilla.",
-    "Accessory": "Locations that contain accessories in vanilla.",
-    "Spells": "Locations that contain spells in vanilla.",
-    "Spirits": "Locations that contain spirits in vanilla.",
     "Missable": "Locations that can be missed in vanilla.",
 }
 

@@ -11,7 +11,7 @@ class ERItemCategory(IntEnum):
     ARMOR = 3
     ACCESSORY = 4
     ASHOFWAR = 5
-    CUSTOMWEAPON = 6 # renforced and ash of wars
+    CUSTOMWEAPON = 6 # reinforced and ash of wars
 
 @dataclass
 class ERItemData:
@@ -545,7 +545,7 @@ _vanilla_items = [
     *ERItemData("Flaming Bolt", 52190000, ERItemCategory.WEAPON).counts([10]),
     *ERItemData("Ballista Bolt", 53000000, ERItemCategory.WEAPON).counts([5, 8, 15]),
     *ERItemData("Lightning Greatbolt", 53010000, ERItemCategory.WEAPON).counts([5]),
-    ERItemData("Explosive Greatbolt", 53020000, ERItemCategory.WEAPON),
+    *ERItemData("Explosive Greatbolt", 53020000, ERItemCategory.WEAPON).counts([5]),
 
     # MARK: Armor
     ERItemData("Iron Helmet", 40000, ERItemCategory.ARMOR),
@@ -1310,7 +1310,7 @@ _vanilla_items = [
     ERItemData("Poison Grease", 1460, ERItemCategory.GOODS),
     ERItemData("Freezing Grease", 1470, ERItemCategory.GOODS),
     ERItemData("Dragonwound Grease", 1480, ERItemCategory.GOODS),
-    *ERItemData("Rot Grease", 1490, ERItemCategory.GOODS).counts([2]),
+    *ERItemData("Rot Grease", 1490, ERItemCategory.GOODS).counts([2, 3]),
     ERItemData("Drawstring Fire Grease", 1500, ERItemCategory.GOODS),
     ERItemData("Drawstring Lightning Grease", 1510, ERItemCategory.GOODS),
     ERItemData("Drawstring Holy Grease", 1530, ERItemCategory.GOODS),
@@ -1985,9 +1985,9 @@ _vanilla_items = [
     ERItemData("Budding Horn", 15050, ERItemCategory.GOODS),
     ERItemData("Flight Pinion", 15060, ERItemCategory.GOODS),
     ERItemData("Four-Toed Fowl Foot", 15080, ERItemCategory.GOODS),
-    ERItemData("Turtle Neck Meat", 15090, ERItemCategory.GOODS),
+    *ERItemData("Turtle Neck Meat", 15090, ERItemCategory.GOODS).counts([2]),
     *ERItemData("Human Bone Shard", 15100, ERItemCategory.GOODS).counts([5]),
-    *ERItemData("Great Dragonfly Head", 15110, ERItemCategory.GOODS).counts([3, 4]),
+    *ERItemData("Great Dragonfly Head", 15110, ERItemCategory.GOODS).counts([3, 4, 5]),
     ERItemData("Slumbering Egg", 15120, ERItemCategory.GOODS),
     *ERItemData("Crab Eggs", 15130, ERItemCategory.GOODS).counts([4]),
     ERItemData("Land Octopus Ovary", 15140, ERItemCategory.GOODS),
@@ -1999,7 +1999,7 @@ _vanilla_items = [
     ERItemData("Living Jar Shard", 15410, ERItemCategory.GOODS),
     ERItemData("Albinauric Bloodclot", 15420, ERItemCategory.GOODS),
     ERItemData("Stormhawk Feather", 15430, ERItemCategory.GOODS),
-    *ERItemData("Poisonbloom", 20650, ERItemCategory.GOODS).counts([2]),
+    *ERItemData("Poisonbloom", 20650, ERItemCategory.GOODS).counts([2, 4]),
     *ERItemData("Trina's Lily", 20651, ERItemCategory.GOODS).counts([3, 4]),
     ERItemData("Fulgurbloom", 20652, ERItemCategory.GOODS),
     ERItemData("Miquella's Lily", 20653, ERItemCategory.GOODS),
@@ -2007,7 +2007,7 @@ _vanilla_items = [
     ERItemData("Faded Erdleaf Flower", 20660, ERItemCategory.GOODS),
     ERItemData("Erdleaf Flower", 20680, ERItemCategory.GOODS),
     ERItemData("Altus Bloom", 20681, ERItemCategory.GOODS),
-    ERItemData("Fire Blossom", 20682, ERItemCategory.GOODS),
+    *ERItemData("Fire Blossom", 20682, ERItemCategory.GOODS).counts([3]),
     ERItemData("Golden Sunflower", 20683, ERItemCategory.GOODS),
     *ERItemData("Tarnished Golden Sunflower", 20685, ERItemCategory.GOODS).counts([3]),
     ERItemData("Herba", 20690, ERItemCategory.GOODS),
@@ -2028,8 +2028,8 @@ _vanilla_items = [
     ERItemData("Cracked Crystal", 20780, ERItemCategory.GOODS),
     ERItemData("Sanctuary Stone", 20795, ERItemCategory.GOODS),
     ERItemData("Nascent Butterfly", 20800, ERItemCategory.GOODS),
-    *ERItemData("Aeonian Butterfly", 20801, ERItemCategory.GOODS).counts([2, 4]),
-    *ERItemData("Smoldering Butterfly", 20802, ERItemCategory.GOODS).counts([3, 4, 5, 8]),
+    *ERItemData("Aeonian Butterfly", 20801, ERItemCategory.GOODS).counts([2, 4, 5]),
+    *ERItemData("Smoldering Butterfly", 20802, ERItemCategory.GOODS).counts([3, 4, 5, 6, 8]),
     ERItemData("Silver Firefly", 20810, ERItemCategory.GOODS),
     ERItemData("Gold Firefly", 20811, ERItemCategory.GOODS),
     ERItemData("Glintstone Firefly", 20812, ERItemCategory.GOODS),
@@ -2769,7 +2769,7 @@ item_name_groups: Dict[str, Set] = {
 item_descriptions = {
     "Progression": "Items which unlock locations.",
     "Goods": "Misc, Key, Spell, most stuff that goes into your inventory.",
-    "Upgraded Weapons": "Weapons which are renforced or have an ash of war."
+    "Upgraded Weapons": "Weapons which are reinforced or have an ash of war."
 }
 
 _all_items = _vanilla_items + _dlc_items
