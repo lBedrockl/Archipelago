@@ -142,6 +142,8 @@ class EldenRing(World):
         create_connection("Caelid", "Gaol Cave")
         create_connection("Caelid", "Fort Gael")
         create_connection("Caelid", "Street of Sages Ruins")
+        create_connection("Caelid", "Sellia, Town of Sorcery")
+        create_connection("Caelid", "Gowry's Shack")
         
         create_connection("Caelid", "Redmane Castle")
 
@@ -550,23 +552,62 @@ class EldenRing(World):
             "RH: Order's Blade - D shop",
         ], lambda state: ( state.can_reach("Bestial Sanctum")))
         
-        # Gurraq
+        # MARK: Gurraq
         self._add_location_rule([
             "CL/(BS): Clawmark Seal - Gurranq, deathroot reward 1",
             "CL/(BS): Beast Eye - Gurranq, deathroot reward 1 or kill",
         ], lambda state: ( state.has("Deathroot", self.player)))
         
-        self._add_location_rule([
-            "CL/(BS): Bestial Sling - Gurranq, deathroot reward 2",
+        self._add_location_rule([ "CL/(BS): Bestial Sling - Gurranq, deathroot reward 2",
         ], lambda state: ( state.has("Deathroot", self.player, count=2)))
         
-        self._add_location_rule([
-            "CL/(BS): Bestial Vitality - Gurranq, deathroot reward 3",
+        self._add_location_rule(["CL/(BS): Bestial Vitality - Gurranq, deathroot reward 3",
         ], lambda state: ( state.has("Deathroot", self.player, count=3)))
         
-        self._add_location_rule([
-            "CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4",
+        self._add_location_rule(["CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4",
         ], lambda state: ( state.has("Deathroot", self.player, count=4)))
+        
+        # MARK: Gowry
+        self._add_location_rule([ 
+            "CL/(GS): Sellia's Secret - talk to Gowry with needle",
+            "CL/(GS): Unalloyed Gold Needle (Fixed) - talk to Gowry after giving needle",
+        ], lambda state: ( state.has("Unalloyed Gold Needle (Broken)", self.player)))
+        
+        self._add_location_rule([
+            "CL/(GS): Glintstone Stars - Gowry Shop",
+            "CL/(GS): Night Shard - Gowry Shop",
+            "CL/(GS): Night Maiden's Mist - Gowry Shop",
+        ], lambda state: ( self._can_get(state, "CL/(CP): Prosthesis-Wearer Heirloom - give Millicent fixed needle")))
+        
+        """self._add_location_rule(["CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent",
+        ], lambda state: ( self._can_get(state, "give Millicent val pro in altus")))"""
+        
+        self._add_location_rule(["CL/(GS): Desperate Prayer - buy 4th shop item",
+        ], lambda state: ( self._can_get(state, "CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent")))
+        
+        self._add_location_rule(["CL/(GS): Flock's Canvas Talisman - kill Gowry or complete questline",
+        ], lambda state: ( self._can_get(state, "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area")))
+        
+        # MARK: Millicent
+        self._add_location_rule(["CL/(CP): Prosthesis-Wearer Heirloom - give Millicent fixed needle",
+        ], lambda state: ( state.has("Unalloyed Gold Needle (Fixed)", self.player)))
+        
+        """self._add_location_rule(["give Millicent val pro in altus",
+        ], lambda state: ( state.has("Valkyrie's Prosthesis", self.player)))"""
+        
+        """self._add_location_rule([
+            "EBH/EIW: Rotten Winged Sword Insignia - help Millicent",
+            "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area",
+            "EBH/EIW: Millicent's Prosthesis - invade Millicent or kill in altus",
+        ], lambda state: ( self._can_get(state, "give Millicent val pro in altus")))"""
+        
+        self._add_location_rule([
+            "EBH/HR: Miquella's Needle - use needle on flower in boss arena after Millicent quest",
+            "EBH/HR: Somber Ancient Dragon Smithing Stone - use needle on flower in boss arena after Millicent quest",
+        ], lambda state: ( 
+            self._can_get(state, "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area")
+            and state.has("Unalloyed Gold Needle (Milicent)", self.player)
+        ))    
             
     def _add_remembrance_rules(self) -> None: # done? #MARK: Remembrance Rules
         """Adds rules for items obtainable for trading remembrances."""
