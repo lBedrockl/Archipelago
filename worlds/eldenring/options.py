@@ -6,12 +6,14 @@ from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, NamedR
 ## Game Options
 
 class EndingCondition(Choice):
-    """Ending Condition"""
+    """Ending Condition
+    **Final Boss:** Will be Elden Beast or Consort if DLC is enabled.
+    **All Remembrances:** All remembrance bosses, missable ones excluded.
+    **All Bosses:** All bosses, missable ones excluded."""
     display_name = "Ending Condition"  # this is the option name as it's displayed to the user on the webhost and in the spoiler log
-    option_elden_beast = 0
-    alias_false = 0
-    option_consort = 1
-    alias_true = 1
+    option_final_boss = 0
+    option_all_remembrances = 1
+    option_all_bosses = 2
 
 class WorldLogic(Choice):
     """World Logic options

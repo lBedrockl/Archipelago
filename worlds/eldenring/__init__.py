@@ -52,7 +52,7 @@ class EldenRing(World):
         self.created_regions = set()
         self.all_excluded_locations.update(self.options.exclude_locations.value)
 
-    def create_regions(self) -> None:
+    def create_regions(self) -> None: #MARK: Connections
         # Create Vanilla Regions
         regions: Dict[str, Region] = {"Menu": self.create_region("Menu", {})}
         regions.update({region_name: self.create_region(region_name, location_tables[region_name]) for region_name in region_order})
@@ -69,7 +69,10 @@ class EldenRing(World):
 
         regions["Menu"].exits.append(Entrance(self.player, "New Game", regions["Menu"]))
         self.multiworld.get_entrance("New Game", self.player).connect(regions["Chapel of Anticipation"])
-        # Start #MARK: Connections
+        
+        create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
+        
+        # Start 
         create_connection("Chapel of Anticipation", "Stranded Graveyard")
         # Limgrave
         create_connection("Stranded Graveyard", "Limgrave")
@@ -98,11 +101,7 @@ class EldenRing(World):
 
         create_connection("Limgrave", "Roundtable Hold")
         
-
-        create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
-        
-        
-        # create_connection("Dragon-Burnt Ruins", "caelid crystal tunnels")
+        create_connection("Dragon-Burnt Ruins", "Sellia Crystal Tunnel")
         create_connection("Coastal Cave", "Church of Dragon Communion")
 
         #create_connection("Limgrave", "Stormveil Castle")
@@ -144,6 +143,9 @@ class EldenRing(World):
         create_connection("Caelid", "Street of Sages Ruins")
         create_connection("Caelid", "Sellia, Town of Sorcery")
         create_connection("Caelid", "Gowry's Shack")
+        create_connection("Caelid", "Sellia Crystal Tunnel")
+        create_connection("Caelid", "Abandoned Cave")
+        create_connection("Caelid", "Isolated Merchant's Shack")
         
         create_connection("Caelid", "Redmane Castle")
 
@@ -377,7 +379,7 @@ class EldenRing(World):
         else:
             return self.random.choice(filler_item_names_vanilla)
 
-    def set_rules(self) -> None: #WIP #MARK: Rules
+    def set_rules(self) -> None: #MARK: Rules
 
         self._key_rules()
         self._dragon_communion_rules()
@@ -389,7 +391,7 @@ class EldenRing(World):
         if self.options.world_logic == "region_lock": 
             self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_great_runes(state, 1))
             self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
-            self._add_entrance_rule("Caelid", lambda state: self._has_enough_great_runes(state, 3))
+            self._add_entrance_rule("Caelid", "Sellia Crystal Tunnel", lambda state: self._has_enough_great_runes(state, 3))
         elif self.options.world_logic == "open_world":
             self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
         #else: # glitch logic
@@ -398,6 +400,8 @@ class EldenRing(World):
         # Paintings
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
                                 lambda state: state.has("\"Homing Instinct\" Painting", self.player))
+        self._add_location_rule("CL/MEE: Ash of War: Rain of Arrows - \"Redmane\" Painting reward down hidden cliff E of MEE", 
+                                lambda state: state.has("\"Redmane\" Painting", self.player))
         
         # festival // altus grace touch or ranni quest stuff
         self._add_location_rule("CL/(RC): Smithing Stone [6] - in church during festival", 
@@ -408,27 +412,37 @@ class EldenRing(World):
         
         # DLC Access Rules Below
         if self.options.enable_dlc:
-        
             if self.options.late_dlc:
-                self._add_entrance_rule(
-                    "Gravesite Plain",
+                self._add_entrance_rule("Gravesite Plain",
                     lambda state: state.has("Rold Medallion", self.player)
                     and state.has("Haligtree Secret Medallion (Left)", self.player)
                     and state.has("Haligtree Secret Medallion (Right)", self.player)
                     and self._can_get(state, "MP: Mohg Remembrance - boss drop")
                     and self._can_get(state, "CL/dune place: Radahn Remembrance - boss drop"))
             else:
-                self._add_entrance_rule(
-                    "Gravesite Plain", 
+                # makes Pureblood Knight's Medal progression only when late dlc is off, idk if this works
+                item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
+                self._add_entrance_rule("Gravesite Plain", 
                     lambda state: self._can_get(state, "MP: Mohg Remembrance - boss drop")
                     and self._can_get(state, "CL/dune place: Radahn Remembrance - boss drop"))
       
         
-        """if self.options.ending_condition >= 1 and self.options.enable_dlc:
-            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance - boss drop")
+        """if self.options.ending_condition == 0:
+            if self.options.enable_dlc:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance - boss drop")
+            else:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance - boss drop")
+        elif self.options.ending_condition == 1:
+            # all remembrances
+            if self.options.enable_dlc:
+            else:
         else:
-            self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance - boss drop")"""
+            # all bosses
+            if self.options.enable_dlc:
+            else:"""
+            
         
+    #MARK: Special Rules
     def _key_rules(self) -> None:
         # MARK: SSK RULES
         # in order from early game to late game each rule needs to include the last count for an area
@@ -447,7 +461,7 @@ class EldenRing(World):
         # weeping +2
         currentKey += 2
         self._add_location_rule("WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue" , lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("WP/WE: Radagon's Scarseal - boss drop Weeping Evergaol" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("WP/(WE): Radagon's Scarseal - Weeping Evergaol" , lambda state: self._has_enough_keys(state, currentKey)) # 1
         
         # stormveil +2
         #currentKey += 2
@@ -509,7 +523,7 @@ class EldenRing(World):
         total_hearts = state.count("Dragon Heart", self.player) + (state.count("Dragon Heart x5", self.player) * 5)
         return total_hearts >= req_hearts
     
-    def _add_shop_rules(self) -> None: # MARK: Shop Rules
+    def _add_shop_rules(self) -> None: # needs bell bearing rules for husks if the items aren't inf
         """Adds rules for items unlocked in shops."""
 
         # Scrolls
@@ -536,7 +550,7 @@ class EldenRing(World):
         for (book, items) in books.items():
             self._add_location_rule([f"RH: {item} - {book}" for item in items], lambda state: state.has(book, self.player))        
                 
-    def _add_npc_rules(self) -> None: #MARK: Quest Rules
+    def _add_npc_rules(self) -> None:
         """Adds rules for items accessible via NPC quests.
 
         We list missable locations here even though they never contain progression items so that the
@@ -609,7 +623,7 @@ class EldenRing(World):
             and state.has("Unalloyed Gold Needle (Milicent)", self.player)
         ))    
             
-    def _add_remembrance_rules(self) -> None: # done? #MARK: Remembrance Rules
+    def _add_remembrance_rules(self) -> None: # done?
         """Adds rules for items obtainable for trading remembrances."""
 
         remembrances = [
