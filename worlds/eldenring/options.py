@@ -43,7 +43,7 @@ class EnableDLC(Toggle):
 class LateDLCOption(Choice):
     """Guarantee that you don't need to enter the DLC until later in the run.
 
-    - **Off:** You may have to enter the DLC with quest item.
+    - **Off:** You may have to enter the DLC with 'Pureblood Knight Medal' item.
     - **Medallion:** You won't have to enter the DLC until after getting Haligtree Secret Medallion and Rold Medallion.
     """
     display_name = "Late DLC"

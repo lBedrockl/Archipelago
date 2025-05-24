@@ -48,8 +48,10 @@ region_order = [
     "Isolated Merchant's Shack",
     "Morne Tunnel",
     "Earthbore Cave",
-    
     "Castle Morne",
+    
+    # Siofra
+    "Siofra River",
 
     # Liurnia
     "Liurnia of The Lakes",
@@ -73,8 +75,15 @@ region_order = [
     "Sellia Crystal Tunnel",
     "Abandoned Cave",
     "Isolated Merchant's Shack",
-    
+    "Divine Tower",
+    "Caelem Ruins",
+    "Minor Erdtree Catacombs",
+    "Deep Siofra Well",
+    "Forsaken Ruins",
+    "Gale Tunnel",
     "Redmane Castle",
+    "Waling Dunes",
+    "War-Dead Catacombs",
     
     # Altus
     "Altus Plateau",
@@ -204,8 +213,9 @@ class ERLocationData:
     
     rise_puzzle: bool = False
     """Whether this location is a rise puzzle."""
-
-
+    
+    breakable: bool = False
+    """Whether this location is a breakable statue."""
 
     @property
     def is_event(self) -> bool:
@@ -504,8 +514,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/WS: Golden Rune [5] - graveyard SW of WS", "Golden Rune [5]"),
         ERLocationData("LG/WS: Beast Liver - SE of WS", "Beast Liver"),
         ERLocationData("LG/WS: Blue-Feathered Branchsword - night boss drop SE of WS", "Blue-Feathered Branchsword", boss=True),
-        ERLocationData("LG/WS: Smithing Stone [1] x5 - breakable statue SE of WS", "Smithing Stone [1] x5"),
-        ERLocationData("LG/WS: Smithing Stone [2] - breakable statue SE of WS", "Smithing Stone [2]"),
+        ERLocationData("LG/WS: Smithing Stone [1] x5 - breakable statue SE of WS", "Smithing Stone [1] x5", breakable=True),
+        ERLocationData("LG/WS: Smithing Stone [2] - breakable statue SE of WS", "Smithing Stone [2]", breakable=True),
         ERLocationData("LG/WS: Exalted Flesh - enemy camp NE of WS", "Exalted Flesh"),
         ERLocationData("LG/WS: Beast Crest Heater Shield - chest within enemy camp NE of WS", "Beast Crest Heater Shield"),
         ERLocationData("LG/WS: Lance - on ruin in enemy camp NE of WS", "Lance"),
@@ -815,6 +825,116 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # D
         ERLocationData("RH: Litany of Proper Death - D shop", "Litany of Proper Death", shop=True, missable=True), 
         ERLocationData("RH: Order's Blade - D shop", "Order's Blade", shop=True, missable=True), # i think D can me missed
+        
+        # Enia
+        ERLocationData("RH: Talisman Pouch - Enia 2 great runes", "Talisman Pouch", npc=True, prominent=True),
+        
+        # remembrances
+        ERLocationData("RH: Axe of Godrick - Enia for Remembrance of the Grafted", "Axe of Godrick", shop=True, missable=True),
+        ERLocationData("RH: Grafted Dragon - Enia for Remembrance of the Grafted", "Grafted Dragon", shop=True, missable=True),
+        ERLocationData("RH: Carian Regal Scepter - Enia for Remembrance of the Full Moon Queen", "Carian Regal Scepter", shop=True, missable=True),
+        ERLocationData("RH: Rennala's Full Moon - Enia for Remembrance of the Full Moon Queen", "Rennala's Full Moon", shop=True, missable=True),
+        ERLocationData("RH: Starscourge Greatsword - Enia for Remembrance of the Starscourge", "Starscourge Greatsword", shop=True, missable=True),
+        ERLocationData("RH: Lion Greatbow - Enia for Remembrance of the Starscourge", "Lion Greatbow", shop=True, missable=True),
+        ERLocationData("RH: Winged Greathorn - Enia for Remembrance of the Regal Ancestor", "Winged Greathorn", shop=True, missable=True),
+        ERLocationData("RH: Ancestral Spirit's Horn - Enia for Remembrance of the Regal Ancestor", "Ancestral Spirit's Horn", shop=True, missable=True),
+        ERLocationData("RH: Morgott's Cursed Sword - Enia for Remembrance of the Omen King", "Morgott's Cursed Sword", shop=True, missable=True),
+        ERLocationData("RH: Regal Omen Bairn - Enia for Remembrance of the Omen King", "Regal Omen Bairn", shop=True, missable=True),
+        ERLocationData("RH: Waves of Darkness - Enia for Remembrance of the Naturalborn", "Waves of Darkness", shop=True, missable=True),
+        ERLocationData("RH: Bastard's Stars - Enia for Remembrance of the Naturalborn", "Bastard's Stars", shop=True, missable=True),
+        ERLocationData("RH: Rykard's Rancor - Enia for Remembrance of the Blasphemous", "Rykard's Rancor", shop=True, missable=True),
+        ERLocationData("RH: Blasphemous Blade - Enia for Remembrance of the Blasphemous", "Blasphemous Blade", shop=True, missable=True),
+        ERLocationData("RH: Fortissax's Lightning Spear - Enia for Remembrance of the Lichdragon", "Fortissax's Lightning Spear", shop=True, missable=True),
+        ERLocationData("RH: Death Lightning - Enia for Remembrance of the Lichdragon", "Death Lightning", shop=True, missable=True),
+        ERLocationData("RH: Giant's Red Braid - Enia for Remembrance of the Fire Giant", "Giant's Red Braid", shop=True, missable=True),
+        ERLocationData("RH: Burn, O Flame! - Enia for Remembrance of the Fire Giant", "Burn, O Flame!", shop=True, missable=True),
+        ERLocationData("RH: Mohgwyn's Sacred Spear - Enia for Remembrance of the Blood Lord", "Mohgwyn's Sacred Spear", shop=True, missable=True),
+        ERLocationData("RH: Bloodboon - Enia for Remembrance of the Blood Lord", "Bloodboon", shop=True, missable=True),
+        ERLocationData("RH: Maliketh's Black Blade - Enia for Remembrance of the Black Blade", "Maliketh's Black Blade", shop=True, missable=True),
+        ERLocationData("RH: Black Blade - Enia for Remembrance of the Black Blade", "Black Blade", shop=True, missable=True),
+        ERLocationData("RH: Dragon King's Cragblade - Enia for Remembrance of the Dragonlord", "Dragon King's Cragblade", shop=True, missable=True),
+        ERLocationData("RH: Placidusax's Ruin - Enia for Remembrance of the Dragonlord", "Placidusax's Ruin", shop=True, missable=True),
+        ERLocationData("RH: Axe of Godfrey - Enia for Remembrance of Hoarah Loux", "Axe of Godfrey", shop=True, missable=True),
+        ERLocationData("RH: Hoarah Loux's Earthshaker - Enia for Remembrance of Hoarah Loux", "Hoarah Loux's Earthshaker", shop=True, missable=True),
+        ERLocationData("RH: Hand of Malenia - Enia for Remembrance of the Rot Goddess", "Hand of Malenia", shop=True, missable=True),
+        ERLocationData("RH: Scarlet Aeonia - Enia for Remembrance of the Rot Goddess", "Scarlet Aeonia", shop=True, missable=True),
+        ERLocationData("RH: Marika's Hammer - Enia for Elden Remembrance", "Marika's Hammer", shop=True, missable=True),
+        ERLocationData("RH: Sacred Relic Sword - Enia for Elden Remembrance", "Sacred Relic Sword", shop=True, missable=True),
+        #dlc
+        ERLocationData("RH: Enraged Divine Beast - Enia for Remembrance of the Dancing Lion", "Enraged Divine Beast", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Divine Beast Frost Stomp - Enia for Remembrance of the Dancing Lion", "Divine Beast Frost Stomp", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Rellana's Twin Blades - Enia for Remembrance of the Twin Moon Knight", "Rellana's Twin Blades", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Rellana's Twin Moons - Enia for Remembrance of the Twin Moon Knight", "Rellana's Twin Moons", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Putrescence Cleaver - Enia for Remembrance of Putrescence", "Putrescence Cleaver", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Vortex of Putrescence - Enia for Remembrance of Putrescence", "Vortex of Putrescence", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Sword Lance - Enia for Remembrance of the Wild Boar Rider", "Sword Lance", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Blades of Stone - Enia for Remembrance of the Wild Boar Rider", "Blades of Stone", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Shadow Sunflower Blossom - Enia for Remembrance of the Shadow Sunflower", "Shadow Sunflower Blossom", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Land of Shadow - Enia for Remembrance of the Shadow Sunflower", "Land of Shadow", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Spear of the Impaler - Enia for Remembrance of the Impaler", "Spear of the Impaler", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Messmer's Orb - Enia for Remembrance of the Impaler", "Messmer's Orb", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Poleblade of the Bud - Enia for Remembrance of the Saint of the Bud", "Poleblade of the Bud", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Rotten Butterflies - Enia for Remembrance of the Saint of the Bud", "Rotten Butterflies", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Staff of the Great Beyond - Enia for Remembrance of the Mother of Fingers", "Staff of the Great Beyond", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Gazing Finger - Enia for Remembrance of the Mother of Fingers", "Gazing Finger", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Greatsword of Damnation - Enia for Remembrance of the Lord of Frenzied Flame", "Greatsword of Damnation", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Midra's Flame of Frenzy - Enia for Remembrance of the Lord of Frenzied Flame", "Midra's Flame of Frenzy", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Greatsword of Radahn (Lord) - Enia for Remembrance of a God and a Lord", "Greatsword of Radahn (Lord)", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Greatsword of Radahn (Light) - Enia for Remembrance of a God and a Lord", "Greatsword of Radahn (Light)", shop=True, missable=True, dlc=True),
+        ERLocationData("RH: Light of Miquella - Enia for Remembrance of a God and a Lord", "Light of Miquella", shop=True, missable=True, dlc=True),
+        
+        # equipment of champions
+        ERLocationData("RH: Queen's Crescent Crown - Enia defeat Rennala, Queen of the Full Moon", "Queen's Crescent Crown", shop=True),
+        ERLocationData("RH: Queen's Robe - Enia defeat Rennala, Queen of the Full Moon", "Queen's Robe", shop=True),
+        ERLocationData("RH: Queen's Leggings - Enia defeat Rennala, Queen of the Full Moon", "Queen's Leggings", shop=True),
+        ERLocationData("RH: Queen's Bracelets - Enia defeat Rennala, Queen of the Full Moon", "Queen's Bracelets", shop=True),
+        ERLocationData("RH: Malenia's Winged Helm - Enia defeat Malenia Blade of Miquella", "Malenia's Winged Helm", shop=True),
+        ERLocationData("RH: Malenia's Armor - Enia defeat Malenia Blade of Miquella", "Malenia's Armor", shop=True),
+        ERLocationData("RH: Malenia's Gauntlet - Enia defeat Malenia Blade of Miquella", "Malenia's Gauntlet", shop=True),
+        ERLocationData("RH: Malenia's Greaves - Enia defeat Malenia Blade of Miquella", "Malenia's Greaves", shop=True),
+        ERLocationData("RH: Elden Lord Crown - Enia defeat Godfrey, First Elden Lord", "Elden Lord Crown", shop=True),
+        ERLocationData("RH: Elden Lord Armor - Enia defeat Godfrey, First Elden Lord", "Elden Lord Armor", shop=True),
+        ERLocationData("RH: Elden Lord Bracers - Enia defeat Godfrey, First Elden Lord", "Elden Lord Bracers", shop=True),
+        ERLocationData("RH: Elden Lord Greaves - Enia defeat Godfrey, First Elden Lord", "Elden Lord Greaves", shop=True),
+        ERLocationData("RH: Briar Helm - Enia defeat Elemer of the Briar", "Briar Helm", shop=True),
+        ERLocationData("RH: Briar Armor - Enia defeat Elemer of the Briar", "Briar Armor", shop=True),
+        ERLocationData("RH: Briar Gauntlets - Enia defeat Elemer of the Briar", "Briar Gauntlets", shop=True),
+        ERLocationData("RH: Briar Greaves - Enia defeat Elemer of the Briar", "Briar Greaves", shop=True),
+        ERLocationData("RH: Royal Knight Helm - Enia defeat Loretta, Knight of the Haligtree", "Royal Knight Helm", shop=True),
+        ERLocationData("RH: Royal Knight Armor - Enia defeat Loretta, Knight of the Haligtree", "Royal Knight Armor", shop=True),
+        ERLocationData("RH: Royal Knight Gauntlet - Enia defeat Loretta, Knight of the Haligtree", "Royal Knight Gauntlet", shop=True),
+        ERLocationData("RH: Royal Knight Greaves - Enia defeat Loretta, Knight of the Haligtree", "Royal Knight Greaves", shop=True),
+        ERLocationData("RH: Maliketh's Helm - Enia defeat Maliketh, the Black Blade", "Maliketh's Helm", shop=True),
+        ERLocationData("RH: Maliketh's Armor - Enia defeat Maliketh, the Black Blade", "Maliketh's Armor", shop=True),
+        ERLocationData("RH: Maliketh's Gauntlets - Enia defeat Maliketh, the Black Blade", "Maliketh's Gauntlets", shop=True),
+        ERLocationData("RH: Maliketh's Greaves - Enia defeat Maliketh, the Black Blade", "Maliketh's Greaves", shop=True),
+        ERLocationData("RH: Veteran's Helm - Enia defeat Commander Niall", "Veteran's Helm", shop=True),
+        ERLocationData("RH: Veteran's Armor - Enia defeat Commander Niall", "Veteran's Armor", shop=True),
+        ERLocationData("RH: Veteran's Gauntlets - Enia defeat Commander Niall", "Veteran's Gauntlets", shop=True),
+        ERLocationData("RH: Veteran's Greaves - Enia defeat Commander Niall", "Veteran's Greaves", shop=True),
+        ERLocationData("RH: Radahn's Redmane Helm - Enia defeat Starscourge Radahn", "Radahn's Redmane Helm", shop=True),
+        ERLocationData("RH: Radahn's Lion Armor - Enia defeat Starscourge Radahn", "Radahn's Lion Armor", shop=True),
+        ERLocationData("RH: Radahn's Gauntlets - Enia defeat Starscourge Radahn", "Radahn's Gauntlets", shop=True),
+        ERLocationData("RH: Radahn's Greaves - Enia defeat Starscourge Radahn", "Radahn's Greaves", shop=True),
+        ERLocationData("RH: Fell Omen Cloak - Enia defeat Morgott, The Omen King", "Fell Omen Cloak", shop=True),
+        ERLocationData("RH: Lord of Blood's Robe - Enia defeat Mohg, Lord of Blood", "Lord of Blood's Robe", shop=True),
+        # dlc
+        ERLocationData("RH: Messmer's Helm - Enia defeat Messmer the Impaler", "Messmer's Helm", shop=True, dlc=True),
+        ERLocationData("RH: Messmer's Armor - Enia defeat Messmer the Impaler", "Messmer's Armor", shop=True, dlc=True),
+        ERLocationData("RH: Messmer's Gauntlets - Enia defeat Messmer the Impaler", "Messmer's Gauntlets", shop=True, dlc=True),
+        ERLocationData("RH: Messmer's Greaves - Enia defeat Messmer the Impaler", "Messmer's Greaves", shop=True, dlc=True),
+        ERLocationData("RH: Rellana's Helm - Enia defeat Rellana", "Rellana's Helm", shop=True, dlc=True),
+        ERLocationData("RH: Rellana's Armor - Enia defeat Rellana", "Rellana's Armor", shop=True, dlc=True),
+        ERLocationData("RH: Rellana's Gloves - Enia defeat Rellana", "Rellana's Gloves", shop=True, dlc=True),
+        ERLocationData("RH: Rellana's Greaves - Enia defeat Rellana", "Rellana's Greaves", shop=True, dlc=True),
+        ERLocationData("RH: Gaius's Helm - Enia defeat Commander Gaius", "Gaius's Helm", shop=True, dlc=True),
+        ERLocationData("RH: Gaius's Armor - Enia defeat Commander Gaius", "Gaius's Armor", shop=True, dlc=True),
+        ERLocationData("RH: Gaius's Gauntlets - Enia defeat Commander Gaius", "Gaius's Gauntlets", shop=True, dlc=True),
+        ERLocationData("RH: Gaius's Greaves - Enia defeat Commander Gaius", "Gaius's Greaves", shop=True, dlc=True),
+        ERLocationData("RH: Young Lion's Helm - Enia defeat Promised Consort", "Young Lion's Helm", shop=True, dlc=True),
+        ERLocationData("RH: Young Lion's Armor - Enia defeat Promised Consort", "Young Lion's Armor", shop=True, dlc=True),
+        ERLocationData("RH: Young Lion's Gauntlets - Enia defeat Promised Consort", "Young Lion's Gauntlets", shop=True, dlc=True),
+        ERLocationData("RH: Young Lion's Greaves - Enia defeat Promised Consort", "Young Lion's Greaves", shop=True, dlc=True),
     ],
 
     "Bridge of Sacrifice":[
@@ -1018,6 +1138,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # kill and invader form needed + quest stuff
     ],
     
+    # "":[],
+    # ERLocationData(":  - ", ""),
+    # MARK: Siofra
+    "Siofra River":[
+        ERLocationData("SR:  - ", ""),
+    ],
+    
     # ERLocationData(":  - ", ""),
     # MARK: Liurnia of The Lakes
     "Liurnia of The Lakes":[],
@@ -1031,7 +1158,49 @@ location_tables: Dict[str, List[ERLocationData]] = {
     # ERLocationData(":  - ", ""),
     # MARK: Caelid
     "Caelid":[
-        ERLocationData("CL/:  - ", ""),
+        # near FR
+        ERLocationData("CL/FR: Smithing Stone [5] - on mass SE of FR", "Smithing Stone [5]"),
+        ERLocationData("CL/FR: Somber Smithing Stone [4] - scarab on root arch S of FR", "Somber Smithing Stone [4]", scarab=True),
+        
+        # near SW grace
+        ERLocationData("CL/SW: Golden Rune [9] - to NW", "Golden Rune [9]"),
+        ERLocationData("CL/SW: Slumbering Egg x2 - chest in camp to SW", "Slumbering Egg x2"),
+        ERLocationData("CL/SW: Somber Smithing Stone [4] - chair half way down cliff to SW", "Somber Smithing Stone [4]"),
+        
+        # near RB grace
+        ERLocationData("CL/RB: Golden Rune [3] - in stable to N", "Golden Rune [3]"),
+        ERLocationData("CL/RB: Nascent Butterfly x2 - to E", "Nascent Butterfly x2"),
+        ERLocationData("CL/RB: Preserving Boluses x5 - in shack to SW", "Preserving Boluses x5"),
+        ERLocationData("CL/RB: Drawstring Lightning Grease x2 - to W", "Drawstring Lightning Grease x2"),
+        ERLocationData("CL/RB: Golden Rune [1] - graveyard to SW", "Golden Rune [1]"),
+        ERLocationData("CL/RB: Golden Rune [2] - graveyard to SW", "Golden Rune [2]"),
+        ERLocationData("CL/RB: Golden Rune [3] - graveyard to SW", "Golden Rune [3]"),
+        
+        # near DSW grace
+        ERLocationData("CL/DSW: Somber Smithing Stone [5] - to S after onw way drop", "Somber Smithing Stone [5]"),
+        
+        # minor erdtree west
+        ERLocationData("CL/MEW: Somber Smithing Stone [4] - E of MEW, chair way NW of CR grace", "Somber Smithing Stone [4]"),
+        ERLocationData("CL/MEW: Cracked Pot - N of NEW on root", "Cracked Pot"),
+        ERLocationData("CL/MEW: Greenburst Crystal Tear - boss drop", "Greenburst Crystal Tear", boss=True),
+        ERLocationData("CL/MEW: Flame-Shrouding Cracked Tear - boss drop", "Flame-Shrouding Cracked Tear", boss=True),
+        ERLocationData("CL/MEW: Rune Arc - W of MEW high on root", "Rune Arc"),
+        
+        # near CR grace
+        ERLocationData("CL/CR: Explosive Bolt x6 - in camp to N", "Explosive Bolt x6"),
+        ERLocationData("CL/CR: Rune Arc - chest in camp to N", "Rune Arc"),
+        ERLocationData("CL/CR: Whirl, O Flame! - scarab to NW", "Whirl, O Flame!", scarab=True),
+        ERLocationData("CL/CR: Greatsword - in carriage to NW", "Greatsword"),
+        
+        # near CR
+        ERLocationData("CL/CR: Hefty Beast Bone x3 - E of CR", "Hefty Beast Bone x3"),
+        ERLocationData("CL/CR: Sacramental Bud - on giant skull SE of CR", "Sacramental Bud"),
+        
+        # near DT
+        ERLocationData("CL/DT: Somber Smithing Stone [9] - chair circle S of DT", "Somber Smithing Stone [9]"),
+        ERLocationData("CL/DT: Dragonwound Grease - chair circle S of DT", "Dragonwound Grease"),
+        ERLocationData("CL/DT: Rune Arc - chair circle S of DT", "Rune Arc"),
+        ERLocationData("CL/DT: Arteria Leaf x2 - chair circle S of DT", "Arteria Leaf x2"),
         
         # near IMS
         ERLocationData("CL/IMS: Ash of War: Sky Shot - scarab W of IMS", "Ash of War: Sky Shot", scarab=True),
@@ -1088,8 +1257,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/CHS: Golden Rune [5] - graveyard to S", "Golden Rune [5]"),
         ERLocationData("CL/CHS: Larval Tear - enemy drop in graveyard to S", "Larval Tear", drop=True),
         
-        # near CC
-        ERLocationData("CL/CC: Somber Smithing Stone [4] - scarab E of CC", "Somber Smithing Stone [4]", scarab=True),
+        # near CCC
+        ERLocationData("CL/CCC: Somber Smithing Stone [4] - scarab E of CCC", "Somber Smithing Stone [4]", scarab=True),
         
         # near IG grace
         ERLocationData("CL/IG: Mushroom x6 - in tent to N", "Mushroom x6"),
@@ -1126,7 +1295,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/SASB: Note: Gravity's Advantage - Nomadic Merchant to SW", "Note: Gravity's Advantage", shop=True),
         
         # slt
-        ERLocationData("CL/SLT: Eternal Darkness - in cage", "Eternal Darkness"),
+        ERLocationData("CL/(SLT): Eternal Darkness - in cage", "Eternal Darkness"),
         
         # near SG
         ERLocationData("CL/SG: Glass Shard x5 - S of SG", "Glass Shard x5"),
@@ -1187,6 +1356,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/BS: Dragoncrest Shield Talisman - down cliff N of BS, bottom layer", "Dragoncrest Shield Talisman"),
         
         #evergaol
+        ERLocationData("CL/SE: Smithing Stone [5] x3 - breakable statue to N", "Smithing Stone [5] x3", breakable=True),
         ERLocationData("CL/(SE): Battlemage Hugues - Sellia Evergaol", "Battlemage Hugues", boss=True),
     ],
     "Smoldering Church":[
@@ -1251,8 +1421,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(CDC): Greyoll's Roar - Dragon Communion", "Greyoll's Roar", shop=True),
     ],
     "Caelid Catacombs":[
-        ERLocationData("CL/(CC): Miranda Sprout Ashes - illusory wall under stairs", "Miranda Sprout Ashes", hidden=True),
-        ERLocationData("CL/(CC): Kindred of Rot Ashes - boss drop", "Kindred of Rot Ashes", boss=True),
+        ERLocationData("CL/(CCC): Miranda Sprout Ashes - illusory wall under stairs", "Miranda Sprout Ashes", hidden=True),
+        ERLocationData("CL/(CCC): Kindred of Rot Ashes - boss drop", "Kindred of Rot Ashes", boss=True),
     ],
     "Caelid Waypoint Ruins":[
         ERLocationData("CL/(CWR): Great Dragonfly Head x5 - middle of ruins", "Great Dragonfly Head x5"),
@@ -1375,8 +1545,58 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(IMS): Note: Gateway - Isolated Merchant shop", "Note: Gateway", shop=True),
         ERLocationData("CL/(IMS): Note: Hidden Cave - Isolated Merchant shop", "Note: Hidden Cave", shop=True),
     ],
-    
-    "":[],
+    "Divine Tower":[
+        ERLocationData("CL/(DT): Stonesword Key - layer 2, S side", "Stonesword Key"),
+        ERLocationData("CL/(DT): Numen's Rune - layer 3, N side", "Numen's Rune"),
+        ERLocationData("CL/(DT): Golden Rune [12] - after breakable platform", "Golden Rune [12]"),
+        ERLocationData("CL/(DT): Rune Arc - in corridor after shortcut ladder", "Rune Arc"),
+        ERLocationData("CL/(DT): Godskin Apostle Hood - boss drop", "Godskin Apostle Hood", boss=True),
+        ERLocationData("CL/(DT): Godskin Apostle Robe - boss drop", "Godskin Apostle Robe", boss=True),
+        ERLocationData("CL/(DT): Godskin Apostle Bracelets - boss drop", "Godskin Apostle Bracelets", boss=True),
+        ERLocationData("CL/(DT): Godskin Apostle Trousers - boss drop", "Godskin Apostle Trousers", boss=True),
+        ERLocationData("CL/(DT): Godslayer's Greatsword - chest after boss", "Godslayer's Greatsword"),
+    ],
+    "Caelem Ruins":[
+        ERLocationData("CL/(CR): Smoldering Butterfly x5 - enemy 1 drop near underground entrance", "Smoldering Butterfly x5", drop=True),
+        ERLocationData("CL/(CR): Fire Blossom x3 - enemy 1 drop near underground entrance", "Fire Blossom x3", drop=True),
+        ERLocationData("CL/(CR): Smoldering Butterfly x5 - enemy 2 drop SW side", "Smoldering Butterfly x5", drop=True),
+        ERLocationData("CL/(CR): Fire Blossom x3 - enemy 2 drop SW side", "Fire Blossom x3", drop=True),
+        ERLocationData("CL/(CR): Smoldering Butterfly x5 - enemy 3 drop E side", "Smoldering Butterfly x5", drop=True),
+        ERLocationData("CL/(CR): Fire Blossom x3 - enemy 3 drop  E side", "Fire Blossom x3", drop=True),
+        ERLocationData("CL/(CR): Smoldering Butterfly x3 - near middle of ruins", "Smoldering Butterfly x3"),
+        ERLocationData("CL/(CR): Drawstring Fire Grease x3 - in NW ruin", "Drawstring Fire Grease x3"),
+        ERLocationData("CL/(CR): Great Dragonfly Head x3 - in SE ruin", "Great Dragonfly Head x3"),
+        ERLocationData("CL/(CR): Visage Shield - chest after boss", "Visage Shield", boss=True), # boss doesn't drop anything so chest is reward
+    ],
+    "Minor Erdtree Catacombs":[
+        ERLocationData("CL/(MEC): Grave Violet x3 - under elevator, in rot room", "Grave Violet x3"),
+        ERLocationData("CL/(MEC): Golden Rune [4] - under elevator, right exit from rot room, at end", "Golden Rune [4]"),
+        ERLocationData("CL/(MEC): Imp Head (Wolf) - under elevator, right exit from rot room, up ladder, at end", "Imp Head (Wolf)"),
+        ERLocationData("CL/(MEC): Sacramental Bud x2 - upper rot room behind elevator, take long way", "Sacramental Bud x2"),
+        ERLocationData("CL/(MEC): Aeonian Butterfly - rot room behind elevator", "Aeonian Butterfly"),
+        ERLocationData("CL/(MEC): Mad Pumpkin Head Ashes - boss drop", "Mad Pumpkin Head Ashes", boss=True),
+    ],
+    "Deep Siofra Well":[
+        # REQUIRE player coming up from underground
+        ERLocationData("CL/DSW: Stonesword Key - to S", "Stonesword Key"),
+        ERLocationData("CL/DSW: Spiked Palisade Shield - to W follow ravine", "Spiked Palisade Shield"),
+        ERLocationData("CL/CCO: Great-Jar's Arsenal - beat Great Jar's knights", "Great-Jar's Arsenal", npc=True),
+    ],
+    "Forsaken Ruins":[
+        ERLocationData("CL/(FR): Sword of St. Trina - chest underground behind imp statue", "Sword of St. Trina"), # +1
+        ERLocationData("CL/(FR): Smithing Stone [4] - middle of ruins", "Smithing Stone [4]"),
+        ERLocationData("CL/(FR): Golden Rune [5] - in NE ruin", "Golden Rune [5]"),
+    ],
+    "Gale Tunnel":[
+        ERLocationData("CL/(GT): Somber Smithing Stone [2] - in entrance shaft", "Somber Smithing Stone [2]"),
+        ERLocationData("CL/(GT): Golden Rune [5] - first wood platform", "Golden Rune [5]"),
+        ERLocationData("CL/(GT): Cross-Naginata - dead-end to right from first room", "Cross-Naginata"),
+        ERLocationData("CL/(GT): Gold-Pickled Fowl Foot - under first platform behind boxes", "Gold-Pickled Fowl Foot"),
+        ERLocationData("CL/(GT): Grace Mimic x5 - bottom of ladder", "Grace Mimic x5"),
+        ERLocationData("CL/(GT): Large Glintstone Scrap x5 - bottom of ladder", "Large Glintstone Scrap x5"),
+        ERLocationData("CL/(GT): Moonveil - boss drop", "Moonveil", boss=True),
+        ERLocationData("CL/(GT): Dragon Heart - boss drop", "Dragon Heart", boss=True),
+    ],
     "Redmane Castle":[
         ERLocationData("CL/(RC): Smithing Stone [3] - behind entrance tower", "Smithing Stone [3]"),
         ERLocationData("CL/(RC): Smithing Stone [6] - on entrance tower", "Smithing Stone [6]"),
@@ -1405,9 +1625,25 @@ location_tables: Dict[str, List[ERLocationData]] = {
         
         # requires festival
         ERLocationData("CL/(RC): Smithing Stone [6] - in church during festival", "Smithing Stone [6]"),
+        # jerren during festival
+        ERLocationData("CL/(RC): Heartening Cry - talk to Jerren during festival", "Heartening Cry", npc=True),
     ],
-    "sand dune place":[],
-    "the cata after the dune":[],
+    "Waling Dunes":[
+        ERLocationData("CL/(WD): Radahn's Spear x4 - in desert, N of RC", "Radahn's Spear x4"),
+        ERLocationData("CL/(WD): Radahn's Spear x6 - in desert, N of RC", "Radahn's Spear x6"),
+        ERLocationData("CL/(WD): Radahn's Spear x10 - in desert, N of RC", "Radahn's Spear x10"),
+        ERLocationData("CL/(WD): Radahn's Great Rune - mainboss drop", "Radahn's Great Rune", mainboss=True),
+        ERLocationData("CL/(WD): Remembrance of the Starscourge - mainboss drop", "Remembrance of the Starscourge", mainboss=True),
+    ],
+    "War-Dead Catacombs":[
+        ERLocationData("CL/(WDC): Magic Grease x3 - middle of fight room", "Magic Grease x3"),
+        ERLocationData("CL/(WDC): Collapsing Stars - lower fight room W side", "Collapsing Stars"),
+        ERLocationData("CL/(WDC): Silver-Pickled Fowl Foot - lower fight room SE side", "Silver-Pickled Fowl Foot"),
+        ERLocationData("CL/(WDC): Golden Rune [6] - lower fight room NE from middle", "Golden Rune [6]"),
+        ERLocationData("CL/(WDC): Radahn Soldier Ashes - small rot room near lever", "Radahn Soldier Ashes"),
+        ERLocationData("CL/(WDC): Redmane Knight Ogha - boss drop", "Redmane Knight Ogha", boss=True),
+        ERLocationData("CL/(WDC): Golden Seed - boss drop", "Golden Seed", boss=True),
+    ],
     
     # "":[],
     # ERLocationData(":  - ", ""),
@@ -1540,8 +1776,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
     	ERLocationData("EBH/HR: Traveler's Clothes - S of HR by the giant rot flower", "Traveler's Clothes"),
     	ERLocationData("EBH/HR: Traveler's Manchettes - S of HR by the giant rot flower", "Traveler's Manchettes"),
     	ERLocationData("EBH/HR: Traveler's Boots - S of HR by the giant rot flower", "Traveler's Boots"),
-    	ERLocationData("EBH/HR: Malenia's Great Rune - boss drop", "Malenia's Great Rune", mainboss=True),
-    	ERLocationData("EBH/HR: Remembrance of the Rot Goddess - boss drop", "Remembrance of the Rot Goddess", mainboss=True),
+    	ERLocationData("EBH/HR: Malenia's Great Rune - mainboss drop", "Malenia's Great Rune", mainboss=True),
+    	ERLocationData("EBH/HR: Remembrance of the Rot Goddess - mainboss drop", "Remembrance of the Rot Goddess", mainboss=True),
         # Millicent quest end
     	ERLocationData("EBH/HR: Miquella's Needle - use needle on flower in boss arena after Millicent quest", "Miquella's Needle", missable=True, npc=True),
     	ERLocationData("EBH/HR: Somber Ancient Dragon Smithing Stone - use needle on flower in boss arena after Millicent quest", "Somber Ancient Dragon Smithing Stone", missable=True, npc=True),
@@ -1576,6 +1812,7 @@ location_name_groups: Dict[str, Set[str]] = {
     "Friendly NPC Rewards": set(),
     "Scarab": set(),
     "Rise Puzzle": set(),
+    "Breakable": set(),
     "Hidden": set(),
     "Missable": set(),
 }
@@ -1593,6 +1830,7 @@ location_descriptions = {
                             "non-violent interaction.",
     "Scarab": "Scarab locations",
     "Rise Puzzle": "Locations that require a rise puzzle to be solved",
+    "Breakable": "Locations that require a statue to be broken",
     "Hidden": "Locations that are particularly difficult to find, such as behind illusory " + \
               "walls, down hidden drops, and so on. Does not include large locations.",
     "Missable": "Locations that can be missed in vanilla.",

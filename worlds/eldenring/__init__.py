@@ -98,15 +98,15 @@ class EldenRing(World):
         create_connection("Limgrave", "Highroad Cave")
         create_connection("Limgrave", "Deathtouched Catacombs")
         create_connection("Limgrave", "Warmaster's Shack")
-
         create_connection("Limgrave", "Roundtable Hold")
         
         create_connection("Dragon-Burnt Ruins", "Sellia Crystal Tunnel")
         create_connection("Coastal Cave", "Church of Dragon Communion")
-
-        #create_connection("Limgrave", "Stormveil Castle")
-        #create_connection("Limgrave", "Siofra River")
         
+        if self.options.late_dlc == False: # for tp medal
+            create_connection("Limgrave", "Mohgwyn Dynasty Mausoleum")
+            
+        #create_connection("Limgrave", "Stormveil Castle")
         
         create_connection("Limgrave", "Bridge of Sacrifice")
         # Weeping Peninsula
@@ -118,11 +118,13 @@ class EldenRing(World):
         create_connection("Weeping Peninsula", "Isolated Merchant's Shack")
         create_connection("Weeping Peninsula", "Morne Tunnel")
         create_connection("Weeping Peninsula", "Earthbore Cave")
-
         create_connection("Weeping Peninsula", "Castle Morne")
         create_connection("Weeping Peninsula", "Divine Bridge") # in leyndell
         
-
+        create_connection("Limgrave", "Siofra River")
+        # Siofra
+        create_connection("Siofra River", "Deep Siofra Well") # caelid location
+        
         create_connection("Limgrave", "Liurnia of The Lakes")
         #create_connection("Stormveil Castle", "Liurnia of The Lakes")
         # Liurnia of The Lakes
@@ -146,8 +148,15 @@ class EldenRing(World):
         create_connection("Caelid", "Sellia Crystal Tunnel")
         create_connection("Caelid", "Abandoned Cave")
         create_connection("Caelid", "Isolated Merchant's Shack")
-        
+        create_connection("Caelid", "Divine Tower")
+        create_connection("Caelid", "Caelem Ruins")
+        create_connection("Caelid", "Minor Erdtree Catacombs")
+        create_connection("Caelid", "Forsaken Ruins")
+        create_connection("Caelid", "Gale Tunnel")
         create_connection("Caelid", "Redmane Castle")
+        
+        create_connection("Redmane Castle", "Waling Dunes")
+        create_connection("Waling Dunes", "War-Dead Catacombs")
 
         # Leyndell Royal
         create_connection("Divine Bridge", "Leyndell, Royal Capital")
@@ -386,6 +395,7 @@ class EldenRing(World):
         self._add_shop_rules()
         self._add_npc_rules()
         #self._add_remembrance_rules() # need to do the locations first
+        #self._add_equipment_of_champions_rules() # need to do the locations first
 
         # World Logic
         if self.options.world_logic == "region_lock": 
@@ -404,8 +414,12 @@ class EldenRing(World):
                                 lambda state: state.has("\"Redmane\" Painting", self.player))
         
         # festival // altus grace touch or ranni quest stuff
-        self._add_location_rule("CL/(RC): Smithing Stone [6] - in church during festival", 
-                                lambda state: state.can_reach("Altus Plateau"))
+        self._add_location_rule([
+            "CL/(RC): Smithing Stone [6] - in church during festival", 
+            "CL/(RC): Heartening Cry - talk to Jerren during festival",
+        ], lambda state: state.can_reach("Altus Plateau"))
+        self._add_entrance_rule("Waling Dunes", lambda state: state.can_reach("Altus Plateau"))
+        
         
         
         # ashen capital only after getting farum boss Remembrance
@@ -417,14 +431,16 @@ class EldenRing(World):
                     lambda state: state.has("Rold Medallion", self.player)
                     and state.has("Haligtree Secret Medallion (Left)", self.player)
                     and state.has("Haligtree Secret Medallion (Right)", self.player)
-                    and self._can_get(state, "MP: Mohg Remembrance - boss drop")
-                    and self._can_get(state, "CL/dune place: Radahn Remembrance - boss drop"))
+                    and self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
+                    and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
             else:
                 # makes Pureblood Knight's Medal progression only when late dlc is off, idk if this works
                 item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
+                self._add_entrance_rule("Mohgwyn Dynasty Mausoleum", # can get to normal way or funny medal
+                    lambda state: state.has("Pureblood Knight's Medal", self.player) or state.can_reach("Mohgwyn Palace"))
                 self._add_entrance_rule("Gravesite Plain", 
-                    lambda state: self._can_get(state, "MP: Mohg Remembrance - boss drop")
-                    and self._can_get(state, "CL/dune place: Radahn Remembrance - boss drop"))
+                    lambda state: self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
+                    and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
       
         
         """if self.options.ending_condition == 0:
@@ -466,15 +482,30 @@ class EldenRing(World):
         # stormveil +2
         #currentKey += 2
         
+        # siofra +2
+        currentKey += 2
+        # Deep siofra well rules for leaving siofra to caelid
+        self._add_entrance_rule("Deep Siofra Well",
+            lambda state: self._has_enough_keys(state, currentKey) and state.can_reach("Caelid"))
+        
+        # liurnia +4
+        #currentKey += 4
+        
         # caelid +3
         currentKey += 3
         self._add_entrance_rule("Gaol Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
+        self._add_location_rule("CL/(FR): Sword of St. Trina - chest underground behind imp statue", 
+                                lambda state: self._has_enough_keys(state, currentKey)) # 1
         
+        # nokron +1
+        #currentKey += 1
         
         # haligtree +3
         currentKey += 3
-        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", lambda state: self._has_enough_keys(state, currentKey)) # 2
+        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", 
+                                lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", 
+                                lambda state: self._has_enough_keys(state, currentKey)) # 2
         
     def _dragon_communion_rules(self) -> None:
         """Rules for how dragon hearts are used"""
@@ -560,7 +591,11 @@ class EldenRing(World):
         assuming the player _doesn't_ so they aren't forced to start killing allies to advance the
         quest.
         """
-        # D
+        # MARK: Enia
+        self._add_location_rule([ "RH: Talisman Pouch - Enia 2 great runes",
+        ], lambda state: ( self._has_enough_great_runes(state, 2)))
+        
+        # MARK: D
         self._add_location_rule([
             "RH: Litany of Proper Death - D shop",
             "RH: Order's Blade - D shop",
@@ -623,112 +658,112 @@ class EldenRing(World):
             and state.has("Unalloyed Gold Needle (Milicent)", self.player)
         ))    
             
-    def _add_remembrance_rules(self) -> None: # done?
+    def _add_remembrance_rules(self) -> None:
         """Adds rules for items obtainable for trading remembrances."""
 
         remembrances = [
             (
-                "Remembrance of the Grafted", "Godrick",
+                "Remembrance of the Grafted",
                 ["Axe of Godrick", "Grafted Dragon"]
             ),
             (
-                "Remembrance of the Full Moon Queen", "Rennala", 
+                "Remembrance of the Full Moon Queen",
                 ["Carian Regal Scepter", "Rennala's Full Moon"]
             ),
             (
-                "Remembrance of the Starscourge", "Radahn",
+                "Remembrance of the Starscourge",
                 ["Starscourge Greatsword", "Lion Greatbow"]
             ),
             (
-                "Remembrance of the Regal Ancestor", "Regal Ancestor Spirit",
+                "Remembrance of the Regal Ancestor",
                 ["Winged Greathorn", "Ancestral Spirit's Horn"]
             ),
             (
-                "Remembrance of the Omen King", "Morgott",
+                "Remembrance of the Omen King",
                 ["Morgott's Cursed Sword", "Regal Omen Bairn"]
             ),
             (
-                "Remembrance of the Naturalborn", "Astel",
+                "Remembrance of the Naturalborn",
                 ["Waves of Darkness", "Bastard's Stars"]
             ),
             (
-                "Remembrance of the Blasphemous", "Rykard",
+                "Remembrance of the Blasphemous",
                 ["Rykard's Rancor", "Blasphemous Blade"]
             ),
             (
-                "Remembrance of the Lichdragon", "Lichdragon",
+                "Remembrance of the Lichdragon",
                 ["Fortissax's Lightning Spear", "Death Lightning"]
             ),
             (
-                "Remembrance of the Fire Giant", "Fire Giant",
+                "Remembrance of the Fire Giant",
                 ["Giant's Red Braid", "Burn, O Flame!"]
             ),
             (
-                "Remembrance of the Blood Lord", "Mohg",
+                "Remembrance of the Blood Lord",
                 ["Mohgwyn's Sacred Spear", "Bloodboon"]
             ),
             (
-                "Remembrance of the Black Blade", "Maliketh",
+                "Remembrance of the Black Blade",
                 ["Maliketh's Black Blade", "Black Blade"]
             ),
             (
-                "Remembrance of the Dragonlord", "Placidusax",
+                "Remembrance of the Dragonlord",
                 ["Dragon King's Cragblade", "Placidusax's Ruin"]
             ),
             (
-                "Remembrance of Hoarah Loux", "Hoarah Loux",
+                "Remembrance of Hoarah Loux",
                 ["Axe of Godfrey", "Hoarah Loux's Earthshaker"]
             ),
             (
-                "Remembrance of the Rot Goddess", "Malenia",
+                "Remembrance of the Rot Goddess",
                 ["Hand of Malenia", "Scarlet Aeonia"]
             ),
             (
-                "Elden Remembrance", "Elden Beast",
+                "Elden Remembrance",
                 ["Marika's Hammer", "Sacred Relic Sword"]
             ),
         ]
 
         dlc_remembrances = [
             (
-                "Remembrance of the Dancing Lion", "Dancing Lion",
+                "Remembrance of the Dancing Lion",
                 ["Enraged Divine Beast", "Divine Beast Frost Stomp"]
             ),
             (
-                "Remembrance of the Twin Moon Knight", "Rellana",
+                "Remembrance of the Twin Moon Knight",
                 ["Rellana's Twin Blades", "Rellana's Twin Moons"]
             ),
             (
-                "Remembrance of Putrescence", "Putrescent Knight",
+                "Remembrance of Putrescence",
                 ["Putrescence Cleaver", "Vortex of Putrescence"]
             ),
             (
-                "Remembrance of the Wild Boar Rider", "Commander Gaius", 
+                "Remembrance of the Wild Boar Rider",
                 ["Sword Lance", "Blades of Stone"]
             ),
             (
-                "Remembrance of the Shadow Sunflower", "Scadutree Avatar",
+                "Remembrance of the Shadow Sunflower",
                 ["Shadow Sunflower Blossom", "Land of Shadow"]
             ),
             (
-                "Remembrance of the Impaler", "Messmer",
+                "Remembrance of the Impaler",
                 ["Spear of the Impaler", "Messmer's Orb"]
             ),
             (
-                "Remembrance of the Saint of the Bud", "Romina",
+                "Remembrance of the Saint of the Bud",
                 ["Poleblade of the Bud", "Rotten Butterflies"]
             ),
             (
-                "Remembrance of the Mother of Fingers", "Metyr",
+                "Remembrance of the Mother of Fingers",
                 ["Staff of the Great Beyond", "Gazing Finger"]
             ),
             (
-                "Remembrance of the Lord of Frenzied Flame", "Midra",
+                "Remembrance of the Lord of Frenzied Flame",
                 ["Greatsword of Damnation", "Midra's Flame of Frenzy"]
             ),
             (
-                "Remembrance of a God and a Lord", "Consort Radahn",
-                ["Greatsword of Radahn (Lord) + (Light)", "Light of Miquella"]
+                "Remembrance of a God and a Lord",
+                ["Greatsword of Radahn (Lord)", "Greatsword of Radahn (Light)", "Light of Miquella"]
             ),
         ]
             
@@ -739,11 +774,158 @@ class EldenRing(World):
             self._add_location_rule("GADC: Bayle's Tyranny - Alter for Heart of Bayle", 
                                     lambda state: (state.has("Heart of Bayle", self.player) and state.can_reach("Grand Altar of Dragon Communion")))
 
-        for (remembrance, remembrance_name, items) in remembrances:
+        for (remembrance, items) in remembrances:
             self._add_location_rule([
-                f"RH: {item} - Enia for {remembrance_name}" for item in items
+                f"RH: {item} - Enia for {remembrance}" for item in items
             ], lambda state, r=remembrance: (state.has(r, self.player) and self._has_enough_great_runes(state, 1)
             ))
+    
+    def _add_equipment_of_champions_rules(self) -> None: # VERY WIP NEEDS LOCATIONS CHECKS
+        """Adds rules for items obtainable from equipment of champions."""
+
+        equipments = [
+            (
+                "Rennala, Queen of the Full Moon", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Queen's Crescent Crown", 
+                    "Queen's Robe",
+                    "Queen's Leggings", 
+                    "Queen's Bracelets"
+                ]
+            ),
+            (
+                "Malenia Blade of Miquella", # boss
+                "EBH/HR: Remembrance of the Rot Goddess - mainboss drop", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Malenia's Winged Helm", 
+                    "Malenia's Armor",
+                    "Malenia's Gauntlet", 
+                    "Malenia's Greaves"
+                ]
+            ),
+            (
+                "Godfrey, First Elden Lord", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Elden Lord Crown", 
+                    "Elden Lord Armor",
+                    "Elden Lord Bracers", 
+                    "Elden Lord Greaves"
+                ]
+            ),
+            (
+                "Elemer of the Briar", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Briar Helm", 
+                    "Briar Armor",
+                    "Briar Gauntlets", 
+                    "Briar Greaves"
+                ]
+            ),
+            (
+                "Loretta, Knight of the Haligtree", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Royal Knight Helm", 
+                    "Royal Knight Armor",
+                    "Royal Knight Gauntlet", 
+                    "Royal Knight Greaves"
+                ]
+            ),
+            (
+                "Maliketh, the Black Blade", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Maliketh's Helm", 
+                    "Maliketh's Armor",
+                    "Maliketh's Gauntlets", 
+                    "Maliketh's Greaves"
+                ]
+            ),
+            (
+                "Commander Niall", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Veteran's Helm", 
+                    "Veteran's Armor",
+                    "Veteran's Gauntlets", 
+                    "Veteran's Greaves"
+                ]
+            ),
+            (
+                "Starscourge Radahn", # boss
+                "CL/(WD): Remembrance of the Starscourge - mainboss drop", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Radahn's Redmane Helm", 
+                    "Radahn's Lion Armor",
+                    "Radahn's Gauntlets", 
+                    "Radahn's Greaves"
+                ]
+            ),
+            (
+                "Morgott, The Omen King", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                ["Fell Omen Cloak"]# item
+            ),
+            (
+                "Mohg, Lord of Blood", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                ["Lord of Blood's Robe"]# item
+            ),
+        ]
+
+        dlc_equipments = [
+            (
+                "Messmer the Impaler", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Messmer's Helm", 
+                    "Messmer's Armor",
+                    "Messmer's Gauntlets", 
+                    "Messmer's Greaves"
+                ]
+            ),
+            (
+                "Rellana", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Rellana's Helm", 
+                    "Rellana's Armor",
+                    "Rellana's Gloves", 
+                    "Rellana's Greaves"
+                ]
+            ),
+            (
+                "Commander Gaius", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Gaius's Helm", 
+                    "Gaius's Armor",
+                    "Gaius's Gauntlets", 
+                    "Gaius's Greaves"
+                ]
+            ),
+            (
+                "Promised Consort", # boss
+                "", # a drop from boss, so we can do 'can get' check
+                [   # items
+                    "Young Lion's Helm", 
+                    "Young Lion's Armor",
+                    "Young Lion's Gauntlets", 
+                    "Young Lion's Greaves"
+                ]
+            ),
+        ]
+            
+        if self.options.enable_dlc:
+            equipments += dlc_equipments
+
+        for (boss, boss_location, items) in equipments:
+            self._add_location_rule([
+                f"RH: {item} - Enia defeat {boss}" for item in items
+            ], lambda state: self._can_get(boss_location, self.player) and self._has_enough_great_runes(state, 1))
             
     def _add_location_rule(self, location: Union[str, List[str]], rule: Union[CollectionRule, str]) -> None:
         """Sets a rule for the given location if it that location is randomized.

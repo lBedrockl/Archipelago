@@ -13,6 +13,8 @@ Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
 need to do dragon communion dragon defeat rules, shop is done
 
+once all checks are done ALL npc / quests need to be checked if they are missable via killing them
+
 
 
 
