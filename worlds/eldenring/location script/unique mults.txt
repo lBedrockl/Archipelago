@@ -22,7 +22,7 @@ Fire Arrow  x12  x10  x5  x15
 Smithing Stone [1]  x2  x4  x5  x3  x6
 Lump of Flesh  x3  x2  x4  x5
 Rainbow Stone  x5  x4
-Poisonbloom  x3  x4  x2  x5
+Poisonbloom  x3  x4  x2  x5  x10
 Pickled Turtle Neck  x3
 Magic Grease  x3  x2
 Cave Moss  x10
@@ -31,7 +31,7 @@ Miranda Powder  x10  x6
 Warming Stone  x5  x3  x4  x2
 Black-Key Bolt  x20  x10
 Gravel Stone  x2  x3  x5  x8  x10
-/Fan Daggers  x8  x5  x4  x6
+Fan Daggers  x8  x5  x4  x6
 Gold Firefly  x3  x2
 Lordsworn's Bolt  x10
 Lightningproof Dried Liver  x2
@@ -40,7 +40,7 @@ Beast Blood  x3  x2
 Nascent Butterfly  x3  x5  x2
 Soporific Grease  x2  x3
 Golden Arrow  x15  x10  x14  x5  x6
-Poisonbone Dart  x8  x5  x6  x10
+Poisonbone Dart  x8  x5  x6  x10  x20
 Holy Grease  x3  x6  x5  x2
 Somber Smithing Stone [5]  x3
 Rune Arc  x5  x3
@@ -135,7 +135,7 @@ Freezing Grease  x5  x6  x4  x2  x3
 Golden Rune [1]  x2  x3  x6
 Glass Shard  x3  x5  x2
 Glowstone  x5  x3  x4  x2
-Poison Grease  x2  x3
+Poison Grease  x2  x3  x5
 Cuckoo Glintstone  x5  x10  x3  x4  x8
 Preserving Boluses  x3  x5  x2
 Miquella's Lily  x3
@@ -147,11 +147,11 @@ Large Glintstone Scrap  x2  x5  x3
 Glintstone Scrap  x3  x6
 Explosive Stone Clump  x3  x6
 Holyproof Dried Liver  x2
-Frenzyflame Stone  x3
+Frenzyflame Stone  x5
 Eye of Yelough  x5  x3
 Rainbow Stone Arrow (Fletched)  x10
 Golden Centipede  x2
-Poisoned Stone  x3  x8
+Poisoned Stone  x3  x8  x10
 Dragonbolt Grease  x2
 Yellow Fulgurbloom  x6  x3
 Frozen Maggot  x6  x4  x8
@@ -186,8 +186,8 @@ Drawstring Lightning Grease  x2
 Explosive Bolt  x6
 Rimed Rowa  x8
 Lost Ashes of War  x2
-Drawstring Poison Grease  x3
-Toxic Mushroom  x5
+Drawstring Poison Grease  x3  x5
+Toxic Mushroom  x5  x10
 Radahn's Spear  x4  x6  x10
 Formic Rock  x2
 Spiritgrave Stone  x2  x3
@@ -195,6 +195,9 @@ Spirit Calculus  x3
 Dappled White Cured Meat  x2
 Immunizing Cured Meat  x3
 Scarlet Bud  x6
+Poisoned Stone Clump  x5
+Altus Bloom  x20
+Toxic Mossling  x5  x8
 Spellproof Pickled Liver  x2
 Holyproof Pickled Liver  x2
 Rauh Burrow  x5  x4
@@ -204,7 +207,6 @@ Ghostflame Bloom  x4
 Drawstring Royal Magic Grease  x3
 Royal Magic Grease  x3
 Grave Cricket  x6
-Toxic Mossling  x8
 Red Fulgurbloom  x3  x8
 Festive Grease  x2
 Broken Rune  x5  x4

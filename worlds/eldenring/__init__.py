@@ -546,12 +546,12 @@ class EldenRing(World):
     
     def _has_enough_keys(self, state: CollectionState, req_keys: int) -> bool:
         """Returns whether the given state has enough keys."""
-        total_keys = state.count("Stonesword Key", self.player) + (state.count("Stonesword Key x3", self.player) * 3)
+        total_keys = state.count("Stonesword Key", self.player) + (state.count("Stonesword Key x3", self.player) * 3) + (state.count("Stonesword Key x5", self.player) * 5)
         return total_keys >= req_keys
     
     def _has_enough_hearts(self, state: CollectionState, req_hearts: int) -> bool:
         """Returns whether the given state has enough keys."""
-        total_hearts = state.count("Dragon Heart", self.player) + (state.count("Dragon Heart x5", self.player) * 5)
+        total_hearts = state.count("Dragon Heart", self.player) + (state.count("Dragon Heart x3", self.player) * 3) + (state.count("Dragon Heart x5", self.player) * 5)
         return total_hearts >= req_hearts
     
     def _add_shop_rules(self) -> None: # needs bell bearing rules for husks if the items aren't inf
