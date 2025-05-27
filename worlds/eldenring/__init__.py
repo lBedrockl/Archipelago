@@ -155,8 +155,8 @@ class EldenRing(World):
         create_connection("Caelid", "Gale Tunnel")
         create_connection("Caelid", "Redmane Castle")
         
-        create_connection("Redmane Castle", "Waling Dunes")
-        create_connection("Waling Dunes", "War-Dead Catacombs")
+        create_connection("Redmane Castle", "Wailing Dunes")
+        create_connection("Wailing Dunes", "War-Dead Catacombs")
 
         # Leyndell Royal
         create_connection("Divine Bridge", "Leyndell, Royal Capital")
@@ -418,7 +418,7 @@ class EldenRing(World):
             "CL/(RC): Smithing Stone [6] - in church during festival", 
             "CL/(RC): Heartening Cry - talk to Jerren during festival",
         ], lambda state: state.can_reach("Altus Plateau"))
-        self._add_entrance_rule("Waling Dunes", lambda state: state.can_reach("Altus Plateau"))
+        self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
         
         
         

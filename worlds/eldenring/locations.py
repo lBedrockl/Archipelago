@@ -82,7 +82,7 @@ region_order = [
     "Forsaken Ruins",
     "Gale Tunnel",
     "Redmane Castle",
-    "Waling Dunes",
+    "Wailing Dunes",
     "War-Dead Catacombs",
     
     # Altus
@@ -552,7 +552,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(CE): Golden Rune [2] - out front", "Golden Rune [2]"),
         # Kalé shop
         ERLocationData("LG/(CE): Finger Snap - kill Kalé or Blaidd quest", "Finger Snap", npc=True), #just hear howl, talk to kale get finger, finger at howl, blaidd appear
-        #ERLocationData("LG/(CE): Throwing Dagger - Kalé Shop", "Throwing Dagger", shop=True),
         ERLocationData("LG/(CE): Telescope - Kalé Shop", "Telescope", shop=True),
         ERLocationData("LG/(CE): Furlcalling Finger Remedy - Kalé Shop", "Furlcalling Finger Remedy", shop=True),
         ERLocationData("LG/(CE): Cracked Pot x3 - Kalé Shop", "Cracked Pot x3", shop=True),
@@ -560,8 +559,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(CE): Nomadic Warrior's Cookbook [1] - Kalé Shop", "Nomadic Warrior's Cookbook [1]", shop=True),
         ERLocationData("LG/(CE): Nomadic Warrior's Cookbook [2] - Kalé Shop", "Nomadic Warrior's Cookbook [2]", shop=True),
         ERLocationData("LG/(CE): Missionary's Cookbook [1] - Kalé Shop", "Missionary's Cookbook [1]", shop=True),
-        #ERLocationData("LG/(CE): Arrow - Kalé Shop", "Arrow", shop=True),
-        #ERLocationData("LG/(CE): Bolt - Kalé Shop", "Bolt", shop=True),
         ERLocationData("LG/(CE): Torch - Kalé Shop", "Torch", shop=True),
         ERLocationData("LG/(CE): Large Leather Shield - Kalé Shop", "Large Leather Shield", shop=True),
         ERLocationData("LG/(CE): Chain Coif - Kalé Shop", "Chain Coif", shop=True),
@@ -1628,7 +1625,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # jerren during festival
         ERLocationData("CL/(RC): Heartening Cry - talk to Jerren during festival", "Heartening Cry", npc=True),
     ],
-    "Waling Dunes":[
+    "Wailing Dunes":[
         ERLocationData("CL/(WD): Radahn's Spear x4 - in desert, N of RC", "Radahn's Spear x4"),
         ERLocationData("CL/(WD): Radahn's Spear x6 - in desert, N of RC", "Radahn's Spear x6"),
         ERLocationData("CL/(WD): Radahn's Spear x10 - in desert, N of RC", "Radahn's Spear x10"),
@@ -1784,8 +1781,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
 
     # MARK: DLC Locations
-    "Gravesite Plain":[
-    ],
+    "Gravesite Plain":[],
 }
 
 for i, region in enumerate(region_order + region_order_dlc):
