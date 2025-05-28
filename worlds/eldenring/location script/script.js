@@ -13,48 +13,55 @@ fs.readFile('./itemslots.yaml', 'utf8', function (e, data) {
         //parsing for items
         key.DebugText.forEach(item => {
             var split = item.split(' -')
-            if(!split[0].includes('Unique location') && !split[0].startsWith("By ") && !split[0].startsWith("Shop ")){
-                var itemInfo = [
-                    split[0], // item
-                    key.Key, // key
-                    [], // tags
-                    '' // desc
-                ]
-                if(key.Tags != `` && key.Tags != 'aaaaaaaaaaaaaaaaa') itemInfo[2] = key.Tags.split(' ')
-                if(key.Text && key.Text != "aaaaaaaaaaaaaaaaa") itemInfo[3] = key.Text
-                //shop tag
-                if(split[1] && split[1].includes('shop')) {
-                    if(!itemInfo[2]) itemInfo[2] = []
-                    itemInfo[2].push('shop')
-                }
+            if(key.QuestReqs && key.QuestReqs.includes('bellbearing') || split[0].startsWith("Shop ") || split[0].startsWith("By ") 
+                || split[0].includes('Unique location')) return // remove filler text and bell bearings
 
-                // multiples
-                var found = false
-                split.forEach(x => {
-                    if(x.includes("x") && !isNaN(x.at(x.lastIndexOf("x") - 1)) && !found
-                        && !itemInfo[2].includes('norandom') && key.Area != 'unknown'){ //checks for things not on the output list
-                        var mult = ''
-                        if(x.at(x.lastIndexOf("x") - 2) != " "){
-                            mult = ' x' + x.slice(x.lastIndexOf("x") -2, x.lastIndexOf("x"))
-                        }else if(x.at(x.lastIndexOf("x") - 1) != "1"){
-                            mult = ' x' + x.slice(x.lastIndexOf("x") -1, x.lastIndexOf("x"))
-                        }
-                        if(mult != ''){ //checks all x's if they have a number to left if yes then add it to item and multlist
-                            itemInfo[0] += mult
-                            if(!multList[split[0]]) multList[split[0]] = []
-                            if(!multList[split[0]].includes(mult)) multList[split[0]].push(mult)
-                            found = true
-                        }
-                    }
-                })
-                
-                itemList[key.Area].push(itemInfo)
+            
+            var itemInfo = [
+                split[0], // item
+                key.Key, // key
+                [], // tags
+                '' // desc
+            ]
+            if(key.Tags != `` && key.Tags != 'aaaaaaaaaaaaaaaaa') itemInfo[2] = key.Tags.split(' ')
+            if(key.Text && key.Text != "aaaaaaaaaaaaaaaaa") itemInfo[3] = key.Text
+            // shop tag
+            if(split[1] && split[1].includes('shop')) {
+                if(!itemInfo[2]) itemInfo[2] = []
+                itemInfo[2].push('shop')
             }
+            // scarab tag
+            if(split[1] && split[1].includes('Small Scarab')) {
+                if(!itemInfo[2]) itemInfo[2] = []
+                itemInfo[2].push('scarab')
+            }
+
+            // multiples
+            var found = false
+            split.forEach(x => {
+                if(x.includes("x") && !isNaN(x.at(x.lastIndexOf("x") - 1)) && !found
+                    && !itemInfo[2].includes('norandom') && key.Area != 'unknown'){ //checks for things not on the output list
+                    var mult = ''
+                    if(x.at(x.lastIndexOf("x") - 2) != " "){
+                        mult = ' x' + x.slice(x.lastIndexOf("x") -2, x.lastIndexOf("x"))
+                    }else if(x.at(x.lastIndexOf("x") - 1) != "1"){
+                        mult = ' x' + x.slice(x.lastIndexOf("x") -1, x.lastIndexOf("x"))
+                    }
+                    if(mult != ''){ //checks all x's if they have a number to left if yes then add it to item and multlist
+                        itemInfo[0] += mult
+                        if(!multList[split[0]]) multList[split[0]] = []
+                        if(!multList[split[0]].includes(mult)) multList[split[0]].push(mult)
+                        found = true
+                    }
+                }
+            })
+            
+            itemList[key.Area].push(itemInfo)
         })
     });
     // for items
     Object.keys(itemList).forEach(area => {
-        if(area != 'unknown' && !area.includes('tower_inner') && area != 'graveyard'){ //areas with no items
+        if(area != 'unknown' && !area.includes('tower_inner') && area != 'graveyard' && area != 'chapel_start'){ //areas with no items
             output += `"${area}":[\n`
             itemList[area].forEach(item => {
                 if(!item[2].includes('norandom')){ //removes items with norandom tag

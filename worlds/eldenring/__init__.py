@@ -445,15 +445,15 @@ class EldenRing(World):
         
         """if self.options.ending_condition == 0:
             if self.options.enable_dlc:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance - boss drop")
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance - mainboss drop")
             else:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance - boss drop")
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance - mainboss drop")
         elif self.options.ending_condition == 1:
-            # all remembrances
+            # all remembrances # need each remembrances check from each boss
             if self.options.enable_dlc:
             else:
         else:
-            # all bosses
+            # all bosses # need one check from each boss :skull:
             if self.options.enable_dlc:
             else:"""
             
@@ -531,7 +531,11 @@ class EldenRing(World):
         self._add_location_rule("CL/(CDC): Theodorix's Magma - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
         self._add_location_rule("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
         self._add_location_rule("CL/(CDC): Borealis's Mist - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-
+        
+        if(self.options.enable_dlc): # dlc
+            currentHeart += 3
+            self._add_location_rule("JP/GADC: Ghostflame Breath - Grand Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 3
+    
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""
         runeCount = 0
@@ -769,10 +773,10 @@ class EldenRing(World):
             
         if self.options.enable_dlc:
             remembrances += dlc_remembrances
-            self._add_location_rule("GADC: Bayle's Flame Lightning - Alter for Heart of Bayle", 
-                                    lambda state: (state.has("Heart of Bayle", self.player) and state.can_reach("Grand Altar of Dragon Communion")))
-            self._add_location_rule("GADC: Bayle's Tyranny - Alter for Heart of Bayle", 
-                                    lambda state: (state.has("Heart of Bayle", self.player) and state.can_reach("Grand Altar of Dragon Communion")))
+            self._add_location_rule("JP/GADC: Bayle's Flame Lightning - Heart of Bayle", 
+                                    lambda state: (state.has("Heart of Bayle", self.player) and state.can_reach("Jagged Peak")))
+            self._add_location_rule("JP/GADC: Bayle's Tyranny - Heart of Bayle", 
+                                    lambda state: (state.has("Heart of Bayle", self.player) and state.can_reach("Jagged Peak")))
 
         for (remembrance, items) in remembrances:
             self._add_location_rule([
