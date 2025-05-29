@@ -443,12 +443,12 @@ class EldenRing(World):
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
       
         
-        """if self.options.ending_condition == 0:
+        if self.options.ending_condition == 0:
             if self.options.enable_dlc:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "LAC: Elden Beast Remembrance - mainboss drop")
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")
             else:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Consort Radahn Remembrance - mainboss drop")
-        elif self.options.ending_condition == 1:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Remembrance of a God and a Lord - mainboss drop")
+        """elif self.options.ending_condition == 1:
             # all remembrances # need each remembrances check from each boss
             if self.options.enable_dlc:
             else:
@@ -596,7 +596,7 @@ class EldenRing(World):
         quest.
         """
         # MARK: Enia
-        self._add_location_rule([ "RH: Talisman Pouch - Enia 2 great runes",
+        self._add_location_rule([ "RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss",
         ], lambda state: ( self._has_enough_great_runes(state, 2)))
         
         # MARK: D
@@ -688,7 +688,7 @@ class EldenRing(World):
             ),
             (
                 "Remembrance of the Naturalborn",
-                ["Waves of Darkness", "Bastard's Stars"]
+                ["Ash of War: Waves of Darkness", "Bastard's Stars"]
             ),
             (
                 "Remembrance of the Blasphemous",
@@ -716,7 +716,7 @@ class EldenRing(World):
             ),
             (
                 "Remembrance of Hoarah Loux",
-                ["Axe of Godfrey", "Hoarah Loux's Earthshaker"]
+                ["Axe of Godfrey", "Ash of War: Hoarah Loux's Earthshaker"]
             ),
             (
                 "Remembrance of the Rot Goddess",
@@ -731,7 +731,7 @@ class EldenRing(World):
         dlc_remembrances = [
             (
                 "Remembrance of the Dancing Lion",
-                ["Enraged Divine Beast", "Divine Beast Frost Stomp"]
+                ["Enraged Divine Beast", "Ash of War: Divine Beast Frost Stomp"]
             ),
             (
                 "Remembrance of the Twin Moon Knight",

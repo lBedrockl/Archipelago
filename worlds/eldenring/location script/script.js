@@ -36,6 +36,11 @@ fs.readFile('./itemslots.yaml', 'utf8', function (e, data) {
                 itemInfo[2].push('scarab')
             }
 
+            if(split[0].includes('Remembrance')) {
+                if(!itemInfo[2]) itemInfo[2] = []
+                itemInfo[2].push('remembrance')
+            }
+
             // multiples
             var found = false
             split.forEach(x => {
@@ -65,7 +70,7 @@ fs.readFile('./itemslots.yaml', 'utf8', function (e, data) {
             output += `"${area}":[\n`
             itemList[area].forEach(item => {
                 if(!item[2].includes('norandom')){ //removes items with norandom tag
-                    output += `    ERLocationData("` //start
+                    output += `    #ERLocationData("` //start
                     switch(true){ // first acro
                         case area.includes("caelid"): output += 'CL'; break
                         case area.includes("dragonbarrow"): output += 'CL'; break
