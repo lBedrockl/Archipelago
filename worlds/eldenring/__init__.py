@@ -68,12 +68,10 @@ class EldenRing(World):
             connection.connect(regions[to_region])
 
         regions["Menu"].exits.append(Entrance(self.player, "New Game", regions["Menu"]))
-        self.multiworld.get_entrance("New Game", self.player).connect(regions["Chapel of Anticipation"])
+        self.multiworld.get_entrance("New Game", self.player).connect(regions["Stranded Graveyard"])
         
         create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
         
-        # Start 
-        create_connection("Chapel of Anticipation", "Stranded Graveyard")
         # Limgrave
         create_connection("Stranded Graveyard", "Limgrave")
         create_connection("Stranded Graveyard", "Fringefolk Hero's Grave")
@@ -123,12 +121,11 @@ class EldenRing(World):
         
         create_connection("Limgrave", "Siofra River")
         # Siofra
-        create_connection("Siofra River", "Deep Siofra Well") # caelid location
         
         create_connection("Limgrave", "Liurnia of The Lakes")
         #create_connection("Stormveil Castle", "Liurnia of The Lakes")
         # Liurnia of The Lakes
-        create_connection("Liurnia of The Lakes", "Chapel of Anticipation [Return]") # add real LL location for ca return
+        create_connection("Liurnia of The Lakes", "Chapel of Anticipation") # from four belfries
         
         create_connection("Limgrave", "Caelid")
         # Caelid
@@ -144,17 +141,18 @@ class EldenRing(World):
         create_connection("Caelid", "Fort Gael")
         create_connection("Caelid", "Street of Sages Ruins")
         create_connection("Caelid", "Sellia, Town of Sorcery")
-        create_connection("Caelid", "Gowry's Shack")
         create_connection("Caelid", "Sellia Crystal Tunnel")
         create_connection("Caelid", "Abandoned Cave")
         create_connection("Caelid", "Isolated Merchant's Shack")
-        create_connection("Caelid", "Divine Tower")
+        create_connection("Caelid", "Caelid Divine Tower")
+        create_connection("Caelid", "Great-Jar")
         create_connection("Caelid", "Caelem Ruins")
         create_connection("Caelid", "Minor Erdtree Catacombs")
         create_connection("Caelid", "Forsaken Ruins")
         create_connection("Caelid", "Gale Tunnel")
         create_connection("Caelid", "Redmane Castle")
         
+        create_connection("Redmane Castle", "Redmane Castle Post Radahn")
         create_connection("Redmane Castle", "Wailing Dunes")
         create_connection("Wailing Dunes", "War-Dead Catacombs")
 
@@ -484,9 +482,12 @@ class EldenRing(World):
         
         # siofra +2
         currentKey += 2
-        # Deep siofra well rules for leaving siofra to caelid
-        self._add_entrance_rule("Deep Siofra Well",
-            lambda state: self._has_enough_keys(state, currentKey) and state.can_reach("Caelid"))
+        # for leaving siofra to caelid ravine
+        self._add_location_rule([
+            "CL/DSW: Spiked Palisade Shield - to W follow ravine",
+            "CL/DSW: Stonesword Key - to S",
+            "CL/CCO: Great-Jar's Arsenal - beat Great Jar's knights",
+            ], lambda state: self._has_enough_keys(state, currentKey) and state.can_reach("Caelid")) # 2
         
         # liurnia +4
         #currentKey += 4
