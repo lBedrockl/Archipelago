@@ -68,14 +68,12 @@ class EldenRing(World):
             connection.connect(regions[to_region])
 
         regions["Menu"].exits.append(Entrance(self.player, "New Game", regions["Menu"]))
-        self.multiworld.get_entrance("New Game", self.player).connect(regions["Stranded Graveyard"])
+        self.multiworld.get_entrance("New Game", self.player).connect(regions["Limgrave"])
         
         create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
         
         # Limgrave
-        create_connection("Stranded Graveyard", "Limgrave")
-        create_connection("Stranded Graveyard", "Fringefolk Hero's Grave")
-        
+        create_connection("Limgrave", "Fringefolk Hero's Grave")
         create_connection("Limgrave", "Church of Elleh")
         create_connection("Limgrave", "Coastal Cave")
         create_connection("Limgrave", "Groveside Cave")
