@@ -74,21 +74,18 @@ class EldenRing(World):
         
         # Limgrave
         create_connection("Limgrave", "Fringefolk Hero's Grave")
-        create_connection("Limgrave", "Church of Elleh")
+        create_connection("Limgrave", "Stormhill")
         create_connection("Limgrave", "Coastal Cave")
         create_connection("Limgrave", "Groveside Cave")
         create_connection("Limgrave", "Stormfoot Catacombs")
-        create_connection("Limgrave", "Gatefront Ruins")
         create_connection("Limgrave", "Limgrave Tunnels")
         create_connection("Limgrave", "Stormgate")
         create_connection("Limgrave", "Stormhill Shack")
-        create_connection("Limgrave", "Waypoint Ruins")
         create_connection("Limgrave", "Dragon-Burnt Ruins")
         create_connection("Limgrave", "Murkwater Cave")
         create_connection("Limgrave", "Mistwood Ruins")
         create_connection("Limgrave", "Fort Haight")
         create_connection("Limgrave", "Third Church of Marika")
-        create_connection("Limgrave", "LG Artist's Shack")
         create_connection("Limgrave", "Summonwater Village")
         create_connection("Limgrave", "Murkwater Catacombs")
         create_connection("Limgrave", "Highroad Cave")
@@ -102,7 +99,7 @@ class EldenRing(World):
         if self.options.late_dlc == False: # for tp medal
             create_connection("Limgrave", "Mohgwyn Dynasty Mausoleum")
             
-        #create_connection("Limgrave", "Stormveil Castle")
+        #create_connection("Stormhill", "Stormveil Castle")
         
         create_connection("Limgrave", "Bridge of Sacrifice")
         # Weeping Peninsula
@@ -120,7 +117,7 @@ class EldenRing(World):
         create_connection("Limgrave", "Siofra River")
         # Siofra
         
-        create_connection("Limgrave", "Liurnia of The Lakes")
+        create_connection("Stormhill", "Liurnia of The Lakes")
         #create_connection("Stormveil Castle", "Liurnia of The Lakes")
         # Liurnia of The Lakes
         create_connection("Liurnia of The Lakes", "Chapel of Anticipation") # from four belfries
@@ -659,7 +656,26 @@ class EldenRing(World):
         ], lambda state: ( 
             self._can_get(state, "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area")
             and state.has("Unalloyed Gold Needle (Milicent)", self.player)
-        ))    
+        ))
+        
+        # MARK: Patches 
+        
+        
+        
+        # end of quest
+        """self._add_location_rule(["LG/(MCV): Glass Shard x3 - Patches chest, after you've given the Dancer's Castanets to Tanith",
+        ], lambda state: ( 
+            self._can_get(state, "kill the volcano manor mainboss") 
+            and state.has("Dancer's Castanets", self.player)
+        ))"""
+        # MARK: Ranni
+        
+        """self._add_location_rule([
+            "LG/(CE): Spirit Calling Bell - talk to Ranni",
+            "LG/(CE): Lone Wolf Ashes - talk to Ranni",
+        ], lambda state: ( self._can_get(state, "talk to ranni in her tower, item in rth") ))"""
+        
+        
             
     def _add_remembrance_rules(self) -> None:
         """Adds rules for items obtainable for trading remembrances."""
