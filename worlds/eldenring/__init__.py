@@ -79,21 +79,13 @@ class EldenRing(World):
         create_connection("Limgrave", "Groveside Cave")
         create_connection("Limgrave", "Stormfoot Catacombs")
         create_connection("Limgrave", "Limgrave Tunnels")
-        create_connection("Limgrave", "Stormgate")
-        create_connection("Limgrave", "Stormhill Shack")
-        create_connection("Limgrave", "Dragon-Burnt Ruins")
         create_connection("Limgrave", "Murkwater Cave")
-        create_connection("Limgrave", "Mistwood Ruins")
-        create_connection("Limgrave", "Fort Haight")
-        create_connection("Limgrave", "Third Church of Marika")
-        create_connection("Limgrave", "Summonwater Village")
         create_connection("Limgrave", "Murkwater Catacombs")
         create_connection("Limgrave", "Highroad Cave")
         create_connection("Limgrave", "Deathtouched Catacombs")
-        create_connection("Limgrave", "Warmaster's Shack")
         create_connection("Limgrave", "Roundtable Hold")
         
-        create_connection("Dragon-Burnt Ruins", "Sellia Crystal Tunnel")
+        create_connection("Limgrave", "Sellia Crystal Tunnel") # in caelid
         create_connection("Coastal Cave", "Church of Dragon Communion")
         
         if self.options.late_dlc == False: # for tp medal
@@ -101,9 +93,8 @@ class EldenRing(World):
             
         #create_connection("Stormhill", "Stormveil Castle")
         
-        create_connection("Limgrave", "Bridge of Sacrifice")
+        create_connection("Limgrave", "Weeping Peninsula")
         # Weeping Peninsula
-        create_connection("Bridge of Sacrifice", "Weeping Peninsula")
         create_connection("Weeping Peninsula", "Impaler's Catacombs")
         create_connection("Weeping Peninsula", "Church of Pilgrimage")
         create_connection("Weeping Peninsula", "Tombsward Catacombs")
@@ -124,7 +115,6 @@ class EldenRing(World):
         
         create_connection("Limgrave", "Caelid")
         # Caelid
-        create_connection("Caelid", "Smoldering Church")
         create_connection("Caelid", "Bestial Sanctum")
         create_connection("Caelid", "Dragonbarrow Cave")
         create_connection("Caelid", "Fort Faroth")
@@ -395,6 +385,14 @@ class EldenRing(World):
             self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_great_runes(state, 1))
             self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
             self._add_entrance_rule("Caelid", "Sellia Crystal Tunnel", lambda state: self._has_enough_great_runes(state, 3))
+            
+            "SV: Talisman Pouch - boss drop" # item in stormveil but in stormhill location, needs a check if stormveil gets a key
+            
+            "BS: Stonesword Key - behind wooden platform" 
+            "BS: Smithing Stone [1] x3 - corpse hanging off edge" # on Bridge of Sacrifice idk where wall for WP will be
+            
+            "CL/(SC): Missionary's Cookbook [3] - on corpse", "Missionary's Cookbook [3]" 
+            "CL/(SC): Sacred Scorpion Charm - invader drop", "Sacred Scorpion Charm" # at smoldering church + more items on border
         elif self.options.world_logic == "open_world":
             self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
         #else: # glitch logic
@@ -591,6 +589,10 @@ class EldenRing(World):
         assuming the player _doesn't_ so they aren't forced to start killing allies to advance the
         quest.
         """
+        # MARK: Roderika
+        self._add_location_rule([ "LG/(SS): Golden Seed - give Roderika Chrysalids' Memento then talk to her at RH or rest at LL grace and return to SS",
+        ], lambda state: ( state.can_reach("Liurnia of The Lakes") or state.has("Chrysalids' Memento", self.player)))
+        
         # MARK: Enia
         self._add_location_rule([ "RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss",
         ], lambda state: ( self._has_enough_great_runes(state, 2)))
