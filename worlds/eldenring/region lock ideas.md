@@ -1,7 +1,7 @@
 # Ideas for how region locking will be done
 #### Would be cool if its something easy to implement, and feels grounded in the world
 ##### This is only `Ideas` for whoever makes the region lock
-###### Discuss in the `AP Elden Ring` chat and ping `@lBedrockl` or make a `pull request` with ideas
+###### Discuss in the `AP Elden Ring` chat and ping `@lBedrockl` for ideas to be added here
 
 # Regions
 
