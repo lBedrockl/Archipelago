@@ -9,20 +9,24 @@
 
 ### Limgrave > Weeping
 * something on bridge of sacrifice?
+* Move or remove spiritspring that can be used to skip bridge
 * Item name: `idk`
 
 ### Limgrave > Caelid
 * scarlet rot fog?
-* disable dragon ruins chest trap
+* disable dragon ruins chest trap, or add seal so the cave can be cleared
+* move waygate spawn point at third church of marika into bestial sanctum
 * Item name: `idk`
 
 ### Limgrave > Liurnia
-* Make the cliff face shortcut super windy and blow the player off
+* maybe a gate that would open form a gostoc themed item
 * Item name: `idk`
 
 ### Limgrave > Nokron
-* Maybe purple electricity that stops the player going down the hole
-* or add a door that requires a key item and the bottom
+* Already requires radahn boss dead but wouldn't add a sphere
+* getting to altus would unlock nokron technically which is dumb
+* so add a door in limgrave pit with an item needed for a sphere, could be radahn themed item
+* or have and item trigger the star fall event `Starscourge's Failure` 
 * Item name: `idk`
 
 ### Limgrave > Siofra
@@ -79,11 +83,12 @@
 * Item name: `idk`
 
 ### Sewer > Deeproot
-* Easy door that can require an item
+* Already has seal that requires morgott boss dead
+* Keep or change to a morgott themed item that opens the seal
 * Item name: `idk`
 
-Capital > Forbidden Lands
-, have the elevator right before FL require rold medallion?
+### Capital > Forbidden Lands
+* Same seal has Sewer > Deeproot
 
 #
 ## Mountain Tops
@@ -113,16 +118,8 @@ Capital > Forbidden Lands
 ### Stormveil > Liurnia
 * Item name: `idk`
 
-### Weeping > Castle Morne
-* Key to start elevator
-* Item name: `idk`
-
 ### Caelid > Redmane Castle
 * something stopping the player crossing the bridge?
-* Item name: `idk`
-
-### Liurnia > Caria Manor
-* Key to break a magic seal
 * Item name: `idk`
 
 ### Liurnia > Raya Lucaria
@@ -130,17 +127,12 @@ Capital > Forbidden Lands
 
 ### Raya Lucaria > Volcano Manor
 * Have abductor ai disabled and and item start it up?
+* Don't randomize this enemy in enemy rando
+* place a dead abductor asset and use `Blasphemer's Bounty`
 * Item name: `idk`
 
 ### Mt Gelmir > Volcano Manor
-* Manor door requires item
-* Item name: `idk`
-
-Altus > Shaded Castle ?
-
-### Mountain Top > Castle Sol
-* door requires item
-* Item name: `idk`
+* Use `Drawing Room Key`
 #
 # DLC
 
