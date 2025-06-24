@@ -170,9 +170,6 @@
 * Just getting to scadu altus opens, or should it require an item
 * Item name: `idk`
 
-Cerulean Coast > Finger Ruins of Rhia
-Finding the map piece removes ds1 fog door?
-
 ### Scadu Altus > Rauh Base
 * Item name: `idk`
 
@@ -195,9 +192,6 @@ Rauh Base > Ellac is pos i think?
 
 ### Rauh Ruins > Enir-Ilim
 * Use `Messmer's Flame`
-
-Hinterland > Finger Ruins of Dheo?
-something on bridge
 
 ### Recluses' River > Abyssal Woods
 * Have fog door after darklight boss require item

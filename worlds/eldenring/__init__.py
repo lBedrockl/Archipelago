@@ -96,13 +96,10 @@ class EldenRing(World):
         create_connection("Limgrave", "Weeping Peninsula")
         # Weeping Peninsula
         create_connection("Weeping Peninsula", "Impaler's Catacombs")
-        create_connection("Weeping Peninsula", "Church of Pilgrimage")
         create_connection("Weeping Peninsula", "Tombsward Catacombs")
         create_connection("Weeping Peninsula", "Tombsward Cave")
-        create_connection("Weeping Peninsula", "Isolated Merchant's Shack")
         create_connection("Weeping Peninsula", "Morne Tunnel")
         create_connection("Weeping Peninsula", "Earthbore Cave")
-        create_connection("Weeping Peninsula", "Castle Morne")
         create_connection("Weeping Peninsula", "Divine Bridge") # in leyndell
         
         create_connection("Limgrave", "Siofra River")
@@ -383,6 +380,18 @@ class EldenRing(World):
         # World Logic
         if self.options.world_logic == "region_lock": 
             self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_great_runes(state, 1))
+            self._add_location_rule([ # stuff in wp but not
+                "WP/(DHFR): Arteria Leaf x2 - within N ruins",
+                "WP/DHFR: Gold-Tinged Excrement x2 - SE of DHFR",
+                "WP/DHFR: String x5 - SE of DHFR",
+                "WP/EC: Rainbow Stone - SE of EC",
+                "WP/FLT: Golden Rune [1] x3 1 - E of FLT",
+                "WP/FLT: Golden Rune [1] x3 2 - E of FLT",
+                "WP/CP: Sliver of Meat - lower cliff NW of CP",
+                "WP/CP: Bewitching Branch x3 - lower cliff NW of CP",
+            ], lambda state: state.can_reach("Weeping Peninsula"))
+            
+            self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
             self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
             self._add_entrance_rule("Caelid", "Sellia Crystal Tunnel", lambda state: self._has_enough_great_runes(state, 3))
             
@@ -468,7 +477,7 @@ class EldenRing(World):
         # weeping +2
         currentKey += 2
         self._add_location_rule("WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue" , lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("WP/(WE): Radagon's Scarseal - Weeping Evergaol" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("WP/(WE): Radagon's Scarseal - boss drop Evergaol" , lambda state: self._has_enough_keys(state, currentKey)) # 1
         
         # stormveil +2
         #currentKey += 2
@@ -589,6 +598,10 @@ class EldenRing(World):
         assuming the player _doesn't_ so they aren't forced to start killing allies to advance the
         quest.
         """
+        # MARK: Edgar
+        self._add_location_rule([ "WP/BS: Banished Knight's Halberd - kill Edgar at Irina's body or at LL/RS",
+        ], lambda state: ( state.can_reach("Liurnia of The Lakes")))
+        
         # MARK: Roderika
         self._add_location_rule([ "LG/(SS): Golden Seed - give Roderika Chrysalids' Memento then talk to her at RH or rest at LL grace and return to SS",
         ], lambda state: ( state.can_reach("Liurnia of The Lakes") or state.has("Chrysalids' Memento", self.player)))
@@ -598,10 +611,10 @@ class EldenRing(World):
         ], lambda state: ( self._has_enough_great_runes(state, 2)))
         
         # MARK: D
-        self._add_location_rule([
-            "RH: Litany of Proper Death - D shop",
-            "RH: Order's Blade - D shop",
-        ], lambda state: ( state.can_reach("Bestial Sanctum")))
+        # self._add_location_rule([
+        #     "RH: Litany of Proper Death - D shop",
+        #     "RH: Order's Blade - D shop",
+        # ], lambda state: ( state.can_reach("")))
         
         # MARK: Gurraq
         self._add_location_rule([
