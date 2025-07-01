@@ -10,7 +10,13 @@
 ### Limgrave > Weeping
 * something on bridge of sacrifice?
 * Move or remove spiritspring that can be used to skip bridge
-* Item name: `idk`
+```
+Bridge of Sacrifice Gate Key
+
+Opens the gate at Limgrave's south, where the Weeping Peninsula lies.
+
+The Bridge of Sacrifice is the first line of defense for Castle Morne, as arranged by its fearful castellan. And yet, no amount of external blockades can defend against a mutiny.
+```
 
 ### Limgrave > Caelid
 * scarlet rot fog?
@@ -101,10 +107,18 @@
 
 ### Consecrated Snowfield > Haligtree
 * Change the imp statue in `Ordina` to require key item not stonesword key
-* Item name: `idk`
+```
+Unalloyed Sword Key
+
+Stone key shaped like a sword. Encircled by spider-thin strands of unalloyed gold.
+
+Breaks the seal on the imp statue guarding the evergaol in the Liturgical Town, Ordina. The last step on the way to Miquella's Haligtree.
+
+The Haligtree is for those in desperate need of an age of compassion - certainly not aspiring Lords of the old order.
+```
 
 ### Mountain Top > Farum Azula
-* A flame to start the forge? can use messmer's flame icon or smth
+* A flame to start the forge? can use recolored messmer's flame icon or smth
 * Item name: `Giants Flame`
 
 #### Don't require an item for leaving Farum Azula since player gets locked in till leaving
@@ -119,8 +133,15 @@
 * Item name: `idk`
 
 ### Caelid > Redmane Castle
-* something stopping the player crossing the bridge?
-* Item name: `idk`
+* Disable waygate at bridge
+* Need to test if you can get into festival without waygate
+```
+Redmane Castle Gate Key
+
+The key to Redmane Castle, the site of the Radahn Festival deep within Caelid.
+
+Starscourge Radahn lived to fight, bearing no hopes and dreams beyond personal glory. A lion bred for battle, and the perfect weapon for gods to wield.
+```
 
 ### Liurnia > Raya Lucaria
 * `Academy Glintstone Key`
@@ -194,8 +215,13 @@ Rauh Base > Ellac is pos i think?
 * Use `Messmer's Flame`
 
 ### Recluses' River > Abyssal Woods
-* Have fog door after darklight boss require item
-* Item name: `idk` smth that lets you resist madness?
+```
+Barbed Warding Charm
+
+Opens the entrance to the Abyssal Woods, at the base of the Darklight Catacombs.
+
+All are forbidden from entering the Abyss without this proof of membership of the Hornsent Inquisitors. It staves off the influence of outer gods - though not as completely as they'd hoped.
+```
 
 ### Abyssal Woods > Midra's Manse
 * door require key
