@@ -41,6 +41,13 @@ region_order = [
     # Liurnia
     "Liurnia of The Lakes",
     "Chapel of Anticipation [Return]",
+    "Road's End Catacombs",
+    "Black Knife Catacombs",
+    "Cliffbottom Catacombs",
+    "Stillwater Cave",
+    "Lakeside Crystal Cave",
+    "Academy Crystal Cave",
+    "Raya Lucaria Crystal Tunnel",
 
     # Caelid
     "Caelid",
@@ -924,11 +931,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RH: Lord's Divine Fortification - Given by Gideon, or Twin maiden shop", "Lord's Divine Fortification", key="111000,0:0000400283:101800,11109771:", missable=True),
         #ERLocationData("RH: Law of Causality - Given by Gideon, or Twin maiden shop", "Law of Causality", key="111000,0:0000400285:101800,11109773:", missable=True),
         #ERLocationData("RH: Rogier's Letter - ", "Rogier's Letter", key="111000,0:0000400356::"),
-        #ERLocationData("RH: Spellblade's Pointed Hat - ", "Spellblade's Pointed Hat", key="111000,0:0000400359::"),
-        #ERLocationData("RH: Spellblade's Traveling Attire - ", "Spellblade's Traveling Attire", key="111000,0:0000400359::"),
-        #ERLocationData("RH: Spellblade's Gloves - ", "Spellblade's Gloves", key="111000,0:0000400359::"),
-        #ERLocationData("RH: Spellblade's Trousers - ", "Spellblade's Trousers", key="111000,0:0000400359::"),
-        #ERLocationData("RH: Rogier's Bell Bearing - ", "Rogier's Bell Bearing", key="111000,0:0000400359::"),
+        #ERLocationData("RH: Spellblade's Pointed Hat - found on Rogier's body", "Spellblade's Pointed Hat", key="111000,0:0000400359::"),
+        #ERLocationData("RH: Spellblade's Traveling Attire - found on Rogier's body", "Spellblade's Traveling Attire", key="111000,0:0000400359::"),
+        #ERLocationData("RH: Spellblade's Gloves - found on Rogier's body", "Spellblade's Gloves", key="111000,0:0000400359::"),
+        #ERLocationData("RH: Spellblade's Trousers - found on Rogier's body", "Spellblade's Trousers", key="111000,0:0000400359::"),
+        #ERLocationData("RH: Rogier's Bell Bearing - found on Rogier's body", "Rogier's Bell Bearing", key="111000,0:0000400359::"),
         #ERLocationData("RH: Sewer-Gaol Key - Given by Dung Eater after finding a Seedbed Curse", "Sewer-Gaol Key", key="111000,0:0000400380::", missable=True),
         #ERLocationData("RH: Royal Remains Helm - ", "Royal Remains Helm", key="111000,0:0000400490::"),
         #ERLocationData("RH: Royal Remains Armor - ", "Royal Remains Armor", key="111000,0:0000400490::"),
@@ -1129,14 +1136,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("LL: Somber Smithing Stone [2] - ", "Somber Smithing Stone [2]", key="603550,0:1035507800::"),
         #ERLocationData("LL: Sword of Night and Flame - ", "Sword of Night and Flame", key="603550,0:1035507900::"),
         #ERLocationData("LL: Troll Knight's Sword - ", "Troll Knight's Sword", key="603550,0:1035507990::"),
-        #ERLocationData("LL: Latenna the Albinauric - ", "Latenna the Albinauric", key="603641,0:0000400410::"),
-        #ERLocationData("LL: Blue Silver Mail Hood - ", "Blue Silver Mail Hood", key="603641,0:0000400412::"),
-        #ERLocationData("LL: Blue Silver Mail Armor - ", "Blue Silver Mail Armor", key="603641,0:0000400412::"),
-        #ERLocationData("LL: Blue Silver Bracelets - ", "Blue Silver Bracelets", key="603641,0:0000400412::"),
-        #ERLocationData("LL: Blue Silver Mail Skirt - ", "Blue Silver Mail Skirt", key="603641,0:0000400412::"),
+        ERLocationData("LL/(SWS): Latenna the Albinauric - talk to Latenna with Haligtree Secret Medallion (Right)", "Latenna the Albinauric", key="603641,0:0000400410::", missable=True),
+        ERLocationData("LL/(SWS): Blue Silver Mail Hood - kill Latenna, or progress quest", "Blue Silver Mail Hood", key="603641,0:0000400412::"),
+        ERLocationData("LL/(SWS): Blue Silver Mail Armor - kill Latenna, or progress quest", "Blue Silver Mail Armor", key="603641,0:0000400412::"),
+        ERLocationData("LL/(SWS): Blue Silver Bracelets - kill Latenna, or progress quest", "Blue Silver Bracelets", key="603641,0:0000400412::"),
+        ERLocationData("LL/(SWS): Blue Silver Mail Skirt - kill Latenna, or progress quest", "Blue Silver Mail Skirt", key="603641,0:0000400412::"),
         #ERLocationData("LL: Fire Monks' Prayerbook - In the enemy camp southwest of Laskyar Ruins, west of Malefactor's Evergaol", "Fire Monks' Prayerbook", key="603641,0:1036417000::"),
         #ERLocationData("LL: Dappled Cured Meat - ", "Dappled Cured Meat", key="603641,0:1036417010::"),
-        #ERLocationData("LL: Rune Arc - ", "Rune Arc", key="603641,0:1036417020::"),
+        ERLocationData("LL/(SWS): Rune Arc - near grace", "Rune Arc", key="603641,0:1036417020::"),  # MAYBE I JUST GUESSED SINCE NEAR LATENNA
         #ERLocationData("LL: Dexterity-knot Crystal Tear - In a Crystal Tear Basin in Liurnia of the Lakes on the island west of Scenic Isle, south of the Boilprawn Shack", "Dexterity-knot Crystal Tear", key="603642,0:0000065220::", basin=True),
         #ERLocationData("LL: Rya's Necklace - Sold by Blackguard Boggart at the Boilprawn Shack", "Rya's Necklace", key="603643,0:0000400300:100150:"),
         #ERLocationData("LL: Blackguard's Iron Mask - ", "Blackguard's Iron Mask", key="603643,0:0000400309::"),
@@ -2421,7 +2428,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SA: Greasemonger's Bell Bearing - Acquired by shooting down a pot hanging on the cliff east of Manus Metyr, behind a group of enemies, around where the road starts to bend west after following it north past the Furnace Golem area", "Greasemonger's Bell Bearing", key="615146,0:2051467500::", hangingpot=True),
         #ERLocationData("SA: Rabbath's Cannon - In a chest in Rabbath's Rise, accessible by unsealing the spiritspring outside or by dropping down from Shaman Village", "Rabbath's Cannon", key="615146,0:2051467900::", chest=True, rise=True),
     ],
-    "farumazula":[
+    "farumazula":[  # will be done by Kholkikos
         #ERLocationData("FA: Ancient Dragon Apostle's Cookbook [4] - On a corpse in a ruined pavillion accessed after using a Stonesword Key and ascending Dragon Temple Lift, then jumping across a very long series of building fragments", "Ancient Dragon Apostle's Cookbook [4]", key="130000,0:0000068020::", cookbook=True),
         #ERLocationData("FA: Shard of Alexander - Dropped by Alexander after he nobly fights you past Dragon Temple Lift, past an Imp Statue barrier from Dragon Temple Altar, after he moves there", "Shard of Alexander", key="130000,0:0000400174::", missable=True),
         #ERLocationData("FA: Alexander's Innards - Dropped by Alexander after he nobly fights you past Dragon Temple Lift, past an Imp Statue barrier from Dragon Temple Altar, after he moves there", "Alexander's Innards", key="130000,0:0000400174::", missable=True),
@@ -2757,15 +2764,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RLA: Meteor Bolt - Sold by Isolated Merchant southeast of Main Academy Gate", "Meteor Bolt", key="603545,3:0000000000:100675:", shop=True),
         #ERLocationData("RLA: Golden Seed - Under a Golden Seed tree on a bridge to north of the Main Academy Gate", "Golden Seed", key="603546,0:1035467100::", seedtree=True, fortress=True),
     ],
-    "liurnia_academycave":[
-        #ERLocationData("LL: Terra Magica - In a chest overlooking Raya Lucaria, up the elevator after the boss", "Terra Magica", key="140000,0:0014007920::", chest=True),
-        #ERLocationData("LL: Crystal Release - Dropped by Crystalians", "Crystal Release", key="310600,0:0000520380::", altboss=True, minidungeonboss=True, caveboss=True),
-        #ERLocationData("LL: Cuckoo Glintstone x5 - ", "Cuckoo Glintstone x5", key="310600,0:0031067000::"),
-        #ERLocationData("LL: Stonesword Key - ", "Stonesword Key", key="310600,0:0031067010::"),
-        #ERLocationData("LL: Crystal Staff - ", "Crystal Staff", key="310600,0:0031067030::"),
-        #ERLocationData("LL: Rune Arc - ", "Rune Arc", key="310600,0:0031067100::"),
+    "Academy Crystal Cave":[ # liurnia_academycave       done
+        ERLocationData("LL/(ACC): Terra Magica - in chest atop tower after boss", "Terra Magica", key="140000,0:0014007920::", chest=True),
+        ERLocationData("LL/(ACC): Crystal Release - boss drop", "Crystal Release", key="310600,0:0000520380::", altboss=True, minidungeonboss=True, caveboss=True),
+        ERLocationData("LL/(ACC): Cuckoo Glintstone x5 - head SE from start of first room", "Cuckoo Glintstone x5", key="310600,0:0031067000::"),
+        ERLocationData("LL/(ACC): Stonesword Key - in cage NW from first room", "Stonesword Key", key="310600,0:0031067010::"),
+        ERLocationData("LL/(ACC): Crystal Staff - in chest behind illusory wall, left of storage room", "Crystal Staff", key="310600,0:0031067030::"),
+        ERLocationData("LL/(ACC): Rune Arc - in chest in storage room", "Rune Arc", key="310600,0:0031067100::"),
     ],
-    "Elphael, Brace of the Haligtree":[ # haligtree_elphael      these descriptions could be better
+    "Elphael, Brace of the Haligtree":[ # haligtree_elphael   done by Kholkikos      these descriptions could be better
         ERLocationData("EBH/HR: Malenia's Great Rune - mainboss drop", "Malenia's Great Rune", key="150000,0:0000000176::", boss=True, deadend=True),
         ERLocationData("EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area", "Unalloyed Gold Needle (Milicent)", key="150000,0:0000400321::", missable=True, exclusive=True),
         ERLocationData("EBH/EIW: Millicent's Prosthesis - invade Millicent or kill in altus", "Millicent's Prosthesis", key="150000,0:0000400323::", missable=True, exclusive=True, death=True),
@@ -3040,7 +3047,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("CL: Old Fang x2 - ", "Old Fang x2", key="605136,0:1051367800::"),
         #ERLocationData("CL: Smithing Stone [6] - ", "Smithing Stone [6]", key="605136,0:1051367910::"),
     ],
-    "Miquella's Haligtree":[ # haligtree   done           these descriptions could be better
+    "Miquella's Haligtree":[ # haligtree   done by Kholkikos           these descriptions could be better
         ERLocationData("MH/HTP: Loretta's War Sickle - boss drop", "Loretta's War Sickle", key="150000,0:0000510190::", boss=True),
         ERLocationData("MH/HTP: Loretta's Mastery - boss drop", "Loretta's Mastery", key="150000,0:0000510190::", boss=True),
         ERLocationData("MH/HC: Stonesword Key - to S behind waygate arrival location", "Stonesword Key", key="150000,0:0015007000::"),
@@ -3721,38 +3728,38 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(SC): Wandering Noble Ashes - room at end of hall after latter", "Wandering Noble Ashes", key="300200,0:0030027020::"),
         ERLocationData("LG/(SC): Prattling Pate \"Hello\" - behind first fire spitter", "Prattling Pate \"Hello\"", key="300200,0:0030027030::"),
     ],
-    "liurnia_roadsendcatacombs":[
-        #ERLocationData("LL/(REC): Glintstone Sorcerer Ashes - Dropped by Spiritcaller Snail", "Glintstone Sorcerer Ashes", key="300300,0:0000520060::", altboss=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("LL/(REC): Root Resin x3 - ", "Root Resin x3", key="300300,0:0030037000::"),
-        #ERLocationData("LL/(REC): Raya Lucaria Soldier Ashes - ", "Raya Lucaria Soldier Ashes", key="300300,0:0030037010::"),
-        #ERLocationData("LL/(REC): Human Bone Shard x5 - ", "Human Bone Shard x5", key="300300,0:0030037020::"),
-        #ERLocationData("LL/(REC): Rune Arc - ", "Rune Arc", key="300300,0:0030037030::"),
-        #ERLocationData("LL/(REC): Watchdog's Staff - ", "Watchdog's Staff", key="300300,0:0030037040::"),
+    "Road's End Catacombs":[ # liurnia_roadsendcatacombs       done
+        ERLocationData("LL/(REC): Glintstone Sorcerer Ashes - boss drop", "Glintstone Sorcerer Ashes", key="300300,0:0000520060::", altboss=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("LL/(REC): Root Resin x3 - on path towards boss room", "Root Resin x3", key="300300,0:0030037000::"),
+        ERLocationData("LL/(REC): Raya Lucaria Soldier Ashes - in chest in hidden dead-end room", "Raya Lucaria Soldier Ashes", key="300300,0:0030037010::"),
+        ERLocationData("LL/(REC): Human Bone Shard x5 - under second platform", "Human Bone Shard x5", key="300300,0:0030037020::"),
+        ERLocationData("LL/(REC): Rune Arc - in illusory room under lever", "Rune Arc", key="300300,0:0030037030::"),
+        ERLocationData("LL/(REC): Watchdog's Staff - under second platform", "Watchdog's Staff", key="300300,0:0030037040::"),
     ],
     "Murkwater Catacombs":[ # limgrave_murkwatercatacombs      done
         ERLocationData("LG/(MCC): Banished Knight Engvall - boss drop", "Banished Knight Engvall", key="300400,0:0000520040::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LG/(MCC): Root Resin x5 - by lever", "Root Resin x5", key="300400,0:0030047000::"),
     ],
-    "liurnia_blackknifecatacombs":[
-        #ERLocationData("LL/(BKC): Twinsage Sorcerer Ashes - Dropped by Cemetery Shade", "Twinsage Sorcerer Ashes", key="300500,0:0000520050::", altboss=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("LL/(BKC): Assassin's Cerulean Dagger - Dropped by Black Knife Assassin", "Assassin's Cerulean Dagger", key="300500,0:0000520210::", altboss=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("LL/(BKC): Black Knifeprint - Dropped by Black Knife Assassin", "Black Knifeprint", key="300500,0:0000520210::", altboss=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("LL/(BKC): Rosus' Axe - ", "Rosus' Axe", key="300500,0:0030057000::"),
-        #ERLocationData("LL/(BKC): Rune Arc - ", "Rune Arc", key="300500,0:0030057010::"),
-        #ERLocationData("LL/(BKC): Deathroot - In a chest after Black Knight Assassin", "Deathroot", key="300500,0:0030057030::", chest=True),
-        #ERLocationData("LL/(BKC): Spellproof Dried Liver - ", "Spellproof Dried Liver", key="300500,0:0030057040::"),
+    "Black Knife Catacombs":[ # liurnia_blackknifecatacombs     done
+        ERLocationData("LL/(BKC): Twinsage Sorcerer Ashes - boss drop", "Twinsage Sorcerer Ashes", key="300500,0:0000520050::", altboss=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("LL/(BKC): Assassin's Cerulean Dagger - alt boss drop", "Assassin's Cerulean Dagger", key="300500,0:0000520210::", altboss=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("LL/(BKC): Black Knifeprint - alt boss drop", "Black Knifeprint", key="300500,0:0000520210::", altboss=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("LL/(BKC): Rosus' Axe - behind imp statue near boss door", "Rosus' Axe", key="300500,0:0030057000::"), # 1
+        ERLocationData("LL/(BKC): Rune Arc - W side of water area", "Rune Arc", key="300500,0:0030057010::"),
+        ERLocationData("LL/(BKC): Deathroot - in chest after boss", "Deathroot", key="300500,0:0030057030::", chest=True),
+        ERLocationData("LL/(BKC): Spellproof Dried Liver - in middle of cleaver room", "Spellproof Dried Liver", key="300500,0:0030057040::"),
     ],
-    "liurnia_cliffbottomcatacombs":[
-        #ERLocationData("LL/(CC): Kaiden Sellsword Ashes - Dropped by Erdtree Burial Watchdog", "Kaiden Sellsword Ashes", key="300600,0:0000520070::", altboss=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("LL/(CC): Root Resin x5 - ", "Root Resin x5", key="300600,0:0030067000::"),
-        #ERLocationData("LL/(CC): Nox Mirrorhelm - ", "Nox Mirrorhelm", key="300600,0:0030067010::"),
-        #ERLocationData("LL/(CC): Golden Rune [3] - ", "Golden Rune [3]", key="300600,0:0030067020::"),
-        #ERLocationData("LL/(CC): Page Ashes - ", "Page Ashes", key="300600,0:0030067030::"),
-        #ERLocationData("LL/(CC): Rune Arc - ", "Rune Arc", key="300600,0:0030067040::"),
-        #ERLocationData("LL/(CC): Old Fang x3 - ", "Old Fang x3", key="300600,0:0030067050::"),
-        #ERLocationData("LL/(CC): Hefty Beast Bone x3 - ", "Hefty Beast Bone x3", key="300600,0:0030067060::"),
-        #ERLocationData("LL/(CC): Scythe - ", "Scythe", key="300600,0:0030067070::"),
-        #ERLocationData("LL/(CC): Prattling Pate "Wonderful" - ", "Prattling Pate "Wonderful"", key="300600,0:0030067080::"),
+    "Cliffbottom Catacombs":[ # liurnia_cliffbottomcatacombs     done
+        ERLocationData("LL/(CC): Kaiden Sellsword Ashes - boss drop", "Kaiden Sellsword Ashes", key="300600,0:0000520070::", altboss=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("LL/(CC): Root Resin x5 - W from first elevator", "Root Resin x5", key="300600,0:0030067000::"),
+        ERLocationData("LL/(CC): Nox Mirrorhelm - behind imp statue, in SW corner", "Nox Mirrorhelm", key="300600,0:0030067010::"), # 1
+        ERLocationData("LL/(CC): Golden Rune [3] - dead-end at top of main room", "Golden Rune [3]", key="300600,0:0030067020::"),
+        ERLocationData("LL/(CC): Page Ashes - on alter S of lever", "Page Ashes", key="300600,0:0030067030::"),
+        ERLocationData("LL/(CC): Rune Arc - understairs next to imp statue, in SW corner", "Rune Arc", key="300600,0:0030067040::"),
+        ERLocationData("LL/(CC): Old Fang x3 - next to lever", "Old Fang x3", key="300600,0:0030067050::"),
+        ERLocationData("LL/(CC): Hefty Beast Bone x3 - bottom of main room, S side", "Hefty Beast Bone x3", key="300600,0:0030067060::"),
+        ERLocationData("LL/(CC): Scythe - dead-end room at top of main room", "Scythe", key="300600,0:0030067070::"),
+        ERLocationData("LL/(CC): Prattling Pate \"Wonderful\" - bottom of main room, N side", "Prattling Pate \"Wonderful\"", key="300600,0:0030067080::"),
     ],
     "gelmir_wyndhamcatacombs":[
         #ERLocationData("MG/(WC): Ancient Dragon Apostle's Cookbook [1] - ", "Ancient Dragon Apostle's Cookbook [1]", key="300700,0:0000068000::"),
@@ -3946,30 +3953,30 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(GC): Golden Rune [1] - first room", "Golden Rune [1]", key="310300,0:0031037000::"),
         ERLocationData("LG/(GC): Glowstone x3 - first room", "Glowstone x3", key="310300,0:0031037010::"),
     ],
-    "liurnia_stillwatercave":[
-        #ERLocationData("LL/(SC): Winged Sword Insignia - Dropped by Cleanrot Knight", "Winged Sword Insignia", key="310400,0:0000520360::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
-        #ERLocationData("LL/(SC): Golden Rune [3] - ", "Golden Rune [3]", key="310400,0:0031047000::"),
-        #ERLocationData("LL/(SC): Golden Rune [4] - ", "Golden Rune [4]", key="310400,0:0031047010::"),
-        #ERLocationData("LL/(SC): Serpent Arrow x15 - ", "Serpent Arrow x15", key="310400,0:0031047020::"),
-        #ERLocationData("LL/(SC): Golden Rune [5] - ", "Golden Rune [5]", key="310400,0:0031047030::"),
-        #ERLocationData("LL/(SC): Glowstone x5 - ", "Glowstone x5", key="310400,0:0031047040::"),
-        #ERLocationData("LL/(SC): Poison Grease x2 - ", "Poison Grease x2", key="310400,0:0031047050::"),
-        #ERLocationData("LL/(SC): Sage Hood - ", "Sage Hood", key="310400,0:0031047060::"),
-        #ERLocationData("LL/(SC): Sage Robe - ", "Sage Robe", key="310400,0:0031047060::"),
-        #ERLocationData("LL/(SC): Sage Trousers - ", "Sage Trousers", key="310400,0:0031047060::"),
-        #ERLocationData("LL/(SC): Golden Rune [6] - ", "Golden Rune [6]", key="310400,0:0031047990::"),
+    "Stillwater Cave":[ # liurnia_stillwatercave     done
+        ERLocationData("LL/(SC): Winged Sword Insignia - boss drop", "Winged Sword Insignia", key="310400,0:0000520360::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
+        ERLocationData("LL/(SC): Golden Rune [3] - near enterance", "Golden Rune [3]", key="310400,0:0031047000::"),
+        ERLocationData("LL/(SC): Golden Rune [4] - in middle of first room poison", "Golden Rune [4]", key="310400,0:0031047010::"),
+        ERLocationData("LL/(SC): Serpent Arrow x15 - first room middle dead-end exit, middle item", "Serpent Arrow x15", key="310400,0:0031047020::"),
+        ERLocationData("LL/(SC): Golden Rune [5] - first room middle dead-end exit, right item", "Golden Rune [5]", key="310400,0:0031047030::"),
+        ERLocationData("LL/(SC): Glowstone x5 - upper part near first room second exit", "Glowstone x5", key="310400,0:0031047040::"),
+        ERLocationData("LL/(SC): Poison Grease x2 - near boss room", "Poison Grease x2", key="310400,0:0031047050::"),
+        ERLocationData("LL/(SC): Sage Hood - first room middle dead-end exit, left item", "Sage Hood", key="310400,0:0031047060::"),
+        ERLocationData("LL/(SC): Sage Robe - first room middle dead-end exit, left item", "Sage Robe", key="310400,0:0031047060::"),
+        ERLocationData("LL/(SC): Sage Trousers - first room middle dead-end exit, left item", "Sage Trousers", key="310400,0:0031047060::"),
+        ERLocationData("LL/(SC): Golden Rune [6] - first room middle dead-end exit, NE enemy drop", "Golden Rune [6]", key="310400,0:0031047990::"),
     ],
-    "liurnia_lakesidecave":[
-        #ERLocationData("LL/(LCC): Cerulean Amber Medallion - Dropped by Bloodhound Knight", "Cerulean Amber Medallion", key="310500,0:0000520370::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
-        #ERLocationData("LL/(LCC): Hefty Beast Bone x3 - ", "Hefty Beast Bone x3", key="310500,0:0031057000::"),
-        #ERLocationData("LL/(LCC): Throwing Dagger x5 - ", "Throwing Dagger x5", key="310500,0:0031057010::"),
-        #ERLocationData("LL/(LCC): Golden Rune [5] - ", "Golden Rune [5]", key="310500,0:0031057020::"),
-        #ERLocationData("LL/(LCC): Soft Cotton x2 - ", "Soft Cotton x2", key="310500,0:0031057030::"),
-        #ERLocationData("LL/(LCC): Smithing Stone [4] - ", "Smithing Stone [4]", key="310500,0:0031057040::"),
-        #ERLocationData("LL/(LCC): Smithing Stone [2] - ", "Smithing Stone [2]", key="310500,0:0031057050::"),
-        #ERLocationData("LL/(LCC): Lump of Flesh - ", "Lump of Flesh", key="310500,0:0031057060::"),
-        #ERLocationData("LL/(LCC): Arteria Leaf - ", "Arteria Leaf", key="310500,0:0031057070::"),
-        #ERLocationData("LL/(LCC): Spear Talisman - In a chest guarded by a Demi-Human Chief", "Spear Talisman", key="310500,0:0031057100::", talisman=True, chest=True),
+    "Lakeside Crystal Cave":[ # liurnia_lakesidecave    done
+        ERLocationData("LL/(LCC): Cerulean Amber Medallion - boss drop", "Cerulean Amber Medallion", key="310500,0:0000520370::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
+        ERLocationData("LL/(LCC): Hefty Beast Bone x3 - upper W side of first room", "Hefty Beast Bone x3", key="310500,0:0031057000::"),
+        ERLocationData("LL/(LCC): Throwing Dagger x5 - room after dropdown path", "Throwing Dagger x5", key="310500,0:0031057010::"),
+        ERLocationData("LL/(LCC): Golden Rune [5] - after room after dropdown path", "Golden Rune [5]", key="310500,0:0031057020::"),
+        ERLocationData("LL/(LCC): Soft Cotton x2 - ledge near bottom of pit", "Soft Cotton x2", key="310500,0:0031057030::"),
+        ERLocationData("LL/(LCC): Smithing Stone [4] - bottom of pit", "Smithing Stone [4]", key="310500,0:0031057040::"),
+        ERLocationData("LL/(LCC): Smithing Stone [2] - bottom of pit", "Smithing Stone [2]", key="310500,0:0031057050::"),
+        ERLocationData("LL/(LCC): Lump of Flesh - bottom of pit", "Lump of Flesh", key="310500,0:0031057060::"),
+        ERLocationData("LL/(LCC): Arteria Leaf - in chest beside grace", "Arteria Leaf", key="310500,0:0031057070::"),
+        ERLocationData("LL/(LCC): Spear Talisman - in chest W path from first room", "Spear Talisman", key="310500,0:0031057100::", talisman=True, chest=True),
     ],
     "gelmir_seethewatercave":[
         #ERLocationData("MG/(SC): Kindred of Rot's Exultation - Dropped by Kindred of Rot", "Kindred of Rot's Exultation", key="310700,0:0000520390::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
@@ -4145,16 +4152,16 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(LT): Golden Rune [1] - off side of third elevator", "Golden Rune [1]", key="320100,0:0032017030::"),
         ERLocationData("LG/(LT): Glintstone Scrap x3 - off side of second elevator", "Glintstone Scrap x3", key="320100,0:0032017040::"),
     ],
-    "liurnia_tunnel":[
-        #ERLocationData("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - Dropped by Crystalian", "Smithing-Stone Miner's Bell Bearing [1]", key="320200,0:0000520620::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
-        #ERLocationData("LL/(RLCT): Somber Smithing Stone [2] - ", "Somber Smithing Stone [2]", key="320200,0:0032027000::"),
-        #ERLocationData("LL/(RLCT): Somber Smithing Stone [3] - ", "Somber Smithing Stone [3]", key="320200,0:0032027010::"),
-        #ERLocationData("LL/(RLCT): Golden Rune [3] - ", "Golden Rune [3]", key="320200,0:0032027020::"),
-        #ERLocationData("LL/(RLCT): Smithing Stone [3] - ", "Smithing Stone [3]", key="320200,0:0032027030::"),
-        #ERLocationData("LL/(RLCT): Somber Smithing Stone [3] - ", "Somber Smithing Stone [3]", key="320200,0:0032027040::"),
-        #ERLocationData("LL/(RLCT): Smithing Stone [1] x3 - ", "Smithing Stone [1] x3", key="320200,0:0032027060::"),
-        #ERLocationData("LL/(RLCT): Shatter Earth - ", "Shatter Earth", key="320200,0:0032027070::"),
-        #ERLocationData("LL/(RLCT): Crystal Knife - ", "Crystal Knife", key="320200,0:0032027900::"),
+    "Raya Lucaria Crystal Tunnel":[ # liurnia_tunnel      done
+        ERLocationData("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - boss drop", "Smithing-Stone Miner's Bell Bearing [1]", key="320200,0:0000520620::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
+        ERLocationData("LL/(RLCT): Somber Smithing Stone [2] - in chest on platform near grace", "Somber Smithing Stone [2]", key="320200,0:0032027000::"),
+        ERLocationData("LL/(RLCT): Somber Smithing Stone [3] - the parkour item near top", "Somber Smithing Stone [3]", key="320200,0:0032027010::"),
+        ERLocationData("LL/(RLCT): Golden Rune [3] - room before first elevator, under platforms", "Golden Rune [3]", key="320200,0:0032027020::"),
+        ERLocationData("LL/(RLCT): Smithing Stone [3] - room before first elevator, dead-end to S", "Smithing Stone [3]", key="320200,0:0032027030::"),
+        ERLocationData("LL/(RLCT): Somber Smithing Stone [3] - off side of first elevator, down path then drop down", "Somber Smithing Stone [3]", key="320200,0:0032027040::"),
+        ERLocationData("LL/(RLCT): Smithing Stone [1] x3 - bottom of shortcut elevator, side room 1", "Smithing Stone [1] x3", key="320200,0:0032027060::"),
+        ERLocationData("LL/(RLCT): Shatter Earth - room before last elevator, dead-end to N", "Shatter Earth", key="320200,0:0032027070::"),
+        ERLocationData("LL/(RLCT): Crystal Knife - bottom of shortcut elevator, in chest side room 2", "Crystal Knife", key="320200,0:0032027900::"),
     ],
     "altus_oldtunnel":[
         #ERLocationData("AP/(OAT): Great Club - Dropped by Stonedigger Troll", "Great Club", key="320400,0:0000520630::", altboss=True, minidungeonboss=True, tunnelboss=True),
@@ -4514,6 +4521,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: DLC Dungeons
+    # will be done by KyleG
     "gravesite_catacombs":[
         #ERLocationData("GP/(FRC): Ancient Dragon Knight's Cookbook [1] - On a corpse before the second room with the impaling block. Instead of going down the stairs to the room to the west, turn east", "Ancient Dragon Knight's Cookbook [1]", key="400000,0:0000068740::", cookbook=True),
         #ERLocationData("GP/(FRC): Death Knight's Twin Axes - Dropped by Death Knight", "Death Knight's Twin Axes", key="400000,0:0000520700::", altboss=True, minidungeonboss=True, catacombboss=True),
@@ -5228,7 +5236,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("MG: Haligtree Secret Medallion (Left) - Atop a tower after defeating Commander Niall", "Haligtree Secret Medallion (Left)", key="605158,0:1051587800::", racemode=True, nocrawl=True),
     ],
     
-    # MARK: Some DLC
+    # MARK: More DLC
     "rauhruins":[
         #ERLocationData("RR: Remembrance of the Saint of the Bud - Dropped by Romina, Saint of the Bud", "Remembrance of the Saint of the Bud", key="614445,0:0000510600::", boss=True, remembrance=True),
         #ERLocationData("RR: Scadutree Fragment - In front of the northwest wall monument on the second floor of the cave after the West Ruins grace.", "Scadutree Fragment", key="614445,0:2044457000::", fragment=True),
@@ -5660,8 +5668,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "hinterland_dheo":[
         #ERLocationData("HL/FRD: Cerulean Seed Talisman +1 - Acquired by using the Hole-Laden Necklace at the hanging bell in the center", "Cerulean Seed Talisman +1", key="615346,0:2053467600::", talisman=True, nocrawl=True, missable=True),
     ],
+    
+    # MARK: Rold medallion check
     "leyndell_erdtree":[
-        #ERLocationData("LRC/ET: Rold Medallion - Given by Melina after defeating Morgott", "Rold Medallion", key="999999,0:0000400001::", racemode=True),
+        ERLocationData("LRC/ET: Rold Medallion - talk to Melina after boss", "Rold Medallion", key="999999,0:0000400001::", racemode=True),
     ],
 }
 
