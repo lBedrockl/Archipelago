@@ -165,6 +165,9 @@ class EldenRing(World):
             create_connection("Mohgwyn Palace", "Gravesite Plain")
             
             create_connection("Gravesite Plain", "Fog Rift Catacombs")
+            
+            
+            create_connection("Rauh Base", "Scorpion River Catacombs")
         
 
     # For each region, add the associated locations retrieved from the corresponding location_table
