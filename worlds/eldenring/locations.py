@@ -4543,7 +4543,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/(FRC): Ash of War: Blinkbolt - chest above south block in triple trap room", "Ash of War: Blinkbolt", key="400000,0:0040007900::", chest=True),
         ERLocationData("GP/(FRC): Stone-Sheathed Sword - above triple trap room, across traps", "Stone-Sheathed Sword", key="400000,0:2045477900::"),
     ],
-    "rauhbase_catacombs":[
+    "Scorpion River Catacombs":[ #rauhbase_catacombs  WIP
         #ERLocationData("RB/(SRC): Ancient Dragon Knight's Cookbook [2] - In a chest accessed by dropping down to the northwest in the last hallway with roaming basilisk eyes and climbing up the ladder", "Ancient Dragon Knight's Cookbook [2]", key="400100,0:0000068780::", cookbook=True, chest=True),
         #ERLocationData("RB/(SRC): Death Knight's Longhaft Axe - Dropped by Death Knight", "Death Knight's Longhaft Axe", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
         #ERLocationData("RB/(SRC): Cerulean Amber Medallion +3 - Dropped by Death Knight", "Cerulean Amber Medallion +3", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
