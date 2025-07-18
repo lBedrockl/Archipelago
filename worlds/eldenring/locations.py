@@ -4522,7 +4522,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: DLC Dungeons
-    # will be done by KyleG
+    # will be done by KyleG (damn right it will! - KyleG)
     "Fog Rift Catacombs":[ # gravesite_catacombs     done
         ERLocationData("GP/(FRC): Ancient Dragon Knight's Cookbook [1] - on corpse, room with second fulgurbloom", "Ancient Dragon Knight's Cookbook [1]", key="400000,0:0000068740::", cookbook=True),
         ERLocationData("GP/(FRC): Death Knight's Twin Axes - boss drop", "Death Knight's Twin Axes", key="400000,0:0000520700::", altboss=True, minidungeonboss=True, catacombboss=True),
@@ -4543,26 +4543,27 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/(FRC): Ash of War: Blinkbolt - chest above south block in triple trap room", "Ash of War: Blinkbolt", key="400000,0:0040007900::", chest=True),
         ERLocationData("GP/(FRC): Stone-Sheathed Sword - above triple trap room, across traps", "Stone-Sheathed Sword", key="400000,0:2045477900::"),
     ],
-    "rauhbase_catacombs":[
-        #ERLocationData("RB/(SRC): Ancient Dragon Knight's Cookbook [2] - In a chest accessed by dropping down to the northwest in the last hallway with roaming basilisk eyes and climbing up the ladder", "Ancient Dragon Knight's Cookbook [2]", key="400100,0:0000068780::", cookbook=True, chest=True),
-        #ERLocationData("RB/(SRC): Death Knight's Longhaft Axe - Dropped by Death Knight", "Death Knight's Longhaft Axe", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("RB/(SRC): Cerulean Amber Medallion +3 - Dropped by Death Knight", "Cerulean Amber Medallion +3", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("RB/(SRC): Rejuvenating Boluses x3 - On a corpse in the left side room before the bridge across the first big room with basilisk eyes", "Rejuvenating Boluses x3", key="400100,0:0040017000::"),
-        #ERLocationData("RB/(SRC): Grave Glovewort [3] - In the south corner of a room with stairs, after the first big room with basilisk eyes", "Grave Glovewort [3]", key="400100,0:0040017010::"),
-        #ERLocationData("RB/(SRC): Redflesh Mushroom x5 - On a corpse in the southeast corner of the room with a bigmouth imp alcove before the big room with impaling blocks", "Redflesh Mushroom x5", key="400100,0:0040017020::"),
-        #ERLocationData("RB/(SRC): Ghost Glovewort [5] - On a corpse down a narrow hallway near the start of the catacomb. After going down a flight of stairs, instead of turning right toward the big room with impaling blocks, go straight.", "Ghost Glovewort [5]", key="400100,0:0040017030::"),
-        #ERLocationData("RB/(SRC): Ghost Glovewort [3] - On a corpse under the first impaling block in the big room with impaling blocks", "Ghost Glovewort [3]", key="400100,0:0040017040::"),
-        #ERLocationData("RB/(SRC): Black Knight Captain Huw - On the altar on the middle level of the big room with impaling blocks, in the northwest corner past the second impaling block", "Black Knight Captain Huw", key="400100,0:0040017050::"),
-        #ERLocationData("RB/(SRC): Ghost Glovewort [6] - On a corpse near the top of the big room with impaling blocks, accessed by climbing the ladder in an alcove by the second impaling block and then riding the second impaling block to an alcove", "Ghost Glovewort [6]", key="400100,0:0040017060::"),
-        #ERLocationData("RB/(SRC): Imp Head (Lion) - On a corpse near the top of the big room with impaling blocks, accessed by climbing the ladder in an alcove by the second impaling block and then riding the first impaling block up to the north corner of the room", "Imp Head (Lion)", key="400100,0:0040017070::"),
-        #ERLocationData("RB/(SRC): Knight's Lightning Spear - On a corpse in a room behind the basilisk eyes in the big room with impaling blocks, accessed by climbing the ladder in an alcove by the second impaling block, traversing on top of the first impaling block to the northeast wall of the room, and going down the hallway", "Knight's Lightning Spear", key="400100,0:0040017080::"),
-        #ERLocationData("RB/(SRC): Yellow Fulgurbloom x6 - On a corpse in a side room overlooking the big room with impaling blocks, accessed by climbing the ladder in an alcove by the second impaling block, traversing on top of the first impaling block to the northeast wall of the room, going down the hallway, and making a right turn up some stairs", "Yellow Fulgurbloom x6", key="400100,0:0040017090::"),
-        #ERLocationData("RB/(SRC): Grave Glovewort [4] - On a corpse in the L-shaped room after the first long hallway with the roaming basilisk eyes", "Grave Glovewort [4]", key="400100,0:0040017100::"),
-        #ERLocationData("RB/(SRC): Rejuvenating Boluses x2 - On a corpse on a ledge overlooking the T-shaped room at the end of the dungeon, accessed by dropping down to the northwest in the last hallway with roaming basilisk eyes, climbing up the ladder, then going down the hallway to the left", "Rejuvenating Boluses x2", key="400100,0:0040017110::"),
-        #ERLocationData("RB/(SRC): Great Ghost Glovewort - On a corpse on the lower level of the T-shaped room near the end of the dungeon before the final hallway with roaming basilisk eyes, accessed either by descending a ladder in the room or just dropping down to the south", "Great Ghost Glovewort", key="400100,0:0040017120::"),
-        #ERLocationData("RB/(SRC): Ghost Glovewort [8] - On a corpse in front of a coffin in the T-shaped room near the end of the dungeon before the final hallway with roaming basilisk eyes", "Ghost Glovewort [8]", key="400100,0:0040017130::"),
-        #ERLocationData("RB/(SRC): Shadow Realm Rune [4] - On a corpse on the lower level of the big room with impaling blocks, accessed by dropping off to the southeast of the middle level", "Shadow Realm Rune [4]", key="400100,0:0040017140::"),
-        #ERLocationData("RB/(SRC): Broken Rune - On a corpse above the stairs leading up to the last hallway with roaming basilisk eyes, accessed by dropping down to the northwest in the middle of the hallway, climbing up the ladder, going down a hallway to the left, then taking another left down another hallway to loop around", "Broken Rune", key="400100,0:0040017150::"),
+    "Scorpion River Catacombs":[ #rauhbase_catacombs  WIP
+        # NOTE: The "Basilisk Eyes" are static traps, not basilisks themselves
+        ERLocationData("RB/(SRC): Ancient Dragon Knight's Cookbook [2] - drop off bridge past second eyes, in chest", "Ancient Dragon Knight's Cookbook [2]", key="400100,0:0000068780::", cookbook=True, chest=True),
+        ERLocationData("RB/(SRC): Death Knight's Longhaft Axe - boss drop", "Death Knight's Longhaft Axe", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("RB/(SRC): Cerulean Amber Medallion +3 - boss drop", "Cerulean Amber Medallion +3", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("RB/(SRC): Rejuvenating Boluses x3 - left room before Basilisk eyes bridge", "Rejuvenating Boluses x3", key="400100,0:0040017000::"),
+        ERLocationData("RB/(SRC): Grave Glovewort [3] - on corpse down stairs past Basilisk eyes", "Grave Glovewort [3]", key="400100,0:0040017010::"),
+        ERLocationData("RB/(SRC): Redflesh Mushroom x5 - on corpse, long room after Basilisk Eyes", "Redflesh Mushroom x5", key="400100,0:0040017020::"),
+        ERLocationData("RB/(SRC): Ghost Glovewort [5] - third room past eyes, straight from second stairs", "Ghost Glovewort [5]", key="400100,0:0040017030::"), # Might need to shorten this one
+        ERLocationData("RB/(SRC): Ghost Glovewort [3] - corpse under first impaling block", "Ghost Glovewort [3]", key="400100,0:0040017040::"),
+        ERLocationData("RB/(SRC): Black Knight Captain Huw - altar past second impaling block", "Black Knight Captain Huw", key="400100,0:0040017050::"),
+        ERLocationData("RB/(SRC): Ghost Glovewort [6] - platform next to top of second impaling block", "Ghost Glovewort [6]", key="400100,0:0040017060::"),
+        ERLocationData("RB/(SRC): Imp Head (Lion) - platform next to top of second impaling block", "Imp Head (Lion)", key="400100,0:0040017070::"),
+        ERLocationData("RB/(SRC): Knight's Lightning Spear - corpse, first room behind second Basilisk eyes", "Knight's Lightning Spear", key="400100,0:0040017080::"),
+        ERLocationData("RB/(SRC): Yellow Fulgurbloom x6 - arched hallway past second Basilisk eyes", "Yellow Fulgurbloom x6", key="400100,0:0040017090::"),
+        ERLocationData("RB/(SRC): Grave Glovewort [4] - room past moving Basilisk eyes", "Grave Glovewort [4]", key="400100,0:0040017100::"),
+        ERLocationData("RB/(SRC): Rejuvenating Boluses x2 - ledge overlooking T-shaped room", "Rejuvenating Boluses x2", key="400100,0:0040017110::"),
+        ERLocationData("RB/(SRC): Great Ghost Glovewort - down ladder in T-shaped room", "Great Ghost Glovewort", key="400100,0:0040017120::"),
+        ERLocationData("RB/(SRC): Ghost Glovewort [8] - coffin in T-shaped room past floating eyes", "Ghost Glovewort [8]", key="400100,0:0040017130::"),
+        ERLocationData("RB/(SRC): Shadow Realm Rune [4] - drop off ledge SE of first impaling block", "Shadow Realm Rune [4]", key="400100,0:0040017140::"),
+        ERLocationData("RB/(SRC): Broken Rune - SE of ledge overlooking T-shaped room", "Broken Rune", key="400100,0:0040017150::"),
     ],
     "scadualtus_catacombs":[
         #ERLocationData("SA/(DC): Grave Glovewort [5] - On a corpse in front of an open coffin in the first room after the grace", "Grave Glovewort [5]", key="400200,0:0040027000::"),
