@@ -161,8 +161,10 @@ class EldenRing(World):
 
 
         # Connect DLC Regions
-        #if self.options.enable_dlc:
-            #create_connection("Mohgwyn Palace", "Gravesite Plain")
+        if self.options.enable_dlc:
+            create_connection("Mohgwyn Palace", "Gravesite Plain")
+            
+            create_connection("Gravesite Plain", "Fog Rift Catacombs")
         
 
     # For each region, add the associated locations retrieved from the corresponding location_table
@@ -707,6 +709,11 @@ class EldenRing(World):
             "LG/(CE): Spirit Calling Bell - talk to Ranni",
             "LG/(CE): Lone Wolf Ashes - talk to Ranni",
         ], lambda state: ( self._can_get(state, "talk to ranni in her tower, item in rth") ))"""
+        
+        if self.options.enable_dlc: # MARK: DLC NPC
+            
+            
+            "guh"
         
         
             
