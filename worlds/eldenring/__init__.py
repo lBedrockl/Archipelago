@@ -109,6 +109,14 @@ class EldenRing(World):
         #create_connection("Stormveil Castle", "Liurnia of The Lakes")
         # Liurnia of The Lakes
         create_connection("Liurnia of The Lakes", "Chapel of Anticipation") # from four belfries
+        create_connection("Liurnia of The Lakes", "Road's End Catacombs")
+        create_connection("Liurnia of The Lakes", "Black Knife Catacombs")
+        create_connection("Liurnia of The Lakes", "Cliffbottom Catacombs")
+        create_connection("Liurnia of The Lakes", "Stillwater Cave")
+        create_connection("Liurnia of The Lakes", "Lakeside Crystal Cave")
+        create_connection("Liurnia of The Lakes", "Academy Crystal Cave")
+        create_connection("Liurnia of The Lakes", "Raya Lucaria Crystal Tunnel")
+        
         
         create_connection("Limgrave", "Caelid")
         # Caelid
@@ -492,7 +500,10 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey) and state.can_reach("Caelid")) # 2
         
         # liurnia +4
-        #currentKey += 4
+        currentKey += 4
+        self._add_location_rule("LL/(BKC): Rosus' Axe - behind imp statue near boss door" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule("LL/(CC): Nox Mirrorhelm - behind imp statue, in SW corner" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         # caelid +3
         currentKey += 3
@@ -610,8 +621,15 @@ class EldenRing(World):
         self._add_location_rule([ "RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss",
         ], lambda state: ( self._has_enough_great_runes(state, 2)))
         
+        # MARK: Latenna
+        # need to see if armour is missable
+        # talk to her with secret medallion right, get ashes        *do you need to talk to albus first or just have item*
+        # after take her to apostate derelict in con snow, get mega somber
+        self._add_location_rule([ "LL/(SWS): Latenna the Albinauric - talk to Latenna with Haligtree Secret Medallion (Right)",
+        ], lambda state: ( state.has("Haligtree Secret Medallion (Right)", self.player)))
+        
         # MARK: D
-        # self._add_location_rule([
+        # self._add_location_rule([ # idk how yet
         #     "RH: Litany of Proper Death - D shop",
         #     "RH: Order's Blade - D shop",
         # ], lambda state: ( state.can_reach("")))
