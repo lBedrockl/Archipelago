@@ -95,6 +95,11 @@ region_order_dlc = [
     #DLC
     "Gravesite Plain",
     "Fog Rift Catacombs",
+    
+    
+    
+    "Rauh Base",
+    "Scorpion River Catacombs",
 ]
 
 @dataclass
@@ -4543,7 +4548,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/(FRC): Ash of War: Blinkbolt - chest above south block in triple trap room", "Ash of War: Blinkbolt", key="400000,0:0040007900::", chest=True),
         ERLocationData("GP/(FRC): Stone-Sheathed Sword - above triple trap room, across traps", "Stone-Sheathed Sword", key="400000,0:2045477900::"),
     ],
-    "Scorpion River Catacombs":[ #rauhbase_catacombs    done
+    "Scorpion River Catacombs":[ #rauhbase_catacombs     done
         # NOTE: The "Basilisk Eyes" are static traps, not basilisks themselves
         ERLocationData("RB/(SRC): Ancient Dragon Knight's Cookbook [2] - drop off bridge past second eyes, in chest", "Ancient Dragon Knight's Cookbook [2]", key="400100,0:0000068780::", cookbook=True, chest=True),
         ERLocationData("RB/(SRC): Death Knight's Longhaft Axe - boss drop", "Death Knight's Longhaft Axe", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
