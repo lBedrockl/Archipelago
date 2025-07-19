@@ -4583,7 +4583,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(DC): Great Ghost Glovewort - dropped by massive imp", "Great Ghost Glovewort", key="400200,0:0040027900::"),
         ERLocationData("SA/(DC): Barbed Staff-Spear - boss drop", "Barbed Staff-Spear", key="615243,0:0000510610::", altboss=True, crawl=True, minidungeonboss=True, catacombboss=True, criticalpath=True),
     ],
-    "gravesite_gaol":[
+    "Belurat Gaol":[ #gravesite_gaol (those pot people can go to hell. Creepy mofos.)
         #ERLocationData("GP/(BG): Hefty Cracked Pot - In a chest in the tall room you descend by jumping between large hanging pots. Close to the bottom on a pot with a corpse on it, there are two possible pots to jump to. Choose the west pot and jump down again to a ledge overlooking the room.", "Hefty Cracked Pot", key="410000,0:0000066900::", chest=True),
         #ERLocationData("GP/(BG): Hefty Cracked Pot - On a corpse on top of a large pot in the pot maze near the end of the dungeon. It can be accessed from the southwest edge of the room, reachable by climbing southwest over toppled pots near the maze's exit, then climbing onto the pots by the edge of the room and jumping to the pots to the northeast.", "Hefty Cracked Pot", key="410000,0:0000066910::"),
         #ERLocationData("GP/(BG): Hefty Cracked Pot - On a corpse on top of a large pot in the pot maze near the end of the dungeon. While it's in the north corner of the room, it's accessed by climbing southwest over toppled pots near the maze's exit and following the left wall around the room clockwise until reaching a large pile of pots which can be climbed.", "Hefty Cracked Pot", key="410000,0:0000066920::"),
