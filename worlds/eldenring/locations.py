@@ -93,13 +93,45 @@ region_order = [
 #MARK: DLC Location Order
 region_order_dlc = [
     #DLC
+    # Gravesite Plain
     "Gravesite Plain",
     "Fog Rift Catacombs",
     
+    "Belurat",
     
+    "Castle Ensis",
+    
+    "Jagged Peak",
+    
+    "Charo's Hidden Grave",
+    
+    # Scadu Altus
+    "Scadu Altus",
     
     "Rauh Base",
     "Scorpion River Catacombs",
+    
+    "Ellac River", # name might be wrong
+    
+    "Cerulean Coast",
+    "Finger Ruins of Rhia",
+    "Stone Coffin",
+    
+    # Shadow Keep
+    "Shadow Keep",
+    
+    "Rauh Ruins",
+    
+    "Hinterland",
+    "Finger Ruins of Dheo",
+    
+    "Recluses' River",
+    "Darklight Catacombs",
+    
+    "Abyssal Woods",
+    "Midra's Manse",
+    
+    "Enir Ilim",
 ]
 
 @dataclass
@@ -4570,23 +4602,23 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RB/(SRC): Shadow Realm Rune [4] - drop off ledge SE of first impaling block", "Shadow Realm Rune [4]", key="400100,0:0040017140::"),
         ERLocationData("RB/(SRC): Broken Rune - SE of ledge overlooking T-shaped room", "Broken Rune", key="400100,0:0040017150::"),
     ],
-    "Eastern Nameless Mausoleum":[ # scadualtus_catacombs
-        ERLocationData("SA/(DC): Grave Glovewort [5] - coffin in room after grace", "Grave Glovewort [5]", key="400200,0:0040027000::"),
-        ERLocationData("SA/(DC): Grave Glovewort [1] - bottom of ladder in L-shaped room", "Grave Glovewort [1]", key="400200,0:0040027010::"),
-        ERLocationData("SA/(DC): Viridian Amber Medallion +3 - jump over balcony, in hidden room", "Viridian Amber Medallion +3", key="400200,0:0040027020::", talisman=True, chest=True),
-        ERLocationData("SA/(DC): Ghost Glovewort [2] - room out to the left of elevator", "Ghost Glovewort [2]", key="400200,0:0040027100::"),
-        ERLocationData("SA/(DC): Thin Beast Bones x4 - bottom of stair in big room past elevator", "Thin Beast Bones x4", key="400200,0:0040027110::"),
-        ERLocationData("SA/(DC): Shadow Realm Rune [5] - top of ladder past first broken railing drop", "Shadow Realm Rune [5]", key="400200,0:0040027120::"),
-        ERLocationData("SA/(DC): Death Knight Helm - on corpse down the second broken railing", "Death Knight Helm", key="400200,0:0040027130::"),
-        ERLocationData("SA/(DC): Death Knight Armor - on corpse down the second broken railing", "Death Knight Armor", key="400200,0:0040027130::"),
-        ERLocationData("SA/(DC): Death Knight Gauntlets - on corpse down the second broken railing", "Death Knight Gauntlets", key="400200,0:0040027130::"),
-        ERLocationData("SA/(DC): Death Knight Greaves - on corpse down the second broken railing", "Death Knight Greaves", key="400200,0:0040027130::"),
-        ERLocationData("SA/(DC): Ghost Glovewort [9] - balcony at end of second broken railing drop", "Ghost Glovewort [9]", key="400200,0:0040027140::"),
-        ERLocationData("SA/(DC): Ghost Glovewort [8] - in room with massive imp, turn around after drop", "Ghost Glovewort [8]", key="400200,0:0040027200::"),
-        ERLocationData("SA/(DC): Ghost Glovewort [4] - east side of massive imp, northeast corner", "Ghost Glovewort [4]", key="400200,0:0040027210::"),
-        ERLocationData("SA/(DC): Bigmouth Imp Ashes - chest south of massive imp", "Bigmouth Imp Ashes", key="400200,0:0040027220::", chest=True),
-        ERLocationData("SA/(DC): Great Ghost Glovewort - dropped by massive imp", "Great Ghost Glovewort", key="400200,0:0040027900::"),
-        ERLocationData("SA/(DC): Barbed Staff-Spear - boss drop", "Barbed Staff-Spear", key="615243,0:0000510610::", altboss=True, crawl=True, minidungeonboss=True, catacombboss=True, criticalpath=True),
+    "Darklight Catacombs":[ # scadualtus_catacombs      done
+        ERLocationData("RR/(DC): Grave Glovewort [5] - coffin in room after grace", "Grave Glovewort [5]", key="400200,0:0040027000::"),
+        ERLocationData("RR/(DC): Grave Glovewort [1] - bottom of ladder in L-shaped room", "Grave Glovewort [1]", key="400200,0:0040027010::"),
+        ERLocationData("RR/(DC): Viridian Amber Medallion +3 - jump over balcony, in hidden room", "Viridian Amber Medallion +3", key="400200,0:0040027020::", talisman=True, chest=True),
+        ERLocationData("RR/(DC): Ghost Glovewort [2] - room out to the left of elevator", "Ghost Glovewort [2]", key="400200,0:0040027100::"),
+        ERLocationData("RR/(DC): Thin Beast Bones x4 - bottom of stair in big room past elevator", "Thin Beast Bones x4", key="400200,0:0040027110::"),
+        ERLocationData("RR/(DC): Shadow Realm Rune [5] - top of ladder past first broken railing drop", "Shadow Realm Rune [5]", key="400200,0:0040027120::"),
+        ERLocationData("RR/(DC): Death Knight Helm - on corpse down the second broken railing", "Death Knight Helm", key="400200,0:0040027130::"),
+        ERLocationData("RR/(DC): Death Knight Armor - on corpse down the second broken railing", "Death Knight Armor", key="400200,0:0040027130::"),
+        ERLocationData("RR/(DC): Death Knight Gauntlets - on corpse down the second broken railing", "Death Knight Gauntlets", key="400200,0:0040027130::"),
+        ERLocationData("RR/(DC): Death Knight Greaves - on corpse down the second broken railing", "Death Knight Greaves", key="400200,0:0040027130::"),
+        ERLocationData("RR/(DC): Ghost Glovewort [9] - balcony at end of second broken railing drop", "Ghost Glovewort [9]", key="400200,0:0040027140::"),
+        ERLocationData("RR/(DC): Ghost Glovewort [8] - in room with massive imp, turn around after drop", "Ghost Glovewort [8]", key="400200,0:0040027200::"),
+        ERLocationData("RR/(DC): Ghost Glovewort [4] - E side of massive imp, NE corner", "Ghost Glovewort [4]", key="400200,0:0040027210::"),
+        ERLocationData("RR/(DC): Bigmouth Imp Ashes - chest S of massive imp", "Bigmouth Imp Ashes", key="400200,0:0040027220::", chest=True),
+        ERLocationData("RR/(DC): Great Ghost Glovewort - dropped by massive imp", "Great Ghost Glovewort", key="400200,0:0040027900::"),
+        ERLocationData("RR/(DC): Barbed Staff-Spear - boss drop", "Barbed Staff-Spear", key="615243,0:0000510610::", altboss=True, crawl=True, minidungeonboss=True, catacombboss=True, criticalpath=True),
     ],
     "Belurat Gaol":[ #gravesite_gaol (those pot people can go to hell. Creepy mofos.)
         #ERLocationData("GP/(BG): Hefty Cracked Pot - In a chest in the tall room you descend by jumping between large hanging pots. Close to the bottom on a pot with a corpse on it, there are two possible pots to jump to. Choose the west pot and jump down again to a ledge overlooking the room.", "Hefty Cracked Pot", key="410000,0:0000066900::", chest=True),

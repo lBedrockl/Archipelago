@@ -161,13 +161,35 @@ class EldenRing(World):
 
 
         # Connect DLC Regions
-        if self.options.enable_dlc:
+        if self.options.enable_dlc: #WIP
             create_connection("Mohgwyn Palace", "Gravesite Plain")
-            
             create_connection("Gravesite Plain", "Fog Rift Catacombs")
+            create_connection("Gravesite Plain", "Belurat")
+            create_connection("Gravesite Plain", "Castle Ensis")
+            create_connection("Gravesite Plain", "Dragon's Pit")
+            create_connection("Dragon's Pit", "Jagged Peak")
+            create_connection("Jagged Peak", "Charo's Hidden Grave")
             
-            
+            create_connection("Castle Ensis", "Scadu Altus")
+            create_connection("Scadu Altus", "Rauh Base")
             create_connection("Rauh Base", "Scorpion River Catacombs")
+            
+            create_connection("Scadu Altus", "Ellac River")
+            create_connection("Ellac River", "Cerulean Coast")
+            create_connection("Cerulean Coast", "Stone Coffin")
+            create_connection("Cerulean Coast", "Finger Ruins of Rhia")
+            
+            create_connection("Scadu Altus", "Shadow Keep")
+            create_connection("Shadow Keep", "Hinterland")
+            create_connection("Hinterland", "Finger Ruins of Dheo")
+            
+            create_connection("Shadow Keep", "Rauh Ruins")
+            create_connection("Rauh Ruins", "Enir Ilim")
+            
+            create_connection("Shadow Keep", "Recluses' River")
+            create_connection("Recluses' River", "Darklight Catacombs")
+            create_connection("Darklight Catacombs", "Abyssal Woods")
+            create_connection("Abyssal Woods", "Midra's Manse")
         
 
     # For each region, add the associated locations retrieved from the corresponding location_table
