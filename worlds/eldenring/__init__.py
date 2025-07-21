@@ -164,6 +164,7 @@ class EldenRing(World):
         if self.options.enable_dlc: #WIP
             create_connection("Mohgwyn Palace", "Gravesite Plain")
             create_connection("Gravesite Plain", "Fog Rift Catacombs")
+            create_connection("Gravesite Plain", "Belurat Gaol")
             create_connection("Gravesite Plain", "Belurat")
             create_connection("Gravesite Plain", "Castle Ensis")
             create_connection("Gravesite Plain", "Dragon's Pit")
@@ -171,6 +172,7 @@ class EldenRing(World):
             create_connection("Jagged Peak", "Charo's Hidden Grave")
             
             create_connection("Castle Ensis", "Scadu Altus")
+            create_connection("Scadu Altus", "Bonny Gaol")
             create_connection("Scadu Altus", "Rauh Base")
             create_connection("Rauh Base", "Scorpion River Catacombs")
             
