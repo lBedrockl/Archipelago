@@ -105,6 +105,9 @@ region_order_dlc = [
     "Jagged Peak",
     
     "Charo's Hidden Grave",
+    "Lamenter's Gaol (Entrance)",
+    "Lamenter's Gaol (Upper)", #main
+    "Lamenter's Gaol (Lower)", #boss
     
     # Scadu Altus
     "Scadu Altus",
@@ -4674,10 +4677,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(BG): Raw Meat Dumpling - enemy drop in middle of room past blood waterfall drop", "Raw Meat Dumpling", key="410100,0:0041017995::"),
         ERLocationData("SA/(BG): Living Jar Shard - enemy drop in middle of room past blood waterfall drop", "Living Jar Shard", key="410100,0:0041017995::"),
     ],
-    "Lamenter's Gaol (Upper)":[ # charo_gaol_lower
+    "Lamenter's Gaol (Upper)":[ # charo_gaol_lower        done
         ERLocationData("CHG/(LG): Hefty Cracked Pot - top of large corpse pile in corpse room", "Hefty Cracked Pot", key="410200,0:0000066940::"),
         ERLocationData("CHG/(LG): Chilling Perfume Bottle - first room on right after upper gaol locked door", "Chilling Perfume Bottle", key="410200,0:0041027100::"),
         ERLocationData("CHG/(LG): Call of Tibia - upstairs after collapsing floor, first right then left room", "Call of Tibia", key="410200,0:0041027110::"),
+        # where items moved from
         ERLocationData("CHG/(LG): Innard Meat x2 - corpse SE corner of blood cave", "Innard Meat x2", key="410200,0:0041027200::"),
         ERLocationData("CHG/(LG): Clarifying Horn Charm +2 - blood cave, NW then N then E from ladder", "Clarifying Horn Charm +2", key="410200,0:0041027210::"),
         ERLocationData("CHG/(LG): Living Jar Shard x6 - corpse in SW corner of corpse room", "Living Jar Shard x6", key="410200,0:0041027300::"),
@@ -4689,16 +4693,16 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CHG/(LG): Raw Meat Dumpling - drop from enemy S of large corpse pile in corpse room", "Raw Meat Dumpling", key="410200,0:0041027995::"),
         ERLocationData("CHG/(LG): Living Jar Shard - drop from enemy S of large corpse pile in corpse room", "Living Jar Shard", key="410200,0:0041027995::"),
     ],
-    "Lamenter's Gaol (Lower)":[ # charo_gaol_boss
-        ERLocationData("CHG/(LG): Shadow Realm Rune [4] - corpse past door opened with lower key, behind illusory wall", "Shadow Realm Rune [4]", key="410200,0:0041027120::"),
-        ERLocationData("CHG/(LG): Lamenting Visage - corpse past door opened with lower key, behind illusory wall", "Lamenting Visage", key="410200,0:0041027130::", hidden=True),
+    "Lamenter's Gaol (Lower)":[ # charo_gaol_boss        done
+        ERLocationData("CHG/(LG): Shadow Realm Rune [4] - corpse past door opened with lower key, behind illusory wall", "Shadow Realm Rune [4]", key="410200,0:0041027120::", hidden=True), #moved
+        ERLocationData("CHG/(LG): Lamenting Visage - corpse past door opened with lower key, behind illusory wall", "Lamenting Visage", key="410200,0:0041027130::", hidden=True), #moved
         ERLocationData("CHG/(LG): Lamenter's Mask - boss drop", "Lamenter's Mask", key="410200,0:0000520770::", altboss=True, minidungeonboss=True, gaolboss=True),
     ],
-    "Lamenter's Gaol (Entrance)":[ # charo_gaol
+    "Lamenter's Gaol (Entrance)":[ # charo_gaol          done
         ERLocationData("CHG/(LG): Gaol Upper Level Key - second room on right from left chamber past locked door", "Gaol Upper Level Key", key="410200,0:0041027000::", racemode=True, chest=True, gaolkey=True),
         ERLocationData("CHG/(LG): Prattling Pate \"Lamentation\" - final room down left hall past locked door", "Prattling Pate \"Lamentation\"", key="410200,0:0041027010::"),
     ],
-    "Ruined Forge Lava Intake":[ # gravesite_forge
+    "Ruined Forge Lava Intake":[ # gravesite_forge     done
         ERLocationData("GP/(RFLI): Greater Potentate's Cookbook [13] - N corner of room past second ladder", "Greater Potentate's Cookbook [13]", key="420000,0:0000068700::", cookbook=True),
         ERLocationData("GP/(RFLI): Anvil Hammer - altar at dungeon's end", "Anvil Hammer", key="420000,0:0042007000::", forgereward=True),
         ERLocationData("GP/(RFLI): Ancient Dragon Smithing Stone - altar at dungeon's end", "Ancient Dragon Smithing Stone", key="420000,0:0042007000::", forgereward=True),
