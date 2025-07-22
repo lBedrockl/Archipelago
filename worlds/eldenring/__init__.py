@@ -170,6 +170,9 @@ class EldenRing(World):
             create_connection("Gravesite Plain", "Dragon's Pit")
             create_connection("Dragon's Pit", "Jagged Peak")
             create_connection("Jagged Peak", "Charo's Hidden Grave")
+            create_connection("Charo's Hidden Grave", "Lamenter's Gaol (Entrance)")
+            create_connection("Lamenter's Gaol (Entrance)", "Lamenter's Gaol (Upper)")
+            create_connection("Lamenter's Gaol (Upper)", "Lamenter's Gaol (Lower)")
             
             create_connection("Castle Ensis", "Scadu Altus")
             create_connection("Scadu Altus", "Bonny Gaol")
@@ -430,7 +433,7 @@ class EldenRing(World):
             
             self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
             self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
-            self._add_entrance_rule("Caelid", "Sellia Crystal Tunnel", lambda state: self._has_enough_great_runes(state, 3))
+            self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: self._has_enough_great_runes(state, 3))
             
             "SV: Talisman Pouch - boss drop" # item in stormveil but in stormhill location, needs a check if stormveil gets a key
             
@@ -458,7 +461,6 @@ class EldenRing(World):
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
         
         
-        
         # ashen capital only after getting farum boss Remembrance
         
         # DLC Access Rules Below
@@ -478,7 +480,11 @@ class EldenRing(World):
                 self._add_entrance_rule("Gravesite Plain", 
                     lambda state: self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
-      
+                
+            # the funny gaol
+            self._add_entrance_rule("Lamenter's Gaol (Upper)", lambda state: state.has("Gaol Upper Level Key", self.player))
+            self._add_entrance_rule("Lamenter's Gaol (Lower)", lambda state: state.has("Gaol Lower Level Key", self.player))
+                    
         
         if self.options.ending_condition == 0:
             if self.options.enable_dlc:
