@@ -4690,8 +4690,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CHG/(LG): Living Jar Shard - drop from enemy S of large corpse pile in corpse room", "Living Jar Shard", key="410200,0:0041027995::"),
     ],
     "Lamenter's Gaol (Lower)":[ # charo_gaol_boss
-        ERLocationData("CHG/(LG): Shadow Realm Rune [4] - corpse past door opened with lower key, behind illusory wall", "Shadow Realm Rune [4]", key="410200,0:0041027120::"),
-        ERLocationData("CHG/(LG): Lamenting Visage - corpse past door opened with lower key, behind illusory wall", "Lamenting Visage", key="410200,0:0041027130::", hidden=True),
+        ERLocationData("CHG/(LG): Shadow Realm Rune [4] - from middle part of the V stairs, illusory wall right of dead-end gate", "Shadow Realm Rune [4]", key="410200,0:0041027120::"),
+        ERLocationData("CHG/(LG): Lamenting Visage - from middle part of the V stairs, illusory wall right of dead-end gate", "Lamenting Visage", key="410200,0:0041027130::", hidden=True),
         ERLocationData("CHG/(LG): Lamenter's Mask - boss drop", "Lamenter's Mask", key="410200,0:0000520770::", altboss=True, minidungeonboss=True, gaolboss=True),
     ],
     "Lamenter's Gaol (Entrance)":[ # charo_gaol
