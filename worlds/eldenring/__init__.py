@@ -91,7 +91,9 @@ class EldenRing(World):
         if self.options.late_dlc == False: # for tp medal
             create_connection("Limgrave", "Mohgwyn Dynasty Mausoleum")
             
-        #create_connection("Stormhill", "Stormveil Castle")
+        create_connection("Stormhill", "Stormveil Start")
+        create_connection("Stormveil Start" "Stormveil Castle")
+        create_connection("Stormveil Castle", "Stormveil Throne")
         
         create_connection("Limgrave", "Weeping Peninsula")
         # Weeping Peninsula
@@ -106,7 +108,7 @@ class EldenRing(World):
         # Siofra
         
         create_connection("Stormhill", "Liurnia of The Lakes")
-        #create_connection("Stormveil Castle", "Liurnia of The Lakes")
+        create_connection("Stormveil Throne", "Liurnia of The Lakes")
         # Liurnia of The Lakes
         create_connection("Liurnia of The Lakes", "Chapel of Anticipation") # from four belfries
         create_connection("Liurnia of The Lakes", "Road's End Catacombs")
@@ -435,6 +437,8 @@ class EldenRing(World):
             self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
             self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: self._has_enough_great_runes(state, 3))
             
+            "Stormveil Start" # in sv entrance region
+            "Stormveil Castle" # needs to be marked too, but the throne doesnt since you can get to from liurnia
             "SV: Talisman Pouch - boss drop" # item in stormveil but in stormhill location, needs a check if stormveil gets a key
             
             "BS: Stonesword Key - behind wooden platform" 
@@ -459,6 +463,10 @@ class EldenRing(World):
             "CL/(RC): Heartening Cry - talk to Jerren during festival",
         ], lambda state: state.can_reach("Altus Plateau"))
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
+        
+        
+        # you can kill gostoc and not open main gate
+        self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Rusty Key", self.player))
         
         
         # ashen capital only after getting farum boss Remembrance
@@ -746,9 +754,7 @@ class EldenRing(World):
         if self.options.enable_dlc: # MARK: DLC NPC
             
             
-            "guh"
-        
-        
+            "guh"   
             
     def _add_remembrance_rules(self) -> None:
         """Adds rules for items obtainable for trading remembrances."""
