@@ -149,18 +149,18 @@ class EldenRing(World):
         create_connection("Wailing Dunes", "War-Dead Catacombs")
 
         # Leyndell Royal
-        create_connection("Divine Bridge", "Leyndell, Royal Capital")
+        #create_connection("Divine Bridge", "Leyndell, Royal Capital")
         #create_connection("Leyndell, Royal Capital","")
         
         # Leyndell Ashen
-        create_connection("Divine Bridge", "Leyndell, Ashen Capital")
+        #create_connection("Divine Bridge", "Leyndell, Ashen Capital")
         #create_connection("Leyndell, Ashen Capital","")
 
         #create_connection("Consecrated Snowfield", "Miquella's Haligtree")
         # Haligtree
         create_connection("Miquella's Haligtree", "Elphael, Brace of the Haligtree")
-
-
+        
+        #create_connection("Consecrated Snowfield", "Mohgwyn Palace")
 
         # Connect DLC Regions
         if self.options.enable_dlc: #WIP
@@ -431,9 +431,9 @@ class EldenRing(World):
                 "WP/FLT: Golden Rune [1] x3 2 - E of FLT",
                 "WP/CP: Sliver of Meat - lower cliff NW of CP",
                 "WP/CP: Bewitching Branch x3 - lower cliff NW of CP",
+                "WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N",
             ], lambda state: state.can_reach("Weeping Peninsula"))
-            
-            self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
+    
             self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
             self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: self._has_enough_great_runes(state, 3))
             
@@ -456,6 +456,8 @@ class EldenRing(World):
                                 lambda state: state.has("\"Homing Instinct\" Painting", self.player))
         self._add_location_rule("CL/MEE: Ash of War: Rain of Arrows - \"Redmane\" Painting reward down hidden cliff E of MEE", 
                                 lambda state: state.has("\"Redmane\" Painting", self.player))
+        self._add_location_rule("WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N", 
+                                lambda state: state.has("\"Prophecy\" Painting", self.player))
         
         # festival // altus grace touch or ranni quest stuff
         self._add_location_rule([
@@ -464,9 +466,17 @@ class EldenRing(World):
         ], lambda state: state.can_reach("Altus Plateau"))
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
         
+        #soft logic make these late spheres
+        #self._add_entrance_rule("Caelid", lambda state: state.can_reach("Altus Plateau"))
+        #self._add_entrance_rule("Dragonbarrow", lambda state: state.can_reach("Forbidden Lands") and state.has("Rold Medallion", self.player))
+        
         
         # you can kill gostoc and not open main gate
         self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Rusty Key", self.player))
+        if self.options.enemy_rando == False: # funny shackle rule
+            self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Margit's Shackle", self.player))
+            self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Mohg's Shackle", self.player))
+        
         
         
         # ashen capital only after getting farum boss Remembrance
@@ -483,8 +493,8 @@ class EldenRing(World):
             else:
                 # makes Pureblood Knight's Medal progression only when late dlc is off, idk if this works
                 item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
-                self._add_entrance_rule("Mohgwyn Dynasty Mausoleum", # can get to normal way or funny medal
-                    lambda state: state.has("Pureblood Knight's Medal", self.player) or state.can_reach("Mohgwyn Palace"))
+                self._add_entrance_rule("Mohgwyn Palace", # can get to normal way or funny medal
+                    lambda state: state.has("Pureblood Knight's Medal", self.player) or state.can_reach("Consecrated Snowfield"))
                 self._add_entrance_rule("Gravesite Plain", 
                     lambda state: self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
@@ -494,24 +504,23 @@ class EldenRing(World):
             self._add_entrance_rule("Lamenter's Gaol (Lower)", lambda state: state.has("Gaol Lower Level Key", self.player))
                     
         
-        if self.options.ending_condition == 0:
-            if self.options.enable_dlc:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")
-            else:
+        if self.options.ending_condition <= 1:
+            if self.options.enable_dlc and self.options.ending_condition == 0:
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Remembrance of a God and a Lord - mainboss drop")
-        """elif self.options.ending_condition == 1:
+            else:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")       
+        """elif self.options.ending_condition == 2:
             # all remembrances # need each remembrances check from each boss
             if self.options.enable_dlc:
-            else:
         else:
             # all bosses # need one check from each boss :skull:
-            if self.options.enable_dlc:
-            else:"""
+            if self.options.enable_dlc:"""
             
         
     #MARK: Special Rules
     def _key_rules(self) -> None:
         # MARK: SSK RULES
+        # this needs to be fixed, the order needs to be the sphere order, and idk how todo that
         # in order from early game to late game each rule needs to include the last count for an area
         currentKey = 0 #makes dynamic
         # limgrave +3
@@ -521,17 +530,24 @@ class EldenRing(World):
         
         # roundtable +3
         currentKey += 3
-        self._add_location_rule("RH: Crepus's Black-Key Crossbow - behind imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("RH: Black-Key Bolt x20 - behind imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # with above
-        self._add_location_rule("RH: Assassin's Prayerbook - behind second imp statue in chest", lambda state: self._has_enough_keys(state, currentKey)) # 2
+        self._add_location_rule([
+            "RH: Crepus's Black-Key Crossbow - behind imp statue in chest", "RH: Black-Key Bolt x20 - behind imp statue in chest", # 1
+            "RH: Assassin's Prayerbook - behind second imp statue in chest", # 2
+            ], lambda state: self._has_enough_keys(state, currentKey))
         
         # weeping +2
         currentKey += 2
-        self._add_location_rule("WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue" , lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("WP/(WE): Radagon's Scarseal - boss drop Evergaol" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule([
+            "WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue", # 1
+            "WP/(WE): Radagon's Scarseal - boss drop Evergaol", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
         
         # stormveil +2
         #currentKey += 2
+        self._add_location_rule([
+            "SV/LC: Godslayer's Seal - left chest behind imp statue in storeroom SE of massive courtyard", # 1a
+            "SV/LC: Godskin Prayerbook - right chest behind imp statue in storeroom SE of massive courtyard", # 1a
+            ], lambda state: self._has_enough_keys(state, currentKey))
         
         # siofra +2
         currentKey += 2
@@ -544,8 +560,10 @@ class EldenRing(World):
         
         # liurnia +4
         currentKey += 4
-        self._add_location_rule("LL/(BKC): Rosus' Axe - behind imp statue near boss door" , lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("LL/(CC): Nox Mirrorhelm - behind imp statue, in SW corner" , lambda state: self._has_enough_keys(state, currentKey)) # 1
+        self._add_location_rule([
+            "LL/(BKC): Rosus' Axe - behind imp statue near boss door", # 1
+            "LL/(CC): Nox Mirrorhelm - behind imp statue, in SW corner", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         # caelid +3
@@ -559,26 +577,31 @@ class EldenRing(World):
         
         # haligtree +3
         currentKey += 3
-        self._add_location_rule("BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", 
-                                lambda state: self._has_enough_keys(state, currentKey)) # 1
-        self._add_location_rule("BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", 
-                                lambda state: self._has_enough_keys(state, currentKey)) # 2
+        self._add_location_rule([
+            "BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", # 1
+            "BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", # 2
+            ], lambda state: self._has_enough_keys(state, currentKey))
         
     def _dragon_communion_rules(self) -> None:
         """Rules for how dragon hearts are used"""
         # MARK: dragon RULES
         currentHeart = 3 # limgrave dragon communion
-        self._add_location_rule("LG/(CDC): Dragonfire - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
-        self._add_location_rule("LG/(CDC): Dragonclaw - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
-        self._add_location_rule("LG/(CDC): Dragonmaw - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        self._add_location_rule([
+            "LG/(CDC): Dragonfire - Dragon Communion", # 1
+            "LG/(CDC): Dragonclaw - Dragon Communion", # 1
+            "LG/(CDC): Dragonmaw - Dragon Communion", # 1
+            ], lambda state: self._has_enough_hearts(state, currentHeart)) 
         
         # caelid dragon communion
         currentHeart += 3 # always here
         currentHeart += 7 # limgrave and caelid
-        self._add_location_rule("CL/(CDC): Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
-        self._add_location_rule("CL/(CDC): Rotten Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
-        self._add_location_rule("CL/(CDC): Dragonice - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
+        self._add_location_rule([
+            "CL/(CDC): Glintstone Breath - Dragon Communion", # 1
+            "CL/(CDC): Rotten Breath - Dragon Communion", # 1
+            "CL/(CDC): Dragonice - Dragon Communion", # 1
+            ], lambda state: self._has_enough_hearts(state, currentHeart)) 
         
+        # need boss kills
         self._add_location_rule("CL/(CDC): Agheel's Flame - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
         self._add_location_rule("CL/(CDC): Greyoll's Roar - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 3
         self._add_location_rule("CL/(CDC): Ekzykes's Decay - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
@@ -676,6 +699,10 @@ class EldenRing(World):
         #     "RH: Litany of Proper Death - D shop",
         #     "RH: Order's Blade - D shop",
         # ], lambda state: ( state.can_reach("")))
+        
+        # MARK: Nepheli
+        # i jumped into her and she died, lol
+        # dropped 2 axes
         
         # MARK: Gurraq
         self._add_location_rule([

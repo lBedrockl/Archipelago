@@ -24,6 +24,8 @@ gracesanity, graces are checks
 option to turn off healing item randomization, start with
 scadutree options, start with, not random, only within dlc, anywhere
 
+add those ground messages before dungeons that would tell the player if there was anything useful in it, as an option
+
 
 dlc start / dlc only
 only randomize key items in the pool, everything else randomized local  DO THIS!!!
@@ -35,3 +37,16 @@ Regional keys (like the first one but per region)
 
 QOL option to unlock a Site of Grace in the region once that region is unlocked
 might be to complex todo, since it would need logic so you don't get access to an area you cant get to yet
+
+
+
+
+
+
+
+
+
+
+
+people who want to be pinged for playtest
+@blupeecounter @belgarath._. @cieltheseall @trypha

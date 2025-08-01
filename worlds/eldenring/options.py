@@ -6,14 +6,18 @@ from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, NamedR
 ## Game Options
 
 class EndingCondition(Choice):
-    """Ending Condition
-    **Final Boss:** Will be Elden Beast or Consort if DLC is enabled.
+    """Ending Condition options
+    
+    **Final Boss:** Will be Elden Beast, or Consort if DLC is enabled.
+    **Elden Beast:** Kill Elden Beast, for short runs with DLC on.
     **All Remembrances:** All remembrance bosses, missable ones excluded.
-    **All Bosses:** All bosses, missable ones excluded."""
+    **All Bosses:** All bosses, missable ones excluded.
+    If DLC is on those bosses / remembrances are included."""
     display_name = "Ending Condition"  # this is the option name as it's displayed to the user on the webhost and in the spoiler log
     option_final_boss = 0
-    option_all_remembrances = 1
-    option_all_bosses = 2
+    option_elden_beast = 1
+    option_all_remembrances = 2
+    option_all_bosses = 3
 
 class WorldLogic(Choice):
     """World Logic options
@@ -51,6 +55,10 @@ class LateDLCOption(Choice):
     alias_false = 0
     option_after_medallion = 1
     alias_true = 1
+    
+class EnemyRando(Toggle):
+    """Randomizes the enemies."""
+    display_name = "Enemy rando"
 
 ## Item & Location
 
@@ -104,6 +112,7 @@ class EROptions(PerGameCommonOptions):
     great_runes_required: GreatRunesRequired
     enable_dlc: EnableDLC
     late_dlc: LateDLCOption
+    enemy_rando: EnemyRando
     death_link: DeathLink
 
     random_start: RandomizeStartingLoadout

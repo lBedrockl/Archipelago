@@ -1335,7 +1335,7 @@ _vanilla_items = [
 
     ERItemData("Telescope", 2040, ERItemCategory.GOODS),
     *ERItemData("Grace Mimic", 2050, ERItemCategory.GOODS).counts([3, 5, 8, 15]),
-    #ERItemData("Lantern", 2070, ERItemCategory.GOODS), # force give to player
+    ERItemData("Lantern", 2070, ERItemCategory.GOODS, skip=True), # force give to player
     ERItemData("Blasphemous Claw", 2080, ERItemCategory.GOODS),
 
     ERItemData("Deathroot", 2090, ERItemCategory.GOODS),
