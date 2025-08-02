@@ -94,6 +94,7 @@ class EldenRing(World):
         create_connection("Stormhill", "Stormveil Start")
         create_connection("Stormveil Start" "Stormveil Castle")
         create_connection("Stormveil Castle", "Stormveil Throne")
+        create_connection("Stormveil Castle", "Divine Tower of Limgrave")
         
         create_connection("Limgrave", "Weeping Peninsula")
         # Weeping Peninsula
@@ -547,6 +548,9 @@ class EldenRing(World):
         self._add_location_rule([
             "SV/LC: Godslayer's Seal - left chest behind imp statue in storeroom SE of massive courtyard", # 1a
             "SV/LC: Godskin Prayerbook - right chest behind imp statue in storeroom SE of massive courtyard", # 1a
+            "SV/RT: Iron Whetblade - shortcut elevator to SE, to N through door, behind imp statue", # 1b
+            "SV/RT: Hawk Crest Wooden Shield - shortcut elevator to SE, to N through door, behind imp statue", # 1b
+            "SV/RT: Miséricorde - shortcut elevator to SE, to N through door, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
         
         # siofra +2
@@ -703,6 +707,9 @@ class EldenRing(World):
         # MARK: Nepheli
         # i jumped into her and she died, lol
         # dropped 2 axes
+        "SV/SC: Arsenal Charm - talk to Nepheli before and after defeating SV mainboss" # same area so no rule
+        "SV/LL: Ancient Dragon Smithing Stone - Gostoc shop after finishing Nepheli and Kenneth Haight's quests"
+        "SV/LL: Ancient Dragon Smithing Stone - talk to Nepheli in SV after her and Kenneth's questlines"
         
         # MARK: Gurraq
         self._add_location_rule([
