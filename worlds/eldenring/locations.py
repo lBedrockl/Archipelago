@@ -179,6 +179,9 @@ class ERLocationData:
     Missable locations are always marked as excluded, so they will never contain
     progression or useful items.
     """
+    
+    exclusive: bool = False
+    """Whether this location is an exclusive item, other items are missed."""
 
     dlc: bool = False
     """Whether this location is only accessible if the DLC is enabled."""
@@ -204,6 +207,15 @@ class ERLocationData:
 
     progression: bool = False
     """Whether this location normally contains an item that blocks forward progress."""
+    
+    basin: bool = False
+    """Whether this location is a basin."""
+    
+    seedtree: bool = False
+    """Whether this location is a seedtree."""
+    
+    church: bool = False
+    """Whether this location is a church."""
 
     boss: bool = False
     """Whether this location is a reward for defeating a main boss."""
@@ -220,6 +232,18 @@ class ERLocationData:
     catacombboss: bool = False
     """Whether this location is a reward for defeating a catacombboss."""
     
+    overworldboss: bool = False
+    """Whether this location is a reward for defeating a overworldboss."""
+    
+    dragonboss: bool = False
+    """Whether this location is a reward for defeating a dragonboss."""
+    
+    night: bool = False
+    """Whether this location is night boss."""
+    
+    criticalpath: bool = False
+    """This location will always be gotten."""
+    
     remembrance: bool = False
     """Whether this location is a remembrance."""
     
@@ -231,6 +255,21 @@ class ERLocationData:
     
     incantations: bool = False
     """Whether this location is an incantation."""
+    
+    sorceries: bool = False
+    """Whether this location is an sorcery."""
+    
+    cookbook: bool = False
+    """Whether this location is a cookbook."""
+    
+    talisman: bool = False
+    """Whether this location is a talisman."""
+    
+    enemytalisman: bool = False
+    """Whether this location is a talisman dropped by an enemy NPC."""
+    
+    hardenemy: bool = False
+    """Whether this is an item dropped by a (non-boss) hard enemy."""
 
     drop: bool = False
     """Whether this is an item dropped by a (non-boss) enemy.
@@ -243,6 +282,15 @@ class ERLocationData:
     
     raceshop: bool = False #idk what is
     """Whether this location can appear in an raceshop."""
+    
+    upgradeshop: bool = False
+    """Whether this location of upgrade bell bearing."""
+    
+    nokey: bool = False # idk
+    """Whether this location is nokey"""
+    
+    premium: bool = False # idk but its good shop items i think
+    """Whether this location is premium"""
 
     conditional: bool = False
     """Whether this location is conditional on a progression item.
@@ -258,6 +306,9 @@ class ERLocationData:
     for an illusory wall or one random mob with a guaranteed drop.
     """
     
+    outoftheway: bool = False
+    """Whether this location is might take a bit to get."""
+    
     scarab: bool = False
     """Whether this location is dropped by a scarab."""
     
@@ -266,6 +317,55 @@ class ERLocationData:
     
     breakable: bool = False
     """Whether this location is a breakable statue."""
+    
+    nocrawl: bool = False
+    """Bosses not in dungeon crawl mode I think"""
+    
+    deadend: bool = False
+    """Something todo with dungeon crawl mode I think"""
+    
+    evergaol: bool = False
+    """Whether this location is a evergaol."""
+    
+    rise: bool = False
+    """Whether this location is a rise."""
+    
+    fortress: bool = False
+    """Whether this location is in a fortress."""
+    
+    painting: bool = False
+    """Whether this location is a painting."""
+    
+    chest: bool = False
+    """Whether this location is a chest."""
+    
+    ambush: bool = False
+    """Whether this location is a ambush."""
+    
+    # DLC
+    fragment: bool = False
+    """Whether this location is a scadu fragment."""
+    
+    enemyfragment: bool = False
+    """Whether this location is a scadu fragment dropped by an enemy."""
+    
+    revered: bool = False
+    """Whether this location is a revered spirit ash."""
+    
+    cross: bool = False
+    """Whether this location is an item at a cross."""
+    
+    furnacegolem: bool = False
+    """Whether this location is a furnace golem."""
+    
+    hangingpot: bool = False
+    """Whether this location is a hanging pot."""
+    
+    bluegraves: bool = False
+    """Whether this location is a blue graves location, they only appear at night."""
+    
+    namelessmausoleum: bool = False
+    """Whether this location is a nameless mausoleum."""
 
     @property
     def is_event(self) -> bool:
@@ -276,16 +376,19 @@ class ERLocationData:
         if not self.is_event:
             self.ap_code = self.ap_code or ERLocationData.__location_id
             ERLocationData.__location_id += 1
-        if self.scarab or self.hostile_npc: self.drop = True
+        if self.scarab or self.hostile_npc or self.hardenemy or self.furnacegolem: self.drop = True
 
     def location_groups(self) -> List[str]:
         """The names of location groups this location should appear in.
 
         This is computed from the properties assigned to this location."""
         names = []
-        if self.boss or self.altboss: # any boss should be a prominent place
+        if self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.overworldboss or self.dragonboss: # any boss should be a prominent place
             names.append("Boss Rewards")
             self.prominent=True
+            
+        if self.enemyfragment:
+            self.fragment = True
         
         if self.prominent: names.append("Prominent")
         if self.progression: names.append("Progression")
@@ -431,8 +534,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/RT: Highland Axe - shortcut elevator to SE, to NE by painting", "Highland Axe", key="100000,0:0010007340::"),
         ERLocationData("SV/RT: Kukri x5 - on lower side roof of church", "Kukri x5", key="100000,0:0010007350::"),
         ERLocationData("SV/RT: Golden Rune [2] x2 - from grace go outside, jump to roof to E, in room below", "Golden Rune [2] x2", key="100000,0:0010007360::"),
-          ERLocationData("SV/RT: Stonesword Key - shortcut elevator to SE, to NE right of painting, up stairs to SE room, jump over wall with sandbags, follow path up ladder and drop down, on corpse", "Stonesword Key", key="100000,0:0010007370::"),
-        ERLocationData("SV/RT: Exalted Flesh - shortcut elevator to SE, to NE right of painting, under wood platform", "Exalted Flesh", key="100000,0:0010007380::"),
+          ERLocationData("SV/RT: Stonesword Key - shortcut elevator to SE, to NE, right of painting, up stairs to SE room, jump over wall with sandbags, follow path up ladder and drop down, on corpse", "Stonesword Key", key="100000,0:0010007370::"),
+        ERLocationData("SV/RT: Exalted Flesh - shortcut elevator to SE, to NE, right of painting, under wood platform", "Exalted Flesh", key="100000,0:0010007380::"),
         ERLocationData("SV/RT: Lump of Flesh - shortcut elevator to SE, to SE under dead troll", "Lump of Flesh", key="100000,0:0010007390::"),
         ERLocationData("SV/RT: Golden Rune [1] - shortcut elevator to SE, to SE under dead troll", "Golden Rune [1]", key="100000,0:0010007400::"),
         ERLocationData("SV/RT: Smithing Stone [2] x2 - from grace go outside, jump to roof to E, follow ledge to S", "Smithing Stone [2] x2", key="100000,0:0010007410::", hidden=True),
@@ -486,9 +589,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/LC: Throwing Dagger x8 - shortcut door to W, after one way at bottom", "Throwing Dagger x8", key="100000,0:0010007930::"),
         ERLocationData("SV/LC: Prince of Death's Pustule - shortcut door to W, after one way at bottom, next to face", "Prince of Death's Pustule", key="100000,0:0010007940::", outoftheway=True),
         ERLocationData("SV/GC: Kukri x5 - in arch on way to massive courtyard", "Kukri x5", key="100000,0:0010007950::"),
-          ERLocationData("SV/RT: Pickled Turtle Neck x3 - shortcut elevator to SE, to NE right of painting, up stairs to SE room, jump over wall with sandbags, follow path up ladder and drop down, in chest", "Pickled Turtle Neck x3", key="100000,0:0010007960::", chest=True),
+          ERLocationData("SV/RT: Pickled Turtle Neck x3 - shortcut elevator to SE, to NE, right of painting, up stairs to SE room, jump over wall with sandbags, follow path up ladder and drop down, in chest", "Pickled Turtle Neck x3", key="100000,0:0010007960::", chest=True),
         ERLocationData("SV/LC: Godslayer's Seal - left chest behind imp statue in storeroom SE of massive courtyard", "Godslayer's Seal", key="100000,0:0010007965::", chest=True), # 1
-        ERLocationData("SV/RT: Mimic's Veil - shortcut elevator to SE, to NE right of painting, up stairs to SE room in chest", "Mimic's Veil", key="100000,0:0010007970::", chest=True),
+        ERLocationData("SV/RT: Mimic's Veil - shortcut elevator to SE, to NE, right of painting, up stairs to SE room in chest", "Mimic's Veil", key="100000,0:0010007970::", chest=True),
         ERLocationData("SV/RT: Somber Smithing Stone [2] - shortcut elevator to SE, to N through door", "Somber Smithing Stone [2]", key="100000,0:0010007980::"),
         ERLocationData("SV/LC: Godskin Prayerbook - right chest behind imp statue in storeroom SE of massive courtyard", "Godskin Prayerbook", key="100000,0:0010007990::", chest=True), # 1
     ],
@@ -1043,7 +1146,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("LL: Smithing Stone [2] x2 - ", "Smithing Stone [2] x2", key="603442,0:1034427030::"),
         #ERLocationData("LL: Crystal Sword - ", "Crystal Sword", key="603442,0:1034427050::"),
         #ERLocationData("LL: Larval Tear - ", "Larval Tear", key="603442,0:1034427060::"),
-        #ERLocationData("LL: Memory Stone - Atop Converted Tower, accessible by performing the Erudition gesture given by Thops in his questline or performing horse parkour", "Memory Stone", key="603443,0:0000060410::", chest=True, rise=True, exclude:spectralsteedwhistle=True),
+        #ERLocationData("LL: Memory Stone - Atop Converted Tower, accessible by performing the Erudition gesture given by Thops in his questline or performing horse parkour", "Memory Stone", key="603443,0:0000060410::", chest=True, rise=True),
         #ERLocationData("LL: Somber Smithing Stone [2] - ", "Somber Smithing Stone [2]", key="603443,0:0000540260::", scarab=True),
         #ERLocationData("LL: Magic Grease x2 - ", "Magic Grease x2", key="603443,0:1034437000::"),
         #ERLocationData("LL: Golden Rune [6] - ", "Golden Rune [6]", key="603443,0:1034437200::"),
@@ -1364,14 +1467,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "bellum":[
         #ERLocationData("LL: Nightrider Glaive - Dropped by the Night's Cavalry between East Raya Lucaria Gate and Bellum Church. They only spawn at night", "Nightrider Glaive", key="603648,0:1036487400::", altboss=True, night=True, nocrawl=True, overworldboss=True),
         #ERLocationData("LL: Ash of War: Giant Hunt - Dropped by the Night's Cavalry between East Raya Lucaria Gate and Bellum Church. They only spawn at night", "Ash of War: Giant Hunt", key="603648,0:1036487400::", altboss=True, night=True, nocrawl=True, overworldboss=True),
-        #ERLocationData("LL: Rift Shield - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Rift Shield", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("LL: Blue Crest Heater Shield - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Blue Crest Heater Shield", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("LL: Composite Bow - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Composite Bow", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("LL: Rune Arc x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Rune Arc x3", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("LL: Immunizing White Cured Meat x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Immunizing White Cured Meat x3", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("LL: Invigorating White Cured Meat x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Invigorating White Cured Meat x3", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("LL: Clarifying White Cured Meat x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Clarifying White Cured Meat x3", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("LL: Bewitching Branch x5 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Bewitching Branch x5", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
+        #ERLocationData("LL: Rift Shield - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Rift Shield", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
+        #ERLocationData("LL: Blue Crest Heater Shield - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Blue Crest Heater Shield", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
+        #ERLocationData("LL: Composite Bow - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Composite Bow", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
+        #ERLocationData("LL: Rune Arc x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Rune Arc x3", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
+        #ERLocationData("LL: Immunizing White Cured Meat x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Immunizing White Cured Meat x3", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
+        #ERLocationData("LL: Invigorating White Cured Meat x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Invigorating White Cured Meat x3", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
+        #ERLocationData("LL: Clarifying White Cured Meat x3 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Clarifying White Cured Meat x3", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
+        #ERLocationData("LL: Bewitching Branch x5 - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Bewitching Branch x5", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
         #ERLocationData("LL: Nomadic Warrior's Cookbook [13] - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Nomadic Warrior's Cookbook [13]", key="603649,0:0000000000:100700:", raceshop=True, cookbook=True, shop=True),
         #ERLocationData("LL: Sacred Tear - At the interesting statue in Bellum Church", "Sacred Tear", key="603649,0:1036497000::", church=True),
         #ERLocationData("LL: Arrow - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Arrow", key="603649,3:0000000000:100700:", shop=True),
@@ -1555,16 +1658,16 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("AP: Beast Blood - ", "Beast Blood", key="604051,0:1040517030::"),
         #ERLocationData("AP: Lightning Greatbolt x10 - ", "Lightning Greatbolt x10", key="604051,0:1040517040::"),
         #ERLocationData("AP: Sacred Tear - At the interesting statue in Stormcaller Church, south of Sainted Hero's Grave", "Sacred Tear", key="604051,0:1040517400::", church=True, outoftheway=True),
-        #ERLocationData("AP: Scorpion Kite Shield - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Scorpion Kite Shield", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Red Crest Heater Shield - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Red Crest Heater Shield", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Crossed-Tree Towershield - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Crossed-Tree Towershield", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Tree Surcoat - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Tree Surcoat", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Festering Bloody Finger x3 - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Festering Bloody Finger x3", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Stonesword Key x3 - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Stonesword Key x3", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Note: Imp Shades - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Note: Imp Shades", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Note: Unseen Assassins - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Note: Unseen Assassins", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
+        #ERLocationData("AP: Scorpion Kite Shield - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Scorpion Kite Shield", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
+        #ERLocationData("AP: Red Crest Heater Shield - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Red Crest Heater Shield", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
+        #ERLocationData("AP: Crossed-Tree Towershield - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Crossed-Tree Towershield", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
+        #ERLocationData("AP: Tree Surcoat - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Tree Surcoat", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
+        #ERLocationData("AP: Festering Bloody Finger x3 - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Festering Bloody Finger x3", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
+        #ERLocationData("AP: Stonesword Key x3 - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Stonesword Key x3", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
+        #ERLocationData("AP: Note: Imp Shades - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Note: Imp Shades", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
+        #ERLocationData("AP: Note: Unseen Assassins - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Note: Unseen Assassins", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
         #ERLocationData("AP: Ancient Dragon Apostle's Cookbook [2] - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Ancient Dragon Apostle's Cookbook [2]", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AP: Gravel Stone x8 - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Gravel Stone x8", key="604052,0:0000000000:100750:", raceshop=True, cookbook=True, shop=True),
+        #ERLocationData("AP: Gravel Stone x8 - Sold by the Nomadic Merchant at the southern end of the Forest-Spanning Greatbridge", "Gravel Stone x8", key="604052,0:0000000000:100750:", raceshop=True, shop=True),
         #ERLocationData("AP: Map: Altus Plateau - ", "Map: Altus Plateau", key="604052,0:0000062030::", map=True),
         #ERLocationData("AP: Black Knife - Dropped by the Black Knight Assassin camping out in front of Sainted Hero's Grave", "Black Knife", key="604052,0:0000530350::", altboss=True, nocrawl=True, overworldboss=True),
         #ERLocationData("AP: Amber Starlight - ", "Amber Starlight", key="604052,0:1040527000::"),
@@ -1869,15 +1972,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("LAC: Remembrance of Hoarah Loux - Dropped by Hoarah Loux", "Remembrance of Hoarah Loux", key="110500,0:0000510070::", boss=True, remembrance=True),
     ],
     "ainsel_start":[
-        #ERLocationData("AR: Prisoner Iron Mask - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Prisoner Iron Mask", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AR: Prisoner Clothing - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Prisoner Clothing", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AR: Prisoner Trousers - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Prisoner Trousers", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AR: Celestial Dew - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Celestial Dew", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AR: Gravity Stone Fan x20 - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Gravity Stone Fan x20", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AR: Gravity Stone Chunk x10 - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Gravity Stone Chunk x10", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AR: Nomadic Warrior's Cookbook [16] - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Nomadic Warrior's Cookbook [16]", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
+        #ERLocationData("AR: Prisoner Iron Mask - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Prisoner Iron Mask", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
+        #ERLocationData("AR: Prisoner Clothing - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Prisoner Clothing", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
+        #ERLocationData("AR: Prisoner Trousers - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Prisoner Trousers", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
+        #ERLocationData("AR: Celestial Dew - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Celestial Dew", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
+        #ERLocationData("AR: Gravity Stone Fan x20 - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Gravity Stone Fan x20", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
+        #ERLocationData("AR: Gravity Stone Chunk x10 - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Gravity Stone Chunk x10", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
+        #ERLocationData("AR: Nomadic Warrior's Cookbook [16] - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Nomadic Warrior's Cookbook [16]", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
         #ERLocationData("AR: Perfumer's Cookbook [4] - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Perfumer's Cookbook [4]", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
-        #ERLocationData("AR: Lost Ashes of War - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Lost Ashes of War", key="120100,0:0000000000:100950:", raceshop=True, cookbook=True, shop=True),
+        #ERLocationData("AR: Lost Ashes of War - Sold by the Hermit Merchant in the alcove past the rock-slinging Malformed Star", "Lost Ashes of War", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
         #ERLocationData("AR: Map: Ainsel River - In the alcove past the rock-slinging Malformed Star", "Map: Ainsel River", key="120100,0:0000062060::", map=True),
         #ERLocationData("AR: Frozen Lightning Spear - Dropped by Dragonkin Soldier of Nokstella", "Frozen Lightning Spear", key="120100,0:0000510090::", boss=True, deadend=True),
         #ERLocationData("AR: Golden Rune [1] - ", "Golden Rune [1]", key="120100,0:0012017040::"),
@@ -3458,7 +3561,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("EI: Somber Smithing Stone [5] - On a corpse along the dropdown to Euporia in Belurat. From the area with a spiral column gazebo before the final flight of stairs up to Spiral Rise, descend the stairs northeast of the gazebo, jump down to the stairs to the southeast, jump off the gazebo to the south, drop off a broken arch to the ledge below, drop down to the south, and drop down again to the top of the stairs below.", "Somber Smithing Stone [5]", key="200100,0:0020017650::"),
         #ERLocationData("EI: Fireproof Pickled Liver - On a corpse along the dropdown to Euporia in Belurat. From the area with a spiral column gazebo before the final flight of stairs up to Spiral Rise, descend the stairs northeast of the gazebo, jump down to the stairs to the southeast, jump off the gazebo to the south, drop off a broken arch to the ledge below, drop down to the south, and drop down again to the stairs below.", "Fireproof Pickled Liver", key="200100,0:0020017660::"),
         #ERLocationData("EI: Revered Spirit Ash - Dropped by the fat inquisitor patrolling the big fountain area, accessed by the ascending the stairs southwest of the First Rise grace and jumping across the broken bridge", "Revered Spirit Ash", key="200100,0:0020017900::", enemyrevered=True),
-        #ERLocationData("EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn", "Circlet of Light", key="200100,0:0020017981::", dlcend=True),
+        #ERLocationData("EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn", "Circlet of Light", key="200100,0:0020017981::", dlc_end=True),
         #ERLocationData("EI: Horned Warrior's Greatsword - Dropped by the Divine Bird Warrior before the Cleansing Chamber Anteroom", "Horned Warrior's Greatsword", key="200100,0:0020017991::"),
     ],
     "shadowkeep_church_lower":[
@@ -4771,7 +4874,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     
     # MARK: Some Base Game
     "moonlight":[
-        #ERLocationData("MA: Ranni's Dark Moon - In a chest at the top of Chelona's Rise, opened by hitting three giant turtles, including one requiring a nearby spiritspring", "Ranni's Dark Moon", key="603340,0:1033407100::", chest=True, rise=True, exclude:spectralsteedwhistle=True),
+        #ERLocationData("MA: Ranni's Dark Moon - In a chest at the top of Chelona's Rise, opened by hitting three giant turtles, including one requiring a nearby spiritspring", "Ranni's Dark Moon", key="603340,0:1033407100::", chest=True, rise=True),
         #ERLocationData("MA: Smithing Stone [7] x3 - ", "Smithing Stone [7] x3", key="603341,0:1033417000::"),
         #ERLocationData("MA: Smithing Stone [8] x3 - ", "Smithing Stone [8] x3", key="603341,0:1033417010::"),
         #ERLocationData("MA: Smithing Stone [7] x3 - ", "Smithing Stone [7] x3", key="603341,0:1033417020::"),
@@ -5092,7 +5195,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("CL: Cinquedea - ", "Cinquedea", key="605143,0:1051417010::"),
         #ERLocationData("CL: Dragoncrest Shield Talisman - On a corpse found after doing a long series of dropdowns behind Bestial Sanctum", "Dragoncrest Shield Talisman", key="605143,0:1051417030::", talisman=True, hidden=True, nocrawl=True),
         #ERLocationData("CL: Golden Seed - Under a Golden Seed tree on the road from Farum Greatbridge from Bestial Sanctum", "Golden Seed", key="605143,0:1051437020::", seedtree=True),
-        #ERLocationData("CL: Memory Stone - In a chest in Lenne's Rise, accessed by using a spiritspring nearby", "Memory Stone", key="605241,0:0000060460::", chest=True, rise=True, exclude:spectralsteedwhistle=True),
+        #ERLocationData("CL: Memory Stone - In a chest in Lenne's Rise, accessed by using a spiritspring nearby", "Memory Stone", key="605241,0:0000060460::", chest=True, rise=True),
         #ERLocationData("CL: Dragon Heart - Dropped by Flying Dragon Greyll on Farum Greatbridge", "Dragon Heart", key="605241,0:0000530420::", altboss=True, nocrawl=True, dragonboss=True, overworldboss=True),
         #ERLocationData("CL: Golden Rune [8] - ", "Golden Rune [8]", key="605241,0:1052417000::"),
         #ERLocationData("CL: Golden Rune [6] - ", "Golden Rune [6]", key="605241,0:1052417010::"),
@@ -5368,12 +5471,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RB: Throwing Dagger x5 - On a pile of boulders guarded by runebears in the northern part of the forest north of Scorpion River", "Throwing Dagger x5", key="614448,0:2044477040::"),
         #ERLocationData("RB: Grave Glovewort [5] - On a corpse in the graveyard by the far southwest cliffside from Temple Town Ruins", "Grave Glovewort [5]", key="614545,0:2045457010::"),
         #ERLocationData("RB: Crimson-Sapping Cracked Tear - Dropped by Furnace Golem in the West Ruins", "Crimson-Sapping Cracked Tear", key="614546,0:0000065420::", furnacegolem=True),
-        #ERLocationData("RB: Smithing Stone [7] x2 - On a corpse on an elevated platform in Temple Town Ruins. It can be accessed by using the spiritspring north of the Temple Town Ruins grace to the elevated platform to the south and climbing up the ruined wall.", "Smithing Stone [7] x2", key="614546,0:2045467060::", exclude:spectralsteedwhistle=True),
+        #ERLocationData("RB: Smithing Stone [7] x2 - On a corpse on an elevated platform in Temple Town Ruins. It can be accessed by using the spiritspring north of the Temple Town Ruins grace to the elevated platform to the south and climbing up the ruined wall.", "Smithing Stone [7] x2", key="614546,0:2045467060::"),
         #ERLocationData("RB: Gravebird's Blackquill Armor - On a corpse up a hill with gravebird statues to the west of the rot area's central pillar", "Gravebird's Blackquill Armor", key="614546,0:2045467070::"),
         #ERLocationData("RB: Whiteflesh Mushroom x5 - On a corpse on a ledge west of the spiritspring north of the Temple Town Ruins grace", "Whiteflesh Mushroom x5", key="614546,0:2045467080::"),
         #ERLocationData("RB: Preserving Boluses x2 - On a corpse on the northwest ledge of the rot area's central pillar", "Preserving Boluses x2", key="614546,0:2045467090::"),
         #ERLocationData("RB: Furnace Visage - Dropped by Furnace Golem in the West Ruins", "Furnace Visage", key="614546,0:2045467500::", furnacegolem=True),
-        #ERLocationData("RB: Beast Horn x2 - In a chest on an elevated platform accessed by using the spiritspring north of the Temple Town Ruins grace", "Beast Horn x2", key="614546,0:2045467910::", chest=True, exclude:spectralsteedwhistle=True),
+        #ERLocationData("RB: Beast Horn x2 - In a chest on an elevated platform accessed by using the spiritspring north of the Temple Town Ruins grace", "Beast Horn x2", key="614546,0:2045467910::", chest=True),
         #ERLocationData("RB: Ash of War: The Poison Flower Blooms Twice - Dropped by a scarab in a rot swamp puddle in the northwest corner of the Rauh Base rot area, directly south of the Ravine North grace", "Ash of War: The Poison Flower Blooms Twice", key="614547,0:0000540916::"),
         #ERLocationData("RB: Fine Crucible Feather Talisman - On a corpse on a tree branch in the East Ruins caves. It can be accessed from the northwest corner of the caves near the exit to the grace, then heading northeast up to a dark room with tree branches", "Fine Crucible Feather Talisman", key="614548,0:2045487000::", talisman=True, nocrawl=True),
         #ERLocationData("RB: Map: Rauh Ruins - At the map stele northeast of Temple Town Ruins", "Map: Rauh Ruins", key="614645,0:0000062083::", map=True),
@@ -5385,7 +5488,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RB: Smithing Stone [3] x2 - On a corpse on top of a ruined hallway with a collapsed red roof, east of the blocked off south building in Temple Town Ruins, accessed by jumping up on Torrent", "Smithing Stone [3] x2", key="614645,0:2046457070::"),
         #ERLocationData("RB: Revered Spirit Ash - On a large withered corpse along the cliffside southeast of Temple Town Ruins", "Revered Spirit Ash", key="614645,0:2046457720::", enemyrevered=True),
         #ERLocationData("RB: Two-Handed Sword Talisman - In the chest in the shrine on the upper level of Temple Town Ruins, accessed by entering through a broken wall to the south and traversing to the end", "Two-Handed Sword Talisman", key="614645,0:2046457910::", talisman=True, nocrawl=True, chest=True),
-        #ERLocationData("RB: Divine Bird Warrior Ornis - In a chest in a shrine recessed into the cliff wall north of Temple Town Ruins. It can be accessed by using the spiritspring north of the Temple Town Ruins grace to the elevated platform to the south, then climbing up the ruined wall and jumping to a ledge to the southeast", "Divine Bird Warrior Ornis", key="614645,0:2046457920::", chest=True, exclude:spectralsteedwhistle=True),
+        #ERLocationData("RB: Divine Bird Warrior Ornis - In a chest in a shrine recessed into the cliff wall north of Temple Town Ruins. It can be accessed by using the spiritspring north of the Temple Town Ruins grace to the elevated platform to the south, then climbing up the ruined wall and jumping to a ledge to the southeast", "Divine Bird Warrior Ornis", key="614645,0:2046457920::", chest=True),
         #ERLocationData("RB: Silver Horn Tender - Dropped by a shiny pot commoner inside the blocked off building in Temple Town Ruins, accessed by entering through a broken wall, up a set of stairs along the west wall of the building and then going south along the upper walkway", "Silver Horn Tender", key="614645,0:2046457950::"),
         #ERLocationData("RB: Rauh Burrow x4 - Dropped by a shiny pot commoner inside the blocked off building in Temple Town Ruins, accessed by entering through a broken wall, up a set of stairs along the west wall of the building and then going south along the upper walkway", "Rauh Burrow x4", key="614645,0:2046457950::"),
         #ERLocationData("RB: Smithing Stone [8] x4 - On a corpse at the end of the ravine southwest of the Ancient Ruins Base grace, up a hill on the north side, northeast of the map stele", "Smithing Stone [8] x4", key="614646,0:2046467020::"),

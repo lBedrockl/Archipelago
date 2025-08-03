@@ -508,6 +508,7 @@ class EldenRing(World):
         if self.options.ending_condition <= 1:
             if self.options.enable_dlc and self.options.ending_condition == 0:
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Remembrance of a God and a Lord - mainboss drop")
+                # "EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn" # real end
             else:
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")       
         """elif self.options.ending_condition == 2:

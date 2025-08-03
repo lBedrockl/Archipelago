@@ -49,4 +49,5 @@ might be to complex todo, since it would need logic so you don't get access to a
 
 
 people who want to be pinged for playtest
-@blupeecounter @belgarath._. @cieltheseall @trypha @mdg555 @kr00mmi2444 @labgremlin
+@blupeecounter @belgarath._. @cieltheseall @trypha
+@mdg555 @kr00mmi2444 @labgremlin @legofacebob

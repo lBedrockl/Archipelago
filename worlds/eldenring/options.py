@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, NamedRange, OptionDict, \
+from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, PriorityLocations, NamedRange, OptionDict, \
     OptionGroup, PerGameCommonOptions, Range, Removed, Toggle
 
 ## Game Options
@@ -74,6 +74,10 @@ class AutoEquipOption(Toggle):
 class ERExcludeLocations(ExcludeLocations):
     """Prevent these locations from having an important item."""
     default = frozenset({"Hidden"})
+    
+class ERImportantLocations(PriorityLocations):
+    """Prevent these locations from having an unimportant item."""
+    default = frozenset({"Seedtree", "Basin", "Church", "Map", "Fragment", "Cross", "Revered"})
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.
@@ -118,6 +122,7 @@ class EROptions(PerGameCommonOptions):
     random_start: RandomizeStartingLoadout
     auto_equip: AutoEquipOption
 
+    important_locations: ERImportantLocations
     exclude_locations: ERExcludeLocations
     excluded_location_behavior: ExcludedLocationBehaviorOption
     missable_location_behavior: MissableLocationBehaviorOption
@@ -128,6 +133,7 @@ option_groups = [
         AutoEquipOption,
     ]),
     OptionGroup("Item & Location Options", [
+        ERImportantLocations,
         ERExcludeLocations,
         ExcludedLocationBehaviorOption,
         MissableLocationBehaviorOption,
