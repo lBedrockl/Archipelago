@@ -385,7 +385,7 @@ class ERLocationData:
         names = []
         if self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.overworldboss or self.dragonboss: # any boss should be a prominent place
             names.append("Boss Rewards")
-            self.prominent=True
+            self.prominent = True
             
         if self.enemyfragment:
             self.fragment = True
@@ -406,7 +406,8 @@ class ERLocationData:
                      }[default_item.category])
         if default_item.classification == ItemClassification.progression:
             names.append("Progression")
-
+            self.progression = True
+        
         return names
 
 
@@ -1029,43 +1030,43 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Ash of War: Divine Beast Frost Stomp - Enia for Remembrance of the Dancing Lion", "Ash of War: Divine Beast Frost Stomp", key="111000,0:0000000000:101898:", missable=True, premium=True, dlc=True, shop=True),
         ERLocationData("RH: Sword Lance - Enia for Remembrance of the Wild Boar Rider", "Sword Lance", key="111000,0:0000000000:101898:", missable=True, premium=True, dlc=True, shop=True),
         # equipment of champions
-        ERLocationData("RH: Fell Omen Cloak - Enia shop, defeat Morgott", "Fell Omen Cloak", key="111000,0:0000000000:9104,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Crown - Enia shop, defeat Hoarah Loux", "Elden Lord Crown", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Armor - Enia shop, defeat Hoarah Loux", "Elden Lord Armor", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Bracers - Enia shop, defeat Hoarah Loux", "Elden Lord Bracers", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Greaves - Enia shop, defeat Hoarah Loux", "Elden Lord Greaves", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Fell Omen Cloak - Enia shop, defeat Morgott, The Omen King", "Fell Omen Cloak", key="111000,0:0000000000:9104,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Crown - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Crown", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Armor - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Armor", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Bracers - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Bracers", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Greaves - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Greaves", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
         ERLocationData("RH: Lord of Blood's Robe - Enia shop, defeat Mohg, Lord of Blood", "Lord of Blood's Robe", key="111000,0:0000000000:9112,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Helm - Enia shop, defeat Maliketh", "Maliketh's Helm", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Armor - Enia shop, defeat Maliketh", "Maliketh's Armor", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Gauntlets - Enia shop, defeat Maliketh", "Maliketh's Gauntlets", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Greaves - Enia shop, defeat Maliketh", "Maliketh's Greaves", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Crescent Crown - Enia shop, defeat Rennala", "Queen's Crescent Crown", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Robe - Enia shop, defeat Rennala", "Queen's Robe", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Bracelets - Enia shop, defeat Rennala", "Queen's Bracelets", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Leggings - Enia shop, defeat Rennala", "Queen's Leggings", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Helm - Enia shop, defeat Royal Knight Loretta", "Royal Knight Helm", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Armor - Enia shop, defeat Royal Knight Loretta", "Royal Knight Armor", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Gauntlets - Enia shop, defeat Royal Knight Loretta", "Royal Knight Gauntlets", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Greaves - Enia shop, defeat Royal Knight Loretta", "Royal Knight Greaves", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Winged Helm - Enia shop, defeat Malenia", "Malenia's Winged Helm", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Armor - Enia shop, defeat Malenia", "Malenia's Armor", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Gauntlet - Enia shop, defeat Malenia", "Malenia's Gauntlet", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Greaves - Enia shop, defeat Malenia", "Malenia's Greaves", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Redmane Helm - Enia shop, defeat Radahn", "Radahn's Redmane Helm", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Lion Armor - Enia shop, defeat Radahn", "Radahn's Lion Armor", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Gauntlets - Enia shop, defeat Radahn", "Radahn's Gauntlets", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Greaves - Enia shop, defeat Radahn", "Radahn's Greaves", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Helm - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Helm", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Armor - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Armor", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Gauntlets - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Gauntlets", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Greaves - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Greaves", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Crescent Crown - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Crescent Crown", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Robe - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Robe", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Bracelets - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Bracelets", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Leggings - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Leggings", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Helm - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Helm", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Armor - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Armor", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Gauntlets - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Gauntlets", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Greaves - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Greaves", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Winged Helm - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Winged Helm", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Armor - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Armor", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Gauntlet - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Gauntlet", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Greaves - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Greaves", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Redmane Helm - Enia shop, defeat Starscourge Radahn", "Radahn's Redmane Helm", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Lion Armor - Enia shop, defeat Starscourge Radahn", "Radahn's Lion Armor", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Gauntlets - Enia shop, defeat Starscourge Radahn", "Radahn's Gauntlets", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Greaves - Enia shop, defeat Starscourge Radahn", "Radahn's Greaves", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
         ERLocationData("RH: Young Lion's Helm - Enia shop, defeat Promised Consort Radahn", "Young Lion's Helm", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Young Lion's Armor - Enia shop, defeat Promised Consort Radahn", "Young Lion's Armor", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Young Lion's Gauntlets - Enia shop, defeat Promised Consort Radahn", "Young Lion's Gauntlets", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Young Lion's Greaves - Enia shop, defeat Promised Consort Radahn", "Young Lion's Greaves", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Helm - Enia shop, defeat Messmer", "Messmer's Helm", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Armor - Enia shop, defeat Messmer", "Messmer's Armor", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Gauntlets - Enia shop, defeat Messmer", "Messmer's Gauntlets", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Greaves - Enia shop, defeat Messmer", "Messmer's Greaves", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Gaius's Helm - Enia shop, defeat Gaius", "Gaius's Helm", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Gaius's Armor - Enia shop, defeat Gaius", "Gaius's Armor", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Gaius's Gauntlets - Enia shop, defeat Gaius", "Gaius's Gauntlets", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Helm - Enia shop, defeat Messmer the Impaler", "Messmer's Helm", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Armor - Enia shop, defeat Messmer the Impaler", "Messmer's Armor", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Gauntlets - Enia shop, defeat Messmer the Impaler", "Messmer's Gauntlets", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Greaves - Enia shop, defeat Messmer the Impaler", "Messmer's Greaves", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Gaius's Helm - Enia shop, defeat Commander Gaius", "Gaius's Helm", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Gaius's Armor - Enia shop, defeat Commander Gaius", "Gaius's Armor", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Gaius's Gauntlets - Enia shop, defeat Commander Gaius", "Gaius's Gauntlets", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Briar Helm - Enia shop, defeat Elemer of the Briar", "Briar Helm", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
         ERLocationData("RH: Briar Armor - Enia shop, defeat Elemer of the Briar", "Briar Armor", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
         ERLocationData("RH: Briar Gauntlets - Enia shop, defeat Elemer of the Briar", "Briar Gauntlets", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
@@ -1074,10 +1075,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Veteran's Armor - Enia shop, defeat Commander Niall", "Veteran's Armor", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
         ERLocationData("RH: Veteran's Gauntlets - Enia shop, defeat Commander Niall", "Veteran's Gauntlets", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
         ERLocationData("RH: Veteran's Greaves - Enia shop, defeat Commander Niall", "Veteran's Greaves", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
-        ERLocationData("RH: Rellana's Helm - Enia shop, defeat Rellana", "Rellana's Helm", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Rellana's Armor - Enia shop, defeat Rellana", "Rellana's Armor", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Rellana's Gloves - Enia shop, defeat Rellana", "Rellana's Gloves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Rellana's Greaves - Enia shop, defeat Rellana", "Rellana's Greaves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Helm - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Helm", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Armor - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Armor", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Gloves - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Gloves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Greaves - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Greaves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
         
         ERLocationData("RH: Taunter's Tongue - invader drop", "Taunter's Tongue", key="111000,0:0000060300::", hostile_npc=True),
         ERLocationData("RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss", "Talisman Pouch", key="111000,0:0000060500:101800,11109777:", missable=True, npc=True),

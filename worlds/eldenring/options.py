@@ -76,8 +76,16 @@ class ERExcludeLocations(ExcludeLocations):
     default = frozenset({"Hidden"})
     
 class ERImportantLocations(PriorityLocations):
-    """Prevent these locations from having an unimportant item."""
-    default = frozenset({"Seedtree", "Basin", "Church", "Map", "Fragment", "Cross", "Revered"})
+    """Prevent these locations from having an unimportant item.
+    - Boss: Main bosses
+    - Seedtree: Golden Seed trees
+    - Basin: Basins that contain tears
+    - Church: Sacred Tears
+    - Map: Map pillars
+    - Fragment: Scadu Fragments
+    - Cross: All cross items
+    - Revered: Revered Spirit Ashes"""
+    default = frozenset({"Boss", "Seedtree", "Basin", "Church", "Map", "Fragment", "Cross", "Revered"})
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.

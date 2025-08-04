@@ -47,10 +47,12 @@ class EldenRing(World):
     def __init__(self, multiworld: MultiWorld, player: int):
         super().__init__(multiworld, player)
         self.all_excluded_locations = set()
+        self.all_priority_locations = set()
 
     def generate_early(self) -> None:
         self.created_regions = set()
         self.all_excluded_locations.update(self.options.exclude_locations.value)
+        self.all_priority_locations.update(self.options.important_locations.value)
 
     def create_regions(self) -> None: #MARK: Connections
         # Create Vanilla Regions
@@ -372,7 +374,8 @@ class EldenRing(World):
             # We can't use location.progress_type here because it's not set
             # until after `set_rules()` runs.
             if not location.item and location.name not in self.all_excluded_locations
-            and location.item_rule(item)
+            and location.item_rule(item) and location.name in self.all_priority_locations
+            # and location.name in self.all_priority_locations    this might work idk cant test yet
         ]
 
         self.local_itempool.remove(item)
@@ -917,7 +920,7 @@ class EldenRing(World):
         """Adds rules for items obtainable from equipment of champions."""
 
         equipments = [
-            (
+            ( # RA mainboss
                 "Rennala, Queen of the Full Moon", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -927,7 +930,7 @@ class EldenRing(World):
                     "Queen's Bracelets"
                 ]
             ),
-            (
+            ( # MH mainboss
                 "Malenia Blade of Miquella", # boss
                 "EBH/HR: Remembrance of the Rot Goddess - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -937,7 +940,7 @@ class EldenRing(World):
                     "Malenia's Greaves"
                 ]
             ),
-            (
+            ( # LAC mainboss
                 "Godfrey, First Elden Lord", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -947,7 +950,7 @@ class EldenRing(World):
                     "Elden Lord Greaves"
                 ]
             ),
-            (
+            ( # Idk boss
                 "Elemer of the Briar", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -957,7 +960,7 @@ class EldenRing(World):
                     "Briar Greaves"
                 ]
             ),
-            (
+            ( #  MH boss
                 "Loretta, Knight of the Haligtree", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -967,7 +970,7 @@ class EldenRing(World):
                     "Royal Knight Greaves"
                 ]
             ),
-            (
+            ( # FA mainboss
                 "Maliketh, the Black Blade", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -977,7 +980,7 @@ class EldenRing(World):
                     "Maliketh's Greaves"
                 ]
             ),
-            (
+            ( # Castle name boss
                 "Commander Niall", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -987,7 +990,7 @@ class EldenRing(World):
                     "Veteran's Greaves"
                 ]
             ),
-            (
+            ( # WD mainboss
                 "Starscourge Radahn", # boss
                 "CL/(WD): Remembrance of the Starscourge - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -997,12 +1000,12 @@ class EldenRing(World):
                     "Radahn's Greaves"
                 ]
             ),
-            (
+            ( # LRC mainboss
                 "Morgott, The Omen King", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 ["Fell Omen Cloak"]# item
             ),
-            (
+            ( # MP mainboss
                 "Mohg, Lord of Blood", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 ["Lord of Blood's Robe"]# item
@@ -1021,7 +1024,7 @@ class EldenRing(World):
                 ]
             ),
             (
-                "Rellana", # boss
+                "Rellana, Twin Moon Knight", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Rellana's Helm", 
@@ -1041,7 +1044,7 @@ class EldenRing(World):
                 ]
             ),
             (
-                "Promised Consort", # boss
+                "Promised Consort Radahn", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Young Lion's Helm", 
