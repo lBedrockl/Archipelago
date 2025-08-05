@@ -374,8 +374,10 @@ class EldenRing(World):
             # We can't use location.progress_type here because it's not set
             # until after `set_rules()` runs.
             if not location.item and location.name not in self.all_excluded_locations
-            and location.item_rule(item) and location.name in self.all_priority_locations
-            # and location.name in self.all_priority_locations    this might work idk cant test yet
+            and location.item_rule(item)
+            if location.item.classification != ItemClassification.filler and location.name in self.all_priority_locations 
+            or location.item.classification == ItemClassification.filler
+            # this might work idk cant test yet, makes custom priority locations always have something useful or progression
         ]
 
         self.local_itempool.remove(item)
@@ -714,6 +716,9 @@ class EldenRing(World):
         "SV/SC: Arsenal Charm - talk to Nepheli before and after defeating SV mainboss" # same area so no rule
         "SV/LL: Ancient Dragon Smithing Stone - Gostoc shop after finishing Nepheli and Kenneth Haight's quests"
         "SV/LL: Ancient Dragon Smithing Stone - talk to Nepheli in SV after her and Kenneth's questlines"
+        
+        # MARK: Thops
+        "LL/(CI): Ash of War: Thops's Barrier - scarab in church after Thops moves"
         
         # MARK: Gurraq
         self._add_location_rule([
