@@ -83,6 +83,16 @@ region_order = [
     
     # Altus
     "Altus Plateau",
+    "Sainted Hero's Grave",
+    
+    # Mt Gelmir
+    #"Mount Gelmir",
+    "Wyndham Catacombs",
+    "Gelmir Hero's Grave",
+    
+    # Capital Outskirts
+    "Capital Outskirts",
+    "Auriza Hero's Grave",
 
     # Leyndell
     "Leyndell, Royal Capital",
@@ -231,6 +241,9 @@ class ERLocationData:
     
     catacombboss: bool = False
     """Whether this location is a reward for defeating a catacombboss."""
+    
+    graveboss: bool = False
+    """Whether this location is a reward for defeating a graveboss."""
     
     overworldboss: bool = False
     """Whether this location is a reward for defeating a overworldboss."""
@@ -383,7 +396,7 @@ class ERLocationData:
 
         This is computed from the properties assigned to this location."""
         names = []
-        if self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.overworldboss or self.dragonboss: # any boss should be a prominent place
+        if self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.graveboss or self.overworldboss or self.dragonboss: # any boss should be a prominent place
             names.append("Boss Rewards")
             self.prominent = True
             
@@ -3918,63 +3931,64 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(CC): Scythe - dead-end room at top of main room", "Scythe", key="300600,0:0030067070::"),
         ERLocationData("LL/(CC): Prattling Pate \"Wonderful\" - bottom of main room, N side", "Prattling Pate \"Wonderful\"", key="300600,0:0030067080::"),
     ],
-    "gelmir_wyndhamcatacombs":[
-        #ERLocationData("MG/(WC): Ancient Dragon Apostle's Cookbook [1] - ", "Ancient Dragon Apostle's Cookbook [1]", key="300700,0:0000068000::"),
-        #ERLocationData("MG/(WC): Glovewort Picker's Bell Bearing [1] - Dropped by Erdtree Burial Watchdog", "Glovewort Picker's Bell Bearing [1]", key="300700,0:0000520120::", altboss=True, upgradeshop=True, minidungeonboss=True, catacombboss=True),
-        #ERLocationData("MG/(WC): Golden Rune [5] - ", "Golden Rune [5]", key="300700,0:0030077010::"),
-        #ERLocationData("MG/(WC): Magic Grease x2 - ", "Magic Grease x2", key="300700,0:0030077020::"),
-        #ERLocationData("MG/(WC): Lightning Scorpion Charm - Past an Imp Statue barrier deep in the Catacombs, found up a ladder", "Lightning Scorpion Charm", key="300700,0:0030077600::", talisman=True),
+    "Wyndham Catacombs":[ # gelmir_wyndhamcatacombs        done
+        ERLocationData("MG/(WC): Ancient Dragon Apostle's Cookbook [1] - path under huge crusher", "Ancient Dragon Apostle's Cookbook [1]", key="300700,0:0000068000::"),
+        ERLocationData("MG/(WC): Glovewort Picker's Bell Bearing [1] - boss drop", "Glovewort Picker's Bell Bearing [1]", key="300700,0:0000520120::", altboss=True, upgradeshop=True, minidungeonboss=True, catacombboss=True),
+        ERLocationData("MG/(WC): Golden Rune [5] - path under huge crusher", "Golden Rune [5]", key="300700,0:0030077010::"),
+        ERLocationData("MG/(WC): Magic Grease x2 - path under huge crusher", "Magic Grease x2", key="300700,0:0030077020::"),
+        ERLocationData("MG/(WC): Lightning Scorpion Charm - behind imp statue", "Lightning Scorpion Charm", key="300700,0:0030077600::", talisman=True), # 1
     ],
-    "altus_grave":[
-        #ERLocationData("AP/(SHG): Ancient Dragon Knight Kristoff - Dropped by Ancient Hero of Zamor", "Ancient Dragon Knight Kristoff", key="300800,0:0000520080::", altboss=True, minidungeonboss=True, graveboss=True),
-        #ERLocationData("AP/(SHG): Crimson Seed Talisman - Past an Imp Statue barrier beside the Site of Grace", "Crimson Seed Talisman", key="300800,0:0030087010::", talisman=True),
-        #ERLocationData("AP/(SHG): Leyndell Soldier Ashes - ", "Leyndell Soldier Ashes", key="300800,0:0030087020::"),
-        #ERLocationData("AP/(SHG): Dragoncrest Shield Talisman +1 - Past an Imp Statue barrier deep in the Catacombs, riding a giant slicing blade to an upper level", "Dragoncrest Shield Talisman +1", key="300800,0:0030087030::", talisman=True),
-        #ERLocationData("AP/(SHG): Root Resin x3 - ", "Root Resin x3", key="300800,0:0030087040::"),
-        #ERLocationData("AP/(SHG): Prattling Pate "Let's get to it" - ", "Prattling Pate "Let's get to it"", key="300800,0:0030087050::"),
-        #ERLocationData("AP/(SHG): Human Bone Shard x5 - ", "Human Bone Shard x5", key="300800,0:0030087060::"),
-        #ERLocationData("AP/(SHG): Ghost Glovewort [4] - ", "Ghost Glovewort [4]", key="300800,0:0030087970::"),
-        #ERLocationData("AP/(SHG): Ghost Glovewort [4] - ", "Ghost Glovewort [4]", key="300800,0:0030087980::"),
-        #ERLocationData("AP/(SHG): Ghost Glovewort [4] - ", "Ghost Glovewort [4]", key="300800,0:0030087990::"),
+    "Sainted Hero's Grave":[ # altus_grave            done
+        ERLocationData("AP/(SHG): Ancient Dragon Knight Kristoff - boss drop", "Ancient Dragon Knight Kristoff", key="300800,0:0000520080::", altboss=True, minidungeonboss=True, graveboss=True),
+        ERLocationData("AP/(SHG): Crimson Seed Talisman - behind imp statue", "Crimson Seed Talisman", key="300800,0:0030087010::", talisman=True), # 1
+        ERLocationData("AP/(SHG): Leyndell Soldier Ashes - behind breakable floor", "Leyndell Soldier Ashes", key="300800,0:0030087020::"),
+        ERLocationData("AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", "Dragoncrest Shield Talisman +1", key="300800,0:0030087030::", talisman=True), # 1
+        ERLocationData("AP/(SHG): Root Resin x3 - after ladder drop down on bridge", "Root Resin x3", key="300800,0:0030087040::"),
+        ERLocationData("AP/(SHG): Prattling Pate \"Let's get to it\" - big dead-end room after bridge", "Prattling Pate \"Let's get to it\"", key="300800,0:0030087050::"),
+        ERLocationData("AP/(SHG): Human Bone Shard x5 - after ladder drop down", "Human Bone Shard x5", key="300800,0:0030087060::"),
+        #idk if the order in smithbox is correct for these
+        ERLocationData("AP/(SHG): Ghost Glovewort [4] - enemy drop after ladder drop down, only after boss door is open", "Ghost Glovewort [4]", key="300800,0:0030087970::"),
+        ERLocationData("AP/(SHG): Ghost Glovewort [4] - enemy drop left path under stairs", "Ghost Glovewort [4]", key="300800,0:0030087980::"),
+        ERLocationData("AP/(SHG): Ghost Glovewort [4] - enemy drop after ladder drop down", "Ghost Glovewort [4]", key="300800,0:0030087990::"),
     ],
-    "gelmir_grave":[
-        #ERLocationData("MG/(GHG): Bloodhound Knight Floh - Dropped by Red Wolf of the Champion", "Bloodhound Knight Floh", key="300900,0:0000520090::", altboss=True, minidungeonboss=True, graveboss=True),
-        #ERLocationData("MG/(GHG): Deathroot - In a chest after Red Wolf of the Champion", "Deathroot", key="300900,0:0030097000::", chest=True),
-        #ERLocationData("MG/(GHG): Ringed Finger - In a chest at the bottom of the first sloped hallway patrolled by a Merciless Chariot. Requires wading through lava.", "Ringed Finger", key="300900,0:0030097010::", chest=True),
-        #ERLocationData("MG/(GHG): Golden Rune [6] - ", "Golden Rune [6]", key="300900,0:0030097020::"),
-        #ERLocationData("MG/(GHG): Smoldering Butterfly x6 - ", "Smoldering Butterfly x6", key="300900,0:0030097030::"),
-        #ERLocationData("MG/(GHG): Stonesword Key - ", "Stonesword Key", key="300900,0:0030097040::"),
-        #ERLocationData("MG/(GHG): Gelmir Knight Helm - ", "Gelmir Knight Helm", key="300900,0:0030097050::"),
-        #ERLocationData("MG/(GHG): Gelmir Knight Armor - ", "Gelmir Knight Armor", key="300900,0:0030097050::"),
-        #ERLocationData("MG/(GHG): Gelmir Knight Gauntlets - ", "Gelmir Knight Gauntlets", key="300900,0:0030097050::"),
-        #ERLocationData("MG/(GHG): Gelmir Knight Greaves - ", "Gelmir Knight Greaves", key="300900,0:0030097050::"),
-        #ERLocationData("MG/(GHG): Root Resin x5 - ", "Root Resin x5", key="300900,0:0030097060::"),
-        #ERLocationData("MG/(GHG): Beast Blood x3 - ", "Beast Blood x3", key="300900,0:0030097070::"),
-        #ERLocationData("MG/(GHG): Mantis Blade - ", "Mantis Blade", key="300900,0:0030097700::"),
-        #ERLocationData("MG/(GHG): Bloodhound Knight Helm - ", "Bloodhound Knight Helm", key="300900,0:0030097800::"),
-        #ERLocationData("MG/(GHG): Bloodhound Knight Armor - ", "Bloodhound Knight Armor", key="300900,0:0030097800::"),
-        #ERLocationData("MG/(GHG): Bloodhound Knight Gauntlets - ", "Bloodhound Knight Gauntlets", key="300900,0:0030097800::"),
-        #ERLocationData("MG/(GHG): Bloodhound Knight Greaves - ", "Bloodhound Knight Greaves", key="300900,0:0030097800::"),
+    "Gelmir Hero's Grave":[ # gelmir_grave              done
+        ERLocationData("MG/(GHG): Bloodhound Knight Floh - boss drop", "Bloodhound Knight Floh", key="300900,0:0000520090::", altboss=True, minidungeonboss=True, graveboss=True),
+        ERLocationData("MG/(GHG): Deathroot - chest after boss", "Deathroot", key="300900,0:0030097000::", chest=True),
+        ERLocationData("MG/(GHG): Ringed Finger - chest bottom of first chariot ramp", "Ringed Finger", key="300900,0:0030097010::", chest=True, outoftheway=True),
+        ERLocationData("MG/(GHG): Golden Rune [6] - dead-end S of fire spitter", "Golden Rune [6]", key="300900,0:0030097020::"),
+        ERLocationData("MG/(GHG): Smoldering Butterfly x6 - drop down to ledge second chariot ramp", "Smoldering Butterfly x6", key="300900,0:0030097030::"),
+        ERLocationData("MG/(GHG): Stonesword Key - top of second chariot ramp", "Stonesword Key", key="300900,0:0030097040::"),
+        ERLocationData("MG/(GHG): Gelmir Knight Helm - after drop down second chariot ramp by coffin", "Gelmir Knight Helm", key="300900,0:0030097050::"),
+        ERLocationData("MG/(GHG): Gelmir Knight Armor - after drop down second chariot ramp by coffin", "Gelmir Knight Armor", key="300900,0:0030097050::"),
+        ERLocationData("MG/(GHG): Gelmir Knight Gauntlets - after drop down second chariot ramp by coffin", "Gelmir Knight Gauntlets", key="300900,0:0030097050::"),
+        ERLocationData("MG/(GHG): Gelmir Knight Greaves - after drop down second chariot ramp by coffin", "Gelmir Knight Greaves", key="300900,0:0030097050::"),
+        ERLocationData("MG/(GHG): Root Resin x5 - after drop down second chariot ramp, behind some pots of ladder", "Root Resin x5", key="300900,0:0030097060::"),
+        ERLocationData("MG/(GHG): Beast Blood x3 - by ladder after chariot ride", "Beast Blood x3", key="300900,0:0030097070::"),
+        ERLocationData("MG/(GHG): Mantis Blade - enemy drop before lava section of second chariot ramp", "Mantis Blade", key="300900,0:0030097700::"),
+        ERLocationData("MG/(GHG): Bloodhound Knight Helm - enemy drop after drop down second chariot ramp", "Bloodhound Knight Helm", key="300900,0:0030097800::"),
+        ERLocationData("MG/(GHG): Bloodhound Knight Armor - enemy drop after drop down second chariot ramp", "Bloodhound Knight Armor", key="300900,0:0030097800::"),
+        ERLocationData("MG/(GHG): Bloodhound Knight Gauntlets - enemy drop after drop down second chariot ramp", "Bloodhound Knight Gauntlets", key="300900,0:0030097800::"),
+        ERLocationData("MG/(GHG): Bloodhound Knight Greaves - enemy drop after drop down second chariot ramp", "Bloodhound Knight Greaves", key="300900,0:0030097800::"),
     ],
-    "outskirts_grave":[
-        #ERLocationData("CO/(AHG): Ordovis's Greatsword - Dropped by Crucible Knight Duo", "Ordovis's Greatsword", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
-        #ERLocationData("CO/(AHG): Crucible Axe Helm - Dropped by Crucible Knight Duo", "Crucible Axe Helm", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
-        #ERLocationData("CO/(AHG): Crucible Axe Armor - Dropped by Crucible Knight Duo", "Crucible Axe Armor", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
-        #ERLocationData("CO/(AHG): Crucible Gauntlets - Dropped by Crucible Knight Duo", "Crucible Gauntlets", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
-        #ERLocationData("CO/(AHG): Crucible Greaves - Dropped by Crucible Knight Duo", "Crucible Greaves", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
-        #ERLocationData("CO/(AHG): Holy Grease x2 - ", "Holy Grease x2", key="301000,0:0030107010::"),
-        #ERLocationData("CO/(AHG): Fan Daggers x5 - ", "Fan Daggers x5", key="301000,0:0030107020::"),
-        #ERLocationData("CO/(AHG): Golden Rune [7] - ", "Golden Rune [7]", key="301000,0:0030107030::"),
-        #ERLocationData("CO/(AHG): Crucible Feather Talisman - Guarded by an Omen deep in the Grave, found dropping down to wooden beams to the left of pillars between two Merciless Chariot patrol routes, up a ladder, and going further down stairs into a tunnel.", "Crucible Feather Talisman", key="301000,0:0030107040::", talisman=True),
-        #ERLocationData("CO/(AHG): Golden Epitaph - ", "Golden Epitaph", key="301000,0:0030107050::"),
-        #ERLocationData("CO/(AHG): Great Dragonfly Head x3 - ", "Great Dragonfly Head x3", key="301000,0:0030107060::"),
-        #ERLocationData("CO/(AHG): Stonesword Key - ", "Stonesword Key", key="301000,0:0030107070::"),
-        #ERLocationData("CO/(AHG): Vulgar Militia Ashes - ", "Vulgar Militia Ashes", key="301000,0:0030107080::"),
-        #ERLocationData("CO/(AHG): Tree Sentinel Helm - Dropped by Merciless Chariot. They destroy each other when you redirect a light source deep in the grave, found dropping down to wooden beams to the left of pillars between two Merciless Chariot patrol routes.", "Tree Sentinel Helm", key="301000,0:0030107100::"),
-        #ERLocationData("CO/(AHG): Tree Sentinel Armor - Dropped by Merciless Chariot. They destroy each other when you redirect a light source deep in the grave, found dropping down to wooden beams to the left of pillars between two Merciless Chariot patrol routes.", "Tree Sentinel Armor", key="301000,0:0030107100::"),
-        #ERLocationData("CO/(AHG): Tree Sentinel Gauntlets - Dropped by Merciless Chariot. They destroy each other when you redirect a light source deep in the grave, found dropping down to wooden beams to the left of pillars between two Merciless Chariot patrol routes.", "Tree Sentinel Gauntlets", key="301000,0:0030107100::"),
-        #ERLocationData("CO/(AHG): Tree Sentinel Greaves - Dropped by Merciless Chariot. They destroy each other when you redirect a light source deep in the grave, found dropping down to wooden beams to the left of pillars between two Merciless Chariot patrol routes.", "Tree Sentinel Greaves", key="301000,0:0030107100::"),
-        #ERLocationData("CO/(AHG): Ash of War: Holy Ground - Dropped by Merciless Chariot. They destroy each other when you redirect a light source deep in the grave, found dropping down to wooden beams to the left of pillars between two Merciless Chariot patrol routes.", "Ash of War: Holy Ground", key="301000,0:0030107100::"),
+    "Auriza Hero's Grave":[ # outskirts_grave           done
+        ERLocationData("CO/(AHG): Ordovis's Greatsword - boss drop", "Ordovis's Greatsword", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
+        ERLocationData("CO/(AHG): Crucible Axe Helm - boss drop", "Crucible Axe Helm", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
+        ERLocationData("CO/(AHG): Crucible Axe Armor - boss drop", "Crucible Axe Armor", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
+        ERLocationData("CO/(AHG): Crucible Gauntlets - boss drop", "Crucible Gauntlets", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
+        ERLocationData("CO/(AHG): Crucible Greaves - boss drop", "Crucible Greaves", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
+        ERLocationData("CO/(AHG): Holy Grease x2 - on beams bottom of big ramp", "Holy Grease x2", key="301000,0:0030107010::"),
+        ERLocationData("CO/(AHG): Fan Daggers x5 - by small bridge first ramp", "Fan Daggers x5", key="301000,0:0030107020::"),
+        ERLocationData("CO/(AHG): Golden Rune [7] - bottom of big ramp", "Golden Rune [7]", key="301000,0:0030107030::"),
+        ERLocationData("CO/(AHG): Crucible Feather Talisman - bottom of ramp after beam parkour, E dead-end", "Crucible Feather Talisman", key="301000,0:0030107040::", talisman=True),
+        ERLocationData("CO/(AHG): Golden Epitaph - behind imp statue", "Golden Epitaph", key="301000,0:0030107050::"), # 1
+        ERLocationData("CO/(AHG): Great Dragonfly Head x3 - after you raise the light to destroy the chariots", "Great Dragonfly Head x3", key="301000,0:0030107060::"),
+        ERLocationData("CO/(AHG): Stonesword Key - middle of big ramp", "Stonesword Key", key="301000,0:0030107070::"),
+        ERLocationData("CO/(AHG): Vulgar Militia Ashes - down dead-end N end of beams bottom of big ramp", "Vulgar Militia Ashes", key="301000,0:0030107080::"),
+        ERLocationData("CO/(AHG): Tree Sentinel Helm - destroy chariots", "Tree Sentinel Helm", key="301000,0:0030107100::"),
+        ERLocationData("CO/(AHG): Tree Sentinel Armor - destroy chariots", "Tree Sentinel Armor", key="301000,0:0030107100::"),
+        ERLocationData("CO/(AHG): Tree Sentinel Gauntlets - destroy chariots", "Tree Sentinel Gauntlets", key="301000,0:0030107100::"),
+        ERLocationData("CO/(AHG): Tree Sentinel Greaves - destroy chariots", "Tree Sentinel Greaves", key="301000,0:0030107100::"),
+        ERLocationData("CO/(AHG): Ash of War: Holy Ground - destroy chariots", "Ash of War: Holy Ground", key="301000,0:0030107100::"),
     ],
     "Deathtouched Catacombs":[ # stormhill_catacombs       done
         ERLocationData("LG/(DC): Assassin's Crimson Dagger - boss drop", "Assassin's Crimson Dagger", key="301100,0:0000520030::", altboss=True, minidungeonboss=True, catacombboss=True),
@@ -4969,7 +4983,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("LL: Thawfrost Boluses - ", "Thawfrost Boluses", key="603650,0:1036507020::"),
         #ERLocationData("LL: Albinauric Ashes - ", "Albinauric Ashes", key="603650,0:1036507030::"),
     ],
-    "outskirts":[
+    "Capital Outskirts":[ # outskirts
         #ERLocationData("CO: Boiled Crab - Sold by Blackguard Boggart after he moves to Capital Outskirts", "Boiled Crab", key="603643,3:0000000000:100150,1044529255:", missable=True, shop=True),
         #ERLocationData("CO: Giant-Crusher - In a Caravan Chest south of the Outer Wall Phantom Tree Site of Grace", "Giant-Crusher", key="604250,0:1042507000::", chest=True),
         #ERLocationData("CO: Golden Seed - ", "Golden Seed", key="604250,0:1042507020::"),

@@ -150,6 +150,23 @@ class EldenRing(World):
         create_connection("Redmane Castle", "Redmane Castle Post Radahn")
         create_connection("Redmane Castle", "Wailing Dunes")
         create_connection("Wailing Dunes", "War-Dead Catacombs")
+        
+        
+        create_connection("Liurnia of The Lakes", "Altus Plateau")
+        # Altus
+        create_connection("Altus Plateau", "Sainted Hero's Grave")
+        
+        
+        #create_connection("Altus Plateau", "Mount Gelmir")
+        # Mt Gelmir
+        #create_connection("Mount Gelmir", "Wyndham Catacombs")
+        #create_connection("Mount Gelmir", "Gelmir Hero's Grave")
+        
+        
+        create_connection("Altus Plateau", "Capital Outskirts")
+        # Capital Outskirts
+        create_connection("Capital Outskirts", "Auriza Hero's Grave")
+        
 
         # Leyndell Royal
         #create_connection("Divine Bridge", "Leyndell, Royal Capital")
@@ -581,6 +598,25 @@ class EldenRing(World):
         self._add_entrance_rule("Gaol Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         self._add_location_rule("CL/(FR): Sword of St. Trina - chest underground behind imp statue", 
                                 lambda state: self._has_enough_keys(state, currentKey)) # 1
+        
+        # altus
+        currentKey += 2 #wip
+        self._add_location_rule([
+            "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1
+            "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
+        
+        # mt gelmir
+        currentKey += 1 #wip
+        self._add_location_rule([
+            "MG/(WC): Lightning Scorpion Charm - behind imp statue", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
+        
+        # capital outskirts
+        currentKey += 1 #wip
+        self._add_location_rule([
+            "CO/(AHG): Golden Epitaph - behind imp statue", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
         
         # nokron +1
         #currentKey += 1
