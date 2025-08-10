@@ -48,12 +48,13 @@ The Bridge of Sacrifice is the first line of defense for Castle Morne, as arrang
 
 ### Deeproot > Capital
 * Item to start up `Waygate`
+* based on great rune count like capital seal
 
 ### Ainsel River > Lake of Rot
 * Easy door that can require an item
 
 ### Lake of Rot > Moonlight Altar
-* `Ranni quest`
+* Requires `Dark Moon Ring`
 
 ### Consecrated Snowfield > Mohgwyn Palace
 * Item to start up `Waygate`
@@ -152,6 +153,11 @@ Starscourge Radahn lived to fight, bearing no hopes and dreams beyond personal g
 
 ### Mt Gelmir > Volcano Manor
 * Use `Drawing Room Key`
+
+### Volcano Manor > Mt Gelmir
+* can leave via abductor duo boss, add smth to block that
+* or add door that requires `Drawing Room Key`
+
 #
 # DLC
 

@@ -24,7 +24,8 @@ gracesanity, graces are checks
 option to turn off healing item randomization, start with
 scadutree options, start with, not random, only within dlc, anywhere
 
-add those ground messages before dungeons that would tell the player if there was anything useful in it, as an option
+"This dungeon is not on the path." or "This dungeon is on the path of the Elden Lord."
+using ground messages or the small stones with text on them
 
 
 dlc start / dlc only
@@ -51,4 +52,7 @@ might be to complex todo, since it would need logic so you don't get access to a
 people who want to be pinged for playtest
 @blupeecounter @belgarath._. @cieltheseall @trypha
 @mdg555 @kr00mmi2444 @labgremlin @legofacebob
-@battleninja42 @leviendeavor @mannamedgarbo
+@battleninja42 @leviendeavor @mannamedgarbo @thebreadstick
+@thesaltlord @bignose4 @dakennyman @Quanterve07
+@maker. @tyofucksmen @jasler7 @jelly_poppy
+@star0chris @codekid90000

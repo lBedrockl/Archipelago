@@ -155,6 +155,8 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Altus Plateau")
         # Altus
         create_connection("Altus Plateau", "Sainted Hero's Grave")
+        create_connection("Altus Plateau", "Unsightly Catacombs")
+        
         
         
         #create_connection("Altus Plateau", "Mount Gelmir")
@@ -166,6 +168,7 @@ class EldenRing(World):
         create_connection("Altus Plateau", "Capital Outskirts")
         # Capital Outskirts
         create_connection("Capital Outskirts", "Auriza Hero's Grave")
+        create_connection("Capital Outskirts", "Auriza Side Tomb")
         
 
         # Leyndell Royal
@@ -175,6 +178,11 @@ class EldenRing(World):
         # Leyndell Ashen
         #create_connection("Divine Bridge", "Leyndell, Ashen Capital")
         #create_connection("Leyndell, Ashen Capital","")
+        
+        #create_connection("forbidden woods", "Mountaintops of the Giants")
+        # Mountaintops
+        #create_connection("Mountaintops of the Giants", "Giant-Conquering Hero's Grave")
+        #create_connection("Mountaintops of the Giants", "Giants' Mountaintop Catacombs")
 
         #create_connection("Consecrated Snowfield", "Miquella's Haligtree")
         # Haligtree
@@ -444,6 +452,11 @@ class EldenRing(World):
 
         # World Logic
         if self.options.world_logic == "region_lock": 
+            self._region_lock_items()
+            if self.options.soft_logic:
+                self._add_entrance_rule("Caelid", lambda state: state.can_reach("Altus Plateau"))
+                self._add_entrance_rule("Dragonbarrow", lambda state: state.can_reach("Forbidden Lands") and state.has("Rold Medallion", self.player))
+                
             self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_great_runes(state, 1))
             self._add_location_rule([ # stuff in wp but not
                 "WP/(DHFR): Arteria Leaf x2 - within N ruins",
@@ -488,12 +501,7 @@ class EldenRing(World):
             "CL/(RC): Heartening Cry - talk to Jerren during festival",
         ], lambda state: state.can_reach("Altus Plateau"))
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
-        
-        #soft logic make these late spheres
-        #self._add_entrance_rule("Caelid", lambda state: state.can_reach("Altus Plateau"))
-        #self._add_entrance_rule("Dragonbarrow", lambda state: state.can_reach("Forbidden Lands") and state.has("Rold Medallion", self.player))
-        
-        
+           
         # you can kill gostoc and not open main gate
         self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Rusty Key", self.player))
         if self.options.enemy_rando == False: # funny shackle rule
@@ -540,8 +548,16 @@ class EldenRing(World):
             # all bosses # need one check from each boss :skull:
             if self.options.enable_dlc:"""
             
+    
+    def _region_lock_items(self) -> None:
+        """All region lock items set to not be skipped when doing region lock."""
+        #MARK: Region Lock Items
+        item_table["Region Lock Key"].skip = False
         
-    #MARK: Special Rules
+        
+        
+        
+        
     def _key_rules(self) -> None:
         # MARK: SSK RULES
         # this needs to be fixed, the order needs to be the sphere order, and idk how todo that
@@ -620,6 +636,13 @@ class EldenRing(World):
         
         # nokron +1
         #currentKey += 1
+        
+        # mountaintops
+        currentKey += 2 #wip
+        self._add_location_rule([
+            "MG/(GCHG): Flame, Protect Me - behind imp statue", # 1
+            "MG/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
         
         # haligtree +3
         currentKey += 3

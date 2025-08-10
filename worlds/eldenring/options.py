@@ -22,7 +22,7 @@ class EndingCondition(Choice):
 class WorldLogic(Choice):
     """World Logic options
     
-    **Region Lock:** Each region will require '# of great runes or special item'
+    **Region Lock:** Each region will require a 'Special item'
     **Open World:** No region locking"""
     #**Glitches:** Glitches in logic"""
     display_name = "World Logic"
@@ -30,6 +30,13 @@ class WorldLogic(Choice):
     option_open_world = 1
     #option_glitches = 2
     default = 0
+    
+class RegionSoftLogic(DefaultOnToggle):
+    """Region Soft Logic
+    
+    You might get early caelid access but you won't be expected to go there early.
+    """
+    display_name = "Region Soft Logic"
 
 class GreatRunesRequired(Range):
     """How many great runes are required to enter Leyndell
@@ -121,6 +128,7 @@ class MissableLocationBehaviorOption(Choice):
 class EROptions(PerGameCommonOptions):
     ending_condition: EndingCondition
     world_logic: WorldLogic
+    soft_logic: RegionSoftLogic
     great_runes_required: GreatRunesRequired
     enable_dlc: EnableDLC
     late_dlc: LateDLCOption

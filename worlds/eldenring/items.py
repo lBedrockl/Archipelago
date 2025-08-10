@@ -2114,6 +2114,17 @@ _vanilla_items = [
     ERItemData("Finger Maiden Therolina Puppet", 261000, ERItemCategory.GOODS),
     ERItemData("Dolores the Sleeping Arrow Puppet", 262000, ERItemCategory.GOODS),
     ERItemData("Jarwight Puppet", 263000, ERItemCategory.GOODS),
+    
+    
+    #MARK: Region Lock Items
+    # these get set to skip = False in init when region lock is on
+    #ERItemData("Region Lock Key", needs id, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
+    
+    
+    
+    
+    
+    
 ]
 
 #MARK: DLC Items
@@ -2757,6 +2768,10 @@ _dlc_items = [
     ERItemData("Fire Knight Queelign", 2218000, ERItemCategory.GOODS),
     ERItemData("Swordhand of Night Jolán", 2219000, ERItemCategory.GOODS),
     ERItemData("Jolán and Anna", 2220000, ERItemCategory.GOODS),
+    
+    #MARK: DLC Region Lock Items
+    # these get set to skip = False in init when region lock is on
+    #ERItemData("DLC Region Lock Key", needs id, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
 ]
 
 for item in _dlc_items:
