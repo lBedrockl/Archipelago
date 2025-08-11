@@ -156,6 +156,7 @@ class EldenRing(World):
         # Altus
         create_connection("Altus Plateau", "Sainted Hero's Grave")
         create_connection("Altus Plateau", "Unsightly Catacombs")
+        create_connection("Altus Plateau", "Perfumer's Grotto")
         
         
         
@@ -163,6 +164,8 @@ class EldenRing(World):
         # Mt Gelmir
         #create_connection("Mount Gelmir", "Wyndham Catacombs")
         #create_connection("Mount Gelmir", "Gelmir Hero's Grave")
+        #create_connection("Mount Gelmir", "Seethewater Cave")
+        #create_connection("Mount Gelmir", "Volcano Cave")
         
         
         create_connection("Altus Plateau", "Capital Outskirts")
@@ -179,10 +182,22 @@ class EldenRing(World):
         #create_connection("Divine Bridge", "Leyndell, Ashen Capital")
         #create_connection("Leyndell, Ashen Capital","")
         
-        #create_connection("forbidden woods", "Mountaintops of the Giants")
+        
+        #create_connection("Leyndell, Royal Capital", "Forbidden Lands")
+        # Forbidden Lands
+        #create_connection("Forbidden Lands", "Hidden Path to the Haligtree")
+        
+        
+        #create_connection("Forbidden Lands", "Mountaintops of the Giants")
         # Mountaintops
         #create_connection("Mountaintops of the Giants", "Giant-Conquering Hero's Grave")
         #create_connection("Mountaintops of the Giants", "Giants' Mountaintop Catacombs")
+        
+        
+        #create_connection("Hidden Path to the Haligtree", "Consecrated Snowfield")
+        # Snowfield
+        #create_connection("Consecrated Snowfield", "Consecrated Snowfield Catacombs")
+        #create_connection("Consecrated Snowfield", "Cave of the Forlorn")
 
         #create_connection("Consecrated Snowfield", "Miquella's Haligtree")
         # Haligtree
