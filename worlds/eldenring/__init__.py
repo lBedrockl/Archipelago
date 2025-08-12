@@ -157,7 +157,9 @@ class EldenRing(World):
         create_connection("Altus Plateau", "Sainted Hero's Grave")
         create_connection("Altus Plateau", "Unsightly Catacombs")
         create_connection("Altus Plateau", "Perfumer's Grotto")
-        
+        create_connection("Altus Plateau", "Sage's Cave")
+        create_connection("Altus Plateau", "Old Altus Tunnel")
+        create_connection("Altus Plateau", "Altus Tunnel")
         
         
         #create_connection("Altus Plateau", "Mount Gelmir")
@@ -172,6 +174,7 @@ class EldenRing(World):
         # Capital Outskirts
         create_connection("Capital Outskirts", "Auriza Hero's Grave")
         create_connection("Capital Outskirts", "Auriza Side Tomb")
+        create_connection("Capital Outskirts", "Sealed Tunnel")
         
 
         # Leyndell Royal
@@ -181,6 +184,9 @@ class EldenRing(World):
         # Leyndell Ashen
         #create_connection("Divine Bridge", "Leyndell, Ashen Capital")
         #create_connection("Leyndell, Ashen Capital","")
+        
+        #create_connection("Leyndell, Royal Capital", "Subterranean Shunning-Grounds")
+        create_connection("Subterranean Shunning-Grounds", "Leyndell Catacombs")
         
         
         #create_connection("Leyndell, Royal Capital", "Forbidden Lands")
@@ -192,12 +198,14 @@ class EldenRing(World):
         # Mountaintops
         #create_connection("Mountaintops of the Giants", "Giant-Conquering Hero's Grave")
         #create_connection("Mountaintops of the Giants", "Giants' Mountaintop Catacombs")
+        #create_connection("Mountaintops of the Giants", "Spiritcaller Cave")
         
         
         #create_connection("Hidden Path to the Haligtree", "Consecrated Snowfield")
         # Snowfield
         #create_connection("Consecrated Snowfield", "Consecrated Snowfield Catacombs")
         #create_connection("Consecrated Snowfield", "Cave of the Forlorn")
+        #create_connection("Consecrated Snowfield", "Yelough Anix Tunnel")
 
         #create_connection("Consecrated Snowfield", "Miquella's Haligtree")
         # Haligtree
@@ -526,6 +534,11 @@ class EldenRing(World):
         
         
         # ashen capital only after getting farum boss Remembrance
+        
+        
+        self._add_entrance_rule("Hidden Path to the Haligtree", lambda state: 
+            state.has("Haligtree Secret Medallion (Left)", self.player) and
+            state.has("Haligtree Secret Medallion (Right)", self.player))
         
         # DLC Access Rules Below
         if self.options.enable_dlc:
