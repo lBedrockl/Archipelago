@@ -121,8 +121,13 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Lakeside Crystal Cave")
         create_connection("Liurnia of The Lakes", "Academy Crystal Cave")
         create_connection("Liurnia of The Lakes", "Raya Lucaria Crystal Tunnel")
+        create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
         
         
+        #create_connection("lake of rot", "Moonlight Altar")
+        
+        
+        #create_connection("Siofra River", "Caelid") # dont really need this but putting it here
         create_connection("Limgrave", "Caelid")
         # Caelid
         create_connection("Caelid", "Bestial Sanctum")
@@ -152,6 +157,7 @@ class EldenRing(World):
         create_connection("Wailing Dunes", "War-Dead Catacombs")
         
         
+        create_connection("Ruin-Strewn Precipice", "Altus Plateau")
         create_connection("Liurnia of The Lakes", "Altus Plateau")
         # Altus
         create_connection("Altus Plateau", "Sainted Hero's Grave")
@@ -480,7 +486,7 @@ class EldenRing(World):
                 self._add_entrance_rule("Caelid", lambda state: state.can_reach("Altus Plateau"))
                 self._add_entrance_rule("Dragonbarrow", lambda state: state.can_reach("Forbidden Lands") and state.has("Rold Medallion", self.player))
                 
-            self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_great_runes(state, 1))
+            #self._add_entrance_rule("Weeping Peninsula", lambda state: "region key")
             self._add_location_rule([ # stuff in wp but not
                 "WP/(DHFR): Arteria Leaf x2 - within N ruins",
                 "WP/DHFR: Gold-Tinged Excrement x2 - SE of DHFR",
@@ -492,16 +498,20 @@ class EldenRing(World):
                 "WP/CP: Bewitching Branch x3 - lower cliff NW of CP",
                 "WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N",
             ], lambda state: state.can_reach("Weeping Peninsula"))
+            "BS: Stonesword Key - behind wooden platform" 
+            "BS: Smithing Stone [1] x3 - corpse hanging off edge" # on Bridge of Sacrifice idk where wall for WP will be
     
-            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_great_runes(state, 2))
-            self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: self._has_enough_great_runes(state, 3))
+            #self._add_entrance_rule("Liurnia of The Lakes", lambda state: "region key")
+            self._add_entrance_rule("Altus Plateau", lambda state: # only in region lock since it can be bypassed by ruin-strewn precipice
+                state.has("Dectus Medallion (Left)", self.player) and
+                state.has("Dectus Medallion (Right)", self.player))
+            
+            #self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: "region key")
             
             "Stormveil Start" # in sv entrance region
             "Stormveil Castle" # needs to be marked too, but the throne doesnt since you can get to from liurnia
             "SV: Talisman Pouch - boss drop" # item in stormveil but in stormhill location, needs a check if stormveil gets a key
             
-            "BS: Stonesword Key - behind wooden platform" 
-            "BS: Smithing Stone [1] x3 - corpse hanging off edge" # on Bridge of Sacrifice idk where wall for WP will be
             
             "CL/(SC): Missionary's Cookbook [3] - on corpse", "Missionary's Cookbook [3]" 
             "CL/(SC): Sacred Scorpion Charm - invader drop", "Sacred Scorpion Charm" # at smoldering church + more items on border
@@ -531,7 +541,7 @@ class EldenRing(World):
             self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Margit's Shackle", self.player))
             self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Mohg's Shackle", self.player))
         
-        
+        self._add_entrance_rule("Moonlight Altar", lambda state: state.has("Dark Moon Ring", self.player))
         
         # ashen capital only after getting farum boss Remembrance
         
@@ -664,6 +674,12 @@ class EldenRing(World):
         
         # nokron +1
         #currentKey += 1
+        
+        # moonlight altar
+        currentKey += 1
+        self._add_location_rule([
+            "MA/(LER): Cerulean Amber Medallion +2 - in chest under illusory floor behind imp statue", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
         
         # mountaintops
         currentKey += 2 #wip
@@ -880,6 +896,8 @@ class EldenRing(World):
             "LG/(CE): Spirit Calling Bell - talk to Ranni",
             "LG/(CE): Lone Wolf Ashes - talk to Ranni",
         ], lambda state: ( self._can_get(state, "talk to ranni in her tower, item in rth") ))"""
+        
+        "MA/(CMC): Dark Moon Greatsword - talk to Ranni under CMC" # MA requires the ring to enter, but this check requires nothing
         
         if self.options.enable_dlc: # MARK: DLC NPC
             

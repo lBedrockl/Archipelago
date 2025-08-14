@@ -45,8 +45,8 @@ might be to complex todo, since it would need logic so you don't get access to a
 
 
 
-
-
+last update 25/08/12
+current progress 1534 / 4980
 
 
 people who want to be pinged for playtest
