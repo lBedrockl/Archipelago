@@ -578,7 +578,8 @@ class EldenRing(World):
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Remembrance of a God and a Lord - mainboss drop")
                 # "EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn" # real end
             else:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")       
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")
+                # make this the mend the elden ring event, idk how todo that rn       
         """elif self.options.ending_condition == 2:
             # all remembrances # need each remembrances check from each boss
             if self.options.enable_dlc:
@@ -591,9 +592,6 @@ class EldenRing(World):
         """All region lock items set to not be skipped when doing region lock."""
         #MARK: Region Lock Items
         item_table["Region Lock Key"].skip = False
-        
-        
-        
         
         
     def _key_rules(self) -> None:
@@ -637,7 +635,8 @@ class EldenRing(World):
             "CL/DSW: Spiked Palisade Shield - to W follow ravine",
             "CL/DSW: Stonesword Key - to S",
             "CL/CCO: Great-Jar's Arsenal - beat Great Jar's knights",
-            ], lambda state: self._has_enough_keys(state, currentKey) and state.can_reach("Caelid")) # 2
+            ], lambda state: self._has_enough_keys(state, currentKey) and 
+            state.can_reach("Caelid") and state.can_reach("Siofra River")) # 2
         
         # liurnia +4
         currentKey += 4
