@@ -45,8 +45,8 @@ might be to complex todo, since it would need logic so you don't get access to a
 
 
 
-last update 25/08/15
-current progress 1664 / 4980
+last update 25/08/17
+current progress 1804 / 4980
 
 
 people who want to be pinged for playtesting
@@ -57,4 +57,4 @@ people who want to be pinged for playtesting
 @maker. @tyofucksmen @jasler7 @jelly_poppy
 @star0chris @codekid90000 @gamermick @bunkleberry
 @springisepic @mineskill @drewdrew2987 @thraxus
-@lightningvtx @zobeeplays
+@lightningvtx @zobeeplays @vituici

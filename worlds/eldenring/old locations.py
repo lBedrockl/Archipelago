@@ -1065,25 +1065,13 @@ location_tables: ERLocationData = {
         # ERLocationData("WP/(CM): Sacrificial Twig - talk to Edgar", "Sacrificial Twig", npc=True, missable=True),
         # kill and invader form needed + quest stuff
     ],
-    
-    # "":[],
-    # ERLocationData(":  - ", ""),
-    # MARK: Siofra
-    "Siofra River":[
-        ERLocationData("SR:  - ", ""),
-    ],
-    
-    # ERLocationData(":  - ", ""),
-    # MARK: Liurnia of The Lakes
-    "Liurnia of The Lakes":[],
 
     "Chapel of Anticipation [Return]":[ # done
         # ERLocationData("CA Return: The Stormhawk King - top of church", "The Stormhawk King"),
         # ERLocationData("CA Return: Stormhawk Deenh - chest top of church", "Stormhawk Deenh"),
     ],
 
-    # "":[],
-    # ERLocationData(":  - ", ""),
+
     # MARK: Caelid
     "Caelid":[
         # near FR
@@ -1209,18 +1197,18 @@ location_tables: ERLocationData = {
         ERLocationData("CL/SASB: Rune Arc - chairs to NW", "Rune Arc"),
         ERLocationData("CL/SASB: Sacramental Bud x2 - chairs to NW", "Sacramental Bud x2"),
         ERLocationData("CL/SASB: Smithing Stone [4] x3 - chairs to NW", "Smithing Stone [4] x3"),
-        ERLocationData("CL/SASB: Map: Caelid - to SW", "Map: Caelid"),
+        # ERLocationData("CL/SASB: Map: Caelid - to SW", "Map: Caelid"),
         ERLocationData("CL/SASB: Ash of War: Poison Moth Flight - night boss drop to SW", "Ash of War: Poison Moth Flight", boss=True),
         ERLocationData("CL/SASB: Death's Poker - night boss drop to SE", "Death's Poker", boss=True),
-        ERLocationData("CL/SASB: Cracked Pot - Nomadic Merchant to SW", "Cracked Pot", shop=True),
-        ERLocationData("CL/SASB: Stonesword Key - Nomadic Merchant to SW", "Stonesword Key", shop=True),
-        ERLocationData("CL/SASB: Nomadic Warrior's Cookbook [15] - Nomadic Merchant to SW", "Nomadic Warrior's Cookbook [15]", shop=True),
-        ERLocationData("CL/SASB: Champion Headband - Nomadic Merchant to SW", "Champion Headband", shop=True),
-        ERLocationData("CL/SASB: Greathelm - Nomadic Merchant to SW", "Greathelm", shop=True),
-        ERLocationData("CL/SASB: Champion Pauldron - Nomadic Merchant to SW", "Champion Pauldron", shop=True),
-        ERLocationData("CL/SASB: Champion Bracers - Nomadic Merchant to SW", "Champion Bracers", shop=True),
-        ERLocationData("CL/SASB: Champion Gaiters - Nomadic Merchant to SW", "Champion Gaiters", shop=True),
-        ERLocationData("CL/SASB: Note: Gravity's Advantage - Nomadic Merchant to SW", "Note: Gravity's Advantage", shop=True),
+        # ERLocationData("CL/SASB: Cracked Pot - Nomadic Merchant to SW", "Cracked Pot", shop=True),
+        # ERLocationData("CL/SASB: Stonesword Key - Nomadic Merchant to SW", "Stonesword Key", shop=True),
+        # ERLocationData("CL/SASB: Nomadic Warrior's Cookbook [15] - Nomadic Merchant to SW", "Nomadic Warrior's Cookbook [15]", shop=True),
+        # ERLocationData("CL/SASB: Champion Headband - Nomadic Merchant to SW", "Champion Headband", shop=True),
+        # ERLocationData("CL/SASB: Greathelm - Nomadic Merchant to SW", "Greathelm", shop=True),
+        # ERLocationData("CL/SASB: Champion Pauldron - Nomadic Merchant to SW", "Champion Pauldron", shop=True),
+        # ERLocationData("CL/SASB: Champion Bracers - Nomadic Merchant to SW", "Champion Bracers", shop=True),
+        # ERLocationData("CL/SASB: Champion Gaiters - Nomadic Merchant to SW", "Champion Gaiters", shop=True),
+        # ERLocationData("CL/SASB: Note: Gravity's Advantage - Nomadic Merchant to SW", "Note: Gravity's Advantage", shop=True),
         
         # slt
         ERLocationData("CL/(SLT): Eternal Darkness - in cage", "Eternal Darkness"),
@@ -1248,8 +1236,8 @@ location_tables: ERLocationData = {
         ERLocationData("CL/SH: Beast Blood x2 - S of SH", "Beast Blood x2"),
         
         # near FF
-        ERLocationData("CL/FF: Golden Rune [9] - enemy drop SE of FF", "Golden Rune [9]", drop=True),
-        ERLocationData("CL/FF: Dragon Heart x5 - enemy drop W of FF", "Dragon Heart x5", drop=True),
+        # ERLocationData("CL/FF: Golden Rune [9] - enemy drop SE of FF", "Golden Rune [9]", drop=True),
+        # ERLocationData("CL/FF: Dragon Heart x5 - enemy drop W of FF", "Dragon Heart x5", drop=True),
         ERLocationData("CL/FF: Smithing Stone [7] 1 - on skull SW of FF", "Smithing Stone [7]"),
         ERLocationData("CL/FF: Smithing Stone [7] 2 - on skull SW of FF", "Smithing Stone [7]"),
         ERLocationData("CL/FF: Stonesword Key - on skull SW of FF", "Stonesword Key"),
@@ -1292,13 +1280,13 @@ location_tables: ERLocationData = {
         # ERLocationData("CL/(SC): Missionary's Cookbook [3] - on corpse", "Missionary's Cookbook [3]"),
         # ERLocationData("CL/(SC): Nomadic Warrior's Cookbook [14] - on corpse", "Nomadic Warrior's Cookbook [14]"),
     ],
-    "Bestial Sanctum":[
-        ERLocationData("CL/(BS): Clawmark Seal - Gurranq, deathroot reward 1", "Clawmark Seal", npc=True, missable=True),
-        ERLocationData("CL/(BS): Beast Eye - Gurranq, deathroot reward 1 or kill", "Beast Eye", npc=True),
-        ERLocationData("CL/(BS): Bestial Sling - Gurranq, deathroot reward 2", "Bestial Sling", npc=True, missable=True),
-        ERLocationData("CL/(BS): Bestial Vitality - Gurranq, deathroot reward 3", "Bestial Vitality", npc=True, missable=True),
-        ERLocationData("CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4", "Ash of War: Beast's Roar", npc=True, missable=True),
-        ERLocationData("CL/(BS): Ancient Dragon Smithing Stone - kill Gurranq", "Ancient Dragon Smithing Stone", npc=True),
+    "Bestial Sanctum":[ #done
+        # ERLocationData("CL/(BS): Clawmark Seal - Gurranq, deathroot reward 1", "Clawmark Seal", npc=True, missable=True),
+        # ERLocationData("CL/(BS): Beast Eye - Gurranq, deathroot reward 1 or kill", "Beast Eye", npc=True),
+        # ERLocationData("CL/(BS): Bestial Sling - Gurranq, deathroot reward 2", "Bestial Sling", npc=True, missable=True),
+        # ERLocationData("CL/(BS): Bestial Vitality - Gurranq, deathroot reward 3", "Bestial Vitality", npc=True, missable=True),
+        # ERLocationData("CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4", "Ash of War: Beast's Roar", npc=True, missable=True),
+        # ERLocationData("CL/(BS): Ancient Dragon Smithing Stone - kill Gurranq", "Ancient Dragon Smithing Stone", npc=True),
     ],
     "Dragonbarrow Cave":[ #done
         # ERLocationData("CL/(DC): Golden Rune [12] - first room", "Golden Rune [12]"),
@@ -1308,14 +1296,14 @@ location_tables: ERLocationData = {
         # ERLocationData("CL/(DC): Golden Rune [8] - bottom of dropdown", "Golden Rune [8]"),
         # ERLocationData("CL/(DC): Flamedrake Talisman +2 - boss drop", "Flamedrake Talisman +2", boss=True),
     ],
-    "Fort Faroth":[
-        ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 1", "Golden Rune [9]", drop=True),
-        ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 2", "Golden Rune [9]", drop=True),
-        ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 3", "Golden Rune [9]", drop=True),
-        ERLocationData("CL/(FF): Dectus Medallion (Right) - chest top of ladder", "Dectus Medallion (Right)", progression=True),
-        ERLocationData("CL/(FF): Neutralizing Boluses x2 - top of fort", "Neutralizing Boluses x2"),
-        ERLocationData("CL/(FF): Golden Rune [12] - on fort rafters", "Golden Rune [12]"),
-        ERLocationData("CL/(FF): Radagon's Soreseal - after rafters jump in room", "Radagon's Soreseal"),
+    "Fort Faroth":[ #done
+        # ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 1", "Golden Rune [9]", drop=True),
+        # ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 2", "Golden Rune [9]", drop=True),
+        # ERLocationData("CL/(FF): Golden Rune [9] - enemy drop 3", "Golden Rune [9]", drop=True),
+        # ERLocationData("CL/(FF): Dectus Medallion (Right) - chest top of ladder", "Dectus Medallion (Right)", progression=True),
+        # ERLocationData("CL/(FF): Neutralizing Boluses x2 - top of fort", "Neutralizing Boluses x2"),
+        # ERLocationData("CL/(FF): Golden Rune [12] - on fort rafters", "Golden Rune [12]"),
+        # ERLocationData("CL/(FF): Radagon's Soreseal - after rafters jump in room", "Radagon's Soreseal"),
     ],
     "Sellia Hideaway":[ #done
         # ERLocationData("CL/(SH): Golden Rune [3] - in front of the illusory wall", "Golden Rune [3]"),
@@ -1332,21 +1320,21 @@ location_tables: ERLocationData = {
         # ERLocationData("CL/(SH): Crystal Dart x10 - lower second big room", "Crystal Dart x10"),
         # ERLocationData("CL/(SH): Crystal Torrent - boss drop", "Crystal Torrent", boss=True),
     ],
-    "Cathedral of Dragon Communion":[
+    "Cathedral of Dragon Communion":[ #done
         # dont require dragon kill
-        ERLocationData("CL/(CDC): Ancient Dragon Apostle's Cookbook [3] - by dragon", "Ancient Dragon Apostle's Cookbook [3]"),
-        ERLocationData("CL/(CDC): Glintstone Breath - Dragon Communion", "Glintstone Breath", shop=True),
-        ERLocationData("CL/(CDC): Rotten Breath - Dragon Communion", "Rotten Breath", shop=True),
-        ERLocationData("CL/(CDC): Dragonice - Dragon Communion", "Dragonice", shop=True),
+        # ERLocationData("CL/(CDC): Ancient Dragon Apostle's Cookbook [3] - by dragon", "Ancient Dragon Apostle's Cookbook [3]"),
+        # ERLocationData("CL/(CDC): Glintstone Breath - Dragon Communion", "Glintstone Breath", shop=True),
+        # ERLocationData("CL/(CDC): Rotten Breath - Dragon Communion", "Rotten Breath", shop=True),
+        # ERLocationData("CL/(CDC): Dragonice - Dragon Communion", "Dragonice", shop=True),
         
         # need dragon kill
-        ERLocationData("CL/(CDC): Agheel's Flame - Dragon Communion", "Agheel's Flame", shop=True),
-        ERLocationData("CL/(CDC): Magma Breath - Dragon Communion", "Magma Breath", shop=True),
-        ERLocationData("CL/(CDC): Theodorix's Magma - Dragon Communion", "Theodorix's Magma", shop=True),
-        ERLocationData("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion", "Smarag's Glintstone Breath", shop=True),
-        ERLocationData("CL/(CDC): Ekzykes's Decay - Dragon Communion", "Ekzykes's Decay", shop=True),
-        ERLocationData("CL/(CDC): Borealis's Mist - Dragon Communion", "Borealis's Mist", shop=True),
-        ERLocationData("CL/(CDC): Greyoll's Roar - Dragon Communion", "Greyoll's Roar", shop=True),
+        # ERLocationData("CL/(CDC): Agheel's Flame - Dragon Communion, kill boss in LG, NW of DBR", "Agheel's Flame", shop=True),
+        # ERLocationData("CL/(CDC): Magma Breath - Dragon Communion, kill boss in MtG, S of FL", "Magma Breath", shop=True),
+        # ERLocationData("CL/(CDC): Theodorix's Magma - Dragon Communion, kill boss in CS, SE of CF", "Theodorix's Magma", shop=True),
+        # ERLocationData("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion, kill boss in LL, SW of ACC", "Smarag's Glintstone Breath", shop=True),
+        # ERLocationData("CL/(CDC): Ekzykes's Decay - Dragon Communion, kill boss to NW of here", "Ekzykes's Decay", shop=True),
+        # ERLocationData("CL/(CDC): Borealis's Mist - Dragon Communion, kill boss in MotG, N of FCM", "Borealis's Mist", shop=True),
+        # ERLocationData("CL/(CDC): Greyoll's Roar - Dragon Communion, kill enemy in CL, W of FF", "Greyoll's Roar", shop=True),
     ],
     "Caelid Catacombs":[ #done
         # ERLocationData("CL/(CCC): Miranda Sprout Ashes - illusory wall under stairs", "Miranda Sprout Ashes", hidden=True),
@@ -1378,21 +1366,21 @@ location_tables: ERLocationData = {
         # ERLocationData("CL/(GC): Regalia of Eochaid - after boss", "Regalia of Eochaid"),
         # ERLocationData("CL/(GC): Glowstone x3 - after boss", "Glowstone x3"),
     ],
-    "Fort Gael":[
+    "Fort Gael":[ #done
         # outside
-        ERLocationData("CL/(FG): Smoldering Butterfly x6 - in burning pile of corpses outback", "Smoldering Butterfly x6"),
-        ERLocationData("CL/(FG): Fire Blossom x3 - enemy drop 1 outback", "Fire Blossom x3", drop=True),
-        ERLocationData("CL/(FG): Smoldering Butterfly x5 - enemy drop 1 outback", "Smoldering Butterfly x5", drop=True),
-        ERLocationData("CL/(FG): Fire Blossom x3 - enemy drop 2 outback", "Fire Blossom x3", drop=True),
-        ERLocationData("CL/(FG): Smoldering Butterfly x5 - enemy drop 2 outback", "Smoldering Butterfly x5", drop=True),
-        ERLocationData("CL/(FG): Flame, Grant Me Strength - against wall outback", "Flame, Grant Me Strength"),
+        # ERLocationData("CL/(FG): Smoldering Butterfly x6 - in burning pile of corpses outback", "Smoldering Butterfly x6"),
+        # ERLocationData("CL/(FG): Fire Blossom x3 - enemy drop 1 outback", "Fire Blossom x3", drop=True),
+        # ERLocationData("CL/(FG): Smoldering Butterfly x5 - enemy drop 1 outback", "Smoldering Butterfly x5", drop=True),
+        # ERLocationData("CL/(FG): Fire Blossom x3 - enemy drop 2 outback", "Fire Blossom x3", drop=True),
+        # ERLocationData("CL/(FG): Smoldering Butterfly x5 - enemy drop 2 outback", "Smoldering Butterfly x5", drop=True),
+        # ERLocationData("CL/(FG): Flame, Grant Me Strength - against wall outback", "Flame, Grant Me Strength"),
         # inside
-        ERLocationData("CL/(FG): Warming Stone x2 - walk the plank item", "Warming Stone x2"),
-        ERLocationData("CL/(FG): Starscourge Heirloom - chest upper platform", "Starscourge Heirloom"),
-        ERLocationData("CL/(FG): Mushroom x10 - wood platform behind a tower near gate lever", "Mushroom x10"),
-        ERLocationData("CL/(FG): Katar - chest in lower room", "Katar"),
-        ERLocationData("CL/(FG): Ash of War: Lion's Claw - enemy drop in courtyard", "Ash of War: Lion's Claw", drop=True),
-        ERLocationData("CL/(FG): Rune Arc - in courtyard", "Rune Arc"),
+        # ERLocationData("CL/(FG): Warming Stone x2 - walk the plank item", "Warming Stone x2"),
+        # ERLocationData("CL/(FG): Starscourge Heirloom - chest upper platform", "Starscourge Heirloom"),
+        # ERLocationData("CL/(FG): Mushroom x10 - wood platform behind a tower near gate lever", "Mushroom x10"),
+        # ERLocationData("CL/(FG): Katar - chest in lower room", "Katar"),
+        # ERLocationData("CL/(FG): Ash of War: Lion's Claw - enemy drop in courtyard", "Ash of War: Lion's Claw", drop=True),
+        # ERLocationData("CL/(FG): Rune Arc - in courtyard", "Rune Arc"),
     ],
     "Street of Sages Ruins":[
         ERLocationData("CL/(SSR): Golden Rune [4] - in SW Ruin", "Golden Rune [4]"),
@@ -1456,22 +1444,22 @@ location_tables: ERLocationData = {
         # ERLocationData("CL/(AC): Venomous Fang - on ledge after climbing dead abductors", "Venomous Fang"),
         # ERLocationData("CL/(AC): Gold Scarab - boss drop", "Gold Scarab"),
     ],
-    "Isolated Merchant's Shack":[
-        ERLocationData("CL/(IMS): Gravity Stone Peddler's Bell Bearing - night boss drop", "Gravity Stone Peddler's Bell Bearing", boss=True),
-        ERLocationData("CL/(IMS): Dragonwound Grease x2 - Isolated Merchant shop", "Dragonwound Grease x2", shop=True),
-        ERLocationData("CL/(IMS): Festering Bloody Finger x8 - Isolated Merchant shop", "Festering Bloody Finger x8", shop=True),
-        ERLocationData("CL/(IMS): Gravel Stone x10 - Isolated Merchant shop", "Gravel Stone x10", shop=True),
-        ERLocationData("CL/(IMS): Ritual Pot - Isolated Merchant shop", "Ritual Pot", shop=True),
-        ERLocationData("CL/(IMS): Lost Ashes of War x2 - Isolated Merchant shop", "Lost Ashes of War x2", shop=True),
-        ERLocationData("CL/(IMS): Spiked Caestus - Isolated Merchant shop", "Spiked Caestus", shop=True),
-        ERLocationData("CL/(IMS): Beast-Repellent Torch - Isolated Merchant shop", "Beast-Repellent Torch", shop=True),
-        ERLocationData("CL/(IMS): Land of Reeds Helm - Isolated Merchant shop", "Land of Reeds Helm", shop=True),
-        ERLocationData("CL/(IMS): Land of Reeds Armor - Isolated Merchant shop", "Land of Reeds Armor", shop=True),
-        ERLocationData("CL/(IMS): Land of Reeds Gauntlets - Isolated Merchant shop", "Land of Reeds Gauntlets", shop=True),
-        ERLocationData("CL/(IMS): Land of Reeds Greaves - Isolated Merchant shop", "Land of Reeds Greaves", shop=True),
-        ERLocationData("CL/(IMS): Sacrificial Twig x3 - Isolated Merchant shop", "Sacrificial Twig x3", shop=True),
-        ERLocationData("CL/(IMS): Note: Gateway - Isolated Merchant shop", "Note: Gateway", shop=True),
-        ERLocationData("CL/(IMS): Note: Hidden Cave - Isolated Merchant shop", "Note: Hidden Cave", shop=True),
+    "Isolated Merchant's Shack":[ #done
+        # ERLocationData("CL/(IMS): Gravity Stone Peddler's Bell Bearing - night boss drop", "Gravity Stone Peddler's Bell Bearing", boss=True),
+        # ERLocationData("CL/(IMS): Dragonwound Grease x2 - Isolated Merchant shop", "Dragonwound Grease x2", shop=True),
+        # ERLocationData("CL/(IMS): Festering Bloody Finger x8 - Isolated Merchant shop", "Festering Bloody Finger x8", shop=True),
+        # ERLocationData("CL/(IMS): Gravel Stone x10 - Isolated Merchant shop", "Gravel Stone x10", shop=True),
+        # ERLocationData("CL/(IMS): Ritual Pot - Isolated Merchant shop", "Ritual Pot", shop=True),
+        # ERLocationData("CL/(IMS): Lost Ashes of War x2 - Isolated Merchant shop", "Lost Ashes of War x2", shop=True),
+        # ERLocationData("CL/(IMS): Spiked Caestus - Isolated Merchant shop", "Spiked Caestus", shop=True),
+        # ERLocationData("CL/(IMS): Beast-Repellent Torch - Isolated Merchant shop", "Beast-Repellent Torch", shop=True),
+        # ERLocationData("CL/(IMS): Land of Reeds Helm - Isolated Merchant shop", "Land of Reeds Helm", shop=True),
+        # ERLocationData("CL/(IMS): Land of Reeds Armor - Isolated Merchant shop", "Land of Reeds Armor", shop=True),
+        # ERLocationData("CL/(IMS): Land of Reeds Gauntlets - Isolated Merchant shop", "Land of Reeds Gauntlets", shop=True),
+        # ERLocationData("CL/(IMS): Land of Reeds Greaves - Isolated Merchant shop", "Land of Reeds Greaves", shop=True),
+        # ERLocationData("CL/(IMS): Sacrificial Twig x3 - Isolated Merchant shop", "Sacrificial Twig x3", shop=True),
+        # ERLocationData("CL/(IMS): Note: Gateway - Isolated Merchant shop", "Note: Gateway", shop=True),
+        # ERLocationData("CL/(IMS): Note: Hidden Cave - Isolated Merchant shop", "Note: Hidden Cave", shop=True),
     ],
     "Divine Tower":[ #done
         # ERLocationData("CL/(DT): Stonesword Key - layer 2, S side", "Stonesword Key"),
@@ -1573,22 +1561,11 @@ location_tables: ERLocationData = {
         # ERLocationData("CL/(WDC): Golden Seed - boss drop", "Golden Seed", boss=True),
     ],
     
-    # "":[],
-    # ERLocationData(":  - ", ""),
-    # MARK: Altus
-    "Altus Plateau":[],
-    
-    # "":[],
-    # ERLocationData(":  - ", ""),
-    # MARK: Leyndell
-    "Leyndell, Royal Capital":[],
-    "Leyndell, Ashen Capital":[],
+
     "Divine Bridge":[ #done
         #ERLocationData("LRC/(DB): Blessed Dew Talisman - in chest", "Blessed Dew Talisman"), # not missable
     ],
 
-    # "":[],
-    # ERLocationData(":  - ", ""),
     # MARK: Miquella's Haligtree
     "Miquella's Haligtree":[ #done
 	    # Haligtree Canopy
@@ -1710,7 +1687,4 @@ location_tables: ERLocationData = {
     	#ERLocationData("EBH/HR: Miquella's Needle - use needle on flower in boss arena after Millicent quest", "Miquella's Needle", missable=True, npc=True),
     	#ERLocationData("EBH/HR: Somber Ancient Dragon Smithing Stone - use needle on flower in boss arena after Millicent quest", "Somber Ancient Dragon Smithing Stone", missable=True, npc=True),
     ],
-
-    # MARK: DLC Locations
-    "Gravesite Plain":[],
 }

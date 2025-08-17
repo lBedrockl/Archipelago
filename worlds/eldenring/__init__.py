@@ -130,31 +130,32 @@ class EldenRing(World):
         #create_connection("Siofra River", "Caelid") # dont really need this but putting it here
         create_connection("Limgrave", "Caelid")
         # Caelid
-        create_connection("Caelid", "Bestial Sanctum")
-        create_connection("Caelid", "Dragonbarrow Cave")
-        create_connection("Caelid", "Fort Faroth")
-        create_connection("Caelid", "Sellia Hideaway")
-        create_connection("Caelid", "Cathedral of Dragon Communion")
         create_connection("Caelid", "Caelid Catacombs")
         create_connection("Caelid", "Caelid Waypoint Ruins")
         create_connection("Caelid", "Gaol Cave")
-        create_connection("Caelid", "Fort Gael")
         create_connection("Caelid", "Street of Sages Ruins")
         create_connection("Caelid", "Sellia, Town of Sorcery")
         create_connection("Caelid", "Sellia Crystal Tunnel")
         create_connection("Caelid", "Abandoned Cave")
-        create_connection("Caelid", "Isolated Merchant's Shack")
-        create_connection("Caelid", "Caelid Divine Tower")
         create_connection("Caelid", "Great-Jar")
         create_connection("Caelid", "Caelem Ruins")
         create_connection("Caelid", "Minor Erdtree Catacombs")
         create_connection("Caelid", "Forsaken Ruins")
         create_connection("Caelid", "Gale Tunnel")
-        create_connection("Caelid", "Redmane Castle")
         
+        create_connection("Caelid", "Dragonbarrow")
+        create_connection("Dragonbarrow", "Dragonbarrow Cave")
+        create_connection("Dragonbarrow", "Sellia Hideaway")
+        create_connection("Dragonbarrow", "Divine Tower of Caelid")
+        
+        create_connection("Caelid", "Redmane Castle")
         create_connection("Redmane Castle", "Redmane Castle Post Radahn")
         create_connection("Redmane Castle", "Wailing Dunes")
         create_connection("Wailing Dunes", "War-Dead Catacombs")
+        
+        create_connection("Limgrave", "Nokron Start")
+        create_connection("Nokron Start", "Nokron Main")
+        #create_connection("Nokron Main", "deeproot")
         
         
         create_connection("Ruin-Strewn Precipice", "Altus Plateau")
@@ -534,6 +535,8 @@ class EldenRing(World):
             "CL/(RC): Heartening Cry - talk to Jerren during festival",
         ], lambda state: state.can_reach("Altus Plateau"))
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
+        
+        self._add_entrance_rule("Nokron Start", lambda state: self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
            
         # you can kill gostoc and not open main gate
         self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Rusty Key", self.player))
@@ -599,27 +602,28 @@ class EldenRing(World):
         # this needs to be fixed, the order needs to be the sphere order, and idk how todo that
         # in order from early game to late game each rule needs to include the last count for an area
         currentKey = 0 #makes dynamic
-        # limgrave +3
+        
+        # limgrave
         currentKey += 3
         self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: self._has_enough_keys(state, currentKey)) # 1
         
-        # roundtable +3
+        # roundtable
         currentKey += 3
         self._add_location_rule([
             "RH: Crepus's Black-Key Crossbow - behind imp statue in chest", "RH: Black-Key Bolt x20 - behind imp statue in chest", # 1
             "RH: Assassin's Prayerbook - behind second imp statue in chest", # 2
             ], lambda state: self._has_enough_keys(state, currentKey))
         
-        # weeping +2
+        # weeping
         currentKey += 2
         self._add_location_rule([
             "WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue", # 1
             "WP/(WE): Radagon's Scarseal - boss drop Evergaol", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
-        # stormveil +2
-        #currentKey += 2
+        # stormveil
+        currentKey += 2
         self._add_location_rule([
             "SV/LC: Godslayer's Seal - left chest behind imp statue in storeroom SE of massive courtyard", # 1a
             "SV/LC: Godskin Prayerbook - right chest behind imp statue in storeroom SE of massive courtyard", # 1a
@@ -628,7 +632,7 @@ class EldenRing(World):
             "SV/RT: Miséricorde - shortcut elevator to SE, to N through door, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
         
-        # siofra +2
+        # siofra
         currentKey += 2
         # for leaving siofra to caelid ravine
         self._add_location_rule([
@@ -638,25 +642,32 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey) and 
             state.can_reach("Caelid") and state.can_reach("Siofra River")) # 2
         
-        # liurnia +4
+        # liurnia
         currentKey += 4
         self._add_location_rule([
-            "LL/(BKC): Rosus' Axe - behind imp statue near boss door", # 1
-            "LL/(CC): Nox Mirrorhelm - behind imp statue, in SW corner", # 1
+            "LL/(BKC): Rosus' Axe - behind imp statue near boss door", # 1a
+            "LL/(CC): Nox Mirrorhelm - behind imp statue, in SW corner", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
-        # caelid +3
+        # altus
+        currentKey += 2 #wip
+        self._add_location_rule([
+            "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1a
+            "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1b
+            ], lambda state: self._has_enough_keys(state, currentKey))
+        
+        # caelid
         currentKey += 3
         self._add_entrance_rule("Gaol Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         self._add_location_rule("CL/(FR): Sword of St. Trina - chest underground behind imp statue", 
                                 lambda state: self._has_enough_keys(state, currentKey)) # 1
         
-        # altus
-        currentKey += 2 #wip
+        # nokron
+        currentKey += 1
         self._add_location_rule([
-            "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1
-            "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1
+            "NR/(NSG): Mimic Tear Ashes - in chest behind imp statue upper interior", # 1a
+            "NR/(NSG): Smithing Stone [3] - behind imp statue upper interior", # 1a
             ], lambda state: self._has_enough_keys(state, currentKey))
         
         # mt gelmir
@@ -671,9 +682,6 @@ class EldenRing(World):
             "CO/(AHG): Golden Epitaph - behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
-        # nokron +1
-        #currentKey += 1
-        
         # moonlight altar
         currentKey += 1
         self._add_location_rule([
@@ -683,8 +691,8 @@ class EldenRing(World):
         # mountaintops
         currentKey += 2 #wip
         self._add_location_rule([
-            "MG/(GCHG): Flame, Protect Me - behind imp statue", # 1
-            "MG/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1
+            "MG/(GCHG): Flame, Protect Me - behind imp statue", # 1a
+            "MG/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
         
         # haligtree +3
@@ -695,7 +703,7 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey))
         
     def _dragon_communion_rules(self) -> None:
-        """Rules for how dragon hearts are used"""
+        """Rules for dragon communion"""
         # MARK: dragon RULES
         currentHeart = 3 # limgrave dragon communion
         self._add_location_rule([
@@ -705,24 +713,28 @@ class EldenRing(World):
             ], lambda state: self._has_enough_hearts(state, currentHeart)) 
         
         # caelid dragon communion
-        currentHeart += 3 # always here
-        currentHeart += 7 # limgrave and caelid
+        currentHeart += 10 # always here + LG and CL boss ones
         self._add_location_rule([
             "CL/(CDC): Glintstone Breath - Dragon Communion", # 1
             "CL/(CDC): Rotten Breath - Dragon Communion", # 1
             "CL/(CDC): Dragonice - Dragon Communion", # 1
+            "CL/(CDC): Agheel's Flame - Dragon Communion, kill boss in LG, NW of DBR", # 2
+            "CL/(CDC): Greyoll's Roar - Dragon Communion, kill enemy in CL, W of FF", # 3
+            "CL/(CDC): Ekzykes's Decay - Dragon Communion, kill boss to NW of here", # 2
             ], lambda state: self._has_enough_hearts(state, currentHeart)) 
         
-        # need boss kills
-        self._add_location_rule("CL/(CDC): Agheel's Flame - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-        self._add_location_rule("CL/(CDC): Greyoll's Roar - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 3
-        self._add_location_rule("CL/(CDC): Ekzykes's Decay - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-        
-        currentHeart += 7 # todo
-        self._add_location_rule("CL/(CDC): Magma Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 1
-        self._add_location_rule("CL/(CDC): Theodorix's Magma - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-        self._add_location_rule("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
-        self._add_location_rule("CL/(CDC): Borealis's Mist - Dragon Communion", lambda state: self._has_enough_hearts(state, currentHeart)) # 2
+        currentHeart += 2
+        self._add_location_rule("CL/(CDC): Smarag's Glintstone Breath - Dragon Communion, kill boss in LL, SW of ACC", 
+            lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Liurnia of The Lakes")) # 2
+        currentHeart += 1
+        self._add_location_rule("CL/(CDC): Magma Breath - Dragon Communion, kill boss in MtG, S of FL", 
+            lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Mount Gelmir")) # 1
+        currentHeart += 2
+        self._add_location_rule("CL/(CDC): Borealis's Mist - Dragon Communion, kill boss in MotG, N of FCM", 
+            lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Mountaintops of the Giants")) # 2
+        currentHeart += 2
+        self._add_location_rule("CL/(CDC): Theodorix's Magma - Dragon Communion, kill boss in CS, SE of CF", 
+            lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Consecrated Snowfield")) # 2
         
         if(self.options.enable_dlc): # dlc
             currentHeart += 3
@@ -895,6 +907,9 @@ class EldenRing(World):
             "LG/(CE): Spirit Calling Bell - talk to Ranni",
             "LG/(CE): Lone Wolf Ashes - talk to Ranni",
         ], lambda state: ( self._can_get(state, "talk to ranni in her tower, item in rth") ))"""
+        
+        "NR/(NSG): Fingerslayer Blade - in chest lower area, ranni quest" # nokron chest items
+        "NR/(NSG): Great Ghost Glovewort - in chest lower area, ranni quest" # update to be better
         
         "MA/(CMC): Dark Moon Greatsword - talk to Ranni under CMC" # MA requires the ring to enter, but this check requires nothing
         
