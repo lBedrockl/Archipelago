@@ -131,26 +131,21 @@ class EldenRing(World):
         create_connection("Limgrave", "Caelid")
         # Caelid
         create_connection("Caelid", "Caelid Catacombs")
-        create_connection("Caelid", "Caelid Waypoint Ruins")
         create_connection("Caelid", "Gaol Cave")
-        create_connection("Caelid", "Street of Sages Ruins")
         create_connection("Caelid", "Sellia, Town of Sorcery")
         create_connection("Caelid", "Sellia Crystal Tunnel")
         create_connection("Caelid", "Abandoned Cave")
         create_connection("Caelid", "Great-Jar")
-        create_connection("Caelid", "Caelem Ruins")
         create_connection("Caelid", "Minor Erdtree Catacombs")
-        create_connection("Caelid", "Forsaken Ruins")
         create_connection("Caelid", "Gale Tunnel")
+        create_connection("Caelid", "Redmane Castle Post Radahn")
         
         create_connection("Caelid", "Dragonbarrow")
         create_connection("Dragonbarrow", "Dragonbarrow Cave")
         create_connection("Dragonbarrow", "Sellia Hideaway")
         create_connection("Dragonbarrow", "Divine Tower of Caelid")
         
-        create_connection("Caelid", "Redmane Castle")
-        create_connection("Redmane Castle", "Redmane Castle Post Radahn")
-        create_connection("Redmane Castle", "Wailing Dunes")
+        create_connection("Caelid", "Wailing Dunes")
         create_connection("Wailing Dunes", "War-Dead Catacombs")
         
         create_connection("Limgrave", "Nokron Start")
@@ -488,7 +483,7 @@ class EldenRing(World):
                 self._add_entrance_rule("Dragonbarrow", lambda state: state.can_reach("Forbidden Lands") and state.has("Rold Medallion", self.player))
                 
             #self._add_entrance_rule("Weeping Peninsula", lambda state: "region key")
-            self._add_location_rule([ # stuff in wp but not
+            self._add_location_rule([ # stuff in WP but not
                 "WP/(DHFR): Arteria Leaf x2 - within N ruins",
                 "WP/DHFR: Gold-Tinged Excrement x2 - SE of DHFR",
                 "WP/DHFR: String x5 - SE of DHFR",
@@ -501,6 +496,11 @@ class EldenRing(World):
             ], lambda state: state.can_reach("Weeping Peninsula"))
             "BS: Stonesword Key - behind wooden platform" 
             "BS: Smithing Stone [1] x3 - corpse hanging off edge" # on Bridge of Sacrifice idk where wall for WP will be
+            
+            #self._add_entrance_rule(["Stormveil Start", "Stormveil Castle"], lambda state: "region key")
+            self._add_location_rule([ # stuff in SV but not
+                "SV: Talisman Pouch - boss drop",
+            ], lambda state: state.can_reach("Stormveil Start"))
     
             #self._add_entrance_rule("Liurnia of The Lakes", lambda state: "region key")
             self._add_entrance_rule("Altus Plateau", lambda state: # only in region lock since it can be bypassed by ruin-strewn precipice
@@ -509,13 +509,19 @@ class EldenRing(World):
             
             #self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: "region key")
             
-            "Stormveil Start" # in sv entrance region
-            "Stormveil Castle" # needs to be marked too, but the throne doesnt since you can get to from liurnia
-            "SV: Talisman Pouch - boss drop" # item in stormveil but in stormhill location, needs a check if stormveil gets a key
+            self._add_location_rule([ # stuff in CL but not
+                "CL/(SC): Missionary's Cookbook [3] - on corpse",
+                "CL/(SC): Sacred Scorpion Charm - invader drop",
+                "CL/RB: Golden Rune [1] - graveyard to SW",
+                "CL/RB: Golden Rune [2] - graveyard to SW",
+                "CL/RB: Golden Rune [3] - graveyard to SW",
+                "CL/RB: Nascent Butterfly x2 - to E",
+                "CL/RB: Golden Rune [3] - in stable to N",
+                "CL/RB: Preserving Boluses x5 - in shack to SW",
+                "CL/RB: Drawstring Lightning Grease x2 - to W",
+                "CL/MEW: Rune Arc - W of MEW high on root",
+            ], lambda state: state.can_reach("Caelid"))
             
-            
-            "CL/(SC): Missionary's Cookbook [3] - on corpse", "Missionary's Cookbook [3]" 
-            "CL/(SC): Sacred Scorpion Charm - invader drop", "Sacred Scorpion Charm" # at smoldering church + more items on border
         elif self.options.world_logic == "open_world":
             self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
         #else: # glitch logic
@@ -531,8 +537,7 @@ class EldenRing(World):
         
         # festival // altus grace touch or ranni quest stuff
         self._add_location_rule([
-            "CL/(RC): Smithing Stone [6] - in church during festival", 
-            "CL/(RC): Heartening Cry - talk to Jerren during festival",
+            "CL/(RC): Smithing Stone [6] - in church during festival",
         ], lambda state: state.can_reach("Altus Plateau"))
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
         
