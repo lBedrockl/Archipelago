@@ -122,10 +122,13 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Academy Crystal Cave")
         create_connection("Liurnia of The Lakes", "Raya Lucaria Crystal Tunnel")
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
+        create_connection("Liurnia of The Lakes", "Ainsel River")
         
-        
-        #create_connection("lake of rot", "Moonlight Altar")
-        
+        # Ainsel Main
+        #create_connection("i forget how you get here", "Ainsel River Main")
+        create_connection("Ainsel River Main", "Lake of Rot")
+        create_connection("Lake of Rot", "Lake of Rot Boss")
+        create_connection("Lake of Rot Boss", "Moonlight Altar")
         
         #create_connection("Siofra River", "Caelid") # dont really need this but putting it here
         create_connection("Limgrave", "Caelid")
@@ -148,9 +151,10 @@ class EldenRing(World):
         create_connection("Caelid", "Wailing Dunes")
         create_connection("Wailing Dunes", "War-Dead Catacombs")
         
-        create_connection("Limgrave", "Nokron Start")
-        create_connection("Nokron Start", "Nokron Main")
-        #create_connection("Nokron Main", "deeproot")
+        create_connection("Limgrave", "Nokron, Eternal City Start")
+        create_connection("Nokron, Eternal City Start", "Nokron, Eternal City")
+        create_connection("Nokron, Eternal City", "Deeproot Depths Start")
+        create_connection("Deeproot Depths Start", "Deeproot Depths")
         
         
         create_connection("Ruin-Strewn Precipice", "Altus Plateau")
@@ -214,6 +218,10 @@ class EldenRing(World):
         create_connection("Miquella's Haligtree", "Elphael, Brace of the Haligtree")
         
         #create_connection("Consecrated Snowfield", "Mohgwyn Palace")
+        
+        #create_connection("farum", "Leyndell, Ashen Capital")
+        create_connection("Leyndell, Ashen Capital", "Leyndell, Ashen Capital Throne")
+        create_connection("Leyndell, Ashen Capital Throne", "Erdtree")
 
         # Connect DLC Regions
         if self.options.enable_dlc: #WIP
@@ -828,6 +836,11 @@ class EldenRing(World):
         #     "RH: Litany of Proper Death - D shop",
         #     "RH: Order's Blade - D shop",
         # ], lambda state: ( state.can_reach("")))
+        
+        # MARK: Fia
+        self._add_location_rule(["RH: Weathered Dagger - talk to Fia after reaching altus", 
+        ], lambda state: ( state.can_reach("Altus Plateau")))
+        
         
         # MARK: Nepheli
         # i jumped into her and she died, lol
