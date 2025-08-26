@@ -11,10 +11,10 @@ Now I just need to label every single item :worry:
 
 Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
-need to do dragon communion dragon defeat rules, shop is done
-
 once all checks are done ALL npc / quests need to be checked if they are missable via killing them
 
+
+for priority location option had how many checks each location adds and how many progression items there are
 
 
 
@@ -27,14 +27,10 @@ scadutree options, start with, not random, only within dlc, anywhere
 "This dungeon is not on the path." or "This dungeon is on the path of the Elden Lord."
 using ground messages or the small stones with text on them
 
-
 dlc start / dlc only
-only randomize key items in the pool, everything else randomized local  DO THIS!!!
 
-Regional key ring (one key item per region unlocks all key doors in that region)
-Regional keys (like the first one but per region)
-
-
+Regional stonesword key ring (one key item per region unlocks all stonesword statues in that region)
+Regional stonesword keys (like the first one but per region)
 
 QOL option to unlock a Site of Grace in the region once that region is unlocked
 might be to complex todo, since it would need logic so you don't get access to an area you cant get to yet
@@ -45,8 +41,8 @@ might be to complex todo, since it would need logic so you don't get access to a
 
 
 
-last update 25/08/19
-current progress 1991 / 4980
+last update 25/08/26
+current progress 2037 / 4980
 
 
 people who want to be pinged for playtesting
@@ -58,3 +54,4 @@ people who want to be pinged for playtesting
 @star0chris @codekid90000 @gamermick @bunkleberry
 @springisepic @mineskill @drewdrew2987 @thraxus
 @lightningvtx @zobeeplays @vituici @leyndoe
+@harbingerof.chaos

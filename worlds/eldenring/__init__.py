@@ -1,6 +1,6 @@
 from collections.abc import Sequence
 from collections import defaultdict
-import json
+import settings, typing, json
 from logging import warning
 from typing import cast, Any, Callable, Dict, Set, List, Optional, TextIO, Union
 
@@ -11,15 +11,22 @@ from worlds.generic.Rules import CollectionRule, ItemRule, add_rule, add_item_ru
 from .items import ERItem, ERItemData, filler_item_names, filler_item_names_vanilla, item_descriptions, item_table, item_table_vanilla, item_name_groups
 from .locations import ERLocation, ERLocationData, location_tables, location_descriptions, location_dictionary, location_name_groups, region_order, region_order_dlc
 from .options import EROptions, option_groups
+from Options import OptionError
 
-#Web stuff
+# Settings
+class EldenRingSettings(settings.Group):
+    class DisableExtremeOptions(str):
+        """ Disables extreme options, like progression items being in missable locations."""
+    disable_extreme_options: typing.Union[DisableExtremeOptions, bool] = False
+
+# Web stuff
 class EldenRingWeb(WebWorld):
     rich_text_options_doc = True
     theme = "stone"
     option_groups = option_groups
     item_descriptions = item_descriptions
 
-#Main World
+# Main World
 class EldenRing(World):
     """
     This is the description of the game that will be displayed on the AP website.
@@ -29,8 +36,9 @@ class EldenRing(World):
     options: EROptions
     options_dataclass = EROptions
     web = EldenRingWeb()
+    settings: typing.ClassVar[EldenRingSettings]
     base_id = 69000
-    required_client_version = (0, 4, 2) # tbh idk what version is needed
+    required_client_version = (0, 4, 2) # tbh idk what version is needed, probs newest
     topology_present = True
     item_name_to_id = {data.name: data.ap_code for data in item_table.values() if data.ap_code is not None}
     location_name_to_id = {
@@ -53,6 +61,44 @@ class EldenRing(World):
         self.created_regions = set()
         self.all_excluded_locations.update(self.options.exclude_locations.value)
         self.all_priority_locations.update(self.options.important_locations.value)
+        
+        # makes exclude_local_item_only lowercase
+        exclude_local_item_only_lowercase = {key.lower(): value for key, value in self.options.exclude_local_item_only.items()}
+        
+        if self.settings.disable_extreme_options:
+            if self.options.missable_location_behavior == "option_randomize":
+                # there is code to fix this but its better to just stop generation and tell them this option needs to change
+                raise OptionError(f"EldenRing disable_extreme_options Error:"
+                                  f"Player {self.player_name} has missable location behavior set to be option_randomize."
+                                  f"This means Progression items can be in missable locations.")
+            elif not self.options.local_item_option:
+                raise OptionError(f"EldenRing disable_extreme_options Error:"
+                                  f"Player {self.player_name} has local_item_option false."
+                                  f"This being false means over 3.5k checks come from this world.")
+            elif "goods" in exclude_local_item_only_lowercase:
+                raise OptionError(f"EldenRing disable_extreme_options Error:"
+                                  f"Player {self.player_name} has goods enabled in exclude_local_item_only."
+                                  f"This being here means over 3.5k checks come from this world and it bypasses local_item_option.")
+        
+        # idk if this works, i pray its just this simple
+        if self.options.local_item_option:
+            # local_items: List[str] = []
+            using_table = item_table_vanilla
+            if self.options.enable_dlc: using_table = item_table
+            for item in using_table.values():
+                if item.classification != ItemClassification.progression and item.classification != ItemClassification.useful:
+                    # this picks thing might or might not work :)
+                    picks, arg = {
+                        'goods': 1,
+                        'weapon': 2,
+                        'armour': 3,
+                        'accessory': 4,
+                        'ashofwar': 5,
+                    }.get(arg, 9)
+                    if item.category not in picks[exclude_local_item_only_lowercase]:
+                        self.options.local_items.value.add(item.name)
+                        # local_items.append(item.name)
+            # self.options.local_items.value = set(local_items)
 
     def create_regions(self) -> None: #MARK: Connections
         # Create Vanilla Regions
@@ -271,6 +317,11 @@ class EldenRing(World):
         for location in location_table:
             if self._is_location_available(location):
                 new_location = ERLocation(self.player, location, new_region)
+                
+                # set priority before excluded so that progression items dont go into excluded locations
+                if location.name in self.all_priority_locations:
+                    new_location.progress_type = LocationProgressType.PRIORITY
+                    
                 if (
                     # Exclude missable locations that don't allow useful items
                     location.missable and self.options.missable_location_behavior == "randomize_unimportant"
@@ -279,6 +330,8 @@ class EldenRing(World):
                         location.name in self.all_excluded_locations
                         and self.options.missable_location_behavior < self.options.excluded_location_behavior
                     )
+                    # always disable randomizing progression into missable if host disables
+                    or self.settings.disable_extreme_options and location.missable
                 ):
                     new_location.progress_type = LocationProgressType.EXCLUDED
             else:
@@ -403,6 +456,9 @@ class EldenRing(World):
 
         We can't do this in pre_fill because the itempool may not be modified after create_items.
         """
+        # if self.yhorm_location.name == "Iudex Gundyr":
+        #     self._fill_local_item("Storm Ruler", ["Cemetery of Ash"],
+        #                           lambda location: location.name != "CA: Coiled Sword - boss drop")         
 
     def _fill_local_item(
         self, name: str,
@@ -433,9 +489,6 @@ class EldenRing(World):
             # until after `set_rules()` runs.
             if not location.item and location.name not in self.all_excluded_locations
             and location.item_rule(item)
-            if location.item.classification != ItemClassification.filler and location.name in self.all_priority_locations 
-            or location.item.classification == ItemClassification.filler
-            # this might work idk cant test yet, makes custom priority locations always have something useful or progression
         ]
 
         self.local_itempool.remove(item)
@@ -1185,7 +1238,7 @@ class EldenRing(World):
                     "Gaius's Greaves"
                 ]
             ),
-            (
+            ( # you cant even get this till the game is beat LMAO
                 "Promised Consort Radahn", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
@@ -1339,12 +1392,19 @@ class EldenRing(World):
         slot_data = {
             "options": {
                 "ending_condition": self.options.ending_condition.value,
+                "world_logic": self.options.world_logic.value,
+                "soft_logic": self.options.soft_logic.value,
                 "great_runes_required": self.options.great_runes_required.value,
                 "enable_dlc": self.options.enable_dlc.value,
                 "late_dlc": self.options.late_dlc.value,
+                "enemy_rando": self.options.enemy_rando.value,
+                "material_rando": self.options.material_rando.value,
                 "death_link": self.options.death_link.value,
                 "random_start": self.options.random_start.value,
                 "auto_equip": self.options.auto_equip.value,
+                "local_item_option": self.options.local_item_option.value,
+                "exclude_local_item_only": self.options.exclude_local_item_only.value,
+                "important_locations": self.options.important_locations.value,
                 "exclude_locations": self.options.exclude_locations.value,
                 "excluded_location_behavior": self.options.excluded_location_behavior.value,
                 "missable_location_behavior": self.options.missable_location_behavior.value,

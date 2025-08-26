@@ -65,7 +65,11 @@ class LateDLCOption(Choice):
     
 class EnemyRando(Toggle):
     """Randomizes the enemies."""
-    display_name = "Enemy rando"
+    display_name = "Enemy randomizer"
+
+class MaterialRando(Toggle):
+    """Randomizes the indefinitely spawning materials."""
+    display_name = "Material Randomizer"
 
 ## Item & Location
 
@@ -73,10 +77,25 @@ class RandomizeStartingLoadout(DefaultOnToggle):
     """Randomizes the equipment characters begin with."""
     display_name = "Randomize Starting Loadout"
 
-
 class AutoEquipOption(Toggle):
     """Automatically equips any received armor or left/right weapons."""
     display_name = "Auto-Equip"
+    
+class LocalItemOnly(Toggle):
+    """Makes all items that are not progression or useful items be local items."""
+    display_name = "Local Item Option"
+    
+class ExcludeLocalItemOnly(OptionDict):
+    """If LocalItemOnly is true then these item categories will be excluded from being local only.
+    - [~600] **Weapon**: All Weapons and Ammo.
+    - [621] **Armor**: All Armors.
+    - [154] **Accessory**: All Talismans.
+    - [105] **AshofWar**: All Ashes of War.
+    - [~3700] *Goods*: All Goods.
+    
+    Goods should always be local only.
+    """
+    default = frozenset({"Weapon, Accessory"})
 
 class ERExcludeLocations(ExcludeLocations):
     """Prevent these locations from having an important item."""
@@ -84,15 +103,21 @@ class ERExcludeLocations(ExcludeLocations):
     
 class ERImportantLocations(PriorityLocations):
     """Prevent these locations from having an unimportant item.
-    - **Locations**
-    - Remembrance: Main boss Remembrances
-    - Seedtree: Golden Seed trees
-    - Basin: Basins that contain tears
-    - Church: Sacred Tears
-    - Map: Map pillars
-    - Fragment: Scadu Fragments
-    - Cross: All cross items
-    - Revered: Revered Spirit Ashes"""
+    - [Checks] **Locations**
+    - [25] *Remembrance*: Main boss Remembrances.
+    - [33] *Seedtree*: Golden Seed trees.
+    - [13] *Basin*: Basins that contain tears.
+    - [12] *Church*: Sacred Tears.
+    - [24] *Map*: Map pillars.
+    - [52] *Fragment*: Scadu Fragments.
+    - [13] *Cross*: All cross items.
+    - [26] *Revered*: Revered Spirit Ashes.
+    
+    The total amount of priority checks should be below:
+    - **Vanilla**: [95] 
+    - **DLC**: [124]
+    - THESE CAN CHANGE, need to be updated later
+    """
     default = frozenset({"Remembrance", "Seedtree", "Map", "Cross"})
 
 class ExcludedLocationBehaviorOption(Choice):
@@ -113,7 +138,7 @@ class ExcludedLocationBehaviorOption(Choice):
 class MissableLocationBehaviorOption(Choice):
     """Which items can be placed in locations that can be permanently missed.
 
-    - **Randomize:** Progression items can be placed in missable locations.
+    - **Randomize:** Progression items can be placed in missable locations, don't do this unless you know what your doing, you can make a game impossible.
     - **Randomize Unimportant:** Progression items can't be placed in missable locations.
     - **Do Not Randomize:** Missable locations always contain the same item as in vanilla EldenRing.
 
@@ -134,11 +159,14 @@ class EROptions(PerGameCommonOptions):
     enable_dlc: EnableDLC
     late_dlc: LateDLCOption
     enemy_rando: EnemyRando
+    material_rando: MaterialRando
     death_link: DeathLink
 
     random_start: RandomizeStartingLoadout
     auto_equip: AutoEquipOption
 
+    local_item_option: LocalItemOnly
+    exclude_local_item_only: ExcludeLocalItemOnly
     important_locations: ERImportantLocations
     exclude_locations: ERExcludeLocations
     excluded_location_behavior: ExcludedLocationBehaviorOption
@@ -150,6 +178,8 @@ option_groups = [
         AutoEquipOption,
     ]),
     OptionGroup("Item & Location Options", [
+        LocalItemOnly,
+        ExcludeLocalItemOnly,
         ERImportantLocations,
         ERExcludeLocations,
         ExcludedLocationBehaviorOption,
