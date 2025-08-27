@@ -170,12 +170,6 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
         create_connection("Liurnia of The Lakes", "Ainsel River")
         
-        # Ainsel Main
-        #create_connection("i forget how you get here", "Ainsel River Main")
-        create_connection("Ainsel River Main", "Lake of Rot")
-        create_connection("Lake of Rot", "Lake of Rot Boss")
-        create_connection("Lake of Rot Boss", "Moonlight Altar")
-        
         #create_connection("Siofra River", "Caelid") # dont really need this but putting it here
         create_connection("Limgrave", "Caelid")
         # Caelid
@@ -199,9 +193,16 @@ class EldenRing(World):
         
         create_connection("Limgrave", "Nokron, Eternal City Start")
         create_connection("Nokron, Eternal City Start", "Nokron, Eternal City")
-        create_connection("Nokron, Eternal City", "Deeproot Depths Start")
-        create_connection("Deeproot Depths Start", "Deeproot Depths")
+        create_connection("Nokron, Eternal City", "Deeproot Depths")
         
+        create_connection("Deeproot Depths Start", "Deeproot Depths") # oneway
+        #create_connection("Deeproot Depths", "Leyndell, Royal Capital") # idk waygate requirements
+        #create_connection("Deeproot Depths", "Deeproot Depths Boss")
+        
+        create_connection("Deeproot Depths", "Ainsel River Main")
+        create_connection("Ainsel River Main", "Lake of Rot")
+        create_connection("Lake of Rot", "Lake of Rot Boss")
+        create_connection("Lake of Rot Boss", "Moonlight Altar")
         
         create_connection("Ruin-Strewn Precipice", "Altus Plateau")
         create_connection("Liurnia of The Lakes", "Altus Plateau")
@@ -239,6 +240,8 @@ class EldenRing(World):
         
         #create_connection("Leyndell, Royal Capital", "Subterranean Shunning-Grounds")
         create_connection("Subterranean Shunning-Grounds", "Leyndell Catacombs")
+        #create_connection("Subterranean Shunning-Grounds", "FFP")
+        #create_connection("FFP", "Deeproot Depths Start")
         
         
         #create_connection("Leyndell, Royal Capital", "Forbidden Lands")
@@ -661,7 +664,6 @@ class EldenRing(World):
         """All region lock items set to not be skipped when doing region lock."""
         #MARK: Region Lock Items
         item_table["Region Lock Key"].skip = False
-        
         
     def _key_rules(self) -> None:
         # MARK: SSK RULES

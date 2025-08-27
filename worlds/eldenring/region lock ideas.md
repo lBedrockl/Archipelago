@@ -50,7 +50,12 @@ The Bridge of Sacrifice is the first line of defense for Castle Morne, as arrang
 * Item to start up `Waygate`
 * based on great rune count like capital seal
 
-### Ainsel River > Lake of Rot
+### Deeproot > Ainsel River Main
+* Coffin ride
+
+should nokstella be part of ainsel?
+
+### Ainsel River Main > Lake of Rot
 * Easy door that can require an item
 
 ### Lake of Rot > Moonlight Altar
@@ -75,6 +80,7 @@ Glistening blood has been siphoned into the nail of this finger. Its sickly pale
 ### Liurnia > Altus
 * Elevator after `Ruin-Strewn Precipice` Boss requires `Dectus Medallion`
 
+Remove this? its only a small part of ainsel and the main part is connected to deeproot
 ### Liurnia > Ainsel River
 * Key Item to open up `Ainsel River Well`
 * Item name idea: `Ainsel River Well Key`
