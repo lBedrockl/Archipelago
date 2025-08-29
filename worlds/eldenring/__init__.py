@@ -750,6 +750,12 @@ class EldenRing(World):
             "CO/(AHG): Golden Epitaph - behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        # nokstella
+        currentKey += 1
+        self._add_location_rule([
+            "NS/NEC: Nightmaiden & Swordstress Puppets - in chest behind imp statue to W up stairs, left before bridge", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
+        
         # moonlight altar
         currentKey += 1
         self._add_location_rule([
