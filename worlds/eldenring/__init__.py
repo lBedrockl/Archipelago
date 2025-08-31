@@ -79,6 +79,12 @@ class EldenRing(World):
                 raise OptionError(f"EldenRing disable_extreme_options Error:"
                                   f"Player {self.player_name} has goods enabled in exclude_local_item_only."
                                   f"This being here means over 3.5k checks come from this world and it bypasses local_item_option.")
+                
+        #if self.options.leyndell_missable:
+            for location in location_tables["Leyndell, Royal Capital", "leyndell_throne"]:
+                # there might be some exceptions but lazy all missable :)
+                if not location.boss:
+                    location.missable = True
         
         # idk if this works, i pray its just this simple
         if self.options.local_item_option:
@@ -170,6 +176,9 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
         create_connection("Liurnia of The Lakes", "Ainsel River")
         
+        create_connection("Liurnia of The Lakes", "Raya Lucaria Academy")
+        
+        
         #create_connection("Siofra River", "Caelid") # dont really need this but putting it here
         create_connection("Limgrave", "Caelid")
         # Caelid
@@ -221,6 +230,13 @@ class EldenRing(World):
         #create_connection("Mount Gelmir", "Gelmir Hero's Grave")
         #create_connection("Mount Gelmir", "Seethewater Cave")
         #create_connection("Mount Gelmir", "Volcano Cave")
+        
+        #create_connection("Mount Gelmir", "Volcano Manor Entrance")
+        create_connection("Volcano Manor Entrance", "Volcano Manor Drawing Room")
+        create_connection("Volcano Manor Drawing Room", "Volcano Manor")
+        create_connection("Volcano Manor", "Volcano Manor Upper")
+        
+        
         
         
         create_connection("Altus Plateau", "Capital Outskirts")
@@ -1119,13 +1135,13 @@ class EldenRing(World):
             ], lambda state, r=remembrance: (state.has(r, self.player) and self._has_enough_great_runes(state, 1)
             ))
     
-    def _add_equipment_of_champions_rules(self) -> None: # VERY WIP NEEDS LOCATIONS CHECKS
+    def _add_equipment_of_champions_rules(self) -> None: # wip needs dlc checks
         """Adds rules for items obtainable from equipment of champions."""
 
-        equipments = [
+        equipments = [ # done
             ( # RA mainboss
-                "Rennala, Queen of the Full Moon", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "RLA mainboss", #"Rennala, Queen of the Full Moon", # boss
+                "RLA: Remembrance of the Full Moon Queen - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Queen's Crescent Crown", 
                     "Queen's Robe",
@@ -1134,7 +1150,7 @@ class EldenRing(World):
                 ]
             ),
             ( # MH mainboss
-                "Malenia Blade of Miquella", # boss
+                "EBH/HR mainboss", #"Malenia Blade of Miquella", # boss
                 "EBH/HR: Remembrance of the Rot Goddess - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Malenia's Winged Helm", 
@@ -1144,8 +1160,8 @@ class EldenRing(World):
                 ]
             ),
             ( # LAC mainboss
-                "Godfrey, First Elden Lord", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "LAC/QB mainboss", #"Godfrey, First Elden Lord", # boss
+                "LAC/QB: Remembrance of Hoarah Loux - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Elden Lord Crown", 
                     "Elden Lord Armor",
@@ -1153,9 +1169,9 @@ class EldenRing(World):
                     "Elden Lord Greaves"
                 ]
             ),
-            ( # Idk boss
-                "Elemer of the Briar", # boss
-                "", # a drop from boss, so we can do 'can get' check
+            ( # TSC boss
+                "TSC/SCIG boss", #"Elemer of the Briar", # boss
+                "TSC/SCIG: Briar Greatshield - boss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Briar Helm", 
                     "Briar Armor",
@@ -1163,9 +1179,9 @@ class EldenRing(World):
                     "Briar Greaves"
                 ]
             ),
-            ( #  MH boss
-                "Loretta, Knight of the Haligtree", # boss
-                "", # a drop from boss, so we can do 'can get' check
+            ( # MH boss
+                "MH/HTP boss", #"Loretta, Knight of the Haligtree", # boss
+                "MH/HTP: Loretta's Mastery - boss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Royal Knight Helm", 
                     "Royal Knight Armor",
@@ -1174,8 +1190,8 @@ class EldenRing(World):
                 ]
             ),
             ( # FA mainboss
-                "Maliketh, the Black Blade", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "FA/BGB mainboss", #"Maliketh, the Black Blade", # boss
+                "FA/BGB: Remembrance of the Black Blade - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Maliketh's Helm", 
                     "Maliketh's Armor",
@@ -1183,9 +1199,9 @@ class EldenRing(World):
                     "Maliketh's Greaves"
                 ]
             ),
-            ( # Castle name boss
-                "Commander Niall", # boss
-                "", # a drop from boss, so we can do 'can get' check
+            ( # MotG/(CS) mainboss
+                "MotG/(CS) mainboss", #"Commander Niall", # boss
+                "MotG/(CS): Veteran's Prosthesis - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Veteran's Helm", 
                     "Veteran's Armor",
@@ -1194,7 +1210,7 @@ class EldenRing(World):
                 ]
             ),
             ( # WD mainboss
-                "Starscourge Radahn", # boss
+                "CL/(WD) mainboss", #"Starscourge Radahn", # boss
                 "CL/(WD): Remembrance of the Starscourge - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Radahn's Redmane Helm", 
@@ -1204,20 +1220,20 @@ class EldenRing(World):
                 ]
             ),
             ( # LRC mainboss
-                "Morgott, The Omen King", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "LRC/QB mainboss", #"Morgott, The Omen King", # boss
+                "LRC/QB: Remembrance of the Omen King - mainboss drop", # a drop from boss, so we can do 'can get' check
                 ["Fell Omen Cloak"]# item
             ),
             ( # MP mainboss
-                "Mohg, Lord of Blood", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "MP/(MDM) mainboss" # "Mohg, Lord of Blood", # boss
+                "MP/(MDM): Remembrance of the Blood Lord - mainboss drop", # a drop from boss, so we can do 'can get' check
                 ["Lord of Blood's Robe"]# item
             ),
         ]
 
         dlc_equipments = [
             (
-                "Messmer the Impaler", # boss
+                "", #"Messmer the Impaler", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Messmer's Helm", 
@@ -1227,7 +1243,7 @@ class EldenRing(World):
                 ]
             ),
             (
-                "Rellana, Twin Moon Knight", # boss
+                "", #"Rellana, Twin Moon Knight", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Rellana's Helm", 
@@ -1237,7 +1253,7 @@ class EldenRing(World):
                 ]
             ),
             (
-                "Commander Gaius", # boss
+                "", #"Commander Gaius", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Gaius's Helm", 
@@ -1247,7 +1263,7 @@ class EldenRing(World):
                 ]
             ),
             ( # you cant even get this till the game is beat LMAO
-                "Promised Consort Radahn", # boss
+                "", #"Promised Consort Radahn", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Young Lion's Helm", 
@@ -1263,7 +1279,7 @@ class EldenRing(World):
 
         for (boss, boss_location, items) in equipments:
             self._add_location_rule([
-                f"RH: {item} - Enia defeat {boss}" for item in items
+                f"RH: {item} - Enia shop, defeat {boss}" for item in items
             ], lambda state: self._can_get(boss_location, self.player) and self._has_enough_great_runes(state, 1))
             
     def _add_location_rule(self, location: Union[str, List[str]], rule: Union[CollectionRule, str]) -> None:

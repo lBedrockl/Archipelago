@@ -55,6 +55,7 @@ region_order = [
     "Raya Lucaria Crystal Tunnel",
     "Ainsel River",
     "Ruin-Strewn Precipice",
+    "Raya Lucaria Academy",
     
     # Caelid
     "Caelid",
@@ -105,6 +106,12 @@ region_order = [
     "Seethewater Cave",
     "Volcano Cave",
     
+    # Volcano Manor
+    "Volcano Manor Entrance",
+    "Volcano Manor Drawing Room",
+    "Volcano Manor",
+    "Volcano Manor Upper",
+    
     # Capital Outskirts
     "Capital Outskirts",
     "Auriza Hero's Grave",
@@ -127,7 +134,7 @@ region_order = [
     "Giants' Mountaintop Catacombs",
     "Spiritcaller Cave",
     
-    "Castle Sol (End)",
+    "Castle Sol End",
     
     # Snowfield
     #"Consecrated Snowfield",
@@ -1090,32 +1097,32 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Ash of War: Divine Beast Frost Stomp - Enia for Remembrance of the Dancing Lion", "Ash of War: Divine Beast Frost Stomp", key="111000,0:0000000000:101898:", missable=True, premium=True, dlc=True, shop=True),
         ERLocationData("RH: Sword Lance - Enia for Remembrance of the Wild Boar Rider", "Sword Lance", key="111000,0:0000000000:101898:", missable=True, premium=True, dlc=True, shop=True),
         # equipment of champions
-        ERLocationData("RH: Fell Omen Cloak - Enia shop, defeat Morgott, The Omen King", "Fell Omen Cloak", key="111000,0:0000000000:9104,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Crown - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Crown", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Armor - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Armor", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Bracers - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Bracers", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
-        ERLocationData("RH: Elden Lord Greaves - Enia shop, defeat Godfrey, First Elden Lord", "Elden Lord Greaves", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
-        ERLocationData("RH: Lord of Blood's Robe - Enia shop, defeat Mohg, Lord of Blood", "Lord of Blood's Robe", key="111000,0:0000000000:9112,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Helm - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Helm", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Armor - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Armor", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Gauntlets - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Gauntlets", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Maliketh's Greaves - Enia shop, defeat Maliketh, the Black Blade", "Maliketh's Greaves", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Crescent Crown - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Crescent Crown", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Robe - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Robe", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Bracelets - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Bracelets", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Queen's Leggings - Enia shop, defeat Rennala, Queen of the Full Moon", "Queen's Leggings", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Helm - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Helm", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Armor - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Armor", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Gauntlets - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Gauntlets", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Royal Knight Greaves - Enia shop, defeat Loretta, Knight of the Haligtree", "Royal Knight Greaves", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Winged Helm - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Winged Helm", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Armor - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Armor", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Gauntlet - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Gauntlet", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Malenia's Greaves - Enia shop, defeat Malenia Blade of Miquella", "Malenia's Greaves", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Redmane Helm - Enia shop, defeat Starscourge Radahn", "Radahn's Redmane Helm", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Lion Armor - Enia shop, defeat Starscourge Radahn", "Radahn's Lion Armor", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Gauntlets - Enia shop, defeat Starscourge Radahn", "Radahn's Gauntlets", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
-        ERLocationData("RH: Radahn's Greaves - Enia shop, defeat Starscourge Radahn", "Radahn's Greaves", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Fell Omen Cloak - Enia shop, defeat LRC/QB mainboss", "Fell Omen Cloak", key="111000,0:0000000000:9104,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Crown - Enia shop, defeat LAC/QB mainboss", "Elden Lord Crown", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Armor - Enia shop, defeat LAC/QB mainboss", "Elden Lord Armor", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Bracers - Enia shop, defeat LAC/QB mainboss", "Elden Lord Bracers", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Elden Lord Greaves - Enia shop, defeat LAC/QB mainboss", "Elden Lord Greaves", key="111000,0:0000000000:9107,101500:", missable=True, shop=True),
+        ERLocationData("RH: Lord of Blood's Robe - Enia shop, defeat MP/(MDM) mainboss", "Lord of Blood's Robe", key="111000,0:0000000000:9112,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Helm - Enia shop, defeat FA/BGB mainboss", "Maliketh's Helm", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Armor - Enia shop, defeat FA/BGB mainboss", "Maliketh's Armor", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Gauntlets - Enia shop, defeat FA/BGB mainboss", "Maliketh's Gauntlets", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Maliketh's Greaves - Enia shop, defeat FA/BGB mainboss", "Maliketh's Greaves", key="111000,0:0000000000:9116,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Crescent Crown - Enia shop, defeat RLA mainboss", "Queen's Crescent Crown", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Robe - Enia shop, defeat RLA mainboss", "Queen's Robe", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Bracelets - Enia shop, defeat RLA mainboss", "Queen's Bracelets", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Queen's Leggings - Enia shop, defeat RLA mainboss", "Queen's Leggings", key="111000,0:0000000000:9118,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Helm - Enia shop, defeat MH/HTP boss", "Royal Knight Helm", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Armor - Enia shop, defeat MH/HTP boss", "Royal Knight Armor", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Gauntlets - Enia shop, defeat MH/HTP boss", "Royal Knight Gauntlets", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Royal Knight Greaves - Enia shop, defeat MH/HTP boss", "Royal Knight Greaves", key="111000,0:0000000000:9119,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Winged Helm - Enia shop, defeat EBH/HR mainboss", "Malenia's Winged Helm", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Armor - Enia shop, defeat EBH/HR mainboss", "Malenia's Armor", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Gauntlet - Enia shop, defeat EBH/HR mainboss", "Malenia's Gauntlet", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Malenia's Greaves - Enia shop, defeat EBH/HR mainboss", "Malenia's Greaves", key="111000,0:0000000000:9120,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Redmane Helm - Enia shop, defeat CL/(WD) mainboss", "Radahn's Redmane Helm", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Lion Armor - Enia shop, defeat CL/(WD) mainboss", "Radahn's Lion Armor", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Gauntlets - Enia shop, defeat CL/(WD) mainboss", "Radahn's Gauntlets", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
+        ERLocationData("RH: Radahn's Greaves - Enia shop, defeat CL/(WD) mainboss", "Radahn's Greaves", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
         ERLocationData("RH: Young Lion's Helm - Enia shop, defeat Promised Consort Radahn", "Young Lion's Helm", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Young Lion's Armor - Enia shop, defeat Promised Consort Radahn", "Young Lion's Armor", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Young Lion's Gauntlets - Enia shop, defeat Promised Consort Radahn", "Young Lion's Gauntlets", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
@@ -1127,14 +1134,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Gaius's Helm - Enia shop, defeat Commander Gaius", "Gaius's Helm", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Gaius's Armor - Enia shop, defeat Commander Gaius", "Gaius's Armor", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Gaius's Gauntlets - Enia shop, defeat Commander Gaius", "Gaius's Gauntlets", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Briar Helm - Enia shop, defeat Elemer of the Briar", "Briar Helm", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
-        ERLocationData("RH: Briar Armor - Enia shop, defeat Elemer of the Briar", "Briar Armor", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
-        ERLocationData("RH: Briar Gauntlets - Enia shop, defeat Elemer of the Briar", "Briar Gauntlets", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
-        ERLocationData("RH: Briar Greaves - Enia shop, defeat Elemer of the Briar", "Briar Greaves", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
-        ERLocationData("RH: Veteran's Helm - Enia shop, defeat Commander Niall", "Veteran's Helm", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
-        ERLocationData("RH: Veteran's Armor - Enia shop, defeat Commander Niall", "Veteran's Armor", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
-        ERLocationData("RH: Veteran's Gauntlets - Enia shop, defeat Commander Niall", "Veteran's Gauntlets", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
-        ERLocationData("RH: Veteran's Greaves - Enia shop, defeat Commander Niall", "Veteran's Greaves", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
+        ERLocationData("RH: Briar Helm - Enia shop, defeat TSC/SCIG boss", "Briar Helm", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
+        ERLocationData("RH: Briar Armor - Enia shop, defeat TSC/SCIG boss", "Briar Armor", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
+        ERLocationData("RH: Briar Gauntlets - Enia shop, defeat TSC/SCIG boss", "Briar Gauntlets", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
+        ERLocationData("RH: Briar Greaves - Enia shop, defeat TSC/SCIG boss", "Briar Greaves", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
+        ERLocationData("RH: Veteran's Helm - Enia shop, defeat MotG/(CS) mainboss", "Veteran's Helm", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
+        ERLocationData("RH: Veteran's Armor - Enia shop, defeat MotG/(CS) mainboss", "Veteran's Armor", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
+        ERLocationData("RH: Veteran's Gauntlets - Enia shop, defeat MotG/(CS) mainboss", "Veteran's Gauntlets", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
+        ERLocationData("RH: Veteran's Greaves - Enia shop, defeat MotG/(CS) mainboss", "Veteran's Greaves", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
         ERLocationData("RH: Rellana's Helm - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Helm", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Rellana's Armor - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Armor", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Rellana's Gloves - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Gloves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
@@ -1569,7 +1576,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CA: The Stormhawk King - top of church", "The Stormhawk King", key="100100,0:0010017010::"),
         ERLocationData("CA: Stormhawk Deenh - chest top of church", "Stormhawk Deenh", key="100100,0:0010017900::", chest=True),
     ],
-    "altus":[
+    "Altus Plateau":[ # altus
         #ERLocationData("AP: Great Heal - Sold by Brother Corhyn after he first moves to Altus Plateau", "Great Heal", key="110000,0:0000000000:100350,1040529255:", missable=True, incantations=True, shop=True),
         #ERLocationData("AP: Lightning Fortification - Sold by Brother Corhyn after he first moves to Altus Plateau", "Lightning Fortification", key="110000,0:0000000000:100350,1040529255:", missable=True, incantations=True, shop=True),
         #ERLocationData("AP: Discus of Light - Sold by Brother Corhyn after he moves to Goldmask in Altus Plateau", "Discus of Light", key="110000,0:0000000000:100350,1040549205:", missable=True, incantations=True, shop=True),
@@ -1680,8 +1687,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("AP: Golden Rune [10] - ", "Golden Rune [10]", key="603953,0:1039537750::"),
         #ERLocationData("AP: Perfume Bottle - ", "Perfume Bottle", key="603954,0:0000066770::"),
         #ERLocationData("AP: Perfumer's Cookbook [2] - ", "Perfumer's Cookbook [2]", key="603954,0:0000067850::"),
-        #ERLocationData("AP: Marais Executioner's Sword - Dropped by Elemer of the Briar", "Marais Executioner's Sword", key="603954,0:0000510820::", boss=True),
-        #ERLocationData("AP: Briar Greatshield - Dropped by Elemer of the Briar", "Briar Greatshield", key="603954,0:0000510820::", boss=True),
+        ERLocationData("TSC/SCIG: Marais Executioner's Sword - boss drop", "Marais Executioner's Sword", key="603954,0:0000510820::", boss=True),
+        ERLocationData("TSC/SCIG: Briar Greatshield - boss drop", "Briar Greatshield", key="603954,0:0000510820::", boss=True),
         #ERLocationData("AP: "Champion's Song" Painting - Painting in a two-story defense structure by the east outer wall in Shaded Castle. From the Shaded Castle Ramparts grace, go northeast down the rampart and jump west past the ruined wall near the end of the path.", ""Champion's Song" Painting", key="603954,0:0000580020::", painting=True),
         #ERLocationData("AP: Golden Rune [3] - ", "Golden Rune [3]", key="603954,0:1039547010::"),
         #ERLocationData("AP: Smithing Stone [5] - ", "Smithing Stone [5]", key="603954,0:1039547020::"),
@@ -1850,7 +1857,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     "leyndell":[
         #ERLocationData("LRC: Immutable Shield - Sold by Brother Corhyn after he moves to Leyndell", "Immutable Shield", key="110000,0:0000000000:100350,11009455:", missable=True, incantations=True, shop=True),
-        #ERLocationData("LRC: Talisman Pouch - Dropped by Godfrey, First Elden Lord, in the Erdtree Sanctuary", "Talisman Pouch", key="110000,0:0000060520::", boss=True),
+        ERLocationData("LRC/WCR: Talisman Pouch - mainboss drop", "Talisman Pouch", key="110000,0:0000060520::", boss=True),
         #ERLocationData("LRC: Sanctified Whetblade - In Hewg's spot on the second floor of Fortified Manor, accessed from a shack rooftop to the south", "Sanctified Whetblade", key="110000,0:0000065660::"),
         #ERLocationData("LRC: Cracked Pot - ", "Cracked Pot", key="110000,0:0000066130::"),
         #ERLocationData("LRC: Perfume Bottle - ", "Perfume Bottle", key="110000,0:0000066710::"),
@@ -1997,8 +2004,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("LRC: Lord's Rune - Dropped by the Erdtree Avatar who materializes down the stairs from Avenue Balcony", "Lord's Rune", key="110000,0:0011007998::", hardenemy=True),
     ],
     "leyndell_throne":[
-        #ERLocationData("LRC: Morgott's Great Rune - Dropped by Morgott the Omen King", "Morgott's Great Rune", key="110000,0:0000000173::", boss=True),
-        #ERLocationData("LRC: Remembrance of the Omen King - Dropped by Morgott the Omen King", "Remembrance of the Omen King", key="110000,0:0000510040::", boss=True, remembrance=True),
+        ERLocationData("LRC/QB: Morgott's Great Rune - mainboss drop", "Morgott's Great Rune", key="110000,0:0000000173::", boss=True),
+        ERLocationData("LRC/QB: Remembrance of the Omen King - mainboss drop", "Remembrance of the Omen King", key="110000,0:0000510040::", boss=True, remembrance=True),
         #ERLocationData("LRC: Barrier of Gold - ", "Barrier of Gold", key="110000,0:0000540370::", missable=True, scarab=True),
         #ERLocationData("LRC: Erdtree Bow - In a chest on the second floor of Erdtree Sanctuary. After Golden Godfrey or Gideon, exit from the second floor and drop down to the rooftop to the immediate left, and then through an open window.", "Erdtree Bow", key="110000,0:0011007015::", chest=True),
         #ERLocationData("LRC: Celestial Dew - ", "Celestial Dew", key="110000,0:0011007025::", missable=True),
@@ -2029,8 +2036,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("LAC: Erdtree's Favor +2 - Guarded by three Ulcerated Tree Spirits, on a tree branch jutting out of the ash found backtracking from the Forbidden Lands Site of Grace", "Erdtree's Favor +2", key="110500,0:0011057100::", talisman=True, ambush=True),
         #ERLocationData("LAC: Crimson Amber Medallion +2 - Hanging on a beam accessible by dropping down from Leyndell, Capital of Ash", "Crimson Amber Medallion +2", key="350000,0:0035007030::", talisman=True, outoftheway=True),
     ],
-    "Leyndell, Ashen Capital Throne":[ # leyndell2_throne
-        #ERLocationData("LAC: Remembrance of Hoarah Loux - mainboss drop", "Remembrance of Hoarah Loux", key="110500,0:0000510070::", boss=True, remembrance=True),
+    "Leyndell, Ashen Capital Throne":[ # leyndell2_throne        done
+        ERLocationData("LAC/QB: Remembrance of Hoarah Loux - mainboss drop", "Remembrance of Hoarah Loux", key="110500,0:0000510070::", boss=True, remembrance=True),
     ],
     "Ainsel River":[ # ainsel_start           done
         ERLocationData("AR/UPR: Prisoner Iron Mask - Hermit Merchant NW of UPR in temple", "Prisoner Iron Mask", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
@@ -2081,40 +2088,40 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AR/UPR: Smithing Stone [1] x3 - NW of UPR down path over some rocks, on ledge", "Smithing Stone [1] x3", key="120100,0:0012017440::"),
         ERLocationData("AR/ARD: Great Ghost Glovewort - in chest after boss", "Great Ghost Glovewort", key="120100,0:0012017910::", chest=True),
     ],
-    "Lake of Rot":[ # lakeofrot
-        #ERLocationData("LR: Map: Lake of Rot - On dry land shortly after the Lake of Rot Site of Grace", "Map: Lake of Rot", key="120100,0:0000062061::", map=True),
-        #ERLocationData("LR: Nomadic Warrior's Cookbook [22] - ", "Nomadic Warrior's Cookbook [22]", key="120100,0:0000067890::"),
-        #ERLocationData("LR: Dragonscale Blade - Dropped by Dragonkin Soldier", "Dragonscale Blade", key="120100,0:0000530600::", altboss=True, miscboss=True),
-        #ERLocationData("LR: Somber Smithing Stone [6] - ", "Somber Smithing Stone [6]", key="120100,0:0000540600::", scarab=True),
-        #ERLocationData("LR: Somber Smithing Stone [8] - ", "Somber Smithing Stone [8]", key="120100,0:0012017030::"),
-        #ERLocationData("LR: Somber Smithing Stone [9] - ", "Somber Smithing Stone [9]", key="120100,0:0012017090::"),
-        #ERLocationData("LR: Rot Grease - ", "Rot Grease", key="120100,0:0012017110::"),
-        #ERLocationData("LR: Black-Key Bolt x10 - ", "Black-Key Bolt x10", key="120100,0:0012017120::"),
-        #ERLocationData("LR: Warming Stone - ", "Warming Stone", key="120100,0:0012017130::"),
-        #ERLocationData("LR: Lightningproof Dried Liver - ", "Lightningproof Dried Liver", key="120100,0:0012017140::"),
-        #ERLocationData("LR: Aeonian Butterfly - ", "Aeonian Butterfly", key="120100,0:0012017370::"),
-        #ERLocationData("LR: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="120100,0:0012017380::"),
-        #ERLocationData("LR: Golden Rune [9] - ", "Golden Rune [9]", key="120100,0:0012017450::"),
-        #ERLocationData("LR: Mushroom Crown - ", "Mushroom Crown", key="120100,0:0012017460::"),
-        #ERLocationData("LR: Preserving Boluses - ", "Preserving Boluses", key="120100,0:0012017470::"),
-        #ERLocationData("LR: Golden Rune [7] - ", "Golden Rune [7]", key="120100,0:0012017480::"),
-        #ERLocationData("LR: Golden Rune [10] - ", "Golden Rune [10]", key="120100,0:0012017490::"),
-        #ERLocationData("LR: Golden Rune [10] - ", "Golden Rune [10]", key="120100,0:0012017820::"),
-        #ERLocationData("LR: Smithing Stone [5] - ", "Smithing Stone [5]", key="120100,0:0012017830::"),
-        #ERLocationData("LR: Fan Daggers x8 - ", "Fan Daggers x8", key="120100,0:0012017840::"),
-        #ERLocationData("LR: Golden Rune [10] - ", "Golden Rune [10]", key="120100,0:0012017850::"),
-        #ERLocationData("LR: Smithing Stone [7] - ", "Smithing Stone [7]", key="120100,0:0012017860::"),
-        #ERLocationData("LR: Smithing Stone [6] - ", "Smithing Stone [6]", key="120100,0:0012017870::"),
-        #ERLocationData("LR: Somber Smithing Stone [8] - ", "Somber Smithing Stone [8]", key="120100,0:0012017880::"),
-        #ERLocationData("LR: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="120100,0:0012017890::"),
-        #ERLocationData("LR: Scorpion's Stinger - In a lidded chest at the bottom level of Grand Cloister, in a room up the stairs from a Kindred of Rot congregation", "Scorpion's Stinger", key="120100,0:0012017920::", chest=True),
-        #ERLocationData("LR: Immunizing Horn Charm +1 - Dropped by the lost Ancestral Follower near the start of the lake", "Immunizing Horn Charm +1", key="120100,0:0012017992::", enemytalisman=True),
-        #ERLocationData("LR: Golden Seed - Dropped by the Putrid Tree Spirit hiding below the rot waterfall from Grand Cloister", "Golden Seed", key="120100,0:0012017997::"),
-        #ERLocationData("LR: Alabaster Lord's Sword - ", "Alabaster Lord's Sword", key="120100,0:0012017999::"),
+    "Lake of Rot":[ # lakeofrot                done
+        ERLocationData("LR/LRS: Map: Lake of Rot - to S", "Map: Lake of Rot", key="120100,0:0000062061::", map=True),
+        ERLocationData("LR/GC: Nomadic Warrior's Cookbook [22] - in chest SW corner of LR within structure", "Nomadic Warrior's Cookbook [22]", key="120100,0:0000067890::"),
+        ERLocationData("LR/LRS: Dragonscale Blade - boss drop", "Dragonscale Blade", key="120100,0:0000530600::", altboss=True, miscboss=True),
+        ERLocationData("LR/LRS: Somber Smithing Stone [6] - scarab to S most part of LR", "Somber Smithing Stone [6]", key="120100,0:0000540600::", scarab=True),
+        ERLocationData("LR/LRS: Somber Smithing Stone [8] - SE corner of LR on tilted pillar", "Somber Smithing Stone [8]", key="120100,0:0012017030::"),
+        ERLocationData("LR/LRS: Somber Smithing Stone [9] - NE corner on top of the raised structure", "Somber Smithing Stone [9]", key="120100,0:0012017090::"),
+        ERLocationData("LR/LRS: Rot Grease - to SW by tip of first platform", "Rot Grease", key="120100,0:0012017110::"),
+        ERLocationData("LR/LRS: Black-Key Bolt x10 - W of first platform by nothing", "Black-Key Bolt x10", key="120100,0:0012017120::"),
+        ERLocationData("LR/LRS: Warming Stone - middle of second platform area", "Warming Stone", key="120100,0:0012017130::"),
+        ERLocationData("LR/LRS: Lightningproof Dried Liver - SW side of boss arena", "Lightningproof Dried Liver", key="120100,0:0012017140::"),
+        ERLocationData("LR/LRS: Aeonian Butterfly - to E", "Aeonian Butterfly", key="120100,0:0012017370::"),
+        ERLocationData("LR/LRS: Somber Smithing Stone [7] - way to E in ruin", "Somber Smithing Stone [7]", key="120100,0:0012017380::"),
+        ERLocationData("LR/LRS: Golden Rune [9] - way to SE on broken beam", "Golden Rune [9]", key="120100,0:0012017450::"),
+        ERLocationData("LR/LRS: Mushroom Crown - SE corner of LR on pillar within ruin", "Mushroom Crown", key="120100,0:0012017460::"),
+        ERLocationData("LR/GC: Preserving Boluses - to N up stairs on left after river", "Preserving Boluses", key="120100,0:0012017470::"),
+        ERLocationData("LR/LRS: Golden Rune [7] - middle of boss arena", "Golden Rune [7]", key="120100,0:0012017480::"),
+        ERLocationData("LR/LRS: Golden Rune [10] - W side of boss arena", "Golden Rune [10]", key="120100,0:0012017490::"),
+        ERLocationData("LR/GC: Golden Rune [10] - to W on backside of top ledge", "Golden Rune [10]", key="120100,0:0012017820::"),
+        ERLocationData("LR/GC: Smithing Stone [5] - on stairs leading to W temple item 1", "Smithing Stone [5]", key="120100,0:0012017830::"),
+        ERLocationData("LR/GC: Fan Daggers x8 - on stairs leading to W temple item 2", "Fan Daggers x8", key="120100,0:0012017840::"),
+        ERLocationData("LR/GC: Golden Rune [10] - just S after ledge drop downs", "Golden Rune [10]", key="120100,0:0012017850::"),
+        ERLocationData("LR/GC: Smithing Stone [7] - by rot waterfall item 1", "Smithing Stone [7]", key="120100,0:0012017860::"),
+        ERLocationData("LR/GC: Smithing Stone [6] - by rot waterfall item 2", "Smithing Stone [6]", key="120100,0:0012017870::"),
+        ERLocationData("LR/LRS: Somber Smithing Stone [8] - to NE", "Somber Smithing Stone [8]", key="120100,0:0012017880::"),
+        ERLocationData("LR/LRS: Somber Smithing Stone [7] - W of first platform by mushroom land", "Somber Smithing Stone [7]", key="120100,0:0012017890::"),
+        ERLocationData("LR/GC: Scorpion's Stinger - in chest within W temple", "Scorpion's Stinger", key="120100,0:0012017920::", chest=True),
+        ERLocationData("LR/LRS: Immunizing Horn Charm +1 - enemy drop way to SE, W of broken beam", "Immunizing Horn Charm +1", key="120100,0:0012017992::", enemytalisman=True),
+        ERLocationData("LR/GC: Golden Seed - enemy drop by rot waterfall", "Golden Seed", key="120100,0:0012017997::"),
+        ERLocationData("LR/LRS: Alabaster Lord's Sword - enemy drop on top of the raised structure", "Alabaster Lord's Sword", key="120100,0:0012017999::"),
     ],
     "Ainsel River Main":[ # ainsel                quest left
-        #ERLocationData("ARM/: Discarded Palace Key - Dropped by the Baleful Shadow who invades when you are accompanied by Miniature Ranni", "Discarded Palace Key", key="120100,0:0000400159::", missable=True),
-        #ERLocationData("ARM/: Miniature Ranni - Nearby the Ainsel River Main Site of Grace after giving Ranni the Fingerslayer Blade", "Miniature Ranni", key="120100,0:0000400394::", missable=True),
+        #ERLocationData("NS/NWB: Discarded Palace Key - Dropped by the Baleful Shadow who invades when you are accompanied by Miniature Ranni", "Discarded Palace Key", key="120100,0:0000400159::", missable=True),
+        #ERLocationData("NS/NWB: Miniature Ranni - Nearby the Ainsel River Main Site of Grace after giving Ranni the Fingerslayer Blade", "Miniature Ranni", key="120100,0:0000400394::", missable=True),
         ERLocationData("NS/NEC: Somber Smithing Stone [6] - scarab up stairs to W, on end stairs", "Somber Smithing Stone [6]", key="120100,0:0000540602::", scarab=True),
         ERLocationData("NS/NEC: Golden Seed - golden tree to W by elevator from upper NS path", "Golden Seed", key="120100,0:0012017100::", seedtree=True),
         ERLocationData("ARM/(UPR): Golden Rune [7] - just before NE platform", "Golden Rune [7]", key="120100,0:0012017500::"),
@@ -2426,8 +2433,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("DD: Rune Arc - ", "Rune Arc", key="120300,0:0012037850::"),
         #ERLocationData("DD: Numen's Rune - ", "Numen's Rune", key="120300,0:0012037850::"),
     ],
-    "Lake of Rot Boss":[ # ainsel_boss
-        #ERLocationData("AR: Remembrance of the Naturalborn - Dropped by Astel, Naturalborn of the Void", "Remembrance of the Naturalborn", key="120400,0:0000510080::", boss=True, remembrance=True),
+    "Lake of Rot Boss":[ # ainsel_boss          done
+        ERLocationData("LR: Remembrance of the Naturalborn - mainboss drop", "Remembrance of the Naturalborn", key="120400,0:0000510080::", boss=True, remembrance=True),
     ],
     "Mohgwyn Palace":[ # mohgwyn       quest items left       WEIRD ITEM HERE
         ERLocationData("MP/(MDM): Festering Bloody Finger x10 - Imprisoned Merchant down first left in cave", "Festering Bloody Finger x10", key="120500,0:0000000000:100975:", raceshop=True, shop=True),
@@ -2658,7 +2665,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("FA: Blasphemous Claw - ", "Blasphemous Claw", key="130000,0:0000400292::", missable=True),
         #ERLocationData("FA: Devourer's Scepter - kill invader Bernahl", "Devourer's Scepter", key="130000,0:0000400293::", missable=True),
         #ERLocationData("FA: Remembrance of the Dragonlord - Dropped by Dragonlord Placidusax", "Remembrance of the Dragonlord", key="130000,0:0000510150::", boss=True, deadend=True, remembrance=True),
-        #ERLocationData("FA: Remembrance of the Black Blade - Dropped by Maliketh, the Black Blade", "Remembrance of the Black Blade", key="130000,0:0000510160::", boss=True, remembrance=True),
+        ERLocationData("FA/BGB: Remembrance of the Black Blade - mainboss drop", "Remembrance of the Black Blade", key="130000,0:0000510160::", boss=True, remembrance=True),
         #ERLocationData("FA: Golden Lightning Fortification - ", "Golden Lightning Fortification", key="130000,0:0000540772::", missable=True, scarab=True),
         #ERLocationData("FA: Somber Ancient Dragon Smithing Stone - ", "Somber Ancient Dragon Smithing Stone", key="130000,0:0013007005::", missable=True),
         #ERLocationData("FA: Golden Rune [11] - ", "Golden Rune [11]", key="130000,0:0013007420::", missable=True),
@@ -2798,7 +2805,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("MtG: Explosive Greatbolt - Sold by the Nomadic Merchant in the long ladder section before Ninth Mt. Gelmir Campsite", "Explosive Greatbolt", key="603754,3:0000000000:100775:", shop=True),
         #ERLocationData("MtG: Poison Grease x2 - ", "Poison Grease x2", key="603755,0:1037557000::"),
     ],
-    "volcano_drawingroom":[
+    "Volcano Manor Drawing Room":[ #volcano_drawingroom
         #ERLocationData("VM: Gelmir's Fury - ", "Gelmir's Fury", key="130000,0:0000400291::", missable=True),
         #ERLocationData("VM: Ash of War: Eruption - ", "Ash of War: Eruption", key="160000,0:0000000000:100075,16009208:", missable=True, shop=True),
         #ERLocationData("VM: Ash of War: Assassin's Gambit - ", "Ash of War: Assassin's Gambit", key="160000,0:0000000000:100075,16009208:", missable=True, shop=True),
@@ -2881,9 +2888,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "academy_chest":[
         #ERLocationData("RLA: Dark Moon Ring - In a chest unlocked by Discarded Palace Key in the Raya Lucaria Grand Library", "Dark Moon Ring", key="140000,0:0000000114::", racemode=True, chest=True),
     ],
-    "academy_courtyard":[
-        #ERLocationData("RLA: Great Rune of the Unborn - Dropped by Rennala", "Great Rune of the Unborn", key="140000,0:0000000177::", boss=True, deadend=True),
-        #ERLocationData("RLA: Remembrance of the Full Moon Queen - Dropped by Rennala", "Remembrance of the Full Moon Queen", key="140000,0:0000000197::", boss=True, deadend=True, remembrance=True),
+    "Raya Lucaria Academy":[ # academy_courtyard
+        ERLocationData("RLA: Great Rune of the Unborn - mainboss drop", "Great Rune of the Unborn", key="140000,0:0000000177::", boss=True, deadend=True),
+        ERLocationData("RLA: Remembrance of the Full Moon Queen - mainboss drop", "Remembrance of the Full Moon Queen", key="140000,0:0000000197::", boss=True, deadend=True, remembrance=True),
         #ERLocationData("RLA: Cracked Pot - ", "Cracked Pot", key="140000,0:0000066120::", missable=True),
         #ERLocationData("RLA: Twinsage Glintstone Crown - Dropped by a Small Crystal Crab on the second floor of the Church of the Cuckoo, accessed by looping around from Debate Parlor by dropping down past the rubble-strewn stairs", "Twinsage Glintstone Crown", key="140000,0:0014007005::"),
         #ERLocationData("RLA: Karolos Glintstone Crown - ", "Karolos Glintstone Crown", key="140000,0:0014007035::", missable=True),
@@ -3315,7 +3322,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MH/HTP: Hero's Rune [4] - to NE in the small rotunda by the elevator", "Hero's Rune [4]", key="150000,0:0015007390::"),
         ERLocationData("MH/HTP: Smithing Stone [8] - NE in the large rotunda by the elevator", "Smithing Stone [8]", key="150000,0:0015007400::"),
     ],
-    "volcano":[
+    "Volcano Manor Entrance":[ #volcano
         #ERLocationData("VM: Drawing-Room Key - Given by Tanith upon joining Volcano Manor, or in her chair after defeating Rykard", "Drawing-Room Key", key="160000,0:0000400072::", racemode=True),
         #ERLocationData("VM: Letter to Patches - ", "Letter to Patches", key="160000,0:0000400180::", missable=True),
         #ERLocationData("VM: Magma Whip Candlestick - ", "Magma Whip Candlestick", key="160000,0:0000400182::", missable=True),
@@ -3346,13 +3353,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(MCV): Cloth Trousers - Patches chest", "Cloth Trousers", key="310000,0:0031007010::"),
         ERLocationData("LG/(MCV): Glass Shard x3 - Patches chest, after you've given the Dancer's Castanets to Tanith", "Glass Shard x3", key="310000,0:0031007030::", missable=True),
     ],
-    "volcano_temple":[
-        #ERLocationData("VM: Rykard's Great Rune - Dropped by Rykard", "Rykard's Great Rune", key="160000,0:0000000174::", boss=True, deadend=True),
+    "Volcano Manor Upper":[ # volcano_temple
+        ERLocationData("VM/AP: Rykard's Great Rune - mainboss drop", "Rykard's Great Rune", key="160000,0:0000000174::", boss=True, deadend=True),
         #ERLocationData("VM: Missionary's Cookbook [6] - ", "Missionary's Cookbook [6]", key="160000,0:0000067130::", missable=True),
         #ERLocationData("VM: Consort's Mask - ", "Consort's Mask", key="160000,0:0000400071::", missable=True, death=True),
         #ERLocationData("VM: Consort's Robe - ", "Consort's Robe", key="160000,0:0000400071::", missable=True, death=True),
         #ERLocationData("VM: Consort's Trousers - ", "Consort's Trousers", key="160000,0:0000400071::", missable=True, death=True),
-        #ERLocationData("VM: Remembrance of the Blasphemous - Dropped by Rykard", "Remembrance of the Blasphemous", key="160000,0:0000510220::", boss=True, deadend=True, remembrance=True),
+        ERLocationData("VM/AP: Remembrance of the Blasphemous - mainboss drop", "Remembrance of the Blasphemous", key="160000,0:0000510220::", boss=True, deadend=True, remembrance=True),
         #ERLocationData("VM: Somber Smithing Stone [5] - ", "Somber Smithing Stone [5]", key="160000,0:0000540592::", missable=True, scarab=True),
         #ERLocationData("VM: Ash of War: Royal Knight's Resolve - ", "Ash of War: Royal Knight's Resolve", key="160000,0:0016007020::", missable=True),
         #ERLocationData("VM: Golden Rune [9] - ", "Golden Rune [9]", key="160000,0:0016007320::", missable=True),
@@ -3371,7 +3378,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("VM: Eye Surcoat - ", "Eye Surcoat", key="160000,0:0016007730::", missable=True),
         #ERLocationData("VM: Aspects of the Crucible: Breath - Dropped by the Crucible Knight who invades after you kill Tanith as she consumes Rykard", "Aspects of the Crucible: Breath", key="160000,0:0016007950::", missable=True),
     ],
-    "volcano_town":[
+    "Volcano Manor":[ # volcano_town
         #ERLocationData("VM: Godskin Stitcher - Dropped by Godskin Noble", "Godskin Stitcher", key="160000,0:0000510210::", boss=True),
         #ERLocationData("VM: Noble Presence - Dropped by Godskin Noble", "Noble Presence", key="160000,0:0000510210::", boss=True),
         #ERLocationData("VM: Inquisitor's Girandole - Dropped by Abductor Virgins", "Inquisitor's Girandole", key="160000,0:0000510290::", altboss=True, miscboss=True),
@@ -3699,7 +3706,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK: Hefty Beast Bone x3 - On a corpse in an alcove with two bats before the ladder which goes up to the draining lever", "Hefty Beast Bone x3", key="210000,0:0021007410::"),
         #ERLocationData("SK: Crab Eggs x2 - On a corpse on the first rooftop after the Church District Entrance grace with no small crabs attending to it", "Crab Eggs x2", key="210000,0:0021007420::"),
     ],
-    "gravesite":[
+    "gravesite":[ # will be done by Legofacebob
         #ERLocationData("GP: Cross Map - Given by Hornsent at Three-Path Cross or Highroad Cross", "Cross Map", key="210100,0:0000400610::", missable=True),
         #ERLocationData("GP: Furnace Visage x3 - Given by Hornsent after giving him Scorpion Stew", "Furnace Visage x3", key="210100,0:0000400612::", missable=True),
         #ERLocationData("GP: Ghost Glovewort [4] - On a corpse in front of the southmost gravestone in the cliffside graveyard west of Prospect Town", "Ghost Glovewort [4]", key="614441,0:2044417000::"),
@@ -5340,7 +5347,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("MotG: Bolt - Sold by the Hermit Merchant along a cliffside to the west of Stargazer's Ruins", "Bolt", key="605156,3:0000000000:100900:", shop=True),
         #ERLocationData("MotG: Ballista Bolt - Sold by the Hermit Merchant along a cliffside to the west of Stargazer's Ruins", "Ballista Bolt", key="605156,3:0000000000:100900:", shop=True),
         #ERLocationData("MotG: Lightning Greatbolt - Sold by the Hermit Merchant along a cliffside to the west of Stargazer's Ruins", "Lightning Greatbolt", key="605156,3:0000000000:100900:", shop=True),
-        #ERLocationData("MotG: Veteran's Prosthesis - Dropped by Commander Niall in Castle Sol", "Veteran's Prosthesis", key="605157,0:0000510840::", boss=True),
+        ERLocationData("MotG/(CS): Veteran's Prosthesis - mainboss drop", "Veteran's Prosthesis", key="605157,0:0000510840::", boss=True),
         #ERLocationData("MotG: "Sorcerer" Painting - Painting in Castle Sol inside of a standalone central building. From the outside grace, take a left turn at the first courtyard and follow clockwise along the wall of the castle until reaching a room with a ladder to the left. Climb up the ladder and proceed to the west until reaching a wooden bridge that crosses onto the roof othe building, and take a ladder down from the roof inside of it.", ""Sorcerer" Painting", key="605157,0:0000580030::", painting=True),
         #ERLocationData("MotG: Freezing Grease x5 - On a corpse in Castle Sol on scaffolding outside the west wall of a standalone central building. From the outside grace, go into the first courtyard and up the wooden stairs to the east, then go west upon reaching the building with gallows.", "Freezing Grease x5", key="605157,0:1051577000::"),
         #ERLocationData("MotG: Golden Rune [10] - ", "Golden Rune [10]", key="605157,0:1051577010::"),
@@ -5461,8 +5468,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("MG: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="605254,0:1052547980::"),
         #ERLocationData("MG: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="605254,0:1052547990::"),
     ],
-    "Castle Sol (End)":[ # mountaintops_sol
-        #ERLocationData("MG/(CS): Haligtree Secret Medallion (Left) - after boss", "Haligtree Secret Medallion (Left)", key="605158,0:1051587800::", racemode=True, nocrawl=True),
+    "Castle Sol End":[ # mountaintops_sol          done
+        ERLocationData("MotG/(CS): Haligtree Secret Medallion (Left) - after boss", "Haligtree Secret Medallion (Left)", key="605158,0:1051587800::", racemode=True, nocrawl=True),
     ],
     
     # MARK: More DLC
@@ -5904,8 +5911,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
 }
 
-for i, region in enumerate(region_order + region_order_dlc):
-    for location in location_tables[region]: location.region_value = i
+# for i, region in enumerate(region_order + region_order_dlc):
+#     for location in location_tables[region]: location.region_value = i
 
 for region in region_order_dlc:
     for location in location_tables[region]:
@@ -5967,6 +5974,10 @@ for location_name, location_table in location_tables.items():
             location_data.name for location_data in location_table
             if not location_data.is_event
         ])
+    
+    # Add enemy drop to drop tag so it can be exclued
+    if location_name.__contains__("enemy drop"):
+        location_data.drop = True    
 
 temp = location_name_groups['Gravesite Plain'] # might work shrug
 counter = 0
