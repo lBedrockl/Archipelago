@@ -41,8 +41,8 @@ might be to complex todo, since it would need logic so you don't get access to a
 
 
 
-last update 25/08/29
-current progress 2153 / 4980
+last update 25/09/01
+current progress 2278 / 4980
 
 
 people who want to be pinged for playtesting

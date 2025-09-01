@@ -177,6 +177,9 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Ainsel River")
         
         create_connection("Liurnia of The Lakes", "Raya Lucaria Academy")
+        create_connection("Raya Lucaria Academy", "Raya Lucaria Academy Main")
+        create_connection("Raya Lucaria Academy Main", "Raya Lucaria Academy Chest")
+        create_connection("Raya Lucaria Academy Main", "Raya Lucaria Academy Library")
         
         
         #create_connection("Siofra River", "Caelid") # dont really need this but putting it here
@@ -615,6 +618,22 @@ class EldenRing(World):
         self._add_location_rule("WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N", 
                                 lambda state: state.has("\"Prophecy\" Painting", self.player))
         
+        # Other Rules
+        
+        if self.options.enemy_rando == False: # funny shackle rule
+            self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Margit's Shackle", self.player))
+            self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Mohg's Shackle", self.player))
+        
+        # Vanilla Rules
+        
+        # you can kill gostoc and not open main gate
+        self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Rusty Key", self.player))
+        self._add_entrance_rule("Raya Lucaria Academy", lambda state: state.has("Academy Glintstone Key", self.player))
+        self._add_location_rule([ # stuff in RLA but not
+                "RLA/MAG: Strip of White Flesh x2 - down SE ramp before gate",
+                "RLA/MAG: Celestial Dew - down SE ramp by gate",
+            ], lambda state: state.can_reach("Raya Lucaria Academy"))
+        
         # festival // altus grace touch or ranni quest stuff
         self._add_location_rule([
             "CL/(RC): Smithing Stone [6] - in church during festival",
@@ -623,12 +642,6 @@ class EldenRing(World):
         
         self._add_entrance_rule("Nokron Start", lambda state: self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
            
-        # you can kill gostoc and not open main gate
-        self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Rusty Key", self.player))
-        if self.options.enemy_rando == False: # funny shackle rule
-            self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Margit's Shackle", self.player))
-            self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Mohg's Shackle", self.player))
-        
         self._add_entrance_rule("Moonlight Altar", lambda state: state.has("Dark Moon Ring", self.player))
         
         # ashen capital only after getting farum boss Remembrance
@@ -1005,6 +1018,9 @@ class EldenRing(World):
         
         "NR/(NSG): Fingerslayer Blade - in chest lower area, ranni quest" # nokron chest items
         "NR/(NSG): Great Ghost Glovewort - in chest lower area, ranni quest" # update to be better
+        
+        self._add_location_rule(["RLA/RLGL: Dark Moon Ring - in chest, requires Discarded Palace Key",
+        ], lambda state: ( state.has("Discarded Palace Key", self.player)))
         
         "MA/(CMC): Dark Moon Greatsword - talk to Ranni under CMC" # MA requires the ring to enter, but this check requires nothing
         
