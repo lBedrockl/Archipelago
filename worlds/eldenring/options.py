@@ -82,11 +82,11 @@ class AutoEquipOption(Toggle):
     display_name = "Auto-Equip"
     
 class LocalItemOnly(Toggle):
-    """Makes all items that are not progression or useful items be local items."""
+    """Only progression or useful items will show up in other players games."""
     display_name = "Local Item Option"
     
 class ExcludeLocalItemOnly(OptionDict):
-    """If LocalItemOnly is true then these item categories will be excluded from being local only.
+    """If LocalItemOnly is true then these item categories will show up in other players games.
     - [~600] **Weapon**: All Weapons and Ammo.
     - [621] **Armor**: All Armors.
     - [154] **Accessory**: All Talismans.
@@ -98,7 +98,9 @@ class ExcludeLocalItemOnly(OptionDict):
     default = frozenset({"Weapon, Accessory"})
 
 class ERExcludeLocations(ExcludeLocations):
-    """Prevent these locations from having an important item."""
+    """Prevent these locations from having an important item.
+    - **dlc**: If you want DLC items but dont wanna do DLC.
+    - **hidden: Hard to find items.**"""
     default = frozenset({"Hidden"})
     
 class ERImportantLocations(PriorityLocations):
