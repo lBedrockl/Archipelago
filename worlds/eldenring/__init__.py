@@ -681,12 +681,41 @@ class EldenRing(World):
             else:
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")
                 # make this the mend the elden ring event, idk how todo that rn       
-        """elif self.options.ending_condition == 2:
-            # all remembrances # need each remembrances check from each boss
+        elif self.options.ending_condition == 2:
+            self.multiworld.completion_condition[self.player] = [ lambda state: 
+                self._can_get(state, "SV/SC: Remembrance of the Grafted - mainboss drop")
+                and self._can_get(state, "RLA: Remembrance of the Full Moon Queen - mainboss drop")
+                and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop")
+                and self._can_get(state, "NR/(HG): Remembrance of the Regal Ancestor - boss drop")
+                and self._can_get(state, "VM/AP: Remembrance of the Blasphemous - mainboss drop")
+                and self._can_get(state, "LRC/QB: Remembrance of the Omen King - mainboss drop")
+                and self._can_get(state, "LR: Remembrance of the Naturalborn - mainboss drop")
+                and self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
+                and self._can_get(state, "FA/BGB: Remembrance of the Dragonlord - alt mainboss drop")
+                # i think this is missable   and self._can_get(state, "DD/AR: Remembrance of the Lichdragon - mainboss drop")
+                and self._can_get(state, "EBH/HR: Remembrance of the Rot Goddess - mainboss drop")
+                and self._can_get(state, "MotG/FF: Remembrance of the Fire Giant - mainboss drop")
+                and self._can_get(state, "FA/BGB: Remembrance of the Black Blade - mainboss drop")
+                and self._can_get(state, "LAC/QB: Remembrance of Hoarah Loux - mainboss drop")
+                and self._can_get(state, "ET: Elden Remembrance - mainboss drop")
+            ]
             if self.options.enable_dlc:
-        else:
-            # all bosses # need one check from each boss :skull:
-            if self.options.enable_dlc:"""
+                self.multiworld.completion_condition[self.player] += [ lambda state: 
+                    self._can_get(state, "BTS/SF: Remembrance of the Dancing Lion - mainboss drop")
+                    and self._can_get(state, "CE/CLC: Remembrance of the Twin Moon Knight - mainboss drop")
+                    and self._can_get(state, "SK/DCE: Remembrance of the Impaler - mainboss drop")
+                    and self._can_get(state, "STB/TWS: Remembrance of the Shadow Sunflower - mainboss drop")
+                    and self._can_get(state, "SV/SKBG: Remembrance of the Wild Boar Rider - mainboss drop")
+                    and self._can_get(state, "SCF/FD: Remembrance of Putrescence - mainboss drop")
+                    and self._can_get(state, "MM/SFC: Remembrance of the Lord of Frenzied Flame - mainboss drop")
+                    and self._can_get(state, "FRM/CMM: Remembrance of the Mother of Fingers - mainboss drop")
+                    and self._can_get(state, "ARR/CBME: Remembrance of the Saint of the Bud - mainboss drop")
+                    and self._can_get(state, "JP/JPS: Heart of Bayle - mainboss drop")
+                    and self._can_get(state, "EI: Remembrance of a God and a Lord - mainboss drop")
+                ]
+        # else:
+        #     # all bosses # need one check from each boss :skull:
+        #     if self.options.enable_dlc:
             
     
     def _region_lock_items(self) -> None:
