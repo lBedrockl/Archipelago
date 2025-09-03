@@ -45,6 +45,7 @@ region_order = [
 
     # Liurnia
     "Liurnia of The Lakes",
+    "Bellum Highway",
     "Chapel of Anticipation [Return]",
     "Road's End Catacombs",
     "Black Knife Catacombs",
@@ -516,9 +517,14 @@ class ERLocation(Location):
 # for descriptions 
 # [area acronym]/[grace or location acronym]: [original item] - [what gives item, if it does] [direction from grace] or [very brief description]
 
-# CD/AFCHN: Lifesteal Fist - scarab to NW         # grace
-# LG/WR: Golden Rune [1] - graveyard S of WR      # location
-# LG/(CE): Smithing Stone [1] - on anvil          # within location
+# CD/AFCHN: Lifesteal Fist - scarab to NW         # grace             to DIR      
+# LG/WR: Golden Rune [1] - graveyard S of WR      # location          DIR of location acro
+# LG/(CE): Smithing Stone [1] - on anvil          # within location   (location acro) at start
+
+# the rare hostile npc's that aren't red      # hostile npc drop
+# invaders                                    # invader drop
+# non boss enemies with a guaranteed drop     # enemy drop
+# bosses                                      # boss drop
 
 # for shops with inf of an item, leave to be nothing
 
@@ -542,6 +548,8 @@ class ERLocation(Location):
 
 # ctrl + alt and down arrow to select multiple lines
 
+# all regions that don't have a name were done by Bedrock
+# regions done by others are proof read and fixed by Bedrock
 location_tables: Dict[str, List[ERLocationData]] = {
     # MARK: Base Game
     "Stormveil Throne":[ # stormveil_throne   done
@@ -1541,7 +1549,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("LL: Gavel of Haima - In a chest in Converted Fringe Tower, which is opened by using the Erudition gesture while wearing a Glintstone Crown", "Gavel of Haima", key="603948,0:1039487100::", rise=True, missable=True, chest=True),
         ERLocationData("LL/LHS: Treespear - in carriage chest to SE", "Treespear", key="604040,0:1040407000::", chest=True),
     ],
-    "bellum":[
+    "Bellum Highway":[ # bellum
         #ERLocationData("LL: Nightrider Glaive - Dropped by the Night's Cavalry between East Raya Lucaria Gate and Bellum Church. They only spawn at night", "Nightrider Glaive", key="603648,0:1036487400::", altboss=True, night=True, nocrawl=True, overworldboss=True),
         #ERLocationData("LL: Ash of War: Giant Hunt - Dropped by the Night's Cavalry between East Raya Lucaria Gate and Bellum Church. They only spawn at night", "Ash of War: Giant Hunt", key="603648,0:1036487400::", altboss=True, night=True, nocrawl=True, overworldboss=True),
         #ERLocationData("LL: Rift Shield - Sold by Nomadic Merchant down the cliffside pathway from Bellum Church", "Rift Shield", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
@@ -2366,10 +2374,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DD/TNEC: Somber Smithing Stone [6] - scarab to NW on some roots", "Somber Smithing Stone [6]", key="120300,0:0000540668::", scarab=True),
         ERLocationData("DD/TNEC: Somber Smithing Stone [6] - scarab to E, N of the circle structure", "Somber Smithing Stone [6]", key="120300,0:0000540670::", scarab=True),
         ERLocationData("DD/TNEC: Stonesword Key - to NW, on top of W structure", "Stonesword Key", key="120300,0:0012037010::"),
-        ERLocationData("DD/GWC: Smithing Stone [6] - up on root to W", "Smithing Stone [6]", key="120300,0:0012037060::"),
-        ERLocationData("DD/GWC: Holy Grease x3 - middle of root crossing to W", "Holy Grease x3", key="120300,0:0012037070::"),
-        ERLocationData("DD/GWC: Elden Stars - on exit ledge from ant cave to W", "Elden Stars", key="120300,0:0012037080::"),
-        ERLocationData("DD/GWC: Smithing Stone [4] - on end root after root crossing to W", "Smithing Stone [4]", key="120300,0:0012037090::"),
+        ERLocationData("DD/GWC: Smithing Stone [6] -  to W up on root", "Smithing Stone [6]", key="120300,0:0012037060::"),
+        ERLocationData("DD/GWC: Holy Grease x3 -  to W middle of root crossing", "Holy Grease x3", key="120300,0:0012037070::"),
+        ERLocationData("DD/GWC: Elden Stars -  to W on exit ledge from ant cave", "Elden Stars", key="120300,0:0012037080::"),
+        ERLocationData("DD/GWC: Smithing Stone [4] -  to W on end root after root crossing", "Smithing Stone [4]", key="120300,0:0012037090::"),
         ERLocationData("DD/DD: Golden Rune [5] - way to SE out on the end of a root", "Golden Rune [5]", key="120300,0:0012037100::"),
         ERLocationData("DD/DD: Golden Rune [6] - 3 corpses to E", "Golden Rune [6]", key="120300,0:0012037110::"),
         ERLocationData("DD/DD: Warming Stone x3 - 3 corpses to E", "Warming Stone x3", key="120300,0:0012037120::"),
@@ -2390,10 +2398,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DD/TNEC: Somber Smithing Stone [6] - way to N in a tilled structure", "Somber Smithing Stone [6]", key="120300,0:0012037270::"),
         ERLocationData("DD/TNEC: Golden Rune [8] - to NW on the NE end of the roots", "Golden Rune [8]", key="120300,0:0012037280::"),
         ERLocationData("DD/TNEC: Golden Rune [8] - to NW by base of the roots", "Golden Rune [8]", key="120300,0:0012037290::"),
-        ERLocationData("DD/TNEC: Crucible Gauntlets - in chest within tree stump way to W", "Crucible Gauntlets", key="120300,0:0012037300::", chest=True),
-        ERLocationData("DD/TNEC: Crucible Greaves - in chest within tree stump way to W", "Crucible Greaves", key="120300,0:0012037300::", chest=True),
-        ERLocationData("DD/TNEC: Crucible Tree Helm - in chest within tree stump way to W", "Crucible Tree Helm", key="120300,0:0012037300::", chest=True),
-        ERLocationData("DD/TNEC: Crucible Tree Armor - in chest within tree stump way to W", "Crucible Tree Armor", key="120300,0:0012037300::", chest=True),
+        ERLocationData("DD/TNEC: Crucible Gauntlets - in chest way to W within tree stump", "Crucible Gauntlets", key="120300,0:0012037300::", chest=True),
+        ERLocationData("DD/TNEC: Crucible Greaves - in chest way to W within tree stump", "Crucible Greaves", key="120300,0:0012037300::", chest=True),
+        ERLocationData("DD/TNEC: Crucible Tree Helm - in chest way to W within tree stump", "Crucible Tree Helm", key="120300,0:0012037300::", chest=True),
+        ERLocationData("DD/TNEC: Crucible Tree Armor - in chest way to W within tree stump", "Crucible Tree Armor", key="120300,0:0012037300::", chest=True),
         ERLocationData("DD/AR: Somber Smithing Stone [7] - to S down a hole in upper area", "Somber Smithing Stone [7]", key="120300,0:0012037330::"),
         ERLocationData("DD/TNEC: Arteria Leaf x5 - to NE, on top of building by spiritspring", "Arteria Leaf x5", key="120300,0:0012037340::"),
         ERLocationData("DD/TNEC: Smithing Stone [7] - to NE, on middle of building by spiritspring", "Smithing Stone [7]", key="120300,0:0012037350::"),
@@ -2416,17 +2424,17 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DD/TNEC: Mausoleum Soldier Ashes - way to N on the N most ledge behind tilled structure", "Mausoleum Soldier Ashes", key="120300,0:0012037520::"),
         ERLocationData("DD/TNEC: Somber Smithing Stone [7] - to N in a cave S of the walking mausoleum", "Somber Smithing Stone [7]", key="120300,0:0012037530::"),
         ERLocationData("DD/TNEC: Golden Rune [8] - to N in a cave S of the walking mausoleum", "Golden Rune [8]", key="120300,0:0012037540::"),
-        ERLocationData("DD/GWC: Somber Smithing Stone [6] - in lower ant cave to W", "Somber Smithing Stone [6]", key="120300,0:0012037550::"),
-        ERLocationData("DD/GWC: Rune Arc - enemy drop 1 in ant cave to W", "Rune Arc", key="120300,0:0012037800::"),
-        ERLocationData("DD/GWC: Numen's Rune - enemy drop 1 in ant cave to W", "Numen's Rune", key="120300,0:0012037800::"),
-        ERLocationData("DD/GWC: Rune Arc - enemy drop 2 in ant cave to W", "Rune Arc", key="120300,0:0012037810::"),
-        ERLocationData("DD/GWC: Numen's Rune - enemy drop 2 in ant cave to W", "Numen's Rune", key="120300,0:0012037810::"),
-        ERLocationData("DD/GWC: Rune Arc - enemy drop 3 in ant cave to W", "Rune Arc", key="120300,0:0012037820::"),
-        ERLocationData("DD/GWC: Numen's Rune - enemy drop 3 in ant cave to W", "Numen's Rune", key="120300,0:0012037820::"),
-        ERLocationData("DD/GWC: Rune Arc - enemy drop 4 in ant cave to W", "Rune Arc", key="120300,0:0012037830::"),
-        ERLocationData("DD/GWC: Numen's Rune - enemy drop 4 in ant cave to W", "Numen's Rune", key="120300,0:0012037830::"),
-        ERLocationData("DD/GWC: Rune Arc - enemy drop 5 in ant cave to W", "Rune Arc", key="120300,0:0012037840::"),
-        ERLocationData("DD/GWC: Numen's Rune - enemy drop 5 in ant cave to W", "Numen's Rune", key="120300,0:0012037840::"),
+        ERLocationData("DD/GWC: Somber Smithing Stone [6] - to W in lower ant cave", "Somber Smithing Stone [6]", key="120300,0:0012037550::"),
+        ERLocationData("DD/GWC: Rune Arc - enemy drop 1 to W in ant cave", "Rune Arc", key="120300,0:0012037800::"),
+        ERLocationData("DD/GWC: Numen's Rune - enemy drop 1 to W in ant cave", "Numen's Rune", key="120300,0:0012037800::"),
+        ERLocationData("DD/GWC: Rune Arc - enemy drop 2 to W in ant cave", "Rune Arc", key="120300,0:0012037810::"),
+        ERLocationData("DD/GWC: Numen's Rune - enemy drop 2 to W in ant cave", "Numen's Rune", key="120300,0:0012037810::"),
+        ERLocationData("DD/GWC: Rune Arc - enemy drop 3 to W in ant cave", "Rune Arc", key="120300,0:0012037820::"),
+        ERLocationData("DD/GWC: Numen's Rune - enemy drop 3 to W in ant cave", "Numen's Rune", key="120300,0:0012037820::"),
+        ERLocationData("DD/GWC: Rune Arc - enemy drop 4 to W in ant cave", "Rune Arc", key="120300,0:0012037830::"),
+        ERLocationData("DD/GWC: Numen's Rune - enemy drop 4 to W in ant cave", "Numen's Rune", key="120300,0:0012037830::"),
+        ERLocationData("DD/GWC: Rune Arc - enemy drop 5 to W in ant cave", "Rune Arc", key="120300,0:0012037840::"),
+        ERLocationData("DD/GWC: Numen's Rune - enemy drop 5 to W in ant cave", "Numen's Rune", key="120300,0:0012037840::"),
         ERLocationData("DD/TNEC: Siluria's Tree - boss drop way to W by tree stump", "Siluria's Tree", key="120300,0:0012037950::", altboss=True, miscboss=True),
         ERLocationData("DD/GWC: Staff of the Avatar - enemy drop to S", "Staff of the Avatar", key="120300,0:0012037960::"),
         ERLocationData("DD/DD: Prince of Death's Cyst - enemy drop path to NE, E of circle structure behind waterfall", "Prince of Death's Cyst", key="120300,0:0012037990::", enemytalisman=True),
@@ -5482,7 +5490,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: More DLC
-    "rauhruins":[
+    "rauhruins":[ # will be done by Layka
         ERLocationData("ARR/CBME: Remembrance of the Saint of the Bud - mainboss drop", "Remembrance of the Saint of the Bud", key="614445,0:0000510600::", boss=True, remembrance=True),
         #ERLocationData("ARR: Scadutree Fragment - In front of the northwest wall monument on the second floor of the cave after the West Ruins grace.", "Scadutree Fragment", key="614445,0:2044457000::", fragment=True),
         #ERLocationData("ARR: Four-Toed Fowl Foot x3 - On a corpse found on the way to the Grand Stairway elevator, right after dropping down off the south edge of the West Ruins third-floor courtyard to the stone pillars and arches below", "Four-Toed Fowl Foot x3", key="614445,0:2044457010::"),
@@ -5648,7 +5656,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("CC: Arrow x10 - On the south shore in the center of the beach before Rhia Ruins", "Arrow x10", key="614937,0:2049377000::"),
         #ERLocationData("CC: Smithing Stone [2] x6 - On a corpse in front of a grafted grave on a hill overlooking the beach before Rhia Ruins, west of the giant coffin leading up to the ruins", "Smithing Stone [2] x6", key="614938,0:2049387060::"),
     ],
-    "charo":[
+    "charo":[ # will be done by Seb
         #ERLocationData("CHG: Glovewort Crystal Tear - Dropped by the Furnace Golem in Charo's Hidden Grave, killed by throwing Hefty Furnace Pots or Hefty Fire Pots from above", "Glovewort Crystal Tear", key="614639,0:0000065460::", furnacegolem=True, missable=True),
         #ERLocationData("CHG: Fireproof Pickled Liver - On a corpse underneath the Furnace Golem area by the spiritspring, at the source of a river with waterfalls downstream", "Fireproof Pickled Liver", key="614639,0:2046397030::"),
         #ERLocationData("CHG: Gravebird Ashes - In front of the massive grafted gravestone in the far southwest corner of the west plateau", "Gravebird Ashes", key="614639,0:2046397040::"),
