@@ -354,7 +354,10 @@ class ERLocationData:
     """Whether this location can appear in an raceshop."""
     
     upgradeshop: bool = False
-    """Whether this location of upgrade bell bearing."""
+    """Whether this location of a upgrade bell bearing."""
+    
+    smithingbell: bool = False
+    """Whether this location of a smithing stone bell bearing"""
     
     keyitem: bool = False # racemode
     """Whether this location is a key item."""
@@ -2724,7 +2727,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("FA: Golden Rune [12] - ", "Golden Rune [12]", key="130000,0:0013007740::", missable=True),
         #ERLocationData("FA: Boltdrake Talisman +2 - At the end of a long path dropping down to the left of the low-health AOE-spamming dragon after Dragon Temple Rooftop, up a ladder, an elevator, and another ladder", "Boltdrake Talisman +2", key="130000,0:0013007760::", talisman=True, outoftheway=True),
         #ERLocationData("FA: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="130000,0:0013007770::", missable=True),
-        #ERLocationData("FA: Somberstone Miner's Bell Bearing [5] - On a corpse in front of the altar in the building down the elevator from the Beside the Great Beside Site of Grace", "Somberstone Miner's Bell Bearing [5]", key="130000,0:0013007790::", upgradeshop=True),
+        #ERLocationData("FA: Somberstone Miner's Bell Bearing [5] - On a corpse in front of the altar in the building down the elevator from the Beside the Great Beside Site of Grace", "Somberstone Miner's Bell Bearing [5]", key="130000,0:0013007790::", upgradeshop=True, smithingbell=True),
         #ERLocationData("FA: Golden Rune [12] - ", "Golden Rune [12]", key="130000,0:0013007800::", missable=True),
         #ERLocationData("FA: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="130000,0:0013007810::", missable=True),
         #ERLocationData("FA: Somber Smithing Stone [8] - ", "Somber Smithing Stone [8]", key="130000,0:0013007820::", missable=True),
@@ -2857,7 +2860,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("VM: Bloodhound Claws - ", "Bloodhound Claws", key="160000,0:0016007980::", missable=True),
     ],
     "farumazula_start":[ # will be done by Kholkikos
-        #ERLocationData("FA: Smithing-Stone Miner's Bell Bearing [4] - Dropped by Godskin Duo", "Smithing-Stone Miner's Bell Bearing [4]", key="130000,0:0000510140::", boss=True, upgradeshop=True),
+        #ERLocationData("FA: Smithing-Stone Miner's Bell Bearing [4] - Dropped by Godskin Duo", "Smithing-Stone Miner's Bell Bearing [4]", key="130000,0:0000510140::", boss=True, upgradeshop=True, smithingbell=True),
         #ERLocationData("FA: Ash of War: Black Flame Tornado - Dropped by Godskin Duo", "Ash of War: Black Flame Tornado", key="130000,0:0000510140::", boss=True, upgradeshop=True),
         #ERLocationData("FA: Smithing Stone [8] - ", "Smithing Stone [8]", key="130000,0:0013007000::"),
         #ERLocationData("FA: Golden Rune [9] - ", "Golden Rune [9]", key="130000,0:0013007010::"),
@@ -2876,7 +2879,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("FA: Ancient Dragon Prayerbook - On a corpse on the lower level of the open room before the Tempest-Facing Balcony Site of Grace", "Ancient Dragon Prayerbook", key="130000,0:0013007120::"),
         #ERLocationData("FA: Hero's Rune [2] - ", "Hero's Rune [2]", key="130000,0:0013007130::"),
         #ERLocationData("FA: Smithing Stone [6] - ", "Smithing Stone [6]", key="130000,0:0013007140::"),
-        #ERLocationData("FA: Somberstone Miner's Bell Bearing [4] - On a corpse on the cliffside north of the Tempest-Facing Balcony Site of Grace", "Somberstone Miner's Bell Bearing [4]", key="130000,0:0013007150::", upgradeshop=True),
+        #ERLocationData("FA: Somberstone Miner's Bell Bearing [4] - On a corpse on the cliffside north of the Tempest-Facing Balcony Site of Grace", "Somberstone Miner's Bell Bearing [4]", key="130000,0:0013007150::", upgradeshop=True, smithingbell=True),
         #ERLocationData("FA: Somber Smithing Stone [9] - ", "Somber Smithing Stone [9]", key="130000,0:0013007170::"),
         #ERLocationData("FA: Fulgurbloom x4 - ", "Fulgurbloom x4", key="130000,0:0013007180::"),
         #ERLocationData("FA: Smithing Stone [8] - ", "Smithing Stone [8]", key="130000,0:0013007190::"),
@@ -4411,7 +4414,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(LT): Glintstone Scrap x3 - off side of second elevator", "Glintstone Scrap x3", key="320100,0:0032017040::"),
     ],
     "Raya Lucaria Crystal Tunnel":[ # liurnia_tunnel      done
-        ERLocationData("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - boss drop", "Smithing-Stone Miner's Bell Bearing [1]", key="320200,0:0000520620::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
+        ERLocationData("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - boss drop", "Smithing-Stone Miner's Bell Bearing [1]", key="320200,0:0000520620::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True, smithingbell=True),
         ERLocationData("LL/(RLCT): Somber Smithing Stone [2] - in chest on platform near grace", "Somber Smithing Stone [2]", key="320200,0:0032027000::"),
         ERLocationData("LL/(RLCT): Somber Smithing Stone [3] - the parkour item near top", "Somber Smithing Stone [3]", key="320200,0:0032027010::"),
         ERLocationData("LL/(RLCT): Golden Rune [3] - room before first elevator, under platforms", "Golden Rune [3]", key="320200,0:0032027020::"),
@@ -4431,7 +4434,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AP/(OAT): Troll's Hammer - S hut lower mining room", "Troll's Hammer", key="320400,0:0032047050::"),
     ],
     "Altus Tunnel":[ # altus_tunnel         done
-        ERLocationData("AP/(AT): Somberstone Miner's Bell Bearing [2] - boss drop", "Somberstone Miner's Bell Bearing [2]", key="320500,0:0000520650::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
+        ERLocationData("AP/(AT): Somberstone Miner's Bell Bearing [2] - boss drop", "Somberstone Miner's Bell Bearing [2]", key="320500,0:0000520650::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True, smithingbell=True),
         ERLocationData("AP/(AT): Crystal Dart x8 - side room 2 from grace", "Crystal Dart x8", key="320500,0:0032057000::"),
         ERLocationData("AP/(AT): Arteria Leaf x2 - dead-end up wood platform in mining room", "Arteria Leaf x2", key="320500,0:0032057010::"),
         ERLocationData("AP/(AT): Golden Rune [7] - right path from mining room, middle chasm platform", "Golden Rune [7]", key="320500,0:0032057020::"),
@@ -4451,7 +4454,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     "Sellia Crystal Tunnel":[ # caelid_selliatunnel    done
         ERLocationData("CL/(SCT): Gravity Stone Chunk x10 - boss drop", "Gravity Stone Chunk x10", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
-        ERLocationData("CL/(SCT): Somberstone Miner's Bell Bearing [1] - boss drop", "Somberstone Miner's Bell Bearing [1]", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
+        ERLocationData("CL/(SCT): Somberstone Miner's Bell Bearing [1] - boss drop", "Somberstone Miner's Bell Bearing [1]", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True, smithingbell=True),
         ERLocationData("CL/(SCT): Smithing Stone [7] x5 - boss drop", "Smithing Stone [7] x5", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("CL/(SCT): Somber Smithing Stone [6] - boss drop", "Somber Smithing Stone [6]", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("CL/(SCT): Rot Grease - next to grace", "Rot Grease", key="320800,0:0032087000::"),
@@ -4520,7 +4523,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CO/(ST): Smithing Stone [6] x3 - breakable statue lower room after elevator", "Smithing Stone [6] x3", key="341200,0:0034127130::", breakable=True),
         ERLocationData("CO/(ST): Lightning Grease x4 - on side of root hole", "Lightning Grease x4", key="341200,0:0034127150::"),
         ERLocationData("CO/(ST): Golden Rune [9] - bottom of root hole", "Golden Rune [9]", key="341200,0:0034127160::"),
-        ERLocationData("CO/(ST): Smithing-Stone Miner's Bell Bearing [2] - in chest W side of first room", "Smithing-Stone Miner's Bell Bearing [2]", key="341200,0:0034127900::", upgradeshop=True, chest=True),
+        ERLocationData("CO/(ST): Smithing-Stone Miner's Bell Bearing [2] - in chest W side of first room", "Smithing-Stone Miner's Bell Bearing [2]", key="341200,0:0034127900::", upgradeshop=True, chest=True, smithingbell=True),
     ],
     "Divine Tower of Caelid":[ # caelid_tower   done
         ERLocationData("CL/(DT): Godskin Apostle Hood - boss drop", "Godskin Apostle Hood", key="341300,0:0000510730::", altboss=True, miscboss=True),
@@ -5319,7 +5322,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("MotG: Golden Rune [10] - ", "Golden Rune [10]", key="604953,0:1049537020::"),
         #ERLocationData("MotG: Zamor Ice Storm - ", "Zamor Ice Storm", key="604953,0:1049537030::"),
         #ERLocationData("MotG: Beast Blood x2 - ", "Beast Blood x2", key="604953,0:1049537300::"),
-        #ERLocationData("MotG: Smithing-Stone Miner's Bell Bearing [3] - In a chest down some stairs in southwest Zamor Ruins", "Smithing-Stone Miner's Bell Bearing [3]", key="604953,0:1049537900::", upgradeshop=True, chest=True),
+        #ERLocationData("MotG: Smithing-Stone Miner's Bell Bearing [3] - In a chest down some stairs in southwest Zamor Ruins", "Smithing-Stone Miner's Bell Bearing [3]", key="604953,0:1049537900::", upgradeshop=True, chest=True, smithingbell=True),
         #ERLocationData("MotG: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="605053,0:1050537000::"),
         #ERLocationData("MotG: Smoldering Butterfly x4 - ", "Smoldering Butterfly x4", key="605053,0:1050537300::"),
         #ERLocationData("MotG: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="605053,0:1050537700::", scarab=True),
@@ -5446,7 +5449,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("MotG: Ash of War: Seppuku - ", "Ash of War: Seppuku", key="605357,0:0000540510::", scarab=True),
         #ERLocationData("MotG: Golden Rune [11] - ", "Golden Rune [11]", key="605357,0:1053577300::"),
         #ERLocationData("MotG: Smithing Stone [7] x3 - ", "Smithing Stone [7] x3", key="605455,0:1054557000::"),
-        #ERLocationData("MotG: Somberstone Miner's Bell Bearing [3] - On a corpse in front of the First Church of Marika", "Somberstone Miner's Bell Bearing [3]", key="605455,0:1054557310::", upgradeshop=True),
+        #ERLocationData("MotG: Somberstone Miner's Bell Bearing [3] - On a corpse in front of the First Church of Marika", "Somberstone Miner's Bell Bearing [3]", key="605455,0:1054557310::", upgradeshop=True, smithingbell=True),
         #ERLocationData("MotG: Sacred Tear - At a statue in the First Church of Marika at the southmost end of Freezing Lake", "Sacred Tear", key="605455,0:1054557800::", church=True),
         #ERLocationData("MotG: Dragon Heart - Dropped by Borealis the Freezing Fog", "Dragon Heart", key="605456,0:0000530510::", altboss=True, nocrawl=True, dragonboss=True, overworldboss=True),
     ],

@@ -88,6 +88,17 @@ class EldenRing(World):
                 # there might be some exceptions but lazy all missable :)
                 if not location.boss:
                     location.missable = True
+
+        if self.options.smithing_bell_bearing_option.value == 1:
+            item_table["Smithing-Stone Miner's Bell Bearing [1]","Smithing-Stone Miner's Bell Bearing [2]",
+                        "Smithing-Stone Miner's Bell Bearing [3]","Smithing-Stone Miner's Bell Bearing [4]",
+                        "Somberstone Miner's Bell Bearing [1]","Somberstone Miner's Bell Bearing [2]",
+                        "Somberstone Miner's Bell Bearing [3]","Somberstone Miner's Bell Bearing [4]",
+                        "Somberstone Miner's Bell Bearing [5]",].classification = ItemClassification.progression
+                
+        if self.options.enable_dlc:
+            if self.options.late_dlc:
+                item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
         
         # idk if this works, i pray its just this simple
         if self.options.local_item_option:
@@ -655,6 +666,19 @@ class EldenRing(World):
             state.has("Haligtree Secret Medallion (Left)", self.player) and
             state.has("Haligtree Secret Medallion (Right)", self.player))
         
+        # Smithing bell bearing rules
+        if self.options.smithing_bell_bearing_option.value == 1: # wip not all places have names
+            self._add_entrance_rule("Altus Plateau", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [1]", self.player))
+            self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [2]", self.player))
+            self._add_entrance_rule("motg_flamepeak", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [3]", self.player))
+            self._add_entrance_rule("farumazula_main", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [4]", self.player))
+            
+            self._add_entrance_rule("Dragonbarrow", lambda state: state.has("Somberstone Miner's Bell Bearing [1]", self.player))
+            self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Somberstone Miner's Bell Bearing [2]", self.player))
+            self._add_entrance_rule("motg_flamepeak", lambda state: state.has("Somberstone Miner's Bell Bearing [3]", self.player))
+            self._add_entrance_rule("farumazula_main", lambda state: state.has("Somberstone Miner's Bell Bearing [4]", self.player))
+            self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: state.has("Somberstone Miner's Bell Bearing [5]", self.player))
+        
         # DLC Access Rules Below
         if self.options.enable_dlc:
             if self.options.late_dlc:
@@ -665,8 +689,6 @@ class EldenRing(World):
                     and self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
             else:
-                # makes Pureblood Knight's Medal progression only when late dlc is off, idk if this works
-                item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
                 self._add_entrance_rule("Mohgwyn Palace", # can get to normal way or funny medal
                     lambda state: state.has("Pureblood Knight's Medal", self.player) or state.can_reach("Consecrated Snowfield"))
                 self._add_entrance_rule("Gravesite Plain", 
@@ -1381,6 +1403,10 @@ class EldenRing(World):
             data = location.data
         else:
             data = location_dictionary[location]
+        
+        # dont random smithing bell bearing
+        if data.smithingbell and self.options.smithing_bell_bearing_option.value == 2:
+            return False
 
         return (
             not data.is_event
@@ -1475,6 +1501,7 @@ class EldenRing(World):
                 "death_link": self.options.death_link.value,
                 "random_start": self.options.random_start.value,
                 "auto_equip": self.options.auto_equip.value,
+                "smithing_bell_bearing_option": self.options.smithing_bell_bearing_option.value,
                 "local_item_option": self.options.local_item_option.value,
                 "exclude_local_item_only": self.options.exclude_local_item_only.value,
                 "important_locations": self.options.important_locations.value,
