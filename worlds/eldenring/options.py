@@ -82,11 +82,12 @@ class AutoEquipOption(Toggle):
     display_name = "Auto-Equip"
     
 class LocalItemOnly(Toggle):
-    """Makes all items that are not progression or useful items be local items."""
+    """Only progression or useful items will show up in other players games."""
     display_name = "Local Item Option"
     
 class ExcludeLocalItemOnly(OptionDict):
-    """If LocalItemOnly is true then these item categories will be excluded from being local only.
+    """If LocalItemOnly is true then these item categories will show up in other players games.
+    - [Items] **Item Group**
     - [~600] **Weapon**: All Weapons and Ammo.
     - [621] **Armor**: All Armors.
     - [154] **Accessory**: All Talismans.
@@ -95,10 +96,12 @@ class ExcludeLocalItemOnly(OptionDict):
     
     Goods should always be local only.
     """
-    default = frozenset({"Weapon, Accessory"})
+    default = frozenset({"Weapon", "Armor", "Accessory"})
 
 class ERExcludeLocations(ExcludeLocations):
-    """Prevent these locations from having an important item."""
+    """Prevent these locations from having an important item.
+    - **dlc**: If you want DLC items but dont wanna do DLC.
+    - **hidden: Hard to find items.**"""
     default = frozenset({"Hidden"})
     
 class ERImportantLocations(PriorityLocations):
@@ -112,13 +115,14 @@ class ERImportantLocations(PriorityLocations):
     - [52] *Fragment*: Scadu Fragments.
     - [13] *Cross*: All cross items.
     - [26] *Revered*: Revered Spirit Ashes.
+    - [21] *KeyItem*: Key items.
     
     The total amount of priority checks should be below:
     - **Vanilla**: [95] 
     - **DLC**: [124]
     - THESE CAN CHANGE, need to be updated later
     """
-    default = frozenset({"Remembrance", "Seedtree", "Map", "Cross"})
+    default = frozenset({"Remembrance", "Seedtree", "Map"})
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.

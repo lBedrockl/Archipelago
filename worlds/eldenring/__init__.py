@@ -79,6 +79,9 @@ class EldenRing(World):
                 raise OptionError(f"EldenRing disable_extreme_options Error:"
                                   f"Player {self.player_name} has goods enabled in exclude_local_item_only."
                                   f"This being here means over 3.5k checks come from this world and it bypasses local_item_option.")
+            elif self.options.ending_condition == 3:
+                raise OptionError(f"EldenRing disable_extreme_options Error:"
+                                  f"Player {self.player_name} has ending_condition set to all bosses.")      
                 
         #if self.options.leyndell_missable:
             for location in location_tables["Leyndell, Royal Capital", "leyndell_throne"]:
@@ -165,6 +168,7 @@ class EldenRing(World):
         create_connection("Stormhill", "Liurnia of The Lakes")
         create_connection("Stormveil Throne", "Liurnia of The Lakes")
         # Liurnia of The Lakes
+        create_connection("Liurnia of The Lakes", "Bellum Highway")
         create_connection("Liurnia of The Lakes", "Chapel of Anticipation") # from four belfries
         create_connection("Liurnia of The Lakes", "Road's End Catacombs")
         create_connection("Liurnia of The Lakes", "Black Knife Catacombs")

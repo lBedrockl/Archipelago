@@ -124,7 +124,7 @@ fs.readFile('./itemslots.yaml', 'utf8', function (e, data) {
                         case area.includes("cerulean"): output += 'CC'; break
                         case area.includes("ellac"): output += 'ER'; break
                         case area.includes("ensis"): output += 'CE'; break
-                        case area.includes("abyssal"): output += 'A'; break
+                        case area.includes("abyssal"): output += 'AW'; break
                         case area.includes("jaggedpeak"): output += 'JP'; break
                         case area.includes("scaduview"): output += 'SV'; break
                         case area.includes("hinterland"): output += 'HL'; break
