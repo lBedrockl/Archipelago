@@ -5616,7 +5616,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RR: Beast Horn x2 - On a corpse on the pillar at the east corner of the spiritspring courtyard in West Ruins, on the same level as the stairway two levels up to the northeast of the courtyard. After jumping up the spiritspring to the northeast, instead of going up the stairs, head to the south corner of the platform and jump onto adjacent beams to reach the item. In the base game, the spiritspring can be unsealed from the third-story courtyard after the West Ruins grace.", "Beast Horn x2", key="614546,0:2045467000::"),
         #ERLocationData("RR: Mottled Necklace +2 - In a chest accessed by using the spiritspring in West Ruins to jump up two levels to the northeast, then ascending the stairway. In the base game, the spiritspring can be unsealed from the third-story courtyard after the West Ruins grace.", "Mottled Necklace +2", key="614546,0:2045467900::", talisman=True, nocrawl=True, chest=True),
     ],
-    "cerulean":[
+    "Cerulean Coast":[ # cerulean       done by MartyredG
         ERLocationData("CC/CCW: Grave Keeper's Cookbook [1] - to E by giant tree", "Grave Keeper's Cookbook [1]", key="614638,0:0000068940::", cookbook=True),
         ERLocationData("CC/CCW: Dancing Blade of Ranah - boss drop", "Dancing Blade of Ranah", key="614638,0:0000530810::", altboss=True, nocrawl=True, namelessmausoleum=True, overworldboss=True),
         ERLocationData("CC/CCW: Dancer's Hood - boss drop", "Dancer's Hood", key="614638,0:0000530810::", altboss=True, nocrawl=True, namelessmausoleum=True, overworldboss=True),
@@ -5831,7 +5831,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("JP: Ancient Dragon Smithing Stone - On a corpse guarded by red lightning sludges at the top of the hill with many dead drakes after the second spiritspring after the Jagged Peak Mountainside grace, going straight at the end instead of left to the final spiritspring", "Ancient Dragon Smithing Stone", key="615439,0:2053397000::"),
         #ERLocationData("JP: Igon's Cookbook [2] - On a corpse along the cliffside to the northeast of the Jagged Peak Mountainside grace", "Igon's Cookbook [2]", key="615440,0:0000068570::", cookbook=True),
     ],
-    "cerulean_rhia":[
+    "Finger Ruins of Rhia":[ # cerulean_rhia
         #ERLocationData("CC/FRR: Finger-Weaver's Cookbook [1] - On a corpse in Finger-Weaver's Hovel, up the hill to the west from Rhia Ruins", "Finger-Weaver's Cookbook [1]", key="614938,0:0000068920::", cookbook=True),
         ERLocationData("CC/FRR: Shadow Realm Rune [2] - to S, on corpse on beach", "Shadow Realm Rune [2]", key="615038,0:2050387000::"),
         #ERLocationData("CC/FRR: Grave Glovewort [9] - On the giant coffin before the Rhia Ruins grace", "Grave Glovewort [9]", key="615038,0:2050387010::"),
