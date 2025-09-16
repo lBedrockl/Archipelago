@@ -188,6 +188,8 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Lakeside Crystal Cave")
         create_connection("Liurnia of The Lakes", "Academy Crystal Cave")
         create_connection("Liurnia of The Lakes", "Raya Lucaria Crystal Tunnel")
+        create_connection("Liurnia of The Lakes", "Carian Study Hall")
+        create_connection("Liurnia of The Lakes", "Carian Study Hall (Inverted)")
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
         create_connection("Liurnia of The Lakes", "Ainsel River")
         
@@ -648,6 +650,9 @@ class EldenRing(World):
                 "RLA/MAG: Strip of White Flesh x2 - down SE ramp before gate",
                 "RLA/MAG: Celestial Dew - down SE ramp by gate",
             ], lambda state: state.can_reach("Raya Lucaria Academy"))
+        
+        self._add_entrance_rule("Carian Study Hall (Inverted)", 
+            lambda state: state.has("Carian Inverted Statue", self.player))
         
         # festival // altus grace touch or ranni quest stuff
         self._add_location_rule([
