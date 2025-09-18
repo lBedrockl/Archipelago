@@ -1069,6 +1069,10 @@ class EldenRing(World):
             self._can_get(state, "kill the volcano manor mainboss") 
             and state.has("Dancer's Castanets", self.player)
         ))"""
+        
+        # MARK: Iji
+        "LL/RM: Iji's Mirrorhelm - kill Iji or after quest"
+        
         # MARK: Ranni
         
         """self._add_location_rule([
