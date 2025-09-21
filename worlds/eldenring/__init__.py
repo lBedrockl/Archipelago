@@ -180,7 +180,6 @@ class EldenRing(World):
         create_connection("Stormveil Throne", "Liurnia of The Lakes")
         # Liurnia of The Lakes
         create_connection("Liurnia of The Lakes", "Bellum Highway")
-        create_connection("Liurnia of The Lakes", "Chapel of Anticipation") # from four belfries
         create_connection("Liurnia of The Lakes", "Road's End Catacombs")
         create_connection("Liurnia of The Lakes", "Black Knife Catacombs")
         create_connection("Liurnia of The Lakes", "Cliffbottom Catacombs")
@@ -192,6 +191,10 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Carian Study Hall (Inverted)")
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
         create_connection("Liurnia of The Lakes", "Ainsel River")
+        
+        create_connection("Liurnia of The Lakes", "The Four Belfries (Chapel of Anticipation)")
+        create_connection("Liurnia of The Lakes", "The Four Belfries (Nokron)")
+        create_connection("Liurnia of The Lakes", "The Four Belfries (Farum Azula)")
         
         create_connection("Liurnia of The Lakes", "Raya Lucaria Academy")
         create_connection("Raya Lucaria Academy", "Raya Lucaria Academy Main")
@@ -635,6 +638,13 @@ class EldenRing(World):
         self._add_location_rule("WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N", 
                                 lambda state: state.has("\"Prophecy\" Painting", self.player))
         
+        # Imbued Keys
+        self._add_entrance_rule([
+            "The Four Belfries (Chapel of Anticipation)",
+            "The Four Belfries (Nokron)",
+            "The Four Belfries (Farum Azula)"], 
+            lambda state: state.has("Imbued Sword Key", self.player, count=3))
+        
         # Other Rules
         
         if self.options.enemy_rando == False: # funny shackle rule
@@ -751,7 +761,7 @@ class EldenRing(World):
     
     def _region_lock_items(self) -> None:
         """All region lock items set to not be skipped when doing region lock."""
-        #MARK: Region Lock Items
+        # MARK: Region Lock Items
         item_table["Region Lock Key"].skip = False
         
     def _key_rules(self) -> None:
@@ -1001,6 +1011,7 @@ class EldenRing(World):
         
         # MARK: Thops
         "LL/(CI): Ash of War: Thops's Barrier - scarab in church after Thops moves"
+        "LL/(CT): Memory Stone - top of tower, requires Erudition gesture" # you get the gesture from thops normally
         
         # MARK: Gurraq
         self._add_location_rule([
@@ -1058,6 +1069,10 @@ class EldenRing(World):
             self._can_get(state, "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area")
             and state.has("Unalloyed Gold Needle (Milicent)", self.player)
         ))
+        
+        # MARK: Rya        
+        self._add_location_rule(["LL/SI: Volcano Manor Invitation - give Rya her necklace or reach altus", 
+        ], lambda state: ( state.can_reach("Altus Plateau")))
         
         # MARK: Patches 
         
