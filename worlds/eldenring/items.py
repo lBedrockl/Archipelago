@@ -1530,7 +1530,7 @@ _vanilla_items = [
     ERItemData("Triple Rings of Light", 6701, ERItemCategory.GOODS),
     ERItemData("Radagon's Rings of Light", 6710, ERItemCategory.GOODS),
     ERItemData("Elden Stars", 6720, ERItemCategory.GOODS),
-    ERItemData("Law of Regression", 6730, ERItemCategory.GOODS),
+    ERItemData("Law of Regression", 6730, ERItemCategory.GOODS, classification=ItemClassification.progression), # leyndell statue, and goldmask quest
     ERItemData("Immutable Shield", 6740, ERItemCategory.GOODS),
     ERItemData("Litany of Proper Death", 6750, ERItemCategory.GOODS),
     ERItemData("Law of Causality", 6760, ERItemCategory.GOODS),
@@ -1804,7 +1804,7 @@ _vanilla_items = [
     ERItemData("Wait!", 9015, ERItemCategory.GOODS, skip=True),
     ERItemData("Calm Down!", 9016, ERItemCategory.GOODS, skip=True),
     ERItemData("Nod In Thought", 9017, ERItemCategory.GOODS, skip=True),
-    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, skip=True),
+    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, classification=ItemClassification.progression), # patches quest
     ERItemData("Grovel For Mercy", 9019, ERItemCategory.GOODS, skip=True),
     ERItemData("Rallying Cry", 9020, ERItemCategory.GOODS, skip=True),
     ERItemData("Heartening Cry", 9021, ERItemCategory.GOODS, skip=True),
@@ -2642,10 +2642,10 @@ _dlc_items = [
     ERItemData("String-Seller's Bell Bearing", 2008909, ERItemCategory.GOODS, classification=ItemClassification.useful),
     #gestures
     #ERItemData("Ring of Miquella", 20090, ERItemCategory.GOODS, skip=True), #pre order
-    ERItemData("May the Best Win", 20090, ERItemCategory.GOODS), #fight dane
+    ERItemData("May the Best Win", 20090, ERItemCategory.GOODS, classification=ItemClassification.progression), # fight dane
     ERItemData("The Two Fingers", 20090, ERItemCategory.GOODS, skip=True),
     ERItemData("Let Us Go Together", 20090, ERItemCategory.GOODS, skip=True),
-    ERItemData("O Mother", 2009004, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("O Mother", 2009004, ERItemCategory.GOODS, classification=ItemClassification.progression), # hinterlands
 
     ERItemData("Forager Brood Cookbook [6]", 2009301, ERItemCategory.GOODS),
     ERItemData("Forager Brood Cookbook [1]", 2009302, ERItemCategory.GOODS),

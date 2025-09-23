@@ -187,6 +187,7 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Lakeside Crystal Cave")
         create_connection("Liurnia of The Lakes", "Academy Crystal Cave")
         create_connection("Liurnia of The Lakes", "Raya Lucaria Crystal Tunnel")
+        create_connection("Liurnia of The Lakes", "Caria Manor")
         create_connection("Liurnia of The Lakes", "Carian Study Hall")
         create_connection("Liurnia of The Lakes", "Carian Study Hall (Inverted)")
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
