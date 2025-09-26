@@ -740,10 +740,10 @@ _vanilla_items = [
     ERItemData("All-Knowing Armor", 590100, ERItemCategory.ARMOR),
     ERItemData("All-Knowing Gauntlets", 590200, ERItemCategory.ARMOR),
     ERItemData("All-Knowing Greaves", 590300, ERItemCategory.ARMOR),
-    ERItemData("Twinned Helm", 600000, ERItemCategory.ARMOR),
-    ERItemData("Twinned Armor", 600100, ERItemCategory.ARMOR),
-    ERItemData("Twinned Gauntlets", 600200, ERItemCategory.ARMOR),
-    ERItemData("Twinned Greaves", 600300, ERItemCategory.ARMOR),
+    ERItemData("Twinned Helm", 600000, ERItemCategory.ARMOR, classification=ItemClassification.progression),
+    ERItemData("Twinned Armor", 600100, ERItemCategory.ARMOR, classification=ItemClassification.progression),
+    ERItemData("Twinned Gauntlets", 600200, ERItemCategory.ARMOR, classification=ItemClassification.progression),
+    ERItemData("Twinned Greaves", 600300, ERItemCategory.ARMOR, classification=ItemClassification.progression),
     ERItemData("Prophet Blindfold", 620000, ERItemCategory.ARMOR),
     ERItemData("Corhyn's Robe", 620100, ERItemCategory.ARMOR),
     ERItemData("Prophet Trousers", 620300, ERItemCategory.ARMOR),
@@ -1530,7 +1530,7 @@ _vanilla_items = [
     ERItemData("Triple Rings of Light", 6701, ERItemCategory.GOODS),
     ERItemData("Radagon's Rings of Light", 6710, ERItemCategory.GOODS),
     ERItemData("Elden Stars", 6720, ERItemCategory.GOODS),
-    ERItemData("Law of Regression", 6730, ERItemCategory.GOODS),
+    ERItemData("Law of Regression", 6730, ERItemCategory.GOODS, classification=ItemClassification.progression), # leyndell statue, and goldmask quest
     ERItemData("Immutable Shield", 6740, ERItemCategory.GOODS),
     ERItemData("Litany of Proper Death", 6750, ERItemCategory.GOODS),
     ERItemData("Law of Causality", 6760, ERItemCategory.GOODS),
@@ -1630,7 +1630,7 @@ _vanilla_items = [
     ERItemData("Dancer's Castanets", 8168, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Sellian Sealbreaker", 8169, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Chrysalids' Memento", 8171, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Black Knifeprint", 8172, ERItemCategory.GOODS),
+    ERItemData("Black Knifeprint", 8172, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Letter to Bernahl", 8173, ERItemCategory.GOODS),
     ERItemData("Academy Glintstone Key (Thops)", 8174, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Haligtree Secret Medallion (Left)", 8175, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -1641,12 +1641,12 @@ _vanilla_items = [
     *ERItemData("Larval Tear", 8185, ERItemCategory.GOODS).counts([2]),
     ERItemData("Imbued Sword Key", 8186, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Golden Tailoring Tools", 8188, ERItemCategory.GOODS),
-    ERItemData("Knifeprint Clue", 8190, ERItemCategory.GOODS),
-    ERItemData("Cursemark of Death", 8191, ERItemCategory.GOODS),
+    ERItemData("Knifeprint Clue", 8190, ERItemCategory.GOODS, skip=True),
+    ERItemData("Cursemark of Death", 8191, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Seedbed Curse", 8193, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("The Stormhawk King", 8194, ERItemCategory.GOODS),
-    ERItemData("Sewer-Gaol Key", 8197, ERItemCategory.GOODS),
-    ERItemData("Meeting Place Map", 8198, ERItemCategory.GOODS),
+    ERItemData("Sewer-Gaol Key", 8197, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Meeting Place Map", 8198, ERItemCategory.GOODS, skip=True),
     ERItemData("Discarded Palace Key", 8199, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
     ERItemData("\"Homing Instinct\" Painting", 8200, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -1750,10 +1750,10 @@ _vanilla_items = [
     ERItemData("Blackguard's Bell Bearing", 8942, ERItemCategory.GOODS, skip=True),
     ERItemData("Corhyn's Bell Bearing", 8943, ERItemCategory.GOODS, skip=True),
     ERItemData("Gowry's Bell Bearing", 8944, ERItemCategory.GOODS, skip=True),
-    ERItemData("Bone Peddler's Bell Bearing", 8945, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Meat Peddler's Bell Bearing", 8946, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Medicine Peddler's Bell Bearing", 8947, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Gravity Stone Peddler's Bell Bearing", 8948, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Bone Peddler's Bell Bearing", 8945, ERItemCategory.GOODS),
+    ERItemData("Meat Peddler's Bell Bearing", 8946, ERItemCategory.GOODS),
+    ERItemData("Medicine Peddler's Bell Bearing", 8947, ERItemCategory.GOODS),
+    ERItemData("Gravity Stone Peddler's Bell Bearing", 8948, ERItemCategory.GOODS),
     ERItemData("Smithing-Stone Miner's Bell Bearing [1]", 8951, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Smithing-Stone Miner's Bell Bearing [2]", 8952, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Smithing-Stone Miner's Bell Bearing [3]", 8953, ERItemCategory.GOODS, classification=ItemClassification.useful),
@@ -1763,12 +1763,12 @@ _vanilla_items = [
     ERItemData("Somberstone Miner's Bell Bearing [3]", 8957, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Somberstone Miner's Bell Bearing [4]", 8958, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Somberstone Miner's Bell Bearing [5]", 8959, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Glovewort Picker's Bell Bearing [1]", 8960, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Glovewort Picker's Bell Bearing [2]", 8961, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Glovewort Picker's Bell Bearing [3]", 8962, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Ghost-Glovewort Picker's Bell Bearing [1]", 8963, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Ghost-Glovewort Picker's Bell Bearing [2]", 8964, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Ghost-Glovewort Picker's Bell Bearing [3]", 8965, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Glovewort Picker's Bell Bearing [1]", 8960, ERItemCategory.GOODS),
+    ERItemData("Glovewort Picker's Bell Bearing [2]", 8961, ERItemCategory.GOODS),
+    ERItemData("Glovewort Picker's Bell Bearing [3]", 8962, ERItemCategory.GOODS),
+    ERItemData("Ghost-Glovewort Picker's Bell Bearing [1]", 8963, ERItemCategory.GOODS),
+    ERItemData("Ghost-Glovewort Picker's Bell Bearing [2]", 8964, ERItemCategory.GOODS),
+    ERItemData("Ghost-Glovewort Picker's Bell Bearing [3]", 8965, ERItemCategory.GOODS),
 
     ERItemData("Iron Whetblade", 8970, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Red-Hot Whetblade", 8971, ERItemCategory.GOODS, classification=ItemClassification.useful),
@@ -1784,7 +1784,7 @@ _vanilla_items = [
     ERItemData("Sellia's Secret", 8978, ERItemCategory.GOODS, skip=True),
     
     ERItemData("Beast Eye", 8979, ERItemCategory.GOODS),
-    ERItemData("Weathered Dagger", 8980, ERItemCategory.GOODS),
+    ERItemData("Weathered Dagger", 8980, ERItemCategory.GOODS, classification=ItemClassification.progression),
     #gestures
     ERItemData("Bow", 9000, ERItemCategory.GOODS, skip=True),
     ERItemData("Polite Bow", 9001, ERItemCategory.GOODS, skip=True),
@@ -1804,7 +1804,7 @@ _vanilla_items = [
     ERItemData("Wait!", 9015, ERItemCategory.GOODS, skip=True),
     ERItemData("Calm Down!", 9016, ERItemCategory.GOODS, skip=True),
     ERItemData("Nod In Thought", 9017, ERItemCategory.GOODS, skip=True),
-    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, skip=True),
+    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, classification=ItemClassification.progression), # patches quest
     ERItemData("Grovel For Mercy", 9019, ERItemCategory.GOODS, skip=True),
     ERItemData("Rallying Cry", 9020, ERItemCategory.GOODS, skip=True),
     ERItemData("Heartening Cry", 9021, ERItemCategory.GOODS, skip=True),
@@ -1815,7 +1815,7 @@ _vanilla_items = [
     ERItemData("Jump for Joy", 9027, ERItemCategory.GOODS, skip=True),
     ERItemData("Triumphant Delight", 9028, ERItemCategory.GOODS, skip=True),
     ERItemData("Fancy Spin", 9029, ERItemCategory.GOODS, skip=True),
-    ERItemData("Finger Snap", 9030, ERItemCategory.GOODS, skip=True), # for Blaidd thing
+    ERItemData("Finger Snap", 9030, ERItemCategory.GOODS, classification=ItemClassification.progression), # for Blaidd thing
     ERItemData("Dejection", 9031, ERItemCategory.GOODS, skip=True),
     ERItemData("Patches' Crouch", 9032, ERItemCategory.GOODS, skip=True),
     ERItemData("Crossed Legs", 9033, ERItemCategory.GOODS, skip=True),
@@ -1828,7 +1828,7 @@ _vanilla_items = [
     ERItemData("Prayer", 9041, ERItemCategory.GOODS, skip=True),
     ERItemData("Desperate Prayer", 9042, ERItemCategory.GOODS, skip=True),
     ERItemData("Rapture", 9043, ERItemCategory.GOODS, skip=True),
-    ERItemData("Erudition", 9045, ERItemCategory.GOODS, skip=True),
+    ERItemData("Erudition", 9045, ERItemCategory.GOODS, classification=ItemClassification.progression), # used for a tower item
     ERItemData("Outer Order", 9046, ERItemCategory.GOODS, skip=True),
     ERItemData("Inner Order", 9047, ERItemCategory.GOODS, skip=True),
     ERItemData("Golden Order Totality", 9048, ERItemCategory.GOODS, skip=True),
@@ -2642,10 +2642,10 @@ _dlc_items = [
     ERItemData("String-Seller's Bell Bearing", 2008909, ERItemCategory.GOODS, classification=ItemClassification.useful),
     #gestures
     #ERItemData("Ring of Miquella", 20090, ERItemCategory.GOODS, skip=True), #pre order
-    ERItemData("May the Best Win", 20090, ERItemCategory.GOODS), #fight dane
+    ERItemData("May the Best Win", 20090, ERItemCategory.GOODS, classification=ItemClassification.progression), # fight dane
     ERItemData("The Two Fingers", 20090, ERItemCategory.GOODS, skip=True),
     ERItemData("Let Us Go Together", 20090, ERItemCategory.GOODS, skip=True),
-    ERItemData("O Mother", 2009004, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("O Mother", 2009004, ERItemCategory.GOODS, classification=ItemClassification.progression), # hinterlands
 
     ERItemData("Forager Brood Cookbook [6]", 2009301, ERItemCategory.GOODS),
     ERItemData("Forager Brood Cookbook [1]", 2009302, ERItemCategory.GOODS),

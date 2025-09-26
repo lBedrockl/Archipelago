@@ -12,7 +12,7 @@ Now I just need to label every single item :worry:
 Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
 once all checks are done ALL npc / quests need to be checked if they are missable via killing them
-
+and add all gesture locations, only randomize important ones, others skipped
 
 for priority location option had how many checks each location adds and how many progression items there are
 
@@ -41,11 +41,12 @@ might be to complex todo, since it would need logic so you don't get access to a
 
 
 
-last update 25/09/01
-current progress 2311 / 4980
+last update 25/09/25
+current progress 2663 / 4980
 
 
 people who want to be pinged for playtesting
+
 @blupeecounter @belgarath._. @cieltheseall @trypha
 @mdg555 @kr00mmi2444 @labgremlin @legofacebob
 @battleninja42 @leviendeavor @mannamedgarbo @thebreadstick
@@ -56,4 +57,7 @@ people who want to be pinged for playtesting
 @lightningvtx @zobeeplays @vituici @leyndoe
 @harbingerof.chaos @curtis710 @annoyingcoder @cazisaboi
 @zapony @griskald @layka @sebbytitan
-@justbeuno @martyred
+@justbeuno @martyred @sipcogamingguild @henriii
+@taywoodz @toent @chummyspoof @seraphineveles
+@kebabman13 @samhead2001 @yufiievershade @yojo.
+@mecha

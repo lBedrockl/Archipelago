@@ -88,6 +88,17 @@ class EldenRing(World):
                 # there might be some exceptions but lazy all missable :)
                 if not location.boss:
                     location.missable = True
+
+        if self.options.smithing_bell_bearing_option.value == 1:
+            item_table["Smithing-Stone Miner's Bell Bearing [1]","Smithing-Stone Miner's Bell Bearing [2]",
+                        "Smithing-Stone Miner's Bell Bearing [3]","Smithing-Stone Miner's Bell Bearing [4]",
+                        "Somberstone Miner's Bell Bearing [1]","Somberstone Miner's Bell Bearing [2]",
+                        "Somberstone Miner's Bell Bearing [3]","Somberstone Miner's Bell Bearing [4]",
+                        "Somberstone Miner's Bell Bearing [5]",].classification = ItemClassification.progression
+                
+        if self.options.enable_dlc:
+            if self.options.late_dlc:
+                item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
         
         # idk if this works, i pray its just this simple
         if self.options.local_item_option:
@@ -169,7 +180,6 @@ class EldenRing(World):
         create_connection("Stormveil Throne", "Liurnia of The Lakes")
         # Liurnia of The Lakes
         create_connection("Liurnia of The Lakes", "Bellum Highway")
-        create_connection("Liurnia of The Lakes", "Chapel of Anticipation") # from four belfries
         create_connection("Liurnia of The Lakes", "Road's End Catacombs")
         create_connection("Liurnia of The Lakes", "Black Knife Catacombs")
         create_connection("Liurnia of The Lakes", "Cliffbottom Catacombs")
@@ -177,8 +187,15 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Lakeside Crystal Cave")
         create_connection("Liurnia of The Lakes", "Academy Crystal Cave")
         create_connection("Liurnia of The Lakes", "Raya Lucaria Crystal Tunnel")
+        create_connection("Liurnia of The Lakes", "Caria Manor")
+        create_connection("Liurnia of The Lakes", "Carian Study Hall")
+        create_connection("Liurnia of The Lakes", "Carian Study Hall (Inverted)")
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
         create_connection("Liurnia of The Lakes", "Ainsel River")
+        
+        create_connection("Liurnia of The Lakes", "The Four Belfries (Chapel of Anticipation)")
+        create_connection("Liurnia of The Lakes", "The Four Belfries (Nokron)")
+        create_connection("Liurnia of The Lakes", "The Four Belfries (Farum Azula)")
         
         create_connection("Liurnia of The Lakes", "Raya Lucaria Academy")
         create_connection("Raya Lucaria Academy", "Raya Lucaria Academy Main")
@@ -622,6 +639,13 @@ class EldenRing(World):
         self._add_location_rule("WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N", 
                                 lambda state: state.has("\"Prophecy\" Painting", self.player))
         
+        # Imbued Keys
+        self._add_entrance_rule([
+            "The Four Belfries (Chapel of Anticipation)",
+            "The Four Belfries (Nokron)",
+            "The Four Belfries (Farum Azula)"], 
+            lambda state: state.has("Imbued Sword Key", self.player, count=3))
+        
         # Other Rules
         
         if self.options.enemy_rando == False: # funny shackle rule
@@ -638,13 +662,16 @@ class EldenRing(World):
                 "RLA/MAG: Celestial Dew - down SE ramp by gate",
             ], lambda state: state.can_reach("Raya Lucaria Academy"))
         
+        self._add_entrance_rule("Carian Study Hall (Inverted)", 
+            lambda state: state.has("Carian Inverted Statue", self.player))
+        
         # festival // altus grace touch or ranni quest stuff
         self._add_location_rule([
             "CL/(RC): Smithing Stone [6] - in church during festival",
         ], lambda state: state.can_reach("Altus Plateau"))
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
         
-        self._add_entrance_rule("Nokron Start", lambda state: self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
+        self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
            
         self._add_entrance_rule("Moonlight Altar", lambda state: state.has("Dark Moon Ring", self.player))
         
@@ -654,6 +681,19 @@ class EldenRing(World):
         self._add_entrance_rule("Hidden Path to the Haligtree", lambda state: 
             state.has("Haligtree Secret Medallion (Left)", self.player) and
             state.has("Haligtree Secret Medallion (Right)", self.player))
+        
+        # Smithing bell bearing rules
+        if self.options.smithing_bell_bearing_option.value == 1: # wip not all places have names
+            self._add_entrance_rule("Altus Plateau", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [1]", self.player))
+            self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [2]", self.player))
+            self._add_entrance_rule("motg_flamepeak", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [3]", self.player))
+            self._add_entrance_rule("farumazula_main", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [4]", self.player))
+            
+            self._add_entrance_rule("Dragonbarrow", lambda state: state.has("Somberstone Miner's Bell Bearing [1]", self.player))
+            self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Somberstone Miner's Bell Bearing [2]", self.player))
+            self._add_entrance_rule("motg_flamepeak", lambda state: state.has("Somberstone Miner's Bell Bearing [3]", self.player))
+            self._add_entrance_rule("farumazula_main", lambda state: state.has("Somberstone Miner's Bell Bearing [4]", self.player))
+            self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: state.has("Somberstone Miner's Bell Bearing [5]", self.player))
         
         # DLC Access Rules Below
         if self.options.enable_dlc:
@@ -665,8 +705,6 @@ class EldenRing(World):
                     and self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
             else:
-                # makes Pureblood Knight's Medal progression only when late dlc is off, idk if this works
-                item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
                 self._add_entrance_rule("Mohgwyn Palace", # can get to normal way or funny medal
                     lambda state: state.has("Pureblood Knight's Medal", self.player) or state.can_reach("Consecrated Snowfield"))
                 self._add_entrance_rule("Gravesite Plain", 
@@ -724,7 +762,7 @@ class EldenRing(World):
     
     def _region_lock_items(self) -> None:
         """All region lock items set to not be skipped when doing region lock."""
-        #MARK: Region Lock Items
+        # MARK: Region Lock Items
         item_table["Region Lock Key"].skip = False
         
     def _key_rules(self) -> None:
@@ -940,8 +978,21 @@ class EldenRing(World):
         ], lambda state: ( state.can_reach("Liurnia of The Lakes")))
         
         # MARK: Roderika
-        self._add_location_rule([ "LG/(SS): Golden Seed - give Roderika Chrysalids' Memento then talk to her at RH or rest at LL grace and return to SS",
-        ], lambda state: ( state.can_reach("Liurnia of The Lakes") or state.has("Chrysalids' Memento", self.player)))
+        self._add_location_rule([ 
+            "LG/(SS): Golden Seed - give Roderika Chrysalids' Memento then talk to her at RH, or after SV mainboss item is at SS",
+            "SV/RT: Crimson Hood - shortcut elevator to SE, to SE under dead troll, after Roderika becomes a spirit tuner",
+        ], lambda state: (state.has("Chrysalids' Memento", self.player)))
+        
+        # MARK: Ensha
+        self._add_location_rule([
+            "RH: Clinging Bone - dropped by Ensha, after getting half of secret medallion",
+            "RH: Royal Remains Helm - Ensha's spot, after getting half of secret medallion",
+            "RH: Royal Remains Armor - Ensha's spot, after getting half of secret medallion",
+            "RH: Royal Remains Gauntlets - Ensha's spot, after getting half of secret medallion",
+            "RH: Royal Remains Greaves - Ensha's spot, after getting half of secret medallion"
+        ], lambda state: (state.has("Haligtree Secret Medallion (Left)", self.player) or
+                          state.has("Haligtree Secret Medallion (Right)", self.player)))
+        
         
         # MARK: Enia
         self._add_location_rule([ "RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss",
@@ -955,14 +1006,52 @@ class EldenRing(World):
         ], lambda state: ( state.has("Haligtree Secret Medallion (Right)", self.player)))
         
         # MARK: D
-        # self._add_location_rule([ # idk how yet
-        #     "RH: Litany of Proper Death - D shop",
-        #     "RH: Order's Blade - D shop",
-        # ], lambda state: ( state.can_reach("")))
+        self._add_location_rule([
+            "RH: Litany of Proper Death - D shop, after talking to Gurraq",
+            "RH: Order's Blade - D shop, after talking to Gurraq",
+        ], lambda state: ( state.can_reach("Dragonbarrow")))
+        
+        # MARK: D, Twin
+        # WIP IDK IF THE WHOLE SET IS NEEDED, OR A SINGLE PIECE
+        self._add_location_rule(["DD/AR: Inseparable Sword - kill D Twin at NEC if you killed D, or at end of Fia quest", 
+        ], lambda state: ( 
+            (state.has("Twinned Helm", self.player) or state.has("Twinned Armor", self.player)
+            or state.has("Twinned Gauntlets", self.player) or state.has("Twinned Greaves", self.player))
+            and self._can_get(state, "RH: Twinned Helm - on D's body after giving him Weather Dagger during Fia's quest")))
+        
+        # MARK: Rogier
+        self._add_location_rule(["RH: Rogier's Letter - after giving Black Knifeprint, talk to Ranni, talk to Rogier again", 
+        ], lambda state: ( state.can_reach("Stormveil Castle") and state.can_reach("Liurnia of The Lakes")
+                          and state.has("Black Knifeprint", self.player)))
+        
+        self._add_location_rule([
+            "RH: Spellblade's Pointed Hat - found on Rogier's body",
+            "RH: Spellblade's Traveling Attire - found on Rogier's body",
+            "RH: Spellblade's Gloves - found on Rogier's body",
+            "RH: Spellblade's Trousers - found on Rogier's body",
+            "RH: Rogier's Rapier +8 - talk Rogier after beating SV mainboss or on his body after he dies"
+        ], lambda state: ( state.can_reach("Stormveil Castle") and state.has("Cursemark of Death", self.player)))
         
         # MARK: Fia
+        self._add_location_rule(["RH: Knifeprint Clue - talk to Fia multiple times", 
+        ], lambda state: ( state.can_reach("Stormveil Castle")))
+        
+        self._add_location_rule(["RH: Sacrificial Twig - talk to Fia after giving Black Knifeprint to Rogier", 
+        ], lambda state: ( state.has("Black Knifeprint", self.player) and state.can_reach("Stormveil Castle")))
+        
         self._add_location_rule(["RH: Weathered Dagger - talk to Fia after reaching altus", 
         ], lambda state: ( state.can_reach("Altus Plateau")))
+        
+        self._add_location_rule([
+            "RH: Twinned Helm - on D's body after giving him Weather Dagger during Fia's quest",
+            "RH: Twinned Armor - on D's body after giving him Weather Dagger during Fia's quest",
+            "RH: Twinned Gauntlets - on D's body after giving him Weather Dagger during Fia's quest",
+            "RH: Twinned Greaves - on D's body after giving him Weather Dagger during Fia's quest"
+        ], lambda state: ( state.has("Weathered Dagger", self.player) and state.can_reach("Altus Plateau")))
+        
+        # MARK: Dung Eater
+        self._add_location_rule(["RH: Sewer-Gaol Key - talk to Dung Eater while having a Seedbed Curse", 
+        ], lambda state: ( state.has("Seedbed Curse", self.player)))
         
         
         # MARK: Nepheli
@@ -974,6 +1063,7 @@ class EldenRing(World):
         
         # MARK: Thops
         "LL/(CI): Ash of War: Thops's Barrier - scarab in church after Thops moves"
+        "LL/(CT): Memory Stone - top of tower, requires Erudition gesture" # you get the gesture from thops normally
         
         # MARK: Gurraq
         self._add_location_rule([
@@ -1002,8 +1092,9 @@ class EldenRing(World):
             "CL/(GS): Night Maiden's Mist - Gowry Shop",
         ], lambda state: ( self._can_get(state, "CL/(CP): Prosthesis-Wearer Heirloom - give Millicent fixed needle")))
         
-        """self._add_location_rule(["CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent",
-        ], lambda state: ( self._can_get(state, "give Millicent val pro in altus")))"""
+        self._add_location_rule(["CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent",
+        ], lambda state: ( state.has("Valkyrie's Prosthesis", self.player) and state.can_reach("Altus Plateau")
+                          and self._can_get(state, "CL/(GS): Night Shard - Gowry Shop")))
         
         self._add_location_rule(["CL/(GS): Desperate Prayer - buy 4th shop item",
         ], lambda state: ( self._can_get(state, "CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent")))
@@ -1015,14 +1106,11 @@ class EldenRing(World):
         self._add_location_rule(["CL/(CP): Prosthesis-Wearer Heirloom - give Millicent fixed needle",
         ], lambda state: ( state.has("Unalloyed Gold Needle (Fixed)", self.player)))
         
-        """self._add_location_rule(["give Millicent val pro in altus",
-        ], lambda state: ( state.has("Valkyrie's Prosthesis", self.player)))"""
-        
-        """self._add_location_rule([
+        self._add_location_rule([
             "EBH/EIW: Rotten Winged Sword Insignia - help Millicent",
             "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area",
             "EBH/EIW: Millicent's Prosthesis - invade Millicent or kill in altus",
-        ], lambda state: ( self._can_get(state, "give Millicent val pro in altus")))"""
+        ], lambda state: ( self._can_get(state, "CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent")))
         
         self._add_location_rule([
             "EBH/HR: Miquella's Needle - use needle on flower in boss arena after Millicent quest",
@@ -1031,6 +1119,10 @@ class EldenRing(World):
             self._can_get(state, "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area")
             and state.has("Unalloyed Gold Needle (Milicent)", self.player)
         ))
+        
+        # MARK: Rya        
+        self._add_location_rule(["LL/SI: Volcano Manor Invitation - give Rya her necklace or reach altus", 
+        ], lambda state: ( state.can_reach("Altus Plateau")))
         
         # MARK: Patches 
         
@@ -1042,15 +1134,27 @@ class EldenRing(World):
             self._can_get(state, "kill the volcano manor mainboss") 
             and state.has("Dancer's Castanets", self.player)
         ))"""
+        
+        # MARK: Iji
+        "LL/RM: Iji's Mirrorhelm - kill Iji or after quest"
+        
         # MARK: Ranni
         
-        """self._add_location_rule([
+        self._add_location_rule([
             "LG/(CE): Spirit Calling Bell - talk to Ranni",
             "LG/(CE): Lone Wolf Ashes - talk to Ranni",
-        ], lambda state: ( self._can_get(state, "talk to ranni in her tower, item in rth") ))"""
+        ], lambda state: ( self._can_get(state, "talk to ranni in her tower, item in rth") )) #finish
         
-        "NR/(NSG): Fingerslayer Blade - in chest lower area, ranni quest" # nokron chest items
-        "NR/(NSG): Great Ghost Glovewort - in chest lower area, ranni quest" # update to be better
+        self._add_location_rule([
+            "NR/(NSG): Fingerslayer Blade - in chest lower area, talk to Ranni in LL",
+            "NR/(NSG): Great Ghost Glovewort - in chest lower area, talk to Ranni in LL"
+        ], lambda state: ( state.can_reach("Liurnia of the Lakes")))
+        
+        self._add_location_rule([
+            "LL/(ReR): Snow Witch Hat - in chest, after giving Fingerslayer Blade to Ranni",
+            "LL/(ReR): Snow Witch Robe - in chest, after giving Fingerslayer Blade to Ranni",
+            "LL/(ReR): Snow Witch Skirt - in chest, after giving Fingerslayer Blade to Ranni"
+        ], lambda state: ( state.has("Fingerslayer Blade", self.player) and state.can_reach("Nokron, Eternal City")))
         
         self._add_location_rule(["RLA/RLGL: Dark Moon Ring - in chest, requires Discarded Palace Key",
         ], lambda state: ( state.has("Discarded Palace Key", self.player)))
@@ -1381,6 +1485,10 @@ class EldenRing(World):
             data = location.data
         else:
             data = location_dictionary[location]
+        
+        # dont random smithing bell bearing
+        if data.smithingbell and self.options.smithing_bell_bearing_option.value == 2:
+            return False
 
         return (
             not data.is_event
@@ -1475,6 +1583,7 @@ class EldenRing(World):
                 "death_link": self.options.death_link.value,
                 "random_start": self.options.random_start.value,
                 "auto_equip": self.options.auto_equip.value,
+                "smithing_bell_bearing_option": self.options.smithing_bell_bearing_option.value,
                 "local_item_option": self.options.local_item_option.value,
                 "exclude_local_item_only": self.options.exclude_local_item_only.value,
                 "important_locations": self.options.important_locations.value,

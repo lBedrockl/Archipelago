@@ -81,12 +81,26 @@ class AutoEquipOption(Toggle):
     """Automatically equips any received armor or left/right weapons."""
     display_name = "Auto-Equip"
     
+class SmithingBellBearingOption(Choice):
+    """Choose how smithing stone bell bearings are handled.
+
+    - **Randomize:** Can be anywhere.
+    - **Progression Randomize:** Make them a progression item, and be required for the area after they would normally be in.
+    - **Do Not Randomize:** Leave them at their normal spots.
+    """
+    display_name = "Smithing Bell Bearing Behavior"
+    option_randomize = 0
+    option_progression_randomize = 1
+    option_do_not_randomize = 2
+    default = 1
+    
 class LocalItemOnly(Toggle):
     """Only progression or useful items will show up in other players games."""
     display_name = "Local Item Option"
     
 class ExcludeLocalItemOnly(OptionDict):
     """If LocalItemOnly is true then these item categories will show up in other players games.
+    - [Items] **Item Group**
     - [~600] **Weapon**: All Weapons and Ammo.
     - [621] **Armor**: All Armors.
     - [154] **Accessory**: All Talismans.
@@ -95,7 +109,7 @@ class ExcludeLocalItemOnly(OptionDict):
     
     Goods should always be local only.
     """
-    default = frozenset({"Weapon, Accessory"})
+    default = frozenset({"Weapon", "Armor", "Accessory"})
 
 class ERExcludeLocations(ExcludeLocations):
     """Prevent these locations from having an important item.
@@ -114,13 +128,14 @@ class ERImportantLocations(PriorityLocations):
     - [52] *Fragment*: Scadu Fragments.
     - [13] *Cross*: All cross items.
     - [26] *Revered*: Revered Spirit Ashes.
+    - [21] *KeyItem*: Key items.
     
     The total amount of priority checks should be below:
     - **Vanilla**: [95] 
     - **DLC**: [124]
     - THESE CAN CHANGE, need to be updated later
     """
-    default = frozenset({"Remembrance", "Seedtree", "Map", "Cross"})
+    default = frozenset({"Remembrance", "Seedtree", "Map"})
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.
@@ -167,6 +182,7 @@ class EROptions(PerGameCommonOptions):
     random_start: RandomizeStartingLoadout
     auto_equip: AutoEquipOption
 
+    smithing_bell_bearing_option: SmithingBellBearingOption
     local_item_option: LocalItemOnly
     exclude_local_item_only: ExcludeLocalItemOnly
     important_locations: ERImportantLocations
@@ -180,6 +196,7 @@ option_groups = [
         AutoEquipOption,
     ]),
     OptionGroup("Item & Location Options", [
+        SmithingBellBearingOption,
         LocalItemOnly,
         ExcludeLocalItemOnly,
         ERImportantLocations,
