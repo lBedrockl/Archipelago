@@ -192,6 +192,7 @@ class EldenRing(World):
         create_connection("Liurnia of The Lakes", "Carian Study Hall (Inverted)")
         create_connection("Liurnia of The Lakes", "Ruin-Strewn Precipice")
         create_connection("Liurnia of The Lakes", "Ainsel River")
+        create_connection("Liurnia of The Lakes", "Ainsel River Main")
         
         create_connection("Liurnia of The Lakes", "The Four Belfries (Chapel of Anticipation)")
         create_connection("Liurnia of The Lakes", "The Four Belfries (Nokron)")
@@ -340,8 +341,8 @@ class EldenRing(World):
             create_connection("Shadow Keep", "Hinterland")
             create_connection("Hinterland", "Finger Ruins of Dheo")
             
-            create_connection("Shadow Keep", "Rauh Ruins")
-            create_connection("Rauh Ruins", "Enir Ilim")
+            create_connection("Shadow Keep", "Ancient Ruins of Rauh")
+            create_connection("Ancient Ruins of Rauh", "Enir Ilim")
             
             create_connection("Shadow Keep", "Recluses' River")
             create_connection("Recluses' River", "Darklight Catacombs")
@@ -1143,18 +1144,22 @@ class EldenRing(World):
         self._add_location_rule([
             "LG/(CE): Spirit Calling Bell - talk to Ranni",
             "LG/(CE): Lone Wolf Ashes - talk to Ranni",
-        ], lambda state: ( self._can_get(state, "talk to ranni in her tower, item in rth") )) #finish
+        ], lambda state: ( state.can_reach("Liurnia of The Lakes")))
+        # you can get in LL if missed i think
         
         self._add_location_rule([
             "NR/(NSG): Fingerslayer Blade - in chest lower area, talk to Ranni in LL",
             "NR/(NSG): Great Ghost Glovewort - in chest lower area, talk to Ranni in LL"
         ], lambda state: ( state.can_reach("Liurnia of the Lakes")))
         
+        self._add_entrance_rule("Ainsel River Main", lambda state: state.can_reach("Deeproot Depths")
+            or state.has("Fingerslayer Blade", self.player))
+        
         self._add_location_rule([
             "LL/(ReR): Snow Witch Hat - in chest, after giving Fingerslayer Blade to Ranni",
             "LL/(ReR): Snow Witch Robe - in chest, after giving Fingerslayer Blade to Ranni",
             "LL/(ReR): Snow Witch Skirt - in chest, after giving Fingerslayer Blade to Ranni"
-        ], lambda state: ( state.has("Fingerslayer Blade", self.player) and state.can_reach("Nokron, Eternal City")))
+        ], lambda state: ( state.has("Fingerslayer Blade", self.player)))
         
         self._add_location_rule(["RLA/RLGL: Dark Moon Ring - in chest, requires Discarded Palace Key",
         ], lambda state: ( state.has("Discarded Palace Key", self.player)))

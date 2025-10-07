@@ -201,7 +201,7 @@ region_order_dlc = [
     
     "Scadutree Base",
     
-    "Rauh Ruins",
+    "Ancient Ruins of Rauh",
     
     "Hinterland",
     "Finger Ruins of Dheo",
@@ -5514,7 +5514,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: More DLC
-    "Ancient Ruins of Rauh":[ # rauhruins
+    "Ancient Ruins of Rauh":[ # rauhruins       some done by Layka
         ERLocationData("ARR/CBME: Remembrance of the Saint of the Bud - mainboss drop", "Remembrance of the Saint of the Bud", key="614445,0:0000510600::", boss=True, remembrance=True),
         #ERLocationData("ARR: Scadutree Fragment - In front of the northwest wall monument on the second floor of the cave after the West Ruins grace.", "Scadutree Fragment", key="614445,0:2044457000::", fragment=True),
         #ERLocationData("ARR: Four-Toed Fowl Foot x3 - On a corpse found on the way to the Grand Stairway elevator, right after dropping down off the south edge of the West Ruins third-floor courtyard to the stone pillars and arches below", "Four-Toed Fowl Foot x3", key="614445,0:2044457010::"),

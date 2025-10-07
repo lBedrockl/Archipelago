@@ -84,6 +84,11 @@ Remove this? its only a small part of ainsel and the main part is connected to d
 ### Liurnia > Ainsel River
 * Key Item to open up `Ainsel River Well`
 * Item name idea: `Ainsel River Well Key`
+
+### Liurnia > Ainsel River Main
+* Only possible with the waygate in Renna's tower from doing Ranni's quest which is missable
+* solution make quest unmissable
+
 #
 ## Altus
 
@@ -136,14 +141,15 @@ The Haligtree is for those in desperate need of an age of compassion - certainly
 * Key to open door
 
 ### Stormveil > Liurnia
+* Add a gate to the thin cliff and a key for said gate
 
 ### Caelid > Redmane Castle
 * Disable waygate at bridge
 * Need to test if you can get into festival without waygate
+* Move festival flag from altus and ranni quest to the Key item for this region?
 ##### Lore idea
+* `Redmane Castle Gate Key`
 ```
-Redmane Castle Gate Key
-
 The key to Redmane Castle, the site of the Radahn Festival deep within Caelid.
 
 Starscourge Radahn lived to fight, bearing no hopes and dreams beyond personal glory. A lion bred for battle, and the perfect weapon for gods to wield.
