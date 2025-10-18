@@ -12,9 +12,8 @@
 * something on bridge of sacrifice?
 * Move or remove spiritspring that can be used to skip bridge
 ##### Lore idea
+* `Bridge of Sacrifice Gate Key`
 ```
-Bridge of Sacrifice Gate Key
-
 Opens the gate at Limgrave's south, where the Weeping Peninsula lies.
 
 The Bridge of Sacrifice is the first line of defense for Castle Morne, as arranged by its fearful castellan. And yet, no amount of external blockades can defend against a mutiny.
@@ -26,7 +25,7 @@ The Bridge of Sacrifice is the first line of defense for Castle Morne, as arrang
 * move waygate spawn point at third church of marika into bestial sanctum
 
 ### Limgrave > Liurnia
-* maybe a gate that would open form a gostoc themed item
+* Add a gate to the [thin cliff](https://media.discordapp.net/attachments/1114277493311033494/1425009549756076169/image.png?ex=68e60710&is=68e4b590&hm=76e6b952101390bd417d2b2cda7ce71599adeffa33978c7fbff9bd1537e1ef1f&=&format=webp&quality=lossless&width=1579&height=904) and a key for said gate
 
 ### Limgrave > Nokron
 * Already requires radahn boss dead but wouldn't add a sphere
@@ -141,7 +140,6 @@ The Haligtree is for those in desperate need of an age of compassion - certainly
 * Key to open door
 
 ### Stormveil > Liurnia
-* Add a gate to the thin cliff and a key for said gate
 
 ### Caelid > Redmane Castle
 * Disable waygate at bridge

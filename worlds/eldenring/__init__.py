@@ -634,18 +634,43 @@ class EldenRing(World):
 
         # Paintings
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
-                                lambda state: state.has("\"Homing Instinct\" Painting", self.player))
+            lambda state: state.has("\"Homing Instinct\" Painting", self.player))
         self._add_location_rule("CL/MEE: Ash of War: Rain of Arrows - \"Redmane\" Painting reward down hidden cliff E of MEE", 
-                                lambda state: state.has("\"Redmane\" Painting", self.player))
+            lambda state: state.has("\"Redmane\" Painting", self.player))
         self._add_location_rule("WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N", 
-                                lambda state: state.has("\"Prophecy\" Painting", self.player))
+            lambda state: state.has("\"Prophecy\" Painting", self.player))
+        self._add_location_rule([
+            "LL/BCM: Juvenile Scholar Cap - to S by graves, requires \"Resurrection\" Painting",
+            "LL/BCM: Juvenile Scholar Robe - to S by graves, requires \"Resurrection\" Painting",
+            "LL/BCM: Larval Tear - to S by graves, requires \"Resurrection\" Painting",
+            ], lambda state: state.has("\"Resurrection\" Painting", self.player))
+        
+        # not done paintings
+        self._add_location_rule("", 
+            lambda state: state.has("\"\" Painting", self.player))
+        self._add_location_rule("", 
+            lambda state: state.has("\"\" Painting", self.player))
+        self._add_location_rule("", 
+            lambda state: state.has("\"\" Painting", self.player))
         
         # Imbued Keys
         self._add_entrance_rule([
             "The Four Belfries (Chapel of Anticipation)",
             "The Four Belfries (Nokron)",
-            "The Four Belfries (Farum Azula)"], 
-            lambda state: state.has("Imbued Sword Key", self.player, count=3))
+            "The Four Belfries (Farum Azula)"
+            ],lambda state: state.has("Imbued Sword Key", self.player, count=3))
+        
+        # LL/CFT, gesture + glint crown items
+        self._add_location_rule([
+            "LL/(CFT): Cannon of Haima - in chest atop tower, requires using Erudition gesture while wearing any Glintstone Crown",
+            "LL/(CFT): Gavel of Haima - in chest atop tower, requires using Erudition gesture while wearing any Glintstone Crown",
+            ],lambda state: state.has("Erudition", self.player) and 
+            # MAKES SURE IF SOMETHING GETS REMOVED TO REMOVE THE PROGRESSION TAG
+            (state.has("Lusat's Glintstone Crown", self.player) or state.has("Azur's Glintstone Crown", self.player) or
+             state.has("Twinsage Glintstone Crown", self.player) or state.has("Olivinus Glintstone Crown", self.player) or
+             state.has("Lazuli Glintstone Crown", self.player) or state.has("Karolos Glintstone Crown", self.player) or
+             state.has("Witch's Glintstone Crown", self.player) or state.has("Hierodas Glintstone Crown", self.player) or
+             state.has("Haima Glintstone Crown", self.player)))
         
         # Other Rules
         
