@@ -664,13 +664,10 @@ class EldenRing(World):
         self._add_location_rule([
             "LL/(CFT): Cannon of Haima - in chest atop tower, requires using Erudition gesture while wearing any Glintstone Crown",
             "LL/(CFT): Gavel of Haima - in chest atop tower, requires using Erudition gesture while wearing any Glintstone Crown",
-            ],lambda state: state.has("Erudition", self.player) and 
-            # MAKES SURE IF SOMETHING GETS REMOVED TO REMOVE THE PROGRESSION TAG
-            (state.has("Lusat's Glintstone Crown", self.player) or state.has("Azur's Glintstone Crown", self.player) or
-             state.has("Twinsage Glintstone Crown", self.player) or state.has("Olivinus Glintstone Crown", self.player) or
+            ],lambda state: state.has("Erudition", self.player) and
+            (state.has("Twinsage Glintstone Crown", self.player) or state.has("Olivinus Glintstone Crown", self.player) or
              state.has("Lazuli Glintstone Crown", self.player) or state.has("Karolos Glintstone Crown", self.player) or
-             state.has("Witch's Glintstone Crown", self.player) or state.has("Hierodas Glintstone Crown", self.player) or
-             state.has("Haima Glintstone Crown", self.player)))
+             state.has("Witch's Glintstone Crown", self.player)))
         
         # Other Rules
         
@@ -700,6 +697,24 @@ class EldenRing(World):
         self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
            
         self._add_entrance_rule("Moonlight Altar", lambda state: state.has("Dark Moon Ring", self.player))
+        
+        self._add_location_rule([ # drawing room
+                "VM/VM: Recusant Finger - on the table in the drawing room",
+                "VM/VM: Letter from Volcano Manor - on the table in the drawing room",
+                "VM/VM: Perfume Bottle - in the first room on the right",
+                "VM/VM: Budding Horn x3 - behind the illusory wall in the right room, next to the stairs",
+                "VM/VM: Fireproof Dried Liver - behind the illusory wall in the right room, down the stairs",
+                "VM/VM: Nomadic Warrior's Cookbook [21] - behind the illusory wall in the right room, all the way around down the dead-end",
+                "VM/VM: Depraved Perfumer Carmaan - behind the illusory wall in the right room, all the way around down the dead-end behind the illusory wall",
+                "VM/VM: Bloodhound Claws - enemy drop behind the illusory wall in the right room, down the stairs"
+            ], lambda state: state.has("Drawing-Room Key"))
+        
+        self._add_location_rule([ # VM mini dungeon
+                "(VM)/RLA: Smoldering Butterfly x5 - to E after warp",
+                "(VM)/SIC: Smithing Stone [6] - to S by cage",
+                "(VM)/SIC: Smithing Stone [4] - to S on the pillar",
+                "(VM)/SIC: Inquisitor's Girandole - boss drop, from RLA warp"
+            ], lambda state: state.can_reach("Raya Lucaria Academy Main"))
         
         # ashen capital only after getting farum boss Remembrance
         
@@ -868,6 +883,12 @@ class EldenRing(World):
         currentKey += 1 #wip
         self._add_location_rule([
             "MG/(WC): Lightning Scorpion Charm - behind imp statue", # 1
+            ], lambda state: self._has_enough_keys(state, currentKey))
+        
+        # volcano
+        currentKey += 1
+        self._add_location_rule([
+            "VM/PTC: Crimson Amber Medallion +1 - behind imp statue W of town", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
         # capital outskirts
