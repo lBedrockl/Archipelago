@@ -257,9 +257,13 @@ class EldenRing(World):
         #create_connection("Mount Gelmir", "Volcano Cave")
         
         #create_connection("Mount Gelmir", "Volcano Manor Entrance")
+        
         create_connection("Volcano Manor Entrance", "Volcano Manor Drawing Room")
         create_connection("Volcano Manor Drawing Room", "Volcano Manor")
         create_connection("Volcano Manor", "Volcano Manor Upper")
+       
+        create_connection("Raya Lucaria Academy Main", "Volcano Manor Dungeon")
+        create_connection("Volcano Manor Dungeon", "Volcano Manor")
         
         
         
@@ -629,7 +633,9 @@ class EldenRing(World):
             
         elif self.options.world_logic == "open_world":
             self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
-        #else: # glitch logic
+        else: # glitch logic
+            # vm doesn't require drawing room key
+            self._add_entrance_rule("Volcano Manor", lambda state: state.can_reach("Raya Lucaria Academy Main"))
             #idk any just that leyndell can be done early i think
 
         # Paintings
@@ -698,7 +704,10 @@ class EldenRing(World):
            
         self._add_entrance_rule("Moonlight Altar", lambda state: state.has("Dark Moon Ring", self.player))
         
-        self._add_location_rule([ # drawing room
+        self._add_entrance_rule("Volcano Manor Dungeon", lambda state: state.can_reach("Raya Lucaria Academy Main"))
+        self._add_entrance_rule("Volcano Manor", lambda state: state.has("Drawing-Room Key", self.player))
+        
+        self._add_location_rule([ # vm drawing room, stuff that needs key
                 "VM/VM: Recusant Finger - on the table in the drawing room",
                 "VM/VM: Letter from Volcano Manor - on the table in the drawing room",
                 "VM/VM: Perfume Bottle - in the first room on the right",
@@ -708,13 +717,6 @@ class EldenRing(World):
                 "VM/VM: Depraved Perfumer Carmaan - behind the illusory wall in the right room, all the way around down the dead-end behind the illusory wall",
                 "VM/VM: Bloodhound Claws - enemy drop behind the illusory wall in the right room, down the stairs"
             ], lambda state: state.has("Drawing-Room Key"))
-        
-        self._add_location_rule([ # VM mini dungeon
-                "(VM)/RLA: Smoldering Butterfly x5 - to E after warp",
-                "(VM)/SIC: Smithing Stone [6] - to S by cage",
-                "(VM)/SIC: Smithing Stone [4] - to S on the pillar",
-                "(VM)/SIC: Inquisitor's Girandole - boss drop, from RLA warp"
-            ], lambda state: state.can_reach("Raya Lucaria Academy Main"))
         
         # ashen capital only after getting farum boss Remembrance
         
@@ -886,9 +888,14 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey))
         
         # volcano
-        currentKey += 1
+        currentKey += 3
         self._add_location_rule([
             "VM/PTC: Crimson Amber Medallion +1 - behind imp statue W of town", # 1
+            "VM/TE: Seedbed Curse - NW of shortcut elevator, after imp statue, lower part of big cage room to SW", # 2a
+            "VM/TE: Ash of War: Royal Knight's Resolve - NW of shortcut elevator, after imp statue, lower part of big cage room to NE", # 2b
+            "VM/TE: Somber Smithing Stone [7] - NW of shortcut elevator, after imp statue, lower part of big cage room outside to SW", # 2c
+            "VM/TE: Dagger Talisman - NW of shortcut elevator, after imp statue, drop to hidden path top item", # 2d
+            "VM/TE: Rune Arc - NW of shortcut elevator, after imp statue, drop to hidden path lower item", # 2e
             ], lambda state: self._has_enough_keys(state, currentKey))
         
         # capital outskirts
@@ -1181,6 +1188,12 @@ class EldenRing(World):
             self._can_get(state, "kill the volcano manor mainboss") 
             and state.has("Dancer's Castanets", self.player)
         ))"""
+        
+        # MARK: Tanith
+        "VM/RLB: Consort's Mask - kill Tanith"
+        "VM/RLB: Consort's Robe - kill Tanith"
+        "VM/RLB: Consort's Trousers - kill Tanith"
+        "VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death"
         
         # MARK: Iji
         "LL/RM: Iji's Mirrorhelm - kill Iji or after quest"

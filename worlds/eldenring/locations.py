@@ -119,6 +119,7 @@ region_order = [
     "Volcano Cave",
     
     # Volcano Manor
+    "Volcano Manor Dungeon",
     "Volcano Manor Entrance",
     "Volcano Manor Drawing Room",
     "Volcano Manor",
@@ -2846,7 +2847,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("MtG: Explosive Greatbolt - Sold by the Nomadic Merchant in the long ladder section before Ninth Mt. Gelmir Campsite", "Explosive Greatbolt", key="603754,3:0000000000:100775:", shop=True),
         #ERLocationData("MtG: Poison Grease x2 - ", "Poison Grease x2", key="603755,0:1037557000::"),
     ],
-    "Volcano Manor Drawing Room":[ #volcano_drawingroom
+    "Volcano Manor Drawing Room":[ #volcano_drawingroom    quests left
         # some of these might not be missable idk
         
         #ERLocationData("VM: Gelmir's Fury - ", "Gelmir's Fury", key="130000,0:0000400291::", missable=True),
@@ -3365,7 +3366,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MH/HTP: Hero's Rune [4] - to NE in the small rotunda by the elevator", "Hero's Rune [4]", key="150000,0:0015007390::"),
         ERLocationData("MH/HTP: Smithing Stone [8] - NE in the large rotunda by the elevator", "Smithing Stone [8]", key="150000,0:0015007400::"),
     ],
-    "Volcano Manor Entrance":[ #volcano
+    "Volcano Manor Entrance":[ #volcano    quests left
         ERLocationData("VM/VM: Drawing-Room Key - talk to tanith", "Drawing-Room Key", key="160000,0:0000400072::", keyitem=True),
         #ERLocationData("VM: Letter to Patches - ", "Letter to Patches", key="160000,0:0000400180::", missable=True),
         #ERLocationData("VM: Magma Whip Candlestick - ", "Magma Whip Candlestick", key="160000,0:0000400182::", missable=True),
@@ -3396,41 +3397,46 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(MCV): Cloth Trousers - Patches chest", "Cloth Trousers", key="310000,0:0031007010::"),
         ERLocationData("LG/(MCV): Glass Shard x3 - Patches chest, after you've given the Dancer's Castanets to Tanith", "Glass Shard x3", key="310000,0:0031007030::", missable=True),
     ],
-    "Volcano Manor Upper":[ # volcano_temple
+    "Volcano Manor Upper":[ # volcano_temple      done
         ERLocationData("VM/AP: Rykard's Great Rune - mainboss drop", "Rykard's Great Rune", key="160000,0:0000000174::", boss=True, deadend=True),
-        #ERLocationData("VM: Missionary's Cookbook [6] - ", "Missionary's Cookbook [6]", key="160000,0:0000067130::", missable=True),
-        #ERLocationData("VM: Consort's Mask - ", "Consort's Mask", key="160000,0:0000400071::", missable=True, death=True),
-        #ERLocationData("VM: Consort's Robe - ", "Consort's Robe", key="160000,0:0000400071::", missable=True, death=True),
-        #ERLocationData("VM: Consort's Trousers - ", "Consort's Trousers", key="160000,0:0000400071::", missable=True, death=True),
+        ERLocationData("VM/TE: Missionary's Cookbook [6] - E of shortcut elevator, inside lower part of tower in cell", "Missionary's Cookbook [6]", key="160000,0:0000067130::", missable=True),
+        ERLocationData("VM/RLB: Consort's Mask - kill Tanith", "Consort's Mask", key="160000,0:0000400071::", missable=True, death=True),
+        ERLocationData("VM/RLB: Consort's Robe - kill Tanith", "Consort's Robe", key="160000,0:0000400071::", missable=True, death=True),
+        ERLocationData("VM/RLB: Consort's Trousers - kill Tanith", "Consort's Trousers", key="160000,0:0000400071::", missable=True, death=True),
         ERLocationData("VM/AP: Remembrance of the Blasphemous - mainboss drop", "Remembrance of the Blasphemous", key="160000,0:0000510220::", boss=True, deadend=True, remembrance=True),
-        #ERLocationData("VM: Somber Smithing Stone [5] - ", "Somber Smithing Stone [5]", key="160000,0:0000540592::", missable=True, scarab=True),
-        #ERLocationData("VM: Ash of War: Royal Knight's Resolve - ", "Ash of War: Royal Knight's Resolve", key="160000,0:0016007020::", missable=True),
+        ERLocationData("VM/TE: Somber Smithing Stone [5] - scarab N of shortcut elevator below", "Somber Smithing Stone [5]", key="160000,0:0000540592::", missable=True, scarab=True),
+        ERLocationData("VM/TE: Ash of War: Royal Knight's Resolve - NW of shortcut elevator, after imp statue, lower part of big cage room to NE", "Ash of War: Royal Knight's Resolve", key="160000,0:0016007020::", missable=True), # 2
         ERLocationData("VM/TE: Golden Rune [9] - NW corner of upper church", "Golden Rune [9]", key="160000,0:0016007320::", missable=True),
-        #ERLocationData("VM: Smoldering Butterfly x4 - ", "Smoldering Butterfly x4", key="160000,0:0016007390::", missable=True),
-        #ERLocationData("VM: Golden Rune [12] - ", "Golden Rune [12]", key="160000,0:0016007400::", missable=True),
-        #ERLocationData("VM: Furlcalling Finger Remedy - ", "Furlcalling Finger Remedy", key="160000,0:0016007410::", missable=True),
-        #ERLocationData("VM: Drawstring Fire Grease x4 - ", "Drawstring Fire Grease x4", key="160000,0:0016007440::", missable=True),
-        #ERLocationData("VM: Crimson Tear Scarab - ", "Crimson Tear Scarab", key="160000,0:0016007480::", missable=True),
-        #ERLocationData("VM: Stonesword Key - ", "Stonesword Key", key="160000,0:0016007490::", missable=True),
-        #ERLocationData("VM: Rune Arc - ", "Rune Arc", key="160000,0:0016007500::", missable=True),
-        #ERLocationData("VM: Commoner's Headband - ", "Commoner's Headband", key="160000,0:0016007510::", missable=True),
-        #ERLocationData("VM: Man-Serpent Ashes - ", "Man-Serpent Ashes", key="160000,0:0016007520::", missable=True),
-        #ERLocationData("VM: Somber Smithing Stone [6] - ", "Somber Smithing Stone [6]", key="160000,0:0016007530::", missable=True),
-        #ERLocationData("VM: Dagger Talisman - From an Imp Statue barrier in the building with the Sending Gate to Audience Pathway, enter the dark room with hanging cages, drop off immediately to the right, and enter through a narrow crevice", "Dagger Talisman", key="160000,0:0016007620::", talisman=True, hidden=True),
-        #ERLocationData("VM: Seedbed Curse - ", "Seedbed Curse", key="160000,0:0016007700::", missable=True),
-        #ERLocationData("VM: Eye Surcoat - ", "Eye Surcoat", key="160000,0:0016007730::", missable=True),
-        #ERLocationData("VM: Aspects of the Crucible: Breath - Dropped by the Crucible Knight who invades after you kill Tanith as she consumes Rykard", "Aspects of the Crucible: Breath", key="160000,0:0016007950::", missable=True),
+        ERLocationData("VM/TE: Smoldering Butterfly x4 - by lava pool after jumping down from church", "Smoldering Butterfly x4", key="160000,0:0016007390::", missable=True),
+        ERLocationData("VM/TE: Golden Rune [12] - below balcony after jumping down from church", "Golden Rune [12]", key="160000,0:0016007400::", missable=True),
+        ERLocationData("VM/TE: Furlcalling Finger Remedy - on SE rock tip", "Furlcalling Finger Remedy", key="160000,0:0016007410::", missable=True),
+        ERLocationData("VM/TE: Drawstring Fire Grease x4 - E of shortcut elevator, inside lower part of tower by ladder", "Drawstring Fire Grease x4", key="160000,0:0016007440::", missable=True),
+        ERLocationData("VM/TE: Crimson Tear Scarab - E of shortcut elevator over S railing before door", "Crimson Tear Scarab", key="160000,0:0016007480::", missable=True),
+        ERLocationData("VM/TE: Stonesword Key - in room middle of shortcut elevator", "Stonesword Key", key="160000,0:0016007490::", missable=True),
+        ERLocationData("VM/TE: Rune Arc - NW of shortcut elevator, after imp statue, drop to hidden path lower item", "Rune Arc", key="160000,0:0016007500::", missable=True),
+        ERLocationData("VM/TE: Commoner's Headband - NW of shortcut elevator on snake statue", "Commoner's Headband", key="160000,0:0016007510::", missable=True),
+        ERLocationData("VM/TE: Man-Serpent Ashes - NW of shortcut elevator on altar inside", "Man-Serpent Ashes", key="160000,0:0016007520::", missable=True),
+        ERLocationData("VM/TE: Somber Smithing Stone [6] - NW of shortcut elevator, after stairs in room below", "Somber Smithing Stone [6]", key="160000,0:0016007530::", missable=True),
+        ERLocationData("VM/TE: Dagger Talisman - NW of shortcut elevator, after imp statue, drop to hidden path top item", "Dagger Talisman", key="160000,0:0016007620::", talisman=True, hidden=True),
+        ERLocationData("VM/TE: Seedbed Curse - NW of shortcut elevator, after imp statue, lower part of big cage room to SW", "Seedbed Curse", key="160000,0:0016007700::", missable=True), # 2
+        ERLocationData("VM/AP: Eye Surcoat - in main boss arena", "Eye Surcoat", key="160000,0:0016007730::", missable=True),
+        ERLocationData("VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death", "Aspects of the Crucible: Breath", key="160000,0:0016007950::", missable=True),
+        ERLocationData("VM/TE: Somber Smithing Stone [7] - NW of shortcut elevator, after imp statue, lower part of big cage room outside to SW", "Somber Smithing Stone [7]", key="160000,0:0016007100::"), # 2
     ],
-    "Volcano Manor":[ # volcano_town
+    "Volcano Manor Dungeon":[ #    done
+        ERLocationData("(VM)/SIC: Inquisitor's Girandole - boss drop, from RLA warp", "Inquisitor's Girandole", key="160000,0:0000510290::", altboss=True, miscboss=True),
+        ERLocationData("(VM)/RLA: Smoldering Butterfly x5 - to E after warp", "Smoldering Butterfly x5", key="160000,0:0016007310::"),
+        ERLocationData("(VM)/SIC: Smithing Stone [6] - to S by cage", "Smithing Stone [6]", key="160000,0:0016007550::"),
+        ERLocationData("(VM)/SIC: Smithing Stone [4] - to S on the pillar", "Smithing Stone [4]", key="160000,0:0016007560::"),
+    ],
+    "Volcano Manor":[ # volcano_town      done
         ERLocationData("VM/GH: Godskin Stitcher - boss drop", "Godskin Stitcher", key="160000,0:0000510210::", boss=True),
         ERLocationData("VM/GH: Noble Presence - boss drop", "Noble Presence", key="160000,0:0000510210::", boss=True),
-        ERLocationData("(VM)/SIC: Inquisitor's Girandole - boss drop, from RLA warp", "Inquisitor's Girandole", key="160000,0:0000510290::", altboss=True, miscboss=True),
         ERLocationData("VM/PTC: Somber Smithing Stone [5] - scarab on NW lower rooftop", "Somber Smithing Stone [5]", key="160000,0:0000540590::", scarab=True),
         ERLocationData("VM/PTC: Golden Rune [9] - up the skinny roof path", "Golden Rune [9]", key="160000,0:0016007050::"),
         ERLocationData("VM/PTC: Golden Rune [5] - side of the bridge on rooftops", "Golden Rune [5]", key="160000,0:0016007060::"),
         ERLocationData("VM/PTC: Stonesword Key - outside SE of town, jump to lower broken stairs", "Stonesword Key", key="160000,0:0016007070::"),
-        #ERLocationData("VM: Furlcalling Finger Remedy - ", "Furlcalling Finger Remedy", key="160000,0:0016007080::"),
-        #ERLocationData("VM: Somber Smithing Stone [7] - ", "Somber Smithing Stone [7]", key="160000,0:0016007100::"),
+        ERLocationData("VM/PTC: Furlcalling Finger Remedy - on path around town down an alley to NE", "Furlcalling Finger Remedy", key="160000,0:0016007080::"),
         ERLocationData("VM/PTC: Smithing Stone [6] - on N high hexagon roof", "Smithing Stone [6]", key="160000,0:0016007120::"),
         ERLocationData("VM/PTC: Erdtree Seal - in room within town", "Erdtree Seal", key="160000,0:0016007130::"),
         ERLocationData("VM/PTC: Drawstring Fire Grease x3 - between corpse fire and exit gate within town", "Drawstring Fire Grease x3", key="160000,0:0016007140::"),
@@ -3447,7 +3453,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("VM/GH: Smoldering Butterfly x6 - outside to E, ride elevator down, start of cave", "Smoldering Butterfly x6", key="160000,0:0016007270::"),
         ERLocationData("VM/GH: Smithing Stone [7] - outside to E, ride elevator down, back of cave", "Smithing Stone [7]", key="160000,0:0016007280::"),
         ERLocationData("VM/GH: Somber Smithing Stone [5] - outside to E, ride elevator up, to SE at top", "Somber Smithing Stone [5]", key="160000,0:0016007290::"),
-        ERLocationData("(VM)/RLA: Smoldering Butterfly x5 - to E after warp", "Smoldering Butterfly x5", key="160000,0:0016007310::"),
         ERLocationData("VM/GH: Golden Rune [10] - fall from GH roof to SW, up ladder", "Golden Rune [10]", key="160000,0:0016007330::"),
         ERLocationData("VM/PTC: Smithing Stone [6] x2 - in lower graveyard, middle island", "Smithing Stone [6] x2", key="160000,0:0016007350::"),
         ERLocationData("VM/PTC: Golden Rune [9] - NE side of lower graveyard on ledge", "Golden Rune [9]", key="160000,0:0016007360::"),
@@ -3456,8 +3461,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("VM/GH: Albinauric Staff - fall from GH roof to SW, on guillotine", "Albinauric Staff", key="160000,0:0016007430::"),
         ERLocationData("VM/GH: Albinauric Mask - fall from GH roof to SW, on guillotine", "Albinauric Mask", key="160000,0:0016007430::"),
         ERLocationData("VM/PTC: Crimson Amber Medallion +1 - behind imp statue W of town", "Crimson Amber Medallion +1", key="160000,0:0016007540::", talisman=True), # 1
-        ERLocationData("(VM)/SIC: Smithing Stone [6] - to S by cage", "Smithing Stone [6]", key="160000,0:0016007550::"),
-        ERLocationData("(VM)/SIC: Smithing Stone [4] - to S on the pillar", "Smithing Stone [4]", key="160000,0:0016007560::"),
         ERLocationData("VM/PTC: Smoldering Shield - NE side of lower graveyard by enemies", "Smoldering Shield", key="160000,0:0016007610::"),
         ERLocationData("VM/TE: Serpent's Amnion - on the altar", "Serpent's Amnion", key="160000,0:0016007710::"),
         ERLocationData("VM/PTC: Raw Meat Dumpling - enemy drop NE side of lower graveyard", "Raw Meat Dumpling", key="160000,0:0016007930::"),
