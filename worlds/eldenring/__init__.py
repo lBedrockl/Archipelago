@@ -249,14 +249,14 @@ class EldenRing(World):
         create_connection("Altus Plateau", "Altus Tunnel")
         
         
-        #create_connection("Altus Plateau", "Mount Gelmir")
+        create_connection("Altus Plateau", "Mt. Gelmir")
         # Mt Gelmir
-        #create_connection("Mount Gelmir", "Wyndham Catacombs")
-        #create_connection("Mount Gelmir", "Gelmir Hero's Grave")
-        #create_connection("Mount Gelmir", "Seethewater Cave")
-        #create_connection("Mount Gelmir", "Volcano Cave")
+        create_connection("Mt. Gelmir", "Wyndham Catacombs")
+        create_connection("Mt. Gelmir", "Gelmir Hero's Grave")
+        create_connection("Mt. Gelmir", "Seethewater Cave")
+        create_connection("Mt. Gelmir", "Volcano Cave")
         
-        #create_connection("Mount Gelmir", "Volcano Manor Entrance")
+        create_connection("Mt. Gelmir", "Volcano Manor Entrance")
         
         create_connection("Volcano Manor Entrance", "Volcano Manor Drawing Room")
         create_connection("Volcano Manor Drawing Room", "Volcano Manor")
@@ -862,11 +862,16 @@ class EldenRing(World):
         self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         # altus
-        currentKey += 2 #wip
+        currentKey += 4 #wip
         self._add_location_rule([
             "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1a
             "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
+        self._add_entrance_rule("Old Altus Tunnel", lambda state: self._has_enough_keys(state, currentKey)) # 2
+        
+        # mt gelmir
+        currentKey += 2 #wip
+        self._add_entrance_rule("Seethewater Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         # caelid
         currentKey += 3
@@ -956,7 +961,7 @@ class EldenRing(World):
             lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Liurnia of The Lakes")) # 2
         currentHeart += 1
         self._add_location_rule("CL/(CDC): Magma Breath - Dragon Communion, kill boss in MtG, S of FL", 
-            lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Mount Gelmir")) # 1
+            lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Mt. Gelmir")) # 1
         currentHeart += 2
         self._add_location_rule("CL/(CDC): Borealis's Mist - Dragon Communion, kill boss in MotG, N of FCM", 
             lambda state: self._has_enough_hearts(state, currentHeart) and state.can_reach("Mountaintops of the Giants")) # 2
