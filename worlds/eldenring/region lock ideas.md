@@ -92,6 +92,7 @@ Remove this? its only a small part of ainsel and the main part is connected to d
 ## Altus
 
 ### Altus > Mt Gelmir
+* start of seethewater river and Bridge of Iniquity
 
 ### Altus > Capital
 * `Great Rune` Seal
