@@ -862,10 +862,11 @@ class EldenRing(World):
         self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         # altus
-        currentKey += 4 #wip
+        currentKey += 5 #wip
         self._add_location_rule([
             "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1a
             "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1b
+            "AP/WR: Pearldrake Talisman +1 - in chest underground behind a imp statue", # 1c
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Old Altus Tunnel", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
