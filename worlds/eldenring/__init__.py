@@ -300,6 +300,11 @@ class EldenRing(World):
         #create_connection("Mountaintops of the Giants", "Giants' Mountaintop Catacombs")
         #create_connection("Mountaintops of the Giants", "Spiritcaller Cave")
         
+        #create_connection("Mountaintops of the Giants", "Farum Azula")
+        # Farum Azula
+        #create_connection("Farum Azula", "Farum Azula Main")
+        #create_connection("Farum Azula Main", "Ashen cap")
+        
         
         #create_connection("Hidden Path to the Haligtree", "Consecrated Snowfield")
         # Snowfield
@@ -652,8 +657,8 @@ class EldenRing(World):
             ], lambda state: state.has("\"Resurrection\" Painting", self.player))
         
         # not done paintings
-        self._add_location_rule("", 
-            lambda state: state.has("\"\" Painting", self.player))
+        self._add_location_rule("i think its the harp bow", 
+            lambda state: state.has("\"Champion's Song\" Painting", self.player))
         self._add_location_rule("", 
             lambda state: state.has("\"\" Painting", self.player))
         self._add_location_rule("", 
@@ -862,11 +867,12 @@ class EldenRing(World):
         self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         # altus
-        currentKey += 5 #wip
+        currentKey += 6 #wip
         self._add_location_rule([
             "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1a
             "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1b
             "AP/WR: Pearldrake Talisman +1 - in chest underground behind a imp statue", # 1c
+            "AP/GLE: Godfrey Icon - boss drop Evergaol", # 1d
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Old Altus Tunnel", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
@@ -1057,6 +1063,10 @@ class EldenRing(World):
         # MARK: Enia
         self._add_location_rule([ "RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss",
         ], lambda state: ( self._has_enough_great_runes(state, 2)))
+        
+        # MARK: Yura
+        "AP/(SCM): Purifying Crystal Tear - invader drop, requires Yura death"
+        "AP/(SCM): Eleonora's Poleblade - invader drop, requires Yura death"
         
         # MARK: Latenna
         # need to see if armour is missable
