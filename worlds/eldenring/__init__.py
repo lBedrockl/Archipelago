@@ -651,14 +651,14 @@ class EldenRing(World):
         self._add_location_rule("WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N", 
             lambda state: state.has("\"Prophecy\" Painting", self.player))
         self._add_location_rule([
-            "LL/BCM: Juvenile Scholar Cap - to S by graves, requires \"Resurrection\" Painting",
-            "LL/BCM: Juvenile Scholar Robe - to S by graves, requires \"Resurrection\" Painting",
-            "LL/BCM: Larval Tear - to S by graves, requires \"Resurrection\" Painting",
+            "LL/BCM: Juvenile Scholar Cap - \"Resurrection\" Painting reward to S by graves",
+            "LL/BCM: Juvenile Scholar Robe - \"Resurrection\" Painting reward to S by graves",
+            "LL/BCM: Larval Tear - \"Resurrection\" Painting reward to S by graves",
             ], lambda state: state.has("\"Resurrection\" Painting", self.player))
+        self._add_location_rule("AP/RP: Harp Bow - \"Champion's Song\" Painting reward to S top of grave steps", 
+            lambda state: state.has("\"Champion's Song\" Painting", self.player))
         
         # not done paintings
-        self._add_location_rule("i think its the harp bow", 
-            lambda state: state.has("\"Champion's Song\" Painting", self.player))
         self._add_location_rule("", 
             lambda state: state.has("\"\" Painting", self.player))
         self._add_location_rule("", 
