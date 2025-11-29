@@ -130,7 +130,7 @@ class ERImportantLocations(PriorityLocations):
     - [26] *Revered*: Revered Spirit Ashes.
     - [21] *KeyItem*: Key items.
     
-    The total amount of priority checks should be below:
+    The *total* amount of priority checks should be below:
     - **Vanilla**: [95] 
     - **DLC**: [124]
     - THESE CAN CHANGE, need to be updated later

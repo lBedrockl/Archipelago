@@ -231,7 +231,7 @@ class EldenRing(World):
         
         create_connection("Deeproot Depths Start", "Deeproot Depths") # oneway
         #create_connection("Deeproot Depths", "Leyndell, Royal Capital") # idk waygate requirements
-        #create_connection("Deeproot Depths", "Deeproot Depths Boss")
+        create_connection("Deeproot Depths", "Deeproot Depths Boss")
         
         create_connection("Deeproot Depths", "Ainsel River Main")
         create_connection("Ainsel River Main", "Lake of Rot")
@@ -285,8 +285,8 @@ class EldenRing(World):
         
         #create_connection("Leyndell, Royal Capital", "Subterranean Shunning-Grounds")
         create_connection("Subterranean Shunning-Grounds", "Leyndell Catacombs")
-        #create_connection("Subterranean Shunning-Grounds", "FFP")
-        #create_connection("FFP", "Deeproot Depths Start")
+        create_connection("Subterranean Shunning-Grounds", "Frenzied Flame Proscription")
+        create_connection("Frenzied Flame Proscription", "Deeproot Depths Start")
         
         
         #create_connection("Leyndell, Royal Capital", "Forbidden Lands")
