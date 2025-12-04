@@ -11,7 +11,6 @@ Now I just need to label every single item :worry:
 
 Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
-once all checks are done ALL npc / quests need to be checked if they are missable via killing them
 and add all gesture locations, only randomize important ones, others skipped
 
 for priority location option had how many checks each location adds and how many progression items there are
@@ -21,7 +20,7 @@ for priority location option had how many checks each location adds and how many
 Ideas
 
 gracesanity, graces are checks
-option to turn off healing item randomization, start with
+option to turn off healing item randomization / start with
 scadutree options, start with, not random, only within dlc, anywhere
 
 "This dungeon is not on the path." or "This dungeon is on the path of the Elden Lord."
@@ -30,10 +29,7 @@ using ground messages or the small stones with text on them
 dlc start / dlc only
 
 Regional stonesword key ring (one key item per region unlocks all stonesword statues in that region)
-Regional stonesword keys (like the first one but per region)
-
-QOL option to unlock a Site of Grace in the region once that region is unlocked
-might be to complex todo, since it would need logic so you don't get access to an area you cant get to yet
+Regional stonesword keys (like the first one but multiple keys)
 
 
 
@@ -41,8 +37,8 @@ might be to complex todo, since it would need logic so you don't get access to a
 
 
 
-last update 25/11/29
-current progress 3259 / 4928
+last update 25/12/03
+current progress 3336 / 4928
 
 
 people who want to be pinged for playtesting

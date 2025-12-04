@@ -230,7 +230,7 @@ class EldenRing(World):
         create_connection("Nokron, Eternal City", "Deeproot Depths")
         
         create_connection("Deeproot Depths Start", "Deeproot Depths") # oneway
-        #create_connection("Deeproot Depths", "Leyndell, Royal Capital") # idk waygate requirements
+        create_connection("Deeproot Depths", "Leyndell, Royal Capital") # idk waygate requirements
         create_connection("Deeproot Depths", "Deeproot Depths Boss")
         
         create_connection("Deeproot Depths", "Ainsel River Main")
@@ -276,14 +276,11 @@ class EldenRing(World):
         
 
         # Leyndell Royal
-        #create_connection("Divine Bridge", "Leyndell, Royal Capital")
-        #create_connection("Leyndell, Royal Capital","")
+        create_connection("Divine Bridge", "Leyndell, Royal Capital")
+        create_connection("Leyndell, Royal Capital", "Leyndell, Royal Capital Throne")
         
-        # Leyndell Ashen
-        #create_connection("Divine Bridge", "Leyndell, Ashen Capital")
-        #create_connection("Leyndell, Ashen Capital","")
-        
-        #create_connection("Leyndell, Royal Capital", "Subterranean Shunning-Grounds")
+        # Sewers
+        create_connection("Leyndell, Royal Capital", "Subterranean Shunning-Grounds")
         create_connection("Subterranean Shunning-Grounds", "Leyndell Catacombs")
         create_connection("Subterranean Shunning-Grounds", "Frenzied Flame Proscription")
         create_connection("Frenzied Flame Proscription", "Deeproot Depths Start")
@@ -303,7 +300,7 @@ class EldenRing(World):
         #create_connection("Mountaintops of the Giants", "Farum Azula")
         # Farum Azula
         #create_connection("Farum Azula", "Farum Azula Main")
-        #create_connection("Farum Azula Main", "Ashen cap")
+        #create_connection("Farum Azula Main", "Leyndell, Ashen Capital")
         
         
         #create_connection("Hidden Path to the Haligtree", "Consecrated Snowfield")
@@ -318,7 +315,7 @@ class EldenRing(World):
         
         #create_connection("Consecrated Snowfield", "Mohgwyn Palace")
         
-        #create_connection("farum", "Leyndell, Ashen Capital")
+        create_connection("Divine Bridge", "Leyndell, Ashen Capital")
         create_connection("Leyndell, Ashen Capital", "Leyndell, Ashen Capital Throne")
         create_connection("Leyndell, Ashen Capital Throne", "Erdtree")
 
@@ -638,7 +635,7 @@ class EldenRing(World):
             
         elif self.options.world_logic == "open_world":
             self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
-        else: # glitch logic
+        else: # glitch logic, no zips *if thats still a thing*
             # vm doesn't require drawing room key
             self._add_entrance_rule("Volcano Manor", lambda state: state.can_reach("Raya Lucaria Academy Main"))
             #idk any just that leyndell can be done early i think
@@ -657,10 +654,10 @@ class EldenRing(World):
             ], lambda state: state.has("\"Resurrection\" Painting", self.player))
         self._add_location_rule("AP/RP: Harp Bow - \"Champion's Song\" Painting reward to S top of grave steps", 
             lambda state: state.has("\"Champion's Song\" Painting", self.player))
+        self._add_location_rule("AP/(DMV): Fire's Deadly Sin - \"Flightless Bird\" Painting reward S from boss",
+            lambda state: state.has("\"Flightless Bird\" Painting", self.player))
         
         # not done paintings
-        self._add_location_rule("", 
-            lambda state: state.has("\"\" Painting", self.player))
         self._add_location_rule("", 
             lambda state: state.has("\"\" Painting", self.player))
         
@@ -1123,6 +1120,19 @@ class EldenRing(World):
         self._add_location_rule(["RH: Sewer-Gaol Key - talk to Dung Eater while having a Seedbed Curse", 
         ], lambda state: ( state.has("Seedbed Curse", self.player)))
         
+        self._add_location_rule(["SSG/UR: Sword of Milos - kill Dung Eater or kill him during his invasion in CO", 
+        ], lambda state: ( state.can_reach("Capital Outskirts"))) # you can get a tp from deeproot and miss CO in region lock
+        
+        self._add_location_rule(["SSG/UR: Mending Rune of the Fell Curse - give Dung Eater 5 seedbed curses", 
+        ], lambda state: ( self._can_get(state, "SSG/UR: Sword of Milos - kill Dung Eater or kill him during his invasion in CO")
+            and state.has("Seedbed Curse", self.player, 5)))
+        
+        self._add_location_rule([
+            "SSG/UR: Omen Helm - kill Dung Eater or finish his quest",
+            "SSG/UR: Omen Armor - kill Dung Eater or finish his quest",
+            "SSG/UR: Omen Gauntlets - kill Dung Eater or finish his quest",
+            "SSG/UR: Omen Greaves - kill Dung Eater or finish his quest"
+        ], lambda state: ( self._can_get(state, "SSG/UR: Mending Rune of the Fell Curse - give Dung Eater 5 seedbed curses")))
         
         # MARK: Nepheli
         # i jumped into her and she died, lol
