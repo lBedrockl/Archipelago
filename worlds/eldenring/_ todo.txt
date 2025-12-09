@@ -13,6 +13,8 @@ Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
 and add all gesture locations, only randomize important ones, others skipped
 
+ALL capital items need missable=True, need to ashen it while nothing is collected to see what is not missable.
+
 for priority location option had how many checks each location adds and how many progression items there are
 
 
@@ -37,8 +39,8 @@ Regional stonesword keys (like the first one but multiple keys)
 
 
 
-last update 25/12/03
-current progress 3336 / 4928
+last update 25/12/09
+current progress 3379 / 4928
 
 
 people who want to be pinged for playtesting

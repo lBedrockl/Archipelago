@@ -83,11 +83,11 @@ class EldenRing(World):
                 raise OptionError(f"EldenRing disable_extreme_options Error:"
                                   f"Player {self.player_name} has ending_condition set to all bosses.")      
                 
-        #if self.options.leyndell_missable:
-            for location in location_tables["Leyndell, Royal Capital", "leyndell_throne"]:
-                # there might be some exceptions but lazy all missable :)
-                if not location.boss:
-                    location.missable = True
+        # #if self.options.leyndell_missable:
+        #     for location in location_tables["Leyndell, Royal Capital", "leyndell_throne"]:
+        #         # there might be some exceptions but lazy all missable :)
+        #         if not location.boss:
+        #             location.missable = True
 
         if self.options.smithing_bell_bearing_option.value == 1:
             item_table["Smithing-Stone Miner's Bell Bearing [1]","Smithing-Stone Miner's Bell Bearing [2]",
