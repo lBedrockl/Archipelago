@@ -39,8 +39,8 @@ Regional stonesword keys (like the first one but multiple keys)
 
 
 
-last update 25/12/09
-current progress 3379 / 4928
+last update 25/12/12
+current progress 3430 / 4928
 
 
 people who want to be pinged for playtesting
@@ -65,3 +65,4 @@ people who want to be pinged for playtesting
 @andrewki @cmass27 @mhayden1 @knyte_ex
 @xdjlf @arnicauwu @nyxkerrigan @kase6959
 @kingtitanite @shackledmars @freyab00b13s @funnyhatman
+@nicedinos13 
