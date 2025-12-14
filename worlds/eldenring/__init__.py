@@ -138,7 +138,7 @@ class EldenRing(World):
         regions["Menu"].exits.append(Entrance(self.player, "New Game", regions["Menu"]))
         self.multiworld.get_entrance("New Game", self.player).connect(regions["Limgrave"])
         
-        create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
+        # create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
         
         # Limgrave
         create_connection("Limgrave", "Fringefolk Hero's Grave")
@@ -278,6 +278,7 @@ class EldenRing(World):
         # Leyndell Royal
         create_connection("Divine Bridge", "Leyndell, Royal Capital")
         create_connection("Leyndell, Royal Capital", "Leyndell, Royal Capital Throne")
+        create_connection("Leyndell, Royal Capital", "Divine Tower of East Altus")
         
         # Sewers
         create_connection("Leyndell, Royal Capital", "Subterranean Shunning-Grounds")
@@ -286,16 +287,16 @@ class EldenRing(World):
         create_connection("Frenzied Flame Proscription", "Deeproot Depths Start")
         
         
-        #create_connection("Leyndell, Royal Capital", "Forbidden Lands")
+        create_connection("Divine Tower of East Altus", "Forbidden Lands")
         # Forbidden Lands
         #create_connection("Forbidden Lands", "Hidden Path to the Haligtree")
         
         
-        #create_connection("Forbidden Lands", "Mountaintops of the Giants")
+        create_connection("Forbidden Lands", "Mountaintops of the Giants")
         # Mountaintops
-        #create_connection("Mountaintops of the Giants", "Giant-Conquering Hero's Grave")
-        #create_connection("Mountaintops of the Giants", "Giants' Mountaintop Catacombs")
-        #create_connection("Mountaintops of the Giants", "Spiritcaller Cave")
+        create_connection("Mountaintops of the Giants", "Giant-Conquering Hero's Grave")
+        create_connection("Mountaintops of the Giants", "Giants' Mountaintop Catacombs")
+        create_connection("Mountaintops of the Giants", "Spiritcaller Cave")
         
         #create_connection("Mountaintops of the Giants", "Farum Azula")
         # Farum Azula
