@@ -586,54 +586,23 @@ class EldenRing(World):
         self._add_npc_rules()
         #self._add_remembrance_rules() # need to do the locations first
         #self._add_equipment_of_champions_rules() # need to do the locations first
-
+        
         # World Logic
         if self.options.world_logic == "region_lock": 
-            self._region_lock_items()
+            self._region_lock()
             if self.options.soft_logic:
                 self._add_entrance_rule("Caelid", lambda state: state.can_reach("Altus Plateau"))
                 self._add_entrance_rule("Dragonbarrow", lambda state: state.can_reach("Forbidden Lands") and state.has("Rold Medallion", self.player))
-                
-            #self._add_entrance_rule("Weeping Peninsula", lambda state: "region key")
-            self._add_location_rule([ # stuff in WP but not
-                "WP/(DHFR): Arteria Leaf x2 - within N ruins",
-                "WP/DHFR: Gold-Tinged Excrement x2 - SE of DHFR",
-                "WP/DHFR: String x5 - SE of DHFR",
-                "WP/EC: Rainbow Stone - SE of EC",
-                "WP/FLT: Golden Rune [1] x3 1 - E of FLT",
-                "WP/FLT: Golden Rune [1] x3 2 - E of FLT",
-                "WP/CP: Sliver of Meat - lower cliff NW of CP",
-                "WP/CP: Bewitching Branch x3 - lower cliff NW of CP",
-                "WP/CP: Warhawk Ashes - \"Prophecy\" Painting reward to N",
-            ], lambda state: state.can_reach("Weeping Peninsula"))
+           
+           
             "BS: Stonesword Key - behind wooden platform" 
             "BS: Smithing Stone [1] x3 - corpse hanging off edge" # on Bridge of Sacrifice idk where wall for WP will be
             
-            #self._add_entrance_rule(["Stormveil Start", "Stormveil Castle"], lambda state: "region key")
-            self._add_location_rule([ # stuff in SV but not
-                "SV: Talisman Pouch - boss drop",
-            ], lambda state: state.can_reach("Stormveil Start"))
     
-            #self._add_entrance_rule("Liurnia of The Lakes", lambda state: "region key")
             self._add_entrance_rule("Altus Plateau", lambda state: # only in region lock since it can be bypassed by ruin-strewn precipice
                 state.has("Dectus Medallion (Left)", self.player) and
                 state.has("Dectus Medallion (Right)", self.player))
-            
-            #self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: "region key")
-            
-            self._add_location_rule([ # stuff in CL but not
-                "CL/(SC): Missionary's Cookbook [3] - on corpse",
-                "CL/(SC): Sacred Scorpion Charm - invader drop",
-                "CL/RB: Golden Rune [1] - graveyard to SW",
-                "CL/RB: Golden Rune [2] - graveyard to SW",
-                "CL/RB: Golden Rune [3] - graveyard to SW",
-                "CL/RB: Nascent Butterfly x2 - to E",
-                "CL/RB: Golden Rune [3] - in stable to N",
-                "CL/RB: Preserving Boluses x5 - in shack to SW",
-                "CL/RB: Drawstring Lightning Grease x2 - to W",
-                "CL/MEW: Rune Arc - W of MEW high on root",
-            ], lambda state: state.can_reach("Caelid"))
-            
+              
         elif self.options.world_logic == "open_world":
             self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
         else: # glitch logic, no zips *if thats still a thing*
@@ -641,6 +610,15 @@ class EldenRing(World):
             self._add_entrance_rule("Volcano Manor", lambda state: state.can_reach("Raya Lucaria Academy Main"))
             #idk any just that leyndell can be done early i think
 
+
+        # Custom Rules
+        
+        if self.options.enemy_rando == False: # funny shackle rule
+            self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Margit's Shackle", self.player))
+            self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Mohg's Shackle", self.player))
+
+        # Item Rules
+            
         # Paintings
         self._add_location_rule("LG/SR: Incantation Scarab - \"Homing Instinct\" Painting reward to NW", 
             lambda state: state.has("\"Homing Instinct\" Painting", self.player))
@@ -657,17 +635,8 @@ class EldenRing(World):
             lambda state: state.has("\"Champion's Song\" Painting", self.player))
         self._add_location_rule("AP/(DMV): Fire's Deadly Sin - \"Flightless Bird\" Painting reward S from boss",
             lambda state: state.has("\"Flightless Bird\" Painting", self.player))
-        
-        # not done paintings
-        self._add_location_rule("", 
-            lambda state: state.has("\"\" Painting", self.player))
-        
-        # Imbued Keys
-        self._add_entrance_rule([
-            "The Four Belfries (Chapel of Anticipation)",
-            "The Four Belfries (Nokron)",
-            "The Four Belfries (Farum Azula)"
-            ],lambda state: state.has("Imbued Sword Key", self.player, count=3))
+        self._add_location_rule("MotG/SR: Greathood - Painting reward NW of SR on bridge", 
+            lambda state: state.has("\"Sorcerer\" Painting", self.player))
         
         # LL/CFT, gesture + glint crown items
         self._add_location_rule([
@@ -678,24 +647,28 @@ class EldenRing(World):
              state.has("Lazuli Glintstone Crown", self.player) or state.has("Karolos Glintstone Crown", self.player) or
              state.has("Witch's Glintstone Crown", self.player)))
         
-        # Other Rules
+        # vm drawing room, stuff that needs key
+        self._add_location_rule([ 
+                "VM/VM: Recusant Finger - on the table in the drawing room",
+                "VM/VM: Letter from Volcano Manor - on the table in the drawing room",
+                "VM/VM: Perfume Bottle - in the first room on the right",
+                "VM/VM: Budding Horn x3 - behind the illusory wall in the right room, next to the stairs",
+                "VM/VM: Fireproof Dried Liver - behind the illusory wall in the right room, down the stairs",
+                "VM/VM: Nomadic Warrior's Cookbook [21] - behind the illusory wall in the right room, all the way around down the dead-end",
+                "VM/VM: Depraved Perfumer Carmaan - behind the illusory wall in the right room, all the way around down the dead-end behind the illusory wall",
+                "VM/VM: Bloodhound Claws - enemy drop behind the illusory wall in the right room, down the stairs"
+            ], lambda state: state.has("Drawing-Room Key"))
         
-        if self.options.enemy_rando == False: # funny shackle rule
-            self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Margit's Shackle", self.player))
-            self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Mohg's Shackle", self.player))
-        
-        # Vanilla Rules
+        # MotG/SR spirit summon item
+        self._add_location_rule(["MotG/(SR): Primal Glintstone Blade - in chest underground behind jellyfish seal"
+            ], lambda state: state.has("Spirit Jellyfish Ashes", self.player) and state.has("Spirit Calling Bell", self.player))
+
+        # Region Rules
         
         # you can kill gostoc and not open main gate
         self._add_entrance_rule("Stormveil Castle", lambda state: state.has("Rusty Key", self.player))
         self._add_entrance_rule("Raya Lucaria Academy", lambda state: state.has("Academy Glintstone Key", self.player))
-        self._add_location_rule([ # stuff in RLA but not
-                "RLA/MAG: Strip of White Flesh x2 - down SE ramp before gate",
-                "RLA/MAG: Celestial Dew - down SE ramp by gate",
-            ], lambda state: state.can_reach("Raya Lucaria Academy"))
-        
-        self._add_entrance_rule("Carian Study Hall (Inverted)", 
-            lambda state: state.has("Carian Inverted Statue", self.player))
+        self._add_entrance_rule("Carian Study Hall (Inverted)", lambda state: state.has("Carian Inverted Statue", self.player))
         
         # festival // altus grace touch or ranni quest stuff
         self._add_location_rule([
@@ -710,19 +683,7 @@ class EldenRing(World):
         self._add_entrance_rule("Volcano Manor Dungeon", lambda state: state.can_reach("Raya Lucaria Academy Main"))
         self._add_entrance_rule("Volcano Manor", lambda state: state.has("Drawing-Room Key", self.player))
         
-        self._add_location_rule([ # vm drawing room, stuff that needs key
-                "VM/VM: Recusant Finger - on the table in the drawing room",
-                "VM/VM: Letter from Volcano Manor - on the table in the drawing room",
-                "VM/VM: Perfume Bottle - in the first room on the right",
-                "VM/VM: Budding Horn x3 - behind the illusory wall in the right room, next to the stairs",
-                "VM/VM: Fireproof Dried Liver - behind the illusory wall in the right room, down the stairs",
-                "VM/VM: Nomadic Warrior's Cookbook [21] - behind the illusory wall in the right room, all the way around down the dead-end",
-                "VM/VM: Depraved Perfumer Carmaan - behind the illusory wall in the right room, all the way around down the dead-end behind the illusory wall",
-                "VM/VM: Bloodhound Claws - enemy drop behind the illusory wall in the right room, down the stairs"
-            ], lambda state: state.has("Drawing-Room Key"))
-        
         # ashen capital only after getting farum boss Remembrance
-        
         
         self._add_entrance_rule("Hidden Path to the Haligtree", lambda state: 
             state.has("Haligtree Secret Medallion (Left)", self.player) and
@@ -741,8 +702,26 @@ class EldenRing(World):
             self._add_entrance_rule("farumazula_main", lambda state: state.has("Somberstone Miner's Bell Bearing [4]", self.player))
             self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: state.has("Somberstone Miner's Bell Bearing [5]", self.player))
         
-        # DLC Access Rules Below
+        # DLC Rules
         if self.options.enable_dlc:
+            
+            # not done dlc paintings
+            self._add_location_rule("", 
+                lambda state: state.has("\"\" Painting", self.player))
+            self._add_location_rule("", 
+                lambda state: state.has("\"\" Painting", self.player))
+            self._add_location_rule("", 
+                lambda state: state.has("\"\" Painting", self.player))
+            
+            # dlc imbued
+            self._add_entrance_rule([
+                "The Four Belfries (Chapel of Anticipation)",
+                "The Four Belfries (Nokron)",
+                "The Four Belfries (Farum Azula)",
+                "DLC AREA"
+                ],lambda state: state.has("Imbued Sword Key", self.player, count=4))
+   
+   
             if self.options.late_dlc:
                 self._add_entrance_rule("Gravesite Plain",
                     lambda state: state.has("Rold Medallion", self.player)
@@ -760,6 +739,13 @@ class EldenRing(World):
             # the funny gaol
             self._add_entrance_rule("Lamenter's Gaol (Upper)", lambda state: state.has("Gaol Upper Level Key", self.player))
             self._add_entrance_rule("Lamenter's Gaol (Lower)", lambda state: state.has("Gaol Lower Level Key", self.player))
+        else:
+            # vanilla imbued
+            self._add_entrance_rule([
+                "The Four Belfries (Chapel of Anticipation)",
+                "The Four Belfries (Nokron)",
+                "The Four Belfries (Farum Azula)"
+                ],lambda state: state.has("Imbued Sword Key", self.player, count=3))
                     
         
         if self.options.ending_condition <= 1:
@@ -806,10 +792,16 @@ class EldenRing(World):
         #     if self.options.enable_dlc:
             
     
-    def _region_lock_items(self) -> None:
-        """All region lock items set to not be skipped when doing region lock."""
+    def _region_lock(self) -> None:
+        """All region lock items set to not be skipped when doing region lock.
+        and add entrance rules using said items."""
         # MARK: Region Lock Items
-        item_table["Region Lock Key"].skip = False
+        item_table["Region Lock Key 1", "Region Lock Key 2"].skip = False
+        
+        #self._add_entrance_rule("Weeping Peninsula", lambda state: "region key")
+        #self._add_entrance_rule(["Stormveil Start", "Stormveil Castle"], lambda state: "region key")
+        #self._add_entrance_rule("Liurnia of The Lakes", lambda state: "region key")
+        #self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: "Region Lock Key Caelid")
         
     def _key_rules(self) -> None:
         # MARK: SSK RULES
@@ -822,6 +814,7 @@ class EldenRing(World):
         self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: self._has_enough_keys(state, currentKey)) # 1
         
+        self._add_entrance_rule("Roundtable Hold", lambda state: self._has_enough_keys(state, currentKey))
         # roundtable
         currentKey += 3
         self._add_location_rule([
@@ -829,6 +822,7 @@ class EldenRing(World):
             "RH: Assassin's Prayerbook - behind second imp statue in chest", # 2
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_keys(state, currentKey))
         # weeping
         currentKey += 2
         self._add_location_rule([
@@ -836,6 +830,7 @@ class EldenRing(World):
             "WP/(WE): Radagon's Scarseal - boss drop Evergaol", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Stormveil Castle", lambda state: self._has_enough_keys(state, currentKey))
         # stormveil
         currentKey += 2
         self._add_location_rule([
@@ -846,6 +841,7 @@ class EldenRing(World):
             "SV/RT: Miséricorde - shortcut elevator to SE, to N through door, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Siofra River", lambda state: self._has_enough_keys(state, currentKey))
         # siofra
         currentKey += 2
         # for leaving siofra to caelid ravine
@@ -856,6 +852,7 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey) and 
             state.can_reach("Caelid") and state.can_reach("Siofra River")) # 2
         
+        self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_keys(state, currentKey))
         # liurnia
         currentKey += 4
         self._add_location_rule([
@@ -864,8 +861,9 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
+        self._add_entrance_rule("Altus Plateau", lambda state: self._has_enough_keys(state, currentKey))
         # altus
-        currentKey += 6 #wip
+        currentKey += 6
         self._add_location_rule([
             "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1a
             "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1b
@@ -874,16 +872,14 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Old Altus Tunnel", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
-        # mt gelmir
-        currentKey += 2 #wip
-        self._add_entrance_rule("Seethewater Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
-        
+        self._add_entrance_rule("Caelid", lambda state: self._has_enough_keys(state, currentKey))
         # caelid
         currentKey += 3
         self._add_entrance_rule("Gaol Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         self._add_location_rule("CL/(FR): Sword of St. Trina - chest underground behind imp statue", 
                                 lambda state: self._has_enough_keys(state, currentKey)) # 1
         
+        self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._has_enough_keys(state, currentKey))
         # nokron
         currentKey += 1
         self._add_location_rule([
@@ -891,41 +887,48 @@ class EldenRing(World):
             "NR/(NSG): Smithing Stone [3] - behind imp statue upper interior", # 1a
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Mt. Gelmir", lambda state: self._has_enough_keys(state, currentKey))
         # mt gelmir
-        currentKey += 1 #wip
+        currentKey += 3
         self._add_location_rule([
             "MG/(WC): Lightning Scorpion Charm - behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
+        self._add_entrance_rule("Seethewater Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
+        self._add_entrance_rule("Volcano Manor Entrance", lambda state: self._has_enough_keys(state, currentKey))
         # volcano
         currentKey += 3
         self._add_location_rule([
             "VM/PTC: Crimson Amber Medallion +1 - behind imp statue W of town", # 1
             "VM/TE: Seedbed Curse - NW of shortcut elevator, after imp statue, lower part of big cage room to SW", # 2a
-            "VM/TE: Ash of War: Royal Knight's Resolve - NW of shortcut elevator, after imp statue, lower part of big cage room to NE", # 2b
-            "VM/TE: Somber Smithing Stone [7] - NW of shortcut elevator, after imp statue, lower part of big cage room outside to SW", # 2c
-            "VM/TE: Dagger Talisman - NW of shortcut elevator, after imp statue, drop to hidden path top item", # 2d
-            "VM/TE: Rune Arc - NW of shortcut elevator, after imp statue, drop to hidden path lower item", # 2e
+            "VM/TE: Ash of War: Royal Knight's Resolve - NW of shortcut elevator, after imp statue, lower part of big cage room to NE", # 2a
+            "VM/TE: Somber Smithing Stone [7] - NW of shortcut elevator, after imp statue, lower part of big cage room outside to SW", # 2a
+            "VM/TE: Dagger Talisman - NW of shortcut elevator, after imp statue, drop to hidden path top item", # 2a
+            "VM/TE: Rune Arc - NW of shortcut elevator, after imp statue, drop to hidden path lower item", # 2a
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Capital Outskirts", lambda state: self._has_enough_keys(state, currentKey))
         # capital outskirts
-        currentKey += 1 #wip
+        currentKey += 1
         self._add_location_rule([
             "CO/(AHG): Golden Epitaph - behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Ainsel River Main", lambda state: self._has_enough_keys(state, currentKey))
         # nokstella
         currentKey += 1
         self._add_location_rule([
             "NS/NEC: Nightmaiden & Swordstress Puppets - in chest behind imp statue to W up stairs, left before bridge", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Moonlight Altar", lambda state: self._has_enough_keys(state, currentKey))
         # moonlight altar
         currentKey += 1
         self._add_location_rule([
             "MA/(LER): Cerulean Amber Medallion +2 - in chest under illusory floor behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Mountaintops of the Giants", lambda state: self._has_enough_keys(state, currentKey))
         # mountaintops
         currentKey += 2 #wip
         self._add_location_rule([
@@ -933,6 +936,7 @@ class EldenRing(World):
             "MG/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
         
+        self._add_entrance_rule("Miquella's Haligtree", lambda state: self._has_enough_keys(state, currentKey))
         # haligtree +3
         currentKey += 3
         self._add_location_rule([

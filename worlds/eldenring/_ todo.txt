@@ -30,8 +30,8 @@ using ground messages or the small stones with text on them
 
 dlc start / dlc only
 
-Regional stonesword key ring (one key item per region unlocks all stonesword statues in that region)
-Regional stonesword keys (like the first one but multiple keys)
+Master Key per region
+ex: Limgrave Master Key, Underground Master Key
 
 
 
@@ -39,8 +39,8 @@ Regional stonesword keys (like the first one but multiple keys)
 
 
 
-last update 25/12/14
-current progress 3470 / 4923
+last update 25/12/16
+current progress 3514 / 4923
 
 
 people who want to be pinged for playtesting
