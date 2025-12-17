@@ -15,6 +15,8 @@ and add all gesture locations, only randomize important ones, others skipped
 
 ALL capital items need missable=True, need to ashen it while nothing is collected to see what is not missable.
 
+dragonbarrow needs to be DB/aa: not CL/aa:   and need to make sure each item in db is not cl item
+
 for priority location option had how many checks each location adds and how many progression items there are
 
 
@@ -39,8 +41,8 @@ ex: Limgrave Master Key, Underground Master Key
 
 
 
-last update 25/12/16
-current progress 3514 / 4923
+last update 25/12/17
+current progress 3596 / 4923
 
 
 people who want to be pinged for playtesting

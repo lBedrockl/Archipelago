@@ -297,24 +297,26 @@ class EldenRing(World):
         create_connection("Mountaintops of the Giants", "Giant-Conquering Hero's Grave")
         create_connection("Mountaintops of the Giants", "Giants' Mountaintop Catacombs")
         create_connection("Mountaintops of the Giants", "Spiritcaller Cave")
+        create_connection("Mountaintops of the Giants", "Flame Peak")
         
-        #create_connection("Mountaintops of the Giants", "Farum Azula")
+        
+        #create_connection("Flame Peak", "Farum Azula")
         # Farum Azula
         #create_connection("Farum Azula", "Farum Azula Main")
         #create_connection("Farum Azula Main", "Leyndell, Ashen Capital")
         
         
-        #create_connection("Hidden Path to the Haligtree", "Consecrated Snowfield")
+        create_connection("Hidden Path to the Haligtree", "Consecrated Snowfield")
         # Snowfield
-        #create_connection("Consecrated Snowfield", "Consecrated Snowfield Catacombs")
-        #create_connection("Consecrated Snowfield", "Cave of the Forlorn")
-        #create_connection("Consecrated Snowfield", "Yelough Anix Tunnel")
+        create_connection("Consecrated Snowfield", "Consecrated Snowfield Catacombs")
+        create_connection("Consecrated Snowfield", "Cave of the Forlorn")
+        create_connection("Consecrated Snowfield", "Yelough Anix Tunnel")
 
-        #create_connection("Consecrated Snowfield", "Miquella's Haligtree")
+        create_connection("Consecrated Snowfield", "Miquella's Haligtree")
         # Haligtree
         create_connection("Miquella's Haligtree", "Elphael, Brace of the Haligtree")
         
-        #create_connection("Consecrated Snowfield", "Mohgwyn Palace")
+        create_connection("Consecrated Snowfield", "Mohgwyn Palace")
         
         create_connection("Divine Bridge", "Leyndell, Ashen Capital")
         create_connection("Leyndell, Ashen Capital", "Leyndell, Ashen Capital Throne")
@@ -930,11 +932,12 @@ class EldenRing(World):
         
         self._add_entrance_rule("Mountaintops of the Giants", lambda state: self._has_enough_keys(state, currentKey))
         # mountaintops
-        currentKey += 2 #wip
+        currentKey += 4 #wip
         self._add_location_rule([
             "MG/(GCHG): Flame, Protect Me - behind imp statue", # 1a
             "MG/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
+        self._add_entrance_rule("Spiritcaller Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         self._add_entrance_rule("Miquella's Haligtree", lambda state: self._has_enough_keys(state, currentKey))
         # haligtree +3

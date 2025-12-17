@@ -105,7 +105,7 @@ Remove this? its only a small part of ainsel and the main part is connected to d
 * Keep or change to a morgott themed item that opens the seal
 
 ### Capital > Forbidden Lands
-* Same seal has Sewer > Deeproot
+* Same seal Sewer > Deeproot has
 
 #
 ## Mountain Tops
