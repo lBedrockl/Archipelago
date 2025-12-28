@@ -67,7 +67,7 @@ class EnemyRando(Toggle):
     """Randomizes the enemies."""
     display_name = "Enemy randomizer"
 
-class MaterialRando(Toggle):
+class MaterialRando(DefaultOnToggle):
     """Randomizes the indefinitely spawning materials."""
     display_name = "Material Randomizer"
 
@@ -80,6 +80,10 @@ class RandomizeStartingLoadout(DefaultOnToggle):
 class AutoEquipOption(Toggle):
     """Automatically equips any received armor or left/right weapons."""
     display_name = "Auto-Equip"
+    
+class AutoUpgradeOption(Toggle):
+    """Automatically upgrades any received weapons to highest upgraded level."""
+    display_name = "Auto-Upgrade"
     
 class SmithingBellBearingOption(Choice):
     """Choose how smithing stone bell bearings are handled.
@@ -94,8 +98,13 @@ class SmithingBellBearingOption(Choice):
     option_do_not_randomize = 2
     default = 1
     
-class LocalItemOnly(Toggle):
-    """Only progression or useful items will show up in other players games."""
+class SpellShopSpellsOnly(Toggle):
+    """Spell Shops only have spells."""
+    display_name = "Spell Shop Spells Only"
+    
+class LocalItemOnly(DefaultOnToggle):
+    """Only progression or useful items will show up in other players games.
+    Used with ExcludeLocalItemOnly option."""
     display_name = "Local Item Option"
     
 class ExcludeLocalItemOnly(OptionDict):
@@ -109,7 +118,7 @@ class ExcludeLocalItemOnly(OptionDict):
     
     Goods should always be local only.
     """
-    default = frozenset({"Weapon", "Armor", "Accessory"})
+    default = frozenset({"Weapon", "Armor", "Accessory", "AshofWar"})
 
 class ERExcludeLocations(ExcludeLocations):
     """Prevent these locations from having an important item.
@@ -181,8 +190,10 @@ class EROptions(PerGameCommonOptions):
 
     random_start: RandomizeStartingLoadout
     auto_equip: AutoEquipOption
-
+    auto_upgrade: AutoUpgradeOption
+    
     smithing_bell_bearing_option: SmithingBellBearingOption
+    spell_shop_spells_only: SpellShopSpellsOnly
     local_item_option: LocalItemOnly
     exclude_local_item_only: ExcludeLocalItemOnly
     important_locations: ERImportantLocations

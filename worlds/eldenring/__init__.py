@@ -589,6 +589,9 @@ class EldenRing(World):
         #self._add_remembrance_rules() # need to do the locations first
         #self._add_equipment_of_champions_rules() # need to do the locations first
         
+        
+        # you can get into volcano dungeon from VM, but some items require RLA
+        
         # World Logic
         if self.options.world_logic == "region_lock": 
             self._region_lock()
@@ -597,8 +600,15 @@ class EldenRing(World):
                 self._add_entrance_rule("Dragonbarrow", lambda state: state.can_reach("Forbidden Lands") and state.has("Rold Medallion", self.player))
            
            
-            "BS: Stonesword Key - behind wooden platform" 
+            "BS: Stonesword Key - behind wooden platform" # in limgrave rn
             "BS: Smithing Stone [1] x3 - corpse hanging off edge" # on Bridge of Sacrifice idk where wall for WP will be
+            
+            
+            # if haligtree region lock adds a key to the evergaol these items would require it
+            "CS/(OLT): Ghost Glovewort [9] - enemy drop in evergaol, NW side of town middle of buildings"
+            "CS/(OLT): Ghost Glovewort [9] - enemy drop in evergaol, S side of town by fog wall"
+            "CS/(OLT): Ghost Glovewort [9] - enemy drop in evergaol, up stairs from where the grace would be"
+            "CS/(OLT): Ghost Glovewort [9] - enemy drop in evergaol, under stairs to haligtree seal"
             
     
             self._add_entrance_rule("Altus Plateau", lambda state: # only in region lock since it can be bypassed by ruin-strewn precipice
@@ -1076,9 +1086,16 @@ class EldenRing(World):
         # MARK: Latenna
         # need to see if armour is missable
         # talk to her with secret medallion right, get ashes        *do you need to talk to albus first or just have item*
-        # after take her to apostate derelict in con snow, get mega somber
         self._add_location_rule([ "LL/(SWS): Latenna the Albinauric - talk to Latenna with Haligtree Secret Medallion (Right)",
         ], lambda state: ( state.has("Haligtree Secret Medallion (Right)", self.player)))
+        
+        self._add_location_rule([ "CS/(AD): Somber Ancient Dragon Smithing Stone - summon Latenna at her sister and talk to her",
+        ], lambda state: ( self._can_get(state, "LL/(SWS): Latenna the Albinauric - talk to Latenna with Haligtree Secret Medallion (Right)"))
+            and state.can_reach("Mountaintops of the Giants")) # idk if you need to hear her talk here for quest prog
+        
+        # then beat malenia and bring her to her wolf for armour?
+        # NEED TO SUMMON?
+        
         
         # MARK: D
         self._add_location_rule([
@@ -1681,7 +1698,9 @@ class EldenRing(World):
                 "death_link": self.options.death_link.value,
                 "random_start": self.options.random_start.value,
                 "auto_equip": self.options.auto_equip.value,
+                "auto_upgrade": self.options.auto_upgrade.value,
                 "smithing_bell_bearing_option": self.options.smithing_bell_bearing_option.value,
+                "spell_shop_spells_only": self.options.spell_shop_spells_only.value,
                 "local_item_option": self.options.local_item_option.value,
                 "exclude_local_item_only": self.options.exclude_local_item_only.value,
                 "important_locations": self.options.important_locations.value,

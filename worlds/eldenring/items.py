@@ -95,7 +95,7 @@ class ERItem(Item):
         super().__init__(data.name, classification or data.classification, data.ap_code, player)
         self.data = data
 
-    @staticmethod #idk if this is needed
+    @staticmethod # idk what this is
     def event(name: str, player: int) -> "ERItem":
         data = ERItemData(name, None, ERItemCategory.GOODS,
                            skip = True, classification = ItemClassification.progression)
@@ -1591,7 +1591,7 @@ _vanilla_items = [
     ERItemData("Rusty Key", 8010, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dectus Medallion (Left)", 8105, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dectus Medallion (Right)", 8106, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Rold Medallion", 8107, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Rold Medallion", 8107, ERItemCategory.GOODS, classification=(ItemClassification.progression, ItemClassification.useful)), # i think this is how you do this
     ERItemData("Academy Glintstone Key", 8109, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Carian Inverted Statue", 8111, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dark Moon Ring", 8121, ERItemCategory.GOODS, classification=ItemClassification.progression),

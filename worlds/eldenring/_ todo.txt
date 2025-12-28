@@ -42,7 +42,7 @@ ex: Limgrave Master Key, Underground Master Key
 
 
 last update 25/12/17
-current progress 3596 / 4923
+current progress 3646 / 4923
 
 
 people who want to be pinged for playtesting
@@ -67,4 +67,5 @@ people who want to be pinged for playtesting
 @andrewki @cmass27 @mhayden1 @knyte_ex
 @xdjlf @arnicauwu @nyxkerrigan @kase6959
 @kingtitanite @shackledmars @freyab00b13s @funnyhatman
-@nicedinos13 
+@nicedinos13 @togtmw @jakesicle @mrydeas
+@nicko564 @boomerremover @yc3y
