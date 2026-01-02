@@ -675,6 +675,10 @@ class EldenRing(World):
         self._add_location_rule(["MotG/(SR): Primal Glintstone Blade - in chest underground behind jellyfish seal"
             ], lambda state: state.has("Spirit Jellyfish Ashes", self.player) and state.has("Spirit Calling Bell", self.player))
 
+        # CS/AR spirit summon item
+        self._add_location_rule(["CS/(AR): Graven-Mass Talisman - top of rise, use Fanged Imp Ashes or bewitching branch to make spirit enemies fight"
+            ], lambda state: state.has("Fanged Imp Ashes", self.player) and state.has("Spirit Calling Bell", self.player))
+
         # Region Rules
         
         # you can kill gostoc and not open main gate
@@ -942,12 +946,17 @@ class EldenRing(World):
         
         self._add_entrance_rule("Mountaintops of the Giants", lambda state: self._has_enough_keys(state, currentKey))
         # mountaintops
-        currentKey += 4 #wip
+        currentKey += 4
         self._add_location_rule([
             "MG/(GCHG): Flame, Protect Me - behind imp statue", # 1a
             "MG/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Spiritcaller Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
+        
+        self._add_entrance_rule("Consecrated Snowfield", lambda state: self._has_enough_keys(state, currentKey))
+        # snowfield
+        currentKey += 2
+        self._add_entrance_rule("Cave of the Forlorn", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
         self._add_entrance_rule("Miquella's Haligtree", lambda state: self._has_enough_keys(state, currentKey))
         # haligtree +3

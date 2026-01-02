@@ -123,8 +123,9 @@ class ExcludeLocalItemOnly(OptionDict):
 class ERExcludeLocations(ExcludeLocations):
     """Prevent these locations from having an important item.
     - **dlc**: If you want DLC items but dont wanna do DLC.
-    - **hidden: Hard to find items.**"""
-    default = frozenset({"Hidden"})
+    - **hidden**: Hard to find items.
+    - **blizzard**: The hard to see area of snowfield."""
+    default = frozenset({"hidden", "blizzard"})
     
 class ERImportantLocations(PriorityLocations):
     """Prevent these locations from having an unimportant item.

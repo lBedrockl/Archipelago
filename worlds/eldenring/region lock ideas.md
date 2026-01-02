@@ -133,7 +133,9 @@ The Haligtree is for those in desperate need of an age of compassion - certainly
 * A flame to start the forge? can use recolored messmer's flame icon or smth
 * Item name idea: `Giants Flame`
 
-#### Don't require an item for leaving Farum Azula since player gets locked in till leaving
+### Farum Azula > Ashen Capital
+* something to unlock the boss door
+
 #
 # Legacy Dungeons
 

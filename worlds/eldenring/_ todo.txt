@@ -36,13 +36,20 @@ Master Key per region
 ex: Limgrave Master Key, Underground Master Key
 
 
+Art that will be needed probs
+
+modified main menu with arch text
+a apitem item sprite for pickups and shop
+custom region lock items
+Stonesword Master Keys
 
 
 
 
 
-last update 25/12/17
-current progress 3646 / 4923
+
+last update 26/01/02 new year 🤯
+current progress 3701 / 4922
 
 
 people who want to be pinged for playtesting
@@ -68,4 +75,5 @@ people who want to be pinged for playtesting
 @xdjlf @arnicauwu @nyxkerrigan @kase6959
 @kingtitanite @shackledmars @freyab00b13s @funnyhatman
 @nicedinos13 @togtmw @jakesicle @mrydeas
-@nicko564 @boomerremover @yc3y
+@nicko564 @boomerremover @yc3y @sirjambo
+@.allu @theran_1 @dark9rt
