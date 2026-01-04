@@ -289,7 +289,7 @@ class EldenRing(World):
         
         create_connection("Divine Tower of East Altus", "Forbidden Lands")
         # Forbidden Lands
-        #create_connection("Forbidden Lands", "Hidden Path to the Haligtree")
+        create_connection("Forbidden Lands", "Hidden Path to the Haligtree")
         
         
         create_connection("Forbidden Lands", "Mountaintops of the Giants")
@@ -300,10 +300,10 @@ class EldenRing(World):
         create_connection("Mountaintops of the Giants", "Flame Peak")
         
         
-        #create_connection("Flame Peak", "Farum Azula")
+        create_connection("Flame Peak", "Farum Azula")
         # Farum Azula
-        #create_connection("Farum Azula", "Farum Azula Main")
-        #create_connection("Farum Azula Main", "Leyndell, Ashen Capital")
+        create_connection("Farum Azula", "Farum Azula Main")
+        create_connection("Farum Azula Main", "Leyndell, Ashen Capital")
         
         
         create_connection("Hidden Path to the Haligtree", "Consecrated Snowfield")
@@ -582,7 +582,8 @@ class EldenRing(World):
 
     def set_rules(self) -> None: #MARK: Rules
 
-        self._key_rules()
+        self._key_rules() # make option to choose master or normal rules
+        #self._master_key_rules()
         self._dragon_communion_rules()
         self._add_shop_rules()
         self._add_npc_rules()
@@ -819,9 +820,8 @@ class EldenRing(World):
         #self._add_entrance_rule("Liurnia of The Lakes", lambda state: "region key")
         #self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: "Region Lock Key Caelid")
         
-    def _key_rules(self) -> None:
+    def _key_rules(self) -> None: #
         # MARK: SSK RULES
-        # this needs to be fixed, the order needs to be the sphere order, and idk how todo that
         # in order from early game to late game each rule needs to include the last count for an area
         currentKey = 0 #makes dynamic
         
@@ -953,6 +953,29 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Spiritcaller Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
         
+        self._add_entrance_rule("Farum Azula", lambda state: self._has_enough_keys(state, currentKey))
+        # farum
+        currentKey += 2
+        self._add_location_rule([ # entire area behind a imp staute lol
+            "FA/DTL: Lord's Rune - to SE in fountain", # 2
+            "FA/DTL: Nascent Butterfly x2 - to SE down left stairs by tree", # 2
+            "FA/DTL: Golden Seed - seedtree to SE up right path", # 2
+            "FA/DTL: Rune Arc - to SE up right path beside seedtree", # 2
+            "FA/DTL: Smithing Stone [8] - to SE up right path, E of seedtree behind gazebo", # 2
+            "FA/DTL: Golden Rune [12] - to SE up right path, E of seedtree left of gazebo by tree", # 2
+            "FA/DTL: Smithing Stone [7] - to SE up right path, E of seedtree left of gazebo on ledge", # 2
+            "FA/DTL: Golden Lightning Fortification - scarab to SE up right path, SW of seedtree", # 2
+            "FA/DTL: Smithing Stone [8] - to SE up right path, SW of seedtree", # 2
+            "FA/DTL: Golden Rune [12] - to SE up right path, W of seedtree on platform after crossing building", # 2
+            "FA/DTL: Smithing Stone [7] - to SE up right path, W of seedtree on second platform after crossing building", # 2
+            "FA/DTL: Ancient Dragon Apostle's Cookbook [4] - to SE up right path, W of seedtree, far end of path in building", # 2
+            "FA/DTL: Somber Smithing Stone [8] - to SE up right path, W of seedtree, far end of path left of building", # 2
+            "FA/DTL: Smithing Stone [8] - to SE up right path, W of seedtree, far end of path drop down left of building", # 2
+            "FA/DTL: Dragonwound Grease x2 - to S under fallen building", # 2
+            "FA/DTL: Shard of Alexander - fight Alexander to SW", # 2
+            "FA/DTL: Alexander's Innards - fight Alexander to SW", # 2
+            ], lambda state: self._has_enough_keys(state, currentKey))
+        
         self._add_entrance_rule("Consecrated Snowfield", lambda state: self._has_enough_keys(state, currentKey))
         # snowfield
         currentKey += 2
@@ -1063,6 +1086,15 @@ class EldenRing(World):
         assuming the player _doesn't_ so they aren't forced to start killing allies to advance the
         quest.
         """
+        # MARK: Irina
+        "WP/BS: Irina's Letter - talk to Irina to SE"
+        
+        # MARK: Hyetta
+        # need to finish irina's quest
+        # requires multiple grapes
+        "FFP/FFP: Frenzied Flame Seal - given by Hyetta at end of her quest"
+        "FFP/FFP: Frenzyflame Stone x5 - given by Hyetta at end of her quest"
+        
         # MARK: Edgar
         self._add_location_rule([ "WP/BS: Banished Knight's Halberd - kill Edgar at Irina's body or at LL/RS",
         ], lambda state: ( state.can_reach("Liurnia of The Lakes")))
@@ -1113,12 +1145,12 @@ class EldenRing(World):
         ], lambda state: ( state.can_reach("Dragonbarrow")))
         
         # MARK: D, Twin
-        # WIP IDK IF THE WHOLE SET IS NEEDED, OR A SINGLE PIECE
-        self._add_location_rule(["DD/AR: Inseparable Sword - kill D Twin at NEC if you killed D, or at end of Fia quest", 
+        # IDK IF THE WHOLE SET IS NEEDED, OR A SINGLE PIECE, just doing all to be sure
+        self._add_location_rule(["DD/AR: Inseparable Sword - kill D Twin at NEC if you killed D, or at end of Fia's quest", 
         ], lambda state: ( 
-            (state.has("Twinned Helm", self.player) or state.has("Twinned Armor", self.player)
-            or state.has("Twinned Gauntlets", self.player) or state.has("Twinned Greaves", self.player))
-            and self._can_get(state, "RH: Twinned Helm - on D's body after giving him Weather Dagger during Fia's quest")))
+            (state.has("Twinned Helm", self.player) and state.has("Twinned Armor", self.player)
+            and state.has("Twinned Gauntlets", self.player) and state.has("Twinned Greaves", self.player))
+            and self._can_get(state, "DD/PDT: Mending Rune of the Death-Prince - on Fia after mainboss")))
         
         # MARK: Rogier
         self._add_location_rule(["RH: Rogier's Letter - after giving Black Knifeprint, talk to Ranni, talk to Rogier again", 
@@ -1149,6 +1181,13 @@ class EldenRing(World):
             "RH: Twinned Gauntlets - on D's body after giving him Weather Dagger during Fia's quest",
             "RH: Twinned Greaves - on D's body after giving him Weather Dagger during Fia's quest"
         ], lambda state: ( state.has("Weathered Dagger", self.player) and state.can_reach("Altus Plateau")))
+        
+        self._add_location_rule([
+            "DD/PDT: Remembrance of the Lichdragon - mainboss drop", 
+            "DD/PDT: Mending Rune of the Death-Prince - on Fia after mainboss",
+            "DD/PDT: Fia's Hood - kill Fia or after mainboss",
+            "DD/PDT: Fia's Robe - kill Fia or after mainboss",
+        ], lambda state: ( state.has("Cursemark of Death", self.player) and self._can_get(state, "RH: Weathered Dagger - talk to Fia after reaching altus")))
         
         # MARK: Dung Eater
         self._add_location_rule(["RH: Sewer-Gaol Key - talk to Dung Eater while having a Seedbed Curse", 
@@ -1284,6 +1323,22 @@ class EldenRing(World):
         ], lambda state: ( state.has("Discarded Palace Key", self.player)))
         
         "MA/(CMC): Dark Moon Greatsword - talk to Ranni under CMC" # MA requires the ring to enter, but this check requires nothing
+        
+        # MARK: Bernahl
+        
+        "FA/BGB: Blasphemous Claw - kill invader Bernahl, to NE end of path"
+        "FA/BGB: Devourer's Scepter - kill invader Bernahl, to NE end of path"
+        
+        # get with invader or here
+        "LG/(WS): Beast Champion Helm - kill Bernahl"
+        "LG/(WS): Beast Champion Gauntlets - kill Bernahl"
+        "LG/(WS): Beast Champion Greaves - kill Bernahl"
+        "LG/(WS): Beast Champion Armor (Altered) - kill Bernahl"
+        
+        # MARK: Alexander
+        
+        "FA/DTL: Shard of Alexander - fight Alexander to SW"
+        "FA/DTL: Alexander's Innards - fight Alexander to SW"
         
         if self.options.enable_dlc: # MARK: DLC NPC
             
@@ -1539,7 +1594,7 @@ class EldenRing(World):
                     "Gaius's Greaves"
                 ]
             ),
-            ( # you cant even get this till the game is beat LMAO
+            ( # you cant even get this till the game is beat LMAO, but you can get it in all bosses :)
                 "", #"Promised Consort Radahn", # boss
                 "", # a drop from boss, so we can do 'can get' check
                 [   # items
