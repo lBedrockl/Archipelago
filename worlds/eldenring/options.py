@@ -45,7 +45,10 @@ class GreatRunesRequired(Range):
     range_start = 1
     range_end = 7
     default = 2
-
+    
+class RoyalAccess(Toggle):
+    """Keep Royal Capital graces accessable after it becomes ashen."""
+    display_name = "Royal Capital Accessable"
 
 class EnableDLC(Toggle):
     """Enable DLC"""
@@ -119,13 +122,6 @@ class ExcludeLocalItemOnly(OptionDict):
     Goods should always be local only.
     """
     default = frozenset({"Weapon", "Armor", "Accessory", "AshofWar"})
-
-class ERExcludeLocations(ExcludeLocations):
-    """Prevent these locations from having an important item.
-    - **dlc**: If you want DLC items but dont wanna do DLC.
-    - **hidden**: Hard to find items.
-    - **blizzard**: The hard to see area of snowfield."""
-    default = frozenset({"hidden", "blizzard"})
     
 class ERImportantLocations(PriorityLocations):
     """Prevent these locations from having an unimportant item.
@@ -141,18 +137,24 @@ class ERImportantLocations(PriorityLocations):
     - [21] *KeyItem*: Key items.
     
     The *total* amount of priority checks should be below:
-    - **Vanilla**: [95] 
-    - **DLC**: [124]
-    - THESE CAN CHANGE, need to be updated later
+    - **Vanilla**: [90] 
+    - **DLC**: [120]
     """
     default = frozenset({"Remembrance", "Seedtree", "Map"})
+
+class ERExcludeLocations(ExcludeLocations):
+    """Prevent these locations from having an important item.
+    - **dlc**: If you want DLC items but dont wanna do DLC.
+    - **hidden**: Hard to find items.
+    - **blizzard**: The hard to see area of snowfield."""
+    default = frozenset({"hidden"})
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.
 
     - **Randomize:** Progression items can be placed in excluded locations.
     - **Randomize Unimportant:** Progression items can't be placed in excluded locations.
-    - **Do Not Randomize:** Excluded locations always contain the same item as in vanilla EldenRing.
+    - **Do Not Randomize:** Excluded locations always contain the same item as in vanilla Elden Ring.
 
     A "progression item" is anything that's required to unlock another location in some game.
     """
@@ -167,7 +169,7 @@ class MissableLocationBehaviorOption(Choice):
 
     - **Randomize:** Progression items can be placed in missable locations, don't do this unless you know what your doing, you can make a game impossible.
     - **Randomize Unimportant:** Progression items can't be placed in missable locations.
-    - **Do Not Randomize:** Missable locations always contain the same item as in vanilla EldenRing.
+    - **Do Not Randomize:** Missable locations always contain the same item as in vanilla Elden Ring.
 
     A "progression item" is anything that's required to unlock another location in some game.
     """
@@ -183,6 +185,7 @@ class EROptions(PerGameCommonOptions):
     world_logic: WorldLogic
     soft_logic: RegionSoftLogic
     great_runes_required: GreatRunesRequired
+    royal_access: RoyalAccess
     enable_dlc: EnableDLC
     late_dlc: LateDLCOption
     enemy_rando: EnemyRando

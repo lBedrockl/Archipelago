@@ -13,11 +13,16 @@ Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
 and add all gesture locations, only randomize important ones, others skipped
 
-ALL capital items need missable=True, need to ashen it while nothing is collected to see what is not missable.
+for priority location option had how many checks each location adds and how many progression items there are
+each type split by base / dlc, ex: remembrances
+
+
+BIG TODO
+
+you can get into volcano dungeon from VM, but some items require RLA
 
 dragonbarrow needs to be DB/aa: not CL/aa:   and need to make sure each item in db is not cl item
 
-for priority location option had how many checks each location adds and how many progression items there are
 
 
 
@@ -49,7 +54,7 @@ Stonesword Master Keys
 
 
 last update 26/01/04
-current progress 3815 / 4922
+current progress 3817 / 4922
 
 
 people who want to be pinged for playtesting

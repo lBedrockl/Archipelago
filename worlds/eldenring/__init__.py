@@ -82,12 +82,6 @@ class EldenRing(World):
             elif self.options.ending_condition == 3:
                 raise OptionError(f"EldenRing disable_extreme_options Error:"
                                   f"Player {self.player_name} has ending_condition set to all bosses.")      
-                
-        # #if self.options.leyndell_missable:
-        #     for location in location_tables["Leyndell, Royal Capital", "leyndell_throne"]:
-        #         # there might be some exceptions but lazy all missable :)
-        #         if not location.boss:
-        #             location.missable = True
 
         if self.options.smithing_bell_bearing_option.value == 1:
             item_table["Smithing-Stone Miner's Bell Bearing [1]","Smithing-Stone Miner's Bell Bearing [2]",
@@ -137,8 +131,6 @@ class EldenRing(World):
 
         regions["Menu"].exits.append(Entrance(self.player, "New Game", regions["Menu"]))
         self.multiworld.get_entrance("New Game", self.player).connect(regions["Limgrave"])
-        
-        # create_connection("Limgrave", "Miquella's Haligtree") #TEMP TO MAKE GAME WORK
         
         # Limgrave
         create_connection("Limgrave", "Fringefolk Hero's Grave")
@@ -277,6 +269,7 @@ class EldenRing(World):
 
         # Leyndell Royal
         create_connection("Divine Bridge", "Leyndell, Royal Capital")
+        create_connection("Leyndell, Royal Capital", "Leyndell, Royal Capital Unmissable")
         create_connection("Leyndell, Royal Capital", "Leyndell, Royal Capital Throne")
         create_connection("Leyndell, Royal Capital", "Divine Tower of East Altus")
         
@@ -584,14 +577,12 @@ class EldenRing(World):
 
         self._key_rules() # make option to choose master or normal rules
         #self._master_key_rules()
-        self._dragon_communion_rules()
-        self._add_shop_rules()
-        self._add_npc_rules()
-        #self._add_remembrance_rules() # need to do the locations first
-        #self._add_equipment_of_champions_rules() # need to do the locations first
         
-        
-        # you can get into volcano dungeon from VM, but some items require RLA
+        self._dragon_communion_rules() # done
+        self._add_shop_rules() # done?
+        self._add_npc_rules() # wip
+        self._add_remembrance_rules() # done
+        #self._add_equipment_of_champions_rules() # wip needs dlc checks
         
         # World Logic
         if self.options.world_logic == "region_lock": 
@@ -672,6 +663,10 @@ class EldenRing(World):
                 "VM/VM: Bloodhound Claws - enemy drop behind the illusory wall in the right room, down the stairs"
             ], lambda state: state.has("Drawing-Room Key"))
         
+        if self.options.royal_access == False:
+            for location in location_tables["Leyndell, Royal Capital"]:
+                location.missable = True
+        
         # MotG/SR spirit summon item
         self._add_location_rule(["MotG/(SR): Primal Glintstone Blade - in chest underground behind jellyfish seal"
             ], lambda state: state.has("Spirit Jellyfish Ashes", self.player) and state.has("Spirit Calling Bell", self.player))
@@ -710,13 +705,13 @@ class EldenRing(World):
         if self.options.smithing_bell_bearing_option.value == 1: # wip not all places have names
             self._add_entrance_rule("Altus Plateau", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [1]", self.player))
             self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [2]", self.player))
-            self._add_entrance_rule("motg_flamepeak", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [3]", self.player))
-            self._add_entrance_rule("farumazula_main", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [4]", self.player))
+            self._add_entrance_rule("Flame Peak", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [3]", self.player))
+            self._add_entrance_rule("Farum Azula Main", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [4]", self.player))
             
             self._add_entrance_rule("Dragonbarrow", lambda state: state.has("Somberstone Miner's Bell Bearing [1]", self.player))
             self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Somberstone Miner's Bell Bearing [2]", self.player))
-            self._add_entrance_rule("motg_flamepeak", lambda state: state.has("Somberstone Miner's Bell Bearing [3]", self.player))
-            self._add_entrance_rule("farumazula_main", lambda state: state.has("Somberstone Miner's Bell Bearing [4]", self.player))
+            self._add_entrance_rule("Flame Peak", lambda state: state.has("Somberstone Miner's Bell Bearing [3]", self.player))
+            self._add_entrance_rule("Farum Azula Main", lambda state: state.has("Somberstone Miner's Bell Bearing [4]", self.player))
             self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: state.has("Somberstone Miner's Bell Bearing [5]", self.player))
         
         # DLC Rules
@@ -1456,9 +1451,9 @@ class EldenRing(World):
             
         if self.options.enable_dlc:
             remembrances += dlc_remembrances
-            self._add_location_rule("JP/GADC: Bayle's Flame Lightning - Heart of Bayle", 
+            self._add_location_rule("JP/GADC: Bayle's Flame Lightning - Dragon Communion, Heart of Bayle", 
                                     lambda state: (state.has("Heart of Bayle", self.player) and state.can_reach("Jagged Peak")))
-            self._add_location_rule("JP/GADC: Bayle's Tyranny - Heart of Bayle", 
+            self._add_location_rule("JP/GADC: Bayle's Tyranny - Dragon Communion, Heart of Bayle", 
                                     lambda state: (state.has("Heart of Bayle", self.player) and state.can_reach("Jagged Peak")))
 
         for (remembrance, items) in remembrances:
@@ -1467,7 +1462,7 @@ class EldenRing(World):
             ], lambda state, r=remembrance: (state.has(r, self.player) and self._has_enough_great_runes(state, 1)
             ))
     
-    def _add_equipment_of_champions_rules(self) -> None: # wip needs dlc checks
+    def _add_equipment_of_champions_rules(self) -> None:
         """Adds rules for items obtainable from equipment of champions."""
 
         equipments = [ # done
@@ -1755,6 +1750,7 @@ class EldenRing(World):
                 "world_logic": self.options.world_logic.value,
                 "soft_logic": self.options.soft_logic.value,
                 "great_runes_required": self.options.great_runes_required.value,
+                "royal_access": self.options.royal_access.value,
                 "enable_dlc": self.options.enable_dlc.value,
                 "late_dlc": self.options.late_dlc.value,
                 "enemy_rando": self.options.enemy_rando.value,
