@@ -792,7 +792,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/SC: St. Trina's Arrow x10 - on hole in outer wall middle of big long room", "St. Trina's Arrow x10", key="100000,0:0010007200::"),
         ERLocationData("SV/SC: Golden Rune [2] - on dropdown platform middle of big long room", "Golden Rune [2]", key="100000,0:0010007240::"),
     ],
-    "Limgrave":[ # limgrave           sellen quest
+    "Limgrave":[ # limgrave            done
         ERLocationData("LG/MO: Golden Seed - kill Kenneth Haight", "Golden Seed", key="100000,0:0000400220::", missable=True, death=True),
         ERLocationData("LG/MO: Erdsteel Dagger - kill FH enemy Kenneth Haight to NE", "Erdsteel Dagger", key="100000,0:0000400221::", missable=True),
         ERLocationData("LG/ALN: Mushroom x10 - Boc to SE", "Mushroom x10", key="110000,0:0000400271::", missable=True),
@@ -810,8 +810,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(WR): Scholar's Armament - Sellen Shop", "Scholar's Armament", key="140000,0:0000000000:100050:", sorceries=True, shop=True),
         ERLocationData("LG/(WR): Scholar's Shield - Sellen Shop", "Scholar's Shield", key="140000,0:0000000000:100050:", sorceries=True, shop=True),
         
-        #ERLocationData("LG: Glintstone Kris - Given by Sellen at the end of her questline after siding with her", "Glintstone Kris", key="140000,0:0000400101::", missable=True, exclusive=True),
-        #ERLocationData("LG: Starlight Shards - Given by Sellen after progressing her questline", "Starlight Shards", key="140000,0:0000400103::", missable=True, exclusive=True),
+        ERLocationData("LG/(WR): Starlight Shards - given by Sellen after you show her Stars of Ruin", "Starlight Shards", key="140000,0:0000400103::", missable=True, exclusive=True),
         
         ERLocationData("LG/SR: Haligdrake Talisman - cave entrance lower beach to NW", "Haligdrake Talisman", key="180000,0:0018007070::", talisman=True, outoftheway=True),
         ERLocationData("LG/CC: Broadsword - Nomadic Merchant SE of CC", "Broadsword", key="604136,0:0000000000:100575:", raceshop=True, shop=True),
@@ -920,7 +919,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/ALS: Larval Tear - transforming enemy to E", "Larval Tear", key="604435,0:1044357100::"),
         ERLocationData("LG/ALS: Great Épée - to E in chest", "Great Épée", key="604435,0:1044357900::", chest=True),
         
-        #ERLocationData("LG: Sellian Sealbreaker - ", "Sellian Sealbreaker", key="604436,0:0000400102::"), #sellen quest
+        ERLocationData("LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur", "Sellian Sealbreaker", key="604436,0:0000400102::"), #sellen quest
         
         ERLocationData("LG/ALS: Ash of War: Unsheathe - scarab to NW", "Ash of War: Unsheathe", key="604436,0:0000540112::", scarab=True),
         ERLocationData("LG/(WR): Glowstone x2 - within ruins", "Glowstone x2", key="604436,0:1044367000::"),
@@ -2705,7 +2704,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FA/BGB: Malformed Dragon Gauntlets - enemy drop to SE", "Malformed Dragon Gauntlets", key="130000,0:0013007995::"),
         ERLocationData("FA/BGB: Malformed Dragon Greaves - enemy drop to SE", "Malformed Dragon Greaves", key="130000,0:0013007995::"),
     ],
-    "Mt. Gelmir":[ # gelmir         4 quest items left
+    "Mt. Gelmir":[ # gelmir          alexander left
         #ERLocationData("MtG: Jar - Given by Alexander upon meeting him at Mt. Gelmir after he moves there", "Jar", key="130000,0:0000400172::", missable=True),
         ERLocationData("MtG/HS: Golden Rune [2] 1 - graveyard W of HS", "Golden Rune [2]", key="603552,0:1035527010::"),
         ERLocationData("MtG/HS: Golden Rune [4] - graveyard W of HS", "Golden Rune [4]", key="603552,0:1035527020::"),
@@ -2766,10 +2765,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MtG/(HV): Errant Sorcerer Boots - in shack NW side of village", "Errant Sorcerer Boots", key="603752,0:1037527100::"),
         ERLocationData("MtG/(HV): Errant Sorcerer Robe (Altered) - in shack NW side of village", "Errant Sorcerer Robe (Altered)", key="603752,0:1037527100::"),
    
-        ERLocationData("MtG/PSA: Comet Azur - talk to Azur", "Comet Azur", key="603753,0:0000400440::"),
-        #ERLocationData("MtG: Azur's Glintstone Crown - ", "Azur's Glintstone Crown", key="603753,0:0000400441::"),
-        #ERLocationData("MtG: Azur's Glintstone Robe - ", "Azur's Glintstone Robe", key="603753,0:0000400441::"),
-        #ERLocationData("MtG: Azur's Manchettes - ", "Azur's Manchettes", key="603753,0:0000400441::"),
+        ERLocationData("MtG/PSA: Comet Azur - given by Azur", "Comet Azur", key="603753,0:0000400440::"),
+        ERLocationData("MtG/PSA: Azur's Glintstone Crown - side with Sellen, where Azur was", "Azur's Glintstone Crown", key="603753,0:0000400441::"),
+        ERLocationData("MtG/PSA: Azur's Glintstone Robe - side with Sellen, where Azur was", "Azur's Glintstone Robe", key="603753,0:0000400441::"),
+        ERLocationData("MtG/PSA: Azur's Manchettes - side with Sellen, where Azur was", "Azur's Manchettes", key="603753,0:0000400441::"),
+        
         ERLocationData("MtG/SR: Ash of War: Barrage - scarab to N", "Ash of War: Barrage", key="603753,0:0000540332::"),
         ERLocationData("MtG/SR: Arrow x10 - to NE under slanted rock", "Arrow x10", key="603752,0:1037527020::"),
         ERLocationData("MtG/GHG: Mushroom x6 - N of GHG", "Mushroom x6", key="603753,0:1037537000::"),
@@ -2905,10 +2905,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
     "The Four Belfries (Farum Azula)":[ # farumazula_limited          done
         ERLocationData("LL/(TFB/FA): Pearldrake Talisman - N side at the bottom", "Pearldrake Talisman", key="130000,0:0013007830::", talisman=True),
     ],
-    "Raya Lucaria Academy Library":[ # academy_library           quest stuff
-        #ERLocationData("RLA/RLGL: Shard Spiral - Sold by Sellen after progressing her questline", "Shard Spiral", key="140000,0:0000000000:100050,14009267:", missable=True, exclusive=True, sorceries=True, shop=True),
-        #ERLocationData("RLA/RLGL: Witch's Glintstone Crown - In front of Sellen at the end of her questline when she has attained her final form", "Witch's Glintstone Crown", key="140000,0:0000400107::", missable=True, exclusive=True),
-        #ERLocationData("RLA/RLGL: Ancient Dragon Smithing Stone - Given by Jerren after betraying Sellen", "Ancient Dragon Smithing Stone", key="140000,0:0000400400::", missable=True, exclusive=True),
+    "Raya Lucaria Academy Library":[ # academy_library           done
+        ERLocationData("RLA/RLGL: Shard Spiral - side with Sellen, sold in shop", "Shard Spiral", key="140000,0:0000000000:100050,14009267:", missable=True, exclusive=True, sorceries=True, shop=True),
+        ERLocationData("RLA/RLGL: Witch's Glintstone Crown - side with either", "Witch's Glintstone Crown", key="140000,0:0000400107::", missable=True, exclusive=True),
+        ERLocationData("RLA/RLGL: Ancient Dragon Smithing Stone - side with Jerren", "Ancient Dragon Smithing Stone", key="140000,0:0000400400::", missable=True, exclusive=True),
+        ERLocationData("RLA/RLGL: Glintstone Kris - given by Sellen after siding with her", "Glintstone Kris", key="140000,0:0000400101::", missable=True, exclusive=True),
     ],
     "Raya Lucaria Academy Chest":[ # academy_chest            done
         ERLocationData("RLA/RLGL: Dark Moon Ring - in chest, requires Discarded Palace Key", "Dark Moon Ring", key="140000,0:0000000114::", keyitem=True, chest=True),
@@ -2951,17 +2952,17 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RLA/DB: Carian Knight's Shield - hostile npc drop after curved stairs", "Carian Knight's Shield", key="140000,0:0014007980::"),
         ERLocationData("RLA/DB: Golden Seed - seedtree outside to NW", "Golden Seed", key="140000,0:0014007990::", seedtree=True),
     ],
-    "Raya Lucaria Academy":[ # academy       quest stuff left
+    "Raya Lucaria Academy":[ # academy         done
         ERLocationData("RLA/SC: Memory Stone - boss drop", "Memory Stone", key="140000,0:0000060440::", boss=True),
         ERLocationData("RLA/DB: Glintstone Whetblade - outside, left up rubble then in room on railing", "Glintstone Whetblade", key="140000,0:0000065680::"),
         ERLocationData("RLA/SC: Ritual Pot - in chest to S, follow corridor, S in 4-way", "Ritual Pot", key="140000,0:0000066410::", chest=True),
         ERLocationData("RLA/SC: Glintstone Craftsman's Cookbook [5] - in chest to S within left room", "Glintstone Craftsman's Cookbook [5]", key="140000,0:0000067420::", chest=True, cookbook=True),
-        #ERLocationData("RLA: Academy Glintstone Staff - On Thops' corpse at the end of his quest, or dropped by him", "Academy Glintstone Staff", key="140000,0:0000400361::", missable=True),
-        #ERLocationData("RLA: Thops's Barrier - On Thops' corpse at the end of his quest", "Thops's Barrier", key="140000,0:0000400362::", missable=True),
-        #ERLocationData("RLA: Eccentric's Hood - On Jerren's corpse after siding with Sellen against him", "Eccentric's Hood", key="140000,0:0000400401::", missable=True, exclusive=True),
-        #ERLocationData("RLA: Eccentric's Armor - On Jerren's corpse after siding with Sellen against him", "Eccentric's Armor", key="140000,0:0000400401::", missable=True, exclusive=True),
-        #ERLocationData("RLA: Eccentric's Manchettes - On Jerren's corpse after siding with Sellen against him", "Eccentric's Manchettes", key="140000,0:0000400401::", missable=True, exclusive=True),
-        #ERLocationData("RLA: Eccentric's Breeches - On Jerren's corpse after siding with Sellen against him", "Eccentric's Breeches", key="140000,0:0000400401::", missable=True, exclusive=True),
+        ERLocationData("RLA/SC: Academy Glintstone Staff - on Thops body just outside", "Academy Glintstone Staff", key="140000,0:0000400361::", missable=True),
+        ERLocationData("RLA/SC: Thops's Barrier - on Thops body just outside", "Thops's Barrier", key="140000,0:0000400362::", missable=True),
+        ERLocationData("RLA/RLGL: Eccentric's Hood - side with Sellen", "Eccentric's Hood", key="140000,0:0000400401::", missable=True, exclusive=True),
+        ERLocationData("RLA/RLGL: Eccentric's Armor - side with Sellen", "Eccentric's Armor", key="140000,0:0000400401::", missable=True, exclusive=True),
+        ERLocationData("RLA/RLGL: Eccentric's Manchettes - side with Sellen", "Eccentric's Manchettes", key="140000,0:0000400401::", missable=True, exclusive=True),
+        ERLocationData("RLA/RLGL: Eccentric's Breeches - side with Sellen", "Eccentric's Breeches", key="140000,0:0000400401::", missable=True, exclusive=True),
         ERLocationData("RLA/CC: Ash of War: Spectral Lance - scarab outside, E after bridge over some graves", "Ash of War: Spectral Lance", key="140000,0:0000540272::", scarab=True),
         ERLocationData("RLA/MAG: Magic Grease - up elevator, right of fountain", "Magic Grease", key="140000,0:0014007000::"),
         ERLocationData("RLA/SC: Olivinus Glintstone Crown - to S behind illusory bookshelf in left room, follow path after jumping off balcony", "Olivinus Glintstone Crown", key="140000,0:0014007015::"),
@@ -4283,12 +4284,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(DC): Golden Rune [8] - bottom of dropdown", "Golden Rune [8]", key="311000,0:0031107110::"),
         ERLocationData("CL/(DC): Beast Blood x3 - bottom of dropdown", "Beast Blood x3", key="311000,0:0031107120::"),
     ],
-    "Sellia Hideaway":[ # dragonbarrow_selliahideaway                                   QUEST TODO
-        #ERLocationData("CL/(SH): Stars of Ruin - ", "Stars of Ruin", key="311100,0:0000400430::"),
-        #ERLocationData("CL/(SH): Lusat's Glintstone Crown - ", "Lusat's Glintstone Crown", key="311100,0:0000400431::"),
-        #ERLocationData("CL/(SH): Lusat's Robe - ", "Lusat's Robe", key="311100,0:0000400431::"),
-        #ERLocationData("CL/(SH): Lusat's Manchettes - ", "Lusat's Manchettes", key="311100,0:0000400431::"),
-        #ERLocationData("CL/(SH): Old Sorcerer's Legwraps - ", "Old Sorcerer's Legwraps", key="311100,0:0000400431::"),
+    "Sellia Hideaway":[ # dragonbarrow_selliahideaway   done
+        ERLocationData("CL/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat", "Stars of Ruin", key="311100,0:0000400430::"),
+        ERLocationData("CL/(SH): Lusat's Glintstone Crown - side with Sellen, lower first big room N side, where Lusat was", "Lusat's Glintstone Crown", key="311100,0:0000400431::"),
+        ERLocationData("CL/(SH): Lusat's Robe - side with Sellen, lower first big room N side, where Lusat was", "Lusat's Robe", key="311100,0:0000400431::"),
+        ERLocationData("CL/(SH): Lusat's Manchettes - side with Sellen, lower first big room N side, where Lusat was", "Lusat's Manchettes", key="311100,0:0000400431::"),
+        ERLocationData("CL/(SH): Old Sorcerer's Legwraps - side with Sellen, lower first big room N side, where Lusat was", "Old Sorcerer's Legwraps", key="311100,0:0000400431::"),
         ERLocationData("CL/(SH): Crystal Torrent - boss drop", "Crystal Torrent", key="311100,0:0000520460::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("CL/(SH): Golden Rune [3] - in front of the illusory wall", "Golden Rune [3]", key="311100,0:0031117000::"),
         ERLocationData("CL/(SH): Lost Ashes of War - lower first big room", "Lost Ashes of War", key="311100,0:0031117010::"),
@@ -4632,7 +4633,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SSG/FD: Raw Meat Dumpling - enemy drop, up elevator in corner", "Raw Meat Dumpling", key="350000,0:0035007997::"),
         ERLocationData("SSG/FD: Living Jar Shard - enemy drop, up elevator in corner", "Living Jar Shard", key="350000,0:0035007997::"),
     ],
-    "Frenzied Flame Proscription":[ # sewer_flame        quest stuff left
+    "Frenzied Flame Proscription":[ # sewer_flame        done
         # need to beat morgott
         ERLocationData("FFP/CF: Frenzied's Cookbook [2] - to NE, top of third plank", "Frenzied's Cookbook [2]", key="350000,0:0000068410::", cookbook=True),
         ERLocationData("FFP/CF: Note: Miquella's Needle - to NE, after landing on lowest coffin, behind breakable object", "Note: Miquella's Needle", key="350000,0:0000069740::", breakable=True),
@@ -4649,7 +4650,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FFP/CF: Fingerprint Stone Shield - to NE, after landing on lowest coffin, to right in dead-end", "Fingerprint Stone Shield", key="350000,0:0035007720::"),
         ERLocationData("FFP/FFP: Rune Arc - in chest behind illusory wall to SE", "Rune Arc", key="350000,0:0035007780::", chest=True),
     ],
-    "Weeping Peninsula":[ # peninsula                 single sellen quest left
+    "Weeping Peninsula":[ # peninsula           done
         ERLocationData("WP/BS: Irina's Letter - talk to Irina to SE", "Irina's Letter", key="350000,0:0000400080::", missable=True),
         ERLocationData("WP/(IMS): Zweihander - Isolated Merchant", "Zweihander", key="604132,0:0000000000:100650:", raceshop=True, shop=True),
         ERLocationData("WP/(IMS): Great Arrow x15 - Isolated Merchant", "Great Arrow x15", key="604132,0:0000000000:100650:", raceshop=True, shop=True),
@@ -4669,7 +4670,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/ToR: Golden Rune [1] 4 - graveyard W of ToR", "Golden Rune [1]", key="604132,0:1041327040::"),
         ERLocationData("WP/ToR: Golden Rune [3] - graveyard W of ToR", "Golden Rune [3]", key="604132,0:1041327050::"),
         
-        #ERLocationData("WP: Sellen's Primal Glintstone - ", "Sellen's Primal Glintstone", key="604133,0:0000400100::"),                                                                            # sellen quest
+        ERLocationData("WP/(WR): Sellen's Primal Glintstone - talk to Sellen", "Sellen's Primal Glintstone", key="604133,0:0000400100::"),
         
         ERLocationData("WP/WR: Golden Rune [1] - W of WR on beach", "Golden Rune [1]", key="604133,0:1041337000::"),
         ERLocationData("WP/WR: Golden Rune [5] - W of WR on beach", "Golden Rune [5]", key="604133,0:1041337010::"),

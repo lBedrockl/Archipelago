@@ -602,17 +602,14 @@ class EldenRing(World):
             "CS/(OLT): Ghost Glovewort [9] - enemy drop in evergaol, up stairs from where the grace would be"
             "CS/(OLT): Ghost Glovewort [9] - enemy drop in evergaol, under stairs to haligtree seal"
             
-    
-            self._add_entrance_rule("Altus Plateau", lambda state: # only in region lock since it can be bypassed by ruin-strewn precipice
+            # only in region lock since it can be bypassed by ruin-strewn precipice
+            self._add_entrance_rule("Altus Plateau", lambda state: 
                 state.has("Dectus Medallion (Left)", self.player) and
                 state.has("Dectus Medallion (Right)", self.player))
               
         elif self.options.world_logic == "open_world":
             self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required))
-        else: # glitch logic, no zips *if thats still a thing*
-            # vm doesn't require drawing room key
-            self._add_entrance_rule("Volcano Manor", lambda state: state.can_reach("Raya Lucaria Academy Main"))
-            #idk any just that leyndell can be done early i think
+        #else: # glitch logic, no zips *if thats still a thing*
 
 
         # Custom Rules
@@ -691,18 +688,25 @@ class EldenRing(World):
         self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
            
         self._add_entrance_rule("Moonlight Altar", lambda state: state.has("Dark Moon Ring", self.player))
+                
+        # also from RLA side you can get back into main hall through imp statue
+        self._add_entrance_rule("Volcano Manor", 
+                                lambda state: state.has("Drawing-Room Key", self.player)
+                                or state.can_reach("Volcano Manor Dungeon")) 
+        self._add_entrance_rule("Volcano Manor Dungeon", 
+                                lambda state: state.can_reach("Raya Lucaria Academy Main") 
+                                or state.can_reach("Volcano Manor"))    
         
-        self._add_entrance_rule("Volcano Manor Dungeon", lambda state: state.can_reach("Raya Lucaria Academy Main"))
-        self._add_entrance_rule("Volcano Manor", lambda state: state.has("Drawing-Room Key", self.player))
-        
-        # ashen capital only after getting farum boss Remembrance
+        self._add_location_rule([ # only from RLA warp
+            "(VM)/RLA: Smoldering Butterfly x5 - to E after warp",
+        ], lambda state: state.can_reach("Raya Lucaria Academy Main"))
         
         self._add_entrance_rule("Hidden Path to the Haligtree", lambda state: 
             state.has("Haligtree Secret Medallion (Left)", self.player) and
             state.has("Haligtree Secret Medallion (Right)", self.player))
         
         # Smithing bell bearing rules
-        if self.options.smithing_bell_bearing_option.value == 1: # wip not all places have names
+        if self.options.smithing_bell_bearing_option.value == 1:
             self._add_entrance_rule("Altus Plateau", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [1]", self.player))
             self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [2]", self.player))
             self._add_entrance_rule("Flame Peak", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [3]", self.player))
@@ -1109,6 +1113,50 @@ class EldenRing(World):
             "RH: Royal Remains Greaves - Ensha's spot, after getting half of secret medallion"
         ], lambda state: (state.has("Haligtree Secret Medallion (Left)", self.player) or
                           state.has("Haligtree Secret Medallion (Right)", self.player)))
+        
+        # MARK: Sellen
+        # do you need to check the locations or have the item?
+        self._add_location_rule([ "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur",
+        ], lambda state: ( state.has("Comet Azur", self.player)))
+        
+        self._add_location_rule([ "CL/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat",
+        ], lambda state: ( state.has("Sellian Sealbreaker", self.player)))
+        
+        self._add_location_rule([ "LG/(WR): Starlight Shards - given by Sellen after you show her Stars of Ruin",
+        ], lambda state: ( state.has("Stars of Ruin", self.player) and self._can_get(state, "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur")))
+        
+        self._add_location_rule([ "WP/(WR): Sellen's Primal Glintstone - talk to Sellen",
+        ], lambda state: ( self._can_get(state, "LG/(WR): Starlight Shards - given by Sellen after you show her Stars of Ruin")))
+        
+        self._add_location_rule([ 
+            "RLA/RLGL: Glintstone Kris - given by Sellen after siding with her",
+            "RLA/RLGL: Shard Spiral - side with Sellen, sold in shop",
+            "RLA/RLGL: Witch's Glintstone Crown - side with either",
+            "RLA/RLGL: Ancient Dragon Smithing Stone - side with Jerren",
+            "RLA/RLGL: Eccentric's Hood - side with Sellen",
+            "RLA/RLGL: Eccentric's Armor - side with Sellen",
+            "RLA/RLGL: Eccentric's Manchettes - side with Sellen",
+            "RLA/RLGL: Eccentric's Breeches - side with Sellen",
+            
+            # idk if you NEED to side with sellen for these
+            "CL/(SH): Lusat's Glintstone Crown - side with Sellen, lower first big room N side, where Lusat was",
+            "CL/(SH): Lusat's Robe - side with Sellen, lower first big room N side, where Lusat was",
+            "CL/(SH): Lusat's Manchettes - side with Sellen, lower first big room N side, where Lusat was",
+            "CL/(SH): Old Sorcerer's Legwraps - side with Sellen, lower first big room N side, where Lusat was",
+            "MtG/PSA: Azur's Glintstone Crown - side with Sellen, where Azur was",
+            "MtG/PSA: Azur's Glintstone Robe - side with Sellen, where Azur was",
+            "MtG/PSA: Azur's Manchettes - side with Sellen, where Azur was"
+        ], lambda state: ( self._can_get(state, "WP/(WR): Sellen's Primal Glintstone - talk to Sellen") 
+                          and state.can_reach("Liurnia of The Lakes")))
+        
+        # MARK: Thops
+        self._add_location_rule([ 
+            "RLA/SC: Academy Glintstone Staff - on Thops body just outside",
+            "RLA/SC: Thops's Barrier - on Thops body just outside",
+            "LL/(CIr): Ash of War: Thops's Barrier - scarab in church after Thops moves"
+        ], lambda state: ( state.has("Academy Glintstone Key (Thops)", self.player)))
+        
+        
         
         
         # MARK: Enia
