@@ -52,8 +52,8 @@ Stonesword Master Keys
 
 
 
-last update 26/01/05
-current progress 3838 / 4922
+last update 26/01/06
+current progress 3876 / 4921
 
 
 people who want to be pinged for playtesting
@@ -81,4 +81,4 @@ people who want to be pinged for playtesting
 @nicedinos13 @togtmw @jakesicle @mrydeas
 @nicko564 @boomerremover @yc3y @sirjambo
 @.allu @theran_1 @dark9rt @lplp18
-@absoluteatlas @niox_storm
+@absoluteatlas @niox_storm @4st3r._

@@ -648,6 +648,9 @@ class EldenRing(World):
              state.has("Lazuli Glintstone Crown", self.player) or state.has("Karolos Glintstone Crown", self.player) or
              state.has("Witch's Glintstone Crown", self.player)))
         
+        self._add_location_rule(["LL/(CT): Memory Stone - top of tower, requires Erudition gesture"
+            ],lambda state: state.has("Erudition", self.player))
+        
         # vm drawing room, stuff that needs key
         self._add_location_rule([ 
                 "VM/VM: Recusant Finger - on the table in the drawing room",
@@ -1117,13 +1120,14 @@ class EldenRing(World):
         # MARK: Sellen
         # do you need to check the locations or have the item?
         self._add_location_rule([ "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur",
-        ], lambda state: ( state.has("Comet Azur", self.player)))
+        ], lambda state: ( self._can_get(state, "MtG/PSA: Comet Azur - given by Azur")))
         
         self._add_location_rule([ "CL/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat",
         ], lambda state: ( state.has("Sellian Sealbreaker", self.player)))
         
         self._add_location_rule([ "LG/(WR): Starlight Shards - given by Sellen after you show her Stars of Ruin",
-        ], lambda state: ( state.has("Stars of Ruin", self.player) and self._can_get(state, "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur")))
+        ], lambda state: ( self._can_get(state, "CL/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat") 
+                          and self._can_get(state, "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur")))
         
         self._add_location_rule([ "WP/(WR): Sellen's Primal Glintstone - talk to Sellen",
         ], lambda state: ( self._can_get(state, "LG/(WR): Starlight Shards - given by Sellen after you show her Stars of Ruin")))
@@ -1147,7 +1151,7 @@ class EldenRing(World):
             "MtG/PSA: Azur's Glintstone Robe - side with Sellen, where Azur was",
             "MtG/PSA: Azur's Manchettes - side with Sellen, where Azur was"
         ], lambda state: ( self._can_get(state, "WP/(WR): Sellen's Primal Glintstone - talk to Sellen") 
-                          and state.can_reach("Liurnia of The Lakes")))
+                          and state.can_reach("Raya Lucaria Academy Library")))
         
         # MARK: Thops
         self._add_location_rule([ 
@@ -1316,27 +1320,6 @@ class EldenRing(World):
             and state.has("Unalloyed Gold Needle (Milicent)", self.player)
         ))
         
-        # MARK: Rya        
-        self._add_location_rule(["LL/SI: Volcano Manor Invitation - give Rya her necklace or reach altus", 
-        ], lambda state: ( state.can_reach("Altus Plateau")))
-        
-        # MARK: Patches 
-        
-        
-        
-        # end of quest
-        """self._add_location_rule(["LG/(MCV): Glass Shard x3 - Patches chest, after you've given the Dancer's Castanets to Tanith",
-        ], lambda state: ( 
-            self._can_get(state, "kill the volcano manor mainboss") 
-            and state.has("Dancer's Castanets", self.player)
-        ))"""
-        
-        # MARK: Tanith
-        "VM/RLB: Consort's Mask - kill Tanith"
-        "VM/RLB: Consort's Robe - kill Tanith"
-        "VM/RLB: Consort's Trousers - kill Tanith"
-        "VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death"
-        
         # MARK: Iji
         "LL/RM: Iji's Mirrorhelm - kill Iji or after quest"
         
@@ -1367,21 +1350,134 @@ class EldenRing(World):
         
         "MA/(CMC): Dark Moon Greatsword - talk to Ranni under CMC" # MA requires the ring to enter, but this check requires nothing
         
-        # MARK: Bernahl
         
-        "FA/BGB: Blasphemous Claw - kill invader Bernahl, to NE end of path"
-        "FA/BGB: Devourer's Scepter - kill invader Bernahl, to NE end of path"
-        
-        # get with invader or here
-        "LG/(WS): Beast Champion Helm - kill Bernahl"
-        "LG/(WS): Beast Champion Gauntlets - kill Bernahl"
-        "LG/(WS): Beast Champion Greaves - kill Bernahl"
-        "LG/(WS): Beast Champion Armor (Altered) - kill Bernahl"
         
         # MARK: Alexander
         
         "FA/DTL: Shard of Alexander - fight Alexander to SW"
         "FA/DTL: Alexander's Innards - fight Alexander to SW"
+        
+        # MARK: Jar-bairn
+        
+        # need to finish alexander quest first then give innards
+        "LL/JB: Companion Jar - given by Jar Bairn after you give him Alexander's Innards"
+        
+        # MARK: Diallos
+        
+        "LL/JB: Hoslow's Petal Whip - on Diallos's body"
+        "LL/JB: Diallos's Mask - on Diallos's body"
+        "LL/JB: Numen's Rune - on Diallos's body"
+        
+        # MARK: VOLCANO QUESTS
+        
+        # do you need the letters? 1 2 and red, probs not since ng+
+        
+        self._add_location_rule([ # request 1
+            "LG/LC: Scaled Helm - invade Istvan SE of colo",
+            "LG/LC: Scaled Armor - invade Istvan SE of colo",
+            "LG/LC: Scaled Gauntlets - invade Istvan SE of colo",
+            "LG/LC: Scaled Greaves - invade Istvan SE of colo",
+        ], lambda state: ( self._can_get(state, "VM/VM: Letter from Volcano Manor (Istvan) - on the table in the drawing room")))
+        
+        self._add_location_rule([ # reward 1 + patches & bernahl
+            "VM/VM: Magma Shot - Tanith reward request 1",
+            "VM/VM: Letter from Volcano Manor - on the table in the drawing room after request 1",
+            "VM/VM: Letter to Patches - talk to Patches after request 1",
+            "VM/VM: Ash of War: Eruption - Bernahl shop after request 1",
+            "VM/VM: Ash of War: Assassin's Gambit - Bernahl shop after request 1"
+        ], lambda state: ( self._can_get(state, "LG/LC: Scaled Helm - invade Istvan SE of colo")))
+        
+        self._add_location_rule([ # request 2
+            "AP/OAT: Black-Key Bolt x20 - invade Rileigh",
+            "AP/OAT: Crepus's Vial - invade Rileigh"
+        ], lambda state: ( self._can_get(state, "VM/VM: Letter from Volcano Manor (Rileigh) - on the table in the drawing room after request 1")))
+        
+        self._add_location_rule([ # reward 2 + bernahl
+            "VM/VM: Serpentbone Blade - Tanith reward request 2",
+            "VM/VM: Letter to Bernahl - Bernahl after request 2",
+            "VM/VM: Red Letter - on the table in the drawing room after request 2"
+        ], lambda state: ( self._can_get(state, "AP/OAT: Crepus's Vial - invade Rileigh")))
+    
+        self._add_location_rule([ # request 3
+            "MotG/SL: Hoslow's Petal Whip - invade Juno Hoslow",
+            "MotG/SL: Hoslow's Helm - invade Juno Hoslow",
+            "MotG/SL: Hoslow's Armor - invade Juno Hoslow",
+            "MotG/SL: Hoslow's Gauntlets - invade Juno Hoslow",
+            "MotG/SL: Hoslow's Greaves - invade Juno Hoslow"
+        ], lambda state: ( self._can_get(state, "VM/VM: Red Letter - on the table in the drawing room after request 2")))
+  
+        self._add_location_rule([ # reward 3
+            "VM/VM: Taker's Cameo - Tanith reward request 3"
+        ], lambda state: ( self._can_get(state, "MotG/SL: Hoslow's Petal Whip - invade Juno Hoslow")))
+    
+        # MARK: Bernahl
+        
+        self._add_location_rule([ # bernahl request
+            "LRC/FMFF: Raging Wolf Helm - invade Vargram",
+            "LRC/FMFF: Raging Wolf Armor - invade Vargram",
+            "LRC/FMFF: Raging Wolf Gauntlets - invade Vargram",
+            "LRC/FMFF: Raging Wolf Greaves - invade Vargram"
+        ], lambda state: ( self._can_get(state, "VM/VM: Letter to Bernahl - Bernahl after request 2")))
+        
+        self._add_location_rule([ "VM/VM: Gelmir's Fury - Bernahl reward" # bernahl reward
+        ], lambda state: ( self._can_get(state, "LRC/FMFF: Raging Wolf Helm - invade Vargram")))
+        
+        self._add_location_rule([
+            "LG/(WS): Beast Champion Helm - kill Bernahl",
+            "LG/(WS): Beast Champion Gauntlets - kill Bernahl",
+            "LG/(WS): Beast Champion Greaves - kill Bernahl",
+            "LG/(WS): Beast Champion Armor (Altered) - kill Bernahl"
+        ], lambda state: ( self._can_get(state, "FA/BGB: Blasphemous Claw - kill invader Bernahl, to NE end of path")))
+        
+        # MARK: Rya 
+               
+        self._add_location_rule(["LL/SeI: Volcano Manor Invitation - give Rya her necklace, you will need to buy the item from Boggart or reach altus", 
+        ], lambda state: ( state.can_reach("Altus Plateau") or state.has("Rya's Necklace", self.player)))
+   
+        self._add_location_rule([
+            "VM/VM: Zorayas's Letter - end of Rya's quest, dont kill or give potion", 
+            "VM/VM: Daedicar's Woe - end of Rya's quest, any option"
+        ], lambda state: ( self._can_get(state, "VM/VM: Tonic of Forgetfulness - given by Tanith after you give Rya Serpent's Amnion")
+            and self._can_get(state, "VM/AP: Rykard's Great Rune - mainboss drop")))
+        
+        # MARK: Patches 
+        
+        self._add_location_rule([ # patches request
+            "RSP/RSPO: Bull-Goat Helm - invade Tragoth",
+            "RSP/RSPO: Bull-Goat Armor - invade Tragoth",
+            "RSP/RSPO: Bull-Goat Gauntlets - invade Tragoth",
+            "RSP/RSPO: Bull-Goat Greaves - invade Tragoth"
+        ], lambda state: ( self._can_get(state, "VM/VM: Letter to Patches - talk to Patches after request 1")))
+        
+        self._add_location_rule(["VM/VM: Magma Whip Candlestick - Patches reward", # patches reward
+        ], lambda state: ( self._can_get(state, "RSP/RSPO: Bull-Goat Helm - invade Tragoth")))
+        
+        self._add_location_rule(["TSC/CI: Dancer's Castanets - given by Patches just outside boss arena",
+        ], lambda state: ( self._can_get(state, "VM/AP: Rykard's Great Rune - mainboss drop")
+            and self._can_get(state, "VM/VM: Magma Whip Candlestick - Patches reward")))
+        
+        self._add_location_rule(["LG/(MCV): Glass Shard x3 - Patches chest, after you've given the Dancer's Castanets to Tanith",
+        ], lambda state: ( self._can_get(state, "VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death")))
+        
+        self._add_location_rule([
+            "LG/(MCV): Spear +7 - kill Patches",
+            "LG/(MCV): Leather Armor - kill Patches",
+            "LG/(MCV): Leather Gloves - kill Patches",
+            "LG/(MCV): Leather Boots - kill Patches"
+        ], lambda state: ( self._can_get(state, "LG/(MCV): Glass Shard x3 - Patches chest, after you've given the Dancer's Castanets to Tanith")))
+
+        # MARK: Tanith
+        
+        self._add_location_rule(["VM/VM: Tonic of Forgetfulness - given by Tanith after you give Rya Serpent's Amnion",
+        ], lambda state: ( state.has("Serpent's Amnion", self.player) 
+            and self._can_get(state, "LG/LC: Scaled Helm - invade Istvan SE of colo")))
+   
+        self._add_location_rule([
+            "VM/RLB: Consort's Mask - kill Tanith",
+            "VM/RLB: Consort's Robe - kill Tanith",
+            "VM/RLB: Consort's Trousers - kill Tanith",
+            "VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death"
+        ], lambda state: ( self._can_get(state, "VM/AP: Rykard's Great Rune - mainboss drop" and state.has("Dancer's Castanets", self.player))))
         
         if self.options.enable_dlc: # MARK: DLC NPC
             
