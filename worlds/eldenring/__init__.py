@@ -221,8 +221,8 @@ class EldenRing(World):
         create_connection("Nokron, Eternal City Start", "Nokron, Eternal City")
         create_connection("Nokron, Eternal City", "Deeproot Depths")
         
-        create_connection("Deeproot Depths Start", "Deeproot Depths") # oneway
-        create_connection("Deeproot Depths", "Leyndell, Royal Capital") # idk waygate requirements
+        create_connection("Deeproot Depths Upper", "Deeproot Depths") # oneway
+        create_connection("Deeproot Depths", "Leyndell, Royal Capital")
         create_connection("Deeproot Depths", "Deeproot Depths Boss")
         
         create_connection("Deeproot Depths", "Ainsel River Main")
@@ -268,7 +268,6 @@ class EldenRing(World):
         
 
         # Leyndell Royal
-        create_connection("Divine Bridge", "Leyndell, Royal Capital")
         create_connection("Leyndell, Royal Capital", "Leyndell, Royal Capital Unmissable")
         create_connection("Leyndell, Royal Capital", "Leyndell, Royal Capital Throne")
         create_connection("Leyndell, Royal Capital", "Divine Tower of East Altus")
@@ -277,7 +276,7 @@ class EldenRing(World):
         create_connection("Leyndell, Royal Capital", "Subterranean Shunning-Grounds")
         create_connection("Subterranean Shunning-Grounds", "Leyndell Catacombs")
         create_connection("Subterranean Shunning-Grounds", "Frenzied Flame Proscription")
-        create_connection("Frenzied Flame Proscription", "Deeproot Depths Start")
+        create_connection("Frenzied Flame Proscription", "Deeproot Depths Upper")
         
         
         create_connection("Divine Tower of East Altus", "Forbidden Lands")
@@ -689,6 +688,8 @@ class EldenRing(World):
         self._add_entrance_rule("Wailing Dunes", lambda state: state.can_reach("Altus Plateau"))
         
         self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
+        
+        self._add_entrance_rule("Deeproot Depths Upper", lambda state: state.can_reach("Frenzied Flame Proscription"))
            
         self._add_entrance_rule("Moonlight Altar", lambda state: state.has("Dark Moon Ring", self.player))
                 
@@ -1238,10 +1239,13 @@ class EldenRing(World):
         
         # MARK: Dung Eater
         self._add_location_rule(["RH: Sewer-Gaol Key - talk to Dung Eater while having a Seedbed Curse", 
-        ], lambda state: ( state.has("Seedbed Curse", self.player)))
+        ], lambda state: ( state.has("Seedbed Curse", self.player) and state.can_reach("Altus Plateau")))
         
-        self._add_location_rule(["SSG/UR: Sword of Milos - kill Dung Eater or kill him during his invasion in CO", 
-        ], lambda state: ( state.can_reach("Capital Outskirts"))) # you can get a tp from deeproot and miss CO in region lock
+        self._add_location_rule([ # boggart seedbed here
+            "SSG/UR: Sword of Milos - kill Dung Eater or kill him during his invasion in CO",
+            "CO/AHG: Seedbed Curse - on Boggart's body after becoming Dung Eater's victim",
+        ], lambda state: ( state.can_reach("Capital Outskirts") and state.has("Sewer-Gaol Key", self.player)
+            and self._can_get(state, "RH: Sewer-Gaol Key - talk to Dung Eater while having a Seedbed Curse")))
         
         self._add_location_rule(["SSG/UR: Mending Rune of the Fell Curse - give Dung Eater 5 seedbed curses", 
         ], lambda state: ( self._can_get(state, "SSG/UR: Sword of Milos - kill Dung Eater or kill him during his invasion in CO")
@@ -1253,7 +1257,7 @@ class EldenRing(World):
             "SSG/UR: Omen Gauntlets - kill Dung Eater or finish his quest",
             "SSG/UR: Omen Greaves - kill Dung Eater or finish his quest"
         ], lambda state: ( self._can_get(state, "SSG/UR: Mending Rune of the Fell Curse - give Dung Eater 5 seedbed curses")))
-        
+  
         # MARK: Nepheli
         # i jumped into her and she died, lol
         # dropped 2 axes
@@ -1350,23 +1354,49 @@ class EldenRing(World):
         
         "MA/(CMC): Dark Moon Greatsword - talk to Ranni under CMC" # MA requires the ring to enter, but this check requires nothing
         
+        # MARK: Seluvis
+        
+        
+        
+        
+        
+        self._add_location_rule(["LL/SR: Dung Eater Puppet - Seluvis shop, after you give potion to Dung Eater", 
+        ], lambda state: ( state.has("Seluvis's Potion", self.player) 
+            and self._can_get(state, "SSG/UR: Sword of Milos - kill Dung Eater or kill him during his invasion in CO")))
+        
+        
         
         
         # MARK: Alexander
         
-        "FA/DTL: Shard of Alexander - fight Alexander to SW"
-        "FA/DTL: Alexander's Innards - fight Alexander to SW"
+        self._add_location_rule([
+            "LL/JB: Exalted Flesh x3 - given by Alexander after getting him unstuck with oil pots, just above JB"
+        ], lambda state: ( self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop")))
+        
+        self._add_location_rule([
+            "MtG/FL: Jar - talk to Alexander S of FL"
+        ], lambda state: ( self._can_get(state, "LL/JB: Exalted Flesh x3 - given by Alexander after getting him unstuck with oil pots, just above JB")))
+        
+        self._add_location_rule([ # also requires fire giant dead
+            "FA/DTL: Shard of Alexander - fight Alexander to SW",
+            "FA/DTL: Alexander's Innards - fight Alexander to SW"
+        ], lambda state: ( self._can_get(state, "MtG/FL: Jar - talk to Alexander S of FL")))
         
         # MARK: Jar-bairn
         
-        # need to finish alexander quest first then give innards
-        "LL/JB: Companion Jar - given by Jar Bairn after you give him Alexander's Innards"
+        self._add_location_rule([
+            "LL/JB: Companion Jar - give Alexander's Innards, left after Jar Bairn leaves"
+        ], lambda state: ( self._can_get(state, "FA/DTL: Alexander's Innards - fight Alexander to SW")
+                          and state.has("Alexander's Innards", self.player)))
         
         # MARK: Diallos
         
-        "LL/JB: Hoslow's Petal Whip - on Diallos's body"
-        "LL/JB: Diallos's Mask - on Diallos's body"
-        "LL/JB: Numen's Rune - on Diallos's body"
+        self._add_location_rule([ # need to talk to in LL and VM stuff
+            "LL/JB: Hoslow's Petal Whip - on Diallos's body",
+            "LL/JB: Diallos's Mask - on Diallos's body",
+            "LL/JB: Numen's Rune - on Diallos's body"
+        ], lambda state: ( self._can_get(state, "VM/AP: Rykard's Great Rune - mainboss drop")
+                          and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop")))
         
         # MARK: VOLCANO QUESTS
         
