@@ -1099,16 +1099,19 @@ class EldenRing(World):
         "FFP/FFP: Frenzyflame Stone x5 - given by Hyetta at end of her quest"
         
         # MARK: Edgar
+        
         self._add_location_rule([ "WP/BS: Banished Knight's Halberd - kill Edgar at Irina's body or at LL/RS",
         ], lambda state: ( state.can_reach("Liurnia of The Lakes")))
         
         # MARK: Roderika
+        
         self._add_location_rule([ 
             "LG/(SS): Golden Seed - give Roderika Chrysalids' Memento then talk to her at RH, or after SV mainboss item is at SS",
             "SV/RT: Crimson Hood - shortcut elevator to SE, to SE under dead troll, after Roderika becomes a spirit tuner",
         ], lambda state: (state.has("Chrysalids' Memento", self.player)))
         
         # MARK: Ensha
+        
         self._add_location_rule([
             "RH: Clinging Bone - dropped by Ensha, after getting half of secret medallion",
             "RH: Royal Remains Helm - Ensha's spot, after getting half of secret medallion",
@@ -1119,7 +1122,7 @@ class EldenRing(World):
                           state.has("Haligtree Secret Medallion (Right)", self.player)))
         
         # MARK: Sellen
-        # do you need to check the locations or have the item?
+        
         self._add_location_rule([ "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur",
         ], lambda state: ( self._can_get(state, "MtG/PSA: Comet Azur - given by Azur")))
         
@@ -1155,6 +1158,7 @@ class EldenRing(World):
                           and state.can_reach("Raya Lucaria Academy Library")))
         
         # MARK: Thops
+        
         self._add_location_rule([ 
             "RLA/SC: Academy Glintstone Staff - on Thops body just outside",
             "RLA/SC: Thops's Barrier - on Thops body just outside",
@@ -1165,28 +1169,29 @@ class EldenRing(World):
         
         
         # MARK: Enia
+        
         self._add_location_rule([ "RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss",
         ], lambda state: ( self._has_enough_great_runes(state, 2)))
         
         # MARK: Yura
-        "AP/(SCM): Purifying Crystal Tear - invader drop, requires Yura death"
-        "AP/(SCM): Eleonora's Poleblade - invader drop, requires Yura death"
+        
+        self._add_location_rule([ 
+            "AP/(SCM): Nagakiba - on Yura after RLA invasion",
+            "AP/(SCM): Purifying Crystal Tear - invader drop, requires Yura death",
+            "AP/(SCM): Eleonora's Poleblade - invader drop, requires Yura death"
+        ], lambda state: ( self._can_get(state, "RLA/MAG: Ash of War: Raptor of the Mists - beat invasion at RLA to NE")))
         
         # MARK: Latenna
-        # need to see if armour is missable
-        # talk to her with secret medallion right, get ashes        *do you need to talk to albus first or just have item*
-        self._add_location_rule([ "LL/(SWS): Latenna the Albinauric - talk to Latenna with Haligtree Secret Medallion (Right)",
-        ], lambda state: ( state.has("Haligtree Secret Medallion (Right)", self.player)))
+
+        self._add_location_rule([ "LL/(SWS): Latenna the Albinauric - talk to Latenna after talking to Albus",
+        ], lambda state: ( state.has("Haligtree Secret Medallion (Right)", self.player))) # might need the right medallion, having both kills her if not talked to
         
         self._add_location_rule([ "CS/(AD): Somber Ancient Dragon Smithing Stone - summon Latenna at her sister and talk to her",
-        ], lambda state: ( self._can_get(state, "LL/(SWS): Latenna the Albinauric - talk to Latenna with Haligtree Secret Medallion (Right)"))
-            and state.can_reach("Mountaintops of the Giants")) # idk if you need to hear her talk here for quest prog
-        
-        # then beat malenia and bring her to her wolf for armour?
-        # NEED TO SUMMON?
-        
+        ], lambda state: ( self._can_get(state, "LL/(SWS): Latenna the Albinauric - talk to Latenna after talking to Albus"))
+            and state.can_reach("Mountaintops of the Giants")) # do you need the ashes? its a prompt summon so idk
         
         # MARK: D
+        
         self._add_location_rule([
             "RH: Litany of Proper Death - D shop, after talking to Gurraq",
             "RH: Order's Blade - D shop, after talking to Gurraq",
@@ -1201,6 +1206,7 @@ class EldenRing(World):
             and self._can_get(state, "DD/PDT: Mending Rune of the Death-Prince - on Fia after mainboss")))
         
         # MARK: Rogier
+        
         self._add_location_rule(["RH: Rogier's Letter - after giving Black Knifeprint, talk to Ranni, talk to Rogier again", 
         ], lambda state: ( state.can_reach("Stormveil Castle") and state.can_reach("Liurnia of The Lakes")
                           and state.has("Black Knifeprint", self.player)))
@@ -1214,6 +1220,7 @@ class EldenRing(World):
         ], lambda state: ( state.can_reach("Stormveil Castle") and state.has("Cursemark of Death", self.player)))
         
         # MARK: Fia
+        
         self._add_location_rule(["RH: Knifeprint Clue - talk to Fia multiple times", 
         ], lambda state: ( state.can_reach("Stormveil Castle")))
         
@@ -1238,6 +1245,7 @@ class EldenRing(World):
         ], lambda state: ( state.has("Cursemark of Death", self.player) and self._can_get(state, "RH: Weathered Dagger - talk to Fia after reaching altus")))
         
         # MARK: Dung Eater
+        
         self._add_location_rule(["RH: Sewer-Gaol Key - talk to Dung Eater while having a Seedbed Curse", 
         ], lambda state: ( state.has("Seedbed Curse", self.player) and state.can_reach("Altus Plateau")))
         
@@ -1259,11 +1267,16 @@ class EldenRing(World):
         ], lambda state: ( self._can_get(state, "SSG/UR: Mending Rune of the Fell Curse - give Dung Eater 5 seedbed curses")))
   
         # MARK: Nepheli
-        # i jumped into her and she died, lol
-        # dropped 2 axes
-        "SV/SC: Arsenal Charm - talk to Nepheli before and after defeating SV mainboss" # same area so no rule
-        "SV/LL: Ancient Dragon Smithing Stone - Gostoc shop after finishing Nepheli and Kenneth Haight's quests"
-        "SV/LL: Ancient Dragon Smithing Stone - talk to Nepheli in SV after her and Kenneth's questlines"
+        
+        self._add_location_rule(["RH: Arsenal Charm - talk to Nepheli before and after defeating SV mainboss"
+        ], lambda state: ( self._can_get(state, "SV/SC: Remembrance of the Grafted - mainboss drop")))
+        
+        self._add_location_rule([
+            "SV/GG: Ancient Dragon Smithing Stone - Gostoc shop after finishing Nepheli and Kenneth Haight's quests",
+            "SV/GG: Ancient Dragon Smithing Stone - talk to Nepheli in SV after her and Kenneth's questlines",
+            "SV/GG: Stormhawk Axe - kill Nepheli"
+        ], lambda state: ( self._can_get(state, "LRC/QB: Morgott's Great Rune - mainboss drop")
+                          and state.has("The Stormhawk King", self.player)))
         
         # MARK: Thops
         "LL/(CI): Ash of War: Thops's Barrier - scarab in church after Thops moves"
@@ -1324,9 +1337,6 @@ class EldenRing(World):
             and state.has("Unalloyed Gold Needle (Milicent)", self.player)
         ))
         
-        # MARK: Iji
-        "LL/RM: Iji's Mirrorhelm - kill Iji or after quest"
-        
         # MARK: Ranni
         
         self._add_location_rule([
@@ -1340,32 +1350,73 @@ class EldenRing(World):
             "NR/(NSG): Great Ghost Glovewort - in chest lower area, talk to Ranni in LL"
         ], lambda state: ( state.can_reach("Liurnia of the Lakes")))
         
-        self._add_entrance_rule("Ainsel River Main", lambda state: state.can_reach("Deeproot Depths")
-            or state.has("Fingerslayer Blade", self.player))
+        # self._add_entrance_rule("Ainsel River Main", lambda state: state.can_reach("Deeproot Depths") # this is missable
+        #    or state.has("Fingerslayer Blade", self.player))
         
         self._add_location_rule([
             "LL/(ReR): Snow Witch Hat - in chest, after giving Fingerslayer Blade to Ranni",
             "LL/(ReR): Snow Witch Robe - in chest, after giving Fingerslayer Blade to Ranni",
-            "LL/(ReR): Snow Witch Skirt - in chest, after giving Fingerslayer Blade to Ranni"
+            "LL/(ReR): Snow Witch Skirt - in chest, after giving Fingerslayer Blade to Ranni",
+            "LL/(RaR): Carian Inverted Statue - given by Ranni after giving Fingerslayer Blade",
+            "ARM/ARM: Miniature Ranni - to N after giving Ranni Fingerslayer Blade"
         ], lambda state: ( state.has("Fingerslayer Blade", self.player)))
+        
+        self._add_location_rule(["NS/NWB: Discarded Palace Key - invader drop to SE, need Miniature Ranni"
+        ], lambda state: ( state.has("Miniature Ranni", self.player) 
+            and self._can_get(state, "ARM/ARM: Miniature Ranni - to N after giving Ranni Fingerslayer Blade")))
         
         self._add_location_rule(["RLA/RLGL: Dark Moon Ring - in chest, requires Discarded Palace Key",
         ], lambda state: ( state.has("Discarded Palace Key", self.player)))
         
-        "MA/(CMC): Dark Moon Greatsword - talk to Ranni under CMC" # MA requires the ring to enter, but this check requires nothing
-        
         # MARK: Seluvis
         
+        self._add_location_rule(["LL/(SR): Seluvis's Introduction - talk to Seluvis after talking to Blaidd in SR", 
+        ], lambda state: (state.can_reach("Siofra River")))
         
+        self._add_location_rule([
+            "LL/(SR): Nepheli Loux Puppet - on Seluvis's body", 
+            "LL/(SR): Dolores the Sleeping Arrow Puppet - Seluvis shop, after you give potion to Nepheli"
+        ], lambda state: ( state.has("Seluvis's Potion", self.player)
+            and self._can_get(state, "RH: Arsenal Charm - talk to Nepheli before and after defeating SV mainboss")))
         
-        
-        
-        self._add_location_rule(["LL/SR: Dung Eater Puppet - Seluvis shop, after you give potion to Dung Eater", 
-        ], lambda state: ( state.has("Seluvis's Potion", self.player) 
+        self._add_location_rule(["LL/(SR): Dung Eater Puppet - Seluvis shop, after you give potion to Dung Eater", 
+        ], lambda state: ( state.has("Seluvis's Potion", self.player)
             and self._can_get(state, "SSG/UR: Sword of Milos - kill Dung Eater or kill him during his invasion in CO")))
         
+        self._add_location_rule([
+            "LL/(SR): Carian Phalanx - Seluvis shop after potion used",
+            "LL/(SR): Glintstone Icecrag - Seluvis shop after potion used",
+            "LL/(SR): Freezing Mist - Seluvis shop after potion used",
+            "LL/(SR): Carian Retaliation - Seluvis shop after potion used"
+        ], lambda state: (state.has("Seluvis's Potion", self.player)))
         
+        self._add_location_rule([
+            "LL/(SR): Jarwight Puppet - Seluvis shop after finding puppet room",
+            "LL/(SR): Finger Maiden Therolina Puppet - Seluvis shop after finding puppet room"
+        ], lambda state: (state.has("Starlight shards", self.player, count=3) # 1 is free so its just the expensive one count
+            and state.has("Seluvis's Potion", self.player)))
         
+        self._add_location_rule([
+            "LL/(SR): Magic Scorpion Charm - given by Seluvis after giving Amber Starlight",
+            "LL/(SR): Amber Draught - given by Seluvis after giving Amber Starlight"
+        ], lambda state: (state.has("Amber Starlight", self.player) 
+            and self._can_get(state, "LL/(SR): Jarwight Puppet - Seluvis shop after finding puppet room")))
+        
+        # Pidia
+        
+        self._add_location_rule(["LL/(CM): Dolores the Sleeping Arrow Puppet - dropped by Pidia after Seluvis dies"
+        ], lambda state: (self._can_get(state, "ARM/ARM: Miniature Ranni - to N after giving Ranni Fingerslayer Blade"
+            or state.has("Amber Draught", self.player))))
+        
+        # MARK: Blaidd / Iji
+        
+        self._add_location_rule([
+            "LL/RaR: Royal Greatsword - kill angry Blaidd",
+            "LL/RaR: Blaidd's Armor - kill angry Blaidd",
+            "LL/RaR: Blaidd's Gauntlets - kill angry Blaidd",
+            "LL/RaR: Blaidd's Greaves - kill angry Blaidd",
+            "LL/RM: Iji's Mirrorhelm - kill Iji or after quest"
+        ], lambda state: (self._can_get(state, "MA/(CMC): Dark Moon Greatsword - give Ranni Darkmoon Ring under CMC")))
         
         # MARK: Alexander
         
@@ -1490,7 +1541,7 @@ class EldenRing(World):
         ], lambda state: ( self._can_get(state, "VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death")))
         
         self._add_location_rule([
-            "LG/(MCV): Spear +7 - kill Patches",
+            "LG/(MCV): Spear - kill Patches",
             "LG/(MCV): Leather Armor - kill Patches",
             "LG/(MCV): Leather Gloves - kill Patches",
             "LG/(MCV): Leather Boots - kill Patches"
@@ -1498,7 +1549,8 @@ class EldenRing(World):
 
         # MARK: Tanith
         
-        self._add_location_rule(["VM/VM: Tonic of Forgetfulness - given by Tanith after you give Rya Serpent's Amnion",
+        self._add_location_rule([ # or after rykard is dead
+            "VM/VM: Tonic of Forgetfulness - given by Tanith after you give Rya Serpent's Amnion",
         ], lambda state: ( state.has("Serpent's Amnion", self.player) 
             and self._can_get(state, "LG/LC: Scaled Helm - invade Istvan SE of colo")))
    
@@ -1507,7 +1559,7 @@ class EldenRing(World):
             "VM/RLB: Consort's Robe - kill Tanith",
             "VM/RLB: Consort's Trousers - kill Tanith",
             "VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death"
-        ], lambda state: ( self._can_get(state, "VM/AP: Rykard's Great Rune - mainboss drop" and state.has("Dancer's Castanets", self.player))))
+        ], lambda state: ( self._can_get(state, "VM/AP: Rykard's Great Rune - mainboss drop") and state.has("Dancer's Castanets", self.player)))
         
         if self.options.enable_dlc: # MARK: DLC NPC
             
