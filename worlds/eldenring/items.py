@@ -11,7 +11,7 @@ class ERItemCategory(IntEnum):
     ARMOR = 3
     ACCESSORY = 4
     ASHOFWAR = 5
-    CUSTOMWEAPON = 6 # reinforced and ash of wars
+    #CUSTOMWEAPON = 6 # reinforced and ash of wars
 
 @dataclass
 class ERItemData:
@@ -64,7 +64,7 @@ class ERItemData:
             ERItemCategory.ARMOR: "Armor",
             ERItemCategory.ACCESSORY: "Accessories",
             ERItemCategory.ASHOFWAR: "Ash of war",
-            ERItemCategory.CUSTOMWEAPON: "Upgraded Weapons",
+            #ERItemCategory.CUSTOMWEAPON: "Upgraded Weapons",
         }[self.category])
 
         return names

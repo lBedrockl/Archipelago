@@ -23,6 +23,21 @@ BIG TODO
 dragonbarrow needs to be DB/aa: not CL/aa:   and need to make sure each item in db is not cl item
 
 
+when generating: 
+
+Found 80 World Types:
+Traceback (most recent call last):
+  File "C:\Archipelago\generate.py", line 573, in <module>
+    multiworld = ERmain(erargs, seed)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Archipelago\Main.py", line 64, in main
+    max_location = max(max_location, max(cls.location_id_to_name))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'str' and 'int'
+
+no clue wtf is going on here, maybe update to main
+
+
 
 
 Ideas
@@ -84,4 +99,5 @@ people who want to be pinged for playtesting
 @absoluteatlas @niox_storm @4st3r._ @rosandria
 @derfailer @darnex @justhenumber7 @ultimasolus
 @pedr11n @kialiens @thevideogamester @p.tato
-@boxgoblin
+@boxgoblin @doubletindy @drakonn__ @deathbypudding
+@nailown @jeffreyzx

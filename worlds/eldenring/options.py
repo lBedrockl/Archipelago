@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, PriorityLocations, NamedRange, OptionDict, \
+from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, OptionList, \
     OptionGroup, PerGameCommonOptions, Range, Removed, Toggle
 
 ## Game Options
@@ -110,21 +110,23 @@ class LocalItemOnly(DefaultOnToggle):
     Used with ExcludeLocalItemOnly option."""
     display_name = "Local Item Option"
     
-class ExcludeLocalItemOnly(OptionDict):
+class ExcludeLocalItemOnly(OptionList):
     """If LocalItemOnly is true then these item categories will show up in other players games.
     - [Items] **Item Group**
     - [~600] **Weapon**: All Weapons and Ammo.
     - [621] **Armor**: All Armors.
     - [154] **Accessory**: All Talismans.
     - [105] **AshofWar**: All Ashes of War.
-    - [~3700] *Goods*: All Goods.
+    - [~3700] **Goods**: All Goods.
     
     Goods should always be local only.
     """
-    default = frozenset({"Weapon", "Armor", "Accessory", "AshofWar"})
+    display_name = "Exclude Local Item Only"
+    default = ["Weapon", "Armor", "Accessory", "AshofWar"]
+    valid_keys_casefold = ["Weapon", "Armor", "Accessory", "AshofWar", "Goods"]
     
-class ERImportantLocations(PriorityLocations):
-    """Prevent these locations from having an unimportant item.
+class ERImportantLocations(OptionList):
+    """Prevent these location types from having an unimportant items.
     - [Checks] **Locations**
     - [25] *Remembrance*: Main boss Remembrances.
     - [33] *Seedtree*: Golden Seed trees.
@@ -140,14 +142,18 @@ class ERImportantLocations(PriorityLocations):
     - **Vanilla**: [90] 
     - **DLC**: [120]
     """
-    default = frozenset({"Remembrance", "Seedtree", "Map"})
+    display_name = "Important Locations"
+    default = ["Remembrance", "Seedtree", "Map"]
+    valid_keys_casefold = ["Remembrance", "Seedtree", "Basin", "Church", "Map", "Fragment", "Cross", "Revered", "KeyItem"]
 
 class ERExcludeLocations(ExcludeLocations):
-    """Prevent these locations from having an important item.
+    """Prevent these locations from having an important items.
     - **dlc**: If you want DLC items but dont wanna do DLC.
     - **hidden**: Hard to find items.
     - **blizzard**: The hard to see area of snowfield."""
-    default = frozenset({"hidden"})
+    default = frozenset({}) # idk why this throws an error, 
+    # Exception: Location 'hidden' from option 'ERExcludeLocations(hidden)' is not a valid location name from 'EldenRing'. Did you mean 'RH: Mace - Twin maiden shop' (18% sure)
+    valid_keys_casefold = ["dlc", "hidden", "blizzard"]
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.

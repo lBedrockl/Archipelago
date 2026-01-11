@@ -63,7 +63,7 @@ class EldenRing(World):
         self.all_priority_locations.update(self.options.important_locations.value)
         
         # makes exclude_local_item_only lowercase
-        exclude_local_item_only_lowercase = {key.lower(): value for key, value in self.options.exclude_local_item_only.items()}
+        exclude_local_item_only_lowercase = [key.lower() for key in self.options.exclude_local_item_only.value]
         
         if self.settings.disable_extreme_options:
             if self.options.missable_location_behavior == "option_randomize":
@@ -84,11 +84,15 @@ class EldenRing(World):
                                   f"Player {self.player_name} has ending_condition set to all bosses.")      
 
         if self.options.smithing_bell_bearing_option.value == 1:
-            item_table["Smithing-Stone Miner's Bell Bearing [1]","Smithing-Stone Miner's Bell Bearing [2]",
-                        "Smithing-Stone Miner's Bell Bearing [3]","Smithing-Stone Miner's Bell Bearing [4]",
-                        "Somberstone Miner's Bell Bearing [1]","Somberstone Miner's Bell Bearing [2]",
-                        "Somberstone Miner's Bell Bearing [3]","Somberstone Miner's Bell Bearing [4]",
-                        "Somberstone Miner's Bell Bearing [5]",].classification = ItemClassification.progression
+            item_table["Smithing-Stone Miner's Bell Bearing [1]"].classification = ItemClassification.progression
+            item_table["Smithing-Stone Miner's Bell Bearing [2]"].classification = ItemClassification.progression
+            item_table["Smithing-Stone Miner's Bell Bearing [3]"].classification = ItemClassification.progression
+            item_table["Smithing-Stone Miner's Bell Bearing [4]"].classification = ItemClassification.progression
+            item_table["Somberstone Miner's Bell Bearing [1]"].classification = ItemClassification.progression
+            item_table["Somberstone Miner's Bell Bearing [2]"].classification = ItemClassification.progression
+            item_table["Somberstone Miner's Bell Bearing [3]"].classification = ItemClassification.progression
+            item_table["Somberstone Miner's Bell Bearing [4]"].classification = ItemClassification.progression
+            item_table["Somberstone Miner's Bell Bearing [5]"].classification = ItemClassification.progression
                 
         if self.options.enable_dlc:
             if self.options.late_dlc:
@@ -101,18 +105,27 @@ class EldenRing(World):
             if self.options.enable_dlc: using_table = item_table
             for item in using_table.values():
                 if item.classification != ItemClassification.progression and item.classification != ItemClassification.useful:
-                    # this picks thing might or might not work :)
-                    picks, arg = {
-                        'goods': 1,
-                        'weapon': 2,
-                        'armour': 3,
-                        'accessory': 4,
-                        'ashofwar': 5,
-                    }.get(arg, 9)
-                    if item.category not in picks[exclude_local_item_only_lowercase]:
-                        self.options.local_items.value.add(item.name)
-                        # local_items.append(item.name)
-            # self.options.local_items.value = set(local_items)
+                    match item.category: # this works, could be better
+                        case 1:
+                            if 'goods' not in exclude_local_item_only_lowercase:
+                                self.options.local_items.value.add(item.name)
+                            return
+                        case 2:
+                            if 'weapon' not in exclude_local_item_only_lowercase:
+                                self.options.local_items.value.add(item.name)
+                            return
+                        case 3:
+                            if 'armour' not in exclude_local_item_only_lowercase:
+                                self.options.local_items.value.add(item.name)
+                            return
+                        case 4:
+                            if 'accessory' not in exclude_local_item_only_lowercase:
+                                self.options.local_items.value.add(item.name)
+                            return
+                        case 5:
+                            if 'ashofwar' not in exclude_local_item_only_lowercase:
+                                self.options.local_items.value.add(item.name)
+                            return
 
     def create_regions(self) -> None: #MARK: Connections
         # Create Vanilla Regions
@@ -149,10 +162,10 @@ class EldenRing(World):
         create_connection("Coastal Cave", "Church of Dragon Communion")
         
         if self.options.late_dlc == False: # for tp medal
-            create_connection("Limgrave", "Mohgwyn Dynasty Mausoleum")
+            create_connection("Limgrave", "Mohgwyn Palace")
             
         create_connection("Stormhill", "Stormveil Start")
-        create_connection("Stormveil Start" "Stormveil Castle")
+        create_connection("Stormveil Start", "Stormveil Castle")
         create_connection("Stormveil Castle", "Stormveil Throne")
         create_connection("Stormveil Castle", "Divine Tower of Limgrave")
         
@@ -169,7 +182,7 @@ class EldenRing(World):
         # Siofra
         
         create_connection("Stormhill", "Liurnia of The Lakes")
-        create_connection("Stormveil Throne", "Liurnia of The Lakes")
+        #create_connection("Stormveil Throne", "Liurnia of The Lakes")
         # Liurnia of The Lakes
         create_connection("Liurnia of The Lakes", "Bellum Highway")
         create_connection("Liurnia of The Lakes", "Road's End Catacombs")
@@ -201,8 +214,7 @@ class EldenRing(World):
         # Caelid
         create_connection("Caelid", "Caelid Catacombs")
         create_connection("Caelid", "Gaol Cave")
-        create_connection("Caelid", "Sellia, Town of Sorcery")
-        create_connection("Caelid", "Sellia Crystal Tunnel")
+        #create_connection("Caelid", "Sellia Crystal Tunnel")
         create_connection("Caelid", "Abandoned Cave")
         create_connection("Caelid", "Great-Jar")
         create_connection("Caelid", "Minor Erdtree Catacombs")
@@ -221,16 +233,16 @@ class EldenRing(World):
         create_connection("Nokron, Eternal City Start", "Nokron, Eternal City")
         create_connection("Nokron, Eternal City", "Deeproot Depths")
         
-        create_connection("Deeproot Depths Upper", "Deeproot Depths") # oneway
+        #create_connection("Deeproot Depths Upper", "Deeproot Depths") # oneway
         create_connection("Deeproot Depths", "Leyndell, Royal Capital")
         create_connection("Deeproot Depths", "Deeproot Depths Boss")
         
-        create_connection("Deeproot Depths", "Ainsel River Main")
+        #create_connection("Deeproot Depths", "Ainsel River Main")
         create_connection("Ainsel River Main", "Lake of Rot")
         create_connection("Lake of Rot", "Lake of Rot Boss")
         create_connection("Lake of Rot Boss", "Moonlight Altar")
         
-        create_connection("Ruin-Strewn Precipice", "Altus Plateau")
+        #create_connection("Ruin-Strewn Precipice", "Altus Plateau")
         create_connection("Liurnia of The Lakes", "Altus Plateau")
         # Altus
         create_connection("Altus Plateau", "Sainted Hero's Grave")
@@ -255,7 +267,7 @@ class EldenRing(World):
         create_connection("Volcano Manor", "Volcano Manor Upper")
        
         create_connection("Raya Lucaria Academy Main", "Volcano Manor Dungeon")
-        create_connection("Volcano Manor Dungeon", "Volcano Manor")
+        #create_connection("Volcano Manor", "Volcano Manor Dungeon")
         
         
         
@@ -308,9 +320,8 @@ class EldenRing(World):
         # Haligtree
         create_connection("Miquella's Haligtree", "Elphael, Brace of the Haligtree")
         
-        create_connection("Consecrated Snowfield", "Mohgwyn Palace")
+        #create_connection("Consecrated Snowfield", "Mohgwyn Palace")
         
-        create_connection("Divine Bridge", "Leyndell, Ashen Capital")
         create_connection("Leyndell, Ashen Capital", "Leyndell, Ashen Capital Throne")
         create_connection("Leyndell, Ashen Capital Throne", "Erdtree")
 
@@ -653,7 +664,7 @@ class EldenRing(World):
         # vm drawing room, stuff that needs key
         self._add_location_rule([ 
                 "VM/VM: Recusant Finger - on the table in the drawing room",
-                "VM/VM: Letter from Volcano Manor - on the table in the drawing room",
+                "VM/VM: Letter from Volcano Manor (Istvan) - on the table in the drawing room",
                 "VM/VM: Perfume Bottle - in the first room on the right",
                 "VM/VM: Budding Horn x3 - behind the illusory wall in the right room, next to the stairs",
                 "VM/VM: Fireproof Dried Liver - behind the illusory wall in the right room, down the stairs",
@@ -726,20 +737,18 @@ class EldenRing(World):
         if self.options.enable_dlc:
             
             # not done dlc paintings
-            self._add_location_rule("", 
-                lambda state: state.has("\"\" Painting", self.player))
-            self._add_location_rule("", 
-                lambda state: state.has("\"\" Painting", self.player))
-            self._add_location_rule("", 
-                lambda state: state.has("\"\" Painting", self.player))
+            # self._add_location_rule("", 
+            #     lambda state: state.has("\"\" Painting", self.player))
+            # self._add_location_rule("", 
+            #     lambda state: state.has("\"\" Painting", self.player))
+            # self._add_location_rule("", 
+            #     lambda state: state.has("\"\" Painting", self.player))
             
             # dlc imbued
-            self._add_entrance_rule([
-                "The Four Belfries (Chapel of Anticipation)",
-                "The Four Belfries (Nokron)",
-                "The Four Belfries (Farum Azula)",
-                "DLC AREA"
-                ],lambda state: state.has("Imbued Sword Key", self.player, count=4))
+            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, count=4))
+            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, count=4))
+            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, count=4))
+            # self._add_entrance_rule("DLC AREA", lambda state: state.has("Imbued Sword Key", self.player, count=4))
    
    
             if self.options.late_dlc:
@@ -761,11 +770,9 @@ class EldenRing(World):
             self._add_entrance_rule("Lamenter's Gaol (Lower)", lambda state: state.has("Gaol Lower Level Key", self.player))
         else:
             # vanilla imbued
-            self._add_entrance_rule([
-                "The Four Belfries (Chapel of Anticipation)",
-                "The Four Belfries (Nokron)",
-                "The Four Belfries (Farum Azula)"
-                ],lambda state: state.has("Imbued Sword Key", self.player, count=3))
+            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, count=3))
+            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, count=3))
+            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, count=3))
                     
         
         if self.options.ending_condition <= 1:
@@ -816,7 +823,9 @@ class EldenRing(World):
         """All region lock items set to not be skipped when doing region lock.
         and add entrance rules using said items."""
         # MARK: Region Lock Items
-        item_table["Region Lock Key 1", "Region Lock Key 2"].skip = False
+        keys = [] # "Region Lock Key 1", "Region Lock Key 2"
+        for key in keys:
+            item_table[key].skip = False
         
         #self._add_entrance_rule("Weeping Peninsula", lambda state: "region key")
         #self._add_entrance_rule(["Stormveil Start", "Stormveil Castle"], lambda state: "region key")
@@ -886,7 +895,7 @@ class EldenRing(World):
         self._add_location_rule([
             "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1a
             "AP/(SHG): Dragoncrest Shield Talisman +1 - ride up first cleaver, behind imp statue", # 1b
-            "AP/WR: Pearldrake Talisman +1 - in chest underground behind a imp statue", # 1c
+            "AP/WhR: Pearldrake Talisman +1 - in chest underground behind a imp statue", # 1c
             "AP/GLE: Godfrey Icon - boss drop Evergaol", # 1d
             ], lambda state: self._has_enough_keys(state, currentKey))
         self._add_entrance_rule("Old Altus Tunnel", lambda state: self._has_enough_keys(state, currentKey)) # 2
@@ -895,7 +904,7 @@ class EldenRing(World):
         # caelid
         currentKey += 3
         self._add_entrance_rule("Gaol Cave", lambda state: self._has_enough_keys(state, currentKey)) # 2
-        self._add_location_rule("CL/(FR): Sword of St. Trina - chest underground behind imp statue", 
+        self._add_location_rule("CL/(FR): Sword of St. Trina - in chest underground behind imp statue", 
                                 lambda state: self._has_enough_keys(state, currentKey)) # 1
         
         self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._has_enough_keys(state, currentKey))
@@ -988,8 +997,8 @@ class EldenRing(World):
         # haligtree +3
         currentKey += 3
         self._add_location_rule([
-            "BH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", # 1
-            "BH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", # 2
+            "EBH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", # 1
+            "EBH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", # 2
             ], lambda state: self._has_enough_keys(state, currentKey))
         
     def _dragon_communion_rules(self) -> None:
@@ -1155,7 +1164,7 @@ class EldenRing(World):
             "MtG/PSA: Azur's Glintstone Robe - side with Sellen, where Azur was",
             "MtG/PSA: Azur's Manchettes - side with Sellen, where Azur was"
         ], lambda state: ( self._can_get(state, "WP/(WR): Sellen's Primal Glintstone - talk to Sellen") 
-                          and state.can_reach("Raya Lucaria Academy Library")))
+                          and state.can_reach("Raya Lucaria Academy Library") and state.has("Sellen's Primal Glintstone")))
         
         # MARK: Thops
         
@@ -1163,10 +1172,7 @@ class EldenRing(World):
             "RLA/SC: Academy Glintstone Staff - on Thops body just outside",
             "RLA/SC: Thops's Barrier - on Thops body just outside",
             "LL/(CIr): Ash of War: Thops's Barrier - scarab in church after Thops moves"
-        ], lambda state: ( state.has("Academy Glintstone Key (Thops)", self.player)))
-        
-        
-        
+        ], lambda state: ( state.has("Academy Glintstone Key (Thops)", self.player) and state.can_reach("Raya Lucaria Academy Main")))
         
         # MARK: Enia
         
@@ -1216,7 +1222,7 @@ class EldenRing(World):
             "RH: Spellblade's Traveling Attire - found on Rogier's body",
             "RH: Spellblade's Gloves - found on Rogier's body",
             "RH: Spellblade's Trousers - found on Rogier's body",
-            "RH: Rogier's Rapier +8 - talk Rogier after beating SV mainboss or on his body after he dies"
+            "RH: Rogier's Rapier - talk Rogier after beating SV mainboss or on his body after he dies"
         ], lambda state: ( state.can_reach("Stormveil Castle") and state.has("Cursemark of Death", self.player)))
         
         # MARK: Fia
@@ -1313,8 +1319,8 @@ class EldenRing(World):
         ], lambda state: ( state.has("Valkyrie's Prosthesis", self.player) and state.can_reach("Altus Plateau")
                           and self._can_get(state, "CL/(GS): Night Shard - Gowry Shop")))
         
-        self._add_location_rule(["CL/(GS): Desperate Prayer - buy 4th shop item",
-        ], lambda state: ( self._can_get(state, "CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent")))
+        # self._add_location_rule(["CL/(GS): Desperate Prayer - buy 4th shop item", # gesture
+        # ], lambda state: ( self._can_get(state, "CL/(GS): Pest Threads - Gowry Shop after giving Valkyrie's Prosthesis to Millicent")))
         
         self._add_location_rule(["CL/(GS): Flock's Canvas Talisman - kill Gowry or complete questline",
         ], lambda state: ( self._can_get(state, "EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area")))
@@ -1462,7 +1468,7 @@ class EldenRing(World):
         
         self._add_location_rule([ # reward 1 + patches & bernahl
             "VM/VM: Magma Shot - Tanith reward request 1",
-            "VM/VM: Letter from Volcano Manor - on the table in the drawing room after request 1",
+            "VM/VM: Letter from Volcano Manor (Rileigh) - on the table in the drawing room after request 1",
             "VM/VM: Letter to Patches - talk to Patches after request 1",
             "VM/VM: Ash of War: Eruption - Bernahl shop after request 1",
             "VM/VM: Ash of War: Assassin's Gambit - Bernahl shop after request 1"
