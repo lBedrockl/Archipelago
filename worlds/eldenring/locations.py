@@ -510,6 +510,8 @@ class ERLocationData:
         if self.progression: names.append("Progression")
         if self.hostile_npc: names.append("Hostile NPC Rewards")
         if self.npc: names.append("Friendly NPC Rewards")
+        if self.scarab: names.append("Scarab")
+        if self.hidden: names.append("Hidden")
 
         default_item = item_table[cast(str, self.default_item_name)]
         names.append({
@@ -810,6 +812,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/SC: Golden Rune [2] - on dropdown platform middle of big long room", "Golden Rune [2]", key="100000,0:0010007240::"),
     ],
     "Limgrave":[ # limgrave            done
+        ERLocationData("LG/(SG): Tarnished's Furled Finger - beside grace", "Tarnished's Furled Finger", key="180000,0:0000060220::"),
+        ERLocationData("LG/(SG): Finger Severer - beside grace", "Finger Severer", key="180000,0:0000060310::"),
+
         ERLocationData("LG/MO: Golden Seed - kill Kenneth Haight", "Golden Seed", key="100000,0:0000400220::", missable=True, death=True),
         ERLocationData("LG/MO: Erdsteel Dagger - kill FH enemy, Kenneth Haight to NE", "Erdsteel Dagger", key="100000,0:0000400221::", missable=True),
         ERLocationData("LG/ALN: Mushroom x10 - Boc to SE", "Mushroom x10", key="110000,0:0000400271::", missable=True),
@@ -3485,8 +3490,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("VM/GH: Dragon Heart - enemy drop outside to E, ride elevator down, in cave", "Dragon Heart", key="160000,0:0016007999::"),
     ],
     "Fringefolk Hero's Grave":[ # graveyard_grave      done   # 2
-        ERLocationData("LG/(SG): Tarnished's Furled Finger - beside grace", "Tarnished's Furled Finger", key="180000,0:0000060220::"),
-        ERLocationData("LG/(SG): Finger Severer - beside grace", "Finger Severer", key="180000,0:0000060310::"),
         ERLocationData("LG/(FHG): Golden Seed - boss drop", "Golden Seed", key="180000,0:0000510280::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("LG/(FHG): Banished Knight Oleg - boss drop", "Banished Knight Oleg", key="180000,0:0000510280::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("LG/(FHG): Poisonbone Dart x5 - top of first ramp", "Poisonbone Dart x5", key="180000,0:0018007000::"),
@@ -5578,7 +5581,6 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FP/FF: Somber Smithing Stone [7] - enemy drop to NE past seedtree near statue", "Somber Smithing Stone [7]", key="605254,0:1052547990::"),
     ],
 
-    
     # MARK: More DLC
     "Ancient Ruins of Rauh":[ # rauhruins       some done by Layka
         ERLocationData("ARR/CBME: Remembrance of the Saint of the Bud - mainboss drop", "Remembrance of the Saint of the Bud", key="614445,0:0000510600::", boss=True, remembrance=True),
@@ -6021,7 +6023,14 @@ for region in region_order_dlc:
         location.dlc = True
 
 for region in [# conditional locations
-    #"Hinterlands" # locked behind o mother
+    # need keys
+    "Fringefolk Hero's Grave",
+    "Academy Crystal Cave",
+    "Old Altus Tunnel",
+    "Gaol Cave",
+    "Seethewater Cave",
+    "Spiritcaller Cave",
+    "Cave of the Forlorn",
 ]:
     for location in location_tables[region]:
         location.conditional = True
@@ -6077,12 +6086,10 @@ for location_name, location_table in location_tables.items():
             for group_name in location_data.location_groups():
                 location_name_groups[group_name].add(location_data.name)
 
-    # Allow entire locations to be added to location sets.
-    if not location_name.endswith(" Shop"):
-        location_name_groups[location_name] = set([
-            location_data.name for location_data in location_table
-            if not location_data.is_event
-        ])
+    location_name_groups[location_name] = set([
+        location_data.name for location_data in location_table
+        if not location_data.is_event
+    ])
     
     # Add enemy drop to drop tag so it can be exclued
     if location_name.__contains__("enemy drop") or location_name.__contains__("hostile npc drop"):

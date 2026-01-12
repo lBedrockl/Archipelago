@@ -158,32 +158,36 @@ class ERExcludeLocations(ExcludeLocations):
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.
 
-    - **Randomize:** Progression items can be placed in excluded locations.
-    - **Randomize Unimportant:** Progression items can't be placed in excluded locations.
+    - **Allow Useful:** Excluded locations can't have progression items, but they can have useful items.
+    - **Forbid Useful:** Neither progression items nor useful items can be placed in excluded locations.
     - **Do Not Randomize:** Excluded locations always contain the same item as in vanilla Elden Ring.
 
     A "progression item" is anything that's required to unlock another location in some game.
+    A "useful item" is something each game defines individually, usually items that are quite
+    desirable but not strictly necessary.
     """
     display_name = "Excluded Locations Behavior"
-    option_randomize = 0
-    option_randomize_unimportant = 1
-    option_do_not_randomize = 2
-    default = 1
+    option_allow_useful = 1
+    option_forbid_useful = 2
+    option_do_not_randomize = 3
+    default = 2
 
 class MissableLocationBehaviorOption(Choice):
     """Which items can be placed in locations that can be permanently missed.
 
-    - **Randomize:** Progression items can be placed in missable locations, don't do this unless you know what your doing, you can make a game impossible.
-    - **Randomize Unimportant:** Progression items can't be placed in missable locations.
+    - **Allow Useful:** Missable locations can't have progression items, but they can have useful items.
+    - **Forbid Useful:** Neither progression items nor useful items can be placed in missable locations.
     - **Do Not Randomize:** Missable locations always contain the same item as in vanilla Elden Ring.
 
     A "progression item" is anything that's required to unlock another location in some game.
+    A "useful item" is something each game defines individually, usually items that are quite
+    desirable but not strictly necessary.
     """
     display_name = "Missable Locations Behavior"
-    option_randomize = 0
-    option_randomize_unimportant = 1
-    option_do_not_randomize = 2
-    default = 1
+    option_allow_useful = 1
+    option_forbid_useful = 2
+    option_do_not_randomize = 3
+    default = 2
 
 @dataclass
 class EROptions(PerGameCommonOptions):
