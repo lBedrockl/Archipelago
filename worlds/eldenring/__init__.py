@@ -595,6 +595,7 @@ class EldenRing(World):
         if not self.options.late_dlc: # for tp medal
             self.multiworld.register_indirect_condition(self.get_region("Limgrave"), self.get_entrance("Go To Mohgwyn Palace"))
 
+        self.multiworld.register_indirect_condition(self.get_region("Altus Plateau"), self.get_entrance("Go To Wailing Dunes"))
         self.multiworld.register_indirect_condition(self.get_region("Caelid"), self.get_entrance("Go To Sellia Crystal Tunnel"))
         self.multiworld.register_indirect_condition(self.get_region("Deeproot Depths Upper"), self.get_entrance("Go To Deeproot Depths"))
         self.multiworld.register_indirect_condition(self.get_region("Deeproot Depths"), self.get_entrance("Go To Ainsel River Main"))
@@ -606,7 +607,9 @@ class EldenRing(World):
             self._region_lock()
             if self.options.soft_logic:
                 self._add_entrance_rule("Caelid", lambda state: self._can_go_to(state, "Altus Plateau"))
+                self.multiworld.register_indirect_condition(self.get_region("Altus Plateau"), self.get_entrance("Go To Caelid"))
                 self._add_entrance_rule("Dragonbarrow", lambda state: self._can_go_to(state, "Forbidden Lands") and state.has("Rold Medallion", self.player))
+                self.multiworld.register_indirect_condition(self.get_region("Forbidden Lands"), self.get_entrance("Go To Dragonbarrow"))
            
            
             # "BS: Stonesword Key - behind wooden platform" # in limgrave rn
@@ -725,16 +728,16 @@ class EldenRing(World):
         
         # Smithing bell bearing rules
         if self.options.smithing_bell_bearing_option.value == 1:
-            self._add_entrance_rule("Altus Plateau", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [1]", self.player))
-            self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [2]", self.player))
-            self._add_entrance_rule("Flame Peak", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [3]", self.player))
-            self._add_entrance_rule("Farum Azula Main", lambda state: state.has("Smithing-Stone Miner's Bell Bearing [4]", self.player))
+            self._add_entrance_rule("Altus Plateau", "Smithing-Stone Miner's Bell Bearing [1]")
+            self._add_entrance_rule("Capital Outskirts", "Smithing-Stone Miner's Bell Bearing [2]")
+            self._add_entrance_rule("Flame Peak", "Smithing-Stone Miner's Bell Bearing [3]")
+            self._add_entrance_rule("Farum Azula Main", "Smithing-Stone Miner's Bell Bearing [4]")
             
-            self._add_entrance_rule("Dragonbarrow", lambda state: state.has("Somberstone Miner's Bell Bearing [1]", self.player))
-            self._add_entrance_rule("Capital Outskirts", lambda state: state.has("Somberstone Miner's Bell Bearing [2]", self.player))
-            self._add_entrance_rule("Flame Peak", lambda state: state.has("Somberstone Miner's Bell Bearing [3]", self.player))
-            self._add_entrance_rule("Farum Azula Main", lambda state: state.has("Somberstone Miner's Bell Bearing [4]", self.player))
-            self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: state.has("Somberstone Miner's Bell Bearing [5]", self.player))
+            self._add_entrance_rule("Dragonbarrow", "Somberstone Miner's Bell Bearing [1]")
+            self._add_entrance_rule("Capital Outskirts", "Somberstone Miner's Bell Bearing [2]")
+            self._add_entrance_rule("Flame Peak", "Somberstone Miner's Bell Bearing [3]")
+            self._add_entrance_rule("Farum Azula Main", "Somberstone Miner's Bell Bearing [4]")
+            self._add_entrance_rule("Leyndell, Ashen Capital", "Somberstone Miner's Bell Bearing [5]")
         
         # DLC Rules
         if self.options.enable_dlc:
@@ -1013,7 +1016,7 @@ class EldenRing(World):
     
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""
-        rune_count = 0
+        rune_count = int(0)
         if state.has("Godrick's Great Rune", self.player): rune_count += 1
         if state.has("Rykard's Great Rune", self.player): rune_count += 1
         if state.has("Radahn's Great Rune", self.player): rune_count += 1
@@ -1657,7 +1660,7 @@ class EldenRing(World):
         for (remembrance, rem_items) in remembrances:
             self._add_location_rule([
                 f"RH: {item} - Enia for {remembrance}" for item in rem_items
-            ], lambda state: (state.has(remembrance, self.player) and self._has_enough_great_runes(state, 1)))
+            ], lambda state, item=remembrance: (state.has(item, self.player) and self._has_enough_great_runes(state, 1)))
     
     def _add_equipment_of_champions_rules(self) -> None:
         """Adds rules for items obtainable from equipment of champions."""
@@ -1804,7 +1807,7 @@ class EldenRing(World):
         for (boss, boss_location, eq_items) in equipments:
             self._add_location_rule([
                 f"RH: {item} - Enia shop, defeat {boss}" for item in eq_items
-            ], lambda state: self._can_get(state, boss_location) and self._has_enough_great_runes(state, 1))
+            ], lambda state, bl=boss_location: (self._can_get(state, bl) and self._has_enough_great_runes(state, 1)))
             
     def _add_allow_useful_location_rules(self) -> None:
         """Adds rules for locations that can contain useful but not necessary items.
@@ -1886,11 +1889,11 @@ class EldenRing(World):
         if not self._is_location_available(location): return
         add_item_rule(self.multiworld.get_location(location, self.player), rule)
 
-    def _can_go_to(self, state, region) -> bool:
+    def _can_go_to(self, state: CollectionState, region) -> bool:
         """Returns whether state can access the given region name."""
         return state.can_reach_entrance(f"Go To {region}", self.player)
 
-    def _can_get(self, state, location) -> bool:
+    def _can_get(self, state: CollectionState, location) -> bool:
         """Returns whether state can access the given location name."""
         return state.can_reach_location(location, self.player)
     
