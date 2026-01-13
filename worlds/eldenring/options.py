@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, OptionList, \
-    OptionGroup, PerGameCommonOptions, Range, Removed, Toggle
+    OptionGroup, PerGameCommonOptions, Range, Toggle
 
 ## Game Options
 

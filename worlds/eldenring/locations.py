@@ -1197,7 +1197,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Rellana's Greaves - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Greaves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
         
         ERLocationData("RH: Taunter's Tongue - invader drop", "Taunter's Tongue", key="111000,0:0000060300::", hostile_npc=True),
-        ERLocationData("RH: Talisman Pouch - Enia at 2 great runes or Twin Maiden after farum boss", "Talisman Pouch", key="111000,0:0000060500:101800,11109777:", missable=True, npc=True),
+        ERLocationData("RH: Talisman Pouch - talk to Enia at 2 great runes or Twin Maiden after farum boss", "Talisman Pouch", key="111000,0:0000060500:101800,11109777:", missable=True, npc=True),
         #ERLocationData("RH: Fevor's Cookbook [3] - Given by Gideon, or Twin maiden shop", "Fevor's Cookbook [3]", key="111000,0:0000068210:101800,11109772:", missable=True, cookbook=True),
         #ERLocationData("RH: Black Flame's Protection - Given by Gideon, or Twin maiden shop", "Black Flame's Protection", key="111000,0:0000400282:101800,11109770:", missable=True),
         #ERLocationData("RH: Lord's Divine Fortification - Given by Gideon, or Twin maiden shop", "Lord's Divine Fortification", key="111000,0:0000400283:101800,11109771:", missable=True),
@@ -6094,6 +6094,9 @@ for location_name, location_table in location_tables.items():
     # Add enemy drop to drop tag so it can be exclued
     if location_name.__contains__("enemy drop") or location_name.__contains__("hostile npc drop"):
         location_data.drop = True    
+        
+    if location_name.__contains__("- Enia"):
+        location_data.conditional = True     
 
 temp = location_name_groups['Gravesite Plain'] # might work shrug
 counter = 0

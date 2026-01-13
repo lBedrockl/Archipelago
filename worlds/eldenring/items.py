@@ -1295,7 +1295,7 @@ _vanilla_items = [
     *ERItemData("Exalted Flesh", 1210, ERItemCategory.GOODS).counts([2, 3]),
     *ERItemData("Raw Meat Dumpling", 1235, ERItemCategory.GOODS).counts([5, 10]),
     ERItemData("Shabriri Grape", 1240, ERItemCategory.GOODS),
-    ERItemData("Starlight Shards", 1290, ERItemCategory.GOODS),
+    ERItemData("Starlight Shards", 1290, ERItemCategory.GOODS, classification=ItemClassification.progression),
     *ERItemData("Immunizing White Cured Meat", 1310, ERItemCategory.GOODS).counts([3]),
     *ERItemData("Invigorating White Cured Meat", 1320, ERItemCategory.GOODS).counts([3]),
     *ERItemData("Clarifying White Cured Meat", 1330, ERItemCategory.GOODS).counts([3]),
@@ -1591,7 +1591,7 @@ _vanilla_items = [
     ERItemData("Rusty Key", 8010, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dectus Medallion (Left)", 8105, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dectus Medallion (Right)", 8106, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Rold Medallion", 8107, ERItemCategory.GOODS, classification=(ItemClassification.progression, ItemClassification.useful)), # i think this is how you do this
+    ERItemData("Rold Medallion", 8107, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Academy Glintstone Key", 8109, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Carian Inverted Statue", 8111, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dark Moon Ring", 8121, ERItemCategory.GOODS, classification=ItemClassification.progression),
