@@ -819,12 +819,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/MO: Erdsteel Dagger - kill FH enemy, Kenneth Haight to NE", "Erdsteel Dagger", key="100000,0:0000400221::", missable=True),
         ERLocationData("LG/ALN: Mushroom x10 - Boc to SE", "Mushroom x10", key="110000,0:0000400271::", missable=True),
         ERLocationData("LG/(FHE): Somber Smithing Stone [2] - Blaidd reward Evergaol", "Somber Smithing Stone [2]", key="120200,0:0000400150::", missable=True),
-        ERLocationData("LG/(WR): Glintstone Cometshard - Conspectus Scroll", "Glintstone Cometshard", key="140000,0:0000000000:100050,100275,100400,1034509450,1037469300,1044369244:", missable=True, sorceries=True, shop=True),
-        ERLocationData("LG/(WR): Star Shower - Conspectus Scroll", "Star Shower", key="140000,0:0000000000:100050,100275,100400,1034509450,1037469300,1044369244:", missable=True, sorceries=True, shop=True),
-        ERLocationData("LG/(WR): Glintblade Phalanx - Royal House Scroll", "Glintblade Phalanx", key="140000,0:0000000000:100050,100275,100400,1034509451,1037469301,1044369245:", missable=True, sorceries=True, shop=True),
-        ERLocationData("LG/(WR): Carian Slicer - Royal House Scroll", "Carian Slicer", key="140000,0:0000000000:100050,100275,100400,1034509451,1037469301,1044369245:", missable=True, sorceries=True, shop=True),
-        ERLocationData("LG/(WR): Great Glintstone Shard - Academy Scroll", "Great Glintstone Shard", key="140000,0:0000000000:100050,100275,100400,1034509455,1037469316,1044369250:", missable=True, sorceries=True, shop=True),
-        ERLocationData("LG/(WR): Swift Glintstone Shard - Academy Scroll", "Swift Glintstone Shard", key="140000,0:0000000000:100050,100275,100400,1034509455,1037469316,1044369250:", missable=True, sorceries=True, shop=True),
+        ERLocationData("LG/(WR): Glintstone Cometshard - Conspectus Scroll", "Glintstone Cometshard", key="140000,0:0000000000:100050,100275,100400,1034509450,1037469300,1044369244:", missable=True, sorceries=True, shop=True, conditional=True),
+        ERLocationData("LG/(WR): Star Shower - Conspectus Scroll", "Star Shower", key="140000,0:0000000000:100050,100275,100400,1034509450,1037469300,1044369244:", missable=True, sorceries=True, shop=True, conditional=True),
+        ERLocationData("LG/(WR): Glintblade Phalanx - Royal House Scroll", "Glintblade Phalanx", key="140000,0:0000000000:100050,100275,100400,1034509451,1037469301,1044369245:", missable=True, sorceries=True, shop=True, conditional=True),
+        ERLocationData("LG/(WR): Carian Slicer - Royal House Scroll", "Carian Slicer", key="140000,0:0000000000:100050,100275,100400,1034509451,1037469301,1044369245:", missable=True, sorceries=True, shop=True, conditional=True),
+        ERLocationData("LG/(WR): Great Glintstone Shard - Academy Scroll", "Great Glintstone Shard", key="140000,0:0000000000:100050,100275,100400,1034509455,1037469316,1044369250:", missable=True, sorceries=True, shop=True, conditional=True),
+        ERLocationData("LG/(WR): Swift Glintstone Shard - Academy Scroll", "Swift Glintstone Shard", key="140000,0:0000000000:100050,100275,100400,1034509455,1037469316,1044369250:", missable=True, sorceries=True, shop=True, conditional=True),
         ERLocationData("LG/(WR): Glintstone Pebble - Sellen Shop", "Glintstone Pebble", key="140000,0:0000000000:100050:", sorceries=True, shop=True),
         ERLocationData("LG/(WR): Glintstone Stars - Sellen Shop", "Glintstone Stars", key="140000,0:0000000000:100050:", sorceries=True, shop=True),
         ERLocationData("LG/(WR): Crystal Barrage - Sellen Shop", "Crystal Barrage", key="140000,0:0000000000:100050:", sorceries=True, shop=True),
@@ -6031,6 +6031,10 @@ for region in [# conditional locations
     "Seethewater Cave",
     "Spiritcaller Cave",
     "Cave of the Forlorn",
+    # imbued keys
+    "The Four Belfries (Chapel of Anticipation)",
+    "The Four Belfries (Nokron)",
+    "The Four Belfries (Farum Azula)",
 ]:
     for location in location_tables[region]:
         location.conditional = True

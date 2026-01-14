@@ -580,7 +580,7 @@ class EldenRing(World):
 
     def set_rules(self) -> None: #MARK: Rules
 
-        self._key_rules() # make option to choose master or normal rules
+        #self._key_rules() # make option to choose master or normal rules
         #self._master_key_rules()
         
         self._dragon_communion_rules() # done
@@ -610,6 +610,8 @@ class EldenRing(World):
                 self.multiworld.register_indirect_condition(self.get_region("Altus Plateau"), self.get_entrance("Go To Caelid"))
                 self._add_entrance_rule("Dragonbarrow", lambda state: self._can_go_to(state, "Forbidden Lands") and state.has("Rold Medallion", self.player))
                 self.multiworld.register_indirect_condition(self.get_region("Forbidden Lands"), self.get_entrance("Go To Dragonbarrow"))
+                
+                # soft rule for con snow and haligtree so rold cant be at malenia lol
            
            
             # "BS: Stonesword Key - behind wooden platform" # in limgrave rn
@@ -842,21 +844,21 @@ class EldenRing(World):
         self._add_entrance_rule("Fringefolk Hero's Grave", lambda state: self._has_enough_keys(state, 3)) # 2
         self._add_location_rule("LG/(SWV): Green Turtle Talisman - behind imp statue", lambda state: self._has_enough_keys(state, 3)) # 1
         
-        self._add_entrance_rule("Roundtable Hold", lambda state: self._has_enough_keys(state, 3))
+        #self._add_entrance_rule("Roundtable Hold", lambda state: self._has_enough_keys(state, 3))
         # roundtable
         self._add_location_rule([
             "RH: Crepus's Black-Key Crossbow - behind imp statue in chest", "RH: Black-Key Bolt x20 - behind imp statue in chest", # 1
             "RH: Assassin's Prayerbook - behind second imp statue in chest", # 2
             ], lambda state: self._has_enough_keys(state, 6))
         
-        self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_keys(state, 6))
+        #self._add_entrance_rule("Weeping Peninsula", lambda state: self._has_enough_keys(state, 6))
         # weeping
         self._add_location_rule([
             "WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue", # 1
             "WP/(WE): Radagon's Scarseal - boss drop Evergaol", # 1
             ], lambda state: self._has_enough_keys(state, 8))
         
-        self._add_entrance_rule("Stormveil Castle", lambda state: self._has_enough_keys(state, 8))
+        #self._add_entrance_rule("Stormveil Castle", lambda state: self._has_enough_keys(state, 8))
         # stormveil
         self._add_location_rule([
             "SV/LC: Godslayer's Seal - left chest behind imp statue in storeroom SE of massive courtyard", # 1a
@@ -866,7 +868,7 @@ class EldenRing(World):
             "SV/RT: Miséricorde - shortcut elevator to SE, to N through door, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, 10))
         
-        self._add_entrance_rule("Siofra River", lambda state: self._has_enough_keys(state, 10))
+        #self._add_entrance_rule("Siofra River", lambda state: self._has_enough_keys(state, 10))
         # siofra
         # for leaving siofra to caelid ravine
         self._add_location_rule([
@@ -874,9 +876,9 @@ class EldenRing(World):
             "CL/DSW: Stonesword Key - to S",
             "CL/CCO: Great-Jar's Arsenal - beat Great Jar's knights",
             ], lambda state: self._has_enough_keys(state, 12) and 
-            self._can_go_to(state, "Caelid") and self._can_go_to(state, "Siofra River")) # 2
+            self._can_go_to(state, "Siofra River")) # 2
         
-        self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_keys(state, 12))
+        #self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._has_enough_keys(state, 12))
         # liurnia
         self._add_location_rule([
             "LL/(BKC): Rosus' Axe - behind imp statue near boss door", # 1a
@@ -884,7 +886,7 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, 16))
         self._add_entrance_rule("Academy Crystal Cave", lambda state: self._has_enough_keys(state, 16)) # 2
         
-        self._add_entrance_rule("Altus Plateau", lambda state: self._has_enough_keys(state, 16))
+        #self._add_entrance_rule("Altus Plateau", lambda state: self._has_enough_keys(state, 16))
         # altus
         self._add_location_rule([
             "AP/(SHG): Crimson Seed Talisman - behind imp statue", # 1a
@@ -894,27 +896,27 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, 22))
         self._add_entrance_rule("Old Altus Tunnel", lambda state: self._has_enough_keys(state, 22)) # 2
         
-        self._add_entrance_rule("Caelid", lambda state: self._has_enough_keys(state, 22))
+        #self._add_entrance_rule("Caelid", lambda state: self._has_enough_keys(state, 22))
         # caelid
         self._add_entrance_rule("Gaol Cave", lambda state: self._has_enough_keys(state, 25)) # 2
         self._add_location_rule("CL/(FR): Sword of St. Trina - in chest underground behind imp statue", 
                                 lambda state: self._has_enough_keys(state, 25)) # 1
         
-        self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._has_enough_keys(state, 25))
+        #self._add_entrance_rule("Nokron, Eternal City Start", lambda state: self._has_enough_keys(state, 25))
         # nokron
         self._add_location_rule([
             "NR/(NSG): Mimic Tear Ashes - in chest behind imp statue upper interior", # 1a
             "NR/(NSG): Smithing Stone [3] - behind imp statue upper interior", # 1a
             ], lambda state: self._has_enough_keys(state, 26))
         
-        self._add_entrance_rule("Mt. Gelmir", lambda state: self._has_enough_keys(state, 26))
+        #self._add_entrance_rule("Mt. Gelmir", lambda state: self._has_enough_keys(state, 26))
         # mt gelmir
         self._add_location_rule([
             "MG/(WC): Lightning Scorpion Charm - behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, 29))
         self._add_entrance_rule("Seethewater Cave", lambda state: self._has_enough_keys(state, 29)) # 2
         
-        self._add_entrance_rule("Volcano Manor Entrance", lambda state: self._has_enough_keys(state, 29))
+        #self._add_entrance_rule("Volcano Manor Entrance", lambda state: self._has_enough_keys(state, 29))
         # volcano
         self._add_location_rule([
             "VM/PTC: Crimson Amber Medallion +1 - behind imp statue W of town", # 1
@@ -925,25 +927,25 @@ class EldenRing(World):
             "VM/TE: Rune Arc - NW of shortcut elevator, after imp statue, drop to hidden path lower item", # 2a
             ], lambda state: self._has_enough_keys(state, 32))
         
-        self._add_entrance_rule("Capital Outskirts", lambda state: self._has_enough_keys(state, 32))
+        #self._add_entrance_rule("Capital Outskirts", lambda state: self._has_enough_keys(state, 32))
         # capital outskirts
         self._add_location_rule([
             "CO/(AHG): Golden Epitaph - behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, 33))
         
-        self._add_entrance_rule("Ainsel River Main", lambda state: self._has_enough_keys(state, 33))
+        #self._add_entrance_rule("Ainsel River Main", lambda state: self._has_enough_keys(state, 33))
         # nokstella
         self._add_location_rule([
             "NS/NEC: Nightmaiden & Swordstress Puppets - in chest behind imp statue to W up stairs, left before bridge", # 1
             ], lambda state: self._has_enough_keys(state, 34))
         
-        self._add_entrance_rule("Moonlight Altar", lambda state: self._has_enough_keys(state, 34))
+        #self._add_entrance_rule("Moonlight Altar", lambda state: self._has_enough_keys(state, 34))
         # moonlight altar
         self._add_location_rule([
             "MA/(LER): Cerulean Amber Medallion +2 - in chest under illusory floor behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, 35))
         
-        self._add_entrance_rule("Mountaintops of the Giants", lambda state: self._has_enough_keys(state, 35))
+        #self._add_entrance_rule("Mountaintops of the Giants", lambda state: self._has_enough_keys(state, 35))
         # mountaintops
         self._add_location_rule([
             "MG/(GCHG): Flame, Protect Me - behind imp statue", # 1a
@@ -951,7 +953,7 @@ class EldenRing(World):
             ], lambda state: self._has_enough_keys(state, 39))
         self._add_entrance_rule("Spiritcaller Cave", lambda state: self._has_enough_keys(state, 39)) # 2
         
-        self._add_entrance_rule("Farum Azula", lambda state: self._has_enough_keys(state, 39))
+        #self._add_entrance_rule("Farum Azula", lambda state: self._has_enough_keys(state, 39))
         # farum
         self._add_location_rule([ # entire area behind a imp staute lol
             "FA/DTL: Lord's Rune - to SE in fountain", # 2
@@ -973,11 +975,11 @@ class EldenRing(World):
             "FA/DTL: Alexander's Innards - fight Alexander to SW", # 2
             ], lambda state: self._has_enough_keys(state, 41))
         
-        self._add_entrance_rule("Consecrated Snowfield", lambda state: self._has_enough_keys(state, 41))
+        #self._add_entrance_rule("Consecrated Snowfield", lambda state: self._has_enough_keys(state, 41))
         # snowfield
         self._add_entrance_rule("Cave of the Forlorn", lambda state: self._has_enough_keys(state, 43)) # 2
         
-        self._add_entrance_rule("Miquella's Haligtree", lambda state: self._has_enough_keys(state, 43))
+        #self._add_entrance_rule("Miquella's Haligtree", lambda state: self._has_enough_keys(state, 43))
         # haligtree +3
         self._add_location_rule([
             "EBH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", # 1
@@ -1016,15 +1018,13 @@ class EldenRing(World):
     
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""
-        rune_count = int(0)
-        if state.has("Godrick's Great Rune", self.player): rune_count += 1
-        if state.has("Rykard's Great Rune", self.player): rune_count += 1
-        if state.has("Radahn's Great Rune", self.player): rune_count += 1
-        if state.has("Morgott's Great Rune", self.player): rune_count += 1
-        if state.has("Mohg's Great Rune", self.player): rune_count += 1
-        if state.has("Malenia's Great Rune", self.player): rune_count += 1
-        if state.has("Great Rune of the Unborn", self.player): rune_count += 1
-        return rune_count >= runes_required
+        return (state.count("Godrick's Great Rune", self.player) +
+        state.count("Rykard's Great Rune", self.player) +
+        state.count("Radahn's Great Rune", self.player) +
+        state.count("Morgott's Great Rune", self.player) +
+        state.count("Mohg's Great Rune", self.player) +
+        state.count("Malenia's Great Rune", self.player) +
+        state.count("Great Rune of the Unborn", self.player)) >= runes_required
     
     def _has_enough_keys(self, state: CollectionState, req_keys: int) -> bool:
         """Returns whether the given state has enough keys."""
@@ -1038,28 +1038,28 @@ class EldenRing(World):
         """Adds rules for items unlocked in shops."""
 
         # Scrolls
-        scrolls = {
-            "Academy Scroll": ["Great Glintstone Shard", "Swift Glintstone Shard"],
-            "Conspectus Scroll": ["Glintstone Cometshard", "Star Shower"],
-            "Royal House Scroll": ["Glintblade Phalanx", "Carian Slicer"]
-        }
+        scrolls = [
+            ("Academy Scroll", ["Great Glintstone Shard", "Swift Glintstone Shard"]),
+            ("Conspectus Scroll", ["Glintstone Cometshard", "Star Shower"]),
+            ("Royal House Scroll", ["Glintblade Phalanx", "Carian Slicer"])
+        ]
 
         # Prayerbooks
-        books = {
-            "Two Fingers' Prayerbook": ["Lord's Heal", "Lord's Aid"],
-            "Assassin's Prayerbook": ["Assassin's Approach", "Darkness"],
-            "Golden Order Principia": ["Radagon's Rings of Light", "Law of Regression"],
-            "Dragon Cult Prayerbook": ["Lightning Spear", "Honed Bolt", "Electrify Armament"],
-            "Ancient Dragon Prayerbook": ["Ancient Dragons' Lightning Spear", "Ancient Dragons' Lightning Strike"],
-            "Fire Monks' Prayerbook": ["O, Flame!", "Surge, O Flame!"],
-            "Giant's Prayerbook": ["Giantsflame Take Thee", "Flame, Fall Upon Them"],
-            "Godskin Prayerbook": ["Black Flame", "Black Flame Blade"]
-        }
+        books = [
+            ("Two Fingers' Prayerbook", ["Lord's Heal", "Lord's Aid"]),
+            ("Assassin's Prayerbook", ["Assassin's Approach", "Darkness"]),
+            ("Golden Order Principia", ["Radagon's Rings of Light", "Law of Regression"]),
+            ("Dragon Cult Prayerbook", ["Lightning Spear", "Honed Bolt", "Electrify Armament"]),
+            ("Ancient Dragon Prayerbook", ["Ancient Dragons' Lightning Spear", "Ancient Dragons' Lightning Strike"]),
+            ("Fire Monks' Prayerbook", ["O, Flame!", "Surge, O Flame!"]),
+            ("Giant's Prayerbook", ["Giantsflame Take Thee", "Flame, Fall Upon Them"]),
+            ("Godskin Prayerbook", ["Black Flame", "Black Flame Blade"])
+        ]
 
-        for (scroll, shop_items) in scrolls.items():
-            self._add_location_rule([f"LG/(WR): {item} - {scroll}" for item in shop_items], lambda state: state.has(scroll, self.player))
-        for (book, shop_items) in books.items():
-            self._add_location_rule([f"RH: {item} - {book}" for item in shop_items], lambda state: state.has(book, self.player))
+        for (scroll, scroll_items) in scrolls:
+            self._add_location_rule([f"LG/(WR): {s_item} - {scroll}" for s_item in scroll_items], scroll)
+        for (book, book_items) in books:
+            self._add_location_rule([f"RH: {b_item} - {book}" for b_item in book_items], book)
                 
     def _add_npc_rules(self) -> None: # MARK: NPC Rules
         """Adds rules for items accessible via NPC quests.
@@ -1365,10 +1365,11 @@ class EldenRing(World):
             "LL/(SR): Carian Retaliation - Seluvis shop after potion used"
         ], lambda state: (state.has("Seluvis's Potion", self.player)))
         
+        # THIS BREAKS
         self._add_location_rule([
             "LL/(SR): Jarwight Puppet - Seluvis shop after finding puppet room",
             "LL/(SR): Finger Maiden Therolina Puppet - Seluvis shop after finding puppet room"
-        ], lambda state: (state.has("Starlight shards", self.player, count=3) # 1 is free so its just the expensive one count
+        ], lambda state: (state.has("Starlight shards", self.player, count=3)
             and state.has("Seluvis's Potion", self.player)))
         
         self._add_location_rule([
