@@ -103,6 +103,11 @@ class EldenRing(World):
             if self.options.late_dlc:
                 item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
         
+        if self.options.world_logic == "region_lock":
+            for item in item_table: # make keys not skipped
+                if item_table[item].lock:
+                    item_table[item].inject = True
+        
         # idk if this works, i pray its just this simple
         if self.options.local_item_option:
             # local_items: List[str] = []
@@ -416,9 +421,6 @@ class EldenRing(World):
         return new_region
     
     def create_items(self) -> None:
-        # Just used to efficiently deduplicate items
-        item_set: Set[str] = set()
-
         # Gather all default items on randomized locations
         self.local_itempool = []
         num_required_extra_items = 0
@@ -431,13 +433,7 @@ class EldenRing(World):
             if item.skip:
                 num_required_extra_items += 1
             else:
-                # For unique items, make sure there aren't duplicates in the item set even if there
-                # are multiple in-game locations that provide them.
-                if default_item_name in item_set:
-                    num_required_extra_items += 1
-                else:
-                    item_set.add(default_item_name)
-                    self.local_itempool.append(self.create_item(default_item_name))
+                self.local_itempool.append(self.create_item(default_item_name))
 
         injectables = self._create_injectable_items(num_required_extra_items)
         num_required_extra_items -= len(injectables)
@@ -459,16 +455,11 @@ class EldenRing(World):
         that are in missable locations by default, this adds them to the
         player's starting inventory.
         """
-        if self.options.enable_dlc: # the work around
-            all_injectable_items = [
-                item for item
-                in item_table.values()
-            ]
-        else:
-            all_injectable_items = [
-                item for item
-                in item_table_vanilla.values()
-            ]
+        all_injectable_items = [
+            item for item
+            in item_table.values()
+            if item.inject and (not item.is_dlc or self.options.enable_dlc)
+        ]
         injectable_mandatory = [
             item for item in all_injectable_items
             if item.classification == ItemClassification.progression
@@ -580,7 +571,7 @@ class EldenRing(World):
 
     def set_rules(self) -> None: #MARK: Rules
 
-        #self._key_rules() # make option to choose master or normal rules
+        self._key_rules() # make option to choose master or normal rules
         #self._master_key_rules()
         
         self._dragon_communion_rules() # done
@@ -601,6 +592,7 @@ class EldenRing(World):
         self.multiworld.register_indirect_condition(self.get_region("Deeproot Depths"), self.get_entrance("Go To Ainsel River Main"))
         self.multiworld.register_indirect_condition(self.get_region("Deeproot Depths"), self.get_entrance("Go To Leyndell, Royal Capital"))
         self.multiworld.register_indirect_condition(self.get_region("Volcano Manor"), self.get_entrance("Go To Volcano Manor Dungeon"))
+        self.multiworld.register_indirect_condition(self.get_region("Volcano Manor Dungeon"), self.get_entrance("Go To Volcano Manor"))
         
         # World Logic
         if self.options.world_logic == "region_lock":
@@ -750,10 +742,10 @@ class EldenRing(World):
             # self._add_location_rule("", "\"\" Painting")
             
             # dlc imbued
-            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, count=4))
-            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, count=4))
-            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, count=4))
-            # self._add_entrance_rule("DLC AREA", lambda state: state.has("Imbued Sword Key", self.player, count=4))
+            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, 4))
+            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, 4))
+            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, 4))
+            # self._add_entrance_rule("DLC AREA", lambda state: state.has("Imbued Sword Key", self.player, 4))
    
    
             if self.options.late_dlc:
@@ -775,9 +767,9 @@ class EldenRing(World):
             self._add_entrance_rule("Lamenter's Gaol (Lower)", "Gaol Lower Level Key")
         else:
             # vanilla imbued
-            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, count=3))
-            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, count=3))
-            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, count=3))
+            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, 3))
+            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, 3))
+            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, 3))
                     
         
         if self.options.ending_condition <= 1:
@@ -826,16 +818,14 @@ class EldenRing(World):
         # self.visualize_world()
             
     def _region_lock(self) -> None: # MARK: Region Lock Items
-        """All region lock items set to not be skipped when doing region lock.
-        and add entrance rules using said items."""
-        keys = [] # "Region Lock Key 1", "Region Lock Key 2"
-        for key in keys:
-            item_table[key].skip = False
-        
-        #self._add_entrance_rule("Weeping Peninsula", lambda state: "region key")
-        #self._add_entrance_rule(["Stormveil Start", "Stormveil Castle"], lambda state: "region key")
-        #self._add_entrance_rule("Liurnia of The Lakes", lambda state: "region key")
-        #self._add_entrance_rule(["Caelid", "Sellia Crystal Tunnel"], lambda state: "Region Lock Key Caelid")
+        """All region lock rules."""
+            
+        self._add_entrance_rule("Weeping Peninsula", "Weeping Lock")
+        self._add_entrance_rule("Stormveil Start", "Stormveil Lock")
+        self._add_entrance_rule("Stormveil Castle", "Stormveil Lock")
+        self._add_entrance_rule("Liurnia of The Lakes", "Liurnia Lock")
+        self._add_entrance_rule("Caelid", "Caelid Lock")
+        self._add_entrance_rule("Sellia Crystal Tunnel", "Caelid Lock")
         
     def _key_rules(self) -> None: # MARK: SSK Rules
         # in order from early game to late game each rule needs to include the last count for an area
@@ -948,8 +938,8 @@ class EldenRing(World):
         #self._add_entrance_rule("Mountaintops of the Giants", lambda state: self._has_enough_keys(state, 35))
         # mountaintops
         self._add_location_rule([
-            "MG/(GCHG): Flame, Protect Me - behind imp statue", # 1a
-            "MG/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1b
+            "FP/(GCHG): Flame, Protect Me - behind imp statue", # 1a
+            "FP/(GCHG): Cranial Vessel Candlestand - upper room after fire spitter, behind imp statue", # 1b
             ], lambda state: self._has_enough_keys(state, 39))
         self._add_entrance_rule("Spiritcaller Cave", lambda state: self._has_enough_keys(state, 39)) # 2
         
@@ -1018,13 +1008,10 @@ class EldenRing(World):
     
     def _has_enough_great_runes(self, state: CollectionState, runes_required: int) -> bool:
         """Returns whether the given state has enough great runes."""
-        return (state.count("Godrick's Great Rune", self.player) +
-        state.count("Rykard's Great Rune", self.player) +
-        state.count("Radahn's Great Rune", self.player) +
-        state.count("Morgott's Great Rune", self.player) +
-        state.count("Mohg's Great Rune", self.player) +
-        state.count("Malenia's Great Rune", self.player) +
-        state.count("Great Rune of the Unborn", self.player)) >= runes_required
+        return (state.count_from_list([
+            "Godrick's Great Rune","Rykard's Great Rune","Radahn's Great Rune",
+            "Morgott's Great Rune","Mohg's Great Rune","Malenia's Great Rune",
+            "Great Rune of the Unborn"], self.player) >= runes_required)
     
     def _has_enough_keys(self, state: CollectionState, req_keys: int) -> bool:
         """Returns whether the given state has enough keys."""
@@ -1264,13 +1251,13 @@ class EldenRing(World):
         ], lambda state: ( state.has("Deathroot", self.player)))
         
         self._add_location_rule([ "CL/(BS): Bestial Sling - Gurranq, deathroot reward 2",
-        ], lambda state: ( state.has("Deathroot", self.player, count=2)))
+        ], lambda state: ( state.has("Deathroot", self.player, 2)))
         
         self._add_location_rule(["CL/(BS): Bestial Vitality - Gurranq, deathroot reward 3",
-        ], lambda state: ( state.has("Deathroot", self.player, count=3)))
+        ], lambda state: ( state.has("Deathroot", self.player, 3)))
         
         self._add_location_rule(["CL/(BS): Ash of War: Beast's Roar - Gurranq, deathroot reward 4",
-        ], lambda state: ( state.has("Deathroot", self.player, count=4)))
+        ], lambda state: ( state.has("Deathroot", self.player, 4)))
         
         # MARK: Gowry
         self._add_location_rule([ 
@@ -1369,7 +1356,7 @@ class EldenRing(World):
         self._add_location_rule([
             "LL/(SR): Jarwight Puppet - Seluvis shop after finding puppet room",
             "LL/(SR): Finger Maiden Therolina Puppet - Seluvis shop after finding puppet room"
-        ], lambda state: (state.has("Starlight shards", self.player, count=3)
+        ], lambda state: (state.has("Starlight Shards", self.player, 3)
             and state.has("Seluvis's Potion", self.player)))
         
         self._add_location_rule([

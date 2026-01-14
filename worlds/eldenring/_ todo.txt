@@ -11,8 +11,6 @@ Now I just need to label every single item :worry:
 
 Need to make multiple item fillers like (smithing stone [1] x3, filler=True)
 
-and add all gesture locations, only randomize important ones, others skipped
-idk how since no keys in itemslots
 
 for priority location option had how many checks each location adds and how many progression items there are
 each type split by base / dlc, ex: remembrances
@@ -21,11 +19,6 @@ each type split by base / dlc, ex: remembrances
 BIG TODO
 
 dragonbarrow needs to be DB/aa: not CL/aa:   and need to make sure each item in db is not cl item
-
-
-
-idk why but the generator cant access like most of the checks, am i not connecting them right?
-
 
 
 
@@ -56,7 +49,7 @@ Stonesword Master Keys
 
 
 
-last update 26/01/07
+last update 26/01/14
 current progress 3915 / 4919
 
 

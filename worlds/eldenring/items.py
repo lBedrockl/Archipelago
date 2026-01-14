@@ -45,6 +45,12 @@ class ERItemData:
 
     skip: bool = False
     """Whether to omit this item from randomization and replace it with filler or unique items."""
+    
+    inject: bool = False
+    """Items to be injected manually"""
+    
+    lock: bool = False
+    """Region lock items"""
 
     def __post_init__(self):
         self.ap_code = self.ap_code or ERItemData.__item_id
@@ -1338,7 +1344,7 @@ _vanilla_items = [
     ERItemData("Lantern", 2070, ERItemCategory.GOODS, skip=True), # force give to player
     ERItemData("Blasphemous Claw", 2080, ERItemCategory.GOODS),
 
-    ERItemData("Deathroot", 2090, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Deathroot", 2090, ERItemCategory.GOODS, classification=ItemClassification.progression),
     *ERItemData("Soft Cotton", 2100, ERItemCategory.GOODS).counts([2, 3, 6]),
     *ERItemData("Soap", 2120, ERItemCategory.GOODS).counts([3, 4]),
     ERItemData("Celestial Dew", 2130, ERItemCategory.GOODS),
@@ -1804,7 +1810,7 @@ _vanilla_items = [
     ERItemData("Wait!", 9015, ERItemCategory.GOODS, skip=True),
     ERItemData("Calm Down!", 9016, ERItemCategory.GOODS, skip=True),
     ERItemData("Nod In Thought", 9017, ERItemCategory.GOODS, skip=True),
-    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, classification=ItemClassification.progression), # patches quest
+    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, skip=True),
     ERItemData("Grovel For Mercy", 9019, ERItemCategory.GOODS, skip=True),
     ERItemData("Rallying Cry", 9020, ERItemCategory.GOODS, skip=True),
     ERItemData("Heartening Cry", 9021, ERItemCategory.GOODS, skip=True),
@@ -1815,7 +1821,7 @@ _vanilla_items = [
     ERItemData("Jump for Joy", 9027, ERItemCategory.GOODS, skip=True),
     ERItemData("Triumphant Delight", 9028, ERItemCategory.GOODS, skip=True),
     ERItemData("Fancy Spin", 9029, ERItemCategory.GOODS, skip=True),
-    ERItemData("Finger Snap", 9030, ERItemCategory.GOODS, classification=ItemClassification.progression), # for Blaidd thing
+    ERItemData("Finger Snap", 9030, ERItemCategory.GOODS, skip=True),
     ERItemData("Dejection", 9031, ERItemCategory.GOODS, skip=True),
     ERItemData("Patches' Crouch", 9032, ERItemCategory.GOODS, skip=True),
     ERItemData("Crossed Legs", 9033, ERItemCategory.GOODS, skip=True),
@@ -1828,7 +1834,7 @@ _vanilla_items = [
     ERItemData("Prayer", 9041, ERItemCategory.GOODS, skip=True),
     ERItemData("Desperate Prayer", 9042, ERItemCategory.GOODS, skip=True),
     ERItemData("Rapture", 9043, ERItemCategory.GOODS, skip=True),
-    ERItemData("Erudition", 9045, ERItemCategory.GOODS, classification=ItemClassification.progression), # used for a tower item
+    ERItemData("Erudition", 9045, ERItemCategory.GOODS, classification=ItemClassification.progression, inject=True), # used for a tower item
     ERItemData("Outer Order", 9046, ERItemCategory.GOODS, skip=True),
     ERItemData("Inner Order", 9047, ERItemCategory.GOODS, skip=True),
     ERItemData("Golden Order Totality", 9048, ERItemCategory.GOODS, skip=True),
@@ -2117,8 +2123,11 @@ _vanilla_items = [
     
     
     #MARK: Region Lock Items
-    # these get set to skip = False in init when region lock is on
-    #ERItemData("Region Lock Key", needs id, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
+    # these get set to inject = True in init when region lock is on
+    ERItemData("Weeping Lock", 9999901, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Caelid Lock", 9999902, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Liurnia Lock", 9999903, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Stormveil Lock", 9999904, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
     
     
