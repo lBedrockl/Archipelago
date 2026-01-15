@@ -23,12 +23,12 @@ class WorldLogic(Choice):
     """World Logic options
     
     **Region Lock:** Each region will require a 'Special item'
+    **Region Lock Bosses:** Each region will require all bosses in that region to be defeated'
     **Open World:** No region locking"""
-    #**Glitches:** Glitches in logic"""
     display_name = "World Logic"
     option_region_lock = 0
-    option_open_world = 1
-    #option_glitches = 2
+    option_region_lock_bosses = 1
+    option_open_world = 2
     default = 0
     
 class RegionSoftLogic(DefaultOnToggle):
