@@ -342,11 +342,14 @@ class EldenRing(World):
             
             create_connection("Castle Ensis", "Scadu Altus")
             create_connection("Scadu Altus", "Bonny Gaol")
+            create_connection("Scadu Altus", "Ruined Forge of Starfall Past")
             create_connection("Scadu Altus", "Rauh Base")
             create_connection("Rauh Base", "Scorpion River Catacombs")
+            create_connection("Rauh Base", "Taylew's Ruined Forge")
             
             create_connection("Scadu Altus", "Ellac River")
             create_connection("Ellac River", "Cerulean Coast")
+            create_connection("Ellac River", "Rivermouth Cave")
             create_connection("Cerulean Coast", "Stone Coffin")
             create_connection("Cerulean Coast", "Finger Ruins of Rhia")
             

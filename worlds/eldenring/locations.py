@@ -177,6 +177,7 @@ region_order_dlc = [
     "Gravesite Plain",
     "Fog Rift Catacombs",
     "Belurat Gaol",
+    "Dragon's Pit",
     
     "Belurat",
     
@@ -192,11 +193,14 @@ region_order_dlc = [
     # Scadu Altus
     "Scadu Altus",
     "Bonny Gaol",
+    "Ruined Forge of Starfall Past",
     
     "Rauh Base",
     "Scorpion River Catacombs",
+    "Taylew's Ruined Forge",
     
     "Ellac River", # name might be wrong
+    "Rivermouth Cave",
     
     "Cerulean Coast",
     "Finger Ruins of Rhia",
@@ -3122,7 +3126,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("EBH/HR: Traveler's Manchettes - to S by the giant rot flower", "Traveler's Manchettes", key="150000,0:0015007980::"),
         ERLocationData("EBH/HR: Traveler's Boots - to S by the giant rot flower", "Traveler's Boots", key="150000,0:0015007980::"),
     ],
-    "Caelid":[ # caelid                                          4 items left
+    "Caelid":[ # caelid                                          done
         ERLocationData("CL/(CP): Prosthesis-Wearer Heirloom - give Millicent fixed needle", "Prosthesis-Wearer Heirloom", key="150000,0:0000400320::", missable=True),
         ERLocationData("CL/(SC): Nomadic Warrior's Cookbook [14] - on corpse", "Nomadic Warrior's Cookbook [14]", key="604640,0:0000067870::", cookbook=True),
         ERLocationData("CL/CHS: Golden Rune [1] 1 - graveyard to S", "Golden Rune [1]", key="604737,0:1047377000::"),
@@ -3198,10 +3202,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(SSR): Traveler's Slops - in raised ruin", "Traveler's Slops", key="604838,0:1048387010::"),
         ERLocationData("CL/(SSR): Meteorite Staff - on window SW Ruin", "Meteorite Staff", key="604838,0:1048387020::"),
         
-        #ERLocationData("CL: Golden Rune [3] - ", "Golden Rune [3]", key="604838,0:1048387500::"),
-        #ERLocationData("CL: Golden Rune [5] - ", "Golden Rune [5]", key="604838,0:1048387500::"),
-        #ERLocationData("CL: Golden Rune [10] - ", "Golden Rune [10]", key="604838,0:1048387500::"),
-        #ERLocationData("CL: Sacramental Bud x5 - ", "Sacramental Bud x5", key="604838,0:1048387500::"),
+        ERLocationData("CL/IA: Golden Rune [3] - Millicent invasion to S", "Golden Rune [3]", key="604838,0:1048387500::", missable=True),
+        ERLocationData("CL/IA: Golden Rune [5] - Millicent invasion to S", "Golden Rune [5]", key="604838,0:1048387500::", missable=True),
+        ERLocationData("CL/IA: Golden Rune [10] - Millicent invasion to S", "Golden Rune [10]", key="604838,0:1048387500::", missable=True),
+        ERLocationData("CL/IA: Sacramental Bud x5 - Millicent invasion to S", "Sacramental Bud x5", key="604838,0:1048387500::", missable=True),
         
         #inf ERLocationData("CL: Arrow - Sold by the Nomadic Merchant between Astray from Caelid Highway North and Aeonia Swamp Shore", "Arrow", key="604838,3:0000000000:100800:", shop=True),
         #inf ERLocationData("CL: Fire Arrow - Sold by the Nomadic Merchant between Astray from Caelid Highway North and Aeonia Swamp Shore", "Fire Arrow", key="604838,3:0000000000:100800:", shop=True),
@@ -4973,8 +4977,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     "Ruined Forge Lava Intake":[ # gravesite_forge               done
         ERLocationData("GP/(RFLI): Greater Potentate's Cookbook [13] - N corner of room past second ladder", "Greater Potentate's Cookbook [13]", key="420000,0:0000068700::", cookbook=True),
-        ERLocationData("GP/(RFLI): Anvil Hammer - altar at dungeon's end", "Anvil Hammer", key="420000,0:0042007000::", forgereward=True),
-        ERLocationData("GP/(RFLI): Ancient Dragon Smithing Stone - altar at dungeon's end", "Ancient Dragon Smithing Stone", key="420000,0:0042007000::", forgereward=True),
+        ERLocationData("GP/(RFLI): Anvil Hammer - forge altar reward", "Anvil Hammer", key="420000,0:0042007000::", forgereward=True),
+        ERLocationData("GP/(RFLI): Ancient Dragon Smithing Stone - forge altar reward", "Ancient Dragon Smithing Stone", key="420000,0:0042007000::", forgereward=True),
         ERLocationData("GP/(RFLI): Smithing Stone [5] x4 - left room after first ladder", "Smithing Stone [5] x4", key="420000,0:0042007100::"),
         ERLocationData("GP/(RFLI): Smithing Stone [2] x7 - right hallway after first ladder", "Smithing Stone [2] x7", key="420000,0:0042007110::"),
         ERLocationData("GP/(RFLI): Smithing Stone [4] x2 - corpse on mantlepiece overlooking room after second ladder", "Smithing Stone [4] x2", key="420000,0:0042007130::"),
@@ -4985,49 +4989,49 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/(RFLI): Glass Shard - left of opening past third ladder", "Glass Shard", key="420000,0:0042007180::"),
     ],
     
-    "scadualtus_forge":[ # scadualtus_forg
-        #ERLocationData("SA/(RFSP): Ancient Meteoric Ore Greatsword - At the altar at the end of the dungeon", "Ancient Meteoric Ore Greatsword", key="420200,0:0042027000::", forgereward=True),
-        #ERLocationData("SA/(RFSP): Ancient Dragon Smithing Stone - At the altar at the end of the dungeon", "Ancient Dragon Smithing Stone", key="420200,0:0042027000::", forgereward=True),
-        #ERLocationData("SA/(RFSP): Glass Shard - On a corpse by the lever on the upper level of the second room with the metal gate, only accessible by dropping down from above from later in the dungeon", "Glass Shard", key="420200,0:0042027010::"),
-        #ERLocationData("SA/(RFSP): Somber Smithing Stone [7] - On a corpse in front of a sewer grate all the way down the hallway southeast of the second room with the metal gate", "Somber Smithing Stone [7]", key="420200,0:0042027020::"),
-        #ERLocationData("SA/(RFSP): Smithing Talisman - On a corpse in a room with many magma sludges dropping from the ceiling, after the room with the flowing lava pool then to the left", "Smithing Talisman", key="420200,0:0042027030::"),
-        #ERLocationData("SA/(RFSP): Somber Smithing Stone [8] - On a corpse under the upper level of the room with the flowing lava pool", "Somber Smithing Stone [8]", key="420200,0:0042027040::"),
-        #ERLocationData("SA/(RFSP): Smithscript Spear - On a corpse up the ladder in the first room with the metal gate", "Smithscript Spear", key="420200,0:0042027050::"),
-        #ERLocationData("SA/(RFSP): Smithscript Cirque - On a corpse at the crest of the waterfall in the room past the second metal gate which can be moved by dropping down to the lever from above, only accessible from later in the dungeon", "Smithscript Cirque", key="420200,0:0042027060::"),
-        #ERLocationData("SA/(RFSP): Smithing Stone [3] x5 - On a corpse in the first room with the metal gate, in the north corner on the upper level", "Smithing Stone [3] x5", key="420200,0:0042027070::"),
-        #ERLocationData("SA/(RFSP): Smithing Stone [8] x2 - On a corpse in the south corner of the upper level of the second room with the metal gate, only accessible by dropping down from above from later in the dungeon", "Smithing Stone [8] x2", key="420200,0:0042027080::"),
+    "Ruined Forge of Starfall Past":[ # scadualtus_forge         done
+        ERLocationData("SA/(RFSP): Ancient Meteoric Ore Greatsword - forge altar reward, up second gate", "Ancient Meteoric Ore Greatsword", key="420200,0:0042027000::", forgereward=True),
+        ERLocationData("SA/(RFSP): Ancient Dragon Smithing Stone - forge altar reward, up second gate", "Ancient Dragon Smithing Stone", key="420200,0:0042027000::", forgereward=True),
+        ERLocationData("SA/(RFSP): Glass Shard - by lever for second gate", "Glass Shard", key="420200,0:0042027010::"),
+        ERLocationData("SA/(RFSP): Somber Smithing Stone [7] - end of long hallway", "Somber Smithing Stone [7]", key="420200,0:0042027020::"),
+        ERLocationData("SA/(RFSP): Smithing Talisman - up ladder long hallway, left at metal platform", "Smithing Talisman", key="420200,0:0042027030::"),
+        ERLocationData("SA/(RFSP): Somber Smithing Stone [8] - up ladder long hallway, under platform", "Somber Smithing Stone [8]", key="420200,0:0042027040::"),
+        ERLocationData("SA/(RFSP): Smithscript Spear - across walkway in first room", "Smithscript Spear", key="420200,0:0042027050::"),
+        ERLocationData("SA/(RFSP): Smithscript Cirque - by waterfall after second gate", "Smithscript Cirque", key="420200,0:0042027060::"),
+        ERLocationData("SA/(RFSP): Smithing Stone [3] x5 - left in first rookm", "Smithing Stone [3] x5", key="420200,0:0042027070::"),
+        ERLocationData("SA/(RFSP): Smithing Stone [8] x2 - up ladder long hallway, under metal platform below", "Smithing Stone [8] x2", key="420200,0:0042027080::"),
     ],
-    "rauhbase_forge":[ # rauhbase_forge
-        #ERLocationData("RB/(TRF): Ancient Dragon Smithing Stone - At the altar at the end of the dungeon", "Ancient Dragon Smithing Stone", key="420300,0:0042037000::", forgereward=True),
-        #ERLocationData("RB/(TRF): Taylew the Golem Smith - At the altar at the end of the dungeon", "Taylew the Golem Smith", key="420300,0:0042037000::", forgereward=True),
-        #ERLocationData("RB/(TRF): Smithscript Axe - On a corpse in a side room by the start of the dungeon. After crossing the suspended metal platform, keep going east down the ladder, jumping across a hole where the floor collapsed, then making a left", "Smithscript Axe", key="420300,0:0042037100::"),
-        #ERLocationData("RB/(TRF): Ancient Dragon Smithing Stone - On a corpse on a balcony to the north of the lava intake. When the lava intake is in its initial position (east end up), jump off from the top handles to the north and head to the room to the left", "Ancient Dragon Smithing Stone", key="420300,0:0042037110::"),
-        #ERLocationData("RB/(TRF): Smithscript Shield - On a corpse on the upper lever of a room in the southeast section. When the lava intake is in its initial position (east end up), jump off from the top handles to the south and head straight down the hallway, climbing up rubble to the right to reach the item.", "Smithscript Shield", key="420300,0:0042037120::"),
-        #ERLocationData("RB/(TRF): Somber Smithing Stone [3] - On a corpse on a balcony in the southeast section. When the lava intake is in its initial position (east end up), jump off from the top handles to the south, drop down again to the left, go down the hallway to the south, climb up the long ladder, and finally jump across to the south.", "Somber Smithing Stone [3]", key="420300,0:0042037130::"),
-        #ERLocationData("RB/(TRF): Somber Smithing Stone [8] - On a corpse in the southeast section. When the lava intake is in its initial position (east end up), jump off from the top handles to the south, head through the doorway to the right and down the stairs until reaching a wall", "Somber Smithing Stone [8]", key="420300,0:0042037140::"),
-        #ERLocationData("RB/(TRF): Shadow Realm Rune [3] - On a corpse at the start of the dungeon in front of the first balcony", "Shadow Realm Rune [3]", key="420300,0:0042037150::"),
-        #ERLocationData("RB/(TRF): Smithscript Greathammer - On a corpse behind rubble on the east side of the lava intake. When the lava intake is in either position, go to the handles in the center and jump off to the east.", "Smithscript Greathammer", key="420300,0:0042037160::"),
-        #ERLocationData("RB/(TRF): Smithing Stone [4] x5 - On a corpse by a suspended metal platform in the northeast section. When the lava intake is in its initial position (east end up), jump off from the top handles to the north", "Smithing Stone [4] x5", key="420300,0:0042037170::"),
-        #ERLocationData("RB/(TRF): Smithing Stone [8] x3 - On a corpse against a wall in the southeast section. When the lava intake is in its initial position (east end up), jump off from the top handles to the south, drop down again to the left, and go down the hallway to the south.", "Smithing Stone [8] x3", key="420300,0:0042037180::"),
+    "Taylew's Ruined Forge":[ # rauhbase_forge                   done
+        ERLocationData("RB/(TRF): Ancient Dragon Smithing Stone - forge altar reward", "Ancient Dragon Smithing Stone", key="420300,0:0042037000::", forgereward=True),
+        ERLocationData("RB/(TRF): Taylew the Golem Smith - forge altar reward", "Taylew the Golem Smith", key="420300,0:0042037000::", forgereward=True),
+        ERLocationData("RB/(TRF): Smithscript Axe - after first ladder jump across gap and go left", "Smithscript Axe", key="420300,0:0042037100::"),
+        ERLocationData("RB/(TRF): Ancient Dragon Smithing Stone - top of lava funnel (inital position), to left by balcony", "Ancient Dragon Smithing Stone", key="420300,0:0042037110::"),
+        ERLocationData("RB/(TRF): Smithscript Shield - top of lava funnel (inital position), to right, straight and up rumble on right", "Smithscript Shield", key="420300,0:0042037120::"),
+        ERLocationData("RB/(TRF): Somber Smithing Stone [3] - top of lava funnel (inital position), to right, drop down to left, up ladder behind at top", "Somber Smithing Stone [3]", key="420300,0:0042037130::"),
+        ERLocationData("RB/(TRF): Somber Smithing Stone [8] - top of lava funnel (inital position), to right, down right stairs", "Somber Smithing Stone [8]", key="420300,0:0042037140::"),
+        ERLocationData("RB/(TRF): Shadow Realm Rune [3] - E of grace", "Shadow Realm Rune [3]", key="420300,0:0042037150::"),
+        ERLocationData("RB/(TRF): Smithscript Greathammer - after first ladder go down and straight across lava funnel", "Smithscript Greathammer", key="420300,0:0042037160::"),
+        ERLocationData("RB/(TRF): Smithing Stone [4] x5 - top of lava funnel (inital position), to left by metal platform", "Smithing Stone [4] x5", key="420300,0:0042037170::"),
+        ERLocationData("RB/(TRF): Smithing Stone [8] x3 - top of lava funnel (inital position), to right, drop down to left", "Smithing Stone [8] x3", key="420300,0:0042037180::"),
     ],
-    "ellac_cave":[ # ellac_cave
-        #ERLocationData("ER/(RC): Bloodfiend Hexer's Ashes - Dropped by Chief Bloodfiend in Rivermouth Cave", "Bloodfiend Hexer's Ashes", key="430000,0:0000520800::", altboss=True, minidungeonboss=True, caveboss=True),
-        #ERLocationData("ER/(RC): Sliver of Meat x3 - On a corpse past the first room of enemies, taking a right turn at the fork", "Sliver of Meat x3", key="430000,0:0043007000::"),
-        #ERLocationData("ER/(RC): Hefty Beast Bone x2 - On a corpse in the first room with enemies", "Hefty Beast Bone x2", key="430000,0:0043007010::"),
-        #ERLocationData("ER/(RC): Shadow Realm Rune [1] - On a corpse in the blood river beneath the collapsing floor", "Shadow Realm Rune [1]", key="430000,0:0043007020::"),
-        #ERLocationData("ER/(RC): Sanguine Amaryllis x6 - On a corpse in an alcove along the north edge of the big blood pool", "Sanguine Amaryllis x6", key="430000,0:0043007030::"),
-        #ERLocationData("ER/(RC): Sacred Bloody Flesh x3 - In front of the gravestone on the southeast edge of the big blood pool", "Sacred Bloody Flesh x3", key="430000,0:0043007040::"),
-        #ERLocationData("ER/(RC): Sacred Bloody Flesh - On a corpse on the path back to the start of the dungeon from the big blood pool, accessed by going up the ramp on the north edge of the pool, or alternatively taking a right when exiting the tunnel after the collapsing floor", "Sacred Bloody Flesh", key="430000,0:0043007050::", outoftheway=True),
+    "Rivermouth Cave":[ # ellac_cave                             done
+        ERLocationData("ER/(RC): Bloodfiend Hexer's Ashes - boss drop", "Bloodfiend Hexer's Ashes", key="430000,0:0000520800::", altboss=True, minidungeonboss=True, caveboss=True),
+        ERLocationData("ER/(RC): Sliver of Meat x3 - right at intersection", "Sliver of Meat x3", key="430000,0:0043007000::"),
+        ERLocationData("ER/(RC): Hefty Beast Bone x2 - room 1", "Hefty Beast Bone x2", key="430000,0:0043007010::"),
+        ERLocationData("ER/(RC): Shadow Realm Rune [1] - on breakable floor", "Shadow Realm Rune [1]", key="430000,0:0043007020::"),
+        ERLocationData("ER/(RC): Sanguine Amaryllis x6 - NE corner of blood pool", "Sanguine Amaryllis x6", key="430000,0:0043007030::"),
+        ERLocationData("ER/(RC): Sacred Bloody Flesh x3 - on blood pool altar", "Sacred Bloody Flesh x3", key="430000,0:0043007040::"),
+        ERLocationData("ER/(RC): Sacred Bloody Flesh - after entering blood pool room follow path right", "Sacred Bloody Flesh", key="430000,0:0043007050::", outoftheway=True),
     ],
-    "gravesite_dragonpit":[ # gravesite_dragonpit
-        #ERLocationData("GP/(DP): Dragon-Hunter's Great Katana - Dropped by Ancient Dragon-Man", "Dragon-Hunter's Great Katana", key="430100,0:0000520810::", altboss=True, minidungeonboss=True, caveboss=True, criticalpath=True),
-        #ERLocationData("GP/(DP): Smithing Stone [1] x6 - On a corpse down a tunnel to the southwest on the lower level of the first room with enemies", "Smithing Stone [1] x6", key="430100,0:0043017000::"),
-        #ERLocationData("GP/(DP): Shadow Realm Rune [2] - On a corpse in front of stone chalice on a pedestal between two braziers north of upper cliff overlooking the pit", "Shadow Realm Rune [2]", key="430100,0:0043017010::"),
-        #ERLocationData("GP/(DP): Knot Resin x4 - On a corpse on the north edge of the room with the magma wyrm, found up the stairs to the north of the pit", "Knot Resin x4", key="430100,0:0043017020::"),
-        #ERLocationData("GP/(DP): Smithing Stone [5] x2 - On a corpse on the southwest edge of the room with the magma wyrm, found up the stairs to the north of the pit", "Smithing Stone [5] x2", key="430100,0:0043017030::"),
-        #ERLocationData("GP/(DP): Smithing Stone [4] x2 - On a corpse at the bottom of the pit before the boss, behind you after dropping down", "Smithing Stone [4] x2", key="430100,0:0043017040::"),
-        #ERLocationData("GP/(DP): Dragon Heart - Dropped by the magma wyrm, found up the stairs to the north of the pit", "Dragon Heart", key="430100,0:0043017900::"),
-        #ERLocationData("GP/(DP): Ancient Dragon Smithing Stone - Dropped by the magma wyrm, found up the stairs to the north of the pit", "Ancient Dragon Smithing Stone", key="430100,0:0043017900::"),
+    "Dragon's Pit":[ # gravesite_dragonpit                       done
+        ERLocationData("GP/(DP): Dragon-Hunter's Great Katana - boss drop", "Dragon-Hunter's Great Katana", key="430100,0:0000520810::", altboss=True, minidungeonboss=True, caveboss=True, criticalpath=True),
+        ERLocationData("GP/(DP): Smithing Stone [1] x6 - room 1 under drop down", "Smithing Stone [1] x6", key="430100,0:0043017000::"),
+        ERLocationData("GP/(DP): Shadow Realm Rune [2] - room 2 by brazier", "Shadow Realm Rune [2]", key="430100,0:0043017010::"),
+        ERLocationData("GP/(DP): Knot Resin x4 - room 4 upstairs near stairs", "Knot Resin x4", key="430100,0:0043017020::"),
+        ERLocationData("GP/(DP): Smithing Stone [5] x2 - room 4 upstairs by hole", "Smithing Stone [5] x2", key="430100,0:0043017030::"),
+        ERLocationData("GP/(DP): Smithing Stone [4] x2 - down pit by boss", "Smithing Stone [4] x2", key="430100,0:0043017040::"),
+        ERLocationData("GP/(DP): Dragon Heart - enemy drop room 4 upstairs", "Dragon Heart", key="430100,0:0043017900::"),
+        ERLocationData("GP/(DP): Ancient Dragon Smithing Stone - enemy drop room 4 upstairs", "Ancient Dragon Smithing Stone", key="430100,0:0043017900::"),
     ],
     
     # MARK: Some Base Game
