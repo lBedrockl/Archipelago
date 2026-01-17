@@ -151,7 +151,7 @@ class ERExcludeLocations(ExcludeLocations):
     - **dlc**: If you want DLC items but dont wanna do DLC.
     - **hidden**: Hard to find items.
     - **blizzard**: The hard to see area of snowfield."""
-    default = frozenset({}) # idk why this throws an error, 
+    default = frozenset({}) # still errors
     # Exception: Location 'hidden' from option 'ERExcludeLocations(hidden)' is not a valid location name from 'EldenRing'. Did you mean 'RH: Mace - Twin maiden shop' (18% sure)
     valid_keys_casefold = ["dlc", "hidden", "blizzard"]
 

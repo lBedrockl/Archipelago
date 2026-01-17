@@ -183,6 +183,7 @@ region_order_dlc = [
     
     "Castle Ensis",
     
+    "Jagged Peak Foot",
     "Jagged Peak",
     
     "Charo's Hidden Grave",
@@ -208,6 +209,7 @@ region_order_dlc = [
     
     # Shadow Keep
     "Shadow Keep",
+    "Shadow Keep Storehouse",
     
     "Scadutree Base",
     
@@ -502,13 +504,24 @@ class ERLocationData:
         names = []
         if (self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.graveboss
         or self.caveboss or self.tunnelboss or self.overworldboss or self.dragonboss or self.gaolboss): # any boss should be a prominent place
-            names.append("Boss Rewards")
-            self.prominent = True
-        elif self.church or self.seedtree or self.basin or self.map or self.fragment or self.cross or self.revered:
+            if not self.missable:
+                if self.dlc:
+                    names.append("Boss Reward DLC")
+                else:
+                    names.append("Boss Reward")
+                self.prominent = True
+                
+        if self.church or self.seedtree or self.basin or self.map or self.fragment or self.cross or self.revered:
             self.prominent = True
             
         if self.exclusive: # makes sure exclusive is marked missable
             self.missable = True
+            
+        if self.remembrance and not self.dlc and not self.missable:
+            names.append("Remembrance")
+            
+        if self.remembrance and self.dlc and not self.missable:
+            names.append("Remembrance DLC")
         
         if self.prominent: names.append("Prominent")
         if self.progression: names.append("Progression")
@@ -1176,17 +1189,17 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Radahn's Lion Armor - Enia shop, defeat CL/(WD) mainboss", "Radahn's Lion Armor", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
         ERLocationData("RH: Radahn's Gauntlets - Enia shop, defeat CL/(WD) mainboss", "Radahn's Gauntlets", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
         ERLocationData("RH: Radahn's Greaves - Enia shop, defeat CL/(WD) mainboss", "Radahn's Greaves", key="111000,0:0000000000:9130,101500:", missable=True, shop=True),
-        ERLocationData("RH: Young Lion's Helm - Enia shop, defeat Promised Consort Radahn", "Young Lion's Helm", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Young Lion's Armor - Enia shop, defeat Promised Consort Radahn", "Young Lion's Armor", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Young Lion's Gauntlets - Enia shop, defeat Promised Consort Radahn", "Young Lion's Gauntlets", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Young Lion's Greaves - Enia shop, defeat Promised Consort Radahn", "Young Lion's Greaves", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Helm - Enia shop, defeat Messmer the Impaler", "Messmer's Helm", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Armor - Enia shop, defeat Messmer the Impaler", "Messmer's Armor", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Gauntlets - Enia shop, defeat Messmer the Impaler", "Messmer's Gauntlets", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Messmer's Greaves - Enia shop, defeat Messmer the Impaler", "Messmer's Greaves", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Gaius's Helm - Enia shop, defeat Commander Gaius", "Gaius's Helm", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Gaius's Armor - Enia shop, defeat Commander Gaius", "Gaius's Armor", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Gaius's Gauntlets - Enia shop, defeat Commander Gaius", "Gaius's Gauntlets", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Young Lion's Helm - Enia shop, defeat EI mainboss", "Young Lion's Helm", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Young Lion's Armor - Enia shop, defeat EI mainboss", "Young Lion's Armor", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Young Lion's Gauntlets - Enia shop, defeat EI mainboss", "Young Lion's Gauntlets", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Young Lion's Greaves - Enia shop, defeat EI mainboss", "Young Lion's Greaves", key="111000,0:0000000000:9143,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Helm - Enia shop, defeat SK/DCE mainboss", "Messmer's Helm", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Armor - Enia shop, defeat SK/DCE mainboss", "Messmer's Armor", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Gauntlets - Enia shop, defeat SK/DCE mainboss", "Messmer's Gauntlets", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Messmer's Greaves - Enia shop, defeat SK/DCE mainboss", "Messmer's Greaves", key="111000,0:0000000000:9146,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Gaius's Helm - Enia shop, defeat SV/SKBG mainboss", "Gaius's Helm", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Gaius's Armor - Enia shop, defeat SV/SKBG mainboss", "Gaius's Armor", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Gaius's Gauntlets - Enia shop, defeat SV/SKBG mainboss", "Gaius's Gauntlets", key="111000,0:0000000000:9164,101500:", dlc=True, missable=True, shop=True),
         ERLocationData("RH: Briar Helm - Enia shop, defeat TSC/SCIG boss", "Briar Helm", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
         ERLocationData("RH: Briar Armor - Enia shop, defeat TSC/SCIG boss", "Briar Armor", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
         ERLocationData("RH: Briar Gauntlets - Enia shop, defeat TSC/SCIG boss", "Briar Gauntlets", key="111000,0:0000000000:9182,101500:", missable=True, shop=True),
@@ -1195,10 +1208,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Veteran's Armor - Enia shop, defeat MotG/(CS) mainboss", "Veteran's Armor", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
         ERLocationData("RH: Veteran's Gauntlets - Enia shop, defeat MotG/(CS) mainboss", "Veteran's Gauntlets", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
         ERLocationData("RH: Veteran's Greaves - Enia shop, defeat MotG/(CS) mainboss", "Veteran's Greaves", key="111000,0:0000000000:9184,101500:", missable=True, shop=True),
-        ERLocationData("RH: Rellana's Helm - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Helm", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Rellana's Armor - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Armor", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Rellana's Gloves - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Gloves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
-        ERLocationData("RH: Rellana's Greaves - Enia shop, defeat Rellana, Twin Moon Knight", "Rellana's Greaves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Helm - Enia shop, defeat CE/CLC mainboss", "Rellana's Helm", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Armor - Enia shop, defeat CE/CLC mainboss", "Rellana's Armor", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Gloves - Enia shop, defeat CE/CLC mainboss", "Rellana's Gloves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
+        ERLocationData("RH: Rellana's Greaves - Enia shop, defeat CE/CLC mainboss", "Rellana's Greaves", key="111000,0:0000000000:9190,101500:", dlc=True, missable=True, shop=True),
         
         ERLocationData("RH: Taunter's Tongue - invader drop", "Taunter's Tongue", key="111000,0:0000060300::", hostile_npc=True),
         ERLocationData("RH: Talisman Pouch - talk to Enia at 2 great runes or Twin Maiden after farum boss", "Talisman Pouch", key="111000,0:0000060500:101800,11109777:", missable=True, npc=True),
@@ -3566,7 +3579,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("BTS: Golden Horn Tender - Dropped by a shiny pot commoner at the bottom of a sloped bridge on the way to Stagefront, reached after traversing the rooftop section with gravebirds to get around the collapsed walkway", "Golden Horn Tender", key="200000,0:0020007900::", enemyrevered=True),
         #ERLocationData("BTS: Revered Spirit Ash - Dropped by a shiny pot commoner at the bottom of a sloped bridge on the way to Stagefront, reached after traversing the rooftop section with gravebirds to get around the collapsed walkway", "Revered Spirit Ash", key="200000,0:0020007900::", enemyrevered=True),
     ],
-    "storehouse":[
+    "Shadow Keep Storehouse":[ # storehouse
         #ERLocationData("SK/: Message from Leda - By any Miquella's Cross after defeating Messmer", "Message from Leda", key="200000,0:0000580600::"),
         #ERLocationData("SK/: Ansbach's Longbow - Dropped by Leda after invading her alongside Ansbach", "Ansbach's Longbow", key="210100,0:0000400595::", missable=True, exclusive=True),
         #ERLocationData("SK/: Leda's Rune - Dropped by Leda after invading her alongside Ansbach", "Leda's Rune", key="210100,0:0000400595::", missable=True, exclusive=True),
@@ -3614,7 +3627,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK/: Scadutree Fragment - In front of a beheaded Marika statue right before the Dark Chamber Entrance", "Scadutree Fragment", key="210100,0:0021017500::", fragment=True),
         #ERLocationData("SK/: Impenetrable Thorns - On a corpse on a hidden platform near the end of the dungeon. After rotating the central fixture, climbing up the massive beast, and going outside past the stake of Marika, drop down carefully past the west ledge instead of going up the stairs towards Dark Chamber Entrance. Alternatively, come from Dark Chamber Entrance, down the stairs to the right, and drop off to the right.", "Impenetrable Thorns", key="210100,0:0021017510::", hidden=True),
     ],
-    "belurat_swamp":[
+    "belurat_swamp":[ # belurat_swamp
         #ERLocationData("BTS: Smithing Stone [2] x2 - On a corpse on the rooftop of a building sunk into the swamp to the southwest of the fallen tower, accessed by jumping from the roof of an adjacent building", "Smithing Stone [2] x2", key="200000,0:0020007210::"),
         #ERLocationData("BTS: Thin Beast Bones x8 - On a corpse in the southeast area of the swamp guarded by a poison Ulcerated Tree Spirit", "Thin Beast Bones x8", key="200000,0:0020007220::"),
         #ERLocationData("BTS: Sliver of Meat x2 - On a corpse in the southeast area of the swamp guarded by a poison Ulcerated Tree Spirit", "Sliver of Meat x2", key="200000,0:0020007230::"),
@@ -3630,11 +3643,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("BTS: Immunizing Horn Charm +2 - Dropped by the poison Ulcerated Tree Spirit in the southeast poison swamp", "Immunizing Horn Charm +2", key="200000,0:0020007991::", enemytalisman=True),
         #ERLocationData("BTS: Horned Warrior's Sword - Dropped by the Divine Bird Warrior on dry land in the northwest poison swamp", "Horned Warrior's Sword", key="200000,0:0020007993::"),
     ],
-    "belurat_enirilim":[
+    "belurat_enirilim":[ # belurat_enirilim
         #ERLocationData("BTS: Euporia - At the end of the long dropdown to Belurat. From the area with a spiral column gazebo before the final flight of stairs up to Spiral Rise, descend the stairs northeast of the gazebo, jump down to the stairs to the southeast, and continue dropping down until a final jump to a windowsill below. Descend the elevator to the right after exiting the room, then continue down stairs and another elevator to the southeast to reach the treasure.", "Euporia", key="200000,0:0020007330::", outoftheway=True),
         #ERLocationData("BTS: Scadutree Fragment - In front of a statue along the dropdown to Euporia in Belurat, after reentering Belurat. From the area with a spiral column gazebo before the final flight of stairs up to Spiral Rise, descend the stairs northeast of the gazebo, jump down to the stairs to the southeast, and continue dropping down until a final jump to a windowsill below. The statue is on the left after exiting the room.", "Scadutree Fragment", key="200000,0:0020007820::", fragment=True),
     ],
-    "belurat_stairs":[
+    "belurat_stairs":[ # belurat_stairs
         #ERLocationData("BTS: Revered Spirit Ash - On a large withered corpse up the elevator from the Theatre of the Divine Beast", "Revered Spirit Ash", key="200000,0:0020007800::", revered=True),
         #ERLocationData("BTS: Tower of Shadow Message - At the top of the stairs up the elevator from the Theatre of the Divine Beast", "Tower of Shadow Message", key="200000,0:0020007830::"),
     ],
@@ -3708,7 +3721,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn", "Circlet of Light", key="200100,0:0020017981::", dlc_end=True),
         #ERLocationData("EI: Horned Warrior's Greatsword - Dropped by the Divine Bird Warrior before the Cleansing Chamber Anteroom", "Horned Warrior's Greatsword", key="200100,0:0020017991::"),
     ],
-    "shadowkeep_church_lower":[
+    "shadowkeep_church_lower":[ #  shadowkeep_church_lower
         #ERLocationData("SK: Battlefield Priest's Cookbook [1] - On a corpse on the balcony above the door leading to the elevator down to the Tree-Worship Passage, accessible after draining the water", "Battlefield Priest's Cookbook [1]", key="210000,0:0000068800::", cookbook=True),
         #ERLocationData("SK: Somber Smithing Stone [5] - On a corpse on the ground inside the tower with the draining lever in top, after draining the water", "Somber Smithing Stone [5]", key="210000,0:0021007550::"),
         #ERLocationData("SK: Well-Pickled Turtle Neck - On a corpse to the southwest of the cathedral with the big Marika statue, northwest of the Sunken Chapel grace, after draining the water", "Well-Pickled Turtle Neck", key="210000,0:0021007560::"),
@@ -3756,7 +3769,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK: Silver-Pickled Fowl Foot - On a corpse by the east corner of the flaming boat area next to the ladder which leads to the coffin", "Silver-Pickled Fowl Foot", key="210000,0:0021007190::"),
         #ERLocationData("SK: Rada Fruit - On a corpse in the flaming boat area in front of the boat to the southeast of the bridge leading to Specimen Storehouse", "Rada Fruit", key="210000,0:0021007200::"),
     ],
-    "shadowkeep_church":[
+    "shadowkeep_church":[ # shadowkeep_church
         #ERLocationData("SK: Fire Knight Queelign - Dropped by Queelign after giving him an Iris of Grace in the Prayer Room on the second level of the cathedral with the big Marika statue", "Fire Knight Queelign", key="210000,0:0000400690::", missable=True, exclusive=True),
         #ERLocationData("SK: Queelign's Greatsword - Dropped by Queelign after giving him an Iris of Occultation in the Prayer Room on the second level of the cathedral with the big Marika statue", "Queelign's Greatsword", key="210000,0:0000400692::", missable=True, exclusive=True),
         #ERLocationData("SK: Thin Beast Bones x4 - On a corpse snacked on by small crabs on the first rooftop after the Church District Entrance grace", "Thin Beast Bones x4", key="210000,0:0021007300::"),
@@ -3773,7 +3786,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK: Hefty Beast Bone x3 - On a corpse in an alcove with two bats before the ladder which goes up to the draining lever", "Hefty Beast Bone x3", key="210000,0:0021007410::"),
         #ERLocationData("SK: Crab Eggs x2 - On a corpse on the first rooftop after the Church District Entrance grace with no small crabs attending to it", "Crab Eggs x2", key="210000,0:0021007420::"),
     ],
-    "Gravesite Plain":[ # gravesite                               will be done by Legofacebob
+    "Gravesite Plain":[ # gravesite                              will be done by Legofacebob
         #ERLocationData("GP: Cross Map - Given by Hornsent at Three-Path Cross or Highroad Cross", "Cross Map", key="210100,0:0000400610::", missable=True),
         #ERLocationData("GP: Furnace Visage x3 - Given by Hornsent after giving him Scorpion Stew", "Furnace Visage x3", key="210100,0:0000400612::", missable=True),
         #ERLocationData("GP: Ghost Glovewort [4] - On a corpse in front of the southmost gravestone in the cliffside graveyard west of Prospect Town", "Ghost Glovewort [4]", key="614441,0:2044417000::"),
@@ -3919,7 +3932,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("GP: Talisman of the Dread - On a corpse in Elder's Hovel, by the cliffside southeast of the poison swamp which is downhill from Castle Front", "Talisman of the Dread", key="614942,0:2049427000::"),
         #ERLocationData("GP: Greater Potentate's Cookbook [7] - On a corpse in the poison swamp downhill from Castle Front, on a pile of rocks in the far southeast poison lake", "Greater Potentate's Cookbook [7]", key="614943,0:0000068630::", cookbook=True),
     ],
-    "storehouse_back":[
+    "storehouse_back":[ # storehouse_back
         #ERLocationData("SK/SH: Somber Smithing Stone [9] - On a corpse on the second floor back section, to the right after taking the elevator from Church District", "Somber Smithing Stone [9]", key="210100,0:0021017600::"),
         #ERLocationData("SK/SH: Glintslab Firefly x3 - On a corpse on the second floor back section, against the west wall going clockwise around the edge from the Back Section grace", "Glintslab Firefly x3", key="210100,0:0021017610::"),
         #ERLocationData("SK/SH: Carian Thrusting Shield - On a corpse guarded by a Fire Knight on the second floor back section, accessed by traversing all the way clockwise around the edge from the Back Section grace", "Carian Thrusting Shield", key="210100,0:0021017620::"),
@@ -3937,7 +3950,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK/SH: Winged Serpent Helm - Dropped by Kood, captain of the Fire Knights, guarding the door before Dark Chamber Entrance", "Winged Serpent Helm", key="210100,0:0021017991::"),
         #ERLocationData("SK/SH: Ash of War: Flame Spear - Dropped by Kood, captain of the Fire Knights, guarding the door before Dark Chamber Entrance", "Ash of War: Flame Spear", key="210100,0:0021017991::"),
     ],
-    "westrampart":[
+    "westrampart":[ # westrampart
         #ERLocationData("SK/WR: Hefty Cracked Pot - On one of the beds to the southeast in the big room with many beds", "Hefty Cracked Pot", key="210200,0:0000066980::"),
         #ERLocationData("SK/WR: Battlefield Priest's Cookbook [4] - On a corpse hidden behind an illusory wall. After taking the elevator down from Specimen Storehouse, go through the right doorway, go all the way down the hallway, and turn left. The illusory wall is down the hallway to the left of the stairs.", "Battlefield Priest's Cookbook [4]", key="210200,0:0000068930::", cookbook=True),
         #ERLocationData("SK/WR: Gold-Pickled Fowl Foot - On a corpse in the room straight down the hall after the elevator down from Specimen Storehouse", "Gold-Pickled Fowl Foot", key="210200,0:0021027010::"),
@@ -3981,7 +3994,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SCF: Smithing Stone [8] x7 - Dropped by the gigantic putrescent flesh in the sludge cave after the Fissure Waypoint grace. The cave is entered from the south after climbing past a group of enemies and exited to the southeast.", "Smithing Stone [8] x7", key="220000,0:0022007910::"),
         #ERLocationData("SCF: Congealed Putrescence x5 - Dropped by the gigantic putrescent flesh in the sludge cave after the Fissure Waypoint grace. The cave is entered from the south after climbing past a group of enemies and exited to the southeast.", "Congealed Putrescence x5", key="220000,0:0022007910::"),
     ],
-    "fingergrounds":[
+    "fingergrounds":[ # fingergrounds
         ERLocationData("FRM/CMM: Remembrance of the Mother of Fingers - mainboss drop", "Remembrance of the Mother of Fingers", key="250000,0:0000510550::", boss=True, deadend=True, remembrance=True),
         #ERLocationData("FRM: Maternal Staff - Dropped by Count Ymir after he invades in Manus Metyr after defeating Metyr", "Maternal Staff", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
         #ERLocationData("FRM: High Priest Hat - Dropped by Count Ymir after he invades in Manus Metyr after defeating Metyr", "High Priest Hat", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
@@ -5880,15 +5893,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("AW: Clarifying Boluses x2 - On a corpse on a ledge behind a large tree north of the Abandoned Church", "Clarifying Boluses x2", key="615341,0:2053417020::"),
         #ERLocationData("AW: Scadutree Fragment x2 - In front of the statue pedestal in Abandoned Church", "Scadutree Fragment x2", key="615341,0:2053417500::", fragment=True),
     ],
-    "jaggedpeak_foot":[ # jaggedpeak_foot
-        #ERLocationData("JP: Igon's Furled Finger - Given by Igon after defeating the Jagged Peak Drake which is fighting another drake", "Igon's Furled Finger", key="614842,0:0000400710::", missable=True),
+    "Jagged Peak Foot":[ # jaggedpeak_foot
+        ERLocationData("JP: Igon's Furled Finger - given by Igon after defeating boss", "Igon's Furled Finger", key="614842,0:0000400710::", missable=True),
         #ERLocationData("JP: Dragon Communion Harpoon - On the colossal unnamed dragon's wing, west of the Grand Altar", "Dragon Communion Harpoon", key="614938,0:2049387000::"),
         #ERLocationData("JP: Dragon Communion Harpoon - On the colossal unnamed dragon's wing, far west of the Grand Altar", "Dragon Communion Harpoon", key="614938,0:2049387010::"),
         #ERLocationData("JP: Dragon Communion Grease - On a corpse in front of the large dragon corpse in the grassy area southeast of the colossal unnamed dragon, accessible by going south from Grand Altar and turning east", "Dragon Communion Grease", key="614938,0:2049387020::"),
         #ERLocationData("JP: Dragon Communion Harpoon - On the colossal unnamed dragon's wing, west of the Grand Altar, by the southwest section of the wing", "Dragon Communion Harpoon", key="614938,0:2049387030::"),
         ERLocationData("JP/GADC: Bayle's Tyranny - Dragon Communion, Heart of Bayle", "Bayle's Tyranny", key="614939,0:0000000000:102350:", missable=True, incantations=True, premium=True, shop=True),
         ERLocationData("JP/GADC: Bayle's Flame Lightning - Dragon Communion, Heart of Bayle", "Bayle's Flame Lightning", key="614939,0:0000000000:102350:", missable=True, incantations=True, premium=True, shop=True),
-        #ERLocationData("JP: Ghostflame Breath - Sold for Dragon Hearts at the Grand Altar of Dragon Communion", "Ghostflame Breath", key="614939,0:0000000000:102355:", incantations=True, nokey=True, premium=True, shop=True),
+        ERLocationData("JP/GADC: Ghostflame Breath - Grand Dragon Communion", "Ghostflame Breath", key="614939,0:0000000000:102355:", incantations=True, nokey=True, premium=True, shop=True),
         #ERLocationData("JP: Igon's Cookbook [1] - On a corpse inside the ruined tower south of the Grand Altar of Dragon Communion", "Igon's Cookbook [1]", key="614939,0:0000068810::", cookbook=True),
         #ERLocationData("JP: Ancient Dragon Florissax - Dropped by Florissax at the Grand Altar of Dragon Communion after giving her Thiollier's Concoction and then defeating Bayle", "Ancient Dragon Florissax", key="614939,0:0000400700::", missable=True, exclusive=True),
         #ERLocationData("JP: Dragonbolt of Florissax - Given by Florissax at the Grand Altar of Dragon Communion after defeating Bayle, if you meet her before defeating Bayle and Thiollier's Concoction if not given", "Dragonbolt of Florissax", key="614939,0:0000400702::", missable=True, exclusive=True),
@@ -6048,8 +6061,10 @@ location_name_groups: Dict[str, Set[str]] = {
     # instead so we can choose the ordering.
     "Prominent": set(),
     "Progression": set(),
-    "Main Boss Rewards": set(),
-    "Boss Rewards": set(),
+    "Remembrance": set(),
+    "Boss Reward": set(),
+    "Remembrance DLC": set(),
+    "Boss Reward DLC": set(),
     "Hostile NPC Rewards": set(),
     "Friendly NPC Rewards": set(),
     "Scarab": set(),
@@ -6070,7 +6085,6 @@ location_descriptions = {
     "Prominent": "A small number of locations that are in very obvious locations. Mostly boss " + \
                  "drops. Ideal for setting as priority locations.",
     "Progression": "Locations that contain items in vanilla which unlock other locations.",
-    "Main Boss Rewards": "Any boss that drops a Great Rune or a Remembrance.",
     "Boss Rewards": "Boss drops. Only includes enemies considered bosses by the " + \
                         "enemy randomizer.",
     "Hostile NPC Rewards": "Drops from NPCs that are hostile to you. This includes scripted " + \

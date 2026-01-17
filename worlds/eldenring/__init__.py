@@ -37,7 +37,7 @@ class EldenRing(World):
     web = EldenRingWeb()
     settings: typing.ClassVar[EldenRingSettings]
     base_id = 69000
-    required_client_version = (0, 4, 2) # tbh idk what version is needed, probs newest
+    required_client_version = (0, 6, 6)
     topology_present = True
     item_name_to_id = {data.name: data.ap_code for data in item_table.values() if data.ap_code is not None}
     location_name_to_id = {
@@ -51,7 +51,10 @@ class EldenRing(World):
     location_descriptions = location_descriptions
     item_descriptions = item_descriptions
     
-    def visualize_world(self): # puml gets put in main folder
+    all_excluded_locations: Set[str] = set()
+    all_priority_locations: Set[str] = set()
+    
+    def visualize_world(self): # puml gets put in root folder
         Utils.visualize_regions(self.multiworld.get_region(self.multiworld.worlds[1].origin_region_name, 1), f"{self.multiworld.player_name[1]}.puml")
 
     def __init__(self, multiworld: MultiWorld, player: int):
@@ -65,8 +68,49 @@ class EldenRing(World):
     def generate_early(self) -> None:
         self.created_regions = set()
         self.all_excluded_locations.update(self.options.exclude_locations.value)
-        self.all_priority_locations.update(self.options.important_locations.value)
+        # self.all_priority_locations.update(self.options.priority_locations.value)
         
+        for locations in location_tables.values(): # this didn't work :(
+            for loc in locations:
+                for loc_type in self.options.important_locations.value:
+                    match loc_type.lower():
+                        case "remembrance":
+                            if loc.remembrance:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "seedtree":
+                            if loc.seedtree:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "basin":
+                            if loc.basin:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "church":
+                            if loc.church:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "map":
+                            if loc.map:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "fragment":
+                            if loc.fragment and self.options.enable_dlc:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "cross":
+                            if loc.cross and self.options.enable_dlc:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "revered":
+                            if loc.revered and self.options.enable_dlc:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                        case "keyitem":
+                            if loc.keyitem:
+                                self.all_priority_locations.update({loc.name})
+                            break
+                         
         # makes exclude_local_item_only lowercase
         exclude_local_item_only_lowercase = [key.lower() for key in self.options.exclude_local_item_only.value]
         
@@ -334,8 +378,9 @@ class EldenRing(World):
             create_connection("Gravesite Plain", "Belurat")
             create_connection("Gravesite Plain", "Castle Ensis")
             create_connection("Gravesite Plain", "Dragon's Pit")
-            create_connection("Dragon's Pit", "Jagged Peak")
-            create_connection("Jagged Peak", "Charo's Hidden Grave")
+            create_connection("Dragon's Pit", "Jagged Peak Foot")
+            create_connection("Jagged Peak Foot", "Jagged Peak")
+            create_connection("Jagged Peak Foot", "Charo's Hidden Grave")
             create_connection("Charo's Hidden Grave", "Lamenter's Gaol (Entrance)")
             create_connection("Lamenter's Gaol (Entrance)", "Lamenter's Gaol (Upper)")
             create_connection("Lamenter's Gaol (Upper)", "Lamenter's Gaol (Lower)")
@@ -350,10 +395,11 @@ class EldenRing(World):
             create_connection("Scadu Altus", "Ellac River")
             create_connection("Ellac River", "Cerulean Coast")
             create_connection("Ellac River", "Rivermouth Cave")
-            create_connection("Cerulean Coast", "Stone Coffin")
+            create_connection("Cerulean Coast", "Stone Coffin Fissure")
             create_connection("Cerulean Coast", "Finger Ruins of Rhia")
             
             create_connection("Scadu Altus", "Shadow Keep")
+            create_connection("Shadow Keep", "Shadow Keep Storehouse")
             create_connection("Shadow Keep", "Hinterland")
             create_connection("Hinterland", "Finger Ruins of Dheo")
             
@@ -381,6 +427,16 @@ class EldenRing(World):
                 # set priority before excluded so that progression items dont go into excluded locations
                 if location.name in self.all_priority_locations:
                     new_location.progress_type = LocationProgressType.PRIORITY
+                    
+                    # dupe priority location, need to figure out how to add to location_tables so no key error
+                    # location.name = f"Dupe: {location.name}"
+                    # dupe_location = ERLocation(
+                    #     self.player,
+                    #     location,
+                    #     parent = new_region,
+                    #     event = True,
+                    # )
+                    # new_region.locations.append(dupe_location)
                     
                 if (
                     # Exclude missable locations that don't allow useful items
@@ -773,43 +829,24 @@ class EldenRing(World):
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")
                 # make this the mend the elden ring event, idk how todo that rn       
         elif self.options.ending_condition == 2:
-            self.multiworld.completion_condition[self.player] += [ lambda state:
-                self._can_get(state, "SV/SC: Remembrance of the Grafted - mainboss drop")
-                and self._can_get(state, "RLA: Remembrance of the Full Moon Queen - mainboss drop")
-                and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop")
-                and self._can_get(state, "NR/(HG): Remembrance of the Regal Ancestor - boss drop")
-                and self._can_get(state, "VM/AP: Remembrance of the Blasphemous - mainboss drop")
-                and self._can_get(state, "LRC/QB: Remembrance of the Omen King - mainboss drop")
-                and self._can_get(state, "LR: Remembrance of the Naturalborn - mainboss drop")
-                and self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
-                and self._can_get(state, "FA/BGB: Remembrance of the Dragonlord - alt mainboss drop")
-                # i think this is missable   and self._can_get(state, "DD/AR: Remembrance of the Lichdragon - mainboss drop")
-                and self._can_get(state, "EBH/HR: Remembrance of the Rot Goddess - mainboss drop")
-                and self._can_get(state, "MotG/FF: Remembrance of the Fire Giant - mainboss drop")
-                and self._can_get(state, "FA/BGB: Remembrance of the Black Blade - mainboss drop")
-                and self._can_get(state, "LAC/QB: Remembrance of Hoarah Loux - mainboss drop")
-                and self._can_get(state, "ET: Elden Remembrance - mainboss drop")
-            ]
             if self.options.enable_dlc:
-                self.multiworld.completion_condition[self.player] += [ lambda state: 
-                    self._can_get(state, "BTS/SF: Remembrance of the Dancing Lion - mainboss drop")
-                    and self._can_get(state, "CE/CLC: Remembrance of the Twin Moon Knight - mainboss drop")
-                    and self._can_get(state, "SK/DCE: Remembrance of the Impaler - mainboss drop")
-                    and self._can_get(state, "STB/TWS: Remembrance of the Shadow Sunflower - mainboss drop")
-                    and self._can_get(state, "SV/SKBG: Remembrance of the Wild Boar Rider - mainboss drop")
-                    and self._can_get(state, "SCF/FD: Remembrance of Putrescence - mainboss drop")
-                    and self._can_get(state, "MM/SFC: Remembrance of the Lord of Frenzied Flame - mainboss drop")
-                    and self._can_get(state, "FRM/CMM: Remembrance of the Mother of Fingers - mainboss drop")
-                    and self._can_get(state, "ARR/CBME: Remembrance of the Saint of the Bud - mainboss drop")
-                    and self._can_get(state, "JP/JPS: Heart of Bayle - mainboss drop")
-                    and self._can_get(state, "EI: Remembrance of a God and a Lord - mainboss drop")
-                ]
-        # else:
-        #     # for loop all locations and check for .names.contains("Boss Rewards")
-        #     # all bosses # need one check from each boss :skull:
-        #     if self.options.enable_dlc:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, (self.location_name_groups["Remembrance"] | self.location_name_groups["Remembrance DLC"]))
+            else:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, self.location_name_groups["Remembrance"])
+        else:
+            if self.options.enable_dlc:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, (self.location_name_groups["Boss Reward"] | self.location_name_groups["Boss Reward DLC"]))
+            else:
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, self.location_name_groups["Boss Reward"])
         
         # self.visualize_world()
+        
+    def _can_get_all(self, state: CollectionState, locations: Set) -> bool:
+        """Can get all locations."""
+        for location in locations:
+            if not self._can_get(state, location):
+                return False
+        return True
             
     def _region_lock(self) -> None: # MARK: Region Lock Items
         """All region lock rules."""
@@ -1832,10 +1869,10 @@ class EldenRing(World):
             ),
         ]
 
-        dlc_equipments = [
+        dlc_equipments = [ # done
             (
-                "", #"Messmer the Impaler", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "SK/DCE mainboss", #"Messmer the Impaler", # boss
+                "SK/DCE: Remembrance of the Impaler - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Messmer's Helm", 
                     "Messmer's Armor",
@@ -1844,8 +1881,8 @@ class EldenRing(World):
                 ]
             ),
             (
-                "", #"Rellana, Twin Moon Knight", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "CE/CLC mainboss", #"Rellana, Twin Moon Knight", # boss
+                "CE/CLC: Remembrance of the Twin Moon Knight - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Rellana's Helm", 
                     "Rellana's Armor",
@@ -1854,18 +1891,17 @@ class EldenRing(World):
                 ]
             ),
             (
-                "", #"Commander Gaius", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "SV/SKBG mainboss", #"Commander Gaius", # boss
+                "SV/SKBG: Remembrance of the Wild Boar Rider - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Gaius's Helm", 
                     "Gaius's Armor",
-                    "Gaius's Gauntlets", 
-                    "Gaius's Greaves"
+                    "Gaius's Gauntlets"
                 ]
             ),
             ( # you cant even get this till the game is beat LMAO, but you can get it in all bosses :)
-                "", #"Promised Consort Radahn", # boss
-                "", # a drop from boss, so we can do 'can get' check
+                "EI mainboss", #"Promised Consort Radahn", # boss
+                "EI: Remembrance of a God and a Lord - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Young Lion's Helm", 
                     "Young Lion's Armor",
