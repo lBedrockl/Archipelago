@@ -57,7 +57,6 @@ success.txt
 output/
 Output Logs/
 /factorio/
-/Minecraft Forge Server/
 /WebHostLib/static/generated
 /freeze_requirements.txt
 /Archipelago.zip
@@ -65,6 +64,7 @@ Output Logs/
 /installdelete.iss
 /data/user.kv
 /datapackage
+/datapackage_export.json
 /custom_worlds
 
 # Byte-compiled / optimized / DLL files
@@ -115,6 +115,8 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+fuzz.py
+fuzz_output
 
 
 # Flask stuff:
@@ -184,12 +186,6 @@ cython_debug/
 _speedups.c
 _speedups.cpp
 _speedups.html
-
-# minecraft server stuff
-jdk*/
-minecraft*/
-minecraft_versions.json
-!worlds/minecraft/
 
 # pyenv
 .python-version

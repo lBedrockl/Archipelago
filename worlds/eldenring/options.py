@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, PriorityLocations, NamedRange, OptionDict, \
-    OptionGroup, PerGameCommonOptions, Range, Removed, Toggle
+from Options import Choice, DeathLink, DefaultOnToggle, ExcludeLocations, OptionList, \
+    OptionGroup, PerGameCommonOptions, Range, Toggle
 
 ## Game Options
 
@@ -23,12 +23,12 @@ class WorldLogic(Choice):
     """World Logic options
     
     **Region Lock:** Each region will require a 'Special item'
+    **Region Lock Bosses:** Each region will require all bosses in that region to be defeated'
     **Open World:** No region locking"""
-    #**Glitches:** Glitches in logic"""
     display_name = "World Logic"
     option_region_lock = 0
-    option_open_world = 1
-    #option_glitches = 2
+    option_region_lock_bosses = 1
+    option_open_world = 2
     default = 0
     
 class RegionSoftLogic(DefaultOnToggle):
@@ -45,7 +45,10 @@ class GreatRunesRequired(Range):
     range_start = 1
     range_end = 7
     default = 2
-
+    
+class RoyalAccess(Toggle):
+    """Keep Royal Capital graces accessable after it becomes ashen."""
+    display_name = "Royal Capital Accessable"
 
 class EnableDLC(Toggle):
     """Enable DLC"""
@@ -107,27 +110,23 @@ class LocalItemOnly(DefaultOnToggle):
     Used with ExcludeLocalItemOnly option."""
     display_name = "Local Item Option"
     
-class ExcludeLocalItemOnly(OptionDict):
+class ExcludeLocalItemOnly(OptionList):
     """If LocalItemOnly is true then these item categories will show up in other players games.
     - [Items] **Item Group**
     - [~600] **Weapon**: All Weapons and Ammo.
     - [621] **Armor**: All Armors.
     - [154] **Accessory**: All Talismans.
     - [105] **AshofWar**: All Ashes of War.
-    - [~3700] *Goods*: All Goods.
+    - [~3700] **Goods**: All Goods.
     
     Goods should always be local only.
     """
-    default = frozenset({"Weapon", "Armor", "Accessory", "AshofWar"})
-
-class ERExcludeLocations(ExcludeLocations):
-    """Prevent these locations from having an important item.
-    - **dlc**: If you want DLC items but dont wanna do DLC.
-    - **hidden: Hard to find items.**"""
-    default = frozenset({"Hidden"})
+    display_name = "Exclude Local Item Only"
+    default = ["Weapon", "Armor", "Accessory", "AshofWar"]
+    valid_keys_casefold = ["Weapon", "Armor", "Accessory", "AshofWar", "Goods"]
     
-class ERImportantLocations(PriorityLocations):
-    """Prevent these locations from having an unimportant item.
+class ERImportantLocations(OptionList):
+    """Prevent these location types from having an unimportant items.
     - [Checks] **Locations**
     - [25] *Remembrance*: Main boss Remembrances.
     - [33] *Seedtree*: Golden Seed trees.
@@ -140,41 +139,55 @@ class ERImportantLocations(PriorityLocations):
     - [21] *KeyItem*: Key items.
     
     The *total* amount of priority checks should be below:
-    - **Vanilla**: [95] 
-    - **DLC**: [124]
-    - THESE CAN CHANGE, need to be updated later
+    - **Vanilla**: [90] 
+    - **DLC**: [120]
     """
-    default = frozenset({"Remembrance", "Seedtree", "Map"})
+    display_name = "Important Locations"
+    default = ["Remembrance", "Seedtree", "Map"]
+    valid_keys_casefold = ["Remembrance", "Seedtree", "Basin", "Church", "Map", "Fragment", "Cross", "Revered", "KeyItem"]
+
+class ERExcludeLocations(ExcludeLocations):
+    """Prevent these locations from having an important items.
+    - **dlc**: If you want DLC items but dont wanna do DLC.
+    - **hidden**: Hard to find items.
+    - **blizzard**: The hard to see area of snowfield."""
+    default = frozenset({}) # still errors
+    # Exception: Location 'hidden' from option 'ERExcludeLocations(hidden)' is not a valid location name from 'EldenRing'. Did you mean 'RH: Mace - Twin maiden shop' (18% sure)
+    valid_keys_casefold = ["dlc", "hidden", "blizzard"]
 
 class ExcludedLocationBehaviorOption(Choice):
     """How to choose items for excluded locations in ER.
 
-    - **Randomize:** Progression items can be placed in excluded locations.
-    - **Randomize Unimportant:** Progression items can't be placed in excluded locations.
-    - **Do Not Randomize:** Excluded locations always contain the same item as in vanilla EldenRing.
+    - **Allow Useful:** Excluded locations can't have progression items, but they can have useful items.
+    - **Forbid Useful:** Neither progression items nor useful items can be placed in excluded locations.
+    - **Do Not Randomize:** Excluded locations always contain the same item as in vanilla Elden Ring.
 
     A "progression item" is anything that's required to unlock another location in some game.
+    A "useful item" is something each game defines individually, usually items that are quite
+    desirable but not strictly necessary.
     """
     display_name = "Excluded Locations Behavior"
-    option_randomize = 0
-    option_randomize_unimportant = 1
-    option_do_not_randomize = 2
-    default = 1
+    option_allow_useful = 1
+    option_forbid_useful = 2
+    option_do_not_randomize = 3
+    default = 2
 
 class MissableLocationBehaviorOption(Choice):
     """Which items can be placed in locations that can be permanently missed.
 
-    - **Randomize:** Progression items can be placed in missable locations, don't do this unless you know what your doing, you can make a game impossible.
-    - **Randomize Unimportant:** Progression items can't be placed in missable locations.
-    - **Do Not Randomize:** Missable locations always contain the same item as in vanilla EldenRing.
+    - **Allow Useful:** Missable locations can't have progression items, but they can have useful items.
+    - **Forbid Useful:** Neither progression items nor useful items can be placed in missable locations.
+    - **Do Not Randomize:** Missable locations always contain the same item as in vanilla Elden Ring.
 
     A "progression item" is anything that's required to unlock another location in some game.
+    A "useful item" is something each game defines individually, usually items that are quite
+    desirable but not strictly necessary.
     """
     display_name = "Missable Locations Behavior"
-    option_randomize = 0
-    option_randomize_unimportant = 1
-    option_do_not_randomize = 2
-    default = 1
+    option_allow_useful = 1
+    option_forbid_useful = 2
+    option_do_not_randomize = 3
+    default = 2
 
 @dataclass
 class EROptions(PerGameCommonOptions):
@@ -182,6 +195,7 @@ class EROptions(PerGameCommonOptions):
     world_logic: WorldLogic
     soft_logic: RegionSoftLogic
     great_runes_required: GreatRunesRequired
+    royal_access: RoyalAccess
     enable_dlc: EnableDLC
     late_dlc: LateDLCOption
     enemy_rando: EnemyRando

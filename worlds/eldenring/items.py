@@ -11,7 +11,7 @@ class ERItemCategory(IntEnum):
     ARMOR = 3
     ACCESSORY = 4
     ASHOFWAR = 5
-    CUSTOMWEAPON = 6 # reinforced and ash of wars
+    #CUSTOMWEAPON = 6 # reinforced and ash of wars
 
 @dataclass
 class ERItemData:
@@ -45,6 +45,12 @@ class ERItemData:
 
     skip: bool = False
     """Whether to omit this item from randomization and replace it with filler or unique items."""
+    
+    inject: bool = False
+    """Items to be injected manually"""
+    
+    lock: bool = False
+    """Region lock items"""
 
     def __post_init__(self):
         self.ap_code = self.ap_code or ERItemData.__item_id
@@ -64,7 +70,7 @@ class ERItemData:
             ERItemCategory.ARMOR: "Armor",
             ERItemCategory.ACCESSORY: "Accessories",
             ERItemCategory.ASHOFWAR: "Ash of war",
-            ERItemCategory.CUSTOMWEAPON: "Upgraded Weapons",
+            #ERItemCategory.CUSTOMWEAPON: "Upgraded Weapons",
         }[self.category])
 
         return names
@@ -1253,7 +1259,13 @@ _vanilla_items = [
     #ERItemData("Tarnished's Wizened Finger", 106, ERItemCategory.GOODS),
     ERItemData("Taunter's Tongue", 108, ERItemCategory.GOODS, skip=True),
     ERItemData("Small Red Effigy", 110, ERItemCategory.GOODS, skip=True),
-    *ERItemData("Festering Bloody Finger", 111, ERItemCategory.GOODS, skip=True).counts([2, 3, 5, 6, 8, 10]),
+    ERItemData("Festering Bloody Finger", 111, ERItemCategory.GOODS, classification=ItemClassification.progression), # fun
+    ERItemData("Festering Bloody Finger x2", 111, ERItemCategory.GOODS, classification=ItemClassification.progression, count=2),
+    ERItemData("Festering Bloody Finger x3", 111, ERItemCategory.GOODS, classification=ItemClassification.progression, count=3),
+    ERItemData("Festering Bloody Finger x5", 111, ERItemCategory.GOODS, classification=ItemClassification.progression, count=5),
+    ERItemData("Festering Bloody Finger x6", 111, ERItemCategory.GOODS, classification=ItemClassification.progression, count=6),
+    ERItemData("Festering Bloody Finger x8", 111, ERItemCategory.GOODS, classification=ItemClassification.progression, count=8),
+    ERItemData("Festering Bloody Finger x10", 111, ERItemCategory.GOODS, classification=ItemClassification.progression, count=10),
     ERItemData("Recusant Finger", 112, ERItemCategory.GOODS, skip=True),
     #ERItemData("Spectral Steed Whistle", 130, ERItemCategory.GOODS),
     *ERItemData("Furlcalling Finger Remedy", 150, ERItemCategory.GOODS, skip=True).counts([2, 3, 4, 5]),
@@ -1294,8 +1306,8 @@ _vanilla_items = [
     *ERItemData("Gold-Pickled Fowl Foot", 1200, ERItemCategory.GOODS).counts([2, 3]),
     *ERItemData("Exalted Flesh", 1210, ERItemCategory.GOODS).counts([2, 3]),
     *ERItemData("Raw Meat Dumpling", 1235, ERItemCategory.GOODS).counts([5, 10]),
-    ERItemData("Shabriri Grape", 1240, ERItemCategory.GOODS),
-    ERItemData("Starlight Shards", 1290, ERItemCategory.GOODS),
+    ERItemData("Shabriri Grape", 1240, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Starlight Shards", 1290, ERItemCategory.GOODS, classification=ItemClassification.progression),
     *ERItemData("Immunizing White Cured Meat", 1310, ERItemCategory.GOODS).counts([3]),
     *ERItemData("Invigorating White Cured Meat", 1320, ERItemCategory.GOODS).counts([3]),
     *ERItemData("Clarifying White Cured Meat", 1330, ERItemCategory.GOODS).counts([3]),
@@ -1338,7 +1350,7 @@ _vanilla_items = [
     ERItemData("Lantern", 2070, ERItemCategory.GOODS, skip=True), # force give to player
     ERItemData("Blasphemous Claw", 2080, ERItemCategory.GOODS),
 
-    ERItemData("Deathroot", 2090, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Deathroot", 2090, ERItemCategory.GOODS, classification=ItemClassification.progression),
     *ERItemData("Soft Cotton", 2100, ERItemCategory.GOODS).counts([2, 3, 6]),
     *ERItemData("Soap", 2120, ERItemCategory.GOODS).counts([3, 4]),
     ERItemData("Celestial Dew", 2130, ERItemCategory.GOODS),
@@ -1591,24 +1603,24 @@ _vanilla_items = [
     ERItemData("Rusty Key", 8010, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dectus Medallion (Left)", 8105, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dectus Medallion (Right)", 8106, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Rold Medallion", 8107, ERItemCategory.GOODS, classification=(ItemClassification.progression, ItemClassification.useful)), # i think this is how you do this
+    ERItemData("Rold Medallion", 8107, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Academy Glintstone Key", 8109, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Carian Inverted Statue", 8111, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dark Moon Ring", 8121, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Fingerprint Grape", 8126, ERItemCategory.GOODS),
+    ERItemData("Fingerprint Grape", 8126, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Letter from Volcano Manor (Istvan)", 8127, ERItemCategory.GOODS),
     ERItemData("Tonic of Forgetfulness", 8128, ERItemCategory.GOODS),
-    ERItemData("Serpent's Amnion", 8129, ERItemCategory.GOODS),
-    ERItemData("Irina's Letter", 8131, ERItemCategory.GOODS),
+    ERItemData("Serpent's Amnion", 8129, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Irina's Letter", 8131, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Letter from Volcano Manor (Rileigh)", 8132, ERItemCategory.GOODS),
     ERItemData("Red Letter", 8133, ERItemCategory.GOODS),
     ERItemData("Drawing-Room Key", 8134, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Rya's Necklace", 8136, ERItemCategory.GOODS),
+    ERItemData("Rya's Necklace", 8136, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Volcano Manor Invitation", 8137, ERItemCategory.GOODS),
-    ERItemData("Amber Starlight", 8142, ERItemCategory.GOODS),
+    ERItemData("Amber Starlight", 8142, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Seluvis's Introduction", 8143, ERItemCategory.GOODS),
-    ERItemData("Sellen's Primal Glintstone", 8144, ERItemCategory.GOODS),
-    ERItemData("Miniature Ranni", 8146, ERItemCategory.GOODS),
+    ERItemData("Sellen's Primal Glintstone", 8144, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Miniature Ranni", 8146, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
     ERItemData("Godrick's Great Rune", 8148, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Radahn's Great Rune", 8149, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -1617,15 +1629,15 @@ _vanilla_items = [
     ERItemData("Mohg's Great Rune", 8152, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Malenia's Great Rune", 8153, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
-    ERItemData("Lord of Blood's Favor", 8154, ERItemCategory.GOODS),
-    ERItemData("Lord of Blood's Favor (Soaked)", 8155, ERItemCategory.GOODS),
+    ERItemData("Lord of Blood's Favor", 8154, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Lord of Blood's Favor (Soaked)", 8155, ERItemCategory.GOODS, skip=True),
     ERItemData("Spirit Calling Bell", 8158, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Fingerslayer Blade", 8159, ERItemCategory.GOODS),
+    ERItemData("Fingerslayer Blade", 8159, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Sewing Needle", 8161, ERItemCategory.GOODS),
     ERItemData("Gold Sewing Needle", 8162, ERItemCategory.GOODS),
     ERItemData("Tailoring Tools", 8163, ERItemCategory.GOODS),
-    ERItemData("Seluvis's Potion", 8164, ERItemCategory.GOODS),
-    ERItemData("Amber Draught", 8166, ERItemCategory.GOODS),
+    ERItemData("Seluvis's Potion", 8164, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Amber Draught", 8166, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Letter to Patches", 8167, ERItemCategory.GOODS),
     ERItemData("Dancer's Castanets", 8168, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Sellian Sealbreaker", 8169, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -1644,7 +1656,7 @@ _vanilla_items = [
     ERItemData("Knifeprint Clue", 8190, ERItemCategory.GOODS, skip=True),
     ERItemData("Cursemark of Death", 8191, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Seedbed Curse", 8193, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("The Stormhawk King", 8194, ERItemCategory.GOODS),
+    ERItemData("The Stormhawk King", 8194, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Sewer-Gaol Key", 8197, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Meeting Place Map", 8198, ERItemCategory.GOODS, skip=True),
     ERItemData("Discarded Palace Key", 8199, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -1657,9 +1669,9 @@ _vanilla_items = [
     ERItemData("\"Flightless Bird\" Painting", 8205, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("\"Redmane\" Painting", 8206, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
-    ERItemData("Zorayas's Letter", 8221, ERItemCategory.GOODS),
-    ERItemData("Alexander's Innards", 8222, ERItemCategory.GOODS),
-    ERItemData("Rogier's Letter", 8223, ERItemCategory.GOODS),
+    ERItemData("Zorayas's Letter", 8221, ERItemCategory.GOODS, skip=True),
+    ERItemData("Alexander's Innards", 8222, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Rogier's Letter", 8223, ERItemCategory.GOODS, skip=True),
     ERItemData("Note: The Preceptor's Secret", 8224, ERItemCategory.GOODS, skip=True),
     ERItemData("Weathered Map", 8225, ERItemCategory.GOODS),
     ERItemData("Crafting Kit", 8500, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -1804,7 +1816,7 @@ _vanilla_items = [
     ERItemData("Wait!", 9015, ERItemCategory.GOODS, skip=True),
     ERItemData("Calm Down!", 9016, ERItemCategory.GOODS, skip=True),
     ERItemData("Nod In Thought", 9017, ERItemCategory.GOODS, skip=True),
-    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, classification=ItemClassification.progression), # patches quest
+    ERItemData("Extreme Repentance", 9018, ERItemCategory.GOODS, skip=True),
     ERItemData("Grovel For Mercy", 9019, ERItemCategory.GOODS, skip=True),
     ERItemData("Rallying Cry", 9020, ERItemCategory.GOODS, skip=True),
     ERItemData("Heartening Cry", 9021, ERItemCategory.GOODS, skip=True),
@@ -1815,7 +1827,7 @@ _vanilla_items = [
     ERItemData("Jump for Joy", 9027, ERItemCategory.GOODS, skip=True),
     ERItemData("Triumphant Delight", 9028, ERItemCategory.GOODS, skip=True),
     ERItemData("Fancy Spin", 9029, ERItemCategory.GOODS, skip=True),
-    ERItemData("Finger Snap", 9030, ERItemCategory.GOODS, classification=ItemClassification.progression), # for Blaidd thing
+    ERItemData("Finger Snap", 9030, ERItemCategory.GOODS, skip=True),
     ERItemData("Dejection", 9031, ERItemCategory.GOODS, skip=True),
     ERItemData("Patches' Crouch", 9032, ERItemCategory.GOODS, skip=True),
     ERItemData("Crossed Legs", 9033, ERItemCategory.GOODS, skip=True),
@@ -1828,7 +1840,7 @@ _vanilla_items = [
     ERItemData("Prayer", 9041, ERItemCategory.GOODS, skip=True),
     ERItemData("Desperate Prayer", 9042, ERItemCategory.GOODS, skip=True),
     ERItemData("Rapture", 9043, ERItemCategory.GOODS, skip=True),
-    ERItemData("Erudition", 9045, ERItemCategory.GOODS, classification=ItemClassification.progression), # used for a tower item
+    ERItemData("Erudition", 9045, ERItemCategory.GOODS, classification=ItemClassification.progression, inject=True), # used for a tower item
     ERItemData("Outer Order", 9046, ERItemCategory.GOODS, skip=True),
     ERItemData("Inner Order", 9047, ERItemCategory.GOODS, skip=True),
     ERItemData("Golden Order Totality", 9048, ERItemCategory.GOODS, skip=True),
@@ -1901,7 +1913,7 @@ _vanilla_items = [
     ERItemData("Golden Seed", 10010, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Sacred Tear", 10020, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Memory Stone", 10030, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Talisman Pouch", 10040, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Talisman Pouch", 10040, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Dragon Heart", 10060, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Dragon Heart x3", 10060, ERItemCategory.GOODS, classification=ItemClassification.progression, count=3),
     ERItemData("Dragon Heart x5", 10060, ERItemCategory.GOODS, classification=ItemClassification.progression, count=5),
@@ -2053,7 +2065,7 @@ _vanilla_items = [
     ERItemData("Black Knife Tiche", 200000, ERItemCategory.GOODS),
     ERItemData("Banished Knight Oleg", 201000, ERItemCategory.GOODS),
     ERItemData("Banished Knight Engvall", 202000, ERItemCategory.GOODS),
-    ERItemData("Fanged Imp Ashes", 203000, ERItemCategory.GOODS),
+    ERItemData("Fanged Imp Ashes", 203000, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Latenna the Albinauric", 204000, ERItemCategory.GOODS),
     ERItemData("Nomad Ashes", 205000, ERItemCategory.GOODS),
     ERItemData("Nightmaiden & Swordstress Puppets", 206000, ERItemCategory.GOODS),
@@ -2086,7 +2098,7 @@ _vanilla_items = [
     ERItemData("Giant Rat Ashes", 233000, ERItemCategory.GOODS),
     ERItemData("Demi-Human Ashes", 234000, ERItemCategory.GOODS),
     ERItemData("Rotten Stray Ashes", 235000, ERItemCategory.GOODS),
-    ERItemData("Spirit Jellyfish Ashes", 236000, ERItemCategory.GOODS),
+    ERItemData("Spirit Jellyfish Ashes", 236000, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Warhawk Ashes", 237000, ERItemCategory.GOODS),
     ERItemData("Stormhawk Deenh", 238000, ERItemCategory.GOODS),
     ERItemData("Bloodhound Knight Floh", 239000, ERItemCategory.GOODS),
@@ -2117,8 +2129,11 @@ _vanilla_items = [
     
     
     #MARK: Region Lock Items
-    # these get set to skip = False in init when region lock is on
-    #ERItemData("Region Lock Key", needs id, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
+    # these get set to inject = True in init when region lock is on
+    ERItemData("Weeping Lock", 9999901, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Caelid Lock", 9999902, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Liurnia Lock", 9999903, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Stormveil Lock", 9999904, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
     
     
