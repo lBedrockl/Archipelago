@@ -376,6 +376,7 @@ class EldenRing(World):
             create_connection("Gravesite Plain", "Fog Rift Catacombs")
             create_connection("Gravesite Plain", "Belurat Gaol")
             create_connection("Gravesite Plain", "Belurat")
+            create_connection("Belurat", "Belurat Swamp")
             create_connection("Gravesite Plain", "Castle Ensis")
             create_connection("Gravesite Plain", "Dragon's Pit")
             create_connection("Dragon's Pit", "Jagged Peak Foot")
@@ -811,6 +812,10 @@ class EldenRing(World):
                     lambda state: self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
                 
+            # MARK: DLC Rules
+            
+            self._add_entrance_rule("Belurat Swamp", "Well Depths Key")
+            
             # the funny gaol
             self._add_entrance_rule("Lamenter's Gaol (Upper)", "Gaol Upper Level Key")
             self._add_entrance_rule("Lamenter's Gaol (Lower)", "Gaol Lower Level Key")

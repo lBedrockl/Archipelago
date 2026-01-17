@@ -2608,7 +2608,7 @@ _dlc_items = [
     # Key and Quest
     ERItemData("Miquella's Great Rune", 2008000, ERItemCategory.GOODS), #dont random maybe?
     ERItemData("Igon's Furled Finger", 2008003, ERItemCategory.GOODS),
-    ERItemData("Well Depths Key", 2008004, ERItemCategory.GOODS),
+    ERItemData("Well Depths Key", 2008004, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Gaol Upper Level Key", 2008005, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Gaol Lower Level Key", 2008006, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Cross Map", 2008007, ERItemCategory.GOODS),

@@ -180,6 +180,7 @@ region_order_dlc = [
     "Dragon's Pit",
     
     "Belurat",
+    "Belurat Swamp",
     
     "Castle Ensis",
     
@@ -458,6 +459,9 @@ class ERLocationData:
     
     revered: bool = False
     """Whether this location is a revered spirit ash."""
+    
+    enemyrevered: bool = False
+    """Whether this location is a revered spirit ash dropped by an enemy."""
     
     cross: bool = False
     """Whether this location is an item at a cross."""
@@ -3526,12 +3530,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: Some DLC
-    "Belurat":[ # belurat                                        will be done by Jambo
+    "Belurat":[ # belurat                                        done by Jambo
         ERLocationData("BTS/SPA: Crusade Insignia - invader drop in NE courtyard", "Crusade Insignia", key="200000,0:0000400694::", missable=True),
-#         ERLocationData("BTS: Scorpion Stew - given by Hornsent Grandam after resting at a grace, having received the watchful spirit", "Scorpion Stew", key="200000,0:0000400720::", missable=True, death=True), #still needs update
-#         ERLocationData("BTS: Watchful Spirit - given by Hornsent Grandam when wearing the divine beast head after defeating Divine Beast Dancing Lion", "Watchful Spirit", key="200000,0:0000400721::", missable=True), #still needs update
-#         ERLocationData("BTS: Gourmet Scorpion Stew - given by Hornsent Grandam after defeating Messmer", "Gourmet Scorpion Stew", key="200000,0:0000400722::", missable=True), #still needs update
-#         ERLocationData("BTS: Gourmet Scorpion Stew - dropped by Hornsent Grandam after defeating Messmer, exhausting her dialogue, and reloading", "Gourmet Scorpion Stew", key="200000,0:0000400723::", missable=True), #still needs update
+        # ERLocationData("BTS: Scorpion Stew - given by Hornsent Grandam after resting at a grace, having received the watchful spirit", "Scorpion Stew", key="200000,0:0000400720::", missable=True, death=True), #still needs update
+        # ERLocationData("BTS: Watchful Spirit - given by Hornsent Grandam when wearing the divine beast head after defeating Divine Beast Dancing Lion", "Watchful Spirit", key="200000,0:0000400721::", missable=True), #still needs update
+        # ERLocationData("BTS: Gourmet Scorpion Stew - given by Hornsent Grandam after defeating Messmer", "Gourmet Scorpion Stew", key="200000,0:0000400722::", missable=True), #still needs update
+        # ERLocationData("BTS: Gourmet Scorpion Stew - dropped by Hornsent Grandam after defeating Messmer, exhausting her dialogue, and reloading", "Gourmet Scorpion Stew", key="200000,0:0000400723::", missable=True), #still needs update
         ERLocationData("BTS/SF: Remembrance of the Dancing Lion - mainboss drop", "Remembrance of the Dancing Lion", key="200000,0:0000510400::", boss=True, deadend=True, remembrance=True),
         ERLocationData("BTS/BTS: Shadow Realm Rune [1] - to SE, behind statue", "Shadow Realm Rune [1]", key="200000,0:0020007000::"),
         ERLocationData("BTS/BTS: Fireproof Dried Liver - stairs to SE", "Fireproof Dried Liver", key="200000,0:0020007010::"),
@@ -3627,7 +3631,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK/: Scadutree Fragment - In front of a beheaded Marika statue right before the Dark Chamber Entrance", "Scadutree Fragment", key="210100,0:0021017500::", fragment=True),
         #ERLocationData("SK/: Impenetrable Thorns - On a corpse on a hidden platform near the end of the dungeon. After rotating the central fixture, climbing up the massive beast, and going outside past the stake of Marika, drop down carefully past the west ledge instead of going up the stairs towards Dark Chamber Entrance. Alternatively, come from Dark Chamber Entrance, down the stairs to the right, and drop off to the right.", "Impenetrable Thorns", key="210100,0:0021017510::", hidden=True),
     ],
-    "belurat_swamp":[ # belurat_swamp
+    "Belurat Swamp":[ # belurat_swamp
         #ERLocationData("BTS: Smithing Stone [2] x2 - On a corpse on the rooftop of a building sunk into the swamp to the southwest of the fallen tower, accessed by jumping from the roof of an adjacent building", "Smithing Stone [2] x2", key="200000,0:0020007210::"),
         #ERLocationData("BTS: Thin Beast Bones x8 - On a corpse in the southeast area of the swamp guarded by a poison Ulcerated Tree Spirit", "Thin Beast Bones x8", key="200000,0:0020007220::"),
         #ERLocationData("BTS: Sliver of Meat x2 - On a corpse in the southeast area of the swamp guarded by a poison Ulcerated Tree Spirit", "Sliver of Meat x2", key="200000,0:0020007230::"),
@@ -3970,7 +3974,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK/WR: Salza's Hood - Dropped by Fire Knight Salza at the west end of the West Rampart bridge", "Salza's Hood", key="210200,0:0021027991::"),
         #ERLocationData("SK/WR: Rain of Fire - Dropped by Fire Knight Salza at the west end of the West Rampart bridge", "Rain of Fire", key="210200,0:0021027991::"),
     ],
-    "Stone Coffin Fissure":[ # fissure
+    "Stone Coffin Fissure":[ # fissure                           will be done by Jambo
         #ERLocationData("SCF: St. Trina Disciple's Cookbook [3] - In the Garden of Deep Purple to St. Trina's right", "St. Trina Disciple's Cookbook [3]", key="220000,0:0000068840::", cookbook=True),
         #ERLocationData("SCF: St. Trina's Smile - Dropped by Thiollier after he invades you, after you die to St. Trina several times and tell him your findings", "St. Trina's Smile", key="220000,0:0000400632::", missable=True),
         #ERLocationData("SCF: St. Trina's Blossom - On St. Trina's corpse after defeating Promised Consort Radahn", "St. Trina's Blossom", key="220000,0:0000400740::", missable=True),
@@ -4003,7 +4007,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("FRM: High Priest Undergarments - Dropped by Count Ymir after he invades in Manus Metyr after defeating Metyr", "High Priest Undergarments", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
         #ERLocationData("FRM: Ymir's Bell Bearing - Dropped by Count Ymir after he invades in Manus Metyr after defeating Metyr", "Ymir's Bell Bearing", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
     ],
-    "Midra's Manse":[ # midramanse
+    "Midra's Manse":[ # midramanse                               will be done by Jambo
         #ERLocationData("MM/: Mad Craftsman's Cookbook [3] - On a corpse in a rat-filled room accessible by jumping from the rafters before the bridge which leads to Midra's library", "Mad Craftsman's Cookbook [3]", key="280000,0:0000068880::", cookbook=True),
         ERLocationData("MM/SFC: Remembrance of the Lord of Frenzied Flame - mainboss drop", "Remembrance of the Lord of Frenzied Flame", key="280000,0:0000510560::", boss=True, deadend=True, remembrance=True),
         #ERLocationData("MM/: Swollen Grape - On a corpse in a room to the right immediately after entering Midra's Manse, taking the stairs up to the first grace", "Swollen Grape", key="280000,0:0028007000::"),
