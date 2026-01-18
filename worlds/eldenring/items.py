@@ -2517,7 +2517,7 @@ _dlc_items = [
     ERItemData("Ancient Dragon's Blessing", 2002100, ERItemCategory.GOODS),
     ERItemData("Iris of Grace", 2002120, ERItemCategory.GOODS),
     ERItemData("Iris of Occultation", 2002130, ERItemCategory.GOODS),
-    ERItemData("Thiollier's Concoction", 2002140, ERItemCategory.GOODS),
+    ERItemData("Thiollier's Concoction", 2002140, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Prattling Pate \"Lamentation\"", 2002150, ERItemCategory.GOODS, skip=True),
     #remembrances
     ERItemData("Remembrance of the Wild Boar Rider", 2002900, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -2635,9 +2635,9 @@ _dlc_items = [
     ERItemData("Prayer Room Key", 2008036, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Tower of Shadow Message", 2008037, ERItemCategory.GOODS),
 
-    ERItemData("\"Incursion\" Painting", 2008200, ERItemCategory.GOODS),
-    ERItemData("\"The Sacred Tower\" Painting", 2008201, ERItemCategory.GOODS),
-    ERItemData("\"Domain of Dragons\" Painting", 2008202, ERItemCategory.GOODS),
+    ERItemData("\"Incursion\" Painting", 2008200, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("\"The Sacred Tower\" Painting", 2008201, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("\"Domain of Dragons\" Painting", 2008202, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
     ERItemData("Map: Gravesite Plain", 2008600, ERItemCategory.GOODS, skip=True),
     ERItemData("Map: Scadu Altus", 2008601, ERItemCategory.GOODS, skip=True),

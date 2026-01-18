@@ -787,7 +787,7 @@ class EldenRing(World):
         if self.options.enable_dlc:
             
             # not done dlc paintings
-            # self._add_location_rule("", "\"\" Painting")
+            self._add_location_rule("JP/JPM: Rock Heart - \"Domain of Dragons\" Painting reward, after first spirit spring head down return path", "\"Domain of Dragons\" Painting")
             # self._add_location_rule("", "\"\" Painting")
             # self._add_location_rule("", "\"\" Painting")
             
@@ -865,7 +865,6 @@ class EldenRing(World):
         else:
             "regions require all bosses dead"
             
-        
     def _key_rules(self) -> None: # MARK: SSK Rules
         # in order from early game to late game each rule needs to include the last count for an area
         
@@ -1652,10 +1651,26 @@ class EldenRing(World):
             "VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death"
         ], lambda state: ( self._can_get(state, "VM/AP: Rykard's Great Rune - mainboss drop") and state.has("Dancer's Castanets", self.player)))
         
-        if self.options.enable_dlc: # MARK: DLC NPC
+        # MARK: DLC NPC
+        
+        if self.options.enable_dlc: 
             
+            # MARK: Florissax
             
-            "guh"   
+            self._add_location_rule("JP/GADC: Ancient Dragon Florissax - give Thiollier's Concoction to Florissax", "Thiollier's Concoction")
+            
+            # MARK: Igon
+            
+            self._add_location_rule([
+                "JP/FJP: Igon's Greatbow - to E on Igon's corpse after JP mainboss",
+                "JP/FJP: Igon's Helm - to E on Igon's corpse after JP mainboss",
+                "JP/FJP: Igon's Armor - to E on Igon's corpse after JP mainboss",
+                "JP/FJP: Igon's Gauntlets - to E on Igon's corpse after JP mainboss",
+                "JP/FJP: Igon's Loincloth - to E on Igon's corpse after JP mainboss"
+            ], "Igon's Furled Finger")
+            
+
+ 
             
     def _add_remembrance_rules(self) -> None:
         """Adds rules for items obtainable for trading remembrances."""
@@ -1768,10 +1783,10 @@ class EldenRing(World):
             
         if self.options.enable_dlc:
             remembrances += dlc_remembrances
-            self._add_location_rule("JP/GADC: Bayle's Flame Lightning - Dragon Communion, Heart of Bayle", 
-                lambda state: (state.has("Heart of Bayle", self.player) and self._can_go_to(state, "Jagged Peak")))
+            self._add_location_rule("JP/GADC: Bayle's Flame Lightning - Dragon Communion, Heart of Bayle",
+                lambda state: (state.has("Heart of Bayle", self.player) and self._can_go_to(state, "Jagged Peak Foot")))
             self._add_location_rule("JP/GADC: Bayle's Tyranny - Dragon Communion, Heart of Bayle", 
-                lambda state: (state.has("Heart of Bayle", self.player) and self._can_go_to(state, "Jagged Peak")))
+                lambda state: (state.has("Heart of Bayle", self.player) and self._can_go_to(state, "Jagged Peak Foot")))
 
         for (remembrance, rem_items) in remembrances:
             self._add_location_rule([
