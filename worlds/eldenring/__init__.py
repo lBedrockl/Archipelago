@@ -373,22 +373,27 @@ class EldenRing(World):
         # Connect DLC Regions
         if self.options.enable_dlc: #WIP
             create_connection("Mohgwyn Palace", "Gravesite Plain")
-            create_connection("Gravesite Plain", "Fog Rift Catacombs")
+            
             create_connection("Gravesite Plain", "Belurat Gaol")
             create_connection("Gravesite Plain", "Belurat")
             create_connection("Belurat", "Belurat Swamp")
-            create_connection("Gravesite Plain", "Castle Ensis")
+            
             create_connection("Gravesite Plain", "Dragon's Pit")
             create_connection("Dragon's Pit", "Jagged Peak Foot")
             create_connection("Jagged Peak Foot", "Jagged Peak")
+            
             create_connection("Jagged Peak Foot", "Charo's Hidden Grave")
             create_connection("Charo's Hidden Grave", "Lamenter's Gaol (Entrance)")
             create_connection("Lamenter's Gaol (Entrance)", "Lamenter's Gaol (Upper)")
             create_connection("Lamenter's Gaol (Upper)", "Lamenter's Gaol (Lower)")
             
+            create_connection("Gravesite Plain", "Fog Rift Catacombs")
+            create_connection("Gravesite Plain", "Castle Ensis")
             create_connection("Castle Ensis", "Scadu Altus")
+            create_connection("Scadu Altus", "Fog Rift Fort")
             create_connection("Scadu Altus", "Bonny Gaol")
             create_connection("Scadu Altus", "Ruined Forge of Starfall Past")
+            
             create_connection("Scadu Altus", "Rauh Base")
             create_connection("Rauh Base", "Scorpion River Catacombs")
             create_connection("Rauh Base", "Taylew's Ruined Forge")
