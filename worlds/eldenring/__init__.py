@@ -393,6 +393,7 @@ class EldenRing(World):
             create_connection("Scadu Altus", "Fog Rift Fort")
             create_connection("Scadu Altus", "Bonny Gaol")
             create_connection("Scadu Altus", "Ruined Forge of Starfall Past")
+            create_connection("Scadu Altus", "Rauh Ruins Limited")
             
             create_connection("Scadu Altus", "Rauh Base")
             create_connection("Rauh Base", "Scorpion River Catacombs")
@@ -405,11 +406,17 @@ class EldenRing(World):
             create_connection("Cerulean Coast", "Finger Ruins of Rhia")
             
             create_connection("Scadu Altus", "Shadow Keep")
+            create_connection("Scadu Altus", "Shawdow Keep Church")
             create_connection("Shadow Keep", "Shadow Keep Storehouse")
-            create_connection("Shadow Keep", "Hinterland")
+            create_connection("Shawdow Keep Church", "Shawdow Keep Church Lower")
+            create_connection("Shawdow Keep Church Lower", "Scadutree Base")
+            
+            
+            create_connection("Shadow Keep Storehouse", "Scaduview")
+            create_connection("Scaduview", "Hinterland")
             create_connection("Hinterland", "Finger Ruins of Dheo")
             
-            create_connection("Shadow Keep", "Ancient Ruins of Rauh")
+            create_connection("Shadow Keep Storehouse", "Ancient Ruins of Rauh")
             create_connection("Ancient Ruins of Rauh", "Enir Ilim")
             
             create_connection("Shadow Keep", "Recluses' River")
@@ -790,19 +797,6 @@ class EldenRing(World):
         
         # DLC Rules
         if self.options.enable_dlc:
-            
-            # not done dlc paintings
-            self._add_location_rule("JP/JPM: Rock Heart - \"Domain of Dragons\" Painting reward, after first spirit spring head down return path", "\"Domain of Dragons\" Painting")
-            # self._add_location_rule("", "\"\" Painting")
-            # self._add_location_rule("", "\"\" Painting")
-            
-            # dlc imbued
-            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, 4))
-            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, 4))
-            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, 4))
-            # self._add_entrance_rule("DLC AREA", lambda state: state.has("Imbued Sword Key", self.player, 4))
-   
-   
             if self.options.late_dlc:
                 self._add_entrance_rule("Gravesite Plain",
                     lambda state: state.has("Rold Medallion", self.player)
@@ -817,9 +811,35 @@ class EldenRing(World):
                     lambda state: self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
                 
+            self.multiworld.register_indirect_condition(self.get_region("Ancient Ruins of Rauh"), self.get_entrance("Go To Rauh Ruins Limited"))
+            self.multiworld.register_indirect_condition(self.get_region("Shawdow Keep Church"), self.get_entrance("Go To Shawdow Keep Storehouse"))   
+            
             # MARK: DLC Rules
             
+            # dlc paintings
+            self._add_location_rule("JP/JPM: Rock Heart - \"Domain of Dragons\" Painting reward, after first spirit spring head down return path", "\"Domain of Dragons\" Painting")
+            # self._add_location_rule("", "\"\" Painting")
+            # self._add_location_rule("", "\"\" Painting")
+            
+            # dlc imbued
+            self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, 4))
+            self._add_entrance_rule("The Four Belfries (Nokron)", lambda state: state.has("Imbued Sword Key", self.player, 4))
+            self._add_entrance_rule("The Four Belfries (Farum Azula)", lambda state: state.has("Imbued Sword Key", self.player, 4))
+            self._add_entrance_rule("Rauh Ruins Limited", 
+                lambda state: state.has("Imbued Sword Key", self.player, 4) or self._can_go_to(state, "Ancient Ruins of Rauh"))
+            
+            # necklace
+            self._add_location_rule([
+                "FRR: Crimson Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center",
+                "FRD: Cerulean Seed Talisman +1 -use Hole-Laden Necklace at the hanging bell in the center"
+                ], "Hole-Laden Necklace")
+            
+   
+            # DLC region rules
+            
             self._add_entrance_rule("Belurat Swamp", "Well Depths Key")
+            
+            self._add_entrance_rule("Hinterland", "O Mother")
             
             # the funny gaol
             self._add_entrance_rule("Lamenter's Gaol (Upper)", "Gaol Upper Level Key")

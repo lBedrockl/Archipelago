@@ -197,6 +197,7 @@ region_order_dlc = [
     "Scadu Altus",
     "Bonny Gaol",
     "Ruined Forge of Starfall Past",
+    "Rauh Ruins Limited",
     
     "Rauh Base",
     "Scorpion River Catacombs",
@@ -212,6 +213,8 @@ region_order_dlc = [
     # Shadow Keep
     "Shadow Keep",
     "Shadow Keep Storehouse",
+    "Shawdow Keep Church",
+    "Shawdow Keep Church Lower",
     
     "Scadutree Base",
     
@@ -3566,7 +3569,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn", "Circlet of Light", key="200100,0:0020017981::", dlc_end=True),
         #ERLocationData("EI: Horned Warrior's Greatsword - Dropped by the Divine Bird Warrior before the Cleansing Chamber Anteroom", "Horned Warrior's Greatsword", key="200100,0:0020017991::"),
     ],
-    "shadowkeep_church_lower":[ #  shadowkeep_church_lower
+    "Shawdow Keep Church Lower":[ #  shadowkeep_church_lower
         #ERLocationData("SK: Battlefield Priest's Cookbook [1] - On a corpse on the balcony above the door leading to the elevator down to the Tree-Worship Passage, accessible after draining the water", "Battlefield Priest's Cookbook [1]", key="210000,0:0000068800::", cookbook=True),
         #ERLocationData("SK: Somber Smithing Stone [5] - On a corpse on the ground inside the tower with the draining lever in top, after draining the water", "Somber Smithing Stone [5]", key="210000,0:0021007550::"),
         #ERLocationData("SK: Well-Pickled Turtle Neck - On a corpse to the southwest of the cathedral with the big Marika statue, northwest of the Sunken Chapel grace, after draining the water", "Well-Pickled Turtle Neck", key="210000,0:0021007560::"),
@@ -3581,8 +3584,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK: Fire Knight's Seal - On a corpse behind a giant Marika statue in the cathedral, on the lower level after draining the water", "Fire Knight's Seal", key="210000,0:0021007650::"),
         #ERLocationData("SK: Rada Fruit x4 - On a corpse guarded by an Ulcerated Tree Spirit to the northeast of the cathedral with the giant Marika statue, on the ground after draining the water", "Rada Fruit x4", key="210000,0:0021007670::"),
         #ERLocationData("SK: String x6 - On a corpse guarded by an Ulcerated Tree Spirit to the northeast of the cathedral with the giant Marika statue, on the ground after draining the water", "String x6", key="210000,0:0021007680::"),
-        #ERLocationData("SK: Iris of Grace - In front of the beheaded Marika statue before the Tree-Worship Sanctum", "Iris of Grace", key="210000,0:0021007800::"),
-        #ERLocationData("SK: Marika's Rune - On a corpse behind the Tree-Worship Sanctum grace", "Marika's Rune", key="210000,0:0021007810::"),
+        ERLocationData("SK/TWS: Iris of Grace - to S by statue", "Iris of Grace", key="210000,0:0021007800::"),
+        ERLocationData("SK/TWS: Marika's Rune - by grace", "Marika's Rune", key="210000,0:0021007810::"),
         #ERLocationData("SK: Mantle of Thorns - Dropped by the Ulcerated Tree Spirit guarding the big tree after draining the water", "Mantle of Thorns", key="210000,0:0021007991::"),
         #ERLocationData("SK: Iris of Occultation - Dropped by the Ulcerated Tree Spirit northeast of the cathedral with the giant Marika statue", "Iris of Occultation", key="210000,0:0021007993::"),
         #ERLocationData("SK: Death Mask Helm - Dropped by Fire Knight Wego, who appears on the lower level of the cathedral with the giant Marika statue after draining the water", "Death Mask Helm", key="210000,0:0021007995::"),
@@ -3614,7 +3617,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK: Silver-Pickled Fowl Foot - On a corpse by the east corner of the flaming boat area next to the ladder which leads to the coffin", "Silver-Pickled Fowl Foot", key="210000,0:0021007190::"),
         #ERLocationData("SK: Rada Fruit - On a corpse in the flaming boat area in front of the boat to the southeast of the bridge leading to Specimen Storehouse", "Rada Fruit", key="210000,0:0021007200::"),
     ],
-    "shadowkeep_church":[ # shadowkeep_church
+    "Shawdow Keep Church":[ # shadowkeep_church
         #ERLocationData("SK: Fire Knight Queelign - Dropped by Queelign after giving him an Iris of Grace in the Prayer Room on the second level of the cathedral with the big Marika statue", "Fire Knight Queelign", key="210000,0:0000400690::", missable=True, exclusive=True),
         #ERLocationData("SK: Queelign's Greatsword - Dropped by Queelign after giving him an Iris of Occultation in the Prayer Room on the second level of the cathedral with the big Marika statue", "Queelign's Greatsword", key="210000,0:0000400692::", missable=True, exclusive=True),
         #ERLocationData("SK: Thin Beast Bones x4 - On a corpse snacked on by small crabs on the first rooftop after the Church District Entrance grace", "Thin Beast Bones x4", key="210000,0:0021007300::"),
@@ -5658,12 +5661,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RB: Fang Helm - Dropped by Red Bear in the Northern Nameless Mausoleum", "Fang Helm", key="614645,0:0000530900::", altboss=True, nocrawl=True, namelessmausoleum=True, overworldboss=True),
         #ERLocationData("RB: Spiraltree Seal - Painting reward from the Sacred Tower painting, in front of the artist on the southwest cliffside of the plateau with the Northern Nameless Mausoleum, only after burning the Sealing Tree", "Spiraltree Seal", key="614645,0:0000580410::", missable=True),
     ],
-    "rauhruins_limited":[ # rauhruins_limited
-        #ERLocationData("RR: Redflesh Mushroom - On a corpse behind a pillar in the east part of the East Ruins lowest level, which can be accessed from the Altus Belfry or jumping down from the pantheon at the bottom of the Grand Stairway", "Redflesh Mushroom", key="614646,0:2046467010::"),
-        #ERLocationData("RR: Beast Horn x2 - On a corpse along the northwest wall of the East Ruins lowest level, which can be accessed from the Altus Belfry or jumping down from the pantheon at the bottom of the Grand Stairway", "Beast Horn x2", key="614647,0:2046477160::"),
-        #ERLocationData("RR: Verdigris Discus - In front of a large ancient statue in the northeast part of the East Ruins lowest level, which can be accessed from the Altus Belfry or jumping down from the pantheon at the bottom of the Grand Stairway", "Verdigris Discus", key="614647,0:2046477720::", talisman=True, nocrawl=True),
+    "Rauh Ruins Limited":[ # rauhruins_limited                   done
+        ERLocationData("SA/ARR: Redflesh Mushroom - E side of imbued sword key area by pillar", "Redflesh Mushroom", key="614646,0:2046467010::"),
+        ERLocationData("SA/ARR: Beast Horn x2 - NW side of imbued sword key area on rock left of waterfall", "Beast Horn x2", key="614647,0:2046477160::"),
+        ERLocationData("SA/ARR: Verdigris Discus - NE side of imbued sword key area by altar", "Verdigris Discus", key="614647,0:2046477720::", talisman=True, nocrawl=True),
     ],
-        # random ass dlc location
     "Scadu Altus":[ # scadualtus
         #ERLocationData("SA: Lacerating Crossed-Tree - Given by Leda at Highroad Cross after invading Hornsent alongside her", "Lacerating Crossed-Tree", key="120500,0:0000400590::", missable=True, exclusive=True),
         #ERLocationData("SA: Retaliatory Crossed-Tree - Given by Leda at Highroad Cross after invading Ansbach alongside her", "Retaliatory Crossed-Tree", key="120500,0:0000400592::", missable=True, exclusive=True),
@@ -5674,7 +5676,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SA: Starlight Shards - In front of a stone astrolabe overlooking the entrance to Castle Ensis, only accessible by dropping down from Scadu Altus from a ledge behind the belfry. Don't drop onto the terrace directly. Instead, drop onto the west wall, stay on the wall as you traverse south, drop onto the outer ledge where the wall meets a tower, and then onto the grassy area behind it.", "Starlight Shards", key="614744,0:2047447730::"),
         #ERLocationData("SA: Carian Sorcery Sword - In a chest on the terrace above the Castle Ensis Checkpoint gate, only accessible by dropping down from Scadu Altus from a ledge behind the belfry", "Carian Sorcery Sword", key="614744,0:2047447820::", chest=True),
         #ERLocationData("SA: Grave Glovewort [4] - On a corpse in front of a grave overlooking lower Castle Ensis, accessed by dropping down from Scadu Altus starting from the cliffside near the Scadu Altus West grace, on the bank of the horseshoe-shaped river", "Grave Glovewort [4]", key="614744,0:2047457180::"),
-        #ERLocationData("SA: Smithing Stone [8] x9 - Dropped by the Troll Knight patrolling the horseshoe-shaped river north of Castle Ensis", "Smithing Stone [8] x9", key="614745,0:2047457700::"),
+        ERLocationData("SA/HC: Smithing Stone [8] x9 - enemy drop to NW down in river", "Smithing Stone [8] x9", key="614745,0:2047457700::"),
         #ERLocationData("SA: Larval Tear - Found at glowing blue spiritgraves south of the Church of the Crusade, only at night", "Larval Tear", key="614745,0:2047457800::", bluegraves=True),
         #ERLocationData("SA: Forager Brood Cookbook [4] - Given by a friendly Kindred of Rot on the cliffside north of the Church of the Crusade after healing it with a Warming Stone or Sunwarmth Stone and reloading the area, so long as Moore is alive and is not sad or upset at you", "Forager Brood Cookbook [4]", key="614746,0:0000068550::", cookbook=True, missable=True),
         #ERLocationData("SA: Shadow Sunflower x3 - Given by a friendly Kindred of Rot on the cliffside north of the Church of the Crusade after healing it with a Warming Stone or Sunwarmth Stone and reloading the area, so long as Moore is alive and is not sad or upset at you", "Shadow Sunflower x3", key="614746,0:0000400755::", missable=True),
@@ -5936,11 +5938,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("JP/JPM: Ancient Dragon Smithing Stone - up second spirit sping, to E", "Ancient Dragon Smithing Stone", key="615439,0:2053397000::"),
         ERLocationData("JP/JPM: Igon's Cookbook [2] - to NE", "Igon's Cookbook [2]", key="615440,0:0000068570::", cookbook=True),
     ],
-    "Finger Ruins of Rhia":[ # cerulean_rhia
-        #ERLocationData("CC/FRR: Finger-Weaver's Cookbook [1] - On a corpse in Finger-Weaver's Hovel, up the hill to the west from Rhia Ruins", "Finger-Weaver's Cookbook [1]", key="614938,0:0000068920::", cookbook=True),
-        ERLocationData("CC/FRR: Shadow Realm Rune [2] - to S, on corpse on beach", "Shadow Realm Rune [2]", key="615038,0:2050387000::"),
-        #ERLocationData("CC/FRR: Grave Glovewort [9] - On the giant coffin before the Rhia Ruins grace", "Grave Glovewort [9]", key="615038,0:2050387010::"),
-        #ERLocationData("CC/FRR: Crimson Seed Talisman +1 - Acquired by using the Hole-Laden Necklace at the hanging bell in the center", "Crimson Seed Talisman +1", key="615040,0:2050407000::", talisman=True, missable=True, nocrawl=True),
+    "Finger Ruins of Rhia":[ # cerulean_rhia                     done
+        ERLocationData("FRR/(FWH): Finger-Weaver's Cookbook [1] - in shack", "Finger-Weaver's Cookbook [1]", key="614938,0:0000068920::", cookbook=True),
+        ERLocationData("CC/FRR: Shadow Realm Rune [2] - to S on beach", "Shadow Realm Rune [2]", key="615038,0:2050387000::"),
+        ERLocationData("CC/FRR: Grave Glovewort [9] - to SW top of coffin boat", "Grave Glovewort [9]", key="615038,0:2050387010::"),
+        ERLocationData("FRR: Crimson Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center", "Crimson Seed Talisman +1", key="615040,0:2050407000::", talisman=True, missable=True, nocrawl=True),
     ],
     "Recluses' River":[ # scadualtus_recluse
         #ERLocationData("SA: Furnace Visage - On the remains of a Furnace Golem along the west edge of Castle Watering Hole", "Furnace Visage", key="614946,0:2049467520::"),
@@ -5995,44 +5997,44 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SA: Scadutree Fragment - Dropped by the west hippo in the pond below Recluses' River Downstream", "Scadutree Fragment", key="615144,0:2051447500::", enemyfragment=True),
         #ERLocationData("SA: Scadutree Fragment - Dropped by the east hippo in the pond below Recluses' River Downstream", "Scadutree Fragment", key="615144,0:2051447510::", enemyfragment=True),
     ],
-    "scaduview":[ # scaduview
+    "Scaduview":[ # scaduview                                    done
         ERLocationData("SV/SKBG: Remembrance of the Wild Boar Rider - mainboss drop", "Remembrance of the Wild Boar Rider", key="614948,0:0000510640::", boss=True, remembrance=True),
-        #ERLocationData("SV: Scadutree Fragment - In front of the beheaded Marika statue east of Shadow Keep Back Gate", "Scadutree Fragment", key="614948,0:2049487000::", fragment=True),
-        #ERLocationData("SV: Gaius's Greaves - Dropped by the Albinauric Archer by Albinauric Shack, by the west cliffside of the path to Scadutree Chalice", "Gaius's Greaves", key="614949,0:2049490900::"),
-        #ERLocationData("SV: Albinauric Bloodclot - Dropped by the Albinauric Archer by Albinauric Shack, by the west cliffside of the path to Scadutree Chalice", "Albinauric Bloodclot", key="614949,0:2049490900::"),
-        #ERLocationData("SV: Scadutree Fragment - In front of the Scadutree Chalice", "Scadutree Fragment", key="614949,0:2049497500::", fragment=True),
-        #ERLocationData("SV: Sharpshot Talisman - Inside Albinauric Shack, by the west cliffside of the path to Scadutree Chalice", "Sharpshot Talisman", key="614949,0:2049497510::"),
-        #ERLocationData("SV: Scadutree Fragment - In front of the Scadutree Chalice", "Scadutree Fragment", key="614949,0:2049497520::", fragment=True),
-        #ERLocationData("SV: Scadutree Fragment - In front of the Scadutree Chalice", "Scadutree Fragment", key="614949,0:2049497530::", fragment=True),
-        #ERLocationData("SV: Scadutree Fragment - In front of the Scadutree Chalice", "Scadutree Fragment", key="614949,0:2049497540::", fragment=True),
-        #ERLocationData("SV: Scadutree Fragment - In front of the Scadutree Chalice", "Scadutree Fragment", key="614949,0:2049497550::", fragment=True),
+        ERLocationData("SV/SKBG: Scadutree Fragment - to SE", "Scadutree Fragment", key="614948,0:2049487000::", fragment=True),
+        ERLocationData("SV/(AS): Gaius's Greaves - enemy drop by shack", "Gaius's Greaves", key="614949,0:2049490900::"),
+        ERLocationData("SV/(AS): Albinauric Bloodclot - enemy drop by shack", "Albinauric Bloodclot", key="614949,0:2049490900::"),
+        ERLocationData("SV/(SC): Scadutree Fragment 1 - by chalice", "Scadutree Fragment", key="614949,0:2049497500::", fragment=True),
+        ERLocationData("SV/(AS): Sharpshot Talisman - in shack", "Sharpshot Talisman", key="614949,0:2049497510::"),
+        ERLocationData("SV/(SC): Scadutree Fragment 2 - by chalice", "Scadutree Fragment", key="614949,0:2049497520::", fragment=True),
+        ERLocationData("SV/(SC): Scadutree Fragment 3 - by chalice", "Scadutree Fragment", key="614949,0:2049497530::", fragment=True),
+        ERLocationData("SV/(SC): Scadutree Fragment 4 - by chalice", "Scadutree Fragment", key="614949,0:2049497540::", fragment=True),
+        ERLocationData("SV/(SC): Scadutree Fragment 5 - by chalice", "Scadutree Fragment", key="614949,0:2049497550::", fragment=True),
     ],
     "scadualtus_high":[ # scadualtus_high
         #ERLocationData("SA: Scadutree Fragment - By Miquella's Cross at the Scaduview Cross grace, accessible from the sealed spiritspring below", "Scadutree Fragment", key="615043,0:2050437500::", cross=True),
     ],
-    "Hinterland":[ # hinterland
-        #ERLocationData("HL: Blessing of Marika - Dropped by the first Tree Sentinel in Hinterland", "Blessing of Marika", key="615047,0:0000530935::", altboss=True, nocrawl=True, overworldboss=True),
-        #ERLocationData("HL: Blessing of Marika - Dropped by the second Tree Sentinel in Hinterland", "Blessing of Marika", key="615048,0:0000530950::", altboss=True, nocrawl=True, overworldboss=True),
-        #ERLocationData("HL: Spellmachinist's Bell Bearing - On a corpse in the upper level of Rabbath's Rise, only accessible by dropping down from Shaman Village", "Spellmachinist's Bell Bearing", key="615146,0:2051467020::"),
-        #ERLocationData("HL: Shadow Sunflower x3 - On a corpse in a pile of junk along the south cliff wall southwest of the Fingerstone Hill grace", "Shadow Sunflower x3", key="615147,0:2051477010::"),
-        #ERLocationData("HL: Pearlescent Scale - On a corpse in a pile of junk along the south cliff wall southwest of the Fingerstone Hill grace", "Pearlescent Scale", key="615147,0:2051477020::"),
-        #ERLocationData("HL: Fingerprint Nostrum x2 - On a corpse in a pile of junk along the south cliff wall southwest of the Fingerstone Hill grace", "Fingerprint Nostrum x2", key="615147,0:2051477030::"),
-        #ERLocationData("HL: Minor Erdtree - On the sapling bathed in a golden glow in Shaman Village", "Minor Erdtree", key="615147,0:2051477500::"),
-        #ERLocationData("HL: Golden Braid - In front of a figured embedded inside a large barren tree at the top of Shaman Village", "Golden Braid", key="615147,0:2051477510::", talisman=True, nocrawl=True),
-        #ERLocationData("HL: Gravitational Missile - Dropped by Fallingstar Beast in the crater northeast of the Fingerstone Hill grace", "Gravitational Missile", key="615248,0:0000530960::", altboss=True, nocrawl=True, overworldboss=True),
-        #ERLocationData("HL: Fingercreeper Ashes - On a corpse in the colossal fingercreeper cave, accessed from a hole in the ground on the hill to the west of the far northeast Scaduview forest area", "Fingercreeper Ashes", key="615348,0:2053487000::"),
-        #ERLocationData("HL: Shadow Realm Rune [6] - On a corpse on a ledge visible from the far northeast Scaduview forest area, accessed from a hole in the ground on the hill to the west, passing through a cave with a colossal fingercreeper", "Shadow Realm Rune [6]", key="615348,0:2053487010::"),
+    "Hinterland":[ # hinterland                                  done
+        ERLocationData("HL/HL: Blessing of Marika - boss drop on hill", "Blessing of Marika", key="615047,0:0000530935::", altboss=True, nocrawl=True, overworldboss=True),
+        ERLocationData("HL/HL: Blessing of Marika - boss drop by bridge", "Blessing of Marika", key="615048,0:0000530950::", altboss=True, nocrawl=True, overworldboss=True),
+        ERLocationData("SA/(RR): Spellmachinist's Bell Bearing - very top of rise, drop down from HL/SV", "Spellmachinist's Bell Bearing", key="615146,0:2051467020::"),
+        ERLocationData("HL/HB: Shadow Sunflower x3 - to SE, down left of wall gravestones", "Shadow Sunflower x3", key="615147,0:2051477010::"),
+        ERLocationData("HL/HB: Pearlescent Scale - to SE, down left of wall gravestones", "Pearlescent Scale", key="615147,0:2051477020::"),
+        ERLocationData("HL/HB: Fingerprint Nostrum x2 - to SE, down left of wall gravestones", "Fingerprint Nostrum x2", key="615147,0:2051477030::"),
+        ERLocationData("HL/(SV): Minor Erdtree - by small erdtree", "Minor Erdtree", key="615147,0:2051477500::"),
+        ERLocationData("HL/(SV): Golden Braid - inside the big tree", "Golden Braid", key="615147,0:2051477510::", talisman=True, nocrawl=True),
+        ERLocationData("HL/FH: Gravitational Missile - boss drop to NE", "Gravitational Missile", key="615248,0:0000530960::", altboss=True, nocrawl=True, overworldboss=True),
+        ERLocationData("HL/FH: Fingercreeper Ashes - to E in the massive cave", "Fingercreeper Ashes", key="615348,0:2053487000::"),
+        ERLocationData("HL/FH: Shadow Realm Rune [6] - to E in the massive cave, on exit ledge", "Shadow Realm Rune [6]", key="615348,0:2053487010::"),
     ],
     "Scadutree Base":[ # scadutree_base                          done
-        ERLocationData("STB/TWS: Remembrance of the Shadow Sunflower - mainboss drop", "Remembrance of the Shadow Sunflower", key="615048,0:0000510620::", boss=True, deadend=True, remembrance=True),
-        ERLocationData("STB/TWS: Miquella's Great Rune - mainboss drop", "Miquella's Great Rune", key="615048,0:0000510620::", boss=True, deadend=True),
+        ERLocationData("SK/TWS: Remembrance of the Shadow Sunflower - mainboss drop", "Remembrance of the Shadow Sunflower", key="615048,0:0000510620::", boss=True, deadend=True, remembrance=True),
+        ERLocationData("SK/TWS: Miquella's Great Rune - mainboss drop", "Miquella's Great Rune", key="615048,0:0000510620::", boss=True, deadend=True),
     ],
     "scadualtus_miyr":[ # scadualtus_miyr
         #ERLocationData("SA/(CMM): Claws of Night - Dropped by Anna when she invades below Manus Metyr", "Claws of Night", key="615145,0:0000400672::", missable=True),
         #ERLocationData("SA/(CMM): Finger-Weaver's Cookbook [2] - On a corpse to the left of the hanging bell platform", "Finger-Weaver's Cookbook [2]", key="615146,0:0000068580::", cookbook=True),
     ],
     "Finger Ruins of Dheo":[ # hinterland_dheo
-        #ERLocationData("HL/FRD: Cerulean Seed Talisman +1 - Acquired by using the Hole-Laden Necklace at the hanging bell in the center", "Cerulean Seed Talisman +1", key="615346,0:2053467600::", talisman=True, nocrawl=True, missable=True),
+        ERLocationData("FRD: Cerulean Seed Talisman +1 -use Hole-Laden Necklace at the hanging bell in the center", "Cerulean Seed Talisman +1", key="615346,0:2053467600::", talisman=True, nocrawl=True, missable=True),
     ],
 }
 
