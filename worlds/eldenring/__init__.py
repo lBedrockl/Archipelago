@@ -405,13 +405,12 @@ class EldenRing(World):
             create_connection("Cerulean Coast", "Stone Coffin Fissure")
             create_connection("Cerulean Coast", "Finger Ruins of Rhia")
             
-            create_connection("Scadu Altus", "Shadow Keep")
             create_connection("Scadu Altus", "Shawdow Keep Church")
-            create_connection("Shadow Keep", "Shadow Keep Storehouse")
             create_connection("Shawdow Keep Church", "Shawdow Keep Church Lower")
             create_connection("Shawdow Keep Church Lower", "Scadutree Base")
             
-            
+            create_connection("Scadu Altus", "Shadow Keep")
+            create_connection("Shadow Keep", "Shadow Keep Storehouse")
             create_connection("Shadow Keep Storehouse", "Scaduview")
             create_connection("Scaduview", "Hinterland")
             create_connection("Hinterland", "Finger Ruins of Dheo")
@@ -1693,6 +1692,31 @@ class EldenRing(World):
                 "JP/FJP: Igon's Gauntlets - to E on Igon's corpse after JP mainboss",
                 "JP/FJP: Igon's Loincloth - to E on Igon's corpse after JP mainboss"
             ], "Igon's Furled Finger")
+            
+            # MARK: Queelign
+            
+            # his drops will always be one then the second no matter the region order, so require each other
+            self._add_location_rule(["BTS/SPA: Crusade Insignia - invader drop in NE courtyard"
+            ], lambda state: self._can_get(state, "SA/(CC): Prayer Room Key - invader drop"))
+            
+            self._add_location_rule([
+                "SA/(CC): Prayer Room Key - invader drop",
+                "SA/(CC): Ash of War: Flame Skewer - invader drop"
+            ], lambda state: self._can_get(state, "BTS/SPA: Crusade Insignia - invader drop in NE courtyard"))
+            
+            # MARK: Moore
+            
+            # friendly Kindred of Rot locations
+            "SA/CC: Forager Brood Cookbook [4] - N of CC, given by friendly Kindred of Rot after you heal it"
+            "SA/CC: Shadow Sunflower x3 - N of CC, given by friendly Kindred of Rot after you heal it"
+            
+            # MARK: Dane
+            
+            self._add_location_rule([
+                "SA/MR: Dane's Hat - challenge Dane with May the Best Win",
+                "SA/MR: Dryleaf Arts - challenge Dane with May the Best Win"
+            ], "May the Best Win")
+            
             
 
  
