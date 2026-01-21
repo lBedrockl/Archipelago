@@ -1710,6 +1710,12 @@ class EldenRing(World):
             "SA/CC: Forager Brood Cookbook [4] - N of CC, given by friendly Kindred of Rot after you heal it"
             "SA/CC: Shadow Sunflower x3 - N of CC, given by friendly Kindred of Rot after you heal it"
             
+            "SA/RFSP: Forager Brood Cookbook [1] - given by friendly Kindred of Rot NW of RFSP"
+            "SA/RFSP: Glintslab Firefly x3 - given by friendly Kindred of Rot NW of RFSP"
+            
+            "SA/MR: Forager Brood Cookbook [5] - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
+            "SA/MR: Pearlescent Scale - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
+            
             # MARK: Dane
             
             self._add_location_rule([
