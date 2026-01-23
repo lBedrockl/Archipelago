@@ -395,6 +395,9 @@ class EldenRing(World):
             create_connection("Scadu Altus", "Ruined Forge of Starfall Past")
             create_connection("Scadu Altus", "Rauh Ruins Limited")
             
+            create_connection("Scadu Altus", "Cathedral of Manus Metyr")
+            create_connection("Cathedral of Manus Metyr", "Finger Ruins of Miyr")
+            
             create_connection("Scadu Altus", "Rauh Base")
             create_connection("Rauh Base", "Scorpion River Catacombs")
             create_connection("Rauh Base", "Taylew's Ruined Forge")
@@ -405,9 +408,9 @@ class EldenRing(World):
             create_connection("Cerulean Coast", "Stone Coffin Fissure")
             create_connection("Cerulean Coast", "Finger Ruins of Rhia")
             
-            create_connection("Scadu Altus", "Shawdow Keep Church")
-            create_connection("Shawdow Keep Church", "Shawdow Keep Church Lower")
-            create_connection("Shawdow Keep Church Lower", "Scadutree Base")
+            create_connection("Scadu Altus", "Shawdow Keep, Church District")
+            create_connection("Shawdow Keep, Church District", "Shawdow Keep, Church District Lower")
+            create_connection("Shawdow Keep, Church District Lower", "Scadutree Base")
             
             create_connection("Scadu Altus", "Shadow Keep")
             create_connection("Shadow Keep", "Shadow Keep Storehouse")
@@ -839,6 +842,9 @@ class EldenRing(World):
             self._add_entrance_rule("Belurat Swamp", "Well Depths Key")
             
             self._add_entrance_rule("Hinterland", "O Mother")
+            
+            self._add_entrance_rule("Cathedral of Manus Metyr", lambda state: state.has("Hole-Laden Necklace", self.player) and 
+                self._can_go_to(state, "Finger Ruins of Rhia") and self._can_go_to(state, "Finger Ruins of Dheo"))
             
             # the funny gaol
             self._add_entrance_rule("Lamenter's Gaol (Upper)", "Gaol Upper Level Key")
@@ -1716,6 +1722,9 @@ class EldenRing(World):
             "SA/MR: Forager Brood Cookbook [5] - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
             "SA/MR: Pearlescent Scale - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
             
+            "SA/CDH: Forager Brood Cookbook [6] - given by friendly Kindred of Rot to NW above entrance to SKCD, in W corner"
+            "SA/CDH: Dewgem x3 - given by friendly Kindred of Rot to NW above entrance to SKCD, in W corner"
+            
             # MARK: Dane
             
             self._add_location_rule([
@@ -1723,9 +1732,41 @@ class EldenRing(World):
                 "SA/MR: Dryleaf Arts - challenge Dane with May the Best Win"
             ], "May the Best Win")
             
+            # MARK: Ymir
             
-
- 
+            self._add_location_rule([
+                "SA/(CMM): Glintstone Nail - Ymir shop after ringing one of the hanging bells",
+                "SA/(CMM): Glintstone Nails - Ymir shop after ringing one of the hanging bells"
+            ], lambda state: state.has("Hole-Laden Necklace", self.player) and 
+                (self._can_go_to(state, "Finger Ruins of Rhia") or self._can_go_to(state, "Finger Ruins of Dheo")))
+            
+            self._add_location_rule([
+                "SA/(CMM): Beloved Stardust - given by Ymir after ringing the hanging bell in FRR",
+                "SA/(CMM): Ruins Map (2nd) - given by Ymir after ringing the hanging bell in FRR"
+            ], lambda state: state.has("Hole-Laden Necklace", self.player) and 
+                self._can_go_to(state, "Finger Ruins of Rhia"))
+            
+            self._add_location_rule([
+                "SA/(CMM): Fleeting Microcosm - Ymir shop after ringing both hanging bells",
+                "SA/(CMM): Ruins Map (3rd) - given by Ymir after ringing both hanging bells"
+            ], lambda state: state.has("Hole-Laden Necklace", self.player) and 
+                self._can_go_to(state, "Finger Ruins of Rhia") and self._can_go_to(state, "Finger Ruins of Dheo"))
+            
+            self._add_location_rule([
+                "SA/CMM: Cherishing Fingers - in graveyard W of CMM after Ymir dead"
+            ], lambda state: self._can_get(state, "SA/(CMM): Maternal Staff - kill invader Ymir"))
+            
+            # MARK: Jolán
+            
+            self._add_location_rule([
+                "SA/CMM: Swordhand of Night Jolán - on Jolán after killing Ymir, give Iris of Grace before"
+            ], lambda state: state.has("Iris of Grace", self.player) and 
+                self._can_get(state, "SA/(CMM): Maternal Staff - kill invader Ymir"))
+            
+            self._add_location_rule([
+                "SA/(CMM): Sword of Night - on Jolán after killing Ymir, give Iris of Occultation before"
+            ], lambda state: state.has("Iris of Occultation", self.player) and 
+                self._can_get(state, "SA/(CMM): Maternal Staff - kill invader Ymir"))
             
     def _add_remembrance_rules(self) -> None:
         """Adds rules for items obtainable for trading remembrances."""

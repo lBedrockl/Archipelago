@@ -21,6 +21,8 @@ BIG TODO
 
 dragonbarrow needs to be DB/aa: not CL/aa:   and need to make sure each item in db is not cl item
 
+Split messmer kindling
+
 
 
 Ideas
@@ -49,8 +51,8 @@ Stonesword Master Keys
 
 
 
-last update 26/01/21
-current progress 4271 / 4915
+last update 26/01/22
+current progress 4342 / 4914
 
 
 people who want to be pinged for playtesting
@@ -84,4 +86,4 @@ people who want to be pinged for playtesting
 @boxgoblin @doubletindy @drakonn__ @deathbypudding
 @nailown @jeffreyzx @repulsivelettuce @ahhhreptar
 @gearfiveluffy01 @yasumikamino @bananaxd2000 @itsvax
-@windwafernow @tenrys
+@windwafernow @tenrys @dobrari
