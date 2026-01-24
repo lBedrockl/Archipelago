@@ -215,8 +215,10 @@ region_order_dlc = [
     # Shadow Keep
     "Shadow Keep",
     "Shadow Keep Storehouse",
-    "Shawdow Keep, Church District",
-    "Shawdow Keep, Church District Lower",
+    "Shadow Keep Storehouse Back",
+    "Shadow Keep, West Rampart",
+    "Shadow Keep, Church District",
+    "Shadow Keep, Church District Lower",
     
     "Scadutree Base",
     
@@ -640,16 +642,16 @@ class ERLocation(Location):
 # key="603945,0:0000540258::"
 # 603945 = the map id, m60_39_45_00
 
-# all regions that don't have a name were done by Bedrock
+# all regions that don't have a name were          done by Bedrock
 location_tables: Dict[str, List[ERLocationData]] = {
     # MARK: Base Game
-    "Stormveil Throne":[ # stormveil_throne                      done
+    "Stormveil Throne":[ # stormveil_throne                               done
         ERLocationData("SV/GG: Ancient Dragon Smithing Stone - Gostoc shop after finishing Nepheli and Kenneth Haight's quests", "Ancient Dragon Smithing Stone", key="100000,0:0000000000:100000,10009516:", missable=True, shop=True),
         ERLocationData("SV/GG: Ancient Dragon Smithing Stone - talk to Nepheli in SV after her and Kenneth's questlines", "Ancient Dragon Smithing Stone", key="100000,0:0000400422::", missable=True),
         ERLocationData("SV/GG: Stormhawk Axe - kill Nepheli", "Stormhawk Axe", key="100000,0:0000400421::", missable=True, death=True),
         ERLocationData("SV/LL: Shabriri Grape - from LL/LFC to E, inside by ghost", "Shabriri Grape", key="100000,0:0010007850::"),
     ],
-    "Stormveil Castle":[ # stormveil                             done
+    "Stormveil Castle":[ # stormveil                                      done
         ERLocationData("SV/SMG: Caestus - Gostoc shop, after main gate open", "Caestus", key="100000,0:0000000000:100000:", shop=True),
         ERLocationData("SV/SMG: Buckler - Gostoc shop, after main gate open", "Buckler", key="100000,0:0000000000:100000:", shop=True),
         ERLocationData("SV/SMG: Great Arrow x5 - Gostoc shop, after main gate open", "Great Arrow x5", key="100000,0:0000000000:100000:", shop=True),
@@ -771,7 +773,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/RT: Somber Smithing Stone [2] - shortcut elevator to SE, to N through door", "Somber Smithing Stone [2]", key="100000,0:0010007980::"),
         ERLocationData("SV/LC: Godskin Prayerbook - right chest behind imp statue in storeroom SE of massive courtyard", "Godskin Prayerbook", key="100000,0:0010007990::", chest=True), # 1
     ],
-    "Stormhill":[ # stormhill                                    done
+    "Stormhill":[ # stormhill                                             done
         ERLocationData("LG/SB: Exalted Flesh - help Alexander to S", "Exalted Flesh", key="130000,0:0000400170::", missable=True),
         ERLocationData("LG/SB: Warrior Jar Shard - kill Alexander to S", "Warrior Jar Shard", key="130000,0:0000400175::", missable=True, death=True),
         ERLocationData("LG/(WS): Beast Champion Helm - kill Bernahl", "Beast Champion Helm", key="130000,0:0000400294::", death=True),
@@ -820,7 +822,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/LC: Small Red Effigy - by colo door", "Small Red Effigy", key="604240,0:0000060250::"),
         ERLocationData("LG/DC: Lance Talisman - NE of DC", "Lance Talisman", key="604340,0:1043407010::", talisman=True, hidden=True, nocrawl=True),
     ],
-    "Stormveil Start":[ # stormveil_start                        done
+    "Stormveil Start":[ # stormveil_start                                 done
         ERLocationData("SV/CT: Talisman Pouch - boss drop", "Talisman Pouch", key="100000,0:0000060510::", boss=True),
         ERLocationData("SV/SC: Grace Mimic - talk to Gostoc in stalking spot, to SE and above SC grace", "Grace Mimic", key="100000,0:0000400050::", missable=True),
         ERLocationData("SV/SMG: Furlcalling Finger Remedy - down stairs to NE", "Furlcalling Finger Remedy", key="100000,0:0010007030::"),
@@ -842,7 +844,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/SC: St. Trina's Arrow x10 - on hole in outer wall middle of big long room", "St. Trina's Arrow x10", key="100000,0:0010007200::"),
         ERLocationData("SV/SC: Golden Rune [2] - on dropdown platform middle of big long room", "Golden Rune [2]", key="100000,0:0010007240::"),
     ],
-    "Limgrave":[ # limgrave                                      done
+    "Limgrave":[ # limgrave                                               done
         ERLocationData("LG/(SG): Tarnished's Furled Finger - beside grace", "Tarnished's Furled Finger", key="180000,0:0000060220::"),
         ERLocationData("LG/(SG): Finger Severer - beside grace", "Finger Severer", key="180000,0:0000060310::"),
 
@@ -1076,7 +1078,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/TCM: Ash of War: Sacred Blade - scarab N of TCM", "Ash of War: Sacred Blade", key="604639,0:0000540118::", scarab=True),
         # not random ERLocationData("LG: Spectral Steed Whistle - Given by Melina when you accept her accord", "Spectral Steed Whistle", key="999999,0:0000060100::"),
     ],
-    "Roundtable Hold":[ # roundtable                             done
+    "Roundtable Hold":[ # roundtable                                      done
         ERLocationData("RH: Rogier's Rapier - talk Rogier after beating SV mainboss or on his body after he dies", "Rogier's Rapier", key="100000,0:0000400358::", missable=True),
         ERLocationData("RH: O, Flame! - Fire Monks' Prayerbook", "O, Flame!", key="110000,0:0000000000:100350,100425,11109874,1037469305:", missable=True, incantations=True, shop=True),
         ERLocationData("RH: Surge, O Flame! - Fire Monks' Prayerbook", "Surge, O Flame!", key="110000,0:0000000000:100350,100425,11109874,1037469305:", missable=True, incantations=True, shop=True),
@@ -1262,7 +1264,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RH: Knifeprint Clue - talk to Fia multiple times", "Knifeprint Clue", key="120300,0:0000400334::", missable=True),
         ERLocationData("RH: Arsenal Charm - talk to Nepheli before and after defeating SV mainboss", "Arsenal Charm", key="100000,0:0000400420::", missable=True),
     ],
-    "Liurnia of The Lakes":[ # liurnia                           done
+    "Liurnia of The Lakes":[ # liurnia                                    done
         ERLocationData("LL/JB: Exalted Flesh x3 - given by Alexander after getting him unstuck with oil pots, just above JB", "Exalted Flesh x3", key="130000,0:0000400171::", missable=True),
         ERLocationData("LL/SeI: Volcano Manor Invitation - give Rya her necklace, you will need to buy the item from Boggart or reach altus", "Volcano Manor Invitation", key="160000,0:0000400090::", missable=True),
         ERLocationData("LL/JB: Hoslow's Petal Whip - on Diallos's body", "Hoslow's Petal Whip", key="160000,0:0000400451::", missable=True),
@@ -1609,7 +1611,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(CFT): Gavel of Haima - in chest atop tower, requires using Erudition gesture while wearing any Glintstone Crown", "Gavel of Haima", key="603948,0:1039487100::", rise=True, missable=True, chest=True),
         ERLocationData("LL/LHS: Treespear - to SE in caravan chest", "Treespear", key="604040,0:1040407000::", chest=True),
     ],
-    "Bellum Highway":[ # bellum                                  done
+    "Bellum Highway":[ # bellum                                           done
         ERLocationData("LL/BC: Nightrider Glaive - night boss drop S of BC", "Nightrider Glaive", key="603648,0:1036487400::", altboss=True, night=True, nocrawl=True, overworldboss=True),
         ERLocationData("LL/BC: Ash of War: Giant Hunt - night boss drop S of BC", "Ash of War: Giant Hunt", key="603648,0:1036487400::", altboss=True, night=True, nocrawl=True, overworldboss=True),
         ERLocationData("LL/BC: Rift Shield - Nomadic Merchant shop N of BC", "Rift Shield", key="603649,0:0000000000:100700:", raceshop=True, shop=True),
@@ -1647,13 +1649,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/GLD: Golden Rune [3] - to S on path below FFT", "Golden Rune [3]", key="603849,0:1038497040::"),
         ERLocationData("LL/(FFT): Howl of Shabriri - in chest near top of tower", "Howl of Shabriri", key="603849,0:1038497900::", chest=True),
     ],
-    "The Four Belfries (Chapel of Anticipation)":[ # chapel      done
+    "The Four Belfries (Chapel of Anticipation)":[ # chapel               done
         ERLocationData("LL/(TFB/CA): Ornamental Straight Sword - boss drop", "Ornamental Straight Sword", key="100100,0:0000510030::", altboss=True, miscboss=True),
         ERLocationData("LL/(TFB/CA): Golden Beast Crest Shield - boss drop", "Golden Beast Crest Shield", key="100100,0:0000510030::", altboss=True, miscboss=True),
         ERLocationData("LL/(TFB/CA): The Stormhawk King - top of church", "The Stormhawk King", key="100100,0:0010017010::"),
         ERLocationData("LL/(TFB/CA): Stormhawk Deenh - chest top of church", "Stormhawk Deenh", key="100100,0:0010017900::", chest=True),
     ],
-    "Altus Plateau":[ # altus                                    done
+    "Altus Plateau":[ # altus                                             done
         ERLocationData("AP/AHJ: Great Heal - Brother Corhyn shop to N by map pillar", "Great Heal", key="110000,0:0000000000:100350,1040529255:", missable=True, incantations=True, shop=True),
         ERLocationData("AP/AHJ: Lightning Fortification - Brother Corhyn shop to N by map pillar", "Lightning Fortification", key="110000,0:0000000000:100350,1040529255:", missable=True, incantations=True, shop=True),
         ERLocationData("AP/FSG: Discus of Light - Brother Corhyn shop FSG waygate", "Discus of Light", key="110000,0:0000000000:100350,1040549205:", missable=True, incantations=True, shop=True),
@@ -1888,7 +1890,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AP/HLT: Ash of War: Lightning Slash - scarab SE of HLT", "Ash of War: Lightning Slash", key="604353,0:0000540318::", scarab=True),
         ERLocationData("AP/HLT: Golden Rune [9] - SE of HLT by tent just before CO entrance", "Golden Rune [9]", key="604353,0:1043537000::"),
     ],
-    "Leyndell, Royal Capital":[ # leyndell                       done
+    "Leyndell, Royal Capital":[ # leyndell                                done
         ERLocationData("LRC|LAC/RC: Immutable Shield - Brother Corhyn shop after using Law of Regression and telling Goldmask", "Immutable Shield", key="110000,0:0000000000:100350,11009455:", missable=True, incantations=True, shop=True),
         ERLocationData("LRC/FMFF: Sanctified Whetblade - second floor where blacksmith sits", "Sanctified Whetblade", key="110000,0:0000065660::"),
         ERLocationData("LRC/LCC: Cracked Pot - down right sewer, to NE in upper room", "Cracked Pot", key="110000,0:0000066130::"),
@@ -2014,7 +2016,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LRC/LCC: Golden Seed - enemy drop down right sewer, to NE past upper room, middle of area", "Golden Seed", key="110000,0:0011007993::"),
         ERLocationData("LRC/AB: Lord's Rune - enemy drop to SE up stairs", "Lord's Rune", key="110000,0:0011007998::", hardenemy=True),
     ],
-    "Leyndell, Royal Capital Unmissable":[ #                     done
+    "Leyndell, Royal Capital Unmissable":[ #                              done
         ERLocationData("LRC|LAC/WCR: Holy Grease x3 - to SE, down sub branch before boss arena", "Holy Grease x3", key="110000,0:0011007890::"),
         ERLocationData("LRC|LAC/WCR: Golden Seed - seedtree to SE", "Golden Seed", key="110000,0:0011007990::", seedtree=True),
         ERLocationData("LRC|LAC/WCR: Smithing Stone [6] - to SE down stairs NW of seedtree on ledge", "Smithing Stone [6]", key="110000,0:0011007820::"),
@@ -2039,7 +2041,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LRC|LAC/AB: Soporific Grease x2 - up stairs, to NE past door, up stairs, to NW in corner", "Soporific Grease x2", key="110000,0:0011007430::"),
         ERLocationData("LRC|LAC/AB: Somber Smithing Stone [6] - up stairs, to NE past door, up stairs to NW down pit behind statue", "Somber Smithing Stone [6]", key="110000,0:0011007440::"),
     ],
-    "Leyndell, Royal Capital Throne":[ # leyndell_throne         done
+    "Leyndell, Royal Capital Throne":[ # leyndell_throne                  done
         ERLocationData("LRC/QB: Morgott's Great Rune - mainboss drop", "Morgott's Great Rune", key="110000,0:0000000173::", boss=True),
         ERLocationData("LRC/QB: Remembrance of the Omen King - mainboss drop", "Remembrance of the Omen King", key="110000,0:0000510040::", boss=True, remembrance=True),
         ERLocationData("LRC/WCR: Talisman Pouch - mainboss drop", "Talisman Pouch", key="110000,0:0000060520::", boss=True),
@@ -2053,10 +2055,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LRC/ES: Holy Grease x5 - to W down elevator, down stairs by tree", "Holy Grease x5", key="110000,0:0011007940::", missable=True),
         ERLocationData("LRC/ES: Bolt of Gransax - to W down elevator, on the big bolt", "Bolt of Gransax", key="110000,0:0011007997::", missable=True),
     ],
-    "Divine Bridge":[ # leyndell_divinebridge                    done
+    "Divine Bridge":[ # leyndell_divinebridge                             done
         ERLocationData("LRC|LAC/(DB): Blessed Dew Talisman - in chest", "Blessed Dew Talisman", key="110000,0:0011007994::", talisman=True, outoftheway=True, chest=True),
     ],
-    "Leyndell, Ashen Capital":[ # leyndell2                      done
+    "Leyndell, Ashen Capital":[ # leyndell2                               done
         ERLocationData("LAC/RC: Mending Rune of Perfect Order - on Goldmask's body", "Mending Rune of Perfect Order", key="110500,0:0000009500::", missable=True),
         ERLocationData("LAC/RC: Goldmask's Rags - on Goldmask's body", "Goldmask's Rags", key="110500,0:0000400500::", missable=True),
         ERLocationData("LAC/RC: Gold Bracelets - on Goldmask's body", "Gold Bracelets", key="110500,0:0000400500::", missable=True),
@@ -2075,10 +2077,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LAC/FL: Erdtree's Favor +2 - backtrack from forbidden lands, SW corner on branch", "Erdtree's Favor +2", key="110500,0:0011057100::", talisman=True, ambush=True),
         ERLocationData("LAC/LCA: Crimson Amber Medallion +2 - to S down manhole", "Crimson Amber Medallion +2", key="350000,0:0035007030::", talisman=True, outoftheway=True),
     ],
-    "Leyndell, Ashen Capital Throne":[ # leyndell2_throne        done
+    "Leyndell, Ashen Capital Throne":[ # leyndell2_throne                 done
         ERLocationData("LAC/QB: Remembrance of Hoarah Loux - mainboss drop", "Remembrance of Hoarah Loux", key="110500,0:0000510070::", boss=True, remembrance=True),
     ],
-    "Ainsel River":[ # ainsel_start                              done
+    "Ainsel River":[ # ainsel_start                                       done
         ERLocationData("AR/UPR: Prisoner Iron Mask - Hermit Merchant NW of UPR in temple", "Prisoner Iron Mask", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
         ERLocationData("AR/UPR: Prisoner Clothing - Hermit Merchant NW of UPR in temple", "Prisoner Clothing", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
         ERLocationData("AR/UPR: Prisoner Trousers - Hermit Merchant NW of UPR in temple", "Prisoner Trousers", key="120100,0:0000000000:100950:", raceshop=True, shop=True),
@@ -2127,7 +2129,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AR/UPR: Smithing Stone [1] x3 - NW of UPR down path over some rocks, on ledge", "Smithing Stone [1] x3", key="120100,0:0012017440::"),
         ERLocationData("AR/ARD: Great Ghost Glovewort - in chest after boss", "Great Ghost Glovewort", key="120100,0:0012017910::", chest=True),
     ],
-    "Lake of Rot":[ # lakeofrot                                  done
+    "Lake of Rot":[ # lakeofrot                                           done
         ERLocationData("LR/LRS: Map: Lake of Rot - to S", "Map: Lake of Rot", key="120100,0:0000062061::", map=True),
         ERLocationData("LR/GC: Nomadic Warrior's Cookbook [22] - in chest SW corner of LR within structure", "Nomadic Warrior's Cookbook [22]", key="120100,0:0000067890::"),
         ERLocationData("LR/LRS: Dragonscale Blade - boss drop", "Dragonscale Blade", key="120100,0:0000530600::", altboss=True, miscboss=True),
@@ -2158,7 +2160,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LR/GC: Golden Seed - enemy drop by rot waterfall", "Golden Seed", key="120100,0:0012017997::"),
         ERLocationData("LR/LRS: Alabaster Lord's Sword - enemy drop on top of the raised structure", "Alabaster Lord's Sword", key="120100,0:0012017999::"),
     ],
-    "Ainsel River Main":[ # ainsel                               done
+    "Ainsel River Main":[ # ainsel                                        done
         ERLocationData("NS/NWB: Discarded Palace Key - invader drop to SE, need Miniature Ranni", "Discarded Palace Key", key="120100,0:0000400159::", missable=True),
         ERLocationData("ARM/ARM: Miniature Ranni - to N after giving Ranni Fingerslayer Blade", "Miniature Ranni", key="120100,0:0000400394::", missable=True),
         ERLocationData("NS/NEC: Somber Smithing Stone [6] - scarab up stairs to W, on end stairs", "Somber Smithing Stone [6]", key="120100,0:0000540602::", scarab=True),
@@ -2206,7 +2208,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("NS/NEC: Nightmaiden & Swordstress Puppets - in chest behind imp statue to W up stairs, left before bridge", "Nightmaiden & Swordstress Puppets", key="120100,0:0012017990::", chest=True), #1
         ERLocationData("ARM/(UPR): Somber Smithing Stone [7] - enemy drop by 2 statues", "Somber Smithing Stone [7]", key="120100,0:0012017995::"),
     ],
-    "Siofra River":[ # siofra                                    done
+    "Siofra River":[ # siofra                                             done
         ERLocationData("SR/WW: Shotel - Abandoned Merchant to W in upper interior area", "Shotel", key="120200,0:0000000000:100925:", raceshop=True, shop=True),
         ERLocationData("SR/WW: Dwelling Arrow x30 - Abandoned Merchant to W in upper interior area", "Dwelling Arrow x30", key="120200,0:0000000000:100925:", raceshop=True, shop=True),
         ERLocationData("SR/WW: Soap x3 - Abandoned Merchant to W in upper interior area", "Soap x3", key="120200,0:0000000000:100925:", raceshop=True, shop=True),
@@ -2292,7 +2294,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SR/SRB: Preserving Boluses - to W on dam right room", "Preserving Boluses", key="120700,0:0012077170::"),
         ERLocationData("SR/SRWD: Silver-Pickled Fowl Foot x3 - on statue in ruins", "Silver-Pickled Fowl Foot x3", key="120700,0:0012077180::"),
     ],
-    "Nokron, Eternal City":[ # siofra_nokron                     done
+    "Nokron, Eternal City":[ # siofra_nokron                              done
         ERLocationData("NR/(NSG): Black Whetblade - upper interior by statues", "Black Whetblade", key="120200,0:0000065720::"),
         ERLocationData("NR/AFC: Missionary's Cookbook [5] - jump down to SE, on corpse", "Missionary's Cookbook [5]", key="120200,0:0000067630::", cookbook=True),
         ERLocationData("NR/(SA): Gargoyle's Greatsword - boss drop", "Gargoyle's Greatsword", key="120200,0:0000510100::", boss=True),
@@ -2350,7 +2352,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("NR/(NSG): Larval Tear - enemy drop lower interior", "Larval Tear", key="120200,0:0012027985::"),
         ERLocationData("NR/AW: Shining Horned Headband - enemy drop to NE in small ruin", "Shining Horned Headband", key="120200,0:0012027995::"),
     ],
-    "Deeproot Depths Boss":[ # deeproot_dream                    done
+    "Deeproot Depths Boss":[ # deeproot_dream                             done
         ERLocationData("DD/AR: Inseparable Sword - kill D Twin at NEC if you killed D, or at end of Fia's quest", "Inseparable Sword", key="120200,0:0000400348::", missable=True),
         #returned item ERLocationData("DD/AR: Twinned Helm - kill D Twin at NEC if you killed D, or at end of Fia quest", "Twinned Helm", key="120200,0:0000400348::", missable=True),
         #returned item ERLocationData("DD/AR: Twinned Armor - kill D Twin at NEC if you killed D, or at end of Fia quest", "Twinned Armor", key="120200,0:0000400348::", missable=True),
@@ -2361,7 +2363,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DD/PDT: Fia's Robe - kill Fia or after mainboss", "Fia's Robe", key="120300,0:0000400339::", missable=True),
         ERLocationData("DD/PDT: Remembrance of the Lichdragon - mainboss drop", "Remembrance of the Lichdragon", key="120300,0:0000510110::", deadend=True, boss=True, missable=True, remembrance=True),
     ],
-    "Nokron, Eternal City Start":[ # siofrabank_nokron           done
+    "Nokron, Eternal City Start":[ # siofrabank_nokron                    done
         ERLocationData("NR/NEC: Silver Tear Mask - boss drop", "Silver Tear Mask", key="120200,0:0000510340::", boss=True),
         ERLocationData("NR/NEC: Larval Tear x2 - boss drop", "Larval Tear x2", key="120200,0:0000510340::", boss=True),
         ERLocationData("NR/LG: Golden Rune [5] - entrance middle platform on ledge", "Golden Rune [5]", key="120700,0:0012077300::"),
@@ -2386,10 +2388,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("NR/NEC: Larval Tear - to E down stairs in structure", "Larval Tear", key="120700,0:0012077490::"),
         ERLocationData("NR/LG: Ghostflame Torch - jump to highest roof", "Ghostflame Torch", key="120700,0:0012077500::"),
     ],
-    "The Four Belfries (Nokron)":[ # siofra_limited              done
+    "The Four Belfries (Nokron)":[ # siofra_limited                       done
         ERLocationData("LL/(TFB/NEC): Mottled Necklace - on NW ledge", "Mottled Necklace", key="120200,0:0012027000::", talisman=True),
     ],
-    "Deeproot Depths":[ # deeproot                               done
+    "Deeproot Depths":[ # deeproot                                        done
         ERLocationData("DD/DD: Map: Deeproot Depths - path to NE in gazebo", "Map: Deeproot Depths", key="120300,0:0000062064::", map=True),
         ERLocationData("DD/AR: Fia's Mist - boss drop", "Fia's Mist", key="120300,0:0000510350::", altboss=True, miscboss=True),
         ERLocationData("DD/GWC: Ash of War: Golden Land - scarab to S", "Ash of War: Golden Land", key="120300,0:0000540660::", scarab=True),
@@ -2461,7 +2463,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DD/GWC: Staff of the Avatar - enemy drop to S", "Staff of the Avatar", key="120300,0:0012037960::"),
         ERLocationData("DD/DD: Prince of Death's Cyst - enemy drop path to NE, E of gazebo behind waterfall", "Prince of Death's Cyst", key="120300,0:0012037990::", enemytalisman=True),
     ],
-    "Deeproot Depths Upper":[ # deeproot_start                   done
+    "Deeproot Depths Upper":[ # deeproot_start                            done
         ERLocationData("DD/RFC: Formic Rock - on far SE ledge", "Formic Rock", key="120300,0:0012037020::"),
         ERLocationData("DD/RFC: Golden Rune [5] - on last platform of S area", "Golden Rune [5]", key="120300,0:0012037030::"),
         ERLocationData("DD/RFC: Golden Rune [8] - on upper root of S area", "Golden Rune [8]", key="120300,0:0012037040::"),
@@ -2471,10 +2473,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DD/RFC: Rune Arc - enemy drop to S", "Rune Arc", key="120300,0:0012037850::"),
         ERLocationData("DD/RFC: Numen's Rune - enemy drop to S", "Numen's Rune", key="120300,0:0012037850::"),
     ],
-    "Lake of Rot Boss":[ # ainsel_boss                           done
+    "Lake of Rot Boss":[ # ainsel_boss                                    done
         ERLocationData("LR: Remembrance of the Naturalborn - mainboss drop", "Remembrance of the Naturalborn", key="120400,0:0000510080::", boss=True, remembrance=True),
     ],
-    "Mohgwyn Palace":[ # mohgwyn                                 done
+    "Mohgwyn Palace":[ # mohgwyn                                          done
         ERLocationData("MP/(MDM): Festering Bloody Finger x10 - Imprisoned Merchant down first left in cave", "Festering Bloody Finger x10", key="120500,0:0000000000:100975:", raceshop=True, shop=True),
         ERLocationData("MP/(MDM): Rune Arc x3 - Imprisoned Merchant down first left in cave", "Rune Arc x3", key="120500,0:0000000000:100975:", raceshop=True, shop=True),
         ERLocationData("MP/(MDM): Stanching Boluses x3 - Imprisoned Merchant down first left in cave", "Stanching Boluses x3", key="120500,0:0000000000:100975:", raceshop=True, shop=True),
@@ -2536,7 +2538,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #inf ERLocationData("MP: Burred Bolt - Sold by Imprisoned Merchant in the cave with Sanguine Nobles before Dynasty Mausoleum Midpoint", "Burred Bolt", key="120500,3:0000000000:100975:", shop=True),
         #inf ERLocationData("MP: Bloodrose - Sold by Imprisoned Merchant in the cave with Sanguine Nobles before Dynasty Mausoleum Midpoint", "Bloodrose", key="120500,3:0000000000:100975:", shop=True),
     ],
-    "Farum Azula Main":[ # farumazula                            done
+    "Farum Azula Main":[ # farumazula                                     done
         ERLocationData("FA/DTL: Ancient Dragon Apostle's Cookbook [4] - to SE up right path, W of seedtree, far end of path in building", "Ancient Dragon Apostle's Cookbook [4]", key="130000,0:0000068020::", cookbook=True), # 2
         ERLocationData("FA/DTL: Shard of Alexander - fight Alexander to SW", "Shard of Alexander", key="130000,0:0000400174::", missable=True), # 2
         ERLocationData("FA/DTL: Alexander's Innards - fight Alexander to SW", "Alexander's Innards", key="130000,0:0000400174::", missable=True), # 2
@@ -2596,7 +2598,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FA/BGB: Malformed Dragon Gauntlets - enemy drop to SE", "Malformed Dragon Gauntlets", key="130000,0:0013007995::"),
         ERLocationData("FA/BGB: Malformed Dragon Greaves - enemy drop to SE", "Malformed Dragon Greaves", key="130000,0:0013007995::"),
     ],
-    "Mt. Gelmir":[ # gelmir                                      done
+    "Mt. Gelmir":[ # gelmir                                               done
         ERLocationData("MtG/FL: Jar - talk to Alexander S of FL", "Jar", key="130000,0:0000400172::", missable=True),
         ERLocationData("MtG/HS: Golden Rune [2] 1 - graveyard W of HS", "Golden Rune [2]", key="603552,0:1035527010::"),
         ERLocationData("MtG/HS: Golden Rune [4] - graveyard W of HS", "Golden Rune [4]", key="603552,0:1035527020::"),
@@ -2720,7 +2722,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MtG/(CSS): Golden Vow - in shack", "Golden Vow (Incantation)", key="603854,0:1038547050::"),
         ERLocationData("MtG/(CSS): Sacred Butchering Knife - invader drop", "Sacred Butchering Knife", key="603854,0:1038547700::"),
     ],
-    "Volcano Manor Drawing Room":[ #volcano_drawingroom          done
+    "Volcano Manor Drawing Room":[ #volcano_drawingroom                   done
         ERLocationData("VM/VM: Gelmir's Fury - Bernahl reward", "Gelmir's Fury", key="130000,0:0000400291::", missable=True),
         ERLocationData("VM/VM: Ash of War: Eruption - Bernahl shop after request 1", "Ash of War: Eruption", key="160000,0:0000000000:100075,16009208:", missable=True, shop=True),
         ERLocationData("VM/VM: Ash of War: Assassin's Gambit - Bernahl shop after request 1", "Ash of War: Assassin's Gambit", key="160000,0:0000000000:100075,16009208:", missable=True, shop=True),
@@ -2746,7 +2748,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("VM/VM: Fireproof Dried Liver - behind the illusory wall in the right room, down the stairs", "Fireproof Dried Liver", key="160000,0:0016007040::"),
         ERLocationData("VM/VM: Bloodhound Claws - enemy drop behind the illusory wall in the right room, down the stairs", "Bloodhound Claws", key="160000,0:0016007980::"),
     ],
-    "Farum Azula":[ # farumazula_start                           done
+    "Farum Azula":[ # farumazula_start                                    done
         ERLocationData("FA/DTT: Smithing-Stone Miner's Bell Bearing [4] - boss drop", "Smithing-Stone Miner's Bell Bearing [4]", key="130000,0:0000510140::", boss=True, upgradeshop=True, smithingbell=True),
         ERLocationData("FA/DTT: Ash of War: Black Flame Tornado - boss drop", "Ash of War: Black Flame Tornado", key="130000,0:0000510140::", boss=True, upgradeshop=True),
         ERLocationData("FA/MotG: Smithing Stone [8] - just after warping to FA", "Smithing Stone [8]", key="130000,0:0013007000::", missable=True),
@@ -2792,19 +2794,19 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FA/TFB: Glovewort Picker's Bell Bearing [3] - to SW down elevator, to E in gazebo", "Glovewort Picker's Bell Bearing [3]", key="130000,0:0013007910::", upgradeshop=True),
         ERLocationData("FA/CBG: Ancient Dragon Smithing Stone - enemy drop to W on slated graves", "Ancient Dragon Smithing Stone", key="130000,0:0013007991::"),
     ],
-    "The Four Belfries (Farum Azula)":[ # farumazula_limited     done
+    "The Four Belfries (Farum Azula)":[ # farumazula_limited              done
         ERLocationData("LL/(TFB/FA): Pearldrake Talisman - N side at the bottom", "Pearldrake Talisman", key="130000,0:0013007830::", talisman=True),
     ],
-    "Raya Lucaria Academy Library":[ # academy_library           done
+    "Raya Lucaria Academy Library":[ # academy_library                    done
         ERLocationData("RLA/RLGL: Shard Spiral - side with Sellen, sold in shop", "Shard Spiral", key="140000,0:0000000000:100050,14009267:", missable=True, exclusive=True, sorceries=True, shop=True),
         ERLocationData("RLA/RLGL: Witch's Glintstone Crown - side with either", "Witch's Glintstone Crown", key="140000,0:0000400107::", missable=True, exclusive=True),
         ERLocationData("RLA/RLGL: Ancient Dragon Smithing Stone - side with Jerren", "Ancient Dragon Smithing Stone", key="140000,0:0000400400::", missable=True, exclusive=True),
         ERLocationData("RLA/RLGL: Glintstone Kris - given by Sellen after siding with her", "Glintstone Kris", key="140000,0:0000400101::", missable=True, exclusive=True),
     ],
-    "Raya Lucaria Academy Chest":[ # academy_chest               done
+    "Raya Lucaria Academy Chest":[ # academy_chest                        done
         ERLocationData("RLA/RLGL: Dark Moon Ring - in chest, requires Discarded Palace Key", "Dark Moon Ring", key="140000,0:0000000114::", keyitem=True, chest=True),
     ],
-    "Raya Lucaria Academy Main":[ # academy_courtyard            done
+    "Raya Lucaria Academy Main":[ # academy_courtyard                     done
         ERLocationData("RLA: Great Rune of the Unborn - mainboss drop", "Great Rune of the Unborn", key="140000,0:0000000177::", boss=True, deadend=True),
         ERLocationData("RLA: Remembrance of the Full Moon Queen - mainboss drop", "Remembrance of the Full Moon Queen", key="140000,0:0000000197::", boss=True, deadend=True, remembrance=True),
         ERLocationData("RLA/DB: Cracked Pot - outside, to left up S stairs item 2", "Cracked Pot", key="140000,0:0000066120::"),
@@ -2842,7 +2844,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RLA/DB: Carian Knight's Shield - hostile npc drop after curved stairs", "Carian Knight's Shield", key="140000,0:0014007980::"),
         ERLocationData("RLA/DB: Golden Seed - seedtree outside to NW", "Golden Seed", key="140000,0:0014007990::", seedtree=True),
     ],
-    "Raya Lucaria Academy":[ # academy                           done
+    "Raya Lucaria Academy":[ # academy                                    done
         ERLocationData("RLA/SC: Memory Stone - boss drop", "Memory Stone", key="140000,0:0000060440::", boss=True),
         ERLocationData("RLA/DB: Glintstone Whetblade - outside, left up rubble then in room on railing", "Glintstone Whetblade", key="140000,0:0000065680::"),
         ERLocationData("RLA/SC: Ritual Pot - in chest to S, follow corridor, S in 4-way", "Ritual Pot", key="140000,0:0000066410::", chest=True),
@@ -2917,7 +2919,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #inf ERLocationData("RLA/MAG: Meteor Bolt - Isolated Merchant down SE ramp", "Meteor Bolt", key="603545,3:0000000000:100675:", shop=True),
         ERLocationData("RLA/MAG: Golden Seed - seedtree to NE", "Golden Seed", key="603546,0:1035467100::", seedtree=True, fortress=True),
     ],
-    "Academy Crystal Cave":[ # liurnia_academycave               done
+    "Academy Crystal Cave":[ # liurnia_academycave                        done
         ERLocationData("LL/(ACC): Terra Magica - in chest atop tower after boss", "Terra Magica", key="140000,0:0014007920::", chest=True),
         ERLocationData("LL/(ACC): Crystal Release - boss drop", "Crystal Release", key="310600,0:0000520380::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("LL/(ACC): Cuckoo Glintstone x5 - head SE from start of first room", "Cuckoo Glintstone x5", key="310600,0:0031067000::"),
@@ -2925,7 +2927,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(ACC): Crystal Staff - in chest behind illusory wall, left of storage room", "Crystal Staff", key="310600,0:0031067030::"),
         ERLocationData("LL/(ACC): Rune Arc - in chest in storage room", "Rune Arc", key="310600,0:0031067100::"),
     ],
-    "Elphael, Brace of the Haligtree":[ # haligtree_elphael      done by Kholkikos      these descriptions could be better
+    "Elphael, Brace of the Haligtree":[ # haligtree_elphael               done by Kholkikos      these descriptions could be better
         ERLocationData("EBH/HR: Malenia's Great Rune - mainboss drop", "Malenia's Great Rune", key="150000,0:0000000176::", boss=True, deadend=True),
         ERLocationData("EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area", "Unalloyed Gold Needle (Milicent)", key="150000,0:0000400321::", missable=True, exclusive=True),
         ERLocationData("EBH/EIW: Millicent's Prosthesis - invade Millicent or kill in altus", "Millicent's Prosthesis", key="150000,0:0000400323::", missable=True, exclusive=True, death=True),
@@ -2993,7 +2995,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("EBH/HR: Traveler's Manchettes - to S by the giant rot flower", "Traveler's Manchettes", key="150000,0:0015007980::"),
         ERLocationData("EBH/HR: Traveler's Boots - to S by the giant rot flower", "Traveler's Boots", key="150000,0:0015007980::"),
     ],
-    "Caelid":[ # caelid                                          done
+    "Caelid":[ # caelid                                                   done
         ERLocationData("CL/(CP): Prosthesis-Wearer Heirloom - give Millicent fixed needle", "Prosthesis-Wearer Heirloom", key="150000,0:0000400320::", missable=True),
         ERLocationData("CL/(SC): Nomadic Warrior's Cookbook [14] - on corpse", "Nomadic Warrior's Cookbook [14]", key="604640,0:0000067870::", cookbook=True),
         ERLocationData("CL/CHS: Golden Rune [1] 1 - graveyard to S", "Golden Rune [1]", key="604737,0:1047377000::"),
@@ -3213,7 +3215,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/RB: Drawstring Lightning Grease x2 - to W", "Drawstring Lightning Grease x2", key="604640,0:1046407060::"),
         ERLocationData("CL/(SC): Sacred Scorpion Charm - invader drop", "Sacred Scorpion Charm", key="604640,0:1046407700::", enemytalisman=True),
     ],
-    "Miquella's Haligtree":[ # haligtree                         done by Kholkikos      these descriptions could be better
+    "Miquella's Haligtree":[ # haligtree                                  done by Kholkikos      these descriptions could be better
         ERLocationData("MH/HTP: Loretta's War Sickle - boss drop", "Loretta's War Sickle", key="150000,0:0000510190::", boss=True),
         ERLocationData("MH/HTP: Loretta's Mastery - boss drop", "Loretta's Mastery", key="150000,0:0000510190::", boss=True),
         ERLocationData("MH/HC: Stonesword Key - to S behind waygate arrival location", "Stonesword Key", key="150000,0:0015007000::"),
@@ -3256,14 +3258,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MH/HTP: Hero's Rune [4] - to NE in the small rotunda by the elevator", "Hero's Rune [4]", key="150000,0:0015007390::"),
         ERLocationData("MH/HTP: Smithing Stone [8] - NE in the large rotunda by the elevator", "Smithing Stone [8]", key="150000,0:0015007400::"),
     ],
-    "Volcano Manor Entrance":[ #volcano                          done
+    "Volcano Manor Entrance":[ #volcano                                   done
         ERLocationData("VM/VM: Drawing-Room Key - join volcano manor", "Drawing-Room Key", key="160000,0:0000400072::", keyitem=True),
         ERLocationData("VM/VM: Letter to Patches - talk to Patches after request 1", "Letter to Patches", key="160000,0:0000400180::", missable=True),
         ERLocationData("VM/VM: Magma Whip Candlestick - Patches reward", "Magma Whip Candlestick", key="160000,0:0000400182::", missable=True),
         ERLocationData("VM/VM: Smithing Stone [6] - up the main stairs", "Smithing Stone [6]", key="160000,0:0016007000::"),
         ERLocationData("VM/VM: Ghiza's Wheel - invader drop up the main stairs", "Ghiza's Wheel", key="160000,0:0016007940::"),
     ],
-    "Murkwater Cave":[ # limgrave_murkwatercave                  done
+    "Murkwater Cave":[ # limgrave_murkwatercave                           done
         ERLocationData("LG/(MCV): Parrying Dagger - Patches shop", "Parrying Dagger", key="160000,0:0000000000:100100:", raceshop=True, shop=True),
         ERLocationData("LG/(MCV): Horse Crest Wooden Shield - Patches shop", "Horse Crest Wooden Shield", key="160000,0:0000000000:100100:", raceshop=True, shop=True),
         ERLocationData("LG/(MCV): Great Arrow x10 - Patches shop", "Great Arrow x10", key="160000,0:0000000000:100100:", raceshop=True, shop=True),
@@ -3287,7 +3289,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(MCV): Cloth Trousers - Patches chest", "Cloth Trousers", key="310000,0:0031007010::"),
         ERLocationData("LG/(MCV): Glass Shard x3 - Patches chest, after you've given the Dancer's Castanets to Tanith", "Glass Shard x3", key="310000,0:0031007030::", missable=True),
     ],
-    "Volcano Manor Upper":[ # volcano_temple                     done
+    "Volcano Manor Upper":[ # volcano_temple                              done
         ERLocationData("VM/AP: Rykard's Great Rune - mainboss drop", "Rykard's Great Rune", key="160000,0:0000000174::", boss=True, deadend=True),
         ERLocationData("VM/TE: Missionary's Cookbook [6] - E of shortcut elevator, inside lower part of tower in cell", "Missionary's Cookbook [6]", key="160000,0:0000067130::"),
         ERLocationData("VM/RLB: Consort's Mask - kill Tanith", "Consort's Mask", key="160000,0:0000400071::", missable=True, death=True),
@@ -3313,13 +3315,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("VM/RLB: Aspects of the Crucible: Breath - enemy drop, spawns after Tanith's death", "Aspects of the Crucible: Breath", key="160000,0:0016007950::", missable=True),
         ERLocationData("VM/TE: Somber Smithing Stone [7] - NW of shortcut elevator, after imp statue, lower part of big cage room outside to SW", "Somber Smithing Stone [7]", key="160000,0:0016007100::"), # 2
     ],
-    "Volcano Manor Dungeon":[ #                                  done
+    "Volcano Manor Dungeon":[ #                                           done
         ERLocationData("(VM)/SIC: Inquisitor's Girandole - boss drop, from RLA warp", "Inquisitor's Girandole", key="160000,0:0000510290::", altboss=True, miscboss=True),
         ERLocationData("(VM)/RLA: Smoldering Butterfly x5 - to E after warp", "Smoldering Butterfly x5", key="160000,0:0016007310::"),
         ERLocationData("(VM)/SIC: Smithing Stone [6] - to S by cage", "Smithing Stone [6]", key="160000,0:0016007550::"),
         ERLocationData("(VM)/SIC: Smithing Stone [4] - to S on the pillar", "Smithing Stone [4]", key="160000,0:0016007560::"),
     ],
-    "Volcano Manor":[ # volcano_town                             done
+    "Volcano Manor":[ # volcano_town                                      done
         ERLocationData("VM/GH: Godskin Stitcher - boss drop", "Godskin Stitcher", key="160000,0:0000510210::", boss=True),
         ERLocationData("VM/GH: Noble Presence - boss drop", "Noble Presence", key="160000,0:0000510210::", boss=True),
         ERLocationData("VM/PTC: Somber Smithing Stone [5] - scarab on NW lower rooftop", "Somber Smithing Stone [5]", key="160000,0:0000540590::", scarab=True),
@@ -3359,7 +3361,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("VM/PTC: Great Omenkiller Cleaver - enemy drop by corpse fire middle of town", "Great Omenkiller Cleaver", key="160000,0:0016007970::"),
         ERLocationData("VM/GH: Dragon Heart - enemy drop outside to E, ride elevator down, in cave", "Dragon Heart", key="160000,0:0016007999::"),
     ],
-    "Fringefolk Hero's Grave":[ # graveyard_grave                done
+    "Fringefolk Hero's Grave":[ # graveyard_grave                         done
         ERLocationData("LG/(FHG): Golden Seed - boss drop", "Golden Seed", key="180000,0:0000510280::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("LG/(FHG): Banished Knight Oleg - boss drop", "Banished Knight Oleg", key="180000,0:0000510280::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("LG/(FHG): Poisonbone Dart x5 - top of first ramp", "Poisonbone Dart x5", key="180000,0:0018007000::"),
@@ -3375,12 +3377,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: Elden Beast
-    "Erdtree":[ #erdtree                                         done
+    "Erdtree":[ #erdtree                                                  done
         ERLocationData("ET: Elden Remembrance - mainboss drop", "Elden Remembrance", key="190000,0:0000510230::", boss=True, end=True, remembrance=True),
     ],
     
     # MARK: Some DLC
-    "Belurat":[ # belurat                               done by Jambo         quest left
+    "Belurat":[ # belurat                                        done by Jambo         quest left
         ERLocationData("BTS/SPA: Crusade Insignia - invader drop in NE courtyard", "Crusade Insignia", key="200000,0:0000400694::", missable=True),
         # ERLocationData("BTS: Scorpion Stew - given by Hornsent Grandam after resting at a grace, having received the watchful spirit", "Scorpion Stew", key="200000,0:0000400720::", missable=True, death=True), #still needs update
         # ERLocationData("BTS: Watchful Spirit - given by Hornsent Grandam when wearing the divine beast head after defeating Divine Beast Dancing Lion", "Watchful Spirit", key="200000,0:0000400721::", missable=True), #still needs update
@@ -3433,7 +3435,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("BTS/BTS: Golden Horn Tender - enemy drop NE of shortcut elevator", "Golden Horn Tender", key="200000,0:0020007900::", enemyrevered=True),
         ERLocationData("BTS/BTS: Revered Spirit Ash - enemy drop NE of shortcut elevator", "Revered Spirit Ash", key="200000,0:0020007900::", enemyrevered=True),
     ],
-    "Shadow Keep Storehouse":[ # storehouse
+    "Shadow Keep Storehouse":[ # storehouse                      quests left
         #ERLocationData("SK/: Message from Leda - By any Miquella's Cross after defeating Messmer", "Message from Leda", key="200000,0:0000580600::"),
         #ERLocationData("SK/: Ansbach's Longbow - Dropped by Leda after invading her alongside Ansbach", "Ansbach's Longbow", key="210100,0:0000400595::", missable=True, exclusive=True),
         #ERLocationData("SK/: Leda's Rune - Dropped by Leda after invading her alongside Ansbach", "Leda's Rune", key="210100,0:0000400595::", missable=True, exclusive=True),
@@ -3441,47 +3443,49 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SK/: Letter for Freyja - Given by Ansbach on the first floor after talking to Freyja on the seventh floor", "Letter for Freyja", key="210100,0:0000400620::", missable=True),
         ERLocationData("SK/DCE: Remembrance of the Impaler - mainboss drop", "Remembrance of the Impaler", key="210100,0:0000510460::", boss=True, deadend=True, remembrance=True),
         ERLocationData("SK/DCE: Messmer's Kindling - mainboss drop", "Messmer's Kindling", key="210100,0:0000510460::", boss=True, deadend=True),
-        #ERLocationData("SK/: Fireproof Pickled Liver - On a corpse on the first floor to the right of the beast after the grace", "Fireproof Pickled Liver", key="210100,0:0021017000::"),
-        #ERLocationData("SK/: Rune Arc - On a corpse on the first floor in the room before the elevator down to West Rampart", "Rune Arc", key="210100,0:0021017010::"),
-        #ERLocationData("SK/: Revered Spirit Ash - On top of the beast in front of the first floor grace, accessed by jumping from the wooden table in front of the grace", "Revered Spirit Ash", key="210100,0:0021017020::", revered=True),
-        #ERLocationData("SK/: Ember of Messmer x2 - On a corpse under stairs on the first floor, found by going clockwise around the beast from the first grace and going down the short flight of stairs", "Ember of Messmer x2", key="210100,0:0021017030::"),
-        #ERLocationData("SK/: Fire Coil - On a corpse on the first floor, going up the two short flights of stairs after the grace and following the right wall under a second-floor bridge to a bookshelf against the wall", "Fire Coil", key="210100,0:0021017040::"),
-        #ERLocationData("SK/: Hefty Beast Bone x3 - On a corpse on the first floor in front a table displaying a skeleton in the room where Ansbach can be found, accessed by going up the two short flights of stairs after the grace and going around the bookcase to the north", "Hefty Beast Bone x3", key="210100,0:0021017050::"),
-        #ERLocationData("SK/: Smithing Stone [8] x5 - On a corpse in a nook of bookshelves on the first floor, accessed by going up the two short flights of stairs after the grace, following the rows of bookshelves all the way to the northwest wall, then heading southwest from there", "Smithing Stone [8] x5", key="210100,0:0021017060::"),
-        #ERLocationData("SK/: Black Pyrefly x4 - On a corpse on the second floor, found on the west wall after taking the stairs up from the first floor", "Black Pyrefly x4", key="210100,0:0021017070::"),
-        #ERLocationData("SK/: Beast Horn x4 - On a corpse on the second floor found in an bookshelf alcove on the northeast wall guarded by a Fire Knight", "Beast Horn x4", key="210100,0:0021017080::"),
-        #ERLocationData("SK/: Smithing Stone [5] x3 - On the wooden bridges before the second floor, following them all the way to the southwest where a shadow commoner is staring at the beast specimen to the northwest. This walkway runs parallel to the back section entrance.", "Smithing Stone [5] x3", key="210100,0:0021017090::"),
-        #ERLocationData("SK/: Boltdrake Talisman +3 - On a corpse on the first floor in the hidden area to the southwest. It can be accessed by dropping down from the second floor, either from the main section or back section, or by following a very narrow path to the right of the first grace.", "Boltdrake Talisman +3", key="210100,0:0021017100::", talisman=True),
-        #ERLocationData("SK/: Beast Horn - On a corpse guarded by a Fire Knight on the third floor, in the room reached by going counterclockwise around the edge from the second floor", "Beast Horn", key="210100,0:0021017110::"),
-        #ERLocationData("SK/: Pearldrake Talisman +3 - On the giant horned specimen's horns, accessible from the third floor balcony after rotating the central fixture", "Pearldrake Talisman +3", key="210100,0:0021017120::"),
-        #ERLocationData("SK/: Blessed Bone Shard - On a corpse slumped in front of a large book pile on the third floor, reached by going clockwise around the edge from the second floor", "Blessed Bone Shard", key="210100,0:0021017130::"),
-        #ERLocationData("SK/: Furlcalling Finger Remedy - On a corpse on the third floor, on the wooden bridge to the south side of the floor", "Furlcalling Finger Remedy", key="210100,0:0021017140::"),
-        #ERLocationData("SK/: Dueling Shield - On a corpse in the room with no doors below a hanging beast on the third floor, accessed from the wooden bridge which leads to the south side of the floor, jumping over the balcony and crossing over buttresses to the southeast", "Dueling Shield", key="210100,0:0021017150::"),
-        #ERLocationData("SK/: Lump of Flesh x2 - On a corpse in the teardrop-shaped room on the south side of the third floor, past the wooden bridge", "Lump of Flesh x2", key="210100,0:0021017160::"),
-        #ERLocationData("SK/: Beast Horn x4 - On a corpse in the room on the south side of the third floor with a Fire Knight patrolling around the bookshelves in the center, past the wooden bridge", "Beast Horn x4", key="210100,0:0021017170::"),
-        #ERLocationData("SK/: Storehouse Cross Message - By Miquella's Cross at the Storehouse Fourth Floor grace", "Storehouse Cross Message", key="210100,0:0021017180::"),
-        #ERLocationData("SK/: Scadutree Fragment - By Miquella's Cross at the Storehouse Fourth Floor grace", "Scadutree Fragment", key="210100,0:0021017200::", cross=True),
-        #ERLocationData("SK/: Stormhawk Feather x3 - On a corpse outside and to the right after the Fourth Floor grace", "Stormhawk Feather x3", key="210100,0:0021017300::"),
-        #ERLocationData("SK/: Black Pyrefly x4 - On a corpse to the right of the stairs past the flaming boat area after the Fourth Floor grace", "Black Pyrefly x4", key="210100,0:0021017310::"),
-        #ERLocationData("SK/: Shadow Realm Rune [5] - On a corpse outside after the Fourth Floor grace, accessed by traversing to the south side of the tower, descending the stone stairs, and checking behind the stairs", "Shadow Realm Rune [5]", key="210100,0:0021017320::"),
-        #ERLocationData("SK/: Holyproof Pickled Liver - On a corpse on the fourth floor, accessed by going outside after the Fourth Floor grace, traversing to the south side of the tower, descending the stone stairs, and going back into the storehouse, against the wall to the left", "Holyproof Pickled Liver", key="210100,0:0021017330::"),
-        #ERLocationData("SK/: Secret Rite Scroll - On the fourth floor, accessed by going outside after the Fourth Floor grace, traversing to the south side of the tower, descending the stone stairs, and going back into the storehouse, behind a bookshelf to the right", "Secret Rite Scroll", key="210100,0:0021017340::"),
-        #ERLocationData("SK/: Redflesh Mushroom x6 - On a corpse being eaten by a bat outside after the Fourth Floor grace, accessed by traversing all the way counterclockwise around the tower", "Redflesh Mushroom x6", key="210100,0:0021017350::"),
-        #ERLocationData("SK/: Ember of Messmer x3 - On a corpse guarded by bats outside after the Fourth Floor grace, accessed by traversing all the way counterclockwise around the tower", "Ember of Messmer x3", key="210100,0:0021017360::"),
-        #ERLocationData("SK/: Smithing Stone [6] x2 - On a corpse against a wall on the fifth floor, reached by going all the way clockwise around the edge (inside the storehouse)", "Smithing Stone [6] x2", key="210100,0:0021017400::"),
-        #ERLocationData("SK/: Fire Coil x2 - On a corpse on the fifth floor behind a bookshelf to the right of where you enter from the bat section outside", "Fire Coil x2", key="210100,0:0021017410::"),
-        #ERLocationData("SK/: Smithing Stone [7] x3 - On a corpse on the fifth floor in the room before the stairs up to the sixth floor, with an animal skeleton with large antlers on a table, against the south wall", "Smithing Stone [7] x3", key="210100,0:0021017420::"),
-        #ERLocationData("SK/: Silver-Pickled Fowl Foot - On a corpse on stairs between the fifth floor and the sixth floor", "Silver-Pickled Fowl Foot", key="210100,0:0021017430::"),
-        #ERLocationData("SK/: Spirit Calculus - On a corpse in front of a bookshelf on the sixth floor in the room below the Seventh Floor grace, at the top of the stairs from the fifth floor", "Spirit Calculus", key="210100,0:0021017440::"),
-        #ERLocationData("SK/: Sliver of Meat x2 - On a corpse on a ledge outside of the room with the Seventh Floor grace", "Sliver of Meat x2", key="210100,0:0021017450::"),
-        #ERLocationData("SK/: Revered Spirit Ash - On top of a hanging beast which can be jumped to from a balcony on the seventh floor", "Revered Spirit Ash", key="210100,0:0021017460::", revered=True, outoftheway=True),
-        #ERLocationData("SK/: Ember of Messmer x5 - On a corpse on the sixth floor in front of the lever that rotates the central fixture, slightly to the left", "Ember of Messmer x5", key="210100,0:0021017470::"),
-        #ERLocationData("SK/: Shadow Realm Rune [5] - On a corpse on the sixth floor to the right of the lever that rotates the central fixture", "Shadow Realm Rune [5]", key="210100,0:0021017480::"),
-        #ERLocationData("SK/: Ember of Messmer x3 - On a corpse on the eighth floor, in a room through a doorway opposite from the Dark Chamber Entrance", "Ember of Messmer x3", key="210100,0:0021017490::"),
-        #ERLocationData("SK/: Scadutree Fragment - In front of a beheaded Marika statue right before the Dark Chamber Entrance", "Scadutree Fragment", key="210100,0:0021017500::", fragment=True),
-        #ERLocationData("SK/: Impenetrable Thorns - On a corpse on a hidden platform near the end of the dungeon. After rotating the central fixture, climbing up the massive beast, and going outside past the stake of Marika, drop down carefully past the west ledge instead of going up the stairs towards Dark Chamber Entrance. Alternatively, come from Dark Chamber Entrance, down the stairs to the right, and drop off to the right.", "Impenetrable Thorns", key="210100,0:0021017510::", hidden=True),
+        ERLocationData("SK/SFiF: Fireproof Pickled Liver - to E in left corner", "Fireproof Pickled Liver", key="210100,0:0021017000::"),
+        ERLocationData("SK/SFiF: Rune Arc - to NW in room leading down", "Rune Arc", key="210100,0:0021017010::"),
+        ERLocationData("SK/SFiF: Revered Spirit Ash - on top of beast", "Revered Spirit Ash", key="210100,0:0021017020::", revered=True),
+        ERLocationData("SK/SFiF: Ember of Messmer x2 - down left path, under stair arch", "Ember of Messmer x2", key="210100,0:0021017030::"),
+        ERLocationData("SK/SFiF: Fire Coil - E corner of upper bottom floor", "Fire Coil", key="210100,0:0021017040::"),
+        ERLocationData("SK/SFiF: Hefty Beast Bone x3 - NE room of upper bottom floor", "Hefty Beast Bone x3", key="210100,0:0021017050::"),
+        ERLocationData("SK/SFiF: Smithing Stone [8] x5 - NW corner of upper bottom floor", "Smithing Stone [8] x5", key="210100,0:0021017060::"),
+        ERLocationData("SK/SFiF: Black Pyrefly x4 - W side of second floor", "Black Pyrefly x4", key="210100,0:0021017070::"),
+        ERLocationData("SK/SFiF: Beast Horn x4 - middle of second floor under stairs", "Beast Horn x4", key="210100,0:0021017080::"),
+        ERLocationData("SK/SFiF: Smithing Stone [5] x3 - on second floor SW bridge", "Smithing Stone [5] x3", key="210100,0:0021017090::"),
+        ERLocationData("SK/SFiF: Boltdrake Talisman +3 - to E in room down path", "Boltdrake Talisman +3", key="210100,0:0021017100::", talisman=True),
+        ERLocationData("SK/SFiF: Beast Horn - SW room of third floor", "Beast Horn", key="210100,0:0021017110::"),
+        ERLocationData("SK/SFiF: Pearldrake Talisman +3 - on center specimens horns after they get moved, on third floor", "Pearldrake Talisman +3", key="210100,0:0021017120::"),
+        ERLocationData("SK/SFiF: Blessed Bone Shard - S side of third floor", "Blessed Bone Shard", key="210100,0:0021017130::"),
+        ERLocationData("SK/SFiF: Furlcalling Finger Remedy - on SW bridge of third floor", "Furlcalling Finger Remedy", key="210100,0:0021017140::"),
+        ERLocationData("SK/SFiF: Dueling Shield - SE of SW bridge of third floor", "Dueling Shield", key="210100,0:0021017150::"),
+        ERLocationData("SK/SFiF: Lump of Flesh x2 - across SW bridge of third floor, in S corner room", "Lump of Flesh x2", key="210100,0:0021017160::"),
+        ERLocationData("SK/SFiF: Beast Horn x4 - across SW bridge of third floor, by balcony", "Beast Horn x4", key="210100,0:0021017170::"),
+        ERLocationData("SK/SFoF: Storehouse Cross Message - by cross", "Storehouse Cross Message", key="210100,0:0021017180::"),
+        ERLocationData("SK/SFoF: Scadutree Fragment - by cross", "Scadutree Fragment", key="210100,0:0021017200::", cross=True),
+        ERLocationData("SK/SFoF: Stormhawk Feather x3 - outside to right", "Stormhawk Feather x3", key="210100,0:0021017300::"),
+        ERLocationData("SK/SFoF: Black Pyrefly x4 - outside by flaming boats", "Black Pyrefly x4", key="210100,0:0021017310::"),
+        ERLocationData("SK/SFoF: Shadow Realm Rune [5] - outside, down stairs, beside stairs", "Shadow Realm Rune [5]", key="210100,0:0021017320::"),
+        ERLocationData("SK/SFoF: Holyproof Pickled Liver - outside, down stairs back inside, by wall", "Holyproof Pickled Liver", key="210100,0:0021017330::"),
+        ERLocationData("SK/SFoF: Secret Rite Scroll - outside, down stairs back inside, on table", "Secret Rite Scroll", key="210100,0:0021017340::"),
+        ERLocationData("SK/SFoF: Redflesh Mushroom x6 - outside, NE end of outer walkway", "Redflesh Mushroom x6", key="210100,0:0021017350::"),
+        ERLocationData("SK/SFoF: Ember of Messmer x3 - outside, NE end of outer walkway, by ledge", "Ember of Messmer x3", key="210100,0:0021017360::"),
+        ERLocationData("SK/SFoF: Smithing Stone [6] x2 - after outer walkway, left in dead-end", "Smithing Stone [6] x2", key="210100,0:0021017400::"),
+        ERLocationData("SK/SFoF: Fire Coil x2 - after outer walkway, on right by bookshelf", "Fire Coil x2", key="210100,0:0021017410::"),
+        ERLocationData("SK/SFoF: Smithing Stone [7] x3 - after outer walkway, to right, on right after skinny walkway", "Smithing Stone [7] x3", key="210100,0:0021017420::"),
+        ERLocationData("SK/SSF: Silver-Pickled Fowl Foot - downstairs on lower stairs", "Silver-Pickled Fowl Foot", key="210100,0:0021017430::"),
+        ERLocationData("SK/SSF: Spirit Calculus - downstairs in SW room", "Spirit Calculus", key="210100,0:0021017440::"),
+        ERLocationData("SK/SSF: Sliver of Meat x2 - to NE between stairs", "Sliver of Meat x2", key="210100,0:0021017450::"),
+        ERLocationData("SK/SSF: Revered Spirit Ash - to E on beast", "Revered Spirit Ash", key="210100,0:0021017460::", revered=True, outoftheway=True),
+        ERLocationData("SK/SSF: Ember of Messmer x5 - downstairs to SW, by left wall", "Ember of Messmer x5", key="210100,0:0021017470::"),
+        ERLocationData("SK/SSF: Shadow Realm Rune [5] - downstairs to SW, by lever", "Shadow Realm Rune [5]", key="210100,0:0021017480::"),
+        ERLocationData("SK/DCE: Ember of Messmer x3 - downstairs, inside to SE", "Ember of Messmer x3", key="210100,0:0021017490::"),
+        ERLocationData("SK/DCE: Scadutree Fragment - downstairs by statue", "Scadutree Fragment", key="210100,0:0021017500::", fragment=True),
+        ERLocationData("SK/DCE: Impenetrable Thorns - downstairs, outside to S down on hidden platform", "Impenetrable Thorns", key="210100,0:0021017510::", hidden=True),
+        ERLocationData("SK/DCE: Winged Serpent Helm - enemy drop downstairs outside", "Winged Serpent Helm", key="210100,0:0021017991::"),
+        ERLocationData("SK/DCE: Ash of War: Flame Spear - enemy drop downstairs outside", "Ash of War: Flame Spear", key="210100,0:0021017991::"),
     ],
-    "Belurat Swamp":[ # belurat_swamp                            will be done by Jambo
+    "Belurat Swamp":[ # belurat_swamp                                     will be done by Jambo
         #ERLocationData("BTS: Smithing Stone [2] x2 - On a corpse on the rooftop of a building sunk into the swamp to the southwest of the fallen tower, accessed by jumping from the roof of an adjacent building", "Smithing Stone [2] x2", key="200000,0:0020007210::"),
         #ERLocationData("BTS: Thin Beast Bones x8 - On a corpse in the southeast area of the swamp guarded by a poison Ulcerated Tree Spirit", "Thin Beast Bones x8", key="200000,0:0020007220::"),
         #ERLocationData("BTS: Sliver of Meat x2 - On a corpse in the southeast area of the swamp guarded by a poison Ulcerated Tree Spirit", "Sliver of Meat x2", key="200000,0:0020007230::"),
@@ -3575,28 +3579,28 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn", "Circlet of Light", key="200100,0:0020017981::", dlc_end=True),
         #ERLocationData("EI: Horned Warrior's Greatsword - Dropped by the Divine Bird Warrior before the Cleansing Chamber Anteroom", "Horned Warrior's Greatsword", key="200100,0:0020017991::"),
     ],
-    "Shawdow Keep, Church District Lower":[ #  shadowkeep_church_lower
-        #ERLocationData("SK: Battlefield Priest's Cookbook [1] - On a corpse on the balcony above the door leading to the elevator down to the Tree-Worship Passage, accessible after draining the water", "Battlefield Priest's Cookbook [1]", key="210000,0:0000068800::", cookbook=True),
-        #ERLocationData("SK: Somber Smithing Stone [5] - On a corpse on the ground inside the tower with the draining lever in top, after draining the water", "Somber Smithing Stone [5]", key="210000,0:0021007550::"),
-        #ERLocationData("SK: Well-Pickled Turtle Neck - On a corpse to the southwest of the cathedral with the big Marika statue, northwest of the Sunken Chapel grace, after draining the water", "Well-Pickled Turtle Neck", key="210000,0:0021007560::"),
-        #ERLocationData("SK: Crab Eggs x2 - On a corpse being consumed by a small crab on the southeast wall of the Church District after draining the water, east of the Sunken Chapel grace", "Crab Eggs x2", key="210000,0:0021007570::"),
-        #ERLocationData("SK: Ghost Glovewort [1] - On a corpse being eaten by two small crabs to the east of the Sunken Chapel grace, straight south from the big tree, after draining the water", "Ghost Glovewort [1]", key="210000,0:0021007580::"),
-        #ERLocationData("SK: Somber Smithing Stone [5] - On a corpse next to the big tree after draining the water", "Somber Smithing Stone [5]", key="210000,0:0021007590::"),
-        #ERLocationData("SK: Shadow Realm Rune [5] - On a corpse being consumed by a congregation of crabs on the lower level of the building directly northeast of the Church District Entrance grace, after draining the water", "Shadow Realm Rune [5]", key="210000,0:0021007600::"),
-        #ERLocationData("SK: Kukri x6 - On a corpse on the lower level of the square building with half its roof missing in the north corner of the drained Church District", "Kukri x6", key="210000,0:0021007610::"),
-        #ERLocationData("SK: Smithing Stone [4] x4 - On a corpse on the lower level of the square building with half its roof missing in the north corner of the drained Church District", "Smithing Stone [4] x4", key="210000,0:0021007620::"),
-        #ERLocationData("SK: Crab Eggs x2 - On a corpse between two buttresses to the northeast of the cathedral with the giant Marika statue, on the ground after draining the water", "Crab Eggs x2", key="210000,0:0021007630::"),
-        #ERLocationData("SK: Shadow Sunflower x3 - On a corpse in the south corner of the lower level of the cathedral with the big Marika statue, after draining the water", "Shadow Sunflower x3", key="210000,0:0021007640::"),
-        #ERLocationData("SK: Fire Knight's Seal - On a corpse behind a giant Marika statue in the cathedral, on the lower level after draining the water", "Fire Knight's Seal", key="210000,0:0021007650::"),
-        #ERLocationData("SK: Rada Fruit x4 - On a corpse guarded by an Ulcerated Tree Spirit to the northeast of the cathedral with the giant Marika statue, on the ground after draining the water", "Rada Fruit x4", key="210000,0:0021007670::"),
-        #ERLocationData("SK: String x6 - On a corpse guarded by an Ulcerated Tree Spirit to the northeast of the cathedral with the giant Marika statue, on the ground after draining the water", "String x6", key="210000,0:0021007680::"),
+    "Shawdow Keep, Church District Lower":[ # shadowkeep_church_lower     done
+        ERLocationData("SK/SC: Battlefield Priest's Cookbook [1] - in right wing of church above on balcony", "Battlefield Priest's Cookbook [1]", key="210000,0:0000068800::", cookbook=True),
+        ERLocationData("SK/SC: Somber Smithing Stone [5] - to W inside tower", "Somber Smithing Stone [5]", key="210000,0:0021007550::"),
+        ERLocationData("SK/SC: Well-Pickled Turtle Neck - to NW in corner", "Well-Pickled Turtle Neck", key="210000,0:0021007560::"),
+        ERLocationData("SK/SC: Crab Eggs x2 - far to E", "Crab Eggs x2", key="210000,0:0021007570::"),
+        ERLocationData("SK/SC: Ghost Glovewort [1] - just outside to E", "Ghost Glovewort [1]", key="210000,0:0021007580::"),
+        ERLocationData("SK/SC: Somber Smithing Stone [5] - by big tree front of church", "Somber Smithing Stone [5]", key="210000,0:0021007590::"),
+        ERLocationData("SK/SC: Shadow Realm Rune [5] - middle of lower rectangle roof to NE", "Shadow Realm Rune [5]", key="210000,0:0021007600::"),
+        ERLocationData("SK/SC: Kukri x6 - upper N courtyard, in building on right", "Kukri x6", key="210000,0:0021007610::"),
+        ERLocationData("SK/SC: Smithing Stone [4] x4 - upper N courtyard, in building on left", "Smithing Stone [4] x4", key="210000,0:0021007620::"),
+        ERLocationData("SK/SC: Crab Eggs x2 - upper N courtyard, between arches", "Crab Eggs x2", key="210000,0:0021007630::"),
+        ERLocationData("SK/SC: Shadow Sunflower x3 - in S corner of church", "Shadow Sunflower x3", key="210000,0:0021007640::"),
+        ERLocationData("SK/SC: Fire Knight's Seal - behind statue in church", "Fire Knight's Seal", key="210000,0:0021007650::"),
+        ERLocationData("SK/SC: Rada Fruit x4 - upper N courtyard, SW side", "Rada Fruit x4", key="210000,0:0021007670::"),
+        ERLocationData("SK/SC: String x6 - upper N courtyard, middle", "String x6", key="210000,0:0021007680::"),
         ERLocationData("SK/TWS: Iris of Grace - to S by statue", "Iris of Grace", key="210000,0:0021007800::"),
         ERLocationData("SK/TWS: Marika's Rune - by grace", "Marika's Rune", key="210000,0:0021007810::"),
-        #ERLocationData("SK: Mantle of Thorns - Dropped by the Ulcerated Tree Spirit guarding the big tree after draining the water", "Mantle of Thorns", key="210000,0:0021007991::"),
-        #ERLocationData("SK: Iris of Occultation - Dropped by the Ulcerated Tree Spirit northeast of the cathedral with the giant Marika statue", "Iris of Occultation", key="210000,0:0021007993::"),
-        #ERLocationData("SK: Death Mask Helm - Dropped by Fire Knight Wego, who appears on the lower level of the cathedral with the giant Marika statue after draining the water", "Death Mask Helm", key="210000,0:0021007995::"),
+        ERLocationData("SK/SC: Mantle of Thorns - enemy drop by big tree front of church", "Mantle of Thorns", key="210000,0:0021007991::"),
+        ERLocationData("SK/SC: Iris of Occultation - enemy drop in upper N courtyard", "Iris of Occultation", key="210000,0:0021007993::"),
+        ERLocationData("SK/SC: Death Mask Helm - enemy drop in front of statue in church", "Death Mask Helm", key="210000,0:0021007995::"),
     ],
-    "Shadow Keep":[ # shadowkeep                        leda quest
+    "Shadow Keep":[ # shadowkeep                             leda quest
         #ERLocationData("SK: Leda's Rune - Dropped by Leda after invading her alongside Hornsent in the flaming boat area", "Leda's Rune", key="210000,0:0000400594::", missable=True, exclusive=True),
         #ERLocationData("SK: Ash of War: Swift Slash - Dropped by Leda after invading her alongside Hornsent in the flaming boat area", "Ash of War: Swift Slash", key="210000,0:0000400594::", missable=True, exclusive=True),
         ERLocationData("SK/SKMG: Aspects of the Crucible: Thorns - boss drop", "Aspects of the Crucible: Thorns", key="210000,0:0000510440::", boss=True, enemyfragment=True),
@@ -3623,24 +3627,24 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SK/MGP: Silver-Pickled Fowl Foot - to SE, to right at top of stairs, by ladder", "Silver-Pickled Fowl Foot", key="210000,0:0021007190::"),
         ERLocationData("SK/MGP: Rada Fruit - to SE, to right at top of stairs, by flaming boat", "Rada Fruit", key="210000,0:0021007200::"),
     ],
-    "Shawdow Keep, Church District":[ # shadowkeep_church
-        #ERLocationData("SK: Fire Knight Queelign - Dropped by Queelign after giving him an Iris of Grace in the Prayer Room on the second level of the cathedral with the big Marika statue", "Fire Knight Queelign", key="210000,0:0000400690::", missable=True, exclusive=True),
-        #ERLocationData("SK: Queelign's Greatsword - Dropped by Queelign after giving him an Iris of Occultation in the Prayer Room on the second level of the cathedral with the big Marika statue", "Queelign's Greatsword", key="210000,0:0000400692::", missable=True, exclusive=True),
-        #ERLocationData("SK: Thin Beast Bones x4 - On a corpse snacked on by small crabs on the first rooftop after the Church District Entrance grace", "Thin Beast Bones x4", key="210000,0:0021007300::"),
-        #ERLocationData("SK: Strip of White Flesh x2 - On a corpse snacked on by a small crab on the first rooftop after the Church District Entrance grace", "Strip of White Flesh x2", key="210000,0:0021007310::"),
-        #ERLocationData("SK: Great Grave Glovewort - On a corpse only reachable before draining the water, crossing floating tree branches southwest of the first rooftop after the Church District Entrance grace", "Great Grave Glovewort", key="210000,0:0021007320::", missable=True),
-        #ERLocationData("SK: Fireproof Pickled Liver - On a corpse munched up by a small crab on the second rooftop after the Church District Entrance grace, where messmerfire putrid corpses spawn", "Fireproof Pickled Liver", key="210000,0:0021007330::"),
-        #ERLocationData("SK: Ember of Messmer x3 - On a corpse on the third rooftop after the Church District Entrance grace where the Fire Knight patrols", "Ember of Messmer x3", key="210000,0:0021007340::"),
-        #ERLocationData("SK: Slumbering Egg - On a corpse on the third rooftop after the Church District Entrance grace past where the Fire Knight patrols", "Slumbering Egg", key="210000,0:0021007350::"),
-        #ERLocationData("SK: Stormhawk Feather x3 - On a corpse on the upper rafters of the cathedral with the giant Marika statue in it, accessed by dropping down from the rooftop above and carefully jumping across to the northwest rafters", "Stormhawk Feather x3", key="210000,0:0021007360::"),
-        #ERLocationData("SK: Lightningproof Pickled Liver - On a corpse getting consumed by a crab on the second floor of the cathedral with the giant Marika statue in it, by the south corner, not far from Queelign's prayer room", "Lightningproof Pickled Liver", key="210000,0:0021007370::"),
-        #ERLocationData("SK: Rune of an Unsung Hero - On a corpse on the second floor of the cathedral with the giant Marika statue in it, through a doorway along the southwest wall, not far from Queelign's prayer room", "Rune of an Unsung Hero", key="210000,0:0021007380::"),
-        #ERLocationData("SK: Ember of Messmer x2 - On a corpse on the second floor of the cathedral with the giant Marika statue in it, in the semicircular hallway with the patrolling Fire Knights", "Ember of Messmer x2", key="210000,0:0021007390::"),
-        #ERLocationData("SK: Scadutree Fragment - On the left hand of the giant Marika statue in the cathedral, accessible from the second floor. For utmost safety, drain the water first.", "Scadutree Fragment", key="210000,0:0021007400::", fragment=True),
-        #ERLocationData("SK: Hefty Beast Bone x3 - On a corpse in an alcove with two bats before the ladder which goes up to the draining lever", "Hefty Beast Bone x3", key="210000,0:0021007410::"),
-        #ERLocationData("SK: Crab Eggs x2 - On a corpse on the first rooftop after the Church District Entrance grace with no small crabs attending to it", "Crab Eggs x2", key="210000,0:0021007420::"),
+    "Shawdow Keep, Church District":[ # shadowkeep_church                 done
+        ERLocationData("SK/CDE: Fire Knight Queelign - on Queelign, give Iris of Grace, in room with door", "Fire Knight Queelign", key="210000,0:0000400690::", missable=True, exclusive=True),
+        ERLocationData("SK/CDE: Queelign's Greatsword - on Queelign, give Iris of Occultation, in room with door", "Queelign's Greatsword", key="210000,0:0000400692::", missable=True, exclusive=True),
+        ERLocationData("SK/CDE: Thin Beast Bones x4 - down back right of first roof", "Thin Beast Bones x4", key="210000,0:0021007300::"),
+        ERLocationData("SK/CDE: Strip of White Flesh x2 - down left side of first roof", "Strip of White Flesh x2", key="210000,0:0021007310::"),
+        ERLocationData("SK/CDE: Great Grave Glovewort - to SW across floating logs", "Great Grave Glovewort", key="210000,0:0021007320::", missable=True),
+        ERLocationData("SK/CDE: Fireproof Pickled Liver - to NW after first roof by wall", "Fireproof Pickled Liver", key="210000,0:0021007330::"),
+        ERLocationData("SK/CDE: Ember of Messmer x3 - to NW backside of second roof", "Ember of Messmer x3", key="210000,0:0021007340::"),
+        ERLocationData("SK/CDE: Slumbering Egg - to NW left side of second roof behind spire", "Slumbering Egg", key="210000,0:0021007350::"),
+        ERLocationData("SK/CDE: Stormhawk Feather x3 - on upper arches in main church building", "Stormhawk Feather x3", key="210000,0:0021007360::"),
+        ERLocationData("SK/CDE: Lightningproof Pickled Liver - just below hole after dropping into church", "Lightningproof Pickled Liver", key="210000,0:0021007370::"),
+        ERLocationData("SK/CDE: Rune of an Unsung Hero - after dropping into church, to NW in left room", "Rune of an Unsung Hero", key="210000,0:0021007380::"),
+        ERLocationData("SK/CDE: Ember of Messmer x2 - in curved corridor near statue", "Ember of Messmer x2", key="210000,0:0021007390::"),
+        ERLocationData("SK/CDE: Scadutree Fragment - on the statue hand in church", "Scadutree Fragment", key="210000,0:0021007400::", fragment=True),
+        ERLocationData("SK/CDE: Hefty Beast Bone x3 - in dead-end near water lever", "Hefty Beast Bone x3", key="210000,0:0021007410::"),
+        ERLocationData("SK/CDE: Crab Eggs x2 - down right on first roof", "Crab Eggs x2", key="210000,0:0021007420::"),
     ],
-    "Gravesite Plain":[ # gravesite                              will be done by Legofacebob
+    "Gravesite Plain":[ # gravesite                                       will be done by Legofacebob
         #ERLocationData("GP: Cross Map - Given by Hornsent at Three-Path Cross or Highroad Cross", "Cross Map", key="210100,0:0000400610::", missable=True),
         #ERLocationData("GP: Furnace Visage x3 - Given by Hornsent after giving him Scorpion Stew", "Furnace Visage x3", key="210100,0:0000400612::", missable=True),
         #ERLocationData("GP: Ghost Glovewort [4] - On a corpse in front of the southmost gravestone in the cliffside graveyard west of Prospect Town", "Ghost Glovewort [4]", key="614441,0:2044417000::"),
@@ -3786,45 +3790,43 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("GP: Talisman of the Dread - On a corpse in Elder's Hovel, by the cliffside southeast of the poison swamp which is downhill from Castle Front", "Talisman of the Dread", key="614942,0:2049427000::"),
         #ERLocationData("GP: Greater Potentate's Cookbook [7] - On a corpse in the poison swamp downhill from Castle Front, on a pile of rocks in the far southeast poison lake", "Greater Potentate's Cookbook [7]", key="614943,0:0000068630::", cookbook=True),
     ],
-    "storehouse_back":[ # storehouse_back
-        #ERLocationData("SK/SH: Somber Smithing Stone [9] - On a corpse on the second floor back section, to the right after taking the elevator from Church District", "Somber Smithing Stone [9]", key="210100,0:0021017600::"),
-        #ERLocationData("SK/SH: Glintslab Firefly x3 - On a corpse on the second floor back section, against the west wall going clockwise around the edge from the Back Section grace", "Glintslab Firefly x3", key="210100,0:0021017610::"),
-        #ERLocationData("SK/SH: Carian Thrusting Shield - On a corpse guarded by a Fire Knight on the second floor back section, accessed by traversing all the way clockwise around the edge from the Back Section grace", "Carian Thrusting Shield", key="210100,0:0021017620::"),
-        #ERLocationData("SK/SH: Fire Coil x3 - On a corpse on the seventh floor, accessed by taking the ladder up from the Back Section grace, going up a flight of stairs, and checking behind you on the wall to the west", "Fire Coil x3", key="210100,0:0021017630::"),
-        #ERLocationData("SK/SH: Ghost Glovewort [3] - On a corpse on the seventh floor, accessed by taking the ladder up from the Back Section grace, going up a flight of stairs, and heading northeast along the bookshelves", "Ghost Glovewort [3]", key="210100,0:0021017640::"),
-        #ERLocationData("SK/SH: Fire Serpent - On a corpse on a balcony on the seventh floor, accessed by taking the ladder up from the Back Section grace, going up a flight of stairs, and heading northeast through the doorway", "Fire Serpent", key="210100,0:0021017650::"),
-        #ERLocationData("SK/SH: Shadow Sunflower x6 - On a corpse outside on wooden scaffolding, accessed by taking the ladder up from the Back Section grace, going up a flight of stairs, and finding a hole on the wall to the southeast", "Shadow Sunflower x6", key="210100,0:0021017660::"),
-        #ERLocationData("SK/SH: Blessed Bone Shard - On the second corpse outside on wooden scaffolding, accessed by taking the ladder up from the Back Section grace, going up a flight of stairs, and finding a hole on the wall to the southeast", "Blessed Bone Shard", key="210100,0:0021017670::"),
-        #ERLocationData("SK/SH: Thin Beast Bones x7 - On a corpse on the lower-level rafters in the loft, south of the giant cog by the northwest wall", "Thin Beast Bones x7", key="210100,0:0021017750::"),
-        #ERLocationData("SK/SH: Smithing Stone [7] x4 - On a corpse on the upper-level rafters in the loft, leaning against a standalone column by the southwest wall", "Smithing Stone [7] x4", key="210100,0:0021017760::"),
-        #ERLocationData("SK/SH: Somber Smithing Stone [8] - On a corpse on the lower-level rafters in the loft, by the base of the ladder closest to the north wall", "Somber Smithing Stone [8]", key="210100,0:0021017770::"),
-        #ERLocationData("SK/SH: Wrath from Afar - On a corpse accessible from the upper-level rafters in the loft, on top of the giant cog by the southeast wall", "Wrath from Afar", key="210100,0:0021017780::"),
-        #ERLocationData("SK/SH: Rune of an Unsung Hero - On a corpse on the ninth floor, accessible by taking the elevators down from the upper-level rafters in the loft, by the northeast wall", "Rune of an Unsung Hero", key="210100,0:0021017790::"),
-        #ERLocationData("SK/SH: Fire Knight Hilde - On a corpse on a small ledge on the northeast wall in the loft, accessible by sending the right elevator down from the upper-level rafters, then jumping on top of the left elevator as it's going up", "Fire Knight Hilde", key="210100,0:0021017800::", outoftheway=True),
-        #ERLocationData("SK/SH: Winged Serpent Helm - Dropped by Kood, captain of the Fire Knights, guarding the door before Dark Chamber Entrance", "Winged Serpent Helm", key="210100,0:0021017991::"),
-        #ERLocationData("SK/SH: Ash of War: Flame Spear - Dropped by Kood, captain of the Fire Knights, guarding the door before Dark Chamber Entrance", "Ash of War: Flame Spear", key="210100,0:0021017991::"),
+    "Shadow Keep Storehouse Back":[ # storehouse_back                     done
+        ERLocationData("SK/SBS: Somber Smithing Stone [9] - to NE by elevator", "Somber Smithing Stone [9]", key="210100,0:0021017600::"),
+        ERLocationData("SK/SBS: Glintslab Firefly x3 - to NW by left wall", "Glintslab Firefly x3", key="210100,0:0021017610::"),
+        ERLocationData("SK/SBS: Carian Thrusting Shield - to NW by back wall", "Carian Thrusting Shield", key="210100,0:0021017620::"),
+        ERLocationData("SK/SBS: Fire Coil x3 - upper back section, up stairs, to SW", "Fire Coil x3", key="210100,0:0021017630::"),
+        ERLocationData("SK/SBS: Ghost Glovewort [3] - upper back section, up stairs, on left", "Ghost Glovewort [3]", key="210100,0:0021017640::"),
+        ERLocationData("SK/SBS: Fire Serpent - upper back section, up stairs, by N balcony", "Fire Serpent", key="210100,0:0021017650::"),
+        ERLocationData("SK/SL: Shadow Sunflower x6 - outside to left on lower scaffolding", "Shadow Sunflower x6", key="210100,0:0021017660::"),
+        ERLocationData("SK/SL: Blessed Bone Shard - outside to left in corner", "Blessed Bone Shard", key="210100,0:0021017670::"),
+        ERLocationData("SK/SL: Thin Beast Bones x7 - lower NW rafters, left side", "Thin Beast Bones x7", key="210100,0:0021017750::"),
+        ERLocationData("SK/SL: Smithing Stone [7] x4 - upper SW rafters", "Smithing Stone [7] x4", key="210100,0:0021017760::"),
+        ERLocationData("SK/SL: Somber Smithing Stone [8] - lower N rafters", "Somber Smithing Stone [8]", key="210100,0:0021017770::"),
+        ERLocationData("SK/SL: Wrath from Afar - SE cog", "Wrath from Afar", key="210100,0:0021017780::"),
+        ERLocationData("SK/SL: Rune of an Unsung Hero - down NE elevator", "Rune of an Unsung Hero", key="210100,0:0021017790::"),
+        ERLocationData("SK/SL: Fire Knight Hilde - upper NE rafters, above elevator", "Fire Knight Hilde", key="210100,0:0021017800::", outoftheway=True),
     ],
-    "westrampart":[ # westrampart
-        #ERLocationData("SK/WR: Hefty Cracked Pot - On one of the beds to the southeast in the big room with many beds", "Hefty Cracked Pot", key="210200,0:0000066980::"),
-        #ERLocationData("SK/WR: Battlefield Priest's Cookbook [4] - On a corpse hidden behind an illusory wall. After taking the elevator down from Specimen Storehouse, go through the right doorway, go all the way down the hallway, and turn left. The illusory wall is down the hallway to the left of the stairs.", "Battlefield Priest's Cookbook [4]", key="210200,0:0000068930::", cookbook=True),
-        #ERLocationData("SK/WR: Gold-Pickled Fowl Foot - On a corpse in the room straight down the hall after the elevator down from Specimen Storehouse", "Gold-Pickled Fowl Foot", key="210200,0:0021027010::"),
-        #ERLocationData("SK/WR: Ash of War: Wall of Sparks - On a corpse on the balcony overlooking the big room with many beds", "Ash of War: Wall of Sparks", key="210200,0:0021027020::"),
-        #ERLocationData("SK/WR: Iris of Grace - In front of the stone slab at the north end of the big room with many beds", "Iris of Grace", key="210200,0:0021027040::"),
-        #ERLocationData("SK/WR: Innard Meat - On top of a broken pot in the room to the north of the big room with many beds, near the base of the stairs down from the upper level", "Innard Meat", key="210200,0:0021027050::"),
-        #ERLocationData("SK/WR: Smithing Stone [3] - On a corpse near the start of the West Rampart bridge along the left wall", "Smithing Stone [3]", key="210200,0:0021027200::"),
-        #ERLocationData("SK/WR: Beast Liver x3 - On a corpse being eaten by the first group of bats on the West Rampart bridge", "Beast Liver x3", key="210200,0:0021027210::"),
-        #ERLocationData("SK/WR: Beast Blood x3 - On a corpse guarded by a bat on the West Rampart bridge, before passing under the first intact arch", "Beast Blood x3", key="210200,0:0021027220::"),
-        #ERLocationData("SK/WR: Smithing Stone [4] x2 - On a corpse guarded by two bats on the West Rampart bridge, after passing under the first intact arch", "Smithing Stone [4] x2", key="210200,0:0021027230::"),
-        #ERLocationData("SK/WR: Redflesh Mushroom x5 - On a corpse about halfway across the West Rampart bridge, after passing under the half-intact arch", "Redflesh Mushroom x5", key="210200,0:0021027240::"),
-        #ERLocationData("SK/WR: Thin Beast Bones x8 - On a corpse most of the way across West Rampart bridge, on the left wall before the last intact arch", "Thin Beast Bones x8", key="210200,0:0021027250::"),
-        #ERLocationData("SK/WR: Somber Smithing Stone [2] - On a corpse most of the way across West Rampart bridge, right before the last intact arch", "Somber Smithing Stone [2]", key="210200,0:0021027260::"),
-        #ERLocationData("SK/WR: Somber Smithing Stone [9] - On a corpse in the room at the west end of the West Rampart bridge", "Somber Smithing Stone [9]", key="210200,0:0021027270::"),
-        #ERLocationData("SK/WR: Raw Meat Dumpling - Dropped by the living jar warrior in the room straight down the hall after the elevator down from Specimen Storehouse", "Raw Meat Dumpling", key="210200,0:0021027985::"),
-        #ERLocationData("SK/WR: Living Jar Shard - Dropped by the living jar warrior in the room straight down the hall after the elevator down from Specimen Storehouse", "Living Jar Shard", key="210200,0:0021027985::"),
-        #ERLocationData("SK/WR: Salza's Hood - Dropped by Fire Knight Salza at the west end of the West Rampart bridge", "Salza's Hood", key="210200,0:0021027991::"),
-        #ERLocationData("SK/WR: Rain of Fire - Dropped by Fire Knight Salza at the west end of the West Rampart bridge", "Rain of Fire", key="210200,0:0021027991::"),
+    "Shadow Keep, West Rampart":[ # westrampart                           done
+        ERLocationData("SK/SFF: Hefty Cracked Pot - to NW down elevator, on bed", "Hefty Cracked Pot", key="210200,0:0000066980::"),
+        ERLocationData("SK/SFF: Battlefield Priest's Cookbook [4] - to NW down elevator, behind illusory wall next to stairs", "Battlefield Priest's Cookbook [4]", key="210200,0:0000068930::", cookbook=True),
+        ERLocationData("SK/SFF: Gold-Pickled Fowl Foot - to NW down elevator, to W in dead-end", "Gold-Pickled Fowl Foot", key="210200,0:0021027010::"),
+        ERLocationData("SK/SFF: Ash of War: Wall of Sparks - to NW down elevator, on balcony", "Ash of War: Wall of Sparks", key="210200,0:0021027020::"),
+        ERLocationData("SK/SFF: Iris of Grace - to NW down elevator, by altar", "Iris of Grace", key="210200,0:0021027040::"),
+        ERLocationData("SK/SFF: Innard Meat - to NW down elevator, down stairs on right", "Innard Meat", key="210200,0:0021027050::"),
+        ERLocationData("SK/WR: Smithing Stone [3] - to W, on bridge", "Smithing Stone [3]", key="210200,0:0021027200::"),
+        ERLocationData("SK/WR: Beast Liver x3 - to W, on bridge", "Beast Liver x3", key="210200,0:0021027210::"),
+        ERLocationData("SK/WR: Beast Blood x3 - to W, on bridge", "Beast Blood x3", key="210200,0:0021027220::"),
+        ERLocationData("SK/WR: Smithing Stone [4] x2 - to W, on bridge", "Smithing Stone [4] x2", key="210200,0:0021027230::"),
+        ERLocationData("SK/WR: Redflesh Mushroom x5 - to W, on bridge", "Redflesh Mushroom x5", key="210200,0:0021027240::"),
+        ERLocationData("SK/WR: Thin Beast Bones x8 - to W, on bridge", "Thin Beast Bones x8", key="210200,0:0021027250::"),
+        ERLocationData("SK/WR: Somber Smithing Stone [2] - to W, on bridge", "Somber Smithing Stone [2]", key="210200,0:0021027260::"),
+        ERLocationData("SK/WR: Somber Smithing Stone [9] - to W, end of bridge", "Somber Smithing Stone [9]", key="210200,0:0021027270::"),
+        ERLocationData("SK/SFF: Raw Meat Dumpling - enemy drop to NW down elevator, to W in dead-end", "Raw Meat Dumpling", key="210200,0:0021027985::"),
+        ERLocationData("SK/SFF: Living Jar Shard - enemy drop to NW down elevator, to W in dead-end", "Living Jar Shard", key="210200,0:0021027985::"),
+        ERLocationData("SK/WR: Salza's Hood - enemy drop to W end of bridge", "Salza's Hood", key="210200,0:0021027991::"),
+        ERLocationData("SK/WR: Rain of Fire - enemy drop to W end of bridge", "Rain of Fire", key="210200,0:0021027991::"),
     ],
-    "Stone Coffin Fissure":[ # fissure                           will be done by Jambo
+    "Stone Coffin Fissure":[ # fissure                                    will be done by Jambo
         #ERLocationData("SCF: St. Trina Disciple's Cookbook [3] - In the Garden of Deep Purple to St. Trina's right", "St. Trina Disciple's Cookbook [3]", key="220000,0:0000068840::", cookbook=True),
         #ERLocationData("SCF: St. Trina's Smile - Dropped by Thiollier after he invades you, after you die to St. Trina several times and tell him your findings", "St. Trina's Smile", key="220000,0:0000400632::", missable=True),
         #ERLocationData("SCF: St. Trina's Blossom - On St. Trina's corpse after defeating Promised Consort Radahn", "St. Trina's Blossom", key="220000,0:0000400740::", missable=True),
@@ -3848,7 +3850,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SCF: Smithing Stone [8] x7 - Dropped by the gigantic putrescent flesh in the sludge cave after the Fissure Waypoint grace. The cave is entered from the south after climbing past a group of enemies and exited to the southeast.", "Smithing Stone [8] x7", key="220000,0:0022007910::"),
         #ERLocationData("SCF: Congealed Putrescence x5 - Dropped by the gigantic putrescent flesh in the sludge cave after the Fissure Waypoint grace. The cave is entered from the south after climbing past a group of enemies and exited to the southeast.", "Congealed Putrescence x5", key="220000,0:0022007910::"),
     ],
-    "Finger Ruins of Miyr":[ # fingergrounds                     done
+    "Finger Ruins of Miyr":[ # fingergrounds                              done
         ERLocationData("FRM: Remembrance of the Mother of Fingers - mainboss drop", "Remembrance of the Mother of Fingers", key="250000,0:0000510550::", boss=True, deadend=True, remembrance=True),
         ERLocationData("SA/(CMM): Maternal Staff - kill invader Ymir", "Maternal Staff", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
         ERLocationData("SA/(CMM): High Priest Hat - kill invader Ymir", "High Priest Hat", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
@@ -3857,7 +3859,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(CMM): High Priest Undergarments - kill invader Ymir", "High Priest Undergarments", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
         # not random ERLocationData("FRM: Ymir's Bell Bearing - kill invader Ymir", "Ymir's Bell Bearing", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
     ],
-    "Midra's Manse":[ # midramanse                               will be done by Jambo
+    "Midra's Manse":[ # midramanse                                        will be done by Jambo
         #ERLocationData("MM/: Mad Craftsman's Cookbook [3] - On a corpse in a rat-filled room accessible by jumping from the rafters before the bridge which leads to Midra's library", "Mad Craftsman's Cookbook [3]", key="280000,0:0000068880::", cookbook=True),
         ERLocationData("MM/SFC: Remembrance of the Lord of Frenzied Flame - mainboss drop", "Remembrance of the Lord of Frenzied Flame", key="280000,0:0000510560::", boss=True, deadend=True, remembrance=True),
         #ERLocationData("MM/: Swollen Grape - On a corpse in a room to the right immediately after entering Midra's Manse, taking the stairs up to the first grace", "Swollen Grape", key="280000,0:0028007000::"),
@@ -3875,26 +3877,26 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: Catas & Graves
-    "Tombsward Catacombs":[ # peninsula_tombswardcatacombs       done
+    "Tombsward Catacombs":[ # peninsula_tombswardcatacombs                done
         ERLocationData("WP/(TCC): Nomadic Warrior's Cookbook [9] - behind imp statue", "Nomadic Warrior's Cookbook [9]", key="300000,0:0000067430::"), # 1
         ERLocationData("WP/(TCC): Lhutel the Headless - boss drop", "Lhutel the Headless", key="300000,0:0000520000::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("WP/(TCC): Human Bone Shard x5 - in path of fire spitter", "Human Bone Shard x5", key="300000,0:0030007010::"),
         ERLocationData("WP/(TCC): Golden Rune [2] -  above fire spitter", "Golden Rune [2]", key="300000,0:0030007020::"),
         ERLocationData("WP/(TCC): Prattling Pate \"Thank you\" - room past fire spitter", "Prattling Pate \"Thank you\"", key="300000,0:0030007040::"),
     ],
-    "Impaler's Catacombs":[ # peninsula_impalerscatacombs        done
+    "Impaler's Catacombs":[ # peninsula_impalerscatacombs                 done
         ERLocationData("WP/(IC): Demi-Human Ashes - boss drop", "Demi-Human Ashes", key="300100,0:0000520010::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("WP/(IC): Root Resin x3 - back SW of sewer area", "Root Resin x3", key="300100,0:0030017010::"),
         ERLocationData("WP/(IC): Prattling Pate \"Please help\" - start of sewer area", "Prattling Pate \"Please help\"", key="300100,0:0030017020::"),
     ],
-    "Stormfoot Catacombs":[ # limgrave_stormfootcatacombs        done
+    "Stormfoot Catacombs":[ # limgrave_stormfootcatacombs                 done
         ERLocationData("LG/(SC): Noble Sorcerer Ashes - boss drop", "Noble Sorcerer Ashes", key="300200,0:0000520020::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LG/(SC): Root Resin x2 - first room", "Root Resin x2", key="300200,0:0030027000::"),
         ERLocationData("LG/(SC): Smoldering Butterfly x3 - behind second fire spitter", "Smoldering Butterfly x3", key="300200,0:0030027010::"),
         ERLocationData("LG/(SC): Wandering Noble Ashes - room at end of hall after latter", "Wandering Noble Ashes", key="300200,0:0030027020::"),
         ERLocationData("LG/(SC): Prattling Pate \"Hello\" - behind first fire spitter", "Prattling Pate \"Hello\"", key="300200,0:0030027030::"),
     ],
-    "Road's End Catacombs":[ # liurnia_roadsendcatacombs         done
+    "Road's End Catacombs":[ # liurnia_roadsendcatacombs                  done
         ERLocationData("LL/(REC): Glintstone Sorcerer Ashes - boss drop", "Glintstone Sorcerer Ashes", key="300300,0:0000520060::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LL/(REC): Root Resin x3 - on path towards boss room", "Root Resin x3", key="300300,0:0030037000::"),
         ERLocationData("LL/(REC): Raya Lucaria Soldier Ashes - in chest in hidden dead-end room", "Raya Lucaria Soldier Ashes", key="300300,0:0030037010::"),
@@ -3902,11 +3904,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(REC): Rune Arc - in illusory room under lever", "Rune Arc", key="300300,0:0030037030::"),
         ERLocationData("LL/(REC): Watchdog's Staff - under second platform", "Watchdog's Staff", key="300300,0:0030037040::"),
     ],
-    "Murkwater Catacombs":[ # limgrave_murkwatercatacombs        done
+    "Murkwater Catacombs":[ # limgrave_murkwatercatacombs                 done
         ERLocationData("LG/(MCC): Banished Knight Engvall - boss drop", "Banished Knight Engvall", key="300400,0:0000520040::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LG/(MCC): Root Resin x5 - by lever", "Root Resin x5", key="300400,0:0030047000::"),
     ],
-    "Black Knife Catacombs":[ # liurnia_blackknifecatacombs      done
+    "Black Knife Catacombs":[ # liurnia_blackknifecatacombs               done
         ERLocationData("LL/(BKC): Twinsage Sorcerer Ashes - boss drop", "Twinsage Sorcerer Ashes", key="300500,0:0000520050::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LL/(BKC): Assassin's Cerulean Dagger - alt boss drop", "Assassin's Cerulean Dagger", key="300500,0:0000520210::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LL/(BKC): Black Knifeprint - alt boss drop", "Black Knifeprint", key="300500,0:0000520210::", altboss=True, minidungeonboss=True, catacombboss=True),
@@ -3915,7 +3917,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(BKC): Deathroot - in chest after boss", "Deathroot", key="300500,0:0030057030::", chest=True),
         ERLocationData("LL/(BKC): Spellproof Dried Liver - in middle of cleaver room", "Spellproof Dried Liver", key="300500,0:0030057040::"),
     ],
-    "Cliffbottom Catacombs":[ # liurnia_cliffbottomcatacombs     done
+    "Cliffbottom Catacombs":[ # liurnia_cliffbottomcatacombs              done
         ERLocationData("LL/(CC): Kaiden Sellsword Ashes - boss drop", "Kaiden Sellsword Ashes", key="300600,0:0000520070::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LL/(CC): Root Resin x5 - W from first elevator", "Root Resin x5", key="300600,0:0030067000::"),
         ERLocationData("LL/(CC): Nox Mirrorhelm - behind imp statue, in SW corner", "Nox Mirrorhelm", key="300600,0:0030067010::"), # 1
@@ -3927,14 +3929,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(CC): Scythe - dead-end room at top of main room", "Scythe", key="300600,0:0030067070::"),
         ERLocationData("LL/(CC): Prattling Pate \"Wonderful\" - bottom of main room, N side", "Prattling Pate \"Wonderful\"", key="300600,0:0030067080::"),
     ],
-    "Wyndham Catacombs":[ # gelmir_wyndhamcatacombs              done
+    "Wyndham Catacombs":[ # gelmir_wyndhamcatacombs                       done
         ERLocationData("MG/(WC): Ancient Dragon Apostle's Cookbook [1] - path under huge crusher", "Ancient Dragon Apostle's Cookbook [1]", key="300700,0:0000068000::"),
         ERLocationData("MG/(WC): Glovewort Picker's Bell Bearing [1] - boss drop", "Glovewort Picker's Bell Bearing [1]", key="300700,0:0000520120::", altboss=True, upgradeshop=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("MG/(WC): Golden Rune [5] - path under huge crusher", "Golden Rune [5]", key="300700,0:0030077010::"),
         ERLocationData("MG/(WC): Magic Grease x2 - path under huge crusher", "Magic Grease x2", key="300700,0:0030077020::"),
         ERLocationData("MG/(WC): Lightning Scorpion Charm - behind imp statue", "Lightning Scorpion Charm", key="300700,0:0030077600::", talisman=True), # 1
     ],
-    "Sainted Hero's Grave":[ # altus_grave                       done
+    "Sainted Hero's Grave":[ # altus_grave                                done
         ERLocationData("AP/(SHG): Ancient Dragon Knight Kristoff - boss drop", "Ancient Dragon Knight Kristoff", key="300800,0:0000520080::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("AP/(SHG): Crimson Seed Talisman - behind imp statue", "Crimson Seed Talisman", key="300800,0:0030087010::", talisman=True), # 1
         ERLocationData("AP/(SHG): Leyndell Soldier Ashes - behind breakable floor", "Leyndell Soldier Ashes", key="300800,0:0030087020::"),
@@ -3947,7 +3949,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AP/(SHG): Ghost Glovewort [4] - enemy drop left path under stairs", "Ghost Glovewort [4]", key="300800,0:0030087980::"),
         ERLocationData("AP/(SHG): Ghost Glovewort [4] - enemy drop after ladder drop down", "Ghost Glovewort [4]", key="300800,0:0030087990::"),
     ],
-    "Gelmir Hero's Grave":[ # gelmir_grave                       done
+    "Gelmir Hero's Grave":[ # gelmir_grave                                done
         ERLocationData("MG/(GHG): Bloodhound Knight Floh - boss drop", "Bloodhound Knight Floh", key="300900,0:0000520090::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("MG/(GHG): Deathroot - chest after boss", "Deathroot", key="300900,0:0030097000::", chest=True),
         ERLocationData("MG/(GHG): Ringed Finger - chest bottom of first chariot ramp", "Ringed Finger", key="300900,0:0030097010::", chest=True, outoftheway=True),
@@ -3966,7 +3968,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MG/(GHG): Bloodhound Knight Gauntlets - enemy drop after drop down second chariot ramp", "Bloodhound Knight Gauntlets", key="300900,0:0030097800::"),
         ERLocationData("MG/(GHG): Bloodhound Knight Greaves - enemy drop after drop down second chariot ramp", "Bloodhound Knight Greaves", key="300900,0:0030097800::"),
     ],
-    "Auriza Hero's Grave":[ # outskirts_grave                    done
+    "Auriza Hero's Grave":[ # outskirts_grave                             done
         ERLocationData("CO/(AHG): Ordovis's Greatsword - boss drop", "Ordovis's Greatsword", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("CO/(AHG): Crucible Axe Helm - boss drop", "Crucible Axe Helm", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("CO/(AHG): Crucible Axe Armor - boss drop", "Crucible Axe Armor", key="301000,0:0000520100::", altboss=True, minidungeonboss=True, graveboss=True),
@@ -3986,19 +3988,19 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CO/(AHG): Tree Sentinel Greaves - destroy chariots", "Tree Sentinel Greaves", key="301000,0:0030107100::"),
         ERLocationData("CO/(AHG): Ash of War: Holy Ground - destroy chariots", "Ash of War: Holy Ground", key="301000,0:0030107100::"),
     ],
-    "Deathtouched Catacombs":[ # stormhill_catacombs             done
+    "Deathtouched Catacombs":[ # stormhill_catacombs                      done
         ERLocationData("LG/(DC): Assassin's Crimson Dagger - boss drop", "Assassin's Crimson Dagger", key="301100,0:0000520030::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("LG/(DC): Deathroot - boss chest", "Deathroot", key="301100,0:0030117000::", chest=True),
         ERLocationData("LG/(DC): Bloodrose x3 - by lever", "Bloodrose x3", key="301100,0:0030117010::"),
         ERLocationData("LG/(DC): Uchigatana - down small tunnel on ledge", "Uchigatana", key="301100,0:0030117020::"),
     ],
-    "Unsightly Catacombs":[ # altus_catacombs                    done
+    "Unsightly Catacombs":[ # altus_catacombs                             done
         ERLocationData("AP/(UC): Perfumer Tricia - boss drop", "Perfumer Tricia", key="301200,0:0000520110::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("AP/(UC): Winged Misbegotten Ashes - main path, in corner staircase pit", "Winged Misbegotten Ashes", key="301200,0:0030127010::"),
         ERLocationData("AP/(UC): Rune Arc - left of the lever", "Rune Arc", key="301200,0:0030127020::"),
         ERLocationData("AP/(UC): Prattling Pate \"Apologies\" - across from the lever", "Prattling Pate \"Apologies\"", key="301200,0:0030127030::"),
     ],
-    "Auriza Side Tomb":[ # outskirts_sidetomb                    done
+    "Auriza Side Tomb":[ # outskirts_sidetomb                             done
         # idk if pots are right, i pray
         ERLocationData("CO/(AST): Cracked Pot - illusory wall chest, normal chest, in sewer area, left item", "Cracked Pot", key="301300,0:0000066140::"),
         ERLocationData("CO/(AST): Cracked Pot - illusory wall chest, normal chest, in sewer area, right item", "Cracked Pot", key="301300,0:0000066150::"),
@@ -4020,7 +4022,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CO/(AST): Raw Meat Dumpling - enemy drop illusory wall chest x2 then up ladder, follow to dead-end", "Raw Meat Dumpling", key="301300,0:0030137990::"),
         ERLocationData("CO/(AST): Living Jar Shard - enemy drop illusory wall chest x2 then up ladder, follow to dead-end", "Living Jar Shard", key="301300,0:0030137990::"),
     ],
-    "Minor Erdtree Catacombs":[ # caelid_erdtreecatacombs        done
+    "Minor Erdtree Catacombs":[ # caelid_erdtreecatacombs                 done
         ERLocationData("CL/(MEC): Mad Pumpkin Head Ashes - boss drop", "Mad Pumpkin Head Ashes", key="301400,0:0000520140::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("CL/(MEC): Imp Head (Wolf) - under elevator, right exit from rot room, up ladder, at end", "Imp Head (Wolf)", key="301400,0:0030147000::"),
         ERLocationData("CL/(MEC): Grave Violet x3 - under elevator, in rot room", "Grave Violet x3", key="301400,0:0030147010::"),
@@ -4028,11 +4030,11 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(MEC): Aeonian Butterfly - rot room behind elevator", "Aeonian Butterfly", key="301400,0:0030147030::"),
         ERLocationData("CL/(MEC): Golden Rune [4] - under elevator, right exit from rot room, at end", "Golden Rune [4]", key="301400,0:0030147040::"),
     ],
-    "Caelid Catacombs":[ #caelid_catacombs                       done
+    "Caelid Catacombs":[ #caelid_catacombs                                done
         ERLocationData("CL/(CCC): Kindred of Rot Ashes - boss drop", "Kindred of Rot Ashes", key="301500,0:0000520150::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("CL/(CCC): Miranda Sprout Ashes - illusory wall under stairs", "Miranda Sprout Ashes", key="301500,0:0030157000::"),
     ],
-    "War-Dead Catacombs":[ # caelid_wardead                      done
+    "War-Dead Catacombs":[ # caelid_wardead                               done
         ERLocationData("CL/(WDC): Golden Seed - boss drop", "Golden Seed", key="301600,0:0000520160::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("CL/(WDC): Redmane Knight Ogha - boss drop", "Redmane Knight Ogha", key="301600,0:0000520160::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("CL/(WDC): Golden Rune [6] - lower fight room NE from middle", "Golden Rune [6]", key="301600,0:0030167000::"),
@@ -4041,7 +4043,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(WDC): Silver-Pickled Fowl Foot - lower fight room SE side", "Silver-Pickled Fowl Foot", key="301600,0:0030167030::"),
         ERLocationData("CL/(WDC): Collapsing Stars - lower fight room W side", "Collapsing Stars", key="301600,0:0030167040::"),
     ],
-    "Giant-Conquering Hero's Grave":[ # flamepeak_grave          done
+    "Giant-Conquering Hero's Grave":[ # flamepeak_grave                   done
         ERLocationData("FP/(GCHG): Zamor Curved Sword - boss drop", "Zamor Curved Sword", key="301700,0:0000520170::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("FP/(GCHG): Zamor Mask - boss drop", "Zamor Mask", key="301700,0:0000520170::", altboss=True, minidungeonboss=True, graveboss=True),
         ERLocationData("FP/(GCHG): Zamor Armor - boss drop", "Zamor Armor", key="301700,0:0000520170::", altboss=True, minidungeonboss=True, graveboss=True),
@@ -4053,7 +4055,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FP/(GCHG): Freezing Grease - upper room after fire spitter, next to imp statue", "Freezing Grease", key="301700,0:0030177040::"),
         ERLocationData("FP/(GCHG): Golden Rune [11] - first illusory wall to right at start, in window", "Golden Rune [11]", key="301700,0:0030177050::"),
     ],
-    "Giants' Mountaintop Catacombs":[ # mountaintops_catacombs   done
+    "Giants' Mountaintop Catacombs":[ # mountaintops_catacombs            done
         ERLocationData("MotG/(GMC): Ritual Pot - down chain elevator, follow path to dead-end", "Ritual Pot", key="301800,0:0000066400::"),
         ERLocationData("MotG/(GMC): Glovewort Picker's Bell Bearing [2] - boss drop", "Glovewort Picker's Bell Bearing [2]", key="301800,0:0000520180::", altboss=True, upgradeshop=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("MotG/(GMC): Golden Seed - boss drop", "Golden Seed", key="301800,0:0000520180::", altboss=True, minidungeonboss=True, catacombboss=True),
@@ -4074,7 +4076,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MotG/(GMC): Raw Meat Dumpling - enemy drop sewer room after chain elevator", "Raw Meat Dumpling", key="301800,0:0030187990::"),
         ERLocationData("MotG/(GMC): Living Jar Shard - enemy drop sewer room after chain elevator", "Living Jar Shard", key="301800,0:0030187990::"),
     ],
-    "Consecrated Snowfield Catacombs":[ # snowfield_catacombs    done
+    "Consecrated Snowfield Catacombs":[ # snowfield_catacombs             done
         ERLocationData("CS/(CSC): Rotten Gravekeeper Cloak - boss drop", "Rotten Gravekeeper Cloak", key="301900,0:0000520190::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("CS/(CSC): Great Grave Glovewort x2 - boss drop", "Great Grave Glovewort x2", key="301900,0:0000520190::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("CS/(CSC): Golden Rune [12] - next to lever", "Golden Rune [12]", key="301900,0:0030197000::"),
@@ -4083,7 +4085,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CS/(CSC): Human Bone Shard x8 - W from big room, up to dead-end", "Human Bone Shard x8", key="301900,0:0030197030::"),
         ERLocationData("CS/(CSC): Imp Head (Elder) - W from big room, up to dead-end", "Imp Head (Elder)", key="301900,0:0030197040::"),
     ],
-    "Hidden Path to the Haligtree":[ # snowfield_hiddenpath      done
+    "Hidden Path to the Haligtree":[ # snowfield_hiddenpath               done
         ERLocationData("CS/(HPH): Blackflame Monk Amon - boss drop", "Blackflame Monk Amon", key="302000,0:0000520200::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("CS/(HPH): Warming Stone x2 - N from wood door", "Warming Stone x2", key="302000,0:0030207000::"),
         ERLocationData("CS/(HPH): Sacramental Bud x3 - N from drop off", "Sacramental Bud x3", key="302000,0:0030207010::"),
@@ -4097,7 +4099,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: Caves
-    "Earthbore Cave":[ # peninsula_earthborecave                 done
+    "Earthbore Cave":[ # peninsula_earthborecave                          done
         ERLocationData("WP/(EC): Spelldrake Talisman - boss drop", "Spelldrake Talisman", key="310100,0:0000520310::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("WP/(EC): Golden Rune [1] - right path from entrance chest", "Golden Rune [1]", key="310100,0:0031017000::"),
         ERLocationData("WP/(EC): Glowstone x5 - past skylight", "Glowstone x5", key="310100,0:0031017010::"),
@@ -4106,7 +4108,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/(EC): Trina's Lily - in boss room", "Trina's Lily", key="310100,0:0031017040::"),
         ERLocationData("WP/(EC): Pickled Turtle Neck x3 - entrance chest", "Pickled Turtle Neck x3", key="310100,0:0031017060::", chest=True),
     ],
-    "Tombsward Cave":[ # peninsula_tombswardcave                 done
+    "Tombsward Cave":[ # peninsula_tombswardcave                          done
         ERLocationData("WP/(TCV): Nomadic Warrior's Cookbook [8] - item 2 right of big room", "Nomadic Warrior's Cookbook [8]", key="310200,0:0000067880::"),
         ERLocationData("WP/(TCV): Viridian Amber Medallion - boss drop", "Viridian Amber Medallion", key="310200,0:0000520300::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("WP/(TCV): Golden Rune [2] - before big room", "Golden Rune [2]", key="310200,0:0031027000::"),
@@ -4115,13 +4117,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/(TCV): Arteria Leaf - right of big room", "Arteria Leaf", key="310200,0:0031027030::"),
         ERLocationData("WP/(TCV): Immunizing White Cured Meat - item 1 right of big room", "Immunizing White Cured Meat", key="310200,0:0031027050::"),
     ],
-    "Groveside Cave":[ # limgrave_grovesidecave                  done
+    "Groveside Cave":[ # limgrave_grovesidecave                           done
         ERLocationData("LG/(GC): Cracked Pot - first room", "Cracked Pot", key="310300,0:0000066000::"),
         ERLocationData("LG/(GC): Flamedrake Talisman - boss drop", "Flamedrake Talisman", key="310300,0:0000520330::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("LG/(GC): Golden Rune [1] - first room", "Golden Rune [1]", key="310300,0:0031037000::"),
         ERLocationData("LG/(GC): Glowstone x3 - first room", "Glowstone x3", key="310300,0:0031037010::"),
     ],
-    "Stillwater Cave":[ # liurnia_stillwatercave                 done
+    "Stillwater Cave":[ # liurnia_stillwatercave                          done
         ERLocationData("LL/(SC): Winged Sword Insignia - boss drop", "Winged Sword Insignia", key="310400,0:0000520360::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("LL/(SC): Golden Rune [3] - near entrance", "Golden Rune [3]", key="310400,0:0031047000::"),
         ERLocationData("LL/(SC): Golden Rune [4] - in middle of first room poison", "Golden Rune [4]", key="310400,0:0031047010::"),
@@ -4134,7 +4136,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(SC): Sage Trousers - first room middle dead-end exit, left item", "Sage Trousers", key="310400,0:0031047060::"),
         ERLocationData("LL/(SC): Golden Rune [6] - first room middle dead-end exit, NE enemy drop", "Golden Rune [6]", key="310400,0:0031047990::"),
     ],
-    "Lakeside Crystal Cave":[ # liurnia_lakesidecave             done
+    "Lakeside Crystal Cave":[ # liurnia_lakesidecave                      done
         ERLocationData("LL/(LCC): Cerulean Amber Medallion - boss drop", "Cerulean Amber Medallion", key="310500,0:0000520370::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("LL/(LCC): Hefty Beast Bone x3 - upper W side of first room", "Hefty Beast Bone x3", key="310500,0:0031057000::"),
         ERLocationData("LL/(LCC): Throwing Dagger x5 - room after dropdown path", "Throwing Dagger x5", key="310500,0:0031057010::"),
@@ -4146,7 +4148,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(LCC): Arteria Leaf - in chest beside grace", "Arteria Leaf", key="310500,0:0031057070::"),
         ERLocationData("LL/(LCC): Spear Talisman - in chest W path from first room", "Spear Talisman", key="310500,0:0031057100::", talisman=True, chest=True),
     ],
-    "Seethewater Cave":[ # gelmir_seethewatercave                done
+    "Seethewater Cave":[ # gelmir_seethewatercave                         done
         ERLocationData("MG/(SC): Kindred of Rot's Exultation - boss drop", "Kindred of Rot's Exultation", key="310700,0:0000520390::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("MG/(SC): Poison Grease x3 - to NE in first big cave", "Poison Grease x3", key="310700,0:0031077000::"),
         ERLocationData("MG/(SC): Lump of Flesh x4 - first big cave, up left path in dead-end", "Lump of Flesh x4", key="310700,0:0031077010::"),
@@ -4160,7 +4162,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MG/(SC): Golden Rune [7] - poison waterfall, left path, on cliff", "Golden Rune [7]", key="310700,0:0031077060::"),
         ERLocationData("MG/(SC): Immunizing Cured Meat - poison waterfall, follow left path to dead-end", "Immunizing Cured Meat", key="310700,0:0031077070::"),
     ],
-    "Volcano Cave":[ # gelmir_volcanocave                        done
+    "Volcano Cave":[ # gelmir_volcanocave                                 done
         ERLocationData("MG/(VC): Jar Cannon - boss drop", "Jar Cannon", key="310900,0:0000520400::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("MG/(VC): Golden Rune [6] - right path of 3 way", "Golden Rune [6]", key="310900,0:0031097000::"),
         ERLocationData("MG/(VC): Sliver of Meat x6 - right path of 3 way, drop to ledge, in dead-end", "Sliver of Meat x6", key="310900,0:0031097010::"),
@@ -4168,7 +4170,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MG/(VC): Lump of Flesh x5 - SW of boss door", "Lump of Flesh x5", key="310900,0:0031097030::"),
         ERLocationData("MG/(VC): Coil Shield - right path of 3 way, drop to ledge, in dead-end", "Coil Shield", key="310900,0:0031097040::"),
     ],
-    "Dragonbarrow Cave":[ # dragonbarrow_cave                    done
+    "Dragonbarrow Cave":[ # dragonbarrow_cave                             done
         ERLocationData("CL/(DC): Flamedrake Talisman +2 - boss drop", "Flamedrake Talisman +2", key="311000,0:0000520440::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("CL/(DC): Warming Stone - first room", "Warming Stone", key="311000,0:0031107000::"),
         ERLocationData("CL/(DC): Golden Rune [12] - first room", "Golden Rune [12]", key="311000,0:0031107010::"),
@@ -4176,7 +4178,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(DC): Golden Rune [8] - bottom of dropdown", "Golden Rune [8]", key="311000,0:0031107110::"),
         ERLocationData("CL/(DC): Beast Blood x3 - bottom of dropdown", "Beast Blood x3", key="311000,0:0031107120::"),
     ],
-    "Sellia Hideaway":[ # dragonbarrow_selliahideaway            done
+    "Sellia Hideaway":[ # dragonbarrow_selliahideaway                     done
         ERLocationData("CL/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat", "Stars of Ruin", key="311100,0:0000400430::"),
         ERLocationData("CL/(SH): Lusat's Glintstone Crown - side with Sellen, lower first big room N side, where Lusat was", "Lusat's Glintstone Crown", key="311100,0:0000400431::"),
         ERLocationData("CL/(SH): Lusat's Robe - side with Sellen, lower first big room N side, where Lusat was", "Lusat's Robe", key="311100,0:0000400431::"),
@@ -4196,7 +4198,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(SH): Crystalian Ashes - second big room, right of entrance follow crystal drop down path", "Crystalian Ashes", key="311100,0:0031117220::", hidden=True),
         ERLocationData("CL/(SH): Ghost Glovewort [4] - enemy drop lower first big room", "Ghost Glovewort [4]", key="311100,0:0031117990::", drop=True),
     ],
-    "Cave of the Forlorn":[ # snowfield_cave                     done
+    "Cave of the Forlorn":[ # snowfield_cave                              done
         ERLocationData("CS/(CF): Golden Order Greatsword - boss drop", "Golden Order Greatsword", key="311200,0:0000520470::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("CS/(CF): Golden Rune [7] - next to grace", "Golden Rune [7]", key="311200,0:0031127000::"),
         ERLocationData("CS/(CF): Freezing Grease - left path from upper ice sheet", "Freezing Grease", key="311200,0:0031127010::"),
@@ -4212,13 +4214,13 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CS/(CF): Golden Rune [10] - SE side of upper ice sheet", "Golden Rune [10]", key="311200,0:0031127110::"),
         ERLocationData("CS/(CF): Spiritflame Arrow x10 - past ice pillar area, in dead-end", "Spiritflame Arrow x10", key="311200,0:0031127120::"),
     ],
-    "Coastal Cave":[ # limgrave_coastalcave                      done
+    "Coastal Cave":[ # limgrave_coastalcave                               done
         ERLocationData("LG/(CC): Tailoring Tools - boss drop", "Tailoring Tools", key="311500,0:0000060140::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("LG/(CC): Sewing Needle - boss drop", "Sewing Needle", key="311500,0:0000520340::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("LG/(CC): Land Octopus Ovary - before boss", "Land Octopus Ovary", key="311500,0:0031157010::"),
         ERLocationData("LG/(CC): Smoldering Butterfly - after boss", "Smoldering Butterfly", key="311500,0:0031157020::"),
     ],
-    "Highroad Cave":[ # limgrave_highroadcave                    done
+    "Highroad Cave":[ # limgrave_highroadcave                             done
         ERLocationData("LG/(HC): Blue Dancer Charm - boss drop", "Blue Dancer Charm", key="311700,0:0000520350::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("LG/(HC): Golden Rune [1] - past second hole", "Golden Rune [1]", key="311700,0:0031177010::"),
         ERLocationData("LG/(HC): Arteria Leaf x3 - on ledge before water area", "Arteria Leaf x3", key="311700,0:0031177020::"),
@@ -4229,7 +4231,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(HC): Furlcalling Finger Remedy - past miniboss on ledge", "Furlcalling Finger Remedy", key="311700,0:0031177070::"),
         ERLocationData("LG/(HC): Shamshir - center of water area", "Shamshir", key="311700,0:0031177080::"),
     ],
-    "Perfumer's Grotto":[ # altus_grotto                         done
+    "Perfumer's Grotto":[ # altus_grotto                                  done
         ERLocationData("AP/(PG): Perfume Bottle - in chest next to root in second room", "Perfume Bottle", key="311800,0:0000066780::", chest=True),
         ERLocationData("AP/(PG): Great Omenkiller Cleaver - boss drop", "Great Omenkiller Cleaver", key="311800,0:0000520410::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("AP/(PG): Living Jar Shard x10 - in chest next to root in second room", "Living Jar Shard x10", key="311800,0:0031187020::", chest=True),
@@ -4240,7 +4242,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AP/(PG): Warming Stone - next to boss door, right item", "Warming Stone", key="311800,0:0031187070::"),
         ERLocationData("AP/(PG): Golden Rune [5] - next to boss door, by door", "Golden Rune [5]", key="311800,0:0031187080::"),
     ],
-    "Sage's Cave":[ # altus_sagescave                            done
+    "Sage's Cave":[ # altus_sagescave                                     done
         ERLocationData("AP/(SC): Concealing Veil - boss drop", "Concealing Veil", key="311900,0:0000520420::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("AP/(SC): Family Heads - hidden boss drop", "Family Heads", key="311900,0:0000520490::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("AP/(SC): Rejuvenating Boluses x5 - in chest next to another chest, right chest", "Rejuvenating Boluses x5", key="311900,0:0031197000::", chest=True),
@@ -4258,14 +4260,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AP/(SC): Golden Rune [5] - just past chests, middle of water", "Golden Rune [5]", key="311900,0:0031197200::"),
         ERLocationData("AP/(SC): Golden Rune [5] - just past chests, by wall", "Golden Rune [5]", key="311900,0:0031197210::"),
     ],
-    "Abandoned Cave":[ # caelid_abandonedcave                    done
+    "Abandoned Cave":[ # caelid_abandonedcave                             done
         ERLocationData("CL/(AC): Gold Scarab - boss drop", "Gold Scarab", key="312000,0:0000520450::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("CL/(AC): Dragonwound Grease - right of first dead abductor", "Dragonwound Grease", key="312000,0:0031207000::"),
         ERLocationData("CL/(AC): Venomous Fang - on ledge after climbing dead abductors", "Venomous Fang", key="312000,0:0031207010::"),
         ERLocationData("CL/(AC): Serpent Bow - in front of dead abductor", "Serpent Bow", key="312000,0:0031207020::"),
         ERLocationData("CL/(AC): Fire Grease - in alcove after long dark room", "Fire Grease", key="312000,0:0031207030::"),
     ],
-    "Gaol Cave":[ # caelid_gaolcave                              done
+    "Gaol Cave":[ # caelid_gaolcave                                       done
         ERLocationData("CL/(GC): Putrid Corpse Ashes - boss drop", "Putrid Corpse Ashes", key="312100,0:0000520430::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("CL/(GC): Golden Rune [2] - first room", "Golden Rune [2]", key="312100,0:0031217000::"),
         ERLocationData("CL/(GC): Golden Rune [2] - cage across from broken floor, after lever", "Golden Rune [2]", key="312100,0:0031217030::"),
@@ -4285,7 +4287,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(GC): Regalia of Eochaid - after boss", "Regalia of Eochaid", key="312100,0:0031217350::"),
         ERLocationData("CL/(GC): Rune Arc - chest by grace", "Rune Arc", key="312100,0:0031217400::", chest=True),
     ],
-    "Spiritcaller Cave":[ # mountaintops_cave                    done
+    "Spiritcaller Cave":[ # mountaintops_cave                             done
         ERLocationData("MotG/(SC): Godskin Swaddling Cloth - boss drop", "Godskin Swaddling Cloth", key="312200,0:0000520480::", enemytalisman=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("MotG/(SC): Black Flame Ritual - boss drop", "Black Flame Ritual", key="312200,0:0000520480::", incantations=True, altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("MotG/(SC): White Reed Armor - middle of big water area, next to tree", "White Reed Armor", key="312200,0:0031227000::"),
@@ -4302,7 +4304,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: Tower & Tunnels
-    "Morne Tunnel":[ # peninsula_tunnel                          done
+    "Morne Tunnel":[ # peninsula_tunnel                                   done
         ERLocationData("WP/(MT): Rusted Anchor - boss drop", "Rusted Anchor", key="320000,0:0000520600::", altboss=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("WP/(MT): Golden Rune [2] - second room, on wooden platform", "Golden Rune [2]", key="320000,0:0032007000::"),
         ERLocationData("WP/(MT): Golden Rune [4] - third room in hut", "Golden Rune [4]", key="320000,0:0032007010::"),
@@ -4312,7 +4314,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/(MT): Arteria Leaf x2 - lower first room", "Arteria Leaf x2", key="320000,0:0032007070::"),
         ERLocationData("WP/(MT): Exalted Flesh - third room chest", "Exalted Flesh", key="320000,0:0032007900::"),
     ],
-    "Limgrave Tunnels":[ # limgrave_tunnels                      done
+    "Limgrave Tunnels":[ # limgrave_tunnels                               done
         ERLocationData("LG/(LT): Roar Medallion - boss drop", "Roar Medallion", key="320100,0:0000520610::", enemytalisman=True, altboss=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("LG/(LT): Smithing Stone [1] - room with rats", "Smithing Stone [1]", key="320100,0:0032017000::"),
         ERLocationData("LG/(LT): Golden Rune [4] - off side of entrance elevator", "Golden Rune [4]", key="320100,0:0032017010::"),
@@ -4320,7 +4322,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(LT): Golden Rune [1] - off side of third elevator", "Golden Rune [1]", key="320100,0:0032017030::"),
         ERLocationData("LG/(LT): Glintstone Scrap x3 - off side of second elevator", "Glintstone Scrap x3", key="320100,0:0032017040::"),
     ],
-    "Raya Lucaria Crystal Tunnel":[ # liurnia_tunnel             done
+    "Raya Lucaria Crystal Tunnel":[ # liurnia_tunnel                      done
         ERLocationData("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - boss drop", "Smithing-Stone Miner's Bell Bearing [1]", key="320200,0:0000520620::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True, smithingbell=True),
         ERLocationData("LL/(RLCT): Somber Smithing Stone [2] - in chest on platform near grace", "Somber Smithing Stone [2]", key="320200,0:0032027000::"),
         ERLocationData("LL/(RLCT): Somber Smithing Stone [3] - the parkour item near top", "Somber Smithing Stone [3]", key="320200,0:0032027010::"),
@@ -4331,7 +4333,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(RLCT): Shatter Earth - room before last elevator, dead-end to N", "Shatter Earth", key="320200,0:0032027070::"),
         ERLocationData("LL/(RLCT): Crystal Knife - bottom of shortcut elevator, in chest side room 2", "Crystal Knife", key="320200,0:0032027900::"),
     ],
-    "Old Altus Tunnel":[ # altus_oldtunnel                       done
+    "Old Altus Tunnel":[ # altus_oldtunnel                                done
         ERLocationData("AP/(OAT): Great Club - boss drop", "Great Club", key="320400,0:0000520630::", altboss=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("AP/(OAT): Golden Rune [6] - S side of tall mining room", "Golden Rune [6]", key="320400,0:0032047000::"),
         ERLocationData("AP/(OAT): Stanching Boluses - beside hut in sand room", "Stanching Boluses", key="320400,0:0032047010::"),
@@ -4340,7 +4342,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AP/(OAT): Boltdrake Talisman +1 - hut in sand room", "Boltdrake Talisman +1", key="320400,0:0032047040::", talisman=True),
         ERLocationData("AP/(OAT): Troll's Hammer - S hut lower mining room", "Troll's Hammer", key="320400,0:0032047050::"),
     ],
-    "Altus Tunnel":[ # altus_tunnel                              done
+    "Altus Tunnel":[ # altus_tunnel                                       done
         ERLocationData("AP/(AT): Somberstone Miner's Bell Bearing [2] - boss drop", "Somberstone Miner's Bell Bearing [2]", key="320500,0:0000520650::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True, smithingbell=True),
         ERLocationData("AP/(AT): Crystal Dart x8 - side room 2 from grace", "Crystal Dart x8", key="320500,0:0032057000::"),
         ERLocationData("AP/(AT): Arteria Leaf x2 - dead-end up wood platform in mining room", "Arteria Leaf x2", key="320500,0:0032057010::"),
@@ -4349,7 +4351,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("AP/(AT): Glintstone Scrap x6 - right path from mining room, lower chasm platform", "Glintstone Scrap x6", key="320500,0:0032057040::"),
         ERLocationData("AP/(AT): Rune Arc - in big chest side room 1 from grace", "Rune Arc", key="320500,0:0032057910::", chest=True),
     ],
-    "Gale Tunnel":[ # caelid_gaeltunnel                          done
+    "Gale Tunnel":[ # caelid_gaeltunnel                                   done
         ERLocationData("CL/(GT): Moonveil - boss drop", "Moonveil", key="320700,0:0000520660::", altboss=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("CL/(GT): Dragon Heart - boss drop", "Dragon Heart", key="320700,0:0000520660::", altboss=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("CL/(GT): Somber Smithing Stone [2] - in entrance shaft", "Somber Smithing Stone [2]", key="320700,0:0032077000::"),
@@ -4359,7 +4361,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(GT): Large Glintstone Scrap x5 - bottom of ladder", "Large Glintstone Scrap x5", key="320700,0:0032077060::"),
         ERLocationData("CL/(GT): Grace Mimic x5 - bottom of ladder", "Grace Mimic x5", key="320700,0:0032077070::"),
     ],
-    "Sellia Crystal Tunnel":[ # caelid_selliatunnel              done
+    "Sellia Crystal Tunnel":[ # caelid_selliatunnel                       done
         ERLocationData("CL/(SCT): Gravity Stone Chunk x10 - boss drop", "Gravity Stone Chunk x10", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("CL/(SCT): Somberstone Miner's Bell Bearing [1] - boss drop", "Somberstone Miner's Bell Bearing [1]", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True, smithingbell=True),
         ERLocationData("CL/(SCT): Smithing Stone [7] x5 - boss drop", "Smithing Stone [7] x5", key="320800,0:0000520670::", altboss=True, upgradeshop=True, minidungeonboss=True, tunnelboss=True),
@@ -4377,7 +4379,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/(SCT): Gravity Stone Chunk x3 - chest in middle hut", "Gravity Stone Chunk x3", key="320800,0:0032087900::"),
         ERLocationData("CL/(SCT): Rock Blaster - chest upper hut", "Rock Blaster", key="320800,0:0032087910::"),
     ],
-    "Yelough Anix Tunnel":[ # snowfield_tunnel                   done
+    "Yelough Anix Tunnel":[ # snowfield_tunnel                            done
         ERLocationData("CS/(YAT): Meteorite of Astel - boss drop", "Meteorite of Astel", key="321100,0:0000520680::", altboss=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("CS/(YAT): Freezing Grease x3 - on frozen elevator", "Freezing Grease x3", key="321100,0:0032117000::"),
         ERLocationData("CS/(YAT): Golden Rune [10] - corpse on ice jump", "Golden Rune [10]", key="321100,0:0032117020::"),
@@ -4387,7 +4389,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CS/(YAT): Hero's Rune [5] - E from boss door", "Hero's Rune [5]", key="321100,0:0032117080::"),
         ERLocationData("CS/(YAT): Alabaster Lord's Sword - enemy drop lower ice jump room", "Alabaster Lord's Sword", key="321100,0:0032117700::"),
     ],
-    "Divine Tower of Limgrave":[ # limgrave_tower                done
+    "Divine Tower of Limgrave":[ # limgrave_tower                         done
         ERLocationData("SV/LTB: Warming Stone - to E down right side of bridge", "Warming Stone", key="341000,0:0034107000::"),
         ERLocationData("SV/LTB: Soft Cotton - to NE past warp gate", "Soft Cotton", key="341000,0:0034107010::"),
         ERLocationData("SV/(DTL): Stormhawk Feather x5 - after teleport to SW at end", "Stormhawk Feather x5", key="341000,0:0034107070::"),
@@ -4396,14 +4398,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/LTB: Boltdrake Talisman - to NE up the stairs", "Boltdrake Talisman", key="341000,0:0034107100::", talisman=True),
         ERLocationData("SV/LTB: Ash-of-War Scarab - to NE past warp gate", "Ash-of-War Scarab", key="341000,0:0034107110::"),
     ],
-    "Carian Study Hall":[ # liurnia_studyhall                    done
+    "Carian Study Hall":[ # liurnia_studyhall                             done
         ERLocationData("LL/(CSH)N: Golden Rune [3] - right of start elevator", "Golden Rune [3]", key="341100,0:0034117010::", missable=True),
         ERLocationData("LL/(CSH)N: Golden Rune [4] - E side of upper level", "Golden Rune [4]", key="341100,0:0034117060::", missable=True),
         ERLocationData("LL/(CSH)N: Cerulean Seed Talisman - on upper rafters", "Cerulean Seed Talisman", key="341100,0:0034117080::", talisman=True, outoftheway=True),
         ERLocationData("LL/(CSH)N: Carian Glintstone Staff - on altar before second elevator", "Carian Glintstone Staff", key="341100,0:0034117200::", missable=True),
         ERLocationData("LL/(CSH)N: Magic Downpour - hostile npc drop", "Magic Downpour", key="341100,0:0034117700::"),
     ],
-    "Carian Study Hall (Inverted)":[ # liurnia_tower             done
+    "Carian Study Hall (Inverted)":[ # liurnia_tower                      done
         ERLocationData("LL/(CSH)I: Mask of Confidence - under first dropdown", "Mask of Confidence", key="341100,0:0034117100::", missable=True),
         ERLocationData("LL/(CSH)I: Holyproof Dried Liver x2 - on lower rafters W side", "Holyproof Dried Liver x2", key="341100,0:0034117110::", missable=True),
         ERLocationData("LL/(CSH)I: Glintstone Firefly x8 - on lower rafters middle", "Glintstone Firefly x8", key="341100,0:0034117120::", missable=True),
@@ -4415,7 +4417,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(DV): Cursemark of Death - top of tower", "Cursemark of Death", key="341100,0:0034117500::", keyitem=True),
         ERLocationData("LL/(CSH)I: Lucidity - hostile npc drop", "Lucidity", key="341100,0:0034117710::"),
     ],
-    "Sealed Tunnel":[ # outskirts_sealedtunnel                   done
+    "Sealed Tunnel":[ # outskirts_sealedtunnel                            done
         ERLocationData("CO/(ST): Onyx Lord's Greatsword - boss drop", "Onyx Lord's Greatsword", key="341200,0:0000520640::", altboss=True, minidungeonboss=True, tunnelboss=True),
         ERLocationData("CO/(ST): Golden Rune [5] - upper wood platform first room", "Golden Rune [5]", key="341200,0:0034127010::"),
         ERLocationData("CO/(ST): Golden Rune [5] - middle of illusory walls after elevator", "Golden Rune [5]", key="341200,0:0034127020::"),
@@ -4432,7 +4434,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CO/(ST): Golden Rune [9] - bottom of root hole", "Golden Rune [9]", key="341200,0:0034127160::"),
         ERLocationData("CO/(ST): Smithing-Stone Miner's Bell Bearing [2] - in chest W side of first room", "Smithing-Stone Miner's Bell Bearing [2]", key="341200,0:0034127900::", upgradeshop=True, chest=True, smithingbell=True),
     ],
-    "Divine Tower of Caelid":[ # caelid_tower                    done
+    "Divine Tower of Caelid":[ # caelid_tower                             done
         ERLocationData("DB/(DT): Godskin Apostle Hood - boss drop", "Godskin Apostle Hood", key="341300,0:0000510730::", altboss=True, miscboss=True),
         ERLocationData("DB/(DT): Godskin Apostle Robe - boss drop", "Godskin Apostle Robe", key="341300,0:0000510730::", altboss=True, miscboss=True),
         ERLocationData("DB/(DT): Godskin Apostle Bracelets - boss drop", "Godskin Apostle Bracelets", key="341300,0:0000510730::", altboss=True, miscboss=True),
@@ -4442,7 +4444,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DB/(DT): Golden Rune [12] - after breakable platform", "Golden Rune [12]", key="341300,0:0034137020::"),
         ERLocationData("DB/(DT): Godslayer's Greatsword - chest after boss", "Godslayer's Greatsword", key="341300,0:0034137900::"),
     ],
-    "Divine Tower of East Altus":[ # leyndell_tower              done
+    "Divine Tower of East Altus":[ # leyndell_tower                       done
         ERLocationData("DTEA: Omenkiller Rollo - boss drop on way to divine tower", "Omenkiller Rollo", key="341400,0:0000510740::", altboss=True, miscboss=True),
         ERLocationData("DTEA: Invigorating White Cured Meat - E of leyndell elevator just past gate on ground", "Invigorating White Cured Meat", key="341400,0:0034147000::"),
         ERLocationData("DTEA: Official's Attire - room mid small elevator in chair", "Official's Attire", key="341400,0:0034147010::"),
@@ -4451,7 +4453,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DTEA: Golden Rune [9] - in boss arena", "Golden Rune [9]", key="341400,0:0034147800::"),
         ERLocationData("DTEA: Blade of Calling - room mid small elevator on desk", "Blade of Calling", key="341400,0:0034147810::"),
     ],
-    "Subterranean Shunning-Grounds":[ # sewer                    done
+    "Subterranean Shunning-Grounds":[ # sewer                             done
         ERLocationData("SSG/UR: Mending Rune of the Fell Curse - give Dung Eater 5 seedbed curses", "Mending Rune of the Fell Curse", key="350000,0:0000009504::", missable=True),
         
         ERLocationData("SSG/FD: Ritual Pot - up elevator in corner", "Ritual Pot", key="350000,0:0000066490::"),
@@ -4525,7 +4527,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SSG/FD: Raw Meat Dumpling - enemy drop, up elevator in corner", "Raw Meat Dumpling", key="350000,0:0035007997::"),
         ERLocationData("SSG/FD: Living Jar Shard - enemy drop, up elevator in corner", "Living Jar Shard", key="350000,0:0035007997::"),
     ],
-    "Frenzied Flame Proscription":[ # sewer_flame                done
+    "Frenzied Flame Proscription":[ # sewer_flame                         done
         # need to beat morgott
         ERLocationData("FFP/CF: Frenzied's Cookbook [2] - to NE, top of third plank", "Frenzied's Cookbook [2]", key="350000,0:0000068410::", cookbook=True),
         ERLocationData("FFP/CF: Note: Miquella's Needle - to NE, after landing on lowest coffin, behind breakable object", "Note: Miquella's Needle", key="350000,0:0000069740::", breakable=True),
@@ -4542,7 +4544,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FFP/CF: Fingerprint Stone Shield - to NE, after landing on lowest coffin, to right in dead-end", "Fingerprint Stone Shield", key="350000,0:0035007720::"),
         ERLocationData("FFP/FFP: Rune Arc - in chest behind illusory wall to SE", "Rune Arc", key="350000,0:0035007780::", chest=True),
     ],
-    "Weeping Peninsula":[ # peninsula                            done
+    "Weeping Peninsula":[ # peninsula                                     done
         ERLocationData("WP/BS: Irina's Letter - talk to Irina to SE", "Irina's Letter", key="350000,0:0000400080::", missable=True),
         ERLocationData("WP/(IMS): Zweihander - Isolated Merchant", "Zweihander", key="604132,0:0000000000:100650:", raceshop=True, shop=True),
         ERLocationData("WP/(IMS): Great Arrow x15 - Isolated Merchant", "Great Arrow x15", key="604132,0:0000000000:100650:", raceshop=True, shop=True),
@@ -4667,12 +4669,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("WP/FLT: Golden Rune [1] x3 1 - E of FLT", "Golden Rune [1] x3", key="604434,0:1044347060::"),  
         ERLocationData("WP/FLT: Golden Rune [1] x3 2 - E of FLT", "Golden Rune [1] x3", key="604434,0:1044347070::"), 
     ],
-    "Leyndell Catacombs":[ # sewer_catacombs                     done
+    "Leyndell Catacombs":[ # sewer_catacombs                              done
         ERLocationData("SSG/(LC): Lord of Blood's Exultation - boss drop", "Lord of Blood's Exultation", key="350000,0:0000520220::", enemytalisman=True, altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("SSG/(LC): Crucible Scale Talisman - ride up first loop fire spitter", "Crucible Scale Talisman", key="350000,0:0035007940::", talisman=True),
         ERLocationData("SSG/(LC): Haligdrake Talisman +1 - behind 2 illusory walls up elevator before grace", "Haligdrake Talisman +1", key="350000,0:0035007950::", talisman=True, hidden=True),
     ],
-    "Ruin-Strewn Precipice":[ # precipice                        done
+    "Ruin-Strewn Precipice":[ # precipice                                 done
         ERLocationData("RSP/RSPO: Magma Wyrm's Scalesword - boss drop", "Magma Wyrm's Scalesword", key="392000,0:0000510260::", boss=True),
         ERLocationData("RSP/RSPO: Dragon Heart - boss drop", "Dragon Heart", key="392000,0:0000510260::", boss=True),
         ERLocationData("RSP/RSP: Somber Smithing Stone [4] - scarab to S", "Somber Smithing Stone [4]", key="392000,0:0000540290::", scarab=True),
@@ -4704,8 +4706,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: DLC Dungeons
-    # these done by KyleG
-    "Fog Rift Catacombs":[ # gravesite_catacombs                 done
+    # these          done by KyleG
+    "Fog Rift Catacombs":[ # gravesite_catacombs                          done
         ERLocationData("GP/(FRC): Ancient Dragon Knight's Cookbook [1] - on corpse, room with second fulgurbloom", "Ancient Dragon Knight's Cookbook [1]", key="400000,0:0000068740::", cookbook=True),
         ERLocationData("GP/(FRC): Death Knight's Twin Axes - boss drop", "Death Knight's Twin Axes", key="400000,0:0000520700::", altboss=True, minidungeonboss=True, catacombboss=True),
         ERLocationData("GP/(FRC): Crimson Amber Medallion +3 - boss drop", "Crimson Amber Medallion +3", key="400000,0:0000520700::", altboss=True, minidungeonboss=True, catacombboss=True),
@@ -4725,7 +4727,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/(FRC): Ash of War: Blinkbolt - chest above south block in triple trap room", "Ash of War: Blinkbolt", key="400000,0:0040007900::", chest=True),
         ERLocationData("GP/(FRC): Stone-Sheathed Sword - above triple trap room, across traps", "Stone-Sheathed Sword", key="400000,0:2045477900::"),
     ],
-    "Scorpion River Catacombs":[ # rauhbase_catacombs            done
+    "Scorpion River Catacombs":[ # rauhbase_catacombs                     done
         # NOTE: The "Basilisk Eyes" are static traps, not basilisks themselves
         ERLocationData("RB/(SRC): Ancient Dragon Knight's Cookbook [2] - drop off bridge past second eyes, in chest", "Ancient Dragon Knight's Cookbook [2]", key="400100,0:0000068780::", cookbook=True, chest=True),
         ERLocationData("RB/(SRC): Death Knight's Longhaft Axe - boss drop", "Death Knight's Longhaft Axe", key="400100,0:0000520710::", altboss=True, minidungeonboss=True, catacombboss=True),
@@ -4747,7 +4749,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RB/(SRC): Shadow Realm Rune [4] - drop off ledge SE of first impaling block", "Shadow Realm Rune [4]", key="400100,0:0040017140::"),
         ERLocationData("RB/(SRC): Broken Rune - SE of ledge overlooking T-shaped room", "Broken Rune", key="400100,0:0040017150::"),
     ],
-    "Darklight Catacombs":[ # scadualtus_catacombs               done
+    "Darklight Catacombs":[ # scadualtus_catacombs                        done
         ERLocationData("RR/(DC): Grave Glovewort [5] - coffin in room after grace", "Grave Glovewort [5]", key="400200,0:0040027000::"),
         ERLocationData("RR/(DC): Grave Glovewort [1] - bottom of ladder in L-shaped room", "Grave Glovewort [1]", key="400200,0:0040027010::"),
         ERLocationData("RR/(DC): Viridian Amber Medallion +3 - jump over balcony, in hidden room", "Viridian Amber Medallion +3", key="400200,0:0040027020::", talisman=True, chest=True),
@@ -4765,7 +4767,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RR/(DC): Great Ghost Glovewort - dropped by enemy on large plinth", "Great Ghost Glovewort", key="400200,0:0040027900::"),
         ERLocationData("RR/(DC): Barbed Staff-Spear - boss drop", "Barbed Staff-Spear", key="615243,0:0000510610::", altboss=True, crawl=True, minidungeonboss=True, catacombboss=True, criticalpath=True),
     ],
-    "Belurat Gaol":[ # gravesite_gaol                            done
+    "Belurat Gaol":[ # gravesite_gaol                                     done
         ERLocationData("GP/(BG): Hefty Cracked Pot - chest on ledge near bottom of pot drop", "Hefty Cracked Pot", key="410000,0:0000066900::", chest=True),
         ERLocationData("GP/(BG): Hefty Cracked Pot - on top of pots in N side of maze", "Hefty Cracked Pot", key="410000,0:0000066910::"),
         ERLocationData("GP/(BG): Hefty Cracked Pot - on top of pots in S side of maze", "Hefty Cracked Pot", key="410000,0:0000066920::"),
@@ -4790,7 +4792,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/(BG): Raw Meat Dumpling - enemy drop at bottom of pot drop", "Raw Meat Dumpling", key="410000,0:0041007985::"),
         ERLocationData("GP/(BG): Living Jar Shard - enemy drop at bottom of pot drop", "Living Jar Shard", key="410000,0:0041007985::"),
     ],
-    "Bonny Gaol":[ # scadualtus_gaol                             done
+    "Bonny Gaol":[ # scadualtus_gaol                                      done
         ERLocationData("SA/(BG): Hefty Cracked Pot - NE jail cell after first pot drop", "Hefty Cracked Pot", key="410100,0:0000066930::"),
         ERLocationData("SA/(BG): Curseblade Meera - boss drop", "Curseblade Meera", key="410100,0:0000520760::", altboss=True, minidungeonboss=True, gaolboss=True),
         ERLocationData("SA/(BG): Bolt x10 - room across from starting ramp", "Bolt x10", key="410100,0:0041017010::"),
@@ -4817,7 +4819,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(BG): Raw Meat Dumpling - enemy drop in middle of room past blood waterfall drop", "Raw Meat Dumpling", key="410100,0:0041017995::"),
         ERLocationData("SA/(BG): Living Jar Shard - enemy drop in middle of room past blood waterfall drop", "Living Jar Shard", key="410100,0:0041017995::"),
     ],
-    "Lamenter's Gaol (Upper)":[ # charo_gaol_lower               done
+    "Lamenter's Gaol (Upper)":[ # charo_gaol_lower                        done
         ERLocationData("CHG/(LG): Hefty Cracked Pot - top of large corpse pile in corpse room", "Hefty Cracked Pot", key="410200,0:0000066940::"),
         ERLocationData("CHG/(LG): Chilling Perfume Bottle - first room on right after upper gaol locked door", "Chilling Perfume Bottle", key="410200,0:0041027100::"),
         ERLocationData("CHG/(LG): Call of Tibia - upstairs after collapsing floor, first right then left room", "Call of Tibia", key="410200,0:0041027110::"),
@@ -4833,16 +4835,16 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CHG/(LG): Raw Meat Dumpling - drop from enemy S of large corpse pile in corpse room", "Raw Meat Dumpling", key="410200,0:0041027995::"),
         ERLocationData("CHG/(LG): Living Jar Shard - drop from enemy S of large corpse pile in corpse room", "Living Jar Shard", key="410200,0:0041027995::"),
     ],
-    "Lamenter's Gaol (Lower)":[ # charo_gaol_boss                done
+    "Lamenter's Gaol (Lower)":[ # charo_gaol_boss                         done
         ERLocationData("CHG/(LG): Shadow Realm Rune [4] - from middle part of the V stairs, illusory wall right of dead-end gate, lower key gate", "Shadow Realm Rune [4]", key="410200,0:0041027120::", hidden=True), #moved
         ERLocationData("CHG/(LG): Lamenting Visage - from middle part of the V stairs, illusory wall right of dead-end gate, lower key gate", "Lamenting Visage", key="410200,0:0041027130::", hidden=True), #moved
         ERLocationData("CHG/(LG): Lamenter's Mask - boss drop", "Lamenter's Mask", key="410200,0:0000520770::", altboss=True, minidungeonboss=True, gaolboss=True),
     ],
-    "Lamenter's Gaol (Entrance)":[ # charo_gaol                  done
+    "Lamenter's Gaol (Entrance)":[ # charo_gaol                           done
         ERLocationData("CHG/(LG): Gaol Upper Level Key - second room on right from left chamber past locked door", "Gaol Upper Level Key", key="410200,0:0041027000::", keyitem=True, chest=True, gaolkey=True),
         ERLocationData("CHG/(LG): Prattling Pate \"Lamentation\" - final room down left hall past locked door", "Prattling Pate \"Lamentation\"", key="410200,0:0041027010::"),
     ],
-    "Ruined Forge Lava Intake":[ # gravesite_forge               done
+    "Ruined Forge Lava Intake":[ # gravesite_forge                        done
         ERLocationData("GP/(RFLI): Greater Potentate's Cookbook [13] - N corner of room past second ladder", "Greater Potentate's Cookbook [13]", key="420000,0:0000068700::", cookbook=True),
         ERLocationData("GP/(RFLI): Anvil Hammer - forge altar reward", "Anvil Hammer", key="420000,0:0042007000::", forgereward=True),
         ERLocationData("GP/(RFLI): Ancient Dragon Smithing Stone - forge altar reward", "Ancient Dragon Smithing Stone", key="420000,0:0042007000::", forgereward=True),
@@ -4856,7 +4858,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/(RFLI): Glass Shard - left of opening past third ladder", "Glass Shard", key="420000,0:0042007180::"),
     ],
     
-    "Ruined Forge of Starfall Past":[ # scadualtus_forge         done
+    "Ruined Forge of Starfall Past":[ # scadualtus_forge                  done
         ERLocationData("SA/(RFSP): Ancient Meteoric Ore Greatsword - forge altar reward, up second gate", "Ancient Meteoric Ore Greatsword", key="420200,0:0042027000::", forgereward=True),
         ERLocationData("SA/(RFSP): Ancient Dragon Smithing Stone - forge altar reward, up second gate", "Ancient Dragon Smithing Stone", key="420200,0:0042027000::", forgereward=True),
         ERLocationData("SA/(RFSP): Glass Shard - by lever for second gate", "Glass Shard", key="420200,0:0042027010::"),
@@ -4868,7 +4870,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(RFSP): Smithing Stone [3] x5 - left in first rookm", "Smithing Stone [3] x5", key="420200,0:0042027070::"),
         ERLocationData("SA/(RFSP): Smithing Stone [8] x2 - up ladder long hallway, under metal platform below", "Smithing Stone [8] x2", key="420200,0:0042027080::"),
     ],
-    "Taylew's Ruined Forge":[ # rauhbase_forge                   done
+    "Taylew's Ruined Forge":[ # rauhbase_forge                            done
         ERLocationData("RB/(TRF): Ancient Dragon Smithing Stone - forge altar reward", "Ancient Dragon Smithing Stone", key="420300,0:0042037000::", forgereward=True),
         ERLocationData("RB/(TRF): Taylew the Golem Smith - forge altar reward", "Taylew the Golem Smith", key="420300,0:0042037000::", forgereward=True),
         ERLocationData("RB/(TRF): Smithscript Axe - after first ladder jump across gap and go left", "Smithscript Axe", key="420300,0:0042037100::"),
@@ -4881,7 +4883,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("RB/(TRF): Smithing Stone [4] x5 - top of lava funnel (inital position), to left by metal platform", "Smithing Stone [4] x5", key="420300,0:0042037170::"),
         ERLocationData("RB/(TRF): Smithing Stone [8] x3 - top of lava funnel (inital position), to right, drop down to left", "Smithing Stone [8] x3", key="420300,0:0042037180::"),
     ],
-    "Rivermouth Cave":[ # ellac_cave                             done
+    "Rivermouth Cave":[ # ellac_cave                                      done
         ERLocationData("ER/(RC): Bloodfiend Hexer's Ashes - boss drop", "Bloodfiend Hexer's Ashes", key="430000,0:0000520800::", altboss=True, minidungeonboss=True, caveboss=True),
         ERLocationData("ER/(RC): Sliver of Meat x3 - right at intersection", "Sliver of Meat x3", key="430000,0:0043007000::"),
         ERLocationData("ER/(RC): Hefty Beast Bone x2 - room 1", "Hefty Beast Bone x2", key="430000,0:0043007010::"),
@@ -4890,7 +4892,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("ER/(RC): Sacred Bloody Flesh x3 - on blood pool altar", "Sacred Bloody Flesh x3", key="430000,0:0043007040::"),
         ERLocationData("ER/(RC): Sacred Bloody Flesh - after entering blood pool room follow path right", "Sacred Bloody Flesh", key="430000,0:0043007050::", outoftheway=True),
     ],
-    "Dragon's Pit":[ # gravesite_dragonpit                       done
+    "Dragon's Pit":[ # gravesite_dragonpit                                done
         ERLocationData("GP/(DP): Dragon-Hunter's Great Katana - boss drop", "Dragon-Hunter's Great Katana", key="430100,0:0000520810::", altboss=True, minidungeonboss=True, caveboss=True, criticalpath=True),
         ERLocationData("GP/(DP): Smithing Stone [1] x6 - room 1 under drop down", "Smithing Stone [1] x6", key="430100,0:0043017000::"),
         ERLocationData("GP/(DP): Shadow Realm Rune [2] - room 2 by brazier", "Shadow Realm Rune [2]", key="430100,0:0043017010::"),
@@ -4902,7 +4904,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: Some Base Game
-    "Moonlight Altar":[ # moonlight                              done
+    "Moonlight Altar":[ # moonlight                                       done
         ERLocationData("MA/(CR): Ranni's Dark Moon - in chest top of rise, just google this puzzle :)", "Ranni's Dark Moon", key="603340,0:1033407100::", chest=True, rise=True),
         ERLocationData("MA/MA: Smithing Stone [7] x3 - to SW in the 3 gazebos, left", "Smithing Stone [7] x3", key="603341,0:1033417000::"),
         ERLocationData("MA/MA: Smithing Stone [8] x3 - to SW in the 3 gazebos, middle", "Smithing Stone [8] x3", key="603341,0:1033417010::"),
@@ -4937,7 +4939,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MA/(CMC): Starlight Shards 10 - inside", "Starlight Shards", key="603542,0:1035427190::"),
         ERLocationData("MA/(CMC): Starlight Shards - outside to N", "Starlight Shards", key="603542,0:1035427200::"),
     ],
-    "Caria Manor":[ # liurnia_postmanor                          done
+    "Caria Manor":[ # liurnia_postmanor                                   done
         ERLocationData("LL/(SR): Carian Phalanx - Seluvis shop after potion used", "Carian Phalanx", key="603450,0:0000000000:100275:", sorceries=True, shop=True),
         ERLocationData("LL/(SR): Glintstone Icecrag - Seluvis shop after potion used", "Glintstone Icecrag", key="603450,0:0000000000:100275:", sorceries=True, shop=True),
         ERLocationData("LL/(SR): Freezing Mist - Seluvis shop after potion used", "Freezing Mist", key="603450,0:0000000000:100275:", sorceries=True, shop=True),
@@ -4996,7 +4998,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/BCM: Thawfrost Boluses - to SE on tip of rock", "Thawfrost Boluses", key="603650,0:1036507020::"),
         ERLocationData("LL/BCM: Albinauric Ashes - to S by graves", "Albinauric Ashes", key="603650,0:1036507030::"),
     ],
-    "Capital Outskirts":[ # outskirts                            done
+    "Capital Outskirts":[ # outskirts                                     done
         #inf ERLocationData("CO: Boiled Crab - Sold by Blackguard Boggart after he moves to Capital Outskirts", "Boiled Crab", key="603643,3:0000000000:100150,1044529255:", missable=True, shop=True),
         ERLocationData("CO/OWPT: Giant-Crusher - in caravan chest to S in camp", "Giant-Crusher", key="604250,0:1042507000::", chest=True),
         ERLocationData("CO/OWPT: Golden Seed - enemy drop to S middle of camp", "Golden Seed", key="604250,0:1042507020::"),
@@ -5069,7 +5071,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CO/AHG: Smithing Stone [6] x2 - breakable statue N of AHG", "Smithing Stone [6] x2", key="604552,0:1045527020::"),
         ERLocationData("CO/ME: Smithing Stone [5] - to SE on rock", "Smithing Stone [5]", key="604552,0:1045527030::"),
     ],
-    "Church of Dragon Communion":[ # limgrave_dragonchurch       done
+    "Church of Dragon Communion":[ # limgrave_dragonchurch                done
         ERLocationData("LG/(CDC): Dragonfire - Dragon Communion", "Dragonfire", key="604135,0:0000000000:101950,101975:", incantations=True, nokey=True, premium=True, shop=True),
         ERLocationData("LG/(CDC): Dragonclaw - Dragon Communion", "Dragonclaw", key="604135,0:0000000000:101950,101975:", incantations=True, nokey=True, premium=True, shop=True),
         ERLocationData("LG/(CDC): Dragonmaw - Dragon Communion", "Dragonmaw", key="604135,0:0000000000:101950,101975:", incantations=True, nokey=True, premium=True, shop=True),
@@ -5078,7 +5080,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LG/(CDC): Smithing Stone [2] - to S", "Smithing Stone [2]", key="604135,0:1041357010::"),
         ERLocationData("LG/(CDC): Exalted Flesh - to S up high", "Exalted Flesh", key="604135,0:1041357020::"),
     ],
-    "Consecrated Snowfield":[ # snowfield                        done
+    "Consecrated Snowfield":[ # snowfield                                 done
         ERLocationData("CS/AD: Golden Rune [1] x6 - to SW, above breakable statue on cliff", "Golden Rune [1] x6", key="604657,0:1046577300::"),
         ERLocationData("CS/AD: Smithing Stone [7] x3 - breakable statue to SW", "Smithing Stone [7] x3", key="604657,0:1046577800::", breakable=True),
         ERLocationData("CS/AD: Smithing Stone [8] - breakable statue to SW", "Smithing Stone [8]", key="604657,0:1046577800::", breakable=True),
@@ -5183,7 +5185,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CS/(ME): Tarnished Golden Sunflower x3 - on S side of erdtree", "Tarnished Golden Sunflower x3", key="605056,0:1050567300::"),
         ERLocationData("CS/(ME): Warming Stone x4 - on NW root of erdtree", "Warming Stone x4", key="605057,0:1050577300::"),
     ],
-    "Great-Jar":[ # caelid_greatjar                              done
+    "Great-Jar":[ # caelid_greatjar                                       done
         ERLocationData("CL/CCO: Great-Jar's Arsenal - beat Great Jar's knights", "Great-Jar's Arsenal", key="604741,0:0000400470::", npc=True),
         ERLocationData("CL/DW: Map: Dragonbarrow - to E", "Map: Dragonbarrow", key="604940,0:0000062041::", map=True),
         ERLocationData("CL/DW: Golden Rune [5] - in lake to E", "Golden Rune [5]", key="604940,0:1049407000::"),
@@ -5191,7 +5193,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CL/DW: Sliver of Meat x3 - in lake to E", "Sliver of Meat x3", key="604940,0:1049407020::"),
         ERLocationData("CL/SE: Smithing Stone [5] x3 - breakable statue to N", "Smithing Stone [5] x3", key="604940,0:1049407040::", breakable=True),
     ],
-    "Forbidden Lands":[ # mountaintops_start                     done
+    "Forbidden Lands":[ # mountaintops_start                              done
         ERLocationData("FL/FL: Drawstring Fire Grease x2 - to W", "Drawstring Fire Grease x2", key="604751,0:1047517000::"),
         ERLocationData("FL/FL: Golden Rune [7] - to E on broken pillar", "Golden Rune [7]", key="604751,0:1047517010::"),
         ERLocationData("FL/FL: Dragonwound Grease - to NE on pillar", "Dragonwound Grease", key="604751,0:1047517300::"),
@@ -5202,7 +5204,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("FL/GLR: Freezing Grease - to S around to right", "Freezing Grease", key="604952,0:1049527000::"),
         ERLocationData("FL/GLR: Golden Seed - seedtree to S", "Golden Seed", key="604952,0:1049527800::", seedtree=True),
     ],
-    "Dragonbarrow":[ # dragonbarrow                              done
+    "Dragonbarrow":[ # dragonbarrow                                       done
         ERLocationData("DB/(IMS): Spiked Caestus - Isolated Merchant", "Spiked Caestus", key="604841,0:0000000000:100875:", raceshop=True, shop=True),
         ERLocationData("DB/(IMS): Beast-Repellent Torch - Isolated Merchant", "Beast-Repellent Torch", key="604841,0:0000000000:100875:", raceshop=True, shop=True),
         ERLocationData("DB/(IMS): Land of Reeds Helm - Isolated Merchant", "Land of Reeds Helm", key="604841,0:0000000000:100875:", raceshop=True, shop=True),
@@ -5269,7 +5271,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("DB/LR: Ash of War: Bloodhound's Step - night boss drop N of LR", "Ash of War: Bloodhound's Step", key="605241,0:1052417100::", altboss=True, night=True, nocrawl=True, overworldboss=True),
         ERLocationData("DB/FG: Starlight Shards - to NE", "Starlight Shards", key="605243,0:1052437000::"),
     ],
-    "Mountaintops of the Giants":[ # mountaintops                done
+    "Mountaintops of the Giants":[ # mountaintops                         done
         ERLocationData("MotG/(GLR): Map: Mountaintops of the Giants, West - map pillar NE of GLR", "Map: Mountaintops of the Giants, West", key="604953,0:0000062050::", map=True),
         ERLocationData("MotG/ZR: Iron Kasa - kill Shabriri, or on ground later", "Iron Kasa", key="604953,0:0000400164::"),
         ERLocationData("MotG/ZR: Ronin's Armor - kill Shabriri, or on ground later", "Ronin's Armor", key="604953,0:0000400164::"),
@@ -5404,17 +5406,17 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MotG/(FCM): Sacred Tear - by statue", "Sacred Tear", key="605455,0:1054557800::", church=True),
         ERLocationData("MotG/FR: Dragon Heart - boss drop to SE", "Dragon Heart", key="605456,0:0000530510::", altboss=True, nocrawl=True, dragonboss=True, overworldboss=True),
     ],
-    "Redmane Castle Post Radahn":[ # caelid_postradahn           done
+    "Redmane Castle Post Radahn":[ # caelid_postradahn                    done
         ERLocationData("CL/(RC): Ruins Greatsword - boss drop", "Ruins Greatsword", key="605136,0:0000510830::", altboss=True, fortress=True, miscboss=True),
     ],
-    "Wailing Dunes":[ # caelid_radahn                            done
+    "Wailing Dunes":[ # caelid_radahn                                     done
         ERLocationData("CL/(WD): Radahn's Spear x4 - in desert, N of RC", "Radahn's Spear x4", key="605138,0:1051387000::"),
         ERLocationData("CL/(WD): Radahn's Spear x6 - in desert, N of RC", "Radahn's Spear x6", key="605138,0:1051387010::"),
         ERLocationData("CL/(WD): Radahn's Spear x10 - in desert, N of RC", "Radahn's Spear x10", key="605138,0:1051387020::"),
         ERLocationData("CL/(WD): Radahn's Great Rune - mainboss drop", "Radahn's Great Rune", key="605238,0:0000000172::", boss=True),
         ERLocationData("CL/(WD): Remembrance of the Starscourge - mainboss drop", "Remembrance of the Starscourge", key="605238,0:0000510300::", boss=True, remembrance=True),
     ],
-    "Flame Peak":[ # flamepeak                                   done
+    "Flame Peak":[ # flamepeak                                            done
         ERLocationData("FP/GCHG: Somber Smithing Stone [7] - E of GCHG, to S after jump", "Somber Smithing Stone [7]", key="605053,0:1050537000::"),
         ERLocationData("FP/GCHG: Somber Smithing Stone [7] - enemy drop E of GCHG by jump", "Somber Smithing Stone [7]", key="605053,0:1050537980::"),
         ERLocationData("FP/GCHG: Somber Smithing Stone [7] - enemy drop E of GCHG, to SE after jump", "Somber Smithing Stone [7]", key="605053,0:1050537990::"),        
@@ -5453,7 +5455,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
 
     # MARK: More DLC
-    "Ancient Ruins of Rauh":[ # rauhruins                        some done by Layka
+    "Ancient Ruins of Rauh":[ # rauhruins                                 some done by Layka
         ERLocationData("ARR/CBME: Remembrance of the Saint of the Bud - mainboss drop", "Remembrance of the Saint of the Bud", key="614445,0:0000510600::", boss=True, remembrance=True),
         #ERLocationData("ARR: Scadutree Fragment - In front of the northwest wall monument on the second floor of the cave after the West Ruins grace.", "Scadutree Fragment", key="614445,0:2044457000::", fragment=True),
         #ERLocationData("ARR: Four-Toed Fowl Foot x3 - On a corpse found on the way to the Grand Stairway elevator, right after dropping down off the south edge of the West Ruins third-floor courtyard to the stone pillars and arches below", "Four-Toed Fowl Foot x3", key="614445,0:2044457010::"),
@@ -5571,7 +5573,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RR: Beast Horn x2 - On a corpse on the pillar at the east corner of the spiritspring courtyard in West Ruins, on the same level as the stairway two levels up to the northeast of the courtyard. After jumping up the spiritspring to the northeast, instead of going up the stairs, head to the south corner of the platform and jump onto adjacent beams to reach the item. In the base game, the spiritspring can be unsealed from the third-story courtyard after the West Ruins grace.", "Beast Horn x2", key="614546,0:2045467000::"),
         #ERLocationData("RR: Mottled Necklace +2 - In a chest accessed by using the spiritspring in West Ruins to jump up two levels to the northeast, then ascending the stairway. In the base game, the spiritspring can be unsealed from the third-story courtyard after the West Ruins grace.", "Mottled Necklace +2", key="614546,0:2045467900::", talisman=True, nocrawl=True, chest=True),
     ],
-    "Cerulean Coast":[ # cerulean                                done by MartyredG
+    "Cerulean Coast":[ # cerulean                                         done by MartyredG
         ERLocationData("CC/CCW: Grave Keeper's Cookbook [1] - to E by giant tree", "Grave Keeper's Cookbook [1]", key="614638,0:0000068940::", cookbook=True),
         ERLocationData("CC/CCW: Dancing Blade of Ranah - boss drop", "Dancing Blade of Ranah", key="614638,0:0000530810::", altboss=True, nocrawl=True, namelessmausoleum=True, overworldboss=True),
         ERLocationData("CC/CCW: Dancer's Hood - boss drop", "Dancer's Hood", key="614638,0:0000530810::", altboss=True, nocrawl=True, namelessmausoleum=True, overworldboss=True),
@@ -5619,7 +5621,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CC/CCC: Arrow x10 - to NE, on corpse in water on beach", "Arrow x10", key="614937,0:2049377000::"),
         ERLocationData("CC/CCC: Smithing Stone [2] x6 - to NE, on corpse on hill before FRR", "Smithing Stone [2] x6", key="614938,0:2049387060::"),
     ],
-    "Charo's Hidden Grave":[ # charo                             done by Seb
+    "Charo's Hidden Grave":[ # charo                                      done by Seb
         ERLocationData("CHG/CHG: Glovewort Crystal Tear - enemy drop to W above river", "Glovewort Crystal Tear", key="614639,0:0000065460::", furnacegolem=True, missable=True),
         ERLocationData("CHG/CHG: Fireproof Pickled Liver - to W at top of river", "Fireproof Pickled Liver", key="614639,0:2046397030::"),
         ERLocationData("CHG/CHG: Gravebird Ashes - to W, after spirit spring", "Gravebird Ashes", key="614639,0:2046397040::"),
@@ -5667,12 +5669,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("RB: Fang Helm - Dropped by Red Bear in the Northern Nameless Mausoleum", "Fang Helm", key="614645,0:0000530900::", altboss=True, nocrawl=True, namelessmausoleum=True, overworldboss=True),
         #ERLocationData("RB: Spiraltree Seal - Painting reward from the Sacred Tower painting, in front of the artist on the southwest cliffside of the plateau with the Northern Nameless Mausoleum, only after burning the Sealing Tree", "Spiraltree Seal", key="614645,0:0000580410::", missable=True),
     ],
-    "Rauh Ruins Limited":[ # rauhruins_limited                   done
+    "Rauh Ruins Limited":[ # rauhruins_limited                            done
         ERLocationData("SA/ARR: Redflesh Mushroom - E side of imbued sword key area by pillar", "Redflesh Mushroom", key="614646,0:2046467010::"),
         ERLocationData("SA/ARR: Beast Horn x2 - NW side of imbued sword key area on rock left of waterfall", "Beast Horn x2", key="614647,0:2046477160::"),
         ERLocationData("SA/ARR: Verdigris Discus - NE side of imbued sword key area by altar", "Verdigris Discus", key="614647,0:2046477720::", talisman=True, nocrawl=True),
     ],
-    "Scadu Altus":[ # scadualtus                        leda quest
+    "Scadu Altus":[ # scadualtus                         leda quest
         #ERLocationData("SA: Lacerating Crossed-Tree - Given by Leda at Highroad Cross after invading Hornsent alongside her", "Lacerating Crossed-Tree", key="120500,0:0000400590::", missable=True, exclusive=True),
         #ERLocationData("SA: Retaliatory Crossed-Tree - Given by Leda at Highroad Cross after invading Ansbach alongside her", "Retaliatory Crossed-Tree", key="120500,0:0000400592::", missable=True, exclusive=True),
         ERLocationData("SA/(CC): Prayer Room Key - invader drop", "Prayer Room Key", key="200000,0:0000400696::", missable=True),
@@ -5833,7 +5835,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         # up the sealed spirtsping
         ERLocationData("SA/SC: Scadutree Fragment - by cross", "Scadutree Fragment", key="615043,0:2050437500::", cross=True),
     ],
-    "Castle Ensis":[ # ensis                                     done
+    "Castle Ensis":[ # ensis                                              done
         ERLocationData("CE/CEC: Loyal Knight's Cookbook - in chest below grace", "Loyal Knight's Cookbook", key="614744,0:0000068790::", cookbook=True, chest=True),
         ERLocationData("CE/CEC: Moonrithyll's Knight Sword - hostile npc drop to SE, at church building entrance", "Moonrithyll's Knight Sword", key="614744,0:0000530865::"),
         ERLocationData("CE/CF: Black Pyrefly x3 - to NE on left side of bridge", "Black Pyrefly x3", key="614744,0:2047447010::"),
@@ -5873,7 +5875,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CE/CEC: Imbued Sword Key - in chest just before elevator to boss area", "Imbued Sword Key", key="614844,0:2048447800::", keyitem=True, nocrawl=True, chest=True),
         ERLocationData("CE/CLC: Ash of War: Wing Stance - in chest to E, top of tower after jumping down", "Ash of War: Wing Stance", key="614844,0:2048447810::", chest=True),
     ],
-    "Fog Rift Fort":[ # ensis_fort                               done
+    "Fog Rift Fort":[ # ensis_fort                                        done
         ERLocationData("CE/(FRF): Greater Potentate's Cookbook [3] - across the valley bridge", "Greater Potentate's Cookbook [3]", key="614745,0:0000068690::", cookbook=True),
         ERLocationData("CE/(FRF): Black Steel Greatshield - boss drop", "Black Steel Greatshield", key="614745,0:0000530955::", altboss=True, nocrawl=True, overworldboss=True),
         ERLocationData("CE/(FRF): Somber Smithing Stone [2] - in NW corner of S wall", "Somber Smithing Stone [2]", key="614745,0:2047457020::"),
@@ -5908,7 +5910,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("AW: Clarifying Boluses x2 - On a corpse on a ledge behind a large tree north of the Abandoned Church", "Clarifying Boluses x2", key="615341,0:2053417020::"),
         #ERLocationData("AW: Scadutree Fragment x2 - In front of the statue pedestal in Abandoned Church", "Scadutree Fragment x2", key="615341,0:2053417500::", fragment=True),
     ],
-    "Jagged Peak Foot":[ # jaggedpeak_foot                       done
+    "Jagged Peak Foot":[ # jaggedpeak_foot                                done
         ERLocationData("JP/FJP: Igon's Furled Finger - given by Igon after defeating boss", "Igon's Furled Finger", key="614842,0:0000400710::", missable=True),
         ERLocationData("JP/GADC: Dragon Communion Harpoon - to W on wing, right item", "Dragon Communion Harpoon", key="614938,0:2049387000::"),
         ERLocationData("JP/GADC: Dragon Communion Harpoon - to W on lower wing", "Dragon Communion Harpoon", key="614938,0:2049387010::"),
@@ -5929,7 +5931,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("JP/FJP: Dragon Heart - boss drop to SE", "Dragon Heart", key="615240,0:0000530800::", altboss=True, dragonboss=True, nocrawl=True, overworldboss=True),
         ERLocationData("JP/FJP: Dragonscale Flesh - boss drop to SE", "Dragonscale Flesh", key="615240,0:0000530800::", altboss=True, dragonboss=True, nocrawl=True, overworldboss=True),
     ],
-    "Jagged Peak":[ # jaggedpeak                                 done
+    "Jagged Peak":[ # jaggedpeak                                          done
         ERLocationData("JP/FJP: Igon's Greatbow - to E on Igon's corpse after JP mainboss", "Igon's Greatbow", key="614842,0:0000400712::", missable=True),
         ERLocationData("JP/FJP: Igon's Helm - to E on Igon's corpse after JP mainboss", "Igon's Helm", key="614842,0:0000400712::", missable=True),
         ERLocationData("JP/FJP: Igon's Armor - to E on Igon's corpse after JP mainboss", "Igon's Armor", key="614842,0:0000400712::", missable=True),
@@ -5947,7 +5949,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("JP/JPM: Ancient Dragon Smithing Stone - up second spirit sping, to E", "Ancient Dragon Smithing Stone", key="615439,0:2053397000::"),
         ERLocationData("JP/JPM: Igon's Cookbook [2] - to NE", "Igon's Cookbook [2]", key="615440,0:0000068570::", cookbook=True),
     ],
-    "Finger Ruins of Rhia":[ # cerulean_rhia                     done
+    "Finger Ruins of Rhia":[ # cerulean_rhia                              done
         ERLocationData("FRR/(FWH): Finger-Weaver's Cookbook [1] - in shack", "Finger-Weaver's Cookbook [1]", key="614938,0:0000068920::", cookbook=True),
         ERLocationData("CC/FRR: Shadow Realm Rune [2] - to S on beach", "Shadow Realm Rune [2]", key="615038,0:2050387000::"),
         ERLocationData("CC/FRR: Grave Glovewort [9] - to SW top of coffin boat", "Grave Glovewort [9]", key="615038,0:2050387010::"),
@@ -6006,7 +6008,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("SA: Scadutree Fragment - Dropped by the west hippo in the pond below Recluses' River Downstream", "Scadutree Fragment", key="615144,0:2051447500::", enemyfragment=True),
         #ERLocationData("SA: Scadutree Fragment - Dropped by the east hippo in the pond below Recluses' River Downstream", "Scadutree Fragment", key="615144,0:2051447510::", enemyfragment=True),
     ],
-    "Scaduview":[ # scaduview                                    done
+    "Scaduview":[ # scaduview                                             done
         ERLocationData("SV/SKBG: Remembrance of the Wild Boar Rider - mainboss drop", "Remembrance of the Wild Boar Rider", key="614948,0:0000510640::", boss=True, remembrance=True),
         ERLocationData("SV/SKBG: Scadutree Fragment - to SE", "Scadutree Fragment", key="614948,0:2049487000::", fragment=True),
         ERLocationData("SV/(AS): Gaius's Greaves - enemy drop by shack", "Gaius's Greaves", key="614949,0:2049490900::"),
@@ -6018,7 +6020,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SV/(SC): Scadutree Fragment 4 - by chalice", "Scadutree Fragment", key="614949,0:2049497540::", fragment=True),
         ERLocationData("SV/(SC): Scadutree Fragment 5 - by chalice", "Scadutree Fragment", key="614949,0:2049497550::", fragment=True),
     ],
-    "Hinterland":[ # hinterland                                  done
+    "Hinterland":[ # hinterland                                           done
         ERLocationData("HL/HL: Blessing of Marika - boss drop on hill", "Blessing of Marika", key="615047,0:0000530935::", altboss=True, nocrawl=True, overworldboss=True),
         ERLocationData("HL/HL: Blessing of Marika - boss drop by bridge", "Blessing of Marika", key="615048,0:0000530950::", altboss=True, nocrawl=True, overworldboss=True),
         ERLocationData("SA/(RR): Spellmachinist's Bell Bearing - very top of rise, drop down from HL/SV", "Spellmachinist's Bell Bearing", key="615146,0:2051467020::"),
@@ -6031,15 +6033,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("HL/FH: Fingercreeper Ashes - to E in the massive cave", "Fingercreeper Ashes", key="615348,0:2053487000::"),
         ERLocationData("HL/FH: Shadow Realm Rune [6] - to E in the massive cave, on exit ledge", "Shadow Realm Rune [6]", key="615348,0:2053487010::"),
     ],
-    "Scadutree Base":[ # scadutree_base                          done
+    "Scadutree Base":[ # scadutree_base                                   done
         ERLocationData("SK/TWS: Remembrance of the Shadow Sunflower - mainboss drop", "Remembrance of the Shadow Sunflower", key="615048,0:0000510620::", boss=True, deadend=True, remembrance=True),
         ERLocationData("SK/TWS: Miquella's Great Rune - mainboss drop", "Miquella's Great Rune", key="615048,0:0000510620::", boss=True, deadend=True),
     ],
-    "Cathedral of Manus Metyr":[ # scadualtus_miyr               done
+    "Cathedral of Manus Metyr":[ # scadualtus_miyr                        done
         ERLocationData("SA/(CMM): Claws of Night - invader drop under CMM", "Claws of Night", key="615145,0:0000400672::", missable=True),
         ERLocationData("SA/(CMM): Finger-Weaver's Cookbook [2] - left of hanging bell under CMM", "Finger-Weaver's Cookbook [2]", key="615146,0:0000068580::", cookbook=True),
     ],
-    "Finger Ruins of Dheo":[ # hinterland_dheo                   done
+    "Finger Ruins of Dheo":[ # hinterland_dheo                            done
         ERLocationData("FRD: Cerulean Seed Talisman +1 -use Hole-Laden Necklace at the hanging bell in the center", "Cerulean Seed Talisman +1", key="615346,0:2053467600::", talisman=True, nocrawl=True, missable=True),
     ],
 }

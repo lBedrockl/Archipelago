@@ -408,17 +408,19 @@ class EldenRing(World):
             create_connection("Cerulean Coast", "Stone Coffin Fissure")
             create_connection("Cerulean Coast", "Finger Ruins of Rhia")
             
-            create_connection("Scadu Altus", "Shawdow Keep, Church District")
-            create_connection("Shawdow Keep, Church District", "Shawdow Keep, Church District Lower")
-            create_connection("Shawdow Keep, Church District Lower", "Scadutree Base")
+            create_connection("Scadu Altus", "Shadow Keep, Church District")
+            create_connection("Shadow Keep, Church District", "Shadow Keep, Church District Lower")
+            create_connection("Shadow Keep, Church District Lower", "Scadutree Base")
             
-            create_connection("Scadu Altus", "Shadow Keep")
-            create_connection("Shadow Keep", "Shadow Keep Storehouse")
-            create_connection("Shadow Keep Storehouse", "Scaduview")
+            create_connection("Shadow Keep, Church District", "Shadow Keep Storehouse Back")
+            create_connection("Shadow Keep Storehouse Back", "Scaduview")
             create_connection("Scaduview", "Hinterland")
             create_connection("Hinterland", "Finger Ruins of Dheo")
             
-            create_connection("Shadow Keep Storehouse", "Ancient Ruins of Rauh")
+            create_connection("Scadu Altus", "Shadow Keep")
+            create_connection("Shadow Keep", "Shadow Keep Storehouse")
+            create_connection("Shadow Keep Storehouse", "Shadow Keep, West Rampart")
+            create_connection("Shadow Keep, West Rampart", "Ancient Ruins of Rauh")
             create_connection("Ancient Ruins of Rauh", "Enir Ilim")
             
             create_connection("Shadow Keep", "Recluses' River")
@@ -1709,6 +1711,14 @@ class EldenRing(World):
                 "SA/(CC): Prayer Room Key - invader drop",
                 "SA/(CC): Ash of War: Flame Skewer - invader drop"
             ], lambda state: self._can_get(state, "BTS/SPA: Crusade Insignia - invader drop in NE courtyard"))
+            
+            self._add_location_rule(["SK/CDE: Fire Knight Queelign - on Queelign, give Iris of Grace, in room with door"
+            ], lambda state: self._can_get(state, "SA/(CC): Prayer Room Key - invader drop")
+                and state.has("Prayer Room Key", self.player) and state.has("Iris of Grace", self.player))
+            
+            self._add_location_rule(["SK/CDE: Queelign's Greatsword - on Queelign, give Iris of Occultation, in room with door"
+            ], lambda state: self._can_get(state, "SA/(CC): Prayer Room Key - invader drop")
+                and state.has("Prayer Room Key", self.player) and state.has("Iris of Occultation", self.player))
             
             # MARK: Moore
             
