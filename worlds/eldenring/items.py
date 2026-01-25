@@ -2684,7 +2684,7 @@ _dlc_items = [
     ERItemData("Greater Potentate's Cookbook [13]", 2009320, ERItemCategory.GOODS),
     ERItemData("Greater Potentate's Cookbook [14]", 2009321, ERItemCategory.GOODS),
     ERItemData("Greater Potentate's Cookbook [6]", 2009322, ERItemCategory.GOODS),
-    ERItemData("Greater Potentate's Cookbook [2]", 2009323, ERItemCategory.GOODS),
+    ERItemData("Greater Potentate's Cookbook [2]", 2009323, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Ancient Dragon Knight's Cookbook [1]", 2009324, ERItemCategory.GOODS),
     ERItemData("Mad Craftsman's Cookbook [1]", 2009325, ERItemCategory.GOODS),
     ERItemData("St. Trina Disciple's Cookbook [1]", 2009326, ERItemCategory.GOODS),
@@ -2708,10 +2708,11 @@ _dlc_items = [
     ERItemData("Grave Keeper's Cookbook [1]", 2009344, ERItemCategory.GOODS),
     ERItemData("St. Trina Disciple's Cookbook [2]", 2009345, ERItemCategory.GOODS),
 
-    ERItemData("Hefty Cracked Pot", 2009500, ERItemCategory.GOODS),
+    ERItemData("Hefty Cracked Pot", 2009500, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Scadutree Fragment", 2010000, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Scadutree Fragment x2", 2010000, ERItemCategory.GOODS, classification=ItemClassification.progression, count=2),
-    *ERItemData("Revered Spirit Ash", 2010100, ERItemCategory.GOODS).counts([2]),
+    ERItemData("Revered Spirit Ash", 2010100, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Revered Spirit Ash x2", 2010100, ERItemCategory.GOODS, classification=ItemClassification.useful, count=2),
 
     ERItemData("Viridian Hidden Tear", 2011000, ERItemCategory.GOODS),
     ERItemData("Crimsonburst Dried Tear", 2011010, ERItemCategory.GOODS),

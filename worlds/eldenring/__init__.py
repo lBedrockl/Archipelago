@@ -838,7 +838,13 @@ class EldenRing(World):
                 "FRD: Cerulean Seed Talisman +1 -use Hole-Laden Necklace at the hanging bell in the center"
                 ], "Hole-Laden Necklace")
             
-   
+            # furnace golem / Hefty Furnace Pot
+            self._add_location_rule([
+                "RR/(RU): Bloodsucking Cracked Tear - inactive furnace golem, use Hefty Furnace Pot",
+                "RR/(RU): Furnace Visage - inactive furnace golem, use Hefty Furnace Pot",
+                "RR/(RU): Giant Golden Arc - in chest within building behind inactive furnace golem"
+                ], lambda state: state.has("Greater Potentate's Cookbook [2]", self.player) and state.has("Hefty Cracked Pot", self.player))
+                
             # DLC region rules
             
             self._add_entrance_rule("Belurat Swamp", "Well Depths Key")
