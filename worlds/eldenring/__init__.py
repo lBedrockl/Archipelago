@@ -146,6 +146,11 @@ class EldenRing(World):
         if self.options.enable_dlc:
             if not self.options.late_dlc:
                 item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
+                
+            if self.options.messmer_kindle:
+                item_table["Messmer's Kindling"].skip = True
+                item_table["Messmer's Kindling Shard"].skip = False
+                self.multiworld.itempool += [self.create_item("Messmer's Kindling Shard") for i in range(self.options.messmer_kindle_max)]
         
         if self.options.world_logic == "region_lock": # inject keys
             for item in item_table: 
@@ -387,6 +392,12 @@ class EldenRing(World):
             create_connection("Lamenter's Gaol (Entrance)", "Lamenter's Gaol (Upper)")
             create_connection("Lamenter's Gaol (Upper)", "Lamenter's Gaol (Lower)")
             
+            create_connection("Gravesite Plain", "Ellac River")
+            create_connection("Ellac River", "Cerulean Coast")
+            create_connection("Ellac River", "Rivermouth Cave")
+            create_connection("Cerulean Coast", "Stone Coffin Fissure")
+            create_connection("Cerulean Coast", "Finger Ruins of Rhia")
+            
             create_connection("Gravesite Plain", "Fog Rift Catacombs")
             create_connection("Gravesite Plain", "Castle Ensis")
             create_connection("Castle Ensis", "Scadu Altus")
@@ -401,12 +412,6 @@ class EldenRing(World):
             create_connection("Scadu Altus", "Rauh Base")
             create_connection("Rauh Base", "Scorpion River Catacombs")
             create_connection("Rauh Base", "Taylew's Ruined Forge")
-            
-            create_connection("Scadu Altus", "Ellac River")
-            create_connection("Ellac River", "Cerulean Coast")
-            create_connection("Ellac River", "Rivermouth Cave")
-            create_connection("Cerulean Coast", "Stone Coffin Fissure")
-            create_connection("Cerulean Coast", "Finger Ruins of Rhia")
             
             create_connection("Scadu Altus", "Shadow Keep, Church District")
             create_connection("Shadow Keep, Church District", "Shadow Keep, Church District Lower")
@@ -815,15 +820,21 @@ class EldenRing(World):
                     lambda state: self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
                 
+            if self.options.messmer_kindle:
+                self._add_entrance_rule("Enir Ilim", lambda state: state.has("Messmer's Kindling Shard", self.player, min(self.options.messmer_kindle_required, self.options.messmer_kindle_max)))
+            else:
+                self._add_entrance_rule("Enir Ilim", "Messmer's Kindling")
+            
             self.multiworld.register_indirect_condition(self.get_region("Ancient Ruins of Rauh"), self.get_entrance("Go To Rauh Ruins Limited"))
-            self.multiworld.register_indirect_condition(self.get_region("Shawdow Keep Church"), self.get_entrance("Go To Shawdow Keep Storehouse"))   
+            self.multiworld.register_indirect_condition(self.get_region("Shadow Keep, Church District"), self.get_entrance("Go To Shadow Keep Storehouse"))
             
             # MARK: DLC Rules
             
             # dlc paintings
+            # self._add_location_rule("", "\"\" Painting")
+            self._add_location_rule("RB/NNM: Spiraltree Seal - \"The Sacred Tower\" Painting reward SW of NNM", 
+                                    lambda state: state.has("\"The Sacred Tower\" Painting", self.player and self._can_go_to(state, "Enir Ilim")))
             self._add_location_rule("JP/JPM: Rock Heart - \"Domain of Dragons\" Painting reward, after first spirit spring head down return path", "\"Domain of Dragons\" Painting")
-            # self._add_location_rule("", "\"\" Painting")
-            # self._add_location_rule("", "\"\" Painting")
             
             # dlc imbued
             self._add_entrance_rule("The Four Belfries (Chapel of Anticipation)", lambda state: state.has("Imbued Sword Key", self.player, 4))
@@ -1709,14 +1720,12 @@ class EldenRing(World):
             
             # MARK: Queelign
             
-            # his drops will always be one then the second no matter the region order, so require each other
-            self._add_location_rule(["BTS/SPA: Crusade Insignia - invader drop in NE courtyard"
-            ], lambda state: self._can_get(state, "SA/(CC): Prayer Room Key - invader drop"))
-            
+            # his drops will always be one then the second no matter the region order, so require both
             self._add_location_rule([
                 "SA/(CC): Prayer Room Key - invader drop",
-                "SA/(CC): Ash of War: Flame Skewer - invader drop"
-            ], lambda state: self._can_get(state, "BTS/SPA: Crusade Insignia - invader drop in NE courtyard"))
+                "SA/(CC): Ash of War: Flame Skewer - invader drop",
+                "BTS/SPA: Crusade Insignia - invader drop in NE courtyard"
+            ], lambda state: self._can_go_to(state, "Scadu Altus") and self._can_go_to(state, "Belurat"))
             
             self._add_location_rule(["SK/CDE: Fire Knight Queelign - on Queelign, give Iris of Grace, in room with door"
             ], lambda state: self._can_get(state, "SA/(CC): Prayer Room Key - invader drop")
@@ -1775,7 +1784,7 @@ class EldenRing(World):
             # MARK: Jolán
             
             self._add_location_rule([
-                "SA/CMM: Swordhand of Night Jolán - on Jolán after killing Ymir, give Iris of Grace before"
+                "SA/(CMM): Swordhand of Night Jolán - on Jolán after killing Ymir, give Iris of Grace before"
             ], lambda state: state.has("Iris of Grace", self.player) and 
                 self._can_get(state, "SA/(CMM): Maternal Staff - kill invader Ymir"))
             
@@ -2242,6 +2251,9 @@ class EldenRing(World):
                 "great_runes_required": self.options.great_runes_required.value,
                 "royal_access": self.options.royal_access.value,
                 "enable_dlc": self.options.enable_dlc.value,
+                "messmer_kindle": self.options.messmer_kindle.value,
+                "messmer_kindle_required": self.options.messmer_kindle_required.value,
+                "messmer_kindle_max": self.options.messmer_kindle_max.value,
                 "late_dlc": self.options.late_dlc.value,
                 "enemy_rando": self.options.enemy_rando.value,
                 "material_rando": self.options.material_rando.value,

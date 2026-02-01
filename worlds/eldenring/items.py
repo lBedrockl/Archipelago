@@ -1924,7 +1924,7 @@ _vanilla_items = [
     *ERItemData("Smithing Stone [2]", 10101, ERItemCategory.GOODS, filler=True).counts([2, 3, 4, 6, 7, 8]),
     *ERItemData("Smithing Stone [3]", 10102, ERItemCategory.GOODS, filler=True).counts([2, 3, 5]),
     *ERItemData("Smithing Stone [4]", 10103, ERItemCategory.GOODS, filler=True).counts([2, 3, 4 ,5]),
-    *ERItemData("Smithing Stone [5]", 10104, ERItemCategory.GOODS, filler=True).counts([2, 3, 4, 5, 6]),
+    *ERItemData("Smithing Stone [5]", 10104, ERItemCategory.GOODS, filler=True).counts([2, 3, 4, 5, 6, 7]),
     *ERItemData("Smithing Stone [6]", 10105, ERItemCategory.GOODS, filler=True).counts([2, 3, 5, 8]),
     *ERItemData("Smithing Stone [7]", 10106, ERItemCategory.GOODS, filler=True).counts([2, 3, 4, 5, 8]),
     *ERItemData("Smithing Stone [8]", 10107, ERItemCategory.GOODS, filler=True).counts([2, 3, 4, 5, 7, 9]),
@@ -2515,8 +2515,8 @@ _dlc_items = [
     ERItemData("Priestess Heart", 2002020, ERItemCategory.GOODS),
     ERItemData("Lamenter's Mask", 2002030, ERItemCategory.GOODS),
     ERItemData("Ancient Dragon's Blessing", 2002100, ERItemCategory.GOODS),
-    ERItemData("Iris of Grace", 2002120, ERItemCategory.GOODS),
-    ERItemData("Iris of Occultation", 2002130, ERItemCategory.GOODS),
+    ERItemData("Iris of Grace", 2002120, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Iris of Occultation", 2002130, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Thiollier's Concoction", 2002140, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Prattling Pate \"Lamentation\"", 2002150, ERItemCategory.GOODS, skip=True),
     #remembrances
@@ -2607,13 +2607,13 @@ _dlc_items = [
 
     # Key and Quest
     ERItemData("Miquella's Great Rune", 2008000, ERItemCategory.GOODS), #dont random maybe?
-    ERItemData("Igon's Furled Finger", 2008003, ERItemCategory.GOODS),
+    ERItemData("Igon's Furled Finger", 2008003, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Well Depths Key", 2008004, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Gaol Upper Level Key", 2008005, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Gaol Lower Level Key", 2008006, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Cross Map", 2008007, ERItemCategory.GOODS),
     ERItemData("Hole-Laden Necklace", 2008008, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Heart of Bayle", 2008011, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Heart of Bayle", 2008011, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("New Cross Map", 2008012, ERItemCategory.GOODS),
     ERItemData("Storeroom Key", 2008013, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Secret Rite Scroll", 2008014, ERItemCategory.GOODS),
@@ -2788,6 +2788,9 @@ _dlc_items = [
     #MARK: DLC Region Lock Items
     # these get set to skip = False in init when region lock is on
     #ERItemData("DLC Region Lock Key", needs id, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
+    
+    # copy of normal kindle, idk in game id
+    ERItemData("Messmer's Kindling Shard", 2008021, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
 ]
 
 for item in _dlc_items:

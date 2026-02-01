@@ -52,7 +52,25 @@ class RoyalAccess(Toggle):
 
 class EnableDLC(Toggle):
     """Enable DLC"""
-    display_name = "Enable DLC"  # this is the option name as it's displayed to the user on the webhost and in the spoiler log
+    display_name = "Enable DLC"
+    
+class MessmerKindle(Toggle): # another toggle to make them only spawn in dlc?
+    """Messmer Kindle Shards"""
+    display_name = "Messmer Kindle Shards"
+    
+class MessmerKindleRequired(Range): # i just picked these numbers idk how many would be good
+    """Messmer Kindle Shards required to access Enir Ilim."""
+    display_name = "Messmer Kindle Shards Required"
+    range_start = 2
+    range_end = 15
+    default = 5
+    
+class MessmerKindleMax(Range):
+    """How many Messmer Kindle Shards there are."""
+    display_name = "Messmer Kindle Shards Max"
+    range_start = 2
+    range_end = 15
+    default = 10
 
 class LateDLCOption(Choice):
     """Guarantee that you don't need to enter the DLC until later in the run.
@@ -197,6 +215,9 @@ class EROptions(PerGameCommonOptions):
     great_runes_required: GreatRunesRequired
     royal_access: RoyalAccess
     enable_dlc: EnableDLC
+    messmer_kindle: MessmerKindle
+    messmer_kindle_required: MessmerKindleRequired
+    messmer_kindle_max: MessmerKindleMax
     late_dlc: LateDLCOption
     enemy_rando: EnemyRando
     material_rando: MaterialRando
@@ -219,6 +240,13 @@ option_groups = [
     OptionGroup("Equipment", [
         RandomizeStartingLoadout,
         AutoEquipOption,
+    ]),
+    OptionGroup("DLC", [
+        EnableDLC,
+        MessmerKindle,
+        MessmerKindleRequired,
+        MessmerKindleMax,
+        LateDLCOption
     ]),
     OptionGroup("Item & Location Options", [
         SmithingBellBearingOption,
