@@ -186,7 +186,8 @@ Starscourge Radahn lived to fight, bearing no hopes and dreams beyond personal g
 ### Gravesite Plain > Scadu Altus
 * disable the spirit spring shortcut
 
-### Gravesite Plain > Ellac
+### Gravesite Plain > Ellac River
+* Rauh Base > Ellac River is another route to block
 
 ### Gravesite Plain > Jagged Peak
 * easy door after dragon man fight
@@ -194,14 +195,12 @@ Starscourge Radahn lived to fight, bearing no hopes and dreams beyond personal g
 ### Jagged Peak > Charo's Hidden Grave
 * something at dragon communion altar
 
-### Ellac > Cerulean Coast
+### Ellac River > Cerulean Coast
 
 ### Cerulean Coast > Stone Coffin
 * Just getting to scadu altus opens, or should it require an item
 
 ### Scadu Altus > Rauh Base
-
-Rauh Base > Ellac is pos i think?
 
 ### Scadu Altus > Shadow Keep
 * Disable elevator and door at church district

@@ -153,9 +153,13 @@ class EldenRing(World):
                 self.multiworld.itempool += [self.create_item("Messmer's Kindling Shard") for i in range(self.options.messmer_kindle_max)]
         
         if self.options.world_logic == "region_lock": # inject keys
+            locks = []
             for item in item_table: 
                 if item_table[item].lock:
-                    item_table[item].inject = True
+                    # can just add the item instead of wasting time setting variable then adding it later lol
+                    locks.append(self.create_item(item))
+                    # item_table[item].inject = True
+            self.multiworld.itempool += locks
         
         if self.options.local_item_option:
             using_table = item_table_vanilla
@@ -290,8 +294,7 @@ class EldenRing(World):
         create_connection("Deeproot Depths", "Deeproot Depths Boss")
         
         create_connection("Ainsel River Main", "Lake of Rot")
-        create_connection("Lake of Rot", "Lake of Rot Boss")
-        create_connection("Lake of Rot Boss", "Moonlight Altar")
+        create_connection("Lake of Rot", "Moonlight Altar")
         
         create_connection("Liurnia of The Lakes", "Altus Plateau")
         # Altus
@@ -909,8 +912,33 @@ class EldenRing(World):
             self._add_entrance_rule("Stormveil Start", "Stormveil Lock")
             self._add_entrance_rule("Stormveil Castle", "Stormveil Lock")
             self._add_entrance_rule("Liurnia of The Lakes", "Liurnia Lock")
+            
+            self._add_entrance_rule("Ainsel River", "West Underground Lock")
+            self._add_entrance_rule("Ainsel River Main", "West Underground Lock")
+            
+            self._add_entrance_rule("Siofra River", "East Underground Lock")
+            self._add_entrance_rule("Nokron, Eternal City Start", "East Underground Lock")
+            self._add_entrance_rule("Deeproot Depths", "East Underground Lock")
+            
+            self._add_entrance_rule("Altus Plateau", "Altus Lock")
+            
             self._add_entrance_rule("Caelid", "Caelid Lock")
             self._add_entrance_rule("Sellia Crystal Tunnel", "Caelid Lock")
+            self._add_entrance_rule("Redmane Castle Post Radahn", "Redmane Lock")
+            
+            self._add_entrance_rule("Altus Plateau", "Altus Lock")
+            self._add_entrance_rule("Mt. Gelmir", "Mt. Gelmir Lock")
+            self._add_entrance_rule("Volcano Manor Entrance", "Volcano Lock")
+            self._add_entrance_rule("Volcano Manor Dungeon", "Volcano Lock")
+            
+            self._add_entrance_rule("Mohgwyn Palace", "Mohgwyn Lock")
+            
+            self._add_entrance_rule("Farum Azula", "Farum Azula Lock")
+            self._add_entrance_rule("Leyndell, Ashen Capital", "Ashen Lock")
+            self._add_entrance_rule("Miquella's Haligtree", "Haligtree Lock")
+            if self.options.enable_dlc:
+                self._add_entrance_rule("Gravesite Plain", "Gravesite Lock")
+            
         else:
             "regions require all bosses dead"
             
@@ -1738,6 +1766,9 @@ class EldenRing(World):
             # MARK: Moore
             
             # friendly Kindred of Rot locations
+            "ER/ERD: Forager Brood Cookbook [3] - given by friendly Kindred of Rot to SE, NE corner of cliffs"
+            "ER/ERD: Yellow Fulgurbloom x3 - given by friendly Kindred of Rot to SE, NE corner of cliffs"
+
             "SA/CC: Forager Brood Cookbook [4] - N of CC, given by friendly Kindred of Rot after you heal it"
             "SA/CC: Shadow Sunflower x3 - N of CC, given by friendly Kindred of Rot after you heal it"
             

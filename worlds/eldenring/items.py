@@ -2129,17 +2129,29 @@ _vanilla_items = [
     
     
     #MARK: Region Lock Items
-    # these get set to inject = True in init when region lock is on
-    ERItemData("Weeping Lock", 9999901, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
-    ERItemData("Caelid Lock", 9999902, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
-    ERItemData("Liurnia Lock", 9999903, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
-    ERItemData("Stormveil Lock", 9999904, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Weeping Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Stormveil Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Liurnia Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
+    # could be 3 N, SE and SW
+    ERItemData("West Underground Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("East Underground Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
+    ERItemData("Altus Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
+    ERItemData("Caelid Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Redmane Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
+    ERItemData("Mt. Gelmir Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Volcano Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Sewer Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
+    ERItemData("Mohgwyn Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
+    ERItemData("Farum Azula Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("Ashen Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    
+    ERItemData("Haligtree Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
 ]
 
 #MARK: DLC Items
@@ -2786,9 +2798,8 @@ _dlc_items = [
     ERItemData("Jolán and Anna", 2220000, ERItemCategory.GOODS),
     
     #MARK: DLC Region Lock Items
-    # these get set to skip = False in init when region lock is on
-    #ERItemData("DLC Region Lock Key", needs id, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
-    
+    ERItemData("Gravesite Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+        
     # copy of normal kindle, idk in game id
     ERItemData("Messmer's Kindling Shard", 2008021, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
 ]
