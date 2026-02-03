@@ -677,7 +677,7 @@ class EldenRing(World):
         self.multiworld.register_indirect_condition(self.get_region("Volcano Manor Dungeon"), self.get_entrance("Go To Volcano Manor"))
         
         # World Logic
-        if self.options.world_logic < 2:
+        if self.options.world_logic < 3:
             self._region_lock()
             if self.options.soft_logic:
                 self._add_entrance_rule("Caelid", lambda state: self._can_go_to(state, "Altus Plateau"))
@@ -796,16 +796,16 @@ class EldenRing(World):
         
         # Smithing bell bearing rules
         if self.options.smithing_bell_bearing_option.value == 1:
-            self._add_entrance_rule("Altus Plateau", lambda state: self.bell_bearings_required(state, 1, False))
-            self._add_entrance_rule("Capital Outskirts", lambda state: self.bell_bearings_required(state, 2, False))
-            self._add_entrance_rule("Flame Peak", lambda state: self.bell_bearings_required(state, 3, False))
-            self._add_entrance_rule("Farum Azula Main", lambda state: self.bell_bearings_required(state, 4, False))
+            self._add_entrance_rule("Altus Plateau", lambda state: self._bell_bearings_required(state, 1, False))
+            self._add_entrance_rule("Capital Outskirts", lambda state: self._bell_bearings_required(state, 2, False))
+            self._add_entrance_rule("Flame Peak", lambda state: self._bell_bearings_required(state, 3, False))
+            self._add_entrance_rule("Farum Azula Main", lambda state: self._bell_bearings_required(state, 4, False))
             
-            self._add_entrance_rule("Dragonbarrow", lambda state: self.bell_bearings_required(state, 1, True))
-            self._add_entrance_rule("Capital Outskirts", lambda state: self.bell_bearings_required(state, 2, True))
-            self._add_entrance_rule("Flame Peak", lambda state: self.bell_bearings_required(state, 3, True))
-            self._add_entrance_rule("Farum Azula Main", lambda state: self.bell_bearings_required(state, 4, True))
-            self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: self.bell_bearings_required(state, 5, True))
+            self._add_entrance_rule("Dragonbarrow", lambda state: self._bell_bearings_required(state, 1, True))
+            self._add_entrance_rule("Capital Outskirts", lambda state: self._bell_bearings_required(state, 2, True))
+            self._add_entrance_rule("Flame Peak", lambda state: self._bell_bearings_required(state, 3, True))
+            self._add_entrance_rule("Farum Azula Main", lambda state: self._bell_bearings_required(state, 4, True))
+            self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: self._bell_bearings_required(state, 5, True))
         
         # DLC Rules
         if self.options.enable_dlc:
@@ -907,7 +907,7 @@ class EldenRing(World):
             
     def _region_lock(self) -> None: # MARK: Region Lock Items
         """All region lock rules."""
-        if self.options.world_logic == "region_lock":
+        if self.options.world_logic != "region_bosses":
             self._add_entrance_rule("Weeping Peninsula", "Weeping Lock")
             self._add_entrance_rule("Stormveil Start", "Stormveil Lock")
             self._add_entrance_rule("Stormveil Castle", "Stormveil Lock")
@@ -938,10 +938,17 @@ class EldenRing(World):
             self._add_entrance_rule("Miquella's Haligtree", "Haligtree Lock")
             if self.options.enable_dlc:
                 self._add_entrance_rule("Gravesite Plain", "Gravesite Lock")
-            
-        else:
-            "regions require all bosses dead"
-            
+        
+        if self.options.world_logic != "region_lock":
+            # bosses that require a SSK or Key item
+            self._add_entrance_rule("Weeping Peninsula", lambda state: self._can_get(state, "LG/(FHG): Golden Seed - boss drop"))
+            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._can_get(state, "WP/(WE): Radagon's Scarseal - boss drop Evergaol"))
+            self._add_entrance_rule("Altus Plateau", lambda state: self._can_get_all(state, [
+                "LL/(ACC): Crystal Release - boss drop",
+                "RLA: Remembrance of the Full Moon Queen - mainboss drop",
+                ]))
+            # todo
+    
     def _key_rules(self) -> None: # MARK: SSK Rules
         # in order from early game to late game each rule needs to include the last count for an area
         
@@ -1132,7 +1139,7 @@ class EldenRing(World):
         """Returns whether the given state has enough keys."""
         return (state.count("Stonesword Key", self.player) + (state.count("Stonesword Key x3", self.player) * 3) + (state.count("Stonesword Key x5", self.player) * 5)) >= req_keys
         
-    def bell_bearings_required(self, state: CollectionState, up_to: int, bell_type: bool) -> bool:
+    def _bell_bearings_required(self, state: CollectionState, up_to: int, bell_type: bool) -> bool:
         """Returns whether the given state has enough bell bearings.
         false is smithing, true is somber"""
         if bell_type:
@@ -2278,6 +2285,7 @@ class EldenRing(World):
             "options": {
                 "ending_condition": self.options.ending_condition.value,
                 "world_logic": self.options.world_logic.value,
+                "region_boss_percent": self.options.region_boss_percent.value,
                 "soft_logic": self.options.soft_logic.value,
                 "great_runes_required": self.options.great_runes_required.value,
                 "royal_access": self.options.royal_access.value,

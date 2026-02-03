@@ -506,17 +506,24 @@ class ERLocationData:
             self.ap_code = self.ap_code or ERLocationData.__location_id
             ERLocationData.__location_id += 1
         if self.scarab or self.hostile_npc or self.hardenemy or self.furnacegolem: self.drop = True
+        if self.enemyfragment:
+            self.fragment = True
+        if self.hangingpot:
+            self.hidden = True
+        if (self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.graveboss
+        or self.caveboss or self.tunnelboss or self.overworldboss or self.dragonboss or self.gaolboss): # any boss should be a prominent place
+            if not self.missable:
+                self.prominent = True
+        if self.church or self.seedtree or self.basin or self.map or self.fragment or self.cross or self.revered:
+            self.prominent = True
+            
+        if self.exclusive: # makes sure exclusive is marked missable
+            self.missable = True
 
     def location_groups(self) -> List[str]:
         """The names of location groups this location should appear in.
 
         This is computed from the properties assigned to this location."""
-        if self.enemyfragment:
-            self.fragment = True
-            
-        if self.hangingpot:
-            self.hidden = True
-            
         names = []
         if (self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.graveboss
         or self.caveboss or self.tunnelboss or self.overworldboss or self.dragonboss or self.gaolboss): # any boss should be a prominent place
@@ -525,14 +532,7 @@ class ERLocationData:
                     names.append("Boss Reward DLC")
                 else:
                     names.append("Boss Reward")
-                self.prominent = True
-                
-        if self.church or self.seedtree or self.basin or self.map or self.fragment or self.cross or self.revered:
-            self.prominent = True
-            
-        if self.exclusive: # makes sure exclusive is marked missable
-            self.missable = True
-            
+                    
         if self.remembrance and not self.dlc and not self.missable:
             names.append("Remembrance")
             
@@ -3520,14 +3520,14 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("EI: Braided Cord Robe - On Hornsent's corpse at the end of his quest", "Braided Cord Robe", key="200100,0:0000400614::", missable=True),
         #ERLocationData("EI: Braided Arm Wraps - On Hornsent's corpse at the end of his quest", "Braided Arm Wraps", key="200100,0:0000400614::", missable=True),
         #ERLocationData("EI: Soiled Loincloth - On Hornsent's corpse at the end of his quest", "Soiled Loincloth", key="200100,0:0000400614::", missable=True),
-        #ERLocationData("EI: Obsidian Lamina - On Ansbach's corpse at the end of his quest", "Obsidian Lamina", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
-        #ERLocationData("EI: Ansbach's Longbow - On Ansbach's corpse at the end of his quest", "Ansbach's Longbow", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
-        #ERLocationData("EI: Wise Man's Mask - On Ansbach's corpse at the end of his quest", "Wise Man's Mask", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
-        #ERLocationData("EI: Ansbach's Attire - On Ansbach's corpse at the end of his quest", "Ansbach's Attire", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
-        #ERLocationData("EI: Ansbach's Manchettes - On Ansbach's corpse at the end of his quest", "Ansbach's Manchettes", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
-        #ERLocationData("EI: Ansbach's Boots - On Ansbach's corpse at the end of his quest", "Ansbach's Boots", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
-        #ERLocationData("EI: Furious Blade of Ansbach - On Ansbach's corpse at the end of his quest", "Furious Blade of Ansbach", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
-        #ERLocationData("EI: Letter for Freyja - On Ansbach's corpse at the end of his quest", "Letter for Freyja", key="200100,0:0000400624::", missable=True, removeitem:letterforfreyja=True, removeitem:ansbachslongbow=True),
+        #ERLocationData("EI: Obsidian Lamina - On Ansbach's corpse at the end of his quest", "Obsidian Lamina", key="200100,0:0000400624::", missable=True),
+        #ERLocationData("EI: Ansbach's Longbow - On Ansbach's corpse at the end of his quest", "Ansbach's Longbow", key="200100,0:0000400624::", missable=True),
+        #ERLocationData("EI: Wise Man's Mask - On Ansbach's corpse at the end of his quest", "Wise Man's Mask", key="200100,0:0000400624::", missable=True),
+        #ERLocationData("EI: Ansbach's Attire - On Ansbach's corpse at the end of his quest", "Ansbach's Attire", key="200100,0:0000400624::", missable=True),
+        #ERLocationData("EI: Ansbach's Manchettes - On Ansbach's corpse at the end of his quest", "Ansbach's Manchettes", key="200100,0:0000400624::", missable=True),
+        #ERLocationData("EI: Ansbach's Boots - On Ansbach's corpse at the end of his quest", "Ansbach's Boots", key="200100,0:0000400624::", missable=True),
+        #ERLocationData("EI: Furious Blade of Ansbach - On Ansbach's corpse at the end of his quest", "Furious Blade of Ansbach", key="200100,0:0000400624::", missable=True),
+        #ERLocationData("EI: Letter for Freyja - On Ansbach's corpse at the end of his quest", "Letter for Freyja", key="200100,0:0000400624::", missable=True),
         #ERLocationData("EI: Thiollier's Hidden Needle - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Hidden Needle", key="200100,0:0000400634::", missable=True),
         #ERLocationData("EI: Thiollier's Mask - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Mask", key="200100,0:0000400634::", missable=True),
         #ERLocationData("EI: Thiollier's Garb - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Garb", key="200100,0:0000400634::", missable=True),

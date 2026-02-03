@@ -21,7 +21,7 @@ BIG TODO
 
 dragonbarrow needs to be DB/aa: not CL/aa:   and need to make sure each item in db is not cl item
 
-Split messmer kindling
+region lock require boss dead
 
 
 
