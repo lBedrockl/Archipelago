@@ -3872,7 +3872,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MM/ML: Swollen Grape x2 - W wall of library", "Swollen Grape x2", key="280000,0:0028007090::"),
         ERLocationData("MM/ML: Nanaya's Torch - to W, corpse sitting in chair only accessible after pulling lever behind second fake painting", "Nanaya's Torch", key="280000,0:0028007100::"),
         ERLocationData("MM/SFC: Revered Spirit Ash - chandelier directly N", "Revered Spirit Ash", key="280000,0:0028007110::", revered=True),
-        ERLocationData("MM/SFC: Revered Spirit Ash - to W, enemy drop in library by S wall", "Revered Spirit Ash", key="280000,1:3535353535::", enemyrevered=True),
+        ERLocationData("MM/SFC: Revered Spirit Ash - to W, enemy drop in library by S wall", "Revered Spirit Ash", key="280000,0:0028007900::", enemyrevered=True),
     ],
     
     # MARK: Catas & Graves
