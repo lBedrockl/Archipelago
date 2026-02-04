@@ -834,7 +834,7 @@ class EldenRing(World):
             # MARK: DLC Rules
             
             # dlc paintings
-            # self._add_location_rule("", "\"\" Painting")
+            self._add_location_rule("GP/BG: Serpent Crest Shield - painting reward SE of BG", "\"Incursion\" Painting")
             self._add_location_rule("RB/NNM: Spiraltree Seal - \"The Sacred Tower\" Painting reward SW of NNM", 
                                     lambda state: state.has("\"The Sacred Tower\" Painting", self.player and self._can_go_to(state, "Enir Ilim")))
             self._add_location_rule("JP/JPM: Rock Heart - \"Domain of Dragons\" Painting reward, after first spirit spring head down return path", "\"Domain of Dragons\" Painting")
@@ -861,7 +861,8 @@ class EldenRing(World):
                 
             # DLC region rules
             
-            self._add_entrance_rule("Belurat Swamp", "Well Depths Key")
+            self._add_entrance_rule("Belurat Swamp", lambda state: # the long drop down path lets you go here
+                state.has("Well Depths Key", self.player) or self._can_go_to(state, "Enir Ilim"))
             
             self._add_entrance_rule("Hinterland", "O Mother")
             
@@ -880,11 +881,10 @@ class EldenRing(World):
         
         if self.options.ending_condition <= 1:
             if self.options.enable_dlc and self.options.ending_condition == 0:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI: Remembrance of a God and a Lord - mainboss drop")
-                # "EI: Circlet of Light - Acquired by interacting with the memory after defeating Promised Consort Radahn" # real end
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI/DGFS: Circlet of Light - interact with memory after mainboss")
             else:
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")
-                # make this the mend the elden ring event, idk how todo that rn       
+                # make this the mend the elden ring event, idk how todo that rn
         elif self.options.ending_condition == 2:
             if self.options.enable_dlc:
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, (self.location_name_groups["Remembrance"] | self.location_name_groups["Remembrance DLC"]))
@@ -1158,7 +1158,7 @@ class EldenRing(World):
         """Returns whether the given state has enough keys."""
         return (state.count("Dragon Heart", self.player) + (state.count("Dragon Heart x3", self.player) * 3) + (state.count("Dragon Heart x5", self.player) * 5)) >= req_hearts
     
-    def _add_shop_rules(self) -> None: # needs bell bearing rules for husks if the items aren't inf
+    def _add_shop_rules(self) -> None:
         """Adds rules for items unlocked in shops."""
 
         # Scrolls
@@ -1773,6 +1773,9 @@ class EldenRing(World):
             # MARK: Moore
             
             # friendly Kindred of Rot locations
+            "GP/PT: Forager Brood Cookbook [2] - given by friendly Kindred of Rot E of PT"
+            "GP/PT: Black Pyrefly x3 - given by friendly Kindred of Rot E of PT"
+            
             "ER/ERD: Forager Brood Cookbook [3] - given by friendly Kindred of Rot to SE, NE corner of cliffs"
             "ER/ERD: Yellow Fulgurbloom x3 - given by friendly Kindred of Rot to SE, NE corner of cliffs"
 
@@ -2079,8 +2082,8 @@ class EldenRing(World):
                 ]
             ),
             ( # you cant even get this till the game is beat LMAO, but you can get it in all bosses :)
-                "EI mainboss", #"Promised Consort Radahn", # boss
-                "EI: Remembrance of a God and a Lord - mainboss drop", # a drop from boss, so we can do 'can get' check
+                "EI/DGFS mainboss", #"Promised Consort Radahn", # boss
+                "EI/DGFS: Remembrance of a God and a Lord - mainboss drop", # a drop from boss, so we can do 'can get' check
                 [   # items
                     "Young Lion's Helm", 
                     "Young Lion's Armor",
