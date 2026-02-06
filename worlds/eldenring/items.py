@@ -51,6 +51,9 @@ class ERItemData:
     
     lock: bool = False
     """Region lock items"""
+    
+    map: bool = False
+    """Maps"""
 
     def __post_init__(self):
         self.ap_code = self.ap_code or ERItemData.__item_id
@@ -62,7 +65,8 @@ class ERItemData:
 
         This is computed from the properties assigned to this item."""
         names = []
-        if self.classification == ItemClassification.progression: names.append("Progression")
+        if self.classification == ItemClassification.progression or self.classification == ItemClassification.progression: 
+            names.append("Progression")
 
         names.append({
             ERItemCategory.GOODS: "Goods",
@@ -1368,9 +1372,9 @@ _vanilla_items = [
     ERItemData("Prattling Pate \"Let's get to it\"", 2206, ERItemCategory.GOODS, skip=True),
     ERItemData("Prattling Pate \"You're beautiful\"", 2207, ERItemCategory.GOODS, skip=True),
 
-    *ERItemData("Golden Rune [1]", 2900, ERItemCategory.GOODS, runes=200 ,filler=True).counts([2, 3, 6]),
-    *ERItemData("Golden Rune [2]", 2901, ERItemCategory.GOODS, runes=400 ,filler=True).counts([2]),
-    ERItemData("Golden Rune [3]", 2902, ERItemCategory.GOODS, runes=800 ,filler=True),
+    *ERItemData("Golden Rune [1]", 2900, ERItemCategory.GOODS, runes=200).counts([2, 3, 6]),
+    *ERItemData("Golden Rune [2]", 2901, ERItemCategory.GOODS, runes=400).counts([2]),
+    ERItemData("Golden Rune [3]", 2902, ERItemCategory.GOODS, runes=800),
     ERItemData("Golden Rune [4]", 2903, ERItemCategory.GOODS, runes=1200 ,filler=True),
     ERItemData("Golden Rune [5]", 2904, ERItemCategory.GOODS, runes=1600 ,filler=True),
     ERItemData("Golden Rune [6]", 2905, ERItemCategory.GOODS, runes=2000 ,filler=True),
@@ -1386,8 +1390,8 @@ _vanilla_items = [
     ERItemData("Hero's Rune [2]", 2915, ERItemCategory.GOODS, runes=20000 ,filler=True),
     ERItemData("Hero's Rune [3]", 2916, ERItemCategory.GOODS, runes=25000 ,filler=True),
     ERItemData("Hero's Rune [4]", 2917, ERItemCategory.GOODS, runes=30000 ,filler=True),
-    ERItemData("Hero's Rune [5]", 2918, ERItemCategory.GOODS, runes=35000 ,filler=True),
-    ERItemData("Lord's Rune", 2919, ERItemCategory.GOODS, runes=50000 ,filler=True),
+    ERItemData("Hero's Rune [5]", 2918, ERItemCategory.GOODS, runes=35000),
+    ERItemData("Lord's Rune", 2919, ERItemCategory.GOODS, runes=50000),
 
     ERItemData("Remembrance of the Grafted", 2950, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Remembrance of the Starscourge", 2951, ERItemCategory.GOODS, classification=ItemClassification.progression),
@@ -1675,27 +1679,27 @@ _vanilla_items = [
     ERItemData("Note: The Preceptor's Secret", 8224, ERItemCategory.GOODS, skip=True),
     ERItemData("Weathered Map", 8225, ERItemCategory.GOODS),
     ERItemData("Crafting Kit", 8500, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Whetstone Knife", 8590, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Whetstone Knife", 8590, ERItemCategory.GOODS, classification=ItemClassification.useful),
 
-    ERItemData("Map: Limgrave, West", 8600, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Weeping Peninsula", 8601, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Limgrave, East", 8602, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Liurnia, East", 8603, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Liurnia, North", 8604, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Liurnia, West", 8605, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Altus Plateau", 8606, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Leyndell, Royal Capital", 8607, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Mt. Gelmir", 8608, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Caelid", 8609, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Dragonbarrow", 8610, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Mountaintops of the Giants, West", 8611, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Mountaintops of the Giants, East", 8612, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Ainsel River", 8613, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Lake of Rot", 8614, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Siofra River", 8615, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Mohgwyn Palace", 8616, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Deeproot Depths", 8617, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Consecrated Snowfield", 8618, ERItemCategory.GOODS, skip=True),
+    ERItemData("Map: Limgrave, West", 8600, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Weeping Peninsula", 8601, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Limgrave, East", 8602, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Liurnia, East", 8603, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Liurnia, North", 8604, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Liurnia, West", 8605, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Altus Plateau", 8606, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Leyndell, Royal Capital", 8607, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Mt. Gelmir", 8608, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Caelid", 8609, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Dragonbarrow", 8610, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Mountaintops of the Giants, West", 8611, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Mountaintops of the Giants, East", 8612, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Ainsel River", 8613, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Lake of Rot", 8614, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Siofra River", 8615, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Mohgwyn Palace", 8616, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Deeproot Depths", 8617, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Consecrated Snowfield", 8618, ERItemCategory.GOODS, map=True),
 
     ERItemData("Mirage Riddle", 8660, ERItemCategory.GOODS),
     ERItemData("Note: Hidden Cave", 8700, ERItemCategory.GOODS, skip=True),
@@ -1766,15 +1770,15 @@ _vanilla_items = [
     ERItemData("Meat Peddler's Bell Bearing", 8946, ERItemCategory.GOODS),
     ERItemData("Medicine Peddler's Bell Bearing", 8947, ERItemCategory.GOODS),
     ERItemData("Gravity Stone Peddler's Bell Bearing", 8948, ERItemCategory.GOODS),
-    ERItemData("Smithing-Stone Miner's Bell Bearing [1]", 8951, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Smithing-Stone Miner's Bell Bearing [2]", 8952, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Smithing-Stone Miner's Bell Bearing [3]", 8953, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Smithing-Stone Miner's Bell Bearing [4]", 8954, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Somberstone Miner's Bell Bearing [1]", 8955, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Somberstone Miner's Bell Bearing [2]", 8956, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Somberstone Miner's Bell Bearing [3]", 8957, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Somberstone Miner's Bell Bearing [4]", 8958, ERItemCategory.GOODS, classification=ItemClassification.useful),
-    ERItemData("Somberstone Miner's Bell Bearing [5]", 8959, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Smithing-Stone Miner's Bell Bearing [1]", 8951, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Smithing-Stone Miner's Bell Bearing [2]", 8952, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Smithing-Stone Miner's Bell Bearing [3]", 8953, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Smithing-Stone Miner's Bell Bearing [4]", 8954, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Somberstone Miner's Bell Bearing [1]", 8955, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Somberstone Miner's Bell Bearing [2]", 8956, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Somberstone Miner's Bell Bearing [3]", 8957, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Somberstone Miner's Bell Bearing [4]", 8958, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Somberstone Miner's Bell Bearing [5]", 8959, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Glovewort Picker's Bell Bearing [1]", 8960, ERItemCategory.GOODS),
     ERItemData("Glovewort Picker's Bell Bearing [2]", 8961, ERItemCategory.GOODS),
     ERItemData("Glovewort Picker's Bell Bearing [3]", 8962, ERItemCategory.GOODS),
@@ -1840,7 +1844,7 @@ _vanilla_items = [
     ERItemData("Prayer", 9041, ERItemCategory.GOODS, skip=True),
     ERItemData("Desperate Prayer", 9042, ERItemCategory.GOODS, skip=True),
     ERItemData("Rapture", 9043, ERItemCategory.GOODS, skip=True),
-    ERItemData("Erudition", 9045, ERItemCategory.GOODS, classification=ItemClassification.progression, inject=True), # used for a tower item
+    ERItemData("Erudition", 9045, ERItemCategory.GOODS, classification=ItemClassification.progression, inject=True),
     ERItemData("Outer Order", 9046, ERItemCategory.GOODS, skip=True),
     ERItemData("Inner Order", 9047, ERItemCategory.GOODS, skip=True),
     ERItemData("Golden Order Totality", 9048, ERItemCategory.GOODS, skip=True),
@@ -1852,7 +1856,7 @@ _vanilla_items = [
     ERItemData("Nomadic Warrior's Cookbook [10]", 9303, ERItemCategory.GOODS),
     ERItemData("Nomadic Warrior's Cookbook [7]", 9305, ERItemCategory.GOODS),
     ERItemData("Nomadic Warrior's Cookbook [12]", 9306, ERItemCategory.GOODS),
-    ERItemData("Nomadic Warrior's Cookbook [19]", 9307, ERItemCategory.GOODS),
+    ERItemData("Nomadic Warrior's Cookbook [19]", 9307, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Nomadic Warrior's Cookbook [13]", 9308, ERItemCategory.GOODS),
     ERItemData("Nomadic Warrior's Cookbook [23]", 9309, ERItemCategory.GOODS),
     ERItemData("Nomadic Warrior's Cookbook [17]", 9310, ERItemCategory.GOODS),
@@ -2503,7 +2507,7 @@ _dlc_items = [
     *ERItemData("Lightningproof Pickled Liver", 2001140, ERItemCategory.GOODS).counts([2]),
     *ERItemData("Holyproof Pickled Liver", 2001150, ERItemCategory.GOODS).counts([2]),
     ERItemData("Well-Pickled Turtle Neck", 2001170, ERItemCategory.GOODS),
-    ERItemData("Scorpion Stew", 2001200, ERItemCategory.GOODS),
+    ERItemData("Scorpion Stew", 2001200, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Gourmet Scorpion Stew", 2001201, ERItemCategory.GOODS),
     ERItemData("Scorpion Stew (Drop)", 2001202, ERItemCategory.GOODS),
     ERItemData("Gourmet Scorpion Stew (Drop)", 2001203, ERItemCategory.GOODS),
@@ -2544,8 +2548,8 @@ _dlc_items = [
     ERItemData("Remembrance of Putrescence", 2002910, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
     #runes
-    ERItemData("Leda's Rune", 2002950, ERItemCategory.GOODS, runes=40000, filler=True),
-    *ERItemData("Broken Rune", 2002951, ERItemCategory.GOODS, runes=500, filler=True).counts([4, 5]),
+    ERItemData("Leda's Rune", 2002950, ERItemCategory.GOODS, runes=40000),
+    *ERItemData("Broken Rune", 2002951, ERItemCategory.GOODS, runes=500).counts([4, 5]),
     *ERItemData("Shadow Realm Rune [1]", 2002952, ERItemCategory.GOODS, runes=7500, filler=True).counts([2]),
     ERItemData("Shadow Realm Rune [2]", 2002953, ERItemCategory.GOODS, runes=10000, filler=True),
     ERItemData("Shadow Realm Rune [3]", 2002954, ERItemCategory.GOODS, runes=12500, filler=True),
@@ -2553,7 +2557,7 @@ _dlc_items = [
     ERItemData("Shadow Realm Rune [5]", 2002956, ERItemCategory.GOODS, runes=17500, filler=True),
     ERItemData("Shadow Realm Rune [6]", 2002957, ERItemCategory.GOODS, runes=22500, filler=True),
     ERItemData("Shadow Realm Rune [7]", 2002958, ERItemCategory.GOODS, runes=30000, filler=True),
-    ERItemData("Rune of an Unsung Hero", 2002959, ERItemCategory.GOODS, runes=50000, filler=True),
+    ERItemData("Rune of an Unsung Hero", 2002959, ERItemCategory.GOODS, runes=50000),
     ERItemData("Marika's Rune", 2002960, ERItemCategory.GOODS, runes=80000),
 
     ERItemData("Bondstone", 2003000, ERItemCategory.GOODS),
@@ -2651,11 +2655,11 @@ _dlc_items = [
     ERItemData("\"The Sacred Tower\" Painting", 2008201, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("\"Domain of Dragons\" Painting", 2008202, ERItemCategory.GOODS, classification=ItemClassification.progression),
 
-    ERItemData("Map: Gravesite Plain", 2008600, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Scadu Altus", 2008601, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Southern Shore", 2008602, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Rauh Ruins", 2008603, ERItemCategory.GOODS, skip=True),
-    ERItemData("Map: Abyss", 2008604, ERItemCategory.GOODS, skip=True),
+    ERItemData("Map: Gravesite Plain", 2008600, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Scadu Altus", 2008601, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Southern Shore", 2008602, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Rauh Ruins", 2008603, ERItemCategory.GOODS, map=True),
+    ERItemData("Map: Abyss", 2008604, ERItemCategory.GOODS, map=True),
 
     ERItemData("Moore's Bell Bearing", 2008900, ERItemCategory.GOODS, skip=True),
     ERItemData("Ymir's Bell Bearing", 2008901, ERItemCategory.GOODS, skip=True),
@@ -2716,13 +2720,13 @@ _dlc_items = [
     ERItemData("Fire Knight's Cookbook [2]", 2009340, ERItemCategory.GOODS),
     ERItemData("Antiquity Scholar's Cookbook [1]", 2009341, ERItemCategory.GOODS),
     ERItemData("Finger-Weaver's Cookbook [1]", 2009342, ERItemCategory.GOODS),
-    ERItemData("Battlefield Priest's Cookbook [4]", 2009343, ERItemCategory.GOODS),
+    ERItemData("Battlefield Priest's Cookbook [4]", 2009343, ERItemCategory.GOODS, classification=ItemClassification.progression),
     ERItemData("Grave Keeper's Cookbook [1]", 2009344, ERItemCategory.GOODS),
     ERItemData("St. Trina Disciple's Cookbook [2]", 2009345, ERItemCategory.GOODS),
 
     ERItemData("Hefty Cracked Pot", 2009500, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Scadutree Fragment", 2010000, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Scadutree Fragment x2", 2010000, ERItemCategory.GOODS, classification=ItemClassification.progression, count=2),
+    ERItemData("Scadutree Fragment", 2010000, ERItemCategory.GOODS, classification=ItemClassification.useful),
+    ERItemData("Scadutree Fragment x2", 2010000, ERItemCategory.GOODS, classification=ItemClassification.useful, count=2),
     ERItemData("Revered Spirit Ash", 2010100, ERItemCategory.GOODS, classification=ItemClassification.useful),
     ERItemData("Revered Spirit Ash x2", 2010100, ERItemCategory.GOODS, classification=ItemClassification.useful, count=2),
 

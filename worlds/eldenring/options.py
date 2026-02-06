@@ -128,6 +128,19 @@ class CraftingKitOption(Choice):
     option_do_not_randomize = 2
     default = 1
     
+class MapOption(Choice):
+    """Choose how maps are handled.
+
+    - **Randomize:** Can be anywhere.
+    - **Give:** Add to starting inventory.
+    - **Do Not Randomize:** Leave it at its normal spot.
+    """
+    display_name = "Map Behavior"
+    option_randomize = 0
+    option_give = 1
+    option_do_not_randomize = 2
+    default = 1
+    
 class SmithingBellBearingOption(Choice):
     """Choose how smithing stone bell bearings are handled.
 
@@ -144,6 +157,10 @@ class SmithingBellBearingOption(Choice):
 class SpellShopSpellsOnly(Toggle):
     """Spell Shops only have spells."""
     display_name = "Spell Shop Spells Only"
+    
+class EarlyLegacyDungeonsEarly(Toggle):
+    """Early Legacy Dungeons are early"""
+    display_name = "Early Legacy Dungeons Early"
     
 class LocalItemOnly(DefaultOnToggle):
     """Only progression or useful items will show up in other players games.
@@ -251,8 +268,10 @@ class EROptions(PerGameCommonOptions):
     auto_upgrade: AutoUpgradeOption
     
     crafting_kit_option: CraftingKitOption
+    map_option: MapOption
     smithing_bell_bearing_option: SmithingBellBearingOption
     spell_shop_spells_only: SpellShopSpellsOnly
+    early_legacy_dungeons:EarlyLegacyDungeonsEarly
     local_item_option: LocalItemOnly
     exclude_local_item_only: ExcludeLocalItemOnly
     important_locations: ERImportantLocations
@@ -273,7 +292,11 @@ option_groups = [
         LateDLCOption
     ]),
     OptionGroup("Item & Location Options", [
+        CraftingKitOption,
+        MapOption,
         SmithingBellBearingOption,
+        SpellShopSpellsOnly,
+        EarlyLegacyDungeonsEarly,
         LocalItemOnly,
         ExcludeLocalItemOnly,
         ERImportantLocations,

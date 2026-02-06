@@ -19,9 +19,9 @@ each type split by base / dlc, ex: remembrances
 
 BIG TODO
 
-dragonbarrow needs to be DB/aa: not CL/aa:   and need to make sure each item in db is not cl item
+region lock bosses
 
-region lock require boss dead
+ending con doesnt work
 
 
 

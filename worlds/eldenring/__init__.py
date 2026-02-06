@@ -15,7 +15,7 @@ from Options import OptionError
 # Settings
 class EldenRingSettings(settings.Group):
     class DisableExtremeOptions(str):
-        """ Disables extreme options, like progression items being in missable locations."""
+        """Disables extreme options, like progression items being in missable locations."""
     disable_extreme_options: typing.Union[DisableExtremeOptions, bool] = False
 
 # Web stuff
@@ -118,12 +118,7 @@ class EldenRing(World):
         exclude_local_item_only_lowercase = [key.lower() for key in self.options.exclude_local_item_only.value]
         
         if self.settings.disable_extreme_options:
-            if self.options.missable_location_behavior == "option_randomize":
-                # there is code to fix this but its better to just stop generation and tell them this option needs to change
-                raise OptionError(f"EldenRing disable_extreme_options Error:"
-                                  f"Player {self.player_name} has missable location behavior set to be option_randomize."
-                                  f"This means Progression items can be in missable locations.")
-            elif not self.options.local_item_option:
+            if not self.options.local_item_option:
                 raise OptionError(f"EldenRing disable_extreme_options Error:"
                                   f"Player {self.player_name} has local_item_option false."
                                   f"This being false means over 3.5k checks come from this world.")
@@ -145,7 +140,7 @@ class EldenRing(World):
             item_table["Somberstone Miner's Bell Bearing [3]"].classification = ItemClassification.progression
             item_table["Somberstone Miner's Bell Bearing [4]"].classification = ItemClassification.progression
             item_table["Somberstone Miner's Bell Bearing [5]"].classification = ItemClassification.progression
-                
+        
         if self.options.enable_dlc:
             # warming stone craft
             item_table["Nomadic Warrior's Cookbook [19]"].classification = ItemClassification.progression
@@ -158,19 +153,20 @@ class EldenRing(World):
                 item_table["Messmer's Kindling Shard"].skip = False
                 self.multiworld.itempool += [self.create_item("Messmer's Kindling Shard") for i in range(self.options.messmer_kindle_max)]
         
-        if self.options.world_logic == "region_lock": # inject keys
-            locks = []
+        if self.options.world_logic == "region_lock" or self.options.world_logic == "region_lock_bosses": # inject keys
             for item in item_table: 
                 if item_table[item].lock:
-                    # can just add the item instead of wasting time setting variable then adding it later lol
-                    locks.append(self.create_item(item))
-                    # item_table[item].inject = True
-            self.multiworld.itempool += locks
+                    item_table[item].inject = True
         
-        if self.options.local_item_option:
-            using_table = item_table_vanilla
-            if self.options.enable_dlc: using_table = item_table
-            for item in using_table.values():
+        using_table = item_table_vanilla
+        if self.options.enable_dlc: using_table = item_table
+        for item in using_table.values(): # loop of whole item table
+            if self.options.map_option.value == 1 and item.map: # add all maps to start inv
+                self.multiworld.push_precollected(self.create_item(item.name))
+            elif self.options.map_option.value == 2 and item.map: # skip and prefill maps
+                item_table[item.name].skip = True 
+        
+            if self.options.local_item_option:
                 if item.classification != ItemClassification.progression and item.classification != ItemClassification.useful:
                     match item.category: # this works, could be better
                         case ERItemCategory.GOODS:
@@ -587,7 +583,49 @@ class EldenRing(World):
         """Removes certain items from the item pool and manually places them in the local world.
 
         We can't do this in pre_fill because the itempool may not be modified after create_items.
-        """      
+        """
+        if self.options.crafting_kit_option.value == 1:
+            self._fill_local_item("Crafting Kit", ["Limgrave", "Siofra River", "Weeping Peninsula", "Liurnia of The Lakes"])
+        elif self.options.crafting_kit_option.value == 2:
+            self.multiworld.get_location("LG/(CE): Crafting Kit - Kalé Shop", self.player).place_locked_item(self.create_item("Crafting Kit"))
+            
+        if self.options.smithing_bell_bearing_option.value == 2:
+            self.multiworld.get_location("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - boss drop", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [1]"))
+            self.multiworld.get_location("CO/(ST): Smithing-Stone Miner's Bell Bearing [2] - in chest W side of first room", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [2]"))
+            self.multiworld.get_location("MotG/(ZR): Smithing-Stone Miner's Bell Bearing [3] - in chest underground", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [3]"))
+            self.multiworld.get_location("FA/DTT: Smithing-Stone Miner's Bell Bearing [4] - boss drop", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [4]"))
+            self.multiworld.get_location("CL/(SCT): Somberstone Miner's Bell Bearing [1] - boss drop", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [1]"))
+            self.multiworld.get_location("AP/(AT): Somberstone Miner's Bell Bearing [2] - boss drop", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [2]"))
+            self.multiworld.get_location("MotG/(FCM): Somberstone Miner's Bell Bearing [3] - out front of church", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [3]"))
+            self.multiworld.get_location("FA/TFB: Somberstone Miner's Bell Bearing [4] - to N", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [4]"))
+            self.multiworld.get_location("FA/DTR: Somberstone Miner's Bell Bearing [5] - to SE, W of courtyard, in water room by altar", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [5]"))
+        
+        if self.options.map_option.value == 2:
+            self.multiworld.get_location("LG/(GR): Map: Limgrave, West - map pillar", self.player).place_locked_item(self.create_item("Map: Limgrave, West"))
+            self.multiworld.get_location("WP/CMR: Map: Weeping Peninsula - to SW", self.player).place_locked_item(self.create_item("Map: Weeping Peninsula"))
+            self.multiworld.get_location("LG/SRW: Map: Limgrave, East - W of SRW", self.player).place_locked_item(self.create_item("Map: Limgrave, East"))
+            self.multiworld.get_location("LL/LLS: Map: Liurnia, East - to N", self.player).place_locked_item(self.create_item("Map: Liurnia, East"))
+            self.multiworld.get_location("LL/AGT: Map: Liurnia, North - near grace", self.player).place_locked_item(self.create_item("Map: Liurnia, North"))
+            self.multiworld.get_location("LL/NLLS: Map: Liurnia, West - to NE on map pillar", self.player).place_locked_item(self.create_item("Map: Liurnia, West"))
+            self.multiworld.get_location("AP/AHJ: Map: Altus Plateau - to N by map pillar", self.player).place_locked_item(self.create_item("Map: Altus Plateau"))
+            self.multiworld.get_location("CO/OWPT: Map: Leyndell, Royal Capital - by map pillar", self.player).place_locked_item(self.create_item("Map: Leyndell, Royal Capital"))
+            self.multiworld.get_location("MtG/RI: Map: Mt. Gelmir - to W by map pillar", self.player).place_locked_item(self.create_item("Map: Mt. Gelmir"))
+            self.multiworld.get_location("CL/SASB: Map: Caelid - to SW", self.player).place_locked_item(self.create_item("Map: Caelid"))
+            self.multiworld.get_location("CL/DW: Map: Dragonbarrow - to E", self.player).place_locked_item(self.create_item("Map: Dragonbarrow"))
+            self.multiworld.get_location("MotG/(GLR): Map: Mountaintops of the Giants, West - map pillar NE of GLR", self.player).place_locked_item(self.create_item("Map: Mountaintops of the Giants, West"))
+            self.multiworld.get_location("FP/GG: Map: Mountaintops of the Giants, East - map pillar", self.player).place_locked_item(self.create_item("Map: Mountaintops of the Giants, East"))
+            self.multiworld.get_location("AR/UPR: Map: Ainsel River - NW of UPR in temple by merchant", self.player).place_locked_item(self.create_item("Map: Ainsel River"))
+            self.multiworld.get_location("LR/LRS: Map: Lake of Rot - to S", self.player).place_locked_item(self.create_item("Map: Lake of Rot"))
+            self.multiworld.get_location("SR/SRB: Map: Siofra River - to SE by bottom of stairs", self.player).place_locked_item(self.create_item("Map: Siofra River"))
+            self.multiworld.get_location("MP/MDE: Map: Mohgwyn Palace - to NW", self.player).place_locked_item(self.create_item("Map: Mohgwyn Palace"))
+            self.multiworld.get_location("DD/DD: Map: Deeproot Depths - path to NE in gazebo", self.player).place_locked_item(self.create_item("Map: Deeproot Depths"))
+            self.multiworld.get_location("CS/ICS: Map: Consecrated Snowfield - map pillar to N", self.player).place_locked_item(self.create_item("Map: Consecrated Snowfield"))
+            if self.options.enable_dlc:
+                self.multiworld.get_location("GP/SR: Map: Gravesite Plain - S of SR", self.player).place_locked_item(self.create_item("Map: Gravesite Plain"))
+                self.multiworld.get_location("SA/HC: Map: Scadu Altus - map pillar to N", self.player).place_locked_item(self.create_item("Map: Scadu Altus"))
+                self.multiworld.get_location("CC/CCC: Map: Southern Shore - to N on path", self.player).place_locked_item(self.create_item("Map: Southern Shore"))
+                self.multiworld.get_location("RB/TTR: Map: Rauh Ruins - map pillar to E behind wall", self.player).place_locked_item(self.create_item("Map: Rauh Ruins"))
+                self.multiworld.get_location("AW/AC: Map: Abyss - map pillar NW of AC", self.player).place_locked_item(self.create_item("Map: Abyss"))
 
     def _fill_local_item(
         self, name: str,
@@ -639,31 +677,6 @@ class EldenRing(World):
         data = item if isinstance(item, ERItemData) else item_table[item]
         return ERItem(self.player, data)
 
-    def pre_fill(self) -> None:
-        if self.options.crafting_kit_option.value == 2:
-            self.multiworld.get_location("LG/(CE): Crafting Kit - Kalé Shop", self.player).place_locked_item(self.create_item("Crafting Kit"))
-            item_table["Crafting Kit"].skip = True
-            
-        if self.options.smithing_bell_bearing_option.value == 2:
-            self.multiworld.get_location("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - boss drop", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [1]"))
-            self.multiworld.get_location("CO/(ST): Smithing-Stone Miner's Bell Bearing [2] - in chest W side of first room", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [2]"))
-            self.multiworld.get_location("MotG/(ZR): Smithing-Stone Miner's Bell Bearing [3] - in chest underground", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [3]"))
-            self.multiworld.get_location("FA/DTT: Smithing-Stone Miner's Bell Bearing [4] - boss drop", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [4]"))
-            self.multiworld.get_location("CL/(SCT): Somberstone Miner's Bell Bearing [1] - boss drop", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [1]"))
-            self.multiworld.get_location("AP/(AT): Somberstone Miner's Bell Bearing [2] - boss drop", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [2]"))
-            self.multiworld.get_location("MotG/(FCM): Somberstone Miner's Bell Bearing [3] - out front of church", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [3]"))
-            self.multiworld.get_location("FA/TFB: Somberstone Miner's Bell Bearing [4] - to N", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [4]"))
-            self.multiworld.get_location("FA/DTR: Somberstone Miner's Bell Bearing [5] - to SE, W of courtyard, in water room by altar", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [5]"))
-            item_table["Smithing-Stone Miner's Bell Bearing [1]"].skip = True
-            item_table["Smithing-Stone Miner's Bell Bearing [2]"].skip = True
-            item_table["Smithing-Stone Miner's Bell Bearing [3]"].skip = True
-            item_table["Smithing-Stone Miner's Bell Bearing [4]"].skip = True
-            item_table["Somberstone Miner's Bell Bearing [1]"].skip = True
-            item_table["Somberstone Miner's Bell Bearing [2]"].skip = True
-            item_table["Somberstone Miner's Bell Bearing [3]"].skip = True
-            item_table["Somberstone Miner's Bell Bearing [4]"].skip = True
-            item_table["Somberstone Miner's Bell Bearing [5]"].skip = True
-
     def _replace_with_filler(self, location: ERLocation) -> None:
         """If possible, choose a filler item to replace location's current contents with."""
         if location.locked: return
@@ -682,8 +695,6 @@ class EldenRing(World):
             return self.random.choice(filler_item_names_vanilla)
 
     def set_rules(self) -> None: #MARK: Rules
-        randomized_items = {item.name for item in self.local_itempool}
-
         self._key_rules() # make option to choose master or normal rules
         #self._master_key_rules()
         
@@ -715,10 +726,8 @@ class EldenRing(World):
                 self.multiworld.register_indirect_condition(self.get_region("Altus Plateau"), self.get_entrance("Go To Caelid"))
                 self._add_entrance_rule("Consecrated Snowfield", "Rold Medallion")
            
-           
             # "BS: Stonesword Key - behind wooden platform" # in limgrave rn
             # "BS: Smithing Stone [1] x3 - corpse hanging off edge" # on Bridge of Sacrifice idk where wall for WP will be
-            
             
             # if haligtree region lock adds a key to the evergaol these items would require it
             # "CS/(OLT): Ghost Glovewort [9] - enemy drop in evergaol, NW side of town middle of buildings"
@@ -821,13 +830,6 @@ class EldenRing(World):
             state.has("Haligtree Secret Medallion (Left)", self.player) and
             state.has("Haligtree Secret Medallion (Right)", self.player))
         
-        # Early crafting kit
-        if self.options.crafting_kit_option.value == 1:
-            self._add_entrance_rule("Altus Plateau", "Crafting Kit")
-            self._add_entrance_rule("Caelid", "Crafting Kit")
-            if "Crafting Kit" in randomized_items:
-                self.multiworld.early_items[self.player]["Crafting Kit"] = 1
-        
         # Smithing bell bearing rules
         if self.options.smithing_bell_bearing_option.value == 1:
             self._add_entrance_rule("Altus Plateau", lambda state: self._bell_bearings_required(state, 1, False))
@@ -840,6 +842,11 @@ class EldenRing(World):
             self._add_entrance_rule("Flame Peak", lambda state: self._bell_bearings_required(state, 3, True))
             self._add_entrance_rule("Farum Azula Main", lambda state: self._bell_bearings_required(state, 4, True))
             self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: self._bell_bearings_required(state, 5, True))
+        
+        if self.options.early_legacy_dungeons:
+            self._add_entrance_rule("Liurnia of The Lakes", "Rusty Key")
+            self._add_entrance_rule("Caelid", "Rusty Key")
+            self._add_entrance_rule("Altus Plateau", "Academy Glintstone Key")
         
         # DLC Rules
         if self.options.enable_dlc:
@@ -858,7 +865,7 @@ class EldenRing(World):
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
                 
             if self.options.messmer_kindle:
-                self._add_entrance_rule("Enir Ilim", lambda state: state.has("Messmer's Kindling Shard", self.player, min(self.options.messmer_kindle_required, self.options.messmer_kindle_max)))
+                self._add_entrance_rule("Enir Ilim", lambda state: state.has("Messmer's Kindling Shard", self.player, min(self.options.messmer_kindle_required.value, self.options.messmer_kindle_max.value)))
             else:
                 self._add_entrance_rule("Enir Ilim", "Messmer's Kindling")
             
@@ -870,7 +877,7 @@ class EldenRing(World):
             # dlc paintings
             self._add_location_rule("GP/BG: Serpent Crest Shield - painting reward SE of BG", "\"Incursion\" Painting")
             self._add_location_rule("RB/NNM: Spiraltree Seal - \"The Sacred Tower\" Painting reward SW of NNM", 
-                                    lambda state: state.has("\"The Sacred Tower\" Painting", self.player and self._can_go_to(state, "Enir Ilim")))
+                                    lambda state: state.has("\"The Sacred Tower\" Painting", self.player) and self._can_go_to(state, "Enir Ilim"))
             self._add_location_rule("JP/JPM: Rock Heart - \"Domain of Dragons\" Painting reward, after first spirit spring head down return path", "\"Domain of Dragons\" Painting")
             
             # dlc imbued
@@ -920,14 +927,18 @@ class EldenRing(World):
                 # make this the mend the elden ring event, idk how todo that rn
         elif self.options.ending_condition == 2:
             if self.options.enable_dlc:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, (self.location_name_groups["Remembrance"] | self.location_name_groups["Remembrance DLC"]))
+                self._add_location_rule("Victory", lambda state: self._can_get_all(state, (self.location_name_groups["Remembrance"] | self.location_name_groups["Remembrance DLC"])))
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "Victory")
             else:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, self.location_name_groups["Remembrance"])
+                self._add_location_rule("Victory", lambda state: self._can_get_all(state, self.location_name_groups["Remembrance"]))
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "Victory")
         else:
             if self.options.enable_dlc:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, (self.location_name_groups["Boss Reward"] | self.location_name_groups["Boss Reward DLC"]))
+                self._add_location_rule("Victory", lambda state: self._can_get_all(state, (self.location_name_groups["Boss Reward"] | self.location_name_groups["Boss Reward DLC"])))
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "Victory")
             else:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get_all(state, self.location_name_groups["Boss Reward"])
+                self._add_location_rule("Victory", lambda state: self._can_get_all(state, self.location_name_groups["Boss Reward"]))
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "Victory")
         
         # self.visualize_world()
         
@@ -937,7 +948,7 @@ class EldenRing(World):
             if not self._can_get(state, location):
                 return False
         return True
-            
+    
     def _region_lock(self) -> None: # MARK: Region Lock Items
         """All region lock rules."""
         if self.options.world_logic != "region_bosses":
@@ -973,13 +984,13 @@ class EldenRing(World):
                 self._add_entrance_rule("Gravesite Plain", "Gravesite Lock")
         
         if self.options.world_logic != "region_lock":
-            # bosses that require a SSK or Key item
-            self._add_entrance_rule("Weeping Peninsula", lambda state: self._can_get(state, "LG/(FHG): Golden Seed - boss drop"))
-            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._can_get(state, "WP/(WE): Radagon's Scarseal - boss drop Evergaol"))
-            self._add_entrance_rule("Altus Plateau", lambda state: self._can_get_all(state, [
-                "LL/(ACC): Crystal Release - boss drop",
-                "RLA: Remembrance of the Full Moon Queen - mainboss drop",
-                ]))
+            self._add_location_rule("Limgrave Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Limgrave Bosses"]))
+            self._add_location_rule("Weeping Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Weeping Bosses"]))
+            self._add_location_rule("Liurnia Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Liurnia Bosses"]))
+            
+            self._add_entrance_rule("Weeping Peninsula", lambda state: self._can_get(state, "Limgrave Bosses"))
+            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._can_get(state, "Limgrave Bosses"))
+            self._add_entrance_rule("Altus Plateau", lambda state: self._can_get(state, "Liurnia Bosses"))
             # todo
     
     def _key_rules(self) -> None: # MARK: SSK Rules
@@ -1057,7 +1068,7 @@ class EldenRing(World):
         #self._add_entrance_rule("Mt. Gelmir", lambda state: self._has_enough_keys(state, 26))
         # mt gelmir
         self._add_location_rule([
-            "MG/(WC): Lightning Scorpion Charm - behind imp statue", # 1
+            "MtG/(WC): Lightning Scorpion Charm - behind imp statue", # 1
             ], lambda state: self._has_enough_keys(state, 29))
         self._add_entrance_rule("Seethewater Cave", lambda state: self._has_enough_keys(state, 29)) # 2
         
@@ -1131,7 +1142,7 @@ class EldenRing(World):
             "EBH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", # 2
             ], lambda state: self._has_enough_keys(state, 46))
         
-    def _dragon_communion_rules(self) -> None: # MARK: dragon Rules
+    def _dragon_communion_rules(self) -> None: # MARK: Dragon Rules
         """Rules for dragon communion"""
         self._add_location_rule([
             "LG/(CDC): Dragonfire - Dragon Communion", # 1
@@ -1775,14 +1786,14 @@ class EldenRing(World):
             # MARK: Grandam
             
             self._add_location_rule([
-                "BTS/SPA: Watchful Spirit - given by Hornsent Grandam while wearing the Divine Beast head",
+                "BTS/SPA: Watchful Spirit - given by Hornsent Grandam while wearing the Divine Beast Head",
                 "BTS/SPA: Scorpion Stew - given by Hornsent Grandam while wearing the Divine Beast Head a second time after reloading"
             ], lambda state: state.has("Storeroom Key", self.player) and state.has("Divine Beast Head", self.player))
             
             self._add_location_rule([
                 "BTS/SPA: Gourmet Scorpion Stew - given by Hornsent Grandam after defeating SK mainboss",
-                "BTS/SPA: Gourmet Scorpion Stew - dropped by Hornsent Grandam after defeating SK mainboss, exhausting her dialogue, and reloading"
-            ], lambda state: self._can_get(state, "BTS/SPA: Watchful Spirit - given by Hornsent Grandam while wearing the Divine Beast head") 
+                "BTS/SPA: Gourmet Scorpion Stew - on Hornsent Grandam after defeating SK mainboss, exhausting her dialogue, and reloading"
+            ], lambda state: self._can_get(state, "BTS/SPA: Watchful Spirit - given by Hornsent Grandam while wearing the Divine Beast Head") 
                 and self._can_get(state, "SK/DCE: Remembrance of the Impaler - mainboss drop"))
             
             # MARK: Florissax
@@ -1822,7 +1833,7 @@ class EldenRing(World):
             # MARK: Leda
             
             self._add_location_rule([
-                "SA/HC: Lacerating Crossed-Tree - given by Leda after invading Hornsent alongside her"
+                "SA/HC: Lacerating Crossed-Tree - given by Leda after invading Hornsent alongside her",
                 "SA/HC: Retaliatory Crossed-Tree - given by Leda after invading Ansbach alongside her"
                 ], lambda state: self._can_go_to(state, "Shadow Keep"))
             
@@ -1836,13 +1847,13 @@ class EldenRing(World):
             
             # MARK: Thiollier
             
-            self._add_location_rule("GP/PPC: Thiollier's Concoction - sold by thiollier after given Black Syrup", "Black Syrup")
+            self._add_location_rule("GP/PPC: Thiollier's Concoction - sold by Thiollier after given Black Syrup", "Black Syrup")
             
             self._add_location_rule([
-                "EI/GD: Thiollier's Hidden Needle - on Thiollier's body to NW"
-                "EI/GD: Thiollier's Mask - on Thiollier's body to NW"
-                "EI/GD: Thiollier's Garb - on Thiollier's body to NW"
-                "EI/GD: Thiollier's Gloves - on Thiollier's body to NW"
+                "EI/GD: Thiollier's Hidden Needle - on Thiollier's body to NW",
+                "EI/GD: Thiollier's Mask - on Thiollier's body to NW",
+                "EI/GD: Thiollier's Garb - on Thiollier's body to NW",
+                "EI/GD: Thiollier's Gloves - on Thiollier's body to NW",
                 "EI/GD: Thiollier's Trousers - on Thiollier's body to NW"
                 ], lambda state: self._can_get(state, "SCF/GDP: St. Trina's Smile - Thiollier invader drop, after you die to St. Trina four times and tell him your findings"))
             
@@ -1867,7 +1878,7 @@ class EldenRing(World):
             # "ER/ERD: Yellow Fulgurbloom x3 - given by friendly Kindred of Rot to SE, NE corner of cliffs"
 
             self._add_location_rule([
-                "SA/CC: Forager Brood Cookbook [4] - N of CC, given by friendly Kindred of Rot after you heal it"
+                "SA/CC: Forager Brood Cookbook [4] - N of CC, given by friendly Kindred of Rot after you heal it",
                 "SA/CC: Shadow Sunflower x3 - N of CC, given by friendly Kindred of Rot after you heal it"
                 ], lambda state: state.has("Crafting Kit", self.player) 
                     and (state.has("Nomadic Warrior's Cookbook [19]", self.player) or state.has("Battlefield Priest's Cookbook [4]", self.player)))
@@ -2292,10 +2303,6 @@ class EldenRing(World):
             data = location.data
         else:
             data = location_dictionary[location]
-        
-        # dont random smithing bell bearing
-        if data.smithingbell and self.options.smithing_bell_bearing_option.value == 2:
-            return False
 
         return (
             not data.is_event
@@ -2396,8 +2403,10 @@ class EldenRing(World):
                 "auto_equip": self.options.auto_equip.value,
                 "auto_upgrade": self.options.auto_upgrade.value,
                 "crafting_kit_option": self.options.crafting_kit_option.value,
+                "map_option": self.options.map_option.value,
                 "smithing_bell_bearing_option": self.options.smithing_bell_bearing_option.value,
                 "spell_shop_spells_only": self.options.spell_shop_spells_only.value,
+                "early_legacy_dungeons": self.options.early_legacy_dungeons.value,
                 "local_item_option": self.options.local_item_option.value,
                 "exclude_local_item_only": self.options.exclude_local_item_only.value,
                 "important_locations": self.options.important_locations.value,
