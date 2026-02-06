@@ -70,6 +70,9 @@ class EldenRing(World):
         self.all_excluded_locations.update(self.options.exclude_locations.value)
         # self.all_priority_locations.update(self.options.priority_locations.value)
         
+        # force into start inventory
+        #self.multiworld.push_precollected(self.create_item(""))
+        
         for locations in location_tables.values(): # this didn't work :(
             for loc in locations:
                 for loc_type in self.options.important_locations.value:
@@ -144,6 +147,9 @@ class EldenRing(World):
             item_table["Somberstone Miner's Bell Bearing [5]"].classification = ItemClassification.progression
                 
         if self.options.enable_dlc:
+            # warming stone craft
+            item_table["Nomadic Warrior's Cookbook [19]"].classification = ItemClassification.progression
+            
             if not self.options.late_dlc:
                 item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
                 
@@ -435,8 +441,7 @@ class EldenRing(World):
             create_connection("Recluses' River", "Darklight Catacombs")
             create_connection("Darklight Catacombs", "Abyssal Woods")
             create_connection("Abyssal Woods", "Midra's Manse")
-        
-
+    
     # For each region, add the associated locations retrieved from the corresponding location_table
     def create_region(self, region_name, location_table) -> Region:
         new_region = Region(region_name, self.player, self.multiworld)
@@ -634,6 +639,31 @@ class EldenRing(World):
         data = item if isinstance(item, ERItemData) else item_table[item]
         return ERItem(self.player, data)
 
+    def pre_fill(self) -> None:
+        if self.options.crafting_kit_option.value == 2:
+            self.multiworld.get_location("LG/(CE): Crafting Kit - Kalé Shop", self.player).place_locked_item(self.create_item("Crafting Kit"))
+            item_table["Crafting Kit"].skip = True
+            
+        if self.options.smithing_bell_bearing_option.value == 2:
+            self.multiworld.get_location("LL/(RLCT): Smithing-Stone Miner's Bell Bearing [1] - boss drop", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [1]"))
+            self.multiworld.get_location("CO/(ST): Smithing-Stone Miner's Bell Bearing [2] - in chest W side of first room", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [2]"))
+            self.multiworld.get_location("MotG/(ZR): Smithing-Stone Miner's Bell Bearing [3] - in chest underground", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [3]"))
+            self.multiworld.get_location("FA/DTT: Smithing-Stone Miner's Bell Bearing [4] - boss drop", self.player).place_locked_item(self.create_item("Smithing-Stone Miner's Bell Bearing [4]"))
+            self.multiworld.get_location("CL/(SCT): Somberstone Miner's Bell Bearing [1] - boss drop", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [1]"))
+            self.multiworld.get_location("AP/(AT): Somberstone Miner's Bell Bearing [2] - boss drop", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [2]"))
+            self.multiworld.get_location("MotG/(FCM): Somberstone Miner's Bell Bearing [3] - out front of church", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [3]"))
+            self.multiworld.get_location("FA/TFB: Somberstone Miner's Bell Bearing [4] - to N", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [4]"))
+            self.multiworld.get_location("FA/DTR: Somberstone Miner's Bell Bearing [5] - to SE, W of courtyard, in water room by altar", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [5]"))
+            item_table["Smithing-Stone Miner's Bell Bearing [1]"].skip = True
+            item_table["Smithing-Stone Miner's Bell Bearing [2]"].skip = True
+            item_table["Smithing-Stone Miner's Bell Bearing [3]"].skip = True
+            item_table["Smithing-Stone Miner's Bell Bearing [4]"].skip = True
+            item_table["Somberstone Miner's Bell Bearing [1]"].skip = True
+            item_table["Somberstone Miner's Bell Bearing [2]"].skip = True
+            item_table["Somberstone Miner's Bell Bearing [3]"].skip = True
+            item_table["Somberstone Miner's Bell Bearing [4]"].skip = True
+            item_table["Somberstone Miner's Bell Bearing [5]"].skip = True
+
     def _replace_with_filler(self, location: ERLocation) -> None:
         """If possible, choose a filler item to replace location's current contents with."""
         if location.locked: return
@@ -652,6 +682,7 @@ class EldenRing(World):
             return self.random.choice(filler_item_names_vanilla)
 
     def set_rules(self) -> None: #MARK: Rules
+        randomized_items = {item.name for item in self.local_itempool}
 
         self._key_rules() # make option to choose master or normal rules
         #self._master_key_rules()
@@ -780,11 +811,7 @@ class EldenRing(World):
                                 or self._can_go_to(state, "Volcano Manor Dungeon")) 
         self._add_entrance_rule("Volcano Manor Dungeon", 
                                 lambda state: self._can_go_to(state, "Raya Lucaria Academy Main") 
-                                or self._can_go_to(state, "Volcano Manor"))    
-        
-        self._add_location_rule([ # only from RLA warp
-            "(VM)/RLA: Smoldering Butterfly x5 - to E after warp",
-        ], lambda state: self._can_go_to(state, "Raya Lucaria Academy Main"))
+                                or self._can_go_to(state, "Volcano Manor"))
         
         self._add_entrance_rule("Leyndell, Royal Capital", lambda state: self._has_enough_great_runes(state, self.options.great_runes_required.value))
         
@@ -793,6 +820,13 @@ class EldenRing(World):
         self._add_entrance_rule("Hidden Path to the Haligtree", lambda state: 
             state.has("Haligtree Secret Medallion (Left)", self.player) and
             state.has("Haligtree Secret Medallion (Right)", self.player))
+        
+        # Early crafting kit
+        if self.options.crafting_kit_option.value == 1:
+            self._add_entrance_rule("Altus Plateau", "Crafting Kit")
+            self._add_entrance_rule("Caelid", "Crafting Kit")
+            if "Crafting Kit" in randomized_items:
+                self.multiworld.early_items[self.player]["Crafting Kit"] = 1
         
         # Smithing bell bearing rules
         if self.options.smithing_bell_bearing_option.value == 1:
@@ -846,18 +880,17 @@ class EldenRing(World):
             self._add_entrance_rule("Rauh Ruins Limited", 
                 lambda state: state.has("Imbued Sword Key", self.player, 4) or self._can_go_to(state, "Ancient Ruins of Rauh"))
             
-            # necklace
-            self._add_location_rule([
-                "FRR: Crimson Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center",
-                "FRD: Cerulean Seed Talisman +1 -use Hole-Laden Necklace at the hanging bell in the center"
-                ], "Hole-Laden Necklace")
-            
             # furnace golem / Hefty Furnace Pot
             self._add_location_rule([
                 "RR/(RU): Bloodsucking Cracked Tear - inactive furnace golem, use Hefty Furnace Pot",
                 "RR/(RU): Furnace Visage - inactive furnace golem, use Hefty Furnace Pot",
-                "RR/(RU): Giant Golden Arc - in chest within building behind inactive furnace golem"
-                ], lambda state: state.has("Greater Potentate's Cookbook [2]", self.player) and state.has("Hefty Cracked Pot", self.player))
+                "RR/(RU): Giant Golden Arc - in chest within building behind inactive furnace golem",
+                "SA/BLV: Cerulean-Sapping Cracked Tear - furnace golem to NE along path",
+                "SA/BLV: Furnace Visage - furnace golem to NE along path",
+                "CHG/CHG: Glovewort Crystal Tear - furnace golem to W above river",
+                "CHG/CHG: Furnace Visage - furnace golem to W above river"
+                ], lambda state: state.has("Crafting Kit", self.player) 
+                    and state.has("Greater Potentate's Cookbook [2]", self.player) and state.has("Hefty Cracked Pot", self.player))
                 
             # DLC region rules
             
@@ -881,7 +914,7 @@ class EldenRing(World):
         
         if self.options.ending_condition <= 1:
             if self.options.enable_dlc and self.options.ending_condition == 0:
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI/DGFS: Circlet of Light - interact with memory after mainboss")
+                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "EI/GD: Circlet of Light - interact with memory after mainboss")
             else:
                 self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "ET: Elden Remembrance - mainboss drop")
                 # make this the mend the elden ring event, idk how todo that rn
@@ -1739,9 +1772,25 @@ class EldenRing(World):
         
         if self.options.enable_dlc: 
             
+            # MARK: Grandam
+            
+            self._add_location_rule([
+                "BTS/SPA: Watchful Spirit - given by Hornsent Grandam while wearing the Divine Beast head",
+                "BTS/SPA: Scorpion Stew - given by Hornsent Grandam while wearing the Divine Beast Head a second time after reloading"
+            ], lambda state: state.has("Storeroom Key", self.player) and state.has("Divine Beast Head", self.player))
+            
+            self._add_location_rule([
+                "BTS/SPA: Gourmet Scorpion Stew - given by Hornsent Grandam after defeating SK mainboss",
+                "BTS/SPA: Gourmet Scorpion Stew - dropped by Hornsent Grandam after defeating SK mainboss, exhausting her dialogue, and reloading"
+            ], lambda state: self._can_get(state, "BTS/SPA: Watchful Spirit - given by Hornsent Grandam while wearing the Divine Beast head") 
+                and self._can_get(state, "SK/DCE: Remembrance of the Impaler - mainboss drop"))
+            
             # MARK: Florissax
             
-            self._add_location_rule("JP/GADC: Ancient Dragon Florissax - give Thiollier's Concoction to Florissax", "Thiollier's Concoction")
+            self._add_location_rule([
+                "JP/GADC: Ancient Dragon Florissax - admit to putting Florissax to sleep with Thiollier's Concoction",
+                "JP/GADC: Dragonbolt of Florissax - given by Florissax if you gave her Thiollier's Concoction before JP mainboss"
+                ], "Thiollier's Concoction")
             
             # MARK: Igon
             
@@ -1770,26 +1819,72 @@ class EldenRing(World):
             ], lambda state: self._can_get(state, "SA/(CC): Prayer Room Key - invader drop")
                 and state.has("Prayer Room Key", self.player) and state.has("Iris of Occultation", self.player))
             
+            # MARK: Leda
+            
+            self._add_location_rule([
+                "SA/HC: Lacerating Crossed-Tree - given by Leda after invading Hornsent alongside her"
+                "SA/HC: Retaliatory Crossed-Tree - given by Leda after invading Ansbach alongside her"
+                ], lambda state: self._can_go_to(state, "Shadow Keep"))
+            
+            # MARK: Freyja
+            
+            self._add_location_rule("SK/SSF: Golden Lion Shield - given by Freyja after giving her Letter for Freyja", "Letter for Freyja")
+            
+            # MARK: Ansbach
+            
+            self._add_location_rule("SK/SFiF: Letter for Freyja - given by Ansbach after giving Secret Rite Scroll", "Secret Rite Scroll")
+            
+            # MARK: Thiollier
+            
+            self._add_location_rule("GP/PPC: Thiollier's Concoction - sold by thiollier after given Black Syrup", "Black Syrup")
+            
+            self._add_location_rule([
+                "EI/GD: Thiollier's Hidden Needle - on Thiollier's body to NW"
+                "EI/GD: Thiollier's Mask - on Thiollier's body to NW"
+                "EI/GD: Thiollier's Garb - on Thiollier's body to NW"
+                "EI/GD: Thiollier's Gloves - on Thiollier's body to NW"
+                "EI/GD: Thiollier's Trousers - on Thiollier's body to NW"
+                ], lambda state: self._can_get(state, "SCF/GDP: St. Trina's Smile - Thiollier invader drop, after you die to St. Trina four times and tell him your findings"))
+            
+            self._add_location_rule("SCF/GDP: St. Trina's Blossom - on St. Trina's body after EI mainboss",
+                lambda state: self._can_get(state, "EI/DGFS: Remembrance of a God and a Lord - mainboss drop"))
+            
             # MARK: Moore
             
+            self._add_location_rule([ # tell him to be sad, body in SA by CC
+                "GP/MGC: Verdigris Greatshield - on Moore's body",
+                "GP/MGC: Verdigris Helm - on Moore's body",
+                "GP/MGC: Verdigris Armor - on Moore's body",
+                "GP/MGC: Verdigris Gauntlets - on Moore's body",
+                "GP/MGC: Verdigris Greaves - on Moore's body"
+                ], lambda state: self._can_go_to(state, "Scadu Altus"))
+            
             # friendly Kindred of Rot locations
-            "GP/PT: Forager Brood Cookbook [2] - given by friendly Kindred of Rot E of PT"
-            "GP/PT: Black Pyrefly x3 - given by friendly Kindred of Rot E of PT"
+            # "GP/PT: Forager Brood Cookbook [2] - given by friendly Kindred of Rot E of PT"
+            # "GP/PT: Black Pyrefly x3 - given by friendly Kindred of Rot E of PT"
             
-            "ER/ERD: Forager Brood Cookbook [3] - given by friendly Kindred of Rot to SE, NE corner of cliffs"
-            "ER/ERD: Yellow Fulgurbloom x3 - given by friendly Kindred of Rot to SE, NE corner of cliffs"
+            # "ER/ERD: Forager Brood Cookbook [3] - given by friendly Kindred of Rot to SE, NE corner of cliffs"
+            # "ER/ERD: Yellow Fulgurbloom x3 - given by friendly Kindred of Rot to SE, NE corner of cliffs"
 
-            "SA/CC: Forager Brood Cookbook [4] - N of CC, given by friendly Kindred of Rot after you heal it"
-            "SA/CC: Shadow Sunflower x3 - N of CC, given by friendly Kindred of Rot after you heal it"
+            self._add_location_rule([
+                "SA/CC: Forager Brood Cookbook [4] - N of CC, given by friendly Kindred of Rot after you heal it"
+                "SA/CC: Shadow Sunflower x3 - N of CC, given by friendly Kindred of Rot after you heal it"
+                ], lambda state: state.has("Crafting Kit", self.player) 
+                    and (state.has("Nomadic Warrior's Cookbook [19]", self.player) or state.has("Battlefield Priest's Cookbook [4]", self.player)))
             
-            "SA/RFSP: Forager Brood Cookbook [1] - given by friendly Kindred of Rot NW of RFSP"
-            "SA/RFSP: Glintslab Firefly x3 - given by friendly Kindred of Rot NW of RFSP"
+            # "SA/RFSP: Forager Brood Cookbook [1] - given by friendly Kindred of Rot NW of RFSP"
+            # "SA/RFSP: Glintslab Firefly x3 - given by friendly Kindred of Rot NW of RFSP"
             
-            "SA/MR: Forager Brood Cookbook [5] - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
-            "SA/MR: Pearlescent Scale - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
+            # "SA/MR: Forager Brood Cookbook [5] - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
+            # "SA/MR: Pearlescent Scale - given by friendly Kindred of Rot, to NE, through cave, on NE ledge"
             
-            "SA/CDH: Forager Brood Cookbook [6] - given by friendly Kindred of Rot to NW above entrance to SKCD, in W corner"
-            "SA/CDH: Dewgem x3 - given by friendly Kindred of Rot to NW above entrance to SKCD, in W corner"
+            # "SA/CDH: Forager Brood Cookbook [6] - given by friendly Kindred of Rot to NW above entrance to SKCD, in W corner"
+            # "SA/CDH: Dewgem x3 - given by friendly Kindred of Rot to NW above entrance to SKCD, in W corner"
+            
+            # MARK: Hornsent
+            
+            self._add_location_rule("GP/TPC: Furnace Visage x3 - given by Hornsent after giving Scorpion Stew", "Scorpion Stew")
+            
             
             # MARK: Dane
             
@@ -1800,23 +1895,20 @@ class EldenRing(World):
             
             # MARK: Ymir
             
-            self._add_location_rule([
-                "SA/(CMM): Glintstone Nail - Ymir shop after ringing one of the hanging bells",
-                "SA/(CMM): Glintstone Nails - Ymir shop after ringing one of the hanging bells"
-            ], lambda state: state.has("Hole-Laden Necklace", self.player) and 
-                (self._can_go_to(state, "Finger Ruins of Rhia") or self._can_go_to(state, "Finger Ruins of Dheo")))
+            self._add_location_rule("FRR: Crimson Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center", "Hole-Laden Necklace")
             
             self._add_location_rule([
+                "SA/(CMM): Glintstone Nail - Ymir shop after ringing one of the hanging bells",
+                "SA/(CMM): Glintstone Nails - Ymir shop after ringing one of the hanging bells",
                 "SA/(CMM): Beloved Stardust - given by Ymir after ringing the hanging bell in FRR",
-                "SA/(CMM): Ruins Map (2nd) - given by Ymir after ringing the hanging bell in FRR"
-            ], lambda state: state.has("Hole-Laden Necklace", self.player) and 
-                self._can_go_to(state, "Finger Ruins of Rhia"))
+                "SA/(CMM): Ruins Map (2nd) - given by Ymir after ringing the hanging bell in FRR",
+                "FRD: Cerulean Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center"
+            ], lambda state: self._can_get(state, "FRR: Crimson Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center"))
             
             self._add_location_rule([
                 "SA/(CMM): Fleeting Microcosm - Ymir shop after ringing both hanging bells",
                 "SA/(CMM): Ruins Map (3rd) - given by Ymir after ringing both hanging bells"
-            ], lambda state: state.has("Hole-Laden Necklace", self.player) and 
-                self._can_go_to(state, "Finger Ruins of Rhia") and self._can_go_to(state, "Finger Ruins of Dheo"))
+            ], lambda state: self._can_get(state, "FRD: Cerulean Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center"))
             
             self._add_location_rule([
                 "SA/CMM: Cherishing Fingers - in graveyard W of CMM after Ymir dead"
@@ -1825,12 +1917,12 @@ class EldenRing(World):
             # MARK: Jolán
             
             self._add_location_rule([
-                "SA/(CMM): Swordhand of Night Jolán - on Jolán after killing Ymir, give Iris of Grace before"
+                "SA/(CMM): Swordhand of Night Jolán - on Jolán after killing Ymir, give Iris of Grace"                
             ], lambda state: state.has("Iris of Grace", self.player) and 
                 self._can_get(state, "SA/(CMM): Maternal Staff - kill invader Ymir"))
             
             self._add_location_rule([
-                "SA/(CMM): Sword of Night - on Jolán after killing Ymir, give Iris of Occultation before"
+                "SA/(CMM): Sword of Night - on Jolán after killing Ymir, give Iris of Occultation"
             ], lambda state: state.has("Iris of Occultation", self.player) and 
                 self._can_get(state, "SA/(CMM): Maternal Staff - kill invader Ymir"))
             
@@ -2303,6 +2395,7 @@ class EldenRing(World):
                 "random_start": self.options.random_start.value,
                 "auto_equip": self.options.auto_equip.value,
                 "auto_upgrade": self.options.auto_upgrade.value,
+                "crafting_kit_option": self.options.crafting_kit_option.value,
                 "smithing_bell_bearing_option": self.options.smithing_bell_bearing_option.value,
                 "spell_shop_spells_only": self.options.spell_shop_spells_only.value,
                 "local_item_option": self.options.local_item_option.value,

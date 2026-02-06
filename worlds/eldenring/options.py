@@ -115,6 +115,19 @@ class AutoUpgradeOption(Toggle):
     """Automatically upgrades any received weapons to highest upgraded level."""
     display_name = "Auto-Upgrade"
     
+class CraftingKitOption(Choice):
+    """Choose how the Crafting Kit is handled.
+
+    - **Randomize:** Can be anywhere.
+    - **Early:** Make it anywhere before Altus and not in Caelid.
+    - **Do Not Randomize:** Leave it at its normal spot.
+    """
+    display_name = "Crafting Kit Behavior"
+    option_randomize = 0
+    option_early = 1
+    option_do_not_randomize = 2
+    default = 1
+    
 class SmithingBellBearingOption(Choice):
     """Choose how smithing stone bell bearings are handled.
 
@@ -237,6 +250,7 @@ class EROptions(PerGameCommonOptions):
     auto_equip: AutoEquipOption
     auto_upgrade: AutoUpgradeOption
     
+    crafting_kit_option: CraftingKitOption
     smithing_bell_bearing_option: SmithingBellBearingOption
     spell_shop_spells_only: SpellShopSpellsOnly
     local_item_option: LocalItemOnly

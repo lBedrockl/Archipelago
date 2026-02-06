@@ -3381,12 +3381,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     
     # MARK: Some DLC
-    "Belurat":[ # belurat                                        done by Jambo         quest left
+    "Belurat":[ # belurat                                                 done by Jambo
         ERLocationData("BTS/SPA: Crusade Insignia - invader drop in NE courtyard", "Crusade Insignia", key="200000,0:0000400694::", missable=True),
-        # ERLocationData("BTS: Scorpion Stew - given by Hornsent Grandam after resting at a grace, having received the watchful spirit", "Scorpion Stew", key="200000,0:0000400720::", missable=True, death=True), #still needs update
-        # ERLocationData("BTS: Watchful Spirit - given by Hornsent Grandam when wearing the divine beast head after defeating Divine Beast Dancing Lion", "Watchful Spirit", key="200000,0:0000400721::", missable=True), #still needs update
-        # ERLocationData("BTS: Gourmet Scorpion Stew - given by Hornsent Grandam after defeating Messmer", "Gourmet Scorpion Stew", key="200000,0:0000400722::", missable=True), #still needs update
-        # ERLocationData("BTS: Gourmet Scorpion Stew - dropped by Hornsent Grandam after defeating Messmer, exhausting her dialogue, and reloading", "Gourmet Scorpion Stew", key="200000,0:0000400723::", missable=True), #still needs update
+        ERLocationData("BTS/SPA: Scorpion Stew - given by Hornsent Grandam while wearing the Divine Beast Head a second time after reloading", "Scorpion Stew", key="200000,0:0000400720::", missable=True, death=True),
+        ERLocationData("BTS/SPA: Watchful Spirit - given by Hornsent Grandam while wearing the Divine Beast Head", "Watchful Spirit", key="200000,0:0000400721::", missable=True),
+        ERLocationData("BTS/SPA: Gourmet Scorpion Stew - given by Hornsent Grandam after defeating SK mainboss", "Gourmet Scorpion Stew", key="200000,0:0000400722::", missable=True),
+        ERLocationData("BTS/SPA: Gourmet Scorpion Stew - on Hornsent Grandam after defeating SK mainboss, exhausting her dialogue, and reloading", "Gourmet Scorpion Stew", key="200000,0:0000400723::", missable=True),
         ERLocationData("BTS/SF: Remembrance of the Dancing Lion - mainboss drop", "Remembrance of the Dancing Lion", key="200000,0:0000510400::", boss=True, deadend=True, remembrance=True),
         ERLocationData("BTS/TDB: Revered Spirit Ash - on statue after boss", "Revered Spirit Ash", key="200000,0:0020007800::", revered=True),
         ERLocationData("BTS/TDB: Tower of Shadow Message - at the top of the stairs after boss", "Tower of Shadow Message", key="200000,0:0020007830::"),
@@ -3436,12 +3436,12 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("BTS/BTS: Golden Horn Tender - enemy drop NE of shortcut elevator", "Golden Horn Tender", key="200000,0:0020007900::", enemyrevered=True),
         ERLocationData("BTS/BTS: Revered Spirit Ash - enemy drop NE of shortcut elevator", "Revered Spirit Ash", key="200000,0:0020007900::", enemyrevered=True),
     ],
-    "Shadow Keep Storehouse":[ # storehouse                      quests left
-        #ERLocationData("SK/: Message from Leda - By any Miquella's Cross after defeating Messmer", "Message from Leda", key="200000,0:0000580600::"),
-        #ERLocationData("SK/: Ansbach's Longbow - Dropped by Leda after invading her alongside Ansbach", "Ansbach's Longbow", key="210100,0:0000400595::", missable=True, exclusive=True),
-        #ERLocationData("SK/: Leda's Rune - Dropped by Leda after invading her alongside Ansbach", "Leda's Rune", key="210100,0:0000400595::", missable=True, exclusive=True),
-        #ERLocationData("SK/: Golden Lion Shield - Given by Freyja by the Storehouse Seventh Floor grace after giving her Letter for Freyja", "Golden Lion Shield", key="210100,0:0000400600::", missable=True),
-        #ERLocationData("SK/: Letter for Freyja - Given by Ansbach on the first floor after talking to Freyja on the seventh floor", "Letter for Freyja", key="210100,0:0000400620::", missable=True),
+    "Shadow Keep Storehouse":[ # storehouse                               done
+        ERLocationData("Cross: Message from Leda - by any cross after SK mainboss", "Message from Leda", key="200000,0:0000580600::"),
+        ERLocationData("SK/SFiF: Ansbach's Longbow - on Leda's body after invading her alongside Ansbach", "Ansbach's Longbow", key="210100,0:0000400595::", missable=True, exclusive=True),
+        ERLocationData("SK/SFiF: Leda's Rune - on Leda's body after invading her alongside Ansbach", "Leda's Rune", key="210100,0:0000400595::", missable=True, exclusive=True),
+        ERLocationData("SK/SSF: Golden Lion Shield - given by Freyja after giving her Letter for Freyja", "Golden Lion Shield", key="210100,0:0000400600::", missable=True),
+        ERLocationData("SK/SFiF: Letter for Freyja - given by Ansbach after giving Secret Rite Scroll", "Letter for Freyja", key="210100,0:0000400620::", missable=True),
         ERLocationData("SK/DCE: Remembrance of the Impaler - mainboss drop", "Remembrance of the Impaler", key="210100,0:0000510460::", boss=True, deadend=True, remembrance=True),
         ERLocationData("SK/DCE: Messmer's Kindling - mainboss drop", "Messmer's Kindling", key="210100,0:0000510460::", boss=True, deadend=True),
         ERLocationData("SK/SFiF: Fireproof Pickled Liver - to E in left corner", "Fireproof Pickled Liver", key="210100,0:0021017000::"),
@@ -3502,31 +3502,31 @@ location_tables: Dict[str, List[ERLocationData]] = {
         #ERLocationData("BTS: Immunizing Horn Charm +2 - Dropped by the poison Ulcerated Tree Spirit in the southeast poison swamp", "Immunizing Horn Charm +2", key="200000,0:0020007991::", enemytalisman=True),
         #ERLocationData("BTS: Horned Warrior's Sword - Dropped by the Divine Bird Warrior on dry land in the northwest poison swamp", "Horned Warrior's Sword", key="200000,0:0020007993::"),
     ],
-    "Enir Ilim":[ # enirilim                                     quests left
+    "Enir Ilim":[ # enirilim                                              done
         ERLocationData("EI/CCA: Leda's Armor - on Leda's body after npc boss", "Leda's Armor", key="200100,0:0000400598::"),
-        #ERLocationData("EI/: Freyja's Greatsword - On Freyja's corpse at the end of her quest", "Freyja's Greatsword", key="200100,0:0000400602::", missable=True),
-        #ERLocationData("EI/: Freyja's Helm - On Freyja's corpse at the end of her quest", "Freyja's Helm", key="200100,0:0000400602::", missable=True),
-        #ERLocationData("EI/: Freyja's Armor - On Freyja's corpse at the end of her quest", "Freyja's Armor", key="200100,0:0000400602::", missable=True),
-        #ERLocationData("EI/: Freyja's Gauntlets - On Freyja's corpse at the end of her quest", "Freyja's Gauntlets", key="200100,0:0000400602::", missable=True),
-        #ERLocationData("EI/: Freyja's Greaves - On Freyja's corpse at the end of her quest", "Freyja's Greaves", key="200100,0:0000400602::", missable=True),
-        #ERLocationData("EI/: Falx - On Hornsent's corpse at the end of his quest", "Falx", key="200100,0:0000400614::", missable=True),
-        #ERLocationData("EI/: Caterpillar Mask - On Hornsent's corpse at the end of his quest", "Caterpillar Mask", key="200100,0:0000400614::", missable=True),
-        #ERLocationData("EI/: Braided Cord Robe - On Hornsent's corpse at the end of his quest", "Braided Cord Robe", key="200100,0:0000400614::", missable=True),
-        #ERLocationData("EI/: Braided Arm Wraps - On Hornsent's corpse at the end of his quest", "Braided Arm Wraps", key="200100,0:0000400614::", missable=True),
-        #ERLocationData("EI/: Soiled Loincloth - On Hornsent's corpse at the end of his quest", "Soiled Loincloth", key="200100,0:0000400614::", missable=True),
-        #ERLocationData("EI/: Obsidian Lamina - On Ansbach's corpse at the end of his quest", "Obsidian Lamina", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Ansbach's Longbow - On Ansbach's corpse at the end of his quest", "Ansbach's Longbow", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Wise Man's Mask - On Ansbach's corpse at the end of his quest", "Wise Man's Mask", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Ansbach's Attire - On Ansbach's corpse at the end of his quest", "Ansbach's Attire", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Ansbach's Manchettes - On Ansbach's corpse at the end of his quest", "Ansbach's Manchettes", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Ansbach's Boots - On Ansbach's corpse at the end of his quest", "Ansbach's Boots", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Furious Blade of Ansbach - On Ansbach's corpse at the end of his quest", "Furious Blade of Ansbach", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Letter for Freyja - On Ansbach's corpse at the end of his quest", "Letter for Freyja", key="200100,0:0000400624::", missable=True),
-        #ERLocationData("EI/: Thiollier's Hidden Needle - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Hidden Needle", key="200100,0:0000400634::", missable=True),
-        #ERLocationData("EI/: Thiollier's Mask - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Mask", key="200100,0:0000400634::", missable=True),
-        #ERLocationData("EI/: Thiollier's Garb - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Garb", key="200100,0:0000400634::", missable=True),
-        #ERLocationData("EI/: Thiollier's Gloves - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Gloves", key="200100,0:0000400634::", missable=True),
-        #ERLocationData("EI/: Thiollier's Trousers - On Thiollier's corpse at the Gate of Divinity after completing his quest", "Thiollier's Trousers", key="200100,0:0000400634::", missable=True),
+        ERLocationData("EI/CCA: Freyja's Greatsword - on Freyja's body", "Freyja's Greatsword", key="200100,0:0000400602::", missable=True),
+        ERLocationData("EI/CCA: Freyja's Helm - on Freyja's body", "Freyja's Helm", key="200100,0:0000400602::", missable=True),
+        ERLocationData("EI/CCA: Freyja's Armor - on Freyja's body", "Freyja's Armor", key="200100,0:0000400602::", missable=True),
+        ERLocationData("EI/CCA: Freyja's Gauntlets - on Freyja's body", "Freyja's Gauntlets", key="200100,0:0000400602::", missable=True),
+        ERLocationData("EI/CCA: Freyja's Greaves - on Freyja's body", "Freyja's Greaves", key="200100,0:0000400602::", missable=True),
+        ERLocationData("EI/CCA: Falx - on Hornsent's body", "Falx", key="200100,0:0000400614::", missable=True),
+        ERLocationData("EI/CCA: Caterpillar Mask - on Hornsent's body", "Caterpillar Mask", key="200100,0:0000400614::", missable=True),
+        ERLocationData("EI/CCA: Braided Cord Robe - on Hornsent's body", "Braided Cord Robe", key="200100,0:0000400614::", missable=True),
+        ERLocationData("EI/CCA: Braided Arm Wraps - on Hornsent's body", "Braided Arm Wraps", key="200100,0:0000400614::", missable=True),
+        ERLocationData("EI/CCA: Soiled Loincloth - on Hornsent's body", "Soiled Loincloth", key="200100,0:0000400614::", missable=True),
+        ERLocationData("EI/CCA: Obsidian Lamina - on Ansbach's body", "Obsidian Lamina", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/CCA: Ansbach's Longbow - on Ansbach's body", "Ansbach's Longbow", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/CCA: Wise Man's Mask - on Ansbach's body", "Wise Man's Mask", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/CCA: Ansbach's Attire - on Ansbach's body", "Ansbach's Attire", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/CCA: Ansbach's Manchettes - on Ansbach's body", "Ansbach's Manchettes", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/CCA: Ansbach's Boots - on Ansbach's body", "Ansbach's Boots", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/CCA: Furious Blade of Ansbach - on Ansbach's body", "Furious Blade of Ansbach", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/CCA: Letter for Freyja - on Ansbach's body", "Letter for Freyja", key="200100,0:0000400624::", missable=True),
+        ERLocationData("EI/GD: Thiollier's Hidden Needle - on Thiollier's body to NW", "Thiollier's Hidden Needle", key="200100,0:0000400634::", missable=True),
+        ERLocationData("EI/GD: Thiollier's Mask - on Thiollier's body to NW", "Thiollier's Mask", key="200100,0:0000400634::", missable=True),
+        ERLocationData("EI/GD: Thiollier's Garb - on Thiollier's body to NW", "Thiollier's Garb", key="200100,0:0000400634::", missable=True),
+        ERLocationData("EI/GD: Thiollier's Gloves - on Thiollier's body to NW", "Thiollier's Gloves", key="200100,0:0000400634::", missable=True),
+        ERLocationData("EI/GD: Thiollier's Trousers - on Thiollier's body to NW", "Thiollier's Trousers", key="200100,0:0000400634::", missable=True),
         ERLocationData("EI/CCA: Dane's Footwork - on Dane's body after npc boss", "Dane's Footwork", key="200100,0:0000400732::"),
         ERLocationData("EI/CCA: Leda's Sword - npc boss drop", "Leda's Sword", key="200100,0:0000510420::"),
         ERLocationData("EI/DGFS: Remembrance of a God and a Lord - mainboss drop", "Remembrance of a God and a Lord", key="200100,0:0000510430::", boss=True, dlc_end=True, remembrance=True),
@@ -3571,7 +3571,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("BTS|EI/SR: Euporia - outside to SE downstairs, drop down from gazebo, after jump to window, continue down and down", "Euporia", key="200000,0:0020007330::", outoftheway=True),
         ERLocationData("BTS|EI/SR: Scadutree Fragment - outside to SE downstairs, drop down from gazebo, after jump to window, by statue", "Scadutree Fragment", key="200000,0:0020007820::", fragment=True),
         ERLocationData("EI/FR: Revered Spirit Ash - enemy drop outside to SW, across broken bridge, by left fountain", "Revered Spirit Ash", key="200100,0:0020017900::", enemyrevered=True),
-        ERLocationData("EI/DGFS: Circlet of Light - interact with memory after mainboss", "Circlet of Light", key="200100,0:0020017981::", dlc_end=True),
+        ERLocationData("EI/GD: Circlet of Light - interact with memory after mainboss", "Circlet of Light", key="200100,0:0020017981::", dlc_end=True),
         ERLocationData("EI/CCA: Horned Warrior's Greatsword - enemy drop to N", "Horned Warrior's Greatsword", key="200100,0:0020017991::"),
     ],
     "Shadow Keep, Church District Lower":[ # shadowkeep_church_lower      done
@@ -3595,9 +3595,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SK/SC: Iris of Occultation - enemy drop in upper N courtyard", "Iris of Occultation", key="210000,0:0021007993::"),
         ERLocationData("SK/SC: Death Mask Helm - enemy drop in front of statue in church", "Death Mask Helm", key="210000,0:0021007995::"),
     ],
-    "Shadow Keep":[ # shadowkeep                                 leda quest
-        #ERLocationData("SK: Leda's Rune - Dropped by Leda after invading her alongside Hornsent in the flaming boat area", "Leda's Rune", key="210000,0:0000400594::", missable=True, exclusive=True),
-        #ERLocationData("SK: Ash of War: Swift Slash - Dropped by Leda after invading her alongside Hornsent in the flaming boat area", "Ash of War: Swift Slash", key="210000,0:0000400594::", missable=True, exclusive=True),
+    "Shadow Keep":[ # shadowkeep                                          done
+        ERLocationData("SK/MGP: Leda's Rune - on Leda's body after invading her alongside Hornsent", "Leda's Rune", key="210000,0:0000400594::", missable=True, exclusive=True),
+        ERLocationData("SK/MGP: Ash of War: Swift Slash - on Leda's body after invading her alongside Hornsent", "Ash of War: Swift Slash", key="210000,0:0000400594::", missable=True, exclusive=True),
         ERLocationData("SK/SKMG: Aspects of the Crucible: Thorns - boss drop", "Aspects of the Crucible: Thorns", key="210000,0:0000510440::", boss=True, enemyfragment=True),
         ERLocationData("SK/SKMG: Scadutree Fragment x2 - boss drop", "Scadutree Fragment x2", key="210000,0:0000510440::", boss=True, enemyfragment=True),
         ERLocationData("SK/MGP: \"Domain of Dragons\" Painting - painting to SE, to right at top of stairs, down ladder, under waterfall", "\"Domain of Dragons\" Painting", key="210000,0:0000580120::", painting=True),
@@ -3641,16 +3641,16 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     "Gravesite Plain":[ # gravesite                                       most done by Legofacebob
         ERLocationData("GP/TPC: Cross Map - given by Hornsent at TPC or HC", "Cross Map", key="210100,0:0000400610::", missable=True), #Hornsent
-        ERLocationData("GP/TPC: Furnace Visage x3 - given by Hornsent after scorpion stew", "Furnace Visage x3", key="210100,0:0000400612::", missable=True), #Hornsent
+        ERLocationData("GP/TPC: Furnace Visage x3 - given by Hornsent after giving Scorpion Stew", "Furnace Visage x3", key="210100,0:0000400612::", missable=True), #Hornsent
         ERLocationData("GP/PT: Ghost Glovewort [4] - W of PT, in front of gravestone", "Ghost Glovewort [4]", key="614441,0:2044417000::"),
         ERLocationData("GP/PT: Silver Horn Tender - enemy drop W of PT, near graves", "Silver Horn Tender", key="614441,0:2044417995::", enemyfragment=True),
         ERLocationData("GP/PT: Scadutree Fragment - enemy drop W of PT, near graves", "Scadutree Fragment", key="614441,0:2044417995::", enemyfragment=True),
         ERLocationData("GP/PT: Forager Brood Cookbook [2] - given by friendly Kindred of Rot E of PT", "Forager Brood Cookbook [2]", key="614541,0:0000068530::", cookbook=True, missable=True), #Moore
-        ERLocationData("GP/MGC: Verdigris Greatshield - moore death", "Verdigris Greatshield", key="614541,0:0000400645::", missable=True), #Moore
-        ERLocationData("GP/MGC: Verdigris Helm - moore death", "Verdigris Helm", key="614541,0:0000400645::", missable=True), #Moore
-        ERLocationData("GP/MGC: Verdigris Armor - moore death", "Verdigris Armor", key="614541,0:0000400645::", missable=True), #Moore
-        ERLocationData("GP/MGC: Verdigris Gauntlets - moore death", "Verdigris Gauntlets", key="614541,0:0000400645::", missable=True), #Moore
-        ERLocationData("GP/MGC: Verdigris Greaves - moore death", "Verdigris Greaves", key="614541,0:0000400645::", missable=True), #Moore
+        ERLocationData("GP/MGC: Verdigris Greatshield - on Moore's body", "Verdigris Greatshield", key="614541,0:0000400645::", missable=True), #Moore
+        ERLocationData("GP/MGC: Verdigris Helm - on Moore's body", "Verdigris Helm", key="614541,0:0000400645::", missable=True), #Moore
+        ERLocationData("GP/MGC: Verdigris Armor - on Moore's body", "Verdigris Armor", key="614541,0:0000400645::", missable=True), #Moore
+        ERLocationData("GP/MGC: Verdigris Gauntlets - on Moore's body", "Verdigris Gauntlets", key="614541,0:0000400645::", missable=True), #Moore
+        ERLocationData("GP/MGC: Verdigris Greaves - on Moore's body", "Verdigris Greaves", key="614541,0:0000400645::", missable=True), #Moore
         ERLocationData("GP/PT: Black Pyrefly x3 - given by friendly Kindred of Rot E of PT", "Black Pyrefly x3", key="614541,0:0000400753::", missable=True), #Moore
         ERLocationData("GP/(PT): Beast Blood x2 - in building with pots, past first stairs", "Beast Blood x2", key="614541,0:2045417000::"),
         ERLocationData("GP/(PT): Whiteflesh Mushroom x3 - in front of fallen pillar, past second stairs", "Whiteflesh Mushroom x3", key="614541,0:2045417010::"),
@@ -3688,15 +3688,15 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("GP/MGC: Knot Resin x5 - Moore Shop", "Knot Resin x5", key="614542,0:0000000000:102250:", raceshop=True, shop=True), #Moore
         ERLocationData("GP/MGC: Black Pyrefly x8 - Moore Shop", "Black Pyrefly x8", key="614542,0:0000000000:102250:", raceshop=True, shop=True), #Moore
         ERLocationData("GP/MGC: Sanguine Amaryllis x4 - Moore Shop", "Sanguine Amaryllis x4", key="614542,0:0000000000:102250:", raceshop=True, shop=True), #Moore
-        ERLocationData("GP/MGC: Forager Brood Cookbook [7] - moore after healing kindred npc, so long as moore is happy", "Forager Brood Cookbook [7]", key="614542,0:0000068830::", missable=True, cookbook=True), #Moore
-        ERLocationData("GP/MGC: Black Syrup - moore after speaking with thiollier", "Black Syrup", key="614542,0:0000400642::", missable=True), #Moore
+        ERLocationData("GP/MGC: Forager Brood Cookbook [7] - given by Moore after healing kindred npc, so long as moore is happy", "Forager Brood Cookbook [7]", key="614542,0:0000068830::", missable=True, cookbook=True), #Moore
+        ERLocationData("GP/MGC: Black Syrup - given by Moore after speaking with Thiollier", "Black Syrup", key="614542,0:0000400642::", missable=True), #Moore
         ERLocationData("GP/MGC: Smithing Stone [3] x3 - to SE, on cliffroad to CRT", "Smithing Stone [3] x3", key="614542,0:2045427000::"),
         ERLocationData("GP/MGC: Scadutree Fragment - by cross", "Scadutree Fragment", key="614542,0:2045427700::", cross=True),
-        ERLocationData("GP/PPC: Thiollier's Concoction - sold by thiollier after given black syrup", "Thiollier's Concoction", key="614542,3:0000000000:102250,102270,2045429331:", missable=True, shop=True), #Thiollier
-        ERLocationData("GP/MGC: Arrow - Moore Shop", "Arrow", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
-        ERLocationData("GP/MGC: Great Arrow - Moore Shop", "Great Arrow", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
-        ERLocationData("GP/MGC: Bolt - Moore Shop", "Bolt", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
-        ERLocationData("GP/MGC: Ballista Bolt - Moore Shop", "Ballista Bolt", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
+        ERLocationData("GP/PPC: Thiollier's Concoction - sold by Thiollier after given Black Syrup", "Thiollier's Concoction", key="614542,3:0000000000:102250,102270,2045429331:", missable=True, shop=True), #Thiollier
+        #inf ERLocationData("GP/MGC: Arrow - Moore Shop", "Arrow", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
+        #inf ERLocationData("GP/MGC: Great Arrow - Moore Shop", "Great Arrow", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
+        #inf ERLocationData("GP/MGC: Bolt - Moore Shop", "Bolt", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
+        #inf ERLocationData("GP/MGC: Ballista Bolt - Moore Shop", "Ballista Bolt", key="614542,3:0000000000:102250:", missable=True, shop=True), #Moore
         ERLocationData("GP/BG: Serpent Crest Shield - painting reward SE of BG", "Serpent Crest Shield", key="614543,0:0000580400::", missable=True),
         ERLocationData("GP/BG: Shadow Realm Rune [1] - S of BG, in front of arch", "Shadow Realm Rune [1]", key="614543,0:2045437000::"),
         ERLocationData("GP/GN: Ash of War: Savage Lion's Claw - to SW, in makeshift campsite", "Ash of War: Savage Lion's Claw", key="614543,0:2045437700::"),
@@ -3825,8 +3825,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
     ],
     "Stone Coffin Fissure":[ # fissure                                    will be done by Jambo
         #ERLocationData("SCF: St. Trina Disciple's Cookbook [3] - In the Garden of Deep Purple to St. Trina's right", "St. Trina Disciple's Cookbook [3]", key="220000,0:0000068840::", cookbook=True),
-        #ERLocationData("SCF: St. Trina's Smile - Dropped by Thiollier after he invades you, after you die to St. Trina several times and tell him your findings", "St. Trina's Smile", key="220000,0:0000400632::", missable=True),
-        #ERLocationData("SCF: St. Trina's Blossom - On St. Trina's corpse after defeating Promised Consort Radahn", "St. Trina's Blossom", key="220000,0:0000400740::", missable=True),
+        ERLocationData("SCF/GDP: St. Trina's Smile - Thiollier invader drop, after you die to St. Trina four times and tell him your findings", "St. Trina's Smile", key="220000,0:0000400632::", missable=True),
+        ERLocationData("SCF/GDP: St. Trina's Blossom - on St. Trina's body after EI mainboss", "St. Trina's Blossom", key="220000,0:0000400740::", missable=True),
         ERLocationData("SCF/FD: Remembrance of Putrescence - mainboss drop", "Remembrance of Putrescence", key="220000,0:0000510480::", boss=True, deadend=True, remembrance=True),
         #ERLocationData("SCF: Scadutree Fragment - By Miquella's Cross at the Fissure Cross grace", "Scadutree Fragment", key="220000,0:0022007000::", cross=True),
         #ERLocationData("SCF: Congealed Putrescence x5 - By a ledge up a hill on an isolated landmass, found by following the right wall after the Stone Coffin Fissure grace and then jumping across to the landmass to the southeast", "Congealed Putrescence x5", key="220000,0:0022007100::"),
@@ -5399,7 +5399,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MotG/FR: Ash of War: Seppuku - scarab to E", "Ash of War: Seppuku", key="605357,0:0000540510::", scarab=True),
         ERLocationData("MotG/FR: Golden Rune [11] - to E on top of hill", "Golden Rune [11]", key="605357,0:1053577300::"),
         ERLocationData("MotG/FCM: Smithing Stone [7] x3 - on hill E of FCM", "Smithing Stone [7] x3", key="605455,0:1054557000::"),
-        ERLocationData("MotG/(FCM): Somberstone Miner's Bell Bearing [3] - out frount of church", "Somberstone Miner's Bell Bearing [3]", key="605455,0:1054557310::", upgradeshop=True, smithingbell=True),
+        ERLocationData("MotG/(FCM): Somberstone Miner's Bell Bearing [3] - out front of church", "Somberstone Miner's Bell Bearing [3]", key="605455,0:1054557310::", upgradeshop=True, smithingbell=True),
         ERLocationData("MotG/(FCM): Sacred Tear - by statue", "Sacred Tear", key="605455,0:1054557800::", church=True),
         ERLocationData("MotG/FR: Dragon Heart - boss drop to SE", "Dragon Heart", key="605456,0:0000530510::", altboss=True, nocrawl=True, dragonboss=True, overworldboss=True),
     ],
@@ -5626,10 +5626,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("CC/CCC: Smithing Stone [2] x6 - to NE, on corpse on hill before FRR", "Smithing Stone [2] x6", key="614938,0:2049387060::"),
     ],
     "Charo's Hidden Grave":[ # charo                                      done by Seb
-        ERLocationData("CHG/CHG: Glovewort Crystal Tear - enemy drop to W above river", "Glovewort Crystal Tear", key="614639,0:0000065460::", furnacegolem=True, missable=True),
+        ERLocationData("CHG/CHG: Glovewort Crystal Tear - furnace golem to W above river", "Glovewort Crystal Tear", key="614639,0:0000065460::", furnacegolem=True, missable=True),
         ERLocationData("CHG/CHG: Fireproof Pickled Liver - to W at top of river", "Fireproof Pickled Liver", key="614639,0:2046397030::"),
         ERLocationData("CHG/CHG: Gravebird Ashes - to W, after spirit spring", "Gravebird Ashes", key="614639,0:2046397040::"),
-        ERLocationData("CHG/CHG: Furnace Visage - enemy drop to W above river", "Furnace Visage", key="614639,0:2046397060::", furnacegolem=True, missable=True),
+        ERLocationData("CHG/CHG: Furnace Visage - furnace golem to W above river", "Furnace Visage", key="614639,0:2046397060::", furnacegolem=True, missable=True),
         ERLocationData("CHG/LG: Ghost Glovewort [7] - NW of LG", "Ghost Glovewort [7]", key="614640,0:2046407050::"),
         ERLocationData("CHG/CHG: Ghost Glovewort [9] - to NW by multiple statues", "Ghost Glovewort [9]", key="614640,0:2046407060::"),
         ERLocationData("CHG/CHG: Greater Potentate's Cookbook [14] - to SW on wooden boards", "Greater Potentate's Cookbook [14]", key="614739,0:0000068710::", cookbook=True),
@@ -5670,9 +5670,9 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/ARR: Beast Horn x2 - NW side of imbued sword key area on rock left of waterfall", "Beast Horn x2", key="614647,0:2046477160::"),
         ERLocationData("SA/ARR: Verdigris Discus - NE side of imbued sword key area by altar", "Verdigris Discus", key="614647,0:2046477720::", talisman=True, nocrawl=True),
     ],
-    "Scadu Altus":[ # scadualtus                         leda quest
-        #ERLocationData("SA: Lacerating Crossed-Tree - Given by Leda at Highroad Cross after invading Hornsent alongside her", "Lacerating Crossed-Tree", key="120500,0:0000400590::", missable=True, exclusive=True),
-        #ERLocationData("SA: Retaliatory Crossed-Tree - Given by Leda at Highroad Cross after invading Ansbach alongside her", "Retaliatory Crossed-Tree", key="120500,0:0000400592::", missable=True, exclusive=True),
+    "Scadu Altus":[ # scadualtus                                          done
+        ERLocationData("SA/HC: Lacerating Crossed-Tree - given by Leda after invading Hornsent alongside her", "Lacerating Crossed-Tree", key="120500,0:0000400590::", missable=True, exclusive=True),
+        ERLocationData("SA/HC: Retaliatory Crossed-Tree - given by Leda after invading Ansbach alongside her", "Retaliatory Crossed-Tree", key="120500,0:0000400592::", missable=True, exclusive=True),
         ERLocationData("SA/(CC): Prayer Room Key - invader drop", "Prayer Room Key", key="200000,0:0000400696::", missable=True),
         ERLocationData("SA/(CC): Ash of War: Flame Skewer - invader drop", "Ash of War: Flame Skewer", key="200000,0:0000400696::", missable=True),
         ERLocationData("SA/HC: New Cross Map - given by Hornsent", "New Cross Map", key="210100,0:0000400611::", missable=True),
@@ -5819,8 +5819,8 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(WH): Tooth Whip - in shack", "Tooth Whip", key="615144,0:2051447000::"),
         ERLocationData("SA/BLV: Cerulean-Sapping Cracked Tear - furnace golem to NE along path", "Cerulean-Sapping Cracked Tear", key="615145,0:0000065430::", furnacegolem=True, missable=True),
         ERLocationData("SA/CMM: Greater Potentate's Cookbook [4] - E of CMM", "Greater Potentate's Cookbook [4]", key="615145,0:0000068600::", cookbook=True),
-        ERLocationData("SA/(CMM): Swordhand of Night Jolán - on Jolán after killing Ymir, give Iris of Grace before", "Swordhand of Night Jolán", key="615145,0:0000400670::", missable=True, exclusive=True),
-        ERLocationData("SA/(CMM): Sword of Night - on Jolán after killing Ymir, give Iris of Occultation before", "Sword of Night", key="615145,0:0000400671::", missable=True, exclusive=True),
+        ERLocationData("SA/(CMM): Swordhand of Night Jolán - on Jolán after killing Ymir, give Iris of Grace", "Swordhand of Night Jolán", key="615145,0:0000400670::", missable=True, exclusive=True),
+        ERLocationData("SA/(CMM): Sword of Night - on Jolán after killing Ymir, give Iris of Occultation", "Sword of Night", key="615145,0:0000400671::", missable=True, exclusive=True),
         ERLocationData("SA/BLV: Ash of War: Raging Beast - scarab to NE", "Ash of War: Raging Beast", key="615145,0:0000540906::"),
         ERLocationData("SA/CMM: Glinting Nail x2 - on SE ledge of CMM", "Glinting Nail x2", key="615145,0:2051457000::"),
         ERLocationData("SA/CMM: Starlight Shards - SE of CMM by statue", "Starlight Shards", key="615145,0:2051457530::"),
@@ -5916,10 +5916,10 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("JP/GADC: Bayle's Flame Lightning - Dragon Communion, Heart of Bayle", "Bayle's Flame Lightning", key="614939,0:0000000000:102350:", missable=True, incantations=True, premium=True, shop=True),
         ERLocationData("JP/GADC: Ghostflame Breath - Grand Dragon Communion", "Ghostflame Breath", key="614939,0:0000000000:102355:", incantations=True, nokey=True, premium=True, shop=True),
         ERLocationData("JP/GADC: Igon's Cookbook [1] - to N in ruined tower", "Igon's Cookbook [1]", key="614939,0:0000068810::", cookbook=True),
-        ERLocationData("JP/GADC: Ancient Dragon Florissax - give Thiollier's Concoction to Florissax", "Ancient Dragon Florissax", key="614939,0:0000400700::", missable=True, exclusive=True),
-        ERLocationData("JP/GADC: Dragonbolt of Florissax - given by Florissax if you talked to her before JP mainboss", "Dragonbolt of Florissax", key="614939,0:0000400702::", missable=True, exclusive=True),
-        ERLocationData("JP/GADC: Flowerstone Gavel - dead Florissax after JP mainboss", "Flowerstone Gavel", key="614939,0:0000400704::", missable=True, exclusive=True),
-        ERLocationData("JP/GADC: Priestess Heart - dead Florissax after JP mainboss", "Priestess Heart", key="614939,0:0000400704::", missable=True, exclusive=True),
+        ERLocationData("JP/GADC: Ancient Dragon Florissax - admit to putting Florissax to sleep with Thiollier's Concoction", "Ancient Dragon Florissax", key="614939,0:0000400700::", missable=True, exclusive=True),
+        ERLocationData("JP/GADC: Dragonbolt of Florissax - given by Florissax if you gave her Thiollier's Concoction before JP mainboss", "Dragonbolt of Florissax", key="614939,0:0000400702::", missable=True, exclusive=True),
+        ERLocationData("JP/GADC: Flowerstone Gavel - dead Florissax after JP mainboss if not talked to", "Flowerstone Gavel", key="614939,0:0000400704::", missable=True, exclusive=True),
+        ERLocationData("JP/GADC: Priestess Heart - dead Florissax after JP mainboss if not talked to", "Priestess Heart", key="614939,0:0000400704::", missable=True, exclusive=True),
         ERLocationData("JP/GADC: Red Fulgurbloom x3 - to N on right cliff", "Red Fulgurbloom x3", key="614939,0:2049397000::"),
         ERLocationData("JP/DPT: Dragon Heart - boss drop to E", "Dragon Heart", key="614941,0:0000530850::", altboss=True, dragonboss=True, nocrawl=True, overworldboss=True),
         ERLocationData("JP/DPT: Dragonscale Flesh - boss drop to E", "Dragonscale Flesh", key="614941,0:0000530850::", altboss=True, dragonboss=True, nocrawl=True, overworldboss=True),
@@ -6039,7 +6039,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(CMM): Finger-Weaver's Cookbook [2] - left of hanging bell under CMM", "Finger-Weaver's Cookbook [2]", key="615146,0:0000068580::", cookbook=True),
     ],
     "Finger Ruins of Dheo":[ # hinterland_dheo                            done
-        ERLocationData("FRD: Cerulean Seed Talisman +1 -use Hole-Laden Necklace at the hanging bell in the center", "Cerulean Seed Talisman +1", key="615346,0:2053467600::", talisman=True, nocrawl=True, missable=True),
+        ERLocationData("FRD: Cerulean Seed Talisman +1 - use Hole-Laden Necklace at the hanging bell in the center", "Cerulean Seed Talisman +1", key="615346,0:2053467600::", talisman=True, nocrawl=True, missable=True),
     ],
 }
 
