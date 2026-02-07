@@ -69,10 +69,7 @@ class EldenRing(World):
         self.created_regions = set()
         self.all_excluded_locations.update(self.options.exclude_locations.value)
         # self.all_priority_locations.update(self.options.priority_locations.value)
-        
-        # force into start inventory
-        #self.multiworld.push_precollected(self.create_item(""))
-        
+
         for locations in location_tables.values(): # this didn't work :(
             for loc in locations:
                 for loc_type in self.options.important_locations.value:
@@ -113,9 +110,6 @@ class EldenRing(World):
                             if loc.keyitem:
                                 self.all_priority_locations.update({loc.name})
                             break
-                         
-        # makes exclude_local_item_only lowercase
-        exclude_local_item_only_lowercase = [key.lower() for key in self.options.exclude_local_item_only.value]
         
         if self.settings.disable_extreme_options:
             if not self.options.local_item_option:
@@ -129,7 +123,7 @@ class EldenRing(World):
             elif self.options.ending_condition == 3:
                 raise OptionError(f"EldenRing disable_extreme_options Error:"
                                   f"Player {self.player_name} has ending_condition set to all bosses.")      
-
+     
         if self.options.smithing_bell_bearing_option.value == 1:
             item_table["Smithing-Stone Miner's Bell Bearing [1]"].classification = ItemClassification.progression
             item_table["Smithing-Stone Miner's Bell Bearing [2]"].classification = ItemClassification.progression
@@ -141,31 +135,25 @@ class EldenRing(World):
             item_table["Somberstone Miner's Bell Bearing [4]"].classification = ItemClassification.progression
             item_table["Somberstone Miner's Bell Bearing [5]"].classification = ItemClassification.progression
         
-        if self.options.enable_dlc:
-            # warming stone craft
-            item_table["Nomadic Warrior's Cookbook [19]"].classification = ItemClassification.progression
-            
-            if not self.options.late_dlc:
-                item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
-                
-            if self.options.messmer_kindle:
-                item_table["Messmer's Kindling"].skip = True
-                item_table["Messmer's Kindling Shard"].skip = False
-                self.multiworld.itempool += [self.create_item("Messmer's Kindling Shard") for i in range(self.options.messmer_kindle_max)]
-        
         if self.options.world_logic == "region_lock" or self.options.world_logic == "region_lock_bosses": # inject keys
             for item in item_table: 
                 if item_table[item].lock:
                     item_table[item].inject = True
         
+        if self.options.enable_dlc:
+            # warming stone craft
+            item_table["Nomadic Warrior's Cookbook [19]"].classification = ItemClassification.progression
+            
+            if self.options.dlc_timing != 2:
+                item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
+                
+            if self.options.messmer_kindle: # this item gets skipped sometimes even if false, wtf
+                item_table["Messmer's Kindling"].skip = True
+        
+        exclude_local_item_only_lowercase = [key.lower() for key in self.options.exclude_local_item_only.value]
         using_table = item_table_vanilla
         if self.options.enable_dlc: using_table = item_table
         for item in using_table.values(): # loop of whole item table
-            if self.options.map_option.value == 1 and item.map: # add all maps to start inv
-                self.multiworld.push_precollected(self.create_item(item.name))
-            elif self.options.map_option.value == 2 and item.map: # skip and prefill maps
-                item_table[item.name].skip = True 
-        
             if self.options.local_item_option:
                 if item.classification != ItemClassification.progression and item.classification != ItemClassification.useful:
                     match item.category: # this works, could be better
@@ -375,13 +363,17 @@ class EldenRing(World):
         # Haligtree
         create_connection("Miquella's Haligtree", "Elphael, Brace of the Haligtree")
         
-        create_connection("Consecrated Snowfield", "Mohgwyn Palace")
+        if self.options.dlc_timing != 2:
+            create_connection("Limgrave", "Mohgwyn Palace")
+        else:
+            create_connection("Consecrated Snowfield", "Mohgwyn Palace")
+        
         
         create_connection("Leyndell, Ashen Capital", "Leyndell, Ashen Capital Throne")
         create_connection("Leyndell, Ashen Capital Throne", "Erdtree")
 
         # Connect DLC Regions
-        if self.options.enable_dlc: #WIP
+        if self.options.enable_dlc:
             create_connection("Mohgwyn Palace", "Gravesite Plain")
             
             create_connection("Gravesite Plain", "Belurat Gaol")
@@ -543,6 +535,11 @@ class EldenRing(World):
             in item_table.values()
             if item.inject and (not item.is_dlc or self.options.enable_dlc)
         ]
+        
+        if self.options.enable_dlc:
+            if self.options.messmer_kindle:
+                all_injectable_items += [item_table["Messmer's Kindling Shard"] for i in range(self.options.messmer_kindle_max)]
+        
         injectable_mandatory = [
             item for item in all_injectable_items
             if item.classification == ItemClassification.progression
@@ -599,6 +596,12 @@ class EldenRing(World):
             self.multiworld.get_location("MotG/(FCM): Somberstone Miner's Bell Bearing [3] - out front of church", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [3]"))
             self.multiworld.get_location("FA/TFB: Somberstone Miner's Bell Bearing [4] - to N", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [4]"))
             self.multiworld.get_location("FA/DTR: Somberstone Miner's Bell Bearing [5] - to SE, W of courtyard, in water room by altar", self.player).place_locked_item(self.create_item("Somberstone Miner's Bell Bearing [5]"))
+        
+        using_table = item_table_vanilla
+        if self.options.enable_dlc: using_table = item_table
+        for item in using_table.values(): # loop of whole item table
+            if self.options.map_option.value == 1 and item.map: # add all maps to start inv
+                self.multiworld.push_precollected(self.create_item(item.name))
         
         if self.options.map_option.value == 2:
             self.multiworld.get_location("LG/(GR): Map: Limgrave, West - map pillar", self.player).place_locked_item(self.create_item("Map: Limgrave, West"))
@@ -698,17 +701,14 @@ class EldenRing(World):
         self._key_rules() # make option to choose master or normal rules
         #self._master_key_rules()
         
-        self._dragon_communion_rules() # done
-        self._add_shop_rules() # done?
-        self._add_npc_rules() # wip
-        self._add_remembrance_rules() # done
-        self._add_equipment_of_champions_rules() # wip needs dlc checks
+        self._dragon_communion_rules()
+        self._add_shop_rules()
+        self._add_npc_rules()
+        self._add_remembrance_rules()
+        self._add_equipment_of_champions_rules()
         self._add_allow_useful_location_rules()
         
         # indirect connections
-        
-        if not self.options.late_dlc: # for tp medal
-            self.multiworld.register_indirect_condition(self.get_region("Limgrave"), self.get_entrance("Go To Mohgwyn Palace"))
 
         self.multiworld.register_indirect_condition(self.get_region("Altus Plateau"), self.get_entrance("Go To Wailing Dunes"))
         self.multiworld.register_indirect_condition(self.get_region("Caelid"), self.get_entrance("Go To Sellia Crystal Tunnel"))
@@ -850,7 +850,7 @@ class EldenRing(World):
         
         # DLC Rules
         if self.options.enable_dlc:
-            if self.options.late_dlc:
+            if self.options.dlc_timing == 2:
                 self._add_entrance_rule("Gravesite Plain",
                     lambda state: state.has("Rold Medallion", self.player)
                     and state.has("Haligtree Secret Medallion (Left)", self.player)
@@ -863,6 +863,9 @@ class EldenRing(World):
                 self._add_entrance_rule("Gravesite Plain", 
                     lambda state: self._can_get(state, "MP/(MDM): Remembrance of the Blood Lord - mainboss drop")
                     and self._can_get(state, "CL/(WD): Remembrance of the Starscourge - mainboss drop"))
+                if self.options.dlc_timing == 0:
+                    self._add_entrance_rule("Altus Plateau", lambda state: state.has("Pureblood Knight's Medal", self.player))
+                    self._add_entrance_rule("Caelid", lambda state: state.has("Pureblood Knight's Medal", self.player))
                 
             if self.options.messmer_kindle:
                 self._add_entrance_rule("Enir Ilim", lambda state: state.has("Messmer's Kindling Shard", self.player, min(self.options.messmer_kindle_required.value, self.options.messmer_kindle_max.value)))
@@ -928,10 +931,10 @@ class EldenRing(World):
         elif self.options.ending_condition == 2:
             if self.options.enable_dlc:
                 self._add_location_rule("Victory", lambda state: self._can_get_all(state, (self.location_name_groups["Remembrance"] | self.location_name_groups["Remembrance DLC"])))
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "Victory")
+                self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
             else:
                 self._add_location_rule("Victory", lambda state: self._can_get_all(state, self.location_name_groups["Remembrance"]))
-                self.multiworld.completion_condition[self.player] = lambda state: self._can_get(state, "Victory")
+                self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
         else:
             if self.options.enable_dlc:
                 self._add_location_rule("Victory", lambda state: self._can_get_all(state, (self.location_name_groups["Boss Reward"] | self.location_name_groups["Boss Reward DLC"])))
@@ -957,12 +960,14 @@ class EldenRing(World):
             self._add_entrance_rule("Stormveil Castle", "Stormveil Lock")
             self._add_entrance_rule("Liurnia of The Lakes", "Liurnia Lock")
             
-            self._add_entrance_rule("Ainsel River", "West Underground Lock")
-            self._add_entrance_rule("Ainsel River Main", "West Underground Lock")
+            self._add_entrance_rule("Siofra River", "South East Underground Lock")
+            self._add_entrance_rule("Nokron, Eternal City Start", "South East Underground Lock")
             
-            self._add_entrance_rule("Siofra River", "East Underground Lock")
-            self._add_entrance_rule("Nokron, Eternal City Start", "East Underground Lock")
-            self._add_entrance_rule("Deeproot Depths", "East Underground Lock")
+            self._add_entrance_rule("Ainsel River", "North Underground Lock")
+            self._add_entrance_rule("Ainsel River Main", "North Underground Lock")
+            self._add_entrance_rule("Deeproot Depths", "North Underground Lock")
+            
+            self._add_entrance_rule("Lake of Rot", "South West Underground Lock")
             
             self._add_entrance_rule("Altus Plateau", "Altus Lock")
             
@@ -987,11 +992,58 @@ class EldenRing(World):
             self._add_location_rule("Limgrave Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Limgrave Bosses"]))
             self._add_location_rule("Weeping Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Weeping Bosses"]))
             self._add_location_rule("Liurnia Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Liurnia Bosses"]))
+            self._add_location_rule("South East Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["South East Underground Bosses"]))
+            self._add_location_rule("North Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["North Underground Bosses"]))
+            self._add_location_rule("South West Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["South West Underground Bosses"]))
+            self._add_location_rule("Moonlight Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Moonlight Bosses"]))
+            self._add_location_rule("Altus Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Altus Bosses"]))
+            self._add_location_rule("Mt. Gelmir Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Mt. Gelmir Bosses"]))
+            self._add_location_rule("Caelid Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Caelid Bosses"]))
+            self._add_location_rule("Leyndell Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Leyndell Bosses"]))
+            self._add_location_rule("Mountaintops Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Mountaintops Bosses"]))
+            self._add_location_rule("Snowfield Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Snowfield Bosses"]))
+            self._add_location_rule("Farum Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Farum Bosses"]))
+            self._add_location_rule("Mohgwyn Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Mohgwyn Bosses"]))
+            self._add_location_rule("Haligtree Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Haligtree Bosses"]))
             
-            self._add_entrance_rule("Weeping Peninsula", lambda state: self._can_get(state, "Limgrave Bosses"))
-            self._add_entrance_rule("Liurnia of The Lakes", lambda state: self._can_get(state, "Limgrave Bosses"))
-            self._add_entrance_rule("Altus Plateau", lambda state: self._can_get(state, "Liurnia Bosses"))
-            # todo
+            self._add_entrance_rule("Weeping Peninsula", lambda state: state.has("Limgrave Bosses", self.player))
+            
+            self._add_entrance_rule("Liurnia of The Lakes", lambda state: state.has("Weeping Bosses", self.player))
+            
+            self._add_entrance_rule("Altus Plateau", lambda state: state.has("Liurnia Bosses", self.player))
+            self._add_entrance_rule("Volcano Manor Dungeon", lambda state: state.has("Liurnia Bosses", self.player))
+            
+            self._add_entrance_rule("Caelid", lambda state: state.has("Altus Bosses", self.player))
+            self._add_entrance_rule("Mt. Gelmir", lambda state: state.has("Altus Bosses", self.player))
+            self._add_entrance_rule("Leyndell, Royal Capital", lambda state: state.has("Altus Bosses", self.player) 
+                    and state.has("Caelid Bosses", self.player) and state.has("Mt. Gelmir Bosses", self.player))
+            
+            self._add_entrance_rule("Nokron, Eternal City Start", lambda state: state.has("Caelid Bosses", self.player))
+            self._add_entrance_rule("Siofra River", lambda state: state.has("Caelid Bosses", self.player))
+            
+            self._add_entrance_rule("Deeproot Depths", lambda state: state.has("South East Underground Bosses", self.player))
+            self._add_entrance_rule("Ainsel River Main", lambda state: state.has("South East Underground Bosses", self.player))
+            self._add_entrance_rule("Ainsel River", lambda state: state.has("South East Underground Bosses", self.player))
+            
+            self._add_entrance_rule("Lake of Rot", lambda state: state.has("North Underground Bosses Bosses", self.player))
+            
+            self._add_entrance_rule("Moonlight Altar", lambda state: state.has("South West Underground Bosses", self.player))
+            
+            self._add_entrance_rule("Mountaintops of the Giants", lambda state: state.has("Leyndell Bosses", self.player))
+            self._add_entrance_rule("Hidden Path to the Haligtree", lambda state: state.has("Leyndell Bosses", self.player))
+            
+            self._add_entrance_rule("Miquella's Haligtree", lambda state: state.has("Snowfield Bosses", self.player))
+            if self.options.dlc_timing != 2:
+                self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Liurnia Bosses", self.player))
+            else:
+                self._add_entrance_rule("Mohgwyn Palace", lambda state: state.has("Snowfield Bosses", self.player))
+            
+            self._add_entrance_rule("Farum Azula", lambda state: state.has("Mountaintops Bosses", self.player))
+            self._add_entrance_rule("Leyndell, Ashen Capital", lambda state: state.has("Farum Bosses", self.player) 
+                                    and state.has("Haligtree Bosses", self.player) and state.has("Mohgwyn Bosses", self.player))
+            
+            if self.options.enable_dlc:
+                self._add_location_rule("Ashen Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Ashen Bosses"]))
     
     def _key_rules(self) -> None: # MARK: SSK Rules
         # in order from early game to late game each rule needs to include the last count for an area
@@ -1242,7 +1294,7 @@ class EldenRing(World):
         # MARK: Varré
         
         self._add_location_rule([ "LL/(RC): Festering Bloody Finger x5 - talk to Varré after beating SV mainboss",
-        ], lambda state: self._can_get(state, "SV/SC: Remembrance of the Grafted - mainboss drop"))
+        ], lambda state: self._can_get(state, "SV/SeC: Remembrance of the Grafted - mainboss drop"))
         
         self._add_location_rule([ 
             "AP/(WbR): Great Stars - invade Magus",
@@ -1463,7 +1515,7 @@ class EldenRing(World):
         # MARK: Nepheli
         
         self._add_location_rule(["RH: Arsenal Charm - talk to Nepheli before and after defeating SV mainboss"
-        ], lambda state: ( self._can_get(state, "SV/SC: Remembrance of the Grafted - mainboss drop")))
+        ], lambda state: ( self._can_get(state, "SV/SeC: Remembrance of the Grafted - mainboss drop")))
         
         self._add_location_rule([
             "SV/GG: Ancient Dragon Smithing Stone - Gostoc shop after finishing Nepheli and Kenneth Haight's quests",
@@ -2395,7 +2447,7 @@ class EldenRing(World):
                 "messmer_kindle": self.options.messmer_kindle.value,
                 "messmer_kindle_required": self.options.messmer_kindle_required.value,
                 "messmer_kindle_max": self.options.messmer_kindle_max.value,
-                "late_dlc": self.options.late_dlc.value,
+                "dlc_timing": self.options.dlc_timing.value,
                 "enemy_rando": self.options.enemy_rando.value,
                 "material_rando": self.options.material_rando.value,
                 "death_link": self.options.death_link.value,

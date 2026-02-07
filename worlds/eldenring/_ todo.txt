@@ -19,9 +19,9 @@ each type split by base / dlc, ex: remembrances
 
 BIG TODO
 
-region lock bosses
+dlc region lock bosses
 
-ending con doesnt work
+lake of rot cant be reached sometimes
 
 
 
@@ -51,8 +51,8 @@ Stonesword Master Keys
 
 
 
-last update 26/02/05
-current progress 4862 / 4909
+last update 26/02/07
+current progress 4861 / 4908
 
 
 people who want to be pinged for playtesting

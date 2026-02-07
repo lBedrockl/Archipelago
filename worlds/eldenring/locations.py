@@ -527,27 +527,110 @@ class ERLocationData:
         if (self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.graveboss
         or self.caveboss or self.tunnelboss or self.overworldboss or self.dragonboss or self.gaolboss): # any boss should be a prominent place
             if not self.missable:
-                if self.dlc:
-                    names.append("Boss Reward DLC")
-                else:
+                if not self.dlc:
                     names.append("Boss Reward")
                     
                     for boss_region in ["Limgrave", "Fringefolk Hero's Grave", "Stormhill", "Coastal Cave", "Groveside Cave"
-                                   ,"Stormfoot Catacombs", "Limgrave Tunnels", "Murkwater Catacombs", "Highroad Cave", "Deathtouched Catacombs"]:
-                        if self.name in location_tables[boss_region]:
-                            names.append("Limgrave Bosses")
+                                   ,"Stormfoot Catacombs", "Limgrave Tunnels", "Murkwater Catacombs", "Highroad Cave", "Deathtouched Catacombs",
+                                    "Stormveil Start","Stormveil Castle",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Limgrave Bosses")
                             
                     for boss_region in ["Weeping Peninsula", "Impaler's Catacombs", "Tombsward Catacombs", "Tombsward Cave", "Morne Tunnel", "Earthbore Cave"]:
-                        if self.name in location_tables[boss_region]:
-                            names.append("Weeping Bosses")
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Weeping Bosses")
                             
                     for boss_region in ["Liurnia of The Lakes", "Bellum Highway", "Road's End Catacombs", "Black Knife Catacombs", "Cliffbottom Catacombs"
                                    ,"Stillwater Cave", "Lakeside Crystal Cave", "Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Caria Manor",
                                    "Ruin-Strewn Precipice", "The Four Belfries (Chapel of Anticipation)", "Raya Lucaria Academy", "Raya Lucaria Academy Main"]:
-                        if self.name in location_tables[boss_region]:
-                            names.append("Liurnia Bosses")
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Liurnia Bosses")
+                            
+                    for boss_region in ["Siofra River","Nokron, Eternal City Start","Nokron, Eternal City",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("South East Underground Bosses")
+                            
+                    for boss_region in ["Ainsel River","Deeproot Depths","Deeproot Depths Boss",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("North Underground Bosses")
+                            
+                    for boss_region in ["Lake of Rot"]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("South West Underground Bosses")
+                            
+                    for boss_region in ["Moonlight Altar"]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Moonlight Bosses")
+                            
+                    for boss_region in ["Altus Plateau", "Sainted Hero's Grave", "Unsightly Catacombs", "Perfumer's Grotto", "Sage's Cave",
+                                        "Old Altus Tunnel", "Altus Tunnel","Capital Outskirts","Auriza Hero's Grave","Auriza Side Tomb","Sealed Tunnel",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Altus Bosses")
+                            
+                    for boss_region in ["Mt. Gelmir","Wyndham Catacombs","Gelmir Hero's Grave","Seethewater Cave","Volcano Cave","Volcano Manor Dungeon",
+                                       "Volcano Manor","Volcano Manor Upper",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Mt. Gelmir Bosses")
+                            
+                    for boss_region in ["Caelid","Caelid Catacombs","Gaol Cave","Sellia Crystal Tunnel","Abandoned Cave","Minor Erdtree Catacombs",
+                                        "Great-Jar","Gale Tunnel","Redmane Castle Post Radahn","Wailing Dunes","War-Dead Catacombs",
+                                        "Dragonbarrow","Dragonbarrow Cave","Sellia Hideaway","Divine Tower of Caelid",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Caelid Bosses")
+                            
+                    for boss_region in ["Leyndell, Royal Capital","Leyndell, Royal Capital Unmissable","Leyndell, Royal Capital Throne","Divine Bridge",
+                                        "Subterranean Shunning-Grounds","Leyndell Catacombs","Divine Tower of East Altus","Forbidden Lands",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Leyndell Bosses")
+                            
+                    for boss_region in ["Mountaintops of the Giants","Flame Peak","Giant-Conquering Hero's Grave","Giants' Mountaintop Catacombs","Spiritcaller Cave",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Mountaintops Bosses")
+                            
+                    for boss_region in ["Consecrated Snowfield","Consecrated Snowfield Catacombs","Cave of the Forlorn","Yelough Anix Tunnel",
+                                        "Hidden Path to the Haligtree",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Snowfield Bosses")
+                            
+                    for boss_region in ["Mohgwyn Palace"]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Mohgwyn Bosses")
+                            
+                    for boss_region in ["Farum Azula","Farum Azula Main",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Farum Bosses")
+                            
+                    for boss_region in ["Miquella's Haligtree", "Elphael, Brace of the Haligtree",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Haligtree Bosses")
+                            
+                    for boss_region in ["Leyndell, Ashen Capital","Leyndell, Ashen Capital Throne","Erdtree",]:
+                        for loc in location_tables[boss_region]:
+                            if self.name == loc.name:
+                                names.append("Ashen Bosses")
+                else:
+                    names.append("Boss Reward DLC")
                     
-                    #todo
+                    # for boss_region in []:
+                    #     for loc in location_tables[boss_region]:
+                    #        if self.name == loc.name:
+                    #            names.append(" Bosses")
                     
         if self.remembrance and not self.dlc and not self.missable:
             names.append("Remembrance")
@@ -867,6 +950,20 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("Limgrave Bosses", None),
         ERLocationData("Weeping Bosses", None),
         ERLocationData("Liurnia Bosses", None),
+        ERLocationData("South East Underground Bosses", None),
+        ERLocationData("North Underground Bosses", None),
+        ERLocationData("South West Underground Bosses", None),
+        ERLocationData("Moonlight Bosses", None),
+        ERLocationData("Altus Bosses", None),
+        ERLocationData("Mt. Gelmir Bosses", None),
+        ERLocationData("Caelid Bosses", None),
+        ERLocationData("Leyndell Bosses", None),
+        ERLocationData("Mountaintops Bosses", None),
+        ERLocationData("Snowfield Bosses", None),
+        ERLocationData("Farum Bosses", None),
+        ERLocationData("Mohgwyn Bosses", None),
+        ERLocationData("Haligtree Bosses", None),
+        ERLocationData("Ashen Bosses", None),
        
         ERLocationData("LG/(SG): Tarnished's Furled Finger - beside grace", "Tarnished's Furled Finger", key="180000,0:0000060220::"),
         ERLocationData("LG/(SG): Finger Severer - beside grace", "Finger Severer", key="180000,0:0000060310::"),
@@ -3543,7 +3640,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("EI/CCA: Ansbach's Manchettes - on Ansbach's body", "Ansbach's Manchettes", key="200100,0:0000400624::", missable=True),
         ERLocationData("EI/CCA: Ansbach's Boots - on Ansbach's body", "Ansbach's Boots", key="200100,0:0000400624::", missable=True),
         ERLocationData("EI/CCA: Furious Blade of Ansbach - on Ansbach's body", "Furious Blade of Ansbach", key="200100,0:0000400624::", missable=True),
-        ERLocationData("EI/CCA: Letter for Freyja - on Ansbach's body", "Letter for Freyja", key="200100,0:0000400624::", missable=True),
+        # dupe ERLocationData("EI/CCA: Letter for Freyja - on Ansbach's body", "Letter for Freyja", key="200100,0:0000400624::", missable=True),
         ERLocationData("EI/GD: Thiollier's Hidden Needle - on Thiollier's body to NW", "Thiollier's Hidden Needle", key="200100,0:0000400634::", missable=True),
         ERLocationData("EI/GD: Thiollier's Mask - on Thiollier's body to NW", "Thiollier's Mask", key="200100,0:0000400634::", missable=True),
         ERLocationData("EI/GD: Thiollier's Garb - on Thiollier's body to NW", "Thiollier's Garb", key="200100,0:0000400634::", missable=True),
@@ -6112,6 +6209,26 @@ location_name_groups: Dict[str, Set[str]] = {
     "Accessory": set(),
     "Ash of war": set(),
     #"Upgraded Weapons": set(),
+    
+    
+    # boss event groups
+    "Limgrave Bosses": set(),
+    "Weeping Bosses": set(),
+    "Liurnia Bosses": set(),
+    "South East Underground Bosses": set(),
+    "North Underground Bosses": set(),
+    "South West Underground Bosses": set(),
+    "Moonlight Bosses": set(),
+    "Altus Bosses": set(),
+    "Mt. Gelmir Bosses": set(),
+    "Caelid Bosses": set(),
+    "Leyndell Bosses": set(),
+    "Mountaintops Bosses": set(),
+    "Snowfield Bosses": set(),
+    "Farum Bosses": set(),
+    "Mohgwyn Bosses": set(),
+    "Haligtree Bosses": set(),
+    "Ashen Bosses": set(),
 }
 
 location_descriptions = {

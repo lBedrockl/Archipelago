@@ -81,17 +81,18 @@ class MessmerKindleMax(Range):
     range_end = 15
     default = 10
 
-class LateDLCOption(Choice):
+class DLCTimingOption(Choice):
     """Guarantee that you don't need to enter the DLC until later in the run.
 
+    - **Early:** 'Pureblood Knight Medal' will spawn in an early sphere.
     - **Off:** You may have to enter the DLC with 'Pureblood Knight Medal' item.
-    - **Medallion:** You won't have to enter the DLC until after getting Haligtree Secret Medallion and Rold Medallion.
+    - **Late:** You won't have to enter the DLC until after getting to Snowfield.
     """
-    display_name = "Late DLC"
-    option_off = 0
-    alias_false = 0
-    option_after_medallion = 1
-    alias_true = 1
+    display_name = "DLC Timing"
+    option_early = 0
+    option_off = 1
+    option_late = 2
+    default = 1
     
 class EnemyRando(Toggle):
     """Randomizes the enemies."""
@@ -258,7 +259,7 @@ class EROptions(PerGameCommonOptions):
     messmer_kindle: MessmerKindle
     messmer_kindle_required: MessmerKindleRequired
     messmer_kindle_max: MessmerKindleMax
-    late_dlc: LateDLCOption
+    dlc_timing: DLCTimingOption
     enemy_rando: EnemyRando
     material_rando: MaterialRando
     death_link: DeathLink
@@ -289,7 +290,7 @@ option_groups = [
         MessmerKindle,
         MessmerKindleRequired,
         MessmerKindleMax,
-        LateDLCOption
+        DLCTimingOption
     ]),
     OptionGroup("Item & Location Options", [
         CraftingKitOption,

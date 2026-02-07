@@ -2137,9 +2137,9 @@ _vanilla_items = [
     ERItemData("Stormveil Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     ERItemData("Liurnia Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
-    # could be 3 N, SE and SW
-    ERItemData("West Underground Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
-    ERItemData("East Underground Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("South West Underground Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("South East Underground Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
+    ERItemData("North Underground Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
     ERItemData("Altus Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
     
@@ -2805,7 +2805,7 @@ _dlc_items = [
     ERItemData("Gravesite Lock", 99999, ERItemCategory.GOODS, classification=ItemClassification.progression, lock=True),
         
     # copy of normal kindle, idk in game id
-    ERItemData("Messmer's Kindling Shard", 2008021, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
+    ERItemData("Messmer's Kindling Shard", 2008021, ERItemCategory.GOODS, classification=ItemClassification.progression),
 ]
 
 for item in _dlc_items:
