@@ -3610,19 +3610,19 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SK/DCE: Winged Serpent Helm - enemy drop downstairs outside", "Winged Serpent Helm", key="210100,0:0021017991::"),
         ERLocationData("SK/DCE: Ash of War: Flame Spear - enemy drop downstairs outside", "Ash of War: Flame Spear", key="210100,0:0021017991::"),
     ],
-    "Belurat Swamp":[ # belurat_swamp                                     will be done by Jambo
-        ERLocationData("BTS/BTS: Smithing Stone [2] x2 - hanging corpse to SW", "Smithing Stone [2] x2", key="200000,0:0020007210::"),
+    "Belurat Swamp":[ # belurat_swamp                                     done by Jambo
+        ERLocationData("BTS/BTS: Smithing Stone [2] x2 - by SW wall on building", "Smithing Stone [2] x2", key="200000,0:0020007210::"),
         ERLocationData("BTS/BTS: Thin Beast Bones x8 - SE swamp area", "Thin Beast Bones x8", key="200000,0:0020007220::"),
         ERLocationData("BTS/BTS: Sliver of Meat x2 - SE swamp area", "Sliver of Meat x2", key="200000,0:0020007230::"),
         ERLocationData("BTS/BTS: Broken Rune - SE swamp area", "Broken Rune", key="200000,0:0020007240::"),
         ERLocationData("BTS/BTS: Smithing Stone [3] - SE swamp area", "Smithing Stone [3]", key="200000,0:0020007250::"),
         ERLocationData("BTS/BTS: Poisonbone Dart x8 - SE swamp area", "Poisonbone Dart x8", key="200000,0:0020007260::"),
-        ERLocationData("BTS/BTS: Neutralizing Boluses - corpse in swamp by W wall", "Neutralizing Boluses", key="200000,0:0020007270::"),
-        ERLocationData("BTS/BTS: Serpent Arrow x8 - top of sunken building in NW swamp area", "Serpent Arrow x8", key="200000,0:0020007280::"),
+        ERLocationData("BTS/BTS: Neutralizing Boluses - in swamp area behind W buildings", "Neutralizing Boluses", key="200000,0:0020007270::"),
+        ERLocationData("BTS/BTS: Serpent Arrow x8 - top of W building in NW swamp area", "Serpent Arrow x8", key="200000,0:0020007280::"),
         ERLocationData("BTS/BTS: Beast Liver x3 - NW wall of swamp area", "Beast Liver x3", key="200000,0:0020007290::"),
-        ERLocationData("BTS/BTS: Poisoned Hand - NW wall, corpse by building", "Poisoned Hand", key="200000,0:0020007300::"),
-        ERLocationData("BTS/BTS: Knot Resin x5 - to the NW, rubble in swamp N of ladder", "Knot Resin x5", key="200000,0:0020007310::"),
-        ERLocationData("BTS/BTS: Whiteflesh Mushroom x4 - to SW, corpse in swamp by tree", "Whiteflesh Mushroom x4", key="200000,0:0020007320::"),
+        ERLocationData("BTS/BTS: Poisoned Hand - N swamp area, by building", "Poisoned Hand", key="200000,0:0020007300::"),
+        ERLocationData("BTS/BTS: Knot Resin x5 - NW swamp area on building rubble", "Knot Resin x5", key="200000,0:0020007310::"),
+        ERLocationData("BTS/BTS: Whiteflesh Mushroom x4 - in swamp area, S of shortcut ladder", "Whiteflesh Mushroom x4", key="200000,0:0020007320::"),
         ERLocationData("BTS/BTS: Immunizing Horn Charm +2 - enemy drop in SE swamp area", "Immunizing Horn Charm +2", key="200000,0:0020007991::", enemytalisman=True),
         ERLocationData("BTS/BTS: Horned Warrior's Sword - enemy drop in NW swamp area", "Horned Warrior's Sword", key="200000,0:0020007993::"),
     ],
@@ -3980,7 +3980,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SA/(CMM): High Priest Undergarments - kill invader Ymir", "High Priest Undergarments", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
         # not random ERLocationData("FRM: Ymir's Bell Bearing - kill invader Ymir", "Ymir's Bell Bearing", key="615145,0:0000400664::", altboss=True, nocrawl=True, overworldboss=True),
     ],
-    "Midra's Manse":[ # midramanse                                        will be done by Jambo
+    "Midra's Manse":[ # midramanse                                        done by Jambo
         ERLocationData("MM/ML: Mad Craftsman's Cookbook [3] - to E, corpse in room only accessible by jumping from rafters", "Mad Craftsman's Cookbook [3]", key="280000,0:0000068880::", cookbook=True),
         ERLocationData("MM/SFC: Remembrance of the Lord of Frenzied Flame - mainboss drop", "Remembrance of the Lord of Frenzied Flame", key="280000,0:0000510560::", boss=True, deadend=True, remembrance=True),
         ERLocationData("MM/MH: Swollen Grape - to N, room immediately to right when entering manse", "Swollen Grape", key="280000,0:0028007000::"),
@@ -3994,7 +3994,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("MM/ML: Swollen Grape x2 - W wall of library", "Swollen Grape x2", key="280000,0:0028007090::"),
         ERLocationData("MM/ML: Nanaya's Torch - to W, corpse sitting in chair only accessible after pulling lever behind second fake painting", "Nanaya's Torch", key="280000,0:0028007100::"),
         ERLocationData("MM/SFC: Revered Spirit Ash - chandelier directly N", "Revered Spirit Ash", key="280000,0:0028007110::", revered=True),
-        ERLocationData("MM/SFC: Revered Spirit Ash - to W, enemy drop in library by S wall", "Revered Spirit Ash", key="280000,0:0028007900::", enemyrevered=True),
+        ERLocationData("MM/SFC: Revered Spirit Ash - enemy drop to W, in library by S wall", "Revered Spirit Ash", key="280000,0:0028007900::", enemyrevered=True),
     ],
     
     # MARK: Catas & Graves
