@@ -519,6 +519,109 @@ class ERLocationData:
         if self.exclusive: # makes sure exclusive is marked missable
             self.missable = True
 
+    def find_boss_region(self, dlc: bool) -> str:
+        if not dlc:
+            for boss_region in ["Limgrave", "Fringefolk Hero's Grave", "Stormhill", "Coastal Cave", "Groveside Cave"
+                            ,"Stormfoot Catacombs", "Limgrave Tunnels", "Murkwater Catacombs", "Highroad Cave", "Deathtouched Catacombs",
+                            "Stormveil Start","Stormveil Castle",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Limgrave Bosses"
+                    
+            for boss_region in ["Weeping Peninsula", "Impaler's Catacombs", "Tombsward Catacombs", "Tombsward Cave", "Morne Tunnel", "Earthbore Cave"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Weeping Bosses"
+                    
+            for boss_region in ["Liurnia of The Lakes", "Bellum Highway", "Road's End Catacombs", "Black Knife Catacombs", "Cliffbottom Catacombs"
+                            ,"Stillwater Cave", "Lakeside Crystal Cave", "Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Caria Manor",
+                            "Ruin-Strewn Precipice", "The Four Belfries (Chapel of Anticipation)", "Raya Lucaria Academy", "Raya Lucaria Academy Main"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Liurnia Bosses"
+                    
+            for boss_region in ["Siofra River","Nokron, Eternal City Start","Nokron, Eternal City",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "South East Underground Bosses"
+                    
+            for boss_region in ["Ainsel River","Deeproot Depths","Deeproot Depths Boss",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "North Underground Bosses"
+                    
+            for boss_region in ["Lake of Rot"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "South West Underground Bosses"
+                    
+            for boss_region in ["Moonlight Altar"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Moonlight Bosses"
+                    
+            for boss_region in ["Altus Plateau", "Sainted Hero's Grave", "Unsightly Catacombs", "Perfumer's Grotto", "Sage's Cave",
+                                "Old Altus Tunnel", "Altus Tunnel","Capital Outskirts","Auriza Hero's Grave","Auriza Side Tomb","Sealed Tunnel",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Altus Bosses"
+                    
+            for boss_region in ["Mt. Gelmir","Wyndham Catacombs","Gelmir Hero's Grave","Seethewater Cave","Volcano Cave","Volcano Manor Dungeon",
+                                "Volcano Manor","Volcano Manor Upper",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Mt. Gelmir Bosses"
+                    
+            for boss_region in ["Caelid","Caelid Catacombs","Gaol Cave","Sellia Crystal Tunnel","Abandoned Cave","Minor Erdtree Catacombs",
+                                "Great-Jar","Gale Tunnel","Redmane Castle Post Radahn","Wailing Dunes","War-Dead Catacombs",
+                                "Dragonbarrow","Dragonbarrow Cave","Sellia Hideaway","Divine Tower of Caelid",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Caelid Bosses"
+                    
+            for boss_region in ["Leyndell, Royal Capital","Leyndell, Royal Capital Unmissable","Leyndell, Royal Capital Throne","Divine Bridge",
+                                "Subterranean Shunning-Grounds","Leyndell Catacombs","Divine Tower of East Altus","Forbidden Lands",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Leyndell Bosses"
+                    
+            for boss_region in ["Mountaintops of the Giants","Flame Peak","Giant-Conquering Hero's Grave","Giants' Mountaintop Catacombs","Spiritcaller Cave",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Mountaintops Bosses"
+                    
+            for boss_region in ["Consecrated Snowfield","Consecrated Snowfield Catacombs","Cave of the Forlorn","Yelough Anix Tunnel",
+                                "Hidden Path to the Haligtree",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Snowfield Bosses"
+                    
+            for boss_region in ["Mohgwyn Palace"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Mohgwyn Bosses"
+                    
+            for boss_region in ["Farum Azula","Farum Azula Main",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Farum Bosses"
+                    
+            for boss_region in ["Miquella's Haligtree", "Elphael, Brace of the Haligtree",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Haligtree Bosses"
+                    
+            for boss_region in ["Leyndell, Ashen Capital","Leyndell, Ashen Capital Throne","Erdtree",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Ashen Bosses"
+        else:
+            "guh"
+            # for boss_region in []:
+            #     for loc in location_tables[boss_region]:
+            #         if self.name == loc.name:
+            #             return " Bosses"
+
     def location_groups(self) -> List[str]:
         """The names of location groups this location should appear in.
 
@@ -529,108 +632,10 @@ class ERLocationData:
             if not self.missable:
                 if not self.dlc:
                     names.append("Boss Reward")
-                    
-                    for boss_region in ["Limgrave", "Fringefolk Hero's Grave", "Stormhill", "Coastal Cave", "Groveside Cave"
-                                   ,"Stormfoot Catacombs", "Limgrave Tunnels", "Murkwater Catacombs", "Highroad Cave", "Deathtouched Catacombs",
-                                    "Stormveil Start","Stormveil Castle",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Limgrave Bosses")
-                            
-                    for boss_region in ["Weeping Peninsula", "Impaler's Catacombs", "Tombsward Catacombs", "Tombsward Cave", "Morne Tunnel", "Earthbore Cave"]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Weeping Bosses")
-                            
-                    for boss_region in ["Liurnia of The Lakes", "Bellum Highway", "Road's End Catacombs", "Black Knife Catacombs", "Cliffbottom Catacombs"
-                                   ,"Stillwater Cave", "Lakeside Crystal Cave", "Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Caria Manor",
-                                   "Ruin-Strewn Precipice", "The Four Belfries (Chapel of Anticipation)", "Raya Lucaria Academy", "Raya Lucaria Academy Main"]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Liurnia Bosses")
-                            
-                    for boss_region in ["Siofra River","Nokron, Eternal City Start","Nokron, Eternal City",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("South East Underground Bosses")
-                            
-                    for boss_region in ["Ainsel River","Deeproot Depths","Deeproot Depths Boss",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("North Underground Bosses")
-                            
-                    for boss_region in ["Lake of Rot"]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("South West Underground Bosses")
-                            
-                    for boss_region in ["Moonlight Altar"]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Moonlight Bosses")
-                            
-                    for boss_region in ["Altus Plateau", "Sainted Hero's Grave", "Unsightly Catacombs", "Perfumer's Grotto", "Sage's Cave",
-                                        "Old Altus Tunnel", "Altus Tunnel","Capital Outskirts","Auriza Hero's Grave","Auriza Side Tomb","Sealed Tunnel",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Altus Bosses")
-                            
-                    for boss_region in ["Mt. Gelmir","Wyndham Catacombs","Gelmir Hero's Grave","Seethewater Cave","Volcano Cave","Volcano Manor Dungeon",
-                                       "Volcano Manor","Volcano Manor Upper",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Mt. Gelmir Bosses")
-                            
-                    for boss_region in ["Caelid","Caelid Catacombs","Gaol Cave","Sellia Crystal Tunnel","Abandoned Cave","Minor Erdtree Catacombs",
-                                        "Great-Jar","Gale Tunnel","Redmane Castle Post Radahn","Wailing Dunes","War-Dead Catacombs",
-                                        "Dragonbarrow","Dragonbarrow Cave","Sellia Hideaway","Divine Tower of Caelid",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Caelid Bosses")
-                            
-                    for boss_region in ["Leyndell, Royal Capital","Leyndell, Royal Capital Unmissable","Leyndell, Royal Capital Throne","Divine Bridge",
-                                        "Subterranean Shunning-Grounds","Leyndell Catacombs","Divine Tower of East Altus","Forbidden Lands",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Leyndell Bosses")
-                            
-                    for boss_region in ["Mountaintops of the Giants","Flame Peak","Giant-Conquering Hero's Grave","Giants' Mountaintop Catacombs","Spiritcaller Cave",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Mountaintops Bosses")
-                            
-                    for boss_region in ["Consecrated Snowfield","Consecrated Snowfield Catacombs","Cave of the Forlorn","Yelough Anix Tunnel",
-                                        "Hidden Path to the Haligtree",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Snowfield Bosses")
-                            
-                    for boss_region in ["Mohgwyn Palace"]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Mohgwyn Bosses")
-                            
-                    for boss_region in ["Farum Azula","Farum Azula Main",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Farum Bosses")
-                            
-                    for boss_region in ["Miquella's Haligtree", "Elphael, Brace of the Haligtree",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Haligtree Bosses")
-                            
-                    for boss_region in ["Leyndell, Ashen Capital","Leyndell, Ashen Capital Throne","Erdtree",]:
-                        for loc in location_tables[boss_region]:
-                            if self.name == loc.name:
-                                names.append("Ashen Bosses")
+                    names.append(self.find_boss_region(False))
                 else:
                     names.append("Boss Reward DLC")
-                    
-                    # for boss_region in []:
-                    #     for loc in location_tables[boss_region]:
-                    #        if self.name == loc.name:
-                    #            names.append(" Bosses")
+                    names.append(self.find_boss_region(True))
                     
         if self.remembrance and not self.dlc and not self.missable:
             names.append("Remembrance")
@@ -3045,7 +3050,7 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("LL/(ACC): Crystal Staff - in chest behind illusory wall, left of storage room", "Crystal Staff", key="310600,0:0031067030::"),
         ERLocationData("LL/(ACC): Rune Arc - in chest in storage room", "Rune Arc", key="310600,0:0031067100::"),
     ],
-    "Elphael, Brace of the Haligtree":[ # haligtree_elphael               done by Kholkikos      these descriptions could be better
+    "Elphael, Brace of the Haligtree":[ # haligtree_elphael               done by Kholkikos updated by seb
         ERLocationData("EBH/HR: Malenia's Great Rune - mainboss drop", "Malenia's Great Rune", key="150000,0:0000000176::", boss=True, deadend=True),
         ERLocationData("EBH/EIW: Unalloyed Gold Needle (Milicent) - help Millicent talk then reload area", "Unalloyed Gold Needle (Milicent)", key="150000,0:0000400321::", missable=True, exclusive=True),
         ERLocationData("EBH/EIW: Millicent's Prosthesis - invade Millicent or kill in altus", "Millicent's Prosthesis", key="150000,0:0000400323::", missable=True, exclusive=True, death=True),
@@ -3053,65 +3058,65 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("EBH/HR: Somber Ancient Dragon Smithing Stone - use needle on flower in boss arena after Millicent quest", "Somber Ancient Dragon Smithing Stone", key="150000,0:0000400325::", missable=True),
         ERLocationData("EBH/EIW: Rotten Winged Sword Insignia - help Millicent", "Rotten Winged Sword Insignia", key="150000,0:0000400480::", missable=True, exclusive=True),
         ERLocationData("EBH/HR: Remembrance of the Rot Goddess - mainboss drop", "Remembrance of the Rot Goddess", key="150000,0:0000510200::", boss=True, deadend=True, remembrance=True),
-        ERLocationData("EBH/EIW: Golden Seed - boss drop in second rot lake", "Golden Seed", key="150000,0:0015001200::", miscboss=True),
-        ERLocationData("EBH/EIW: Lord's Rune - boss drop to E", "Lord's Rune", key="150000,0:0015001270::", miscboss=True),
+        ERLocationData("EBH/EIW: Golden Seed - boss drop in rot pond across large root", "Golden Seed", key="150000,0:0015001200::", miscboss=True),
+        ERLocationData("EBH/PR: Lord's Rune - boss drop to E on outer wall", "Lord's Rune", key="150000,0:0015001270::", miscboss=True),
         ERLocationData("EBH/PR: Rotten Staff - boss drop to E on outer wall", "Rotten Staff", key="150000,0:0015001280::", miscboss=True),
         ERLocationData("EBH/PR: Ghost Glovewort [9] - enemy drop 1 at bottom", "Ghost Glovewort [9]", key="150000,0:0015001300::", drop=True),
         ERLocationData("EBH/PR: Ghost Glovewort [9] - enemy drop 2 at bottom", "Ghost Glovewort [9]", key="150000,0:0015001310::", drop=True),
         ERLocationData("EBH/PR: Ghost Glovewort [9] - enemy drop 3 at bottom", "Ghost Glovewort [9]", key="150000,0:0015001320::", drop=True),
         ERLocationData("EBH/PR: Ghost Glovewort [9] - enemy drop 4 at bottom", "Ghost Glovewort [9]", key="150000,0:0015001330::", drop=True),
         ERLocationData("EBH/PR: Ghost Glovewort [9] - enemy drop 5 at bottom", "Ghost Glovewort [9]", key="150000,0:0015001340::", drop=True),
-        ERLocationData("EBH/PR: Ancient Dragon Smithing Stone - chest after boss", "Ancient Dragon Smithing Stone", key="150000,0:0015007460::", chest=True),
-        ERLocationData("EBH/PR: Holy Grease x3 - to SE on bridge", "Holy Grease x3", key="150000,0:0015007500::"),
-        ERLocationData("EBH/PR: Golden Rune [12] - just N in small room to the left", "Golden Rune [12]", key="150000,0:0015007510::"),
-        ERLocationData("EBH/PR: Smithing Stone [8] - to N down 2 stairs, left door stairs up to balcony", "Smithing Stone [8]", key="150000,0:0015007520::"),
-        ERLocationData("EBH/PR: Miquellan Knight's Sword - under large bell along second buttress, look up", "Miquellan Knight's Sword", key="150000,0:0015007530::"),
-        ERLocationData("EBH/PR: Lightning Greatbolt x5 - to N down 3 stairs on a railing", "Lightning Greatbolt x5", key="150000,0:0015007540::"),
-        ERLocationData("EBH/PR: Smithing Stone [7] - exit PR then drop to E, go N to barrel room, N side", "Smithing Stone [7]", key="150000,0:0015007550::"),
-        ERLocationData("EBH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", "Triple Rings of Light", key="150000,0:0015007560::", chest=True), # 1
-        ERLocationData("EBH/PR: Immunizing White Cured Meat - to N down 3 stairs, S down 2 stairs, N down 2 stairs", "Immunizing White Cured Meat", key="150000,0:0015007570::"),
-        ERLocationData("EBH/PR: Cleanrot Knight Finlay - chest in a room E of crimson scarab", "Cleanrot Knight Finlay", key="150000,0:0015007580::", chest=True),
-        ERLocationData("EBH/PR: Somber Ancient Dragon Smithing Stone - up buttress N of crimson scarab in a chest", "Somber Ancient Dragon Smithing Stone", key="150000,0:0015007590::", chest=True),
-        ERLocationData("EBH/PR: Numen's Rune - S section of outer wall middle of open area", "Numen's Rune", key="150000,0:0015007600::"),
-        ERLocationData("EBH/PR: Somber Ancient Dragon Smithing Stone - S section of outer wall all the way S", "Somber Ancient Dragon Smithing Stone", key="150000,0:0015007610::"),
-        ERLocationData("EBH/PR: Somber Smithing Stone [9] - S section of outer wall in building", "Somber Smithing Stone [9]", key="150000,0:0015007620::"),
-        ERLocationData("EBH/PR: Golden Rune [10] - balcony of room under crimson scarab", "Golden Rune [10]", key="150000,0:0015007630::"),
-        ERLocationData("EBH/PR: Smithing Stone [7] - in room under crimson scarab", "Smithing Stone [7]", key="150000,0:0015007640::"),
-        ERLocationData("EBH/PR: Old Fang x5 - up root N of room under crimson scarab", "Old Fang x5", key="150000,0:0015007650::"),
-        ERLocationData("EBH/PR: Warming Stone x2 - N section of outer wall inside room, item 1", "Warming Stone x2", key="150000,0:0015007660::"),
-        ERLocationData("EBH/PR: Spiritflame Arrow x15 - N section of outer wall inside room, item 2", "Spiritflame Arrow x15", key="150000,0:0015007670::"),
-        ERLocationData("EBH/PR: Smithing Stone [8] - N section of outer wall by a drop to main area", "Smithing Stone [8]", key="150000,0:0015007680::"),
-        ERLocationData("EBH/PR: Haligtree Soldier Ashes - N section of outer wall up stairs in front of large basin", "Haligtree Soldier Ashes", key="150000,0:0015007690::"),
-        ERLocationData("EBH/EIW: Golden Rune [11] - to E on a small bridge", "Golden Rune [11]", key="150000,0:0015007700::"),
-        ERLocationData("EBH/EIW: Arteria Leaf - to E on steps to small bridge", "Arteria Leaf", key="150000,0:0015007710::"),
-        ERLocationData("EBH/EIW: Sacramental Bud - to E then hard right", "Sacramental Bud", key="150000,0:0015007720::"),
-        ERLocationData("EBH/PR: Smithing Stone [8] - N end of the bottom area", "Smithing Stone [8]", key="150000,0:0015007730::"),
-        ERLocationData("EBH/PR: Lord's Rune - room on right side of bottom area, about halfway", "Lord's Rune", key="150000,0:0015007740::"),
-        ERLocationData("EBH/PR: Seedbed Curse - before room under crimson scarab jump over railing to small ledge then take stairs", "Seedbed Curse", key="150000,0:0015007750::"),
-        ERLocationData("EBH/PR: Somber Smithing Stone [9] - large dark room at the bottom, item 2", "Somber Smithing Stone [9]", key="150000,0:0015007760::"),
-        ERLocationData("EBH/PR: Pickled Turtle Neck - large dark room at the bottom, item 1", "Pickled Turtle Neck", key="150000,0:0015007770::"),
-        ERLocationData("EBH/PR: Beast Blood x3 - in a door on the left just N of the imp statue at the S end of the bottom area", "Beast Blood x3", key="150000,0:0015007780::"),
-        ERLocationData("EBH/PR: Aeonian Butterfly x4 - just N of the imp statue at the S end of the bottom area", "Aeonian Butterfly x4", key="150000,0:0015007790::"),
-        ERLocationData("EBH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", "Marika's Soreseal", key="150000,0:0015007800::", talisman=True, outoftheway=True), # 2
-        ERLocationData("EBH/PR: Golden Rune [12] - in front of the imp statue at the S end of the bottom area", "Golden Rune [12]", key="150000,0:0015007810::"),
-        ERLocationData("EBH/EIW: Haligtree Knight Helm - to NE up the ladder", "Haligtree Knight Helm", key="150000,0:0015007820::"),
+        ERLocationData("EBH/HP: Ancient Dragon Smithing Stone - in chest up stairs after ladder", "Ancient Dragon Smithing Stone", key="150000,0:0015007460::", chest=True),
+        ERLocationData("EBH/PR: Holy Grease x3 - to SE on bridge", "Holy Grease x3", key="150000,0:0015007500::"), 
+        ERLocationData("EBH/PR: Golden Rune [12] - in first room on the left", "Golden Rune [12]", key="150000,0:0015007510::"), 
+        ERLocationData("EBH/PR: Smithing Stone [8] - on balcony in second room on the left", "Smithing Stone [8]", key="150000,0:0015007520::"), 
+        ERLocationData("EBH/PR: Miquellan Knight's Sword - on top of ladder behind second buttress", "Miquellan Knight's Sword", key="150000,0:0015007530::"), 
+        ERLocationData("EBH/PR: Lightning Greatbolt x5 - at end of path to the right", "Lightning Greatbolt x5", key="150000,0:0015007540::"), 
+        ERLocationData("EBH/PR: Smithing Stone [7] - drop down to E, in building to N", "Smithing Stone [7]", key="150000,0:0015007550::"), 
+        ERLocationData("EBH/PR: Triple Rings of Light - drop down to E, in chest behind imp statue", "Triple Rings of Light", key="150000,0:0015007560::", chest=True), # 1 S
+        ERLocationData("EBH/PR: Immunizing White Cured Meat - at end of path below third buttress", "Immunizing White Cured Meat", key="150000,0:0015007570::"),
+        ERLocationData("EBH/PR: Cleanrot Knight Finlay - in chest W of gazebo", "Cleanrot Knight Finlay", key="150000,0:0015007580::", chest=True),
+        ERLocationData("EBH/PR: Somber Ancient Dragon Smithing Stone - in chest up the buttress NW of gazebo", "Somber Ancient Dragon Smithing Stone", key="150000,0:0015007590::", chest=True),
+        ERLocationData("EBH/PR: Numen's Rune - to E on outer wall", "Numen's Rune", key="150000,0:0015007600::"),
+        ERLocationData("EBH/PR: Somber Ancient Dragon Smithing Stone - to E on outer wall, at end of SW path", "Somber Ancient Dragon Smithing Stone", key="150000,0:0015007610::"),
+        ERLocationData("EBH/PR: Somber Smithing Stone [9] - to E on outer wall at end of NW path in building", "Somber Smithing Stone [9]", key="150000,0:0015007620::"),
+        ERLocationData("EBH/PR: Golden Rune [10] - drop down to NE of gazebo", "Golden Rune [10]", key="150000,0:0015007630::"),
+        ERLocationData("EBH/PR: Smithing Stone [7] - in room under gazebo", "Smithing Stone [7]", key="150000,0:0015007640::"),
+        ERLocationData("EBH/PR: Old Fang x5 - up the buttress NW of gazebo, drop to NE", "Old Fang x5", key="150000,0:0015007650::"),
+        ERLocationData("EBH/EIW: Warming Stone x2 - to E in building across first buttress after stairs, item 1", "Warming Stone x2", key="150000,0:0015007660::"),
+        ERLocationData("EBH/EIW: Spiritflame Arrow x15 - to E in building across first buttress after stairs, item 2", "Spiritflame Arrow x15", key="150000,0:0015007670::"),
+        ERLocationData("EBH/EIW: Smithing Stone [8] - to N after jump to buttress up ladder", "Smithing Stone [8]", key="150000,0:0015007680::"),
+        ERLocationData("EBH/EIW: Haligtree Soldier Ashes - to N at basin after jump to buttress up ladder", "Haligtree Soldier Ashes", key="150000,0:0015007690::"),
+        ERLocationData("EBH/EIW: Golden Rune [11] - to E after stairs", "Golden Rune [11]", key="150000,0:0015007700::"),
+        ERLocationData("EBH/EIW: Arteria Leaf - to E on stairs", "Arteria Leaf", key="150000,0:0015007710::"),
+        ERLocationData("EBH/EIW: Sacramental Bud - to E on right", "Sacramental Bud", key="150000,0:0015007720::"),
+        ERLocationData("EBH/EIW: Smithing Stone [8] - to SE at tree in lower section", "Smithing Stone [8]", key="150000,0:0015007730::"),
+        ERLocationData("EBH/EIW: Lord's Rune - to SE first room on left in lower section", "Lord's Rune", key="150000,0:0015007740::"),
+        ERLocationData("EBH/PR: Seedbed Curse - drop down to E before room under gazebo", "Seedbed Curse", key="150000,0:0015007750::"),
+        ERLocationData("EBH/EIW: Somber Smithing Stone [9] - to SE in second room on right in lower section, item 1", "Somber Smithing Stone [9]", key="150000,0:0015007760::"),
+        ERLocationData("EBH/EIW: Pickled Turtle Neck - to SE in second room on right in lower section, item 2" "Pickled Turtle Neck", key="150000,0:0015007770::"),
+        ERLocationData("EBH/EIW: Beast Blood x3 - to SE third room on right in lower section", "Beast Blood x3", key="150000,0:0015007780::"),
+        ERLocationData("EBH/EIW: Aeonian Butterfly x4 - to SE in corner before the imp statue in lower section", "Aeonian Butterfly x4", key="150000,0:0015007790::"),
+        ERLocationData("EBH/EIW: Marika's Soreseal - to SE past the imp statue in lower section", "Marika's Soreseal", key="150000,0:0015007800::", talisman=True, outoftheway=True), # 2
+        ERLocationData("EBH/EIW: Golden Rune [12] - to SE near the imp statue in lower section", "Golden Rune [12]", key="150000,0:0015007810::"),
+        ERLocationData("EBH/EIW: Haligtree Knight Helm - to E up the ladder", "Haligtree Knight Helm", key="150000,0:0015007820::"),
         ERLocationData("EBH/EIW: Smithing Stone [6] - to N", "Smithing Stone [6]", key="150000,0:0015007830::"),
-        ERLocationData("EBH/PR: Seedbed Curse - up buttress N of crimson scarab in a chair", "Seedbed Curse", key="150000,0:0015007840::"),
-        ERLocationData("EBH/EIW: Rotten Crystal Sword - to S then left in a chest", "Rotten Crystal Sword", key="150000,0:0015007860::", chest=True),
-        ERLocationData("EBH/EIW: Hero's Rune [5] - to SE behind a basin at the end of the hallway", "Hero's Rune [5]", key="150000,0:0015007870::"),
-        ERLocationData("EBH/EIW: Rot Grease - left at the first rot lake", "Rot Grease", key="150000,0:0015007880::"),
-        ERLocationData("EBH/EIW: Great Grave Glovewort - in second rot lake", "Great Grave Glovewort", key="150000,0:0015007890::"),
-        ERLocationData("EBH/DC: Golden Rune [10] - to W up the ladder on the left", "Golden Rune [10]", key="150000,0:0015007900::"),
-        ERLocationData("EBH/DC: Ghost-Glovewort Picker's Bell Bearing [3] - against a tombstone N of the main building", "Ghost-Glovewort Picker's Bell Bearing [3]", key="150000,0:0015007910::", ambush=True, upgradeshop=True),
-        ERLocationData("EBH/DC: Nascent Butterfly - on the SE balcony of the main building", "Nascent Butterfly", key="150000,0:0015007920::"),
-        ERLocationData("EBH/DC: Dragoncrest Greatshield Talisman - dropdown through a hole at the top of the roof, drop W to a ledge in the building, in a chest", "Dragoncrest Greatshield Talisman", key="150000,0:0015007930::", talisman=True, ambush=True, chest=True),
-        ERLocationData("EBH/DC: Aeonian Butterfly - on the NW balcony of the main building", "Aeonian Butterfly", key="150000,0:0015007940::"),
-        ERLocationData("EBH/DC: Arteria Leaf x3 - in a small puddle S of the main building", "Arteria Leaf x3", key="150000,0:0015007950::"),
-        ERLocationData("EBH/DC: Hero's Rune [5] - against a large tree S of the main building", "Hero's Rune [5]", key="150000,0:0015007960::"),
-        ERLocationData("EBH/DC: Numen's Rune - on a small ledge N of the main building", "Numen's Rune", key="150000,0:0015007970::"),
-        ERLocationData("EBH/HR: Traveler's Clothes - to S by the giant rot flower", "Traveler's Clothes", key="150000,0:0015007980::"),
-        ERLocationData("EBH/HR: Traveler's Manchettes - to S by the giant rot flower", "Traveler's Manchettes", key="150000,0:0015007980::"),
-        ERLocationData("EBH/HR: Traveler's Boots - to S by the giant rot flower", "Traveler's Boots", key="150000,0:0015007980::"),
+        ERLocationData("EBH/PR: Seedbed Curse - up the buttress NW of gazebo", "Seedbed Curse", key="150000,0:0015007840::"),
+        ERLocationData("EBH/EIW: Rotten Crystal Sword - in chest to S past roots on left", "Rotten Crystal Sword", key="150000,0:0015007860::", chest=True),
+        ERLocationData("EBH/EIW: Hero's Rune [5] - to SW behind basin at end of hallway", "Hero's Rune [5]", key="150000,0:0015007870::"),
+        ERLocationData("EBH/EIW: Rot Grease - to NW at start of rot swamp", "Rot Grease", key="150000,0:0015007880::"),
+        ERLocationData("EBH/EIW: Great Grave Glovewort - in rot pond across large root", "Great Grave Glovewort", key="150000,0:0015007890::"),
+        ERLocationData("EBH/DC: Golden Rune [10] - to W up the ladder", "Golden Rune [10]", key="150000,0:0015007900::"),
+        ERLocationData("EBH/DC: Ghost-Glovewort Picker's Bell Bearing [3] - between tombstones in far NW side of graveyard", "Ghost-Glovewort Picker's Bell Bearing [3]", key="150000,0:0015007910::", ambush=True, upgradeshop=True),
+        ERLocationData("EBH/DC: Nascent Butterfly - on SE balcony of main building", "Nascent Butterfly", key="150000,0:0015007920::"),
+        ERLocationData("EBH/DC: Dragoncrest Greatshield Talisman - in chest after drop down on main building roof", "Dragoncrest Greatshield Talisman", key="150000,0:0015007930::", talisman=True, ambush=True, chest=True),
+        ERLocationData("EBH/DC: Aeonian Butterfly - on lower NW balcony of main building", "Aeonian Butterfly", key="150000,0:0015007940::"),
+        ERLocationData("EBH/DC: Arteria Leaf x3 - at S side of graveyard in a puddle", "Arteria Leaf x3", key="150000,0:0015007950::"),
+        ERLocationData("EBH/DC: Hero's Rune [5] - at S end of graveyard near large tree", "Hero's Rune [5]", key="150000,0:0015007960::"),
+        ERLocationData("EBH/DC: Numen's Rune - on a small ledge in far NW side of graveyard", "Numen's Rune", key="150000,0:0015007970::"),
+        ERLocationData("EBH/HR: Traveler's Clothes - to S by giant rot flower", "Traveler's Clothes", key="150000,0:0015007980::"),
+        ERLocationData("EBH/HR: Traveler's Manchettes - to S by giant rot flower", "Traveler's Manchettes", key="150000,0:0015007980::"),
+        ERLocationData("EBH/HR: Traveler's Boots - to S by giant rot flower", "Traveler's Boots", key="150000,0:0015007980::"),
     ],
     "Caelid":[ # caelid                                                   done
         ERLocationData("CL/(CP): Prosthesis-Wearer Heirloom - give Millicent fixed needle", "Prosthesis-Wearer Heirloom", key="150000,0:0000400320::", missable=True),
@@ -3942,29 +3947,29 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SK/WR: Salza's Hood - enemy drop to W end of bridge", "Salza's Hood", key="210200,0:0021027991::"),
         ERLocationData("SK/WR: Rain of Fire - enemy drop to W end of bridge", "Rain of Fire", key="210200,0:0021027991::"),
     ],
-    "Stone Coffin Fissure":[ # fissure                                    will be done by Jambo
-        #ERLocationData("SCF: St. Trina Disciple's Cookbook [3] - In the Garden of Deep Purple to St. Trina's right", "St. Trina Disciple's Cookbook [3]", key="220000,0:0000068840::", cookbook=True),
+    "Stone Coffin Fissure":[ # fissure                                    done
+        ERLocationData("SCF/GDP: St. Trina Disciple's Cookbook [3] - right of St. Trina", "St. Trina Disciple's Cookbook [3]", key="220000,0:0000068840::", cookbook=True),
         ERLocationData("SCF/GDP: St. Trina's Smile - Thiollier invader drop, after you die to St. Trina four times and tell him your findings", "St. Trina's Smile", key="220000,0:0000400632::", missable=True),
         ERLocationData("SCF/GDP: St. Trina's Blossom - on St. Trina's body after EI mainboss", "St. Trina's Blossom", key="220000,0:0000400740::", missable=True),
         ERLocationData("SCF/FD: Remembrance of Putrescence - mainboss drop", "Remembrance of Putrescence", key="220000,0:0000510480::", boss=True, deadend=True, remembrance=True),
-        #ERLocationData("SCF: Scadutree Fragment - By Miquella's Cross at the Fissure Cross grace", "Scadutree Fragment", key="220000,0:0022007000::", cross=True),
-        #ERLocationData("SCF: Congealed Putrescence x5 - By a ledge up a hill on an isolated landmass, found by following the right wall after the Stone Coffin Fissure grace and then jumping across to the landmass to the southeast", "Congealed Putrescence x5", key="220000,0:0022007100::"),
-        #ERLocationData("SCF: St. Trina's Arrow x10 - On a corpse resting against a rock pillar northeast of the first giant coffin after the Stone Coffin Fissure grace", "St. Trina's Arrow x10", key="220000,0:0022007110::"),
-        #ERLocationData("SCF: Deep-Purple Lily x2 - On a corpse on the northwest cliffside of the bloodfiend area before the Fissure Cross", "Deep-Purple Lily x2", key="220000,0:0022007120::"),
-        #ERLocationData("SCF: Shadow Realm Rune [3] - On a corpse up a hill behind the upended giant coffin southwest of the Fissure Cross", "Shadow Realm Rune [3]", key="220000,0:0022007130::"),
-        #ERLocationData("SCF: Grave Glovewort [8] - On the west giant coffin in the path towards Fissure Waypoint where three giant coffins are lined up side-by-side, going to a dead end to the left instead of climbing up to the east cliffside with an enemy ambush to the right", "Grave Glovewort [8]", key="220000,0:0022007140::"),
-        #ERLocationData("SCF: Velvet Sword of St. Trina - In a cave hidden below the first giant coffins after the Fissure Cross grace, accessed by dropping down from a cliff ledge northwest of the grace, west of both coffins. Cross under the coffins to the east and take the left fork in the path.", "Velvet Sword of St. Trina", key="220000,0:0022007150::"),
-        #ERLocationData("SCF: Grave Glovewort [3] - On a giant coffin below the first giant coffin directly north of the Fissure Cross grace, accessed by descending the first coffin, jumping off to the left, and going downhill while hugging the cliff wall to the right", "Grave Glovewort [3]", key="220000,0:0022007160::", hidden=True),
-        #ERLocationData("SCF: Grave Glovewort [2] - On a corpse at the top of on the giant coffin slightly northwest of the Fissure Cross grace", "Grave Glovewort [2]", key="220000,0:0022007170::"),
-        #ERLocationData("SCF: Smithing Stone [6] x2 - By a ledge between two giant coffins, after reaching the second-to-last coffin before the Fissure Waypoint grace. Climb up to the coffin from the east cliffside, past an enemy ambush, and drop down to the west of the coffin instead of proceeding north to the last coffin before the grace.", "Smithing Stone [6] x2", key="220000,0:0022007190::"),
-        #ERLocationData("SCF: Grave Glovewort [7] - On a corpse at the base of the upended giant coffin southeast of the Fissure Waypoint grace, along the cliffside", "Grave Glovewort [7]", key="220000,0:0022007200::"),
-        #ERLocationData("SCF: Mass of Putrescence - On the hidden lower path after the Fissure Waypoint grace, accessed by jumping to the landmass to the northeast and then immediately dropping down to the northwest", "Mass of Putrescence", key="220000,0:0022007210::"),
-        #ERLocationData("SCF: Congealed Putrescence x2 - On a corpse on the hidden lower path after the Fissure Waypoint grace, accessed by jumping to the landmass to the northeast and then immediately dropping down to the northwest, then climbing up the hill to the enemies on the first ledge, on its southeast cliffside", "Congealed Putrescence x2", key="220000,0:0022007220::"),
-        #ERLocationData("SCF: Dewgem x3 - In the north corner of the sludge cave after the Fissure Waypoint grace. The cave is entered from the south after climbing past a group of enemies and exited to the southeast.", "Dewgem x3", key="220000,0:0022007230::"),
-        #ERLocationData("SCF: Grave Glovewort [6] - In an alcove hidden below the first giant coffins after the Fissure Cross grace, accessed by dropping down from a cliff ledge northwest of the grace, west of both coffins. Before crossing under the coffins to the east, climb onto the ruined columns to the northeast and jump to the coffin's lower ledge.", "Grave Glovewort [6]", key="220000,0:0022007240::", hidden=True),
-        #ERLocationData("SCF: Multilayered Ring of Light - Dropped by the Leonine Misbegotten on the path from Fissure Waypoint to Fissure Depths, before jumping over two small gaps to reach the final set of giant coffins in the area", "Multilayered Ring of Light", key="220000,0:0022007900::"),
-        #ERLocationData("SCF: Smithing Stone [8] x7 - Dropped by the gigantic putrescent flesh in the sludge cave after the Fissure Waypoint grace. The cave is entered from the south after climbing past a group of enemies and exited to the southeast.", "Smithing Stone [8] x7", key="220000,0:0022007910::"),
-        #ERLocationData("SCF: Congealed Putrescence x5 - Dropped by the gigantic putrescent flesh in the sludge cave after the Fissure Waypoint grace. The cave is entered from the south after climbing past a group of enemies and exited to the southeast.", "Congealed Putrescence x5", key="220000,0:0022007910::"),
+        ERLocationData("SCF/FC: Scadutree Fragment - by cross", "Scadutree Fragment", key="220000,0:0022007000::", cross=True),
+        ERLocationData("SCF/SCF: Congealed Putrescence x5 - to S up right path on ledge", "Congealed Putrescence x5", key="220000,0:0022007100::"),
+        ERLocationData("SCF/SCF: St. Trina's Arrow x10 - to SE after boat", "St. Trina's Arrow x10", key="220000,0:0022007110::"),
+        ERLocationData("SCF/FC: Deep-Purple Lily x2 - to W on lower right cliff", "Deep-Purple Lily x2", key="220000,0:0022007120::"),
+        ERLocationData("SCF/FC: Shadow Realm Rune [3] - to SW", "Shadow Realm Rune [3]", key="220000,0:0022007130::"),
+        ERLocationData("SCF/FC: Grave Glovewort [8] - far to N on top of left boat", "Grave Glovewort [8]", key="220000,0:0022007140::"),
+        ERLocationData("SCF/FC: Velvet Sword of St. Trina - to NW down boats, to E in cave", "Velvet Sword of St. Trina", key="220000,0:0022007150::"),
+        ERLocationData("SCF/FC: Grave Glovewort [3] - to N down right path at lower boat", "Grave Glovewort [3]", key="220000,0:0022007160::", hidden=True),
+        ERLocationData("SCF/FC: Grave Glovewort [2] - to N on top of left boat", "Grave Glovewort [2]", key="220000,0:0022007170::"),
+        ERLocationData("SCF/FC: Smithing Stone [6] x2 - to N between upper 2 boats", "Smithing Stone [6] x2", key="220000,0:0022007190::"),
+        ERLocationData("SCF/FW: Grave Glovewort [7] - to S on left boat", "Grave Glovewort [7]", key="220000,0:0022007200::"),
+        ERLocationData("SCF/FW: Mass of Putrescence - to NE down lower path, bottom of rock", "Mass of Putrescence", key="220000,0:0022007210::"),
+        ERLocationData("SCF/FW: Congealed Putrescence x2 -  to NE down lower path, up on cliff to N", "Congealed Putrescence x2", key="220000,0:0022007220::"),
+        ERLocationData("SCF/FW: Dewgem x3 - to NE up in cave", "Dewgem x3", key="220000,0:0022007230::"),
+        ERLocationData("SCF/FC: Grave Glovewort [6] - to NW down boats, to E in boat on left", "Grave Glovewort [6]", key="220000,0:0022007240::", hidden=True),
+        ERLocationData("SCF/FW: Multilayered Ring of Light - enemy drop to NE up through cave out to SE", "Multilayered Ring of Light", key="220000,0:0022007900::"),
+        ERLocationData("SCF/FW: Smithing Stone [8] x7 - enemy drop to NE up in cave", "Smithing Stone [8] x7", key="220000,0:0022007910::"),
+        ERLocationData("SCF/FW: Congealed Putrescence x5 - enemy drop to NE up in cave", "Congealed Putrescence x5", key="220000,0:0022007910::"),
     ],
     "Finger Ruins of Miyr":[ # fingergrounds                              done
         ERLocationData("FRM: Remembrance of the Mother of Fingers - mainboss drop", "Remembrance of the Mother of Fingers", key="250000,0:0000510550::", boss=True, deadend=True, remembrance=True),
