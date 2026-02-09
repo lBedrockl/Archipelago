@@ -204,7 +204,7 @@ region_order_dlc = [
     "Scorpion River Catacombs",
     "Taylew's Ruined Forge",
     
-    "Ellac River", # name might be wrong
+    "Ellac River",
     "Rivermouth Cave",
     
     "Cerulean Coast",
@@ -519,8 +519,8 @@ class ERLocationData:
         if self.exclusive: # makes sure exclusive is marked missable
             self.missable = True
 
-    def find_boss_region(self, dlc: bool) -> str:
-        if not dlc:
+    def find_boss_region(self) -> str:
+        if not self.dlc:
             for boss_region in ["Limgrave", "Fringefolk Hero's Grave", "Stormhill", "Coastal Cave", "Groveside Cave"
                             ,"Stormfoot Catacombs", "Limgrave Tunnels", "Murkwater Catacombs", "Highroad Cave", "Deathtouched Catacombs",
                             "Stormveil Start","Stormveil Castle",]:
@@ -616,11 +616,91 @@ class ERLocationData:
                     if self.name == loc.name:
                         return "Ashen Bosses"
         else:
-            "guh"
-            # for boss_region in []:
-            #     for loc in location_tables[boss_region]:
-            #         if self.name == loc.name:
-            #             return " Bosses"
+            for boss_region in ["Gravesite Plain","Fog Rift Catacombs","Belurat Gaol","Dragon's Pit",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Gravesite Bosses"
+            
+            for boss_region in ["Belurat"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Belurat Bosses"
+                    
+            for boss_region in ["Castle Ensis","Fog Rift Fort",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Ensis Bosses"
+                    
+            for boss_region in ["Ellac River","Rivermouth Cave",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Ellac Bosses"
+                    
+            for boss_region in ["Cerulean Coast",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Cerulean Bosses"
+                    
+            for boss_region in ["Stone Coffin Fissure",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Stone Coffin Bosses"
+                    
+            for boss_region in ["Jagged Peak Foot","Jagged Peak",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Jagged Peak Bosses"
+                    
+            for boss_region in ["Charo's Hidden Grave", "Lamenter's Gaol (Lower)"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Charo's Bosses"
+                    
+            for boss_region in ["Scadu Altus","Bonny Gaol"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Scadu Altus Bosses"
+                    
+            for boss_region in ["Rauh Base","Scorpion River Catacombs",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Rauh Base Bosses"
+                    
+            for boss_region in ["Shadow Keep","Shadow Keep Storehouse","Shadow Keep, Church District","Shadow Keep, Church District Lower",
+                                "Scaduview","Scadutree Base",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Shadow Keep Bosses"
+                    
+            for boss_region in ["Hinterland"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Hinterland Bosses"
+                    
+            for boss_region in ["Finger Ruins of Miyr"]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Finger Ruins Bosses"
+                    
+            for boss_region in ["Recluses' River","Darklight Catacombs",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Recluses' Bosses"
+                    
+            for boss_region in ["Abyssal Woods","Midra's Manse",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Abyssal Bosses"
+                    
+            for boss_region in ["Ancient Ruins of Rauh",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Ancient Ruins Bosses"
+                    
+            for boss_region in ["Enir Ilim",]:
+                for loc in location_tables[boss_region]:
+                    if self.name == loc.name:
+                        return "Enir Ilim Bosses"
 
     def location_groups(self) -> List[str]:
         """The names of location groups this location should appear in.
@@ -630,17 +710,18 @@ class ERLocationData:
         if (self.boss or self.altboss or self.catacombboss or self.miscboss or self.minidungeonboss or self.graveboss
         or self.caveboss or self.tunnelboss or self.overworldboss or self.dragonboss or self.gaolboss): # any boss should be a prominent place
             if not self.missable:
+                if self.boss or self.overworldboss or self.dragonboss or self.miscboss:
+                    names.append("Overworld Bosses")
                 if not self.dlc:
                     names.append("Boss Reward")
-                    names.append(self.find_boss_region(False))
+                    names.append(self.find_boss_region())
                 else:
                     names.append("Boss Reward DLC")
-                    names.append(self.find_boss_region(True))
+                    names.append(self.find_boss_region())
                     
         if self.remembrance and not self.dlc and not self.missable:
-            names.append("Remembrance")
-            
-        if self.remembrance and self.dlc and not self.missable:
+            names.append("Remembrance") 
+        elif self.remembrance and not self.missable:
             names.append("Remembrance DLC")
         
         if self.prominent: names.append("Prominent")
@@ -3764,6 +3845,24 @@ location_tables: Dict[str, List[ERLocationData]] = {
         ERLocationData("SK/CDE: Crab Eggs x2 - down right on first roof", "Crab Eggs x2", key="210000,0:0021007420::"),
     ],
     "Gravesite Plain":[ # gravesite                                       most done by Legofacebob
+        ERLocationData("Gravesite Bosses", None),
+        ERLocationData("Belurat Bosses", None),
+        ERLocationData("Ensis Bosses", None),
+        ERLocationData("Ellac Bosses", None),
+        ERLocationData("Cerulean Bosses", None),
+        ERLocationData("Stone Coffin Bosses", None),
+        ERLocationData("Jagged Peak Bosses", None),
+        ERLocationData("Charo's Bosses", None),
+        ERLocationData("Scadu Altus Bosses", None),
+        ERLocationData("Rauh Base Bosses", None),
+        ERLocationData("Shadow Keep Bosses", None),
+        ERLocationData("Hinterland Bosses", None),
+        ERLocationData("Finger Ruins Bosses", None),
+        ERLocationData("Recluses' Bosses", None),
+        ERLocationData("Abyssal Bosses", None),
+        ERLocationData("Ancient Ruins Bosses", None),
+        ERLocationData("Enir Ilim Bosses", None),
+        
         ERLocationData("GP/TPC: Cross Map - given by Hornsent at TPC or HC", "Cross Map", key="210100,0:0000400610::", missable=True), #Hornsent
         ERLocationData("GP/TPC: Furnace Visage x3 - given by Hornsent after giving Scorpion Stew", "Furnace Visage x3", key="210100,0:0000400612::", missable=True), #Hornsent
         ERLocationData("GP/PT: Ghost Glovewort [4] - W of PT, in front of gravestone", "Ghost Glovewort [4]", key="614441,0:2044417000::"),
@@ -6216,6 +6315,8 @@ location_name_groups: Dict[str, Set[str]] = {
     #"Upgraded Weapons": set(),
     
     
+    "Overworld Bosses": set(),
+    
     # boss event groups
     "Limgrave Bosses": set(),
     "Weeping Bosses": set(),
@@ -6234,6 +6335,24 @@ location_name_groups: Dict[str, Set[str]] = {
     "Mohgwyn Bosses": set(),
     "Haligtree Bosses": set(),
     "Ashen Bosses": set(),
+    
+    "Gravesite Bosses": set(),
+    "Belurat Bosses": set(),
+    "Ensis Bosses": set(),
+    "Ellac Bosses": set(),
+    "Cerulean Bosses": set(),
+    "Stone Coffin Bosses": set(),
+    "Jagged Peak Bosses": set(),
+    "Charo's Bosses": set(),
+    "Scadu Altus Bosses": set(),
+    "Rauh Base Bosses": set(),
+    "Shadow Keep Bosses": set(),
+    "Hinterland Bosses": set(),
+    "Finger Ruins Bosses": set(),
+    "Recluses' Bosses": set(),
+    "Abyssal Bosses": set(),
+    "Ancient Ruins Bosses": set(),
+    "Enir Ilim Bosses": set(),
 }
 
 location_descriptions = {

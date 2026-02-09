@@ -40,6 +40,10 @@ class RegionBossPercent(Range):
     range_end = 100
     default = 50
     
+class RegionBossType(Toggle):
+    """Remove cave and catacombs type bosses from region bosses."""
+    display_name = "Region Boss Type"
+    
 class RegionSoftLogic(DefaultOnToggle):
     """Region Soft Logic
     
@@ -252,6 +256,7 @@ class EROptions(PerGameCommonOptions):
     ending_condition: EndingCondition
     world_logic: WorldLogic
     region_boss_percent: RegionBossPercent
+    region_boss_type: RegionBossType
     soft_logic: RegionSoftLogic
     great_runes_required: GreatRunesRequired
     royal_access: RoyalAccess
