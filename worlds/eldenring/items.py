@@ -2638,7 +2638,7 @@ _dlc_items = [
     ERItemData("Ruins Map (2nd)", 2008017, ERItemCategory.GOODS, skip=True),
     ERItemData("Ruins Map (3rd)", 2008018, ERItemCategory.GOODS, skip=True),
     ERItemData("Black Syrup", 2008019, ERItemCategory.GOODS, classification=ItemClassification.progression),
-    ERItemData("Messmer's Kindling", 2008021, ERItemCategory.GOODS, classification=ItemClassification.progression),
+    ERItemData("Messmer's Kindling", 2008021, ERItemCategory.GOODS, classification=ItemClassification.progression, skip=True),
     ERItemData("Furnace Keeper's Note", 2008025, ERItemCategory.GOODS, skip=True),
     ERItemData("Castle Cross Message", 2008027, ERItemCategory.GOODS, skip=True),
     ERItemData("Ancient Ruins Cross Message", 2008028, ERItemCategory.GOODS, skip=True),

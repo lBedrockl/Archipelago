@@ -17,9 +17,11 @@ each type split by base / dlc, ex: remembrances
 
 BIG TODO
 
-dlc region lock bosses
+static rando options
 
-lake of rot cant be reached sometimes
+
+
+todo later dlc region lock boss rules
 
 
 
@@ -50,7 +52,7 @@ Stonesword Master Keys
 
 
 descriptions done
-last update 26/02/07
+finshed 26/02/07, took 10 months 🤯
 current progress 4908/4908
 
 

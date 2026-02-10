@@ -146,9 +146,6 @@ class EldenRing(World):
             
             if self.options.dlc_timing != 2:
                 item_table["Pureblood Knight's Medal"].classification = ItemClassification.progression
-                
-            if self.options.messmer_kindle: # this item gets skipped sometimes even if false, wtf
-                item_table["Messmer's Kindling"].skip = True
         
         exclude_local_item_only_lowercase = [key.lower() for key in self.options.exclude_local_item_only.value]
         using_table = item_table_vanilla
@@ -539,6 +536,8 @@ class EldenRing(World):
         if self.options.enable_dlc:
             if self.options.messmer_kindle:
                 all_injectable_items += [item_table["Messmer's Kindling Shard"] for i in range(self.options.messmer_kindle_max)]
+            else:
+                all_injectable_items += [item_table["Messmer's Kindling"]]
         
         injectable_mandatory = [
             item for item in all_injectable_items
@@ -1004,11 +1003,13 @@ class EldenRing(World):
                 self._add_entrance_rule("Ancient Ruins of Rauh", "Ancient Ruins Lock")
                 self._add_entrance_rule("Enir Ilim", "Enir Ilim Lock")
         
-        if self.options.world_logic != "region_lock":
+        if self.options.world_logic != "region_lock" and False: # unfinished always skip
             if self.options.region_boss_type: # only bosses in both sets are used
                 self._add_location_rule("Limgrave Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Limgrave Bosses"] & self.location_name_groups["Overworld Bosses"]))
                 self._add_location_rule("Weeping Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Weeping Bosses"] & self.location_name_groups["Overworld Bosses"]))
+                self._add_location_rule("Stormveil Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Stormveil Bosses"] & self.location_name_groups["Overworld Bosses"]))
                 self._add_location_rule("Liurnia Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Liurnia Bosses"] & self.location_name_groups["Overworld Bosses"]))
+                self._add_location_rule("Raya Lucaria Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Raya Lucaria Bosses"] & self.location_name_groups["Overworld Bosses"]))
                 self._add_location_rule("South East Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["South East Underground Bosses"] & self.location_name_groups["Overworld Bosses"]))
                 self._add_location_rule("North Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["North Underground Bosses"] & self.location_name_groups["Overworld Bosses"]))
                 self._add_location_rule("South West Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["South West Underground Bosses"] & self.location_name_groups["Overworld Bosses"]))
@@ -1025,7 +1026,9 @@ class EldenRing(World):
             else:
                 self._add_location_rule("Limgrave Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Limgrave Bosses"]))
                 self._add_location_rule("Weeping Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Weeping Bosses"]))
+                self._add_location_rule("Stormveil Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Stormveil Bosses"]))
                 self._add_location_rule("Liurnia Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Liurnia Bosses"]))
+                self._add_location_rule("Raya Lucaria Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Raya Lucaria Bosses"]))
                 self._add_location_rule("South East Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["South East Underground Bosses"]))
                 self._add_location_rule("North Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["North Underground Bosses"]))
                 self._add_location_rule("South West Underground Bosses", lambda state: self._can_get_all(state, self.location_name_groups["South West Underground Bosses"]))
@@ -1042,10 +1045,13 @@ class EldenRing(World):
             
             self._add_entrance_rule("Weeping Peninsula", lambda state: state.has("Limgrave Bosses", self.player))
             
-            self._add_entrance_rule("Liurnia of The Lakes", lambda state: state.has("Weeping Bosses", self.player))
+            self._add_entrance_rule("Stormveil Start", lambda state: state.has("Weeping Bosses", self.player))
+            self._add_entrance_rule("Liurnia of The Lakes", lambda state: state.has("Stormveil Bosses", self.player))
             
-            self._add_entrance_rule("Altus Plateau", lambda state: state.has("Liurnia Bosses", self.player))
-            self._add_entrance_rule("Volcano Manor Dungeon", lambda state: state.has("Liurnia Bosses", self.player))
+            self._add_entrance_rule("Raya Lucaria Academy", lambda state: state.has("Liurnia Bosses", self.player))
+            
+            self._add_entrance_rule("Altus Plateau", lambda state: state.has("Raya Lucaria Bosses", self.player))
+            self._add_entrance_rule("Volcano Manor Dungeon", lambda state: state.has("Raya Lucaria Bosses", self.player))
             
             self._add_entrance_rule("Caelid", lambda state: state.has("Altus Bosses", self.player))
             self._add_entrance_rule("Mt. Gelmir", lambda state: state.has("Altus Bosses", self.player))
@@ -1059,7 +1065,7 @@ class EldenRing(World):
             self._add_entrance_rule("Ainsel River Main", lambda state: state.has("South East Underground Bosses", self.player))
             self._add_entrance_rule("Ainsel River", lambda state: state.has("South East Underground Bosses", self.player))
             
-            self._add_entrance_rule("Lake of Rot", lambda state: state.has("North Underground Bosses Bosses", self.player))
+            self._add_entrance_rule("Lake of Rot", lambda state: state.has("North Underground Bosses", self.player))
             
             self._add_entrance_rule("Moonlight Altar", lambda state: state.has("South West Underground Bosses", self.player))
             
@@ -1116,8 +1122,7 @@ class EldenRing(World):
                     self._add_location_rule("Ancient Ruins Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Ancient Ruins Bosses"]))
                     self._add_location_rule("Enir Ilim Bosses", lambda state: self._can_get_all(state, self.location_name_groups["Enir Ilim Bosses"]))
                 
-                # TODO entrance rules
-                
+                # TODO entrance rules          
     
     def _key_rules(self) -> None: # MARK: SSK Rules
         # in order from early game to late game each rule needs to include the last count for an area
@@ -1264,8 +1269,8 @@ class EldenRing(World):
         #self._add_entrance_rule("Miquella's Haligtree", lambda state: self._has_enough_keys(state, 43))
         # haligtree +3
         self._add_location_rule([
-            "EBH/PR: Triple Rings of Light - exit PR then drop to E, behind imp statue", # 1
-            "EBH/PR: Marika's Soreseal - behind imp statue at the S end of the bottom area", # 2
+            "EBH/PR: Triple Rings of Light - drop down to E, in chest behind imp statue", # 1
+            "EBH/EIW: Marika's Soreseal - to SE past the imp statue in lower section", # 2
             ], lambda state: self._has_enough_keys(state, 46))
         
     def _dragon_communion_rules(self) -> None: # MARK: Dragon Rules
@@ -1433,11 +1438,11 @@ class EldenRing(World):
         self._add_location_rule([ "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur",
         ], lambda state: ( self._can_go_to(state, "Mt. Gelmir")))
         
-        self._add_location_rule([ "CL/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat",
+        self._add_location_rule([ "DB/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat",
         ], "Sellian Sealbreaker")
         
         self._add_location_rule([ "LG/(WR): Starlight Shards - given by Sellen after you show her Stars of Ruin",
-        ], lambda state: ( self._can_get(state, "CL/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat") 
+        ], lambda state: ( self._can_get(state, "DB/(SH): Stars of Ruin - lower first big room N side, need Sellian Sealbreaker, given by Lusat") 
                           and self._can_get(state, "LG/(WR): Sellian Sealbreaker - given by Sellen after you show her Comet Azur")))
         
         self._add_location_rule([ "WP/(WR): Sellen's Primal Glintstone - talk to Sellen",
@@ -1454,10 +1459,10 @@ class EldenRing(World):
             "RLA/RLGL: Eccentric's Breeches - side with Sellen",
             
             # idk if you NEED to side with sellen for these
-            "CL/(SH): Lusat's Glintstone Crown - side with Sellen, lower first big room N side, where Lusat was",
-            "CL/(SH): Lusat's Robe - side with Sellen, lower first big room N side, where Lusat was",
-            "CL/(SH): Lusat's Manchettes - side with Sellen, lower first big room N side, where Lusat was",
-            "CL/(SH): Old Sorcerer's Legwraps - side with Sellen, lower first big room N side, where Lusat was",
+            "DB/(SH): Lusat's Glintstone Crown - side with Sellen, lower first big room N side, where Lusat was",
+            "DB/(SH): Lusat's Robe - side with Sellen, lower first big room N side, where Lusat was",
+            "DB/(SH): Lusat's Manchettes - side with Sellen, lower first big room N side, where Lusat was",
+            "DB/(SH): Old Sorcerer's Legwraps - side with Sellen, lower first big room N side, where Lusat was",
             "MtG/PSA: Azur's Glintstone Crown - side with Sellen, where Azur was",
             "MtG/PSA: Azur's Glintstone Robe - side with Sellen, where Azur was",
             "MtG/PSA: Azur's Manchettes - side with Sellen, where Azur was"
